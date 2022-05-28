@@ -24,6 +24,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useHotkeys([["mod+J", () => toggleColorScheme()]]);
 
+  // TODO: Font
   return (
     <>
       <Head>
