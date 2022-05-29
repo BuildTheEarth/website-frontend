@@ -16,7 +16,7 @@ const Page = (props: any) => {
           { link: "faq", label: "FAQ" },
           { link: "map", label: "Map" },
           { link: "teams", label: "Build Teams" },
-          { link: "contact", label: "Contact" },
+          { link: "contact", label: "Contact"},
         ]}
         user={props.user}
       />

@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Plus Jakarta Display Bold';
+  src: url('https://tokotype.github.io/plusjakarta-sans/fonts/PlusJakartaDisplay-Bold.woff') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
 html,
 body {
   padding: 0;
@@ -13,4 +20,5 @@ a {
 
 * {
   box-sizing: border-box;
+  font-family: "Segoe UI";
 }

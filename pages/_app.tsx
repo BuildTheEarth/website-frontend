@@ -4,6 +4,7 @@ import {
   ColorScheme,
   ColorSchemeProvider,
   MantineProvider,
+  MantineThemeOverride,
 } from "@mantine/core";
 import { useHotkeys, useLocalStorage } from "@mantine/hooks";
 
@@ -11,6 +12,12 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import { SWRConfig } from "swr";
 import { useRouter } from "next/router";
+
+const theme: MantineThemeOverride = {
+  fontFamily: "Segoe UI, sans-serif",
+  lineHeight: 1.5,
+  fontSizes: { xs: 12, sm: 14, md: 24, lg: 37, xl: 64 },
+};
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
@@ -45,11 +52,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           colorScheme={colorScheme}
           toggleColorScheme={toggleColorScheme}
         >
-          <MantineProvider
-            theme={{ colorScheme }}
-            withGlobalStyles
-            withNormalizeCSS
-          >
+          <MantineProvider theme={{colorScheme,...theme}} withGlobalStyles withNormalizeCSS>
             <Component {...pageProps} />
           </MantineProvider>
         </ColorSchemeProvider>
