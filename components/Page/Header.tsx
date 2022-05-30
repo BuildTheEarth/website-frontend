@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 import {
   Avatar,
   Button,
@@ -11,8 +13,10 @@ import {
   Text,
   UnstyledButton,
   createStyles,
+  useMantineColorScheme,
+  useMantineTheme,
 } from "@mantine/core";
-import { ListSearch, Upload } from "tabler-icons-react";
+import { ListSearch, MoonStars, Sun, Upload } from "tabler-icons-react";
 
 import Image from "next/image";
 import React from "react";
@@ -56,6 +60,7 @@ interface HeaderProps {
 const Header = ({ links, user }: HeaderProps) => {
   const { classes } = useStyles();
   const router = useRouter();
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const items = links.map((link) => {
     return (
       <a key={link.label} href={link.link} className={classes.link}>
@@ -74,9 +79,7 @@ const Header = ({ links, user }: HeaderProps) => {
           onClick={() => router.push("/")}
           style={{ cursor: "pointer" }}
         />
-        <Group spacing={5}>
-          {items}
-        </Group>
+        <Group spacing={40}>{items}</Group>
         {user ? (
           <Menu
             gutter={10}
@@ -99,6 +102,18 @@ const Header = ({ links, user }: HeaderProps) => {
             withArrow
           >
             <Menu.Item icon={<Upload size={14} />}>Upload World</Menu.Item>
+            <Menu.Item
+              icon={
+                colorScheme == "dark" ? (
+                  <Sun size={14} />
+                ) : (
+                  <MoonStars size={14} />
+                )
+              }
+              onClick={() => toggleColorScheme()}
+            >
+              {colorScheme == "dark" ? "Light Theme" : "Dark Theme"}
+            </Menu.Item>
             <Divider />
             <Menu.Label>Staff</Menu.Label>
             <Menu.Item icon={<ListSearch size={14} />}>Review</Menu.Item>
