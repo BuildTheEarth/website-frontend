@@ -181,7 +181,7 @@ const Header = ({ links, user }: HeaderProps) => {
     </a>
   ));
   return (
-    <MantineHeader height={60} mb={120} className={classes.root}>
+    <MantineHeader height={60}  className={classes.root}>
       <Container className={classes.header} size={"xl"}>
         <img src="/logo.gif" alt="Mantine" height="40" />
         <Group spacing={5} className={classes.links}>
