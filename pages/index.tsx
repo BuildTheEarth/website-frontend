@@ -7,9 +7,9 @@ const Home: NextPage = () => {
   return (
     <Page
       user={{
-        name: "John Doe",
+        name: "Leander#2813",
         avatar:
-          "https://cdn.discordapp.com/attachments/692259936012468235/980222046623641620/unknown.png",
+          "https://cdn.discordapp.com/avatars/211584062177935361/a_301cacc2c3d88e3d50d9d6c328eac36f.gif",
       }}
     ></Page>
   );
