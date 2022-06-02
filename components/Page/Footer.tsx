@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 
 import { Anchor, Container, Group, Menu, createStyles } from "@mantine/core";
@@ -9,6 +10,7 @@ const useStyles = createStyles((theme) => ({
     borderTop: `1px solid ${
       theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[2]
     }`,
+    backgroundColor:theme.colorScheme==="dark"?theme.colors.dark[7]:theme.colors.white,
   },
 
   inner: {
@@ -32,9 +34,10 @@ const useStyles = createStyles((theme) => ({
 
 interface FooterSimpleProps {
   links: { link: string; label: string }[];
+  style?: React.CSSProperties;
 }
 
-export default function Footer({ links }: FooterSimpleProps) {
+export default function Footer({ links,style }: FooterSimpleProps) {
   const { classes } = useStyles();
   const items = links.map((link) => (
     <Anchor<"a">
@@ -49,7 +52,7 @@ export default function Footer({ links }: FooterSimpleProps) {
   ));
 
   return (
-    <div className={classes.footer}>
+    <div className={classes.footer} style={style}>
       <Container className={classes.inner} size={"xl"}>
         <img src="/logo.gif" height="40" alt="Logo" />
         <Group className={classes.links}>

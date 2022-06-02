@@ -66,7 +66,7 @@ const Page = (props: any) => {
             { link: "contact", label: "Contact" },
             { link: "about", label: "About us" },
           ]}
-          style={{ position: "absolute", bottom: 0 }}
+          style={{ position: "absolute", bottom: 0,width:"100vw" }}
         />
       )}
     </div>
