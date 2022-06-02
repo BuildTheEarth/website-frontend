@@ -59,6 +59,7 @@ export default function Footer({ links,style }: FooterSimpleProps) {
           {items}
           <Menu
           position="top"
+          placement="end"
             control={
               <Anchor<"a">
                 color="dimmed"
