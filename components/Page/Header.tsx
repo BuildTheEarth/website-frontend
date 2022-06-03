@@ -52,6 +52,7 @@ const useStyles = createStyles((theme) => ({
     borderTopLeftRadius: 0,
     borderTopWidth: 0,
     overflow: "hidden",
+    boxShadow: theme.shadows.md,
 
     [theme.fn.largerThan("sm")]: {
       display: "none",
@@ -143,8 +144,8 @@ const useStyles = createStyles((theme) => ({
     [theme.fn.smallerThan("sm")]: {
       borderRadius: 0,
       padding: theme.spacing.md,
-      margin:0,
-      width:"100%",
+      margin: 0,
+      width: "100%",
     },
   },
 }));
@@ -182,12 +183,12 @@ const Header = ({ links, user }: HeaderProps) => {
     </a>
   ));
   return (
-    <MantineHeader height={60}  className={classes.root}>
+    <MantineHeader height={60} className={classes.root}>
       <Container className={classes.header} size={"xl"}>
         <img src="/logo.gif" alt="Mantine" height="40" />
         <Group spacing={5} className={classes.links}>
           {items}
-          {user? (
+          {user ? (
             <Menu
               placement="end"
               transition="pop-top-right"
@@ -244,7 +245,11 @@ const Header = ({ links, user }: HeaderProps) => {
                 Review Claims
               </Menu.Item>
             </Menu>
-          ):<Button ml="md" onClick={()=>router.push("/login")} radius="xl">Sign In</Button>}
+          ) : (
+            <Button ml="md" onClick={() => router.push("/login")} radius="xl">
+              Sign In
+            </Button>
+          )}
         </Group>
 
         <Burger
@@ -259,29 +264,32 @@ const Header = ({ links, user }: HeaderProps) => {
             <Paper className={classes.dropdown} withBorder style={styles}>
               {items}
               {user && (
-               <UnstyledButton
-               className={cx(classes.user, {
-                 [classes.userActive]: userMenuOpened,
-               })}
-               onClick={() => router.push("/profile")}
-             >
-               <Group spacing={7}>
-                 <Avatar
-                   src={user.avatar}
-                   alt={user.name}
-                   radius="xl"
-                   size={25}
-                 />
-                 <Text
-                   weight={500}
-                   size="sm"
-                   sx={{ lineHeight: 1 }}
-                   mr={3}
-                 >
-                   {user.name}
-                 </Text>
-               </Group>
-             </UnstyledButton>
+                <>
+                  <Divider />
+                  <UnstyledButton
+                    className={cx(classes.user, {
+                      [classes.userActive]: userMenuOpened,
+                    })}
+                    onClick={() => router.push("/profile")}
+                  >
+                    <Group spacing={7}>
+                      <Avatar
+                        src={user.avatar}
+                        alt={user.name}
+                        radius="xl"
+                        size={25}
+                      />
+                      <Text
+                        weight={500}
+                        size="sm"
+                        sx={{ lineHeight: 1 }}
+                        mr={3}
+                      >
+                        {user.name}
+                      </Text>
+                    </Group>
+                  </UnstyledButton>
+                </>
               )}
             </Paper>
           )}
