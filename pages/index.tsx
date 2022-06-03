@@ -7,11 +7,19 @@ const Home: NextPage = () => {
   return (
     <Page
       user={{
-        name: "Leander#2813",
+        name: "Nudelsuppe_42_#3571",
         avatar:
-          "https://cdn.discordapp.com/avatars/211584062177935361/a_301cacc2c3d88e3d50d9d6c328eac36f.gif",
+          "https://cdn.discordapp.com/avatars/635411595253776385/66a67aa69149c976f3b962d72ca17146.webp",
       }}
-    ></Page>
+      head={{
+        title: "Example Head",
+        subtitle: "Example Subtitle",
+        image: "/images/placeholder.png",
+        large: true,
+      }}
+    >
+      <p>Example Content</p>
+    </Page>
   );
 };
 

@@ -10,7 +10,7 @@ const useStyles = createStyles((theme) => ({
     borderTop: `1px solid ${
       theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[2]
     }`,
-    backgroundColor:theme.colorScheme==="dark"?theme.colors.dark[7]:theme.colors.white,
+    backgroundColor:theme.colorScheme==="dark"?theme.colors.dark[7]:"#ffffff",
   },
 
   inner: {
