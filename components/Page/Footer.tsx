@@ -10,7 +10,8 @@ const useStyles = createStyles((theme) => ({
     borderTop: `1px solid ${
       theme.colorScheme === "dark" ? theme.colors.dark[5] : theme.colors.gray[2]
     }`,
-    backgroundColor:theme.colorScheme==="dark"?theme.colors.dark[7]:"#ffffff",
+    backgroundColor:
+      theme.colorScheme === "dark" ? theme.colors.dark[7] : "#ffffff",
   },
 
   inner: {
@@ -37,7 +38,7 @@ interface FooterSimpleProps {
   style?: React.CSSProperties;
 }
 
-export default function Footer({ links,style }: FooterSimpleProps) {
+export default function Footer({ links, style }: FooterSimpleProps) {
   const { classes } = useStyles();
   const items = links.map((link) => (
     <Anchor<"a">
@@ -54,12 +55,15 @@ export default function Footer({ links,style }: FooterSimpleProps) {
   return (
     <div className={classes.footer} style={style}>
       <Container className={classes.inner} size={"xl"}>
-        <img src="/logo.gif" height="40" alt="Logo" />
+        <Anchor<"a"> color="dimmed"
+                variant="text">
+          &copy; {new Date().getFullYear()} BuildTheEarth
+        </Anchor>
         <Group className={classes.links}>
           {items}
           <Menu
-          position="top"
-          placement="end"
+            position="top"
+            placement="end"
             control={
               <Anchor<"a">
                 color="dimmed"
@@ -70,8 +74,20 @@ export default function Footer({ links,style }: FooterSimpleProps) {
               </Anchor>
             }
           >
-              <Menu.Item icon={<img src="https://countryflagsapi.com/png/gb" height={"15"} />}>English</Menu.Item>
-              <Menu.Item icon={<img src="https://countryflagsapi.com/png/de" height={"15"} />}>German</Menu.Item>
+            <Menu.Item
+              icon={
+                <img src="https://countryflagsapi.com/png/gb" height={"15"} />
+              }
+            >
+              English
+            </Menu.Item>
+            <Menu.Item
+              icon={
+                <img src="https://countryflagsapi.com/png/de" height={"15"} />
+              }
+            >
+              German
+            </Menu.Item>
           </Menu>
         </Group>
       </Container>
