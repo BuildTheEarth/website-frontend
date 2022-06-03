@@ -24,6 +24,7 @@ import {
   FileSearch,
   FileUpload,
   ListSearch,
+  Login,
   Logout,
   MoonStars,
   Sun,
@@ -186,7 +187,7 @@ const Header = ({ links, user }: HeaderProps) => {
         <img src="/logo.gif" alt="Mantine" height="40" />
         <Group spacing={5} className={classes.links}>
           {items}
-          {user && (
+          {user? (
             <Menu
               placement="end"
               transition="pop-top-right"
@@ -243,7 +244,7 @@ const Header = ({ links, user }: HeaderProps) => {
                 Review Claims
               </Menu.Item>
             </Menu>
-          )}
+          ):<Button ml="md" onClick={()=>router.push("/login")} radius="xl">Sign In</Button>}
         </Group>
 
         <Burger
