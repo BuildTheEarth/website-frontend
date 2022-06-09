@@ -231,7 +231,7 @@ const Header = ({ links, user }: HeaderProps) => {
                 }
                 onClick={() => toggleColorScheme()}
               >
-                Toggle {colorScheme == "dark" ? "Dark" : "Light"} Theme{" "}
+                Toggle {colorScheme == "dark" ? "Light" : "Dark"} Theme{" "}
               </Menu.Item>
               <Menu.Item
                 icon={<Logout size={14} />}
