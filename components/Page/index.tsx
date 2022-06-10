@@ -41,6 +41,8 @@ const Page = (props: any) => {
             : theme.colors.gray[0],
         width: "100vw",
         minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column"
       }}
     >
       {!props.disabled?.header && (
@@ -109,6 +111,8 @@ const Page = (props: any) => {
             marginTop: theme.spacing.xl * 2,
             marginBottom: theme.spacing.xl * 2,
             padding: theme.spacing.xl + "px " + theme.spacing.xl * 3 + "px",
+            flex: 1,
+            width: "100%"
           }}
         >
           {props.children}
