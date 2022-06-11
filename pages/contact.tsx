@@ -1,4 +1,4 @@
-import { Anchor, Button, Card, Grid, Text, ThemeIcon } from "@mantine/core";
+import {Anchor, Box, Button, Card, Grid, Text, ThemeIcon} from "@mantine/core";
 import Head from "next/head";
 import Image from "next/image";
 import { NextPage } from "next";
@@ -39,18 +39,14 @@ const Home: NextPage = () => {
             project, you can send an email, or reach out through Discord.
           </Text>
           <h2>Social Media</h2>
-          <div style={{ marginBottom: 20 }}>
+          <div style={{ marginBottom: 40, display: "flex", gap: "15px" }} >
             <a href={"https://www.facebook.com/BuildTheEarth"}>
               <ThemeIcon
                 variant="outline"
                 radius="xl"
                 size="xl"
-                style={{ marginRight: 10 }}
                 sx={(theme) => ({
-                  backgroundColor: theme.colors.gray[0],
-                  "&:hover": {
-                    backgroundColor: theme.colors.gray[1],
-                  },
+                  backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1]
                 })}
               >
                 <BrandFacebook />
@@ -61,12 +57,8 @@ const Home: NextPage = () => {
                 variant="outline"
                 radius="xl"
                 size="xl"
-                style={{ marginRight: 10 }}
                 sx={(theme) => ({
-                  backgroundColor: theme.colors.gray[0],
-                  "&:hover": {
-                    backgroundColor: theme.colors.gray[1],
-                  },
+                  backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1]
                 })}
               >
                 <BrandInstagram />
@@ -77,12 +69,8 @@ const Home: NextPage = () => {
                 variant="outline"
                 radius="xl"
                 size="xl"
-                style={{ marginRight: 10 }}
                 sx={(theme) => ({
-                  backgroundColor: theme.colors.gray[0],
-                  "&:hover": {
-                    backgroundColor: theme.colors.gray[1],
-                  },
+                  backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1]
                 })}
               >
                 <BrandTiktok />
@@ -93,12 +81,8 @@ const Home: NextPage = () => {
                 variant="outline"
                 radius="xl"
                 size="xl"
-                style={{ marginRight: 10 }}
                 sx={(theme) => ({
-                  backgroundColor: theme.colors.gray[0],
-                  "&:hover": {
-                    backgroundColor: theme.colors.gray[1],
-                  },
+                  backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1]
                 })}
               >
                 <BrandDiscord />
@@ -109,12 +93,8 @@ const Home: NextPage = () => {
                 variant="outline"
                 radius="xl"
                 size="xl"
-                style={{ marginRight: 10 }}
                 sx={(theme) => ({
-                  backgroundColor: theme.colors.gray[0],
-                  "&:hover": {
-                    backgroundColor: theme.colors.gray[1],
-                  },
+                  backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1]
                 })}
               >
                 <BrandSnapchat />
@@ -125,12 +105,8 @@ const Home: NextPage = () => {
                 variant="outline"
                 radius="xl"
                 size="xl"
-                style={{ marginRight: 10 }}
                 sx={(theme) => ({
-                  backgroundColor: theme.colors.gray[0],
-                  "&:hover": {
-                    backgroundColor: theme.colors.gray[1],
-                  },
+                  backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1]
                 })}
               >
                 <BrandYoutube />
@@ -141,12 +117,8 @@ const Home: NextPage = () => {
                 variant="outline"
                 radius="xl"
                 size="xl"
-                style={{ marginRight: 10 }}
                 sx={(theme) => ({
-                  backgroundColor: theme.colors.gray[0],
-                  "&:hover": {
-                    backgroundColor: theme.colors.gray[1],
-                  },
+                  backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1]
                 })}
               >
                 <BrandTwitter />
@@ -157,12 +129,8 @@ const Home: NextPage = () => {
                 variant="outline"
                 radius="xl"
                 size="xl"
-                style={{ marginRight: 10 }}
                 sx={(theme) => ({
-                  backgroundColor: theme.colors.gray[0],
-                  "&:hover": {
-                    backgroundColor: theme.colors.gray[1],
-                  },
+                  backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1]
                 })}
               >
                 <BrandTwitch />
@@ -269,20 +237,20 @@ const Home: NextPage = () => {
           <Card style={{ marginBottom: 10 }} shadow={"sm"}>
             <Card.Section style={{ margin: 10 }}>
               <h2>Website</h2>
-              <Text>Joe Mama</Text>
+              <Text>Nachwahl</Text>
               <Text>
                 Email:{" "}
                 <a
-                  href={"mailto: joemama@buildtheearth.net"}
+                  href={"mailto: nachwahl@buildtheearth.net"}
                   style={{ color: "#5D85E3" }}
                 >
-                  joemamam@buildtheearth.net
+                  nachwahl@buildtheearth.net
                 </a>
               </Text>
               <Text>
                 Discord:{" "}
                 <a
-                  href={"https://discordapp.com/users/379431523360964608"}
+                  href={"https://discordapp.com/users/258975674168115200"}
                   style={{ color: "#5D85E3" }}
                 >
                   Joemama#0000
@@ -292,7 +260,9 @@ const Home: NextPage = () => {
           </Card>
         </Grid.Col>
       </Grid>
-      <Image src={"/logo.gif"} height={"256px"} width={"256px"} alt={""} />
+      <div style={{ marginTop: 15 }}>
+      <Image src={"/logo.gif"} height={"128px"} width={"128px"} alt={""} />
+      </div>
     </Page>
   );
 };
