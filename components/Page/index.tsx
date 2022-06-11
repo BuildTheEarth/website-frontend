@@ -39,7 +39,7 @@ const Page = (props: any) => {
           theme.colorScheme === "dark"
             ? theme.colors.dark[8]
             : theme.colors.gray[0],
-        width: "100vw",
+        width: "calc(100vw - (100vw - 100%))",
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column"
