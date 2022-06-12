@@ -4,35 +4,28 @@ import {
   Avatar,
   Burger,
   Button,
-  Center,
   Container,
   Divider,
   Group,
   Header as MantineHeader,
   Menu,
-  MenuItem,
   Paper,
   Text,
   Transition,
   UnstyledButton,
   createStyles,
-  useMantineColorScheme,
-  useMantineTheme
+  useMantineColorScheme
 } from '@mantine/core'
 import {
   ChevronDown,
   FileSearch,
   FileUpload,
-  ListSearch,
-  Login,
   Logout,
   MoonStars,
-  Sun,
-  Upload
+  Sun
 } from 'tabler-icons-react'
 import React, {useState} from 'react'
 
-import Image from 'next/image'
 import {useBooleanToggle} from '@mantine/hooks'
 import {useRouter} from 'next/router'
 
