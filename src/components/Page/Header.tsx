@@ -17,8 +17,8 @@ import {
   UnstyledButton,
   createStyles,
   useMantineColorScheme,
-  useMantineTheme,
-} from "@mantine/core";
+  useMantineTheme
+} from '@mantine/core'
 import {
   ChevronDown,
   FileSearch,
@@ -28,22 +28,22 @@ import {
   Logout,
   MoonStars,
   Sun,
-  Upload,
-} from "tabler-icons-react";
-import React, { useState } from "react";
+  Upload
+} from 'tabler-icons-react'
+import React, {useState} from 'react'
 
-import Image from "next/image";
-import { useBooleanToggle } from "@mantine/hooks";
-import { useRouter } from "next/router";
+import Image from 'next/image'
+import {useBooleanToggle} from '@mantine/hooks'
+import {useRouter} from 'next/router'
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles(theme => ({
   root: {
-    position: "relative",
-    zIndex: 1,
+    position: 'relative',
+    zIndex: 1
   },
 
   dropdown: {
-    position: "absolute",
+    position: 'absolute',
     top: 60,
     left: 0,
     right: 0,
@@ -51,141 +51,127 @@ const useStyles = createStyles((theme) => ({
     borderTopRightRadius: 0,
     borderTopLeftRadius: 0,
     borderTopWidth: 0,
-    overflow: "hidden",
+    overflow: 'hidden',
     boxShadow: theme.shadows.md,
 
-    [theme.fn.largerThan("sm")]: {
-      display: "none",
-    },
+    [theme.fn.largerThan('sm')]: {
+      display: 'none'
+    }
   },
 
   header: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    maxWidth: "100%",
-    height: "100%",
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    maxWidth: '100%',
+    height: '100%'
   },
 
   links: {
-    [theme.fn.smallerThan("sm")]: {
-      display: "none",
-    },
+    [theme.fn.smallerThan('sm')]: {
+      display: 'none'
+    }
   },
 
   burger: {
-    [theme.fn.largerThan("sm")]: {
-      display: "none",
-    },
+    [theme.fn.largerThan('sm')]: {
+      display: 'none'
+    }
   },
 
   link: {
-    display: "block",
+    display: 'block',
     lineHeight: 1,
-    padding: "8px 12px",
-    cursor: "pointer",
+    padding: '8px 12px',
+    cursor: 'pointer',
     borderRadius: theme.radius.sm,
-    textDecoration: "none",
-    color:
-      theme.colorScheme === "dark"
-        ? theme.colors.dark[0]
-        : theme.colors.gray[7],
+    textDecoration: 'none',
+    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
     fontSize: theme.fontSizes.sm,
     fontWeight: 500,
 
-    "&:hover": {
-      backgroundColor:
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[6]
-          : theme.colors.gray[0],
+    '&:hover': {
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0]
     },
 
-    [theme.fn.smallerThan("sm")]: {
+    [theme.fn.smallerThan('sm')]: {
       borderRadius: 0,
-      padding: theme.spacing.md,
-    },
+      padding: theme.spacing.md
+    }
   },
 
   linkActive: {
-    "&, &:hover": {
+    '&, &:hover': {
       backgroundColor:
-        theme.colorScheme === "dark"
+        theme.colorScheme === 'dark'
           ? theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
           : theme.colors[theme.primaryColor][0],
-      color:
-        theme.colors[theme.primaryColor][theme.colorScheme === "dark" ? 3 : 7],
-    },
+      color: theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 3 : 7]
+    }
   },
 
   userMenu: {
-    [theme.fn.smallerThan("xs")]: {
-      display: "none",
-    },
+    [theme.fn.smallerThan('xs')]: {
+      display: 'none'
+    }
   },
   userActive: {
-    backgroundColor:
-      theme.colorScheme === "dark" ? theme.colors.dark[8] : theme.white,
+    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white
   },
 
   user: {
-    color:
-      theme.colorScheme === "dark"
-        ? theme.colors.dark[0]
-        : theme.colors.gray[7],
+    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
     padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`,
     borderRadius: theme.radius.sm,
     marginLeft: theme.spacing.xs,
-    transition: "background-color 100ms ease",
-    "&:hover": {
-      backgroundColor:
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[8]
-          : theme.colors.gray[1],
+    transition: 'background-color 100ms ease',
+    '&:hover': {
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[1]
     },
-    [theme.fn.smallerThan("sm")]: {
+    [theme.fn.smallerThan('sm')]: {
       borderRadius: 0,
       padding: theme.spacing.md,
       margin: 0,
-      width: "100%",
-    },
-  },
-}));
+      width: '100%'
+    }
+  }
+}))
 
 interface HeaderProps {
   links: {
-    link: string;
-    label: string;
-  }[];
+    link: string
+    label: string
+  }[]
   user?: {
-    name: string;
-    avatar: string;
-  };
+    name: string
+    avatar: string
+  }
 }
 
-const Header = ({ links, user }: HeaderProps) => {
-  const [opened, toggleOpened] = useBooleanToggle(false);
-  const [userMenuOpened, setUserMenuOpened] = useState(false);
-  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
-  const { classes, cx } = useStyles();
-  const router = useRouter();
+const Header = ({links, user}: HeaderProps) => {
+  const [opened, toggleOpened] = useBooleanToggle(false)
+  const [userMenuOpened, setUserMenuOpened] = useState(false)
+  const {colorScheme, toggleColorScheme} = useMantineColorScheme()
+  const {classes, cx} = useStyles()
+  const router = useRouter()
 
-  const items = links.map((link) => (
+  const items = links.map(link => (
     <a
       key={link.label}
       className={cx(classes.link, {
-        [classes.linkActive]: router.pathname === link.link,
+        [classes.linkActive]: router.pathname === link.link
       })}
-      onClick={(event) => {
-        router.push(link.link);
-        toggleOpened(false);
+      onClick={event => {
+        router.push(link.link)
+        toggleOpened(false)
       }}
     >
       {link.label}
     </a>
-  ));
+  ))
   return (
     <MantineHeader height={60} className={classes.root}>
-      <Container className={classes.header} size={"xl"}>
+      <Container className={classes.header} size={'xl'}>
         <img src="/logo.gif" alt="Mantine" height="40" />
         <Group spacing={5} className={classes.links}>
           {items}
@@ -199,17 +185,12 @@ const Header = ({ links, user }: HeaderProps) => {
               control={
                 <UnstyledButton
                   className={cx(classes.user, {
-                    [classes.userActive]: userMenuOpened,
+                    [classes.userActive]: userMenuOpened
                   })}
                 >
                   <Group spacing={7}>
-                    <Avatar
-                      src={user.avatar}
-                      alt={user.name}
-                      radius="xl"
-                      size={20}
-                    />
-                    <Text weight={500} size="sm" sx={{ lineHeight: 1 }} mr={3}>
+                    <Avatar src={user.avatar} alt={user.name} radius="xl" size={20} />
+                    <Text weight={500} size="sm" sx={{lineHeight: 1}} mr={3}>
                       {user.name}
                     </Text>
                     <ChevronDown size={12} />
@@ -217,48 +198,30 @@ const Header = ({ links, user }: HeaderProps) => {
                 </UnstyledButton>
               }
             >
-              <Menu.Item icon={<FileUpload size={14} />}>
-                Upload World
-              </Menu.Item>
+              <Menu.Item icon={<FileUpload size={14} />}>Upload World</Menu.Item>
               <Divider />
               <Menu.Label>Quick Actions</Menu.Label>
               <Menu.Item
-                icon={
-                  colorScheme == "dark" ? (
-                    <MoonStars size={14} />
-                  ) : (
-                    <Sun size={14} />
-                  )
-                }
+                icon={colorScheme == 'dark' ? <MoonStars size={14} /> : <Sun size={14} />}
                 onClick={() => toggleColorScheme()}
               >
-                Toggle {colorScheme == "dark" ? "Light" : "Dark"} Theme{" "}
+                Toggle {colorScheme == 'dark' ? 'Light' : 'Dark'} Theme{' '}
               </Menu.Item>
-              <Menu.Item
-                icon={<Logout size={14} />}
-                onClick={() => router.push("/logout")}
-              >
+              <Menu.Item icon={<Logout size={14} />} onClick={() => router.push('/logout')}>
                 Logout
               </Menu.Item>
               <Divider />
               <Menu.Label>Staff</Menu.Label>
-              <Menu.Item icon={<FileSearch size={14} />}>
-                Review Claims
-              </Menu.Item>
+              <Menu.Item icon={<FileSearch size={14} />}>Review Claims</Menu.Item>
             </Menu>
           ) : (
-            <Button ml="md" onClick={() => router.push("/login")} radius="xl">
+            <Button ml="md" onClick={() => router.push('/login')} radius="xl">
               Sign In
             </Button>
           )}
         </Group>
 
-        <Burger
-          opened={opened}
-          onClick={() => toggleOpened()}
-          className={classes.burger}
-          size="sm"
-        />
+        <Burger opened={opened} onClick={() => toggleOpened()} className={classes.burger} size="sm" />
 
         <Transition transition="pop-top-right" duration={200} mounted={opened}>
           {(styles: any) => (
@@ -269,23 +232,13 @@ const Header = ({ links, user }: HeaderProps) => {
                   <Divider />
                   <UnstyledButton
                     className={cx(classes.user, {
-                      [classes.userActive]: userMenuOpened,
+                      [classes.userActive]: userMenuOpened
                     })}
-                    onClick={() => router.push("/profile")}
+                    onClick={() => router.push('/profile')}
                   >
                     <Group spacing={7}>
-                      <Avatar
-                        src={user.avatar}
-                        alt={user.name}
-                        radius="xl"
-                        size={25}
-                      />
-                      <Text
-                        weight={500}
-                        size="sm"
-                        sx={{ lineHeight: 1 }}
-                        mr={3}
-                      >
+                      <Avatar src={user.avatar} alt={user.name} radius="xl" size={25} />
+                      <Text weight={500} size="sm" sx={{lineHeight: 1}} mr={3}>
                         {user.name}
                       </Text>
                     </Group>
@@ -297,6 +250,6 @@ const Header = ({ links, user }: HeaderProps) => {
         </Transition>
       </Container>
     </MantineHeader>
-  );
-};
-export default Header;
+  )
+}
+export default Header

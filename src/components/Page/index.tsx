@@ -1,57 +1,47 @@
-import {
-  Center,
-  Container,
-  Paper,
-  Text,
-  Title,
-  useMantineTheme,
-} from "@mantine/core";
+import {Center, Container, Paper, Text, Title, useMantineTheme} from '@mantine/core'
 
-import Footer from "./Footer";
-import Header from "./Header";
+import Footer from './Footer'
+import Header from './Header'
 
 interface PageProps {
-  children: React.ReactNode;
-  fullWidth?: boolean;
+  children: React.ReactNode
+  fullWidth?: boolean
   user?: {
-    name: string;
-    avatar: string;
-  };
+    name: string
+    avatar: string
+  }
   disabled?: {
-    header?: boolean;
-    footer?: boolean;
-  };
+    header?: boolean
+    footer?: boolean
+  }
   head?: {
-    title: string;
-    subtitle?: string;
-    image: string;
-    filter?: string;
-    large?: boolean;
-  };
+    title: string
+    subtitle?: string
+    image: string
+    filter?: string
+    large?: boolean
+  }
 }
 
 const Page = (props: any) => {
-  const theme = useMantineTheme();
+  const theme = useMantineTheme()
   return (
     <div
       style={{
-        backgroundColor:
-          theme.colorScheme === "dark"
-            ? theme.colors.dark[8]
-            : theme.colors.gray[0],
-        width: "calc(100vw - (100vw - 100%))",
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+        width: 'calc(100vw - (100vw - 100%))',
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column'
       }}
     >
       {!props.disabled?.header && (
         <Header
           links={[
-            { link: "faq", label: "FAQ" },
-            { link: "map", label: "Map" },
-            { link: "teams", label: "Build Teams" },
-            { link: "contact", label: "Contact" },
+            {link: 'faq', label: 'FAQ'},
+            {link: 'map', label: 'Map'},
+            {link: 'teams', label: 'Build Teams'},
+            {link: 'contact', label: 'Contact'}
           ]}
           user={props.user}
         />
@@ -60,39 +50,34 @@ const Page = (props: any) => {
       {props.head && (
         <div
           style={{
-            width: "100%",
-            height: "20vh",
-            position: "relative",
+            width: '100%',
+            height: '20vh',
+            position: 'relative'
           }}
         >
           <div
             style={{
-              backgroundColor:
-                theme.colorScheme === "dark"
-                  ? theme.colors.dark[8]
-                  : theme.colors.gray[0],
+              backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
               background: `url(${props.head?.image})`,
-              filter: props.head?.filter || "brightness(0.8)",
-              width: "100%",
-              height: "100%",
+              filter: props.head?.filter || 'brightness(0.8)',
+              width: '100%',
+              height: '100%'
             }}
           ></div>
           <Center
             style={{
-              width: "100%",
-              height: "100%",
-              position: "absolute",
+              width: '100%',
+              height: '100%',
+              position: 'absolute',
               top: 0,
-              left: 0,
+              left: 0
             }}
           >
-            <Title style={{ color: "#ffffff" }} align="center" order={1}>
+            <Title style={{color: '#ffffff'}} align="center" order={1}>
               {props.head?.title}
               {props.head?.subtitle && (
                 <>
-                  <Text style={{ fontWeight: "normal" }}>
-                    {props.head?.subtitle}
-                  </Text>
+                  <Text style={{fontWeight: 'normal'}}>{props.head?.subtitle}</Text>
                 </>
               )}
             </Title>
@@ -107,14 +92,13 @@ const Page = (props: any) => {
           size="xl"
           style={{
             // @ts-ignore
-            backgroundColor:
-              theme.colorScheme === "dark" ? theme.colors.dark[7] : "#ffffff",
+            backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : '#ffffff',
             boxShadow: theme.shadows.lg,
             marginTop: theme.spacing.xl * 2,
             marginBottom: theme.spacing.xl * 2,
-            padding: theme.spacing.xl + "px " + theme.spacing.xl * 3 + "px",
+            padding: theme.spacing.xl + 'px ' + theme.spacing.xl * 3 + 'px',
             flex: 1,
-            width: "100%",
+            width: '100%'
           }}
         >
           {props.children}
@@ -124,13 +108,13 @@ const Page = (props: any) => {
       {!props.disabled?.footer && (
         <Footer
           links={[
-            { link: "faq", label: "FAQ" },
-            { link: "contact", label: "Contact" },
-            { link: "about", label: "About us" },
+            {link: 'faq', label: 'FAQ'},
+            {link: 'contact', label: 'Contact'},
+            {link: 'about', label: 'About us'}
           ]}
         />
       )}
     </div>
-  );
-};
-export default Page;
+  )
+}
+export default Page
