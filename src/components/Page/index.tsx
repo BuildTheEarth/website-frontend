@@ -42,7 +42,7 @@ const Page = (props: any) => {
         width: "calc(100vw - (100vw - 100%))",
         minHeight: "100vh",
         display: "flex",
-        flexDirection: "column"
+        flexDirection: "column",
       }}
     >
       {!props.disabled?.header && (
@@ -86,11 +86,13 @@ const Page = (props: any) => {
               left: 0,
             }}
           >
-            <Title style={{ color: "#ffffff"}} align="center" order={1}>
+            <Title style={{ color: "#ffffff" }} align="center" order={1}>
               {props.head?.title}
               {props.head?.subtitle && (
                 <>
-                  <Text style={{fontWeight:"normal"}}>{props.head?.subtitle}</Text>
+                  <Text style={{ fontWeight: "normal" }}>
+                    {props.head?.subtitle}
+                  </Text>
                 </>
               )}
             </Title>
@@ -112,7 +114,7 @@ const Page = (props: any) => {
             marginBottom: theme.spacing.xl * 2,
             padding: theme.spacing.xl + "px " + theme.spacing.xl * 3 + "px",
             flex: 1,
-            width: "100%"
+            width: "100%",
           }}
         >
           {props.children}

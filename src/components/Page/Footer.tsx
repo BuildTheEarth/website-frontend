@@ -55,8 +55,7 @@ export default function Footer({ links, style }: FooterSimpleProps) {
   return (
     <div className={classes.footer} style={style}>
       <Container className={classes.inner} size={"xl"}>
-        <Anchor<"a"> color="dimmed"
-                variant="text">
+        <Anchor<"a"> color="dimmed" variant="text">
           &copy; {new Date().getFullYear()} BuildTheEarth
         </Anchor>
         <Group className={classes.links}>

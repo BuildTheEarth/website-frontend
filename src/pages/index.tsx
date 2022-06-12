@@ -15,8 +15,9 @@ const Home: NextPage = () => {
         large: true,
       }}
       user={{
-        name:"Nudelsuppe_42_#3571",
-        avatar: "https://cdn.discordapp.com/avatars/635411595253776385/66a67aa69149c976f3b962d72ca17146.png",
+        name: "Nudelsuppe_42_#3571",
+        avatar:
+          "https://cdn.discordapp.com/avatars/635411595253776385/66a67aa69149c976f3b962d72ca17146.png",
       }}
     >
       <h1>Example Heading 1</h1>
