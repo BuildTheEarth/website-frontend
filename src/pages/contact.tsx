@@ -1,4 +1,5 @@
 import {Button, Card, Grid, Text, ThemeIcon} from '@mantine/core'
+import React from 'react'
 import Image from 'next/image'
 import {NextPage} from 'next'
 import Page from '../components/Page'
@@ -21,28 +22,28 @@ const contacts = [
     position: 'CMO / Business Inq. Intl. / Media',
     mail: 'suchet@buildtheearth.net',
     discord: 'Suchet#7082',
-    discordId: 172308595046744064
+    discordId: '172308595046744064'
   },
   {
     name: 'Bernard M.',
     position: 'Chief Revenue Officer / Business Inquiries',
     mail: 'boaz@buildtheearth.net',
     discord: 'Knish#8000',
-    discordId: 310185776748953600
+    discordId: '310185776748953600'
   },
   {
     name: 'Chang Y.',
     position: 'Claims',
     mail: 'c.yu@buildtheearth.net',
     discord: 'saltypotato#3476',
-    discordId: 223918685750951939
+    discordId: '223918685750951939'
   },
   {
     name: 'MrSmarty',
     position: 'Community',
     mail: 'mrsmarty@buildtheearth.net',
     discord: 'MrSmarty#1732',
-    discordId: 671594544089006091
+    discordId: '671594544089006091'
   }
 ]
 

@@ -1,5 +1,5 @@
 import {Center, Container, Paper, Text, Title, useMantineTheme} from '@mantine/core'
-
+import React from 'react'
 import Footer from './Footer'
 import Header from './Header'
 
@@ -91,12 +91,11 @@ const Page = (props: any) => {
         <Container
           size="xl"
           style={{
-            // @ts-ignore
             backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : '#ffffff',
             boxShadow: theme.shadows.lg,
             marginTop: theme.spacing.xl * 2,
             marginBottom: theme.spacing.xl * 2,
-            padding: theme.spacing.xl + 'px ' + theme.spacing.xl * 3 + 'px',
+            padding: `${theme.spacing.xl}px ${theme.spacing.xl * 3}px`,
             flex: 1,
             width: '100%'
           }}

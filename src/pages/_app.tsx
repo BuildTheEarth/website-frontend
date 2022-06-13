@@ -1,12 +1,13 @@
 import '../styles/globals.css'
 
+// eslint-disable-next-line import/named
 import {ColorScheme, ColorSchemeProvider, MantineProvider} from '@mantine/core'
 import {useHotkeys, useLocalStorage} from '@mantine/hooks'
+import React from 'react'
 
 import type {AppProps} from 'next/app'
 import Head from 'next/head'
 import {SWRConfig} from 'swr'
-import {useRouter} from 'next/router'
 
 function MyApp({Component, pageProps}: AppProps) {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
@@ -16,7 +17,6 @@ function MyApp({Component, pageProps}: AppProps) {
   })
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
-  const router = useRouter()
 
   useHotkeys([['mod+J', () => toggleColorScheme()]])
 

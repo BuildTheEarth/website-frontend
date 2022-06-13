@@ -1,5 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
-
 import {
   Avatar,
   Burger,
@@ -16,14 +14,7 @@ import {
   createStyles,
   useMantineColorScheme
 } from '@mantine/core'
-import {
-  ChevronDown,
-  FileSearch,
-  FileUpload,
-  Logout,
-  MoonStars,
-  Sun
-} from 'tabler-icons-react'
+import {ChevronDown, FileSearch, FileUpload, Logout, MoonStars, Sun} from 'tabler-icons-react'
 import React, {useState} from 'react'
 
 import {useBooleanToggle} from '@mantine/hooks'
@@ -195,10 +186,10 @@ const Header = ({links, user}: HeaderProps) => {
               <Divider />
               <Menu.Label>Quick Actions</Menu.Label>
               <Menu.Item
-                icon={colorScheme == 'dark' ? <MoonStars size={14} /> : <Sun size={14} />}
+                icon={colorScheme === 'dark' ? <MoonStars size={14} /> : <Sun size={14} />}
                 onClick={() => toggleColorScheme()}
               >
-                Toggle {colorScheme == 'dark' ? 'Light' : 'Dark'} Theme{' '}
+                Toggle {colorScheme === 'dark' ? 'Light' : 'Dark'} Theme{' '}
               </Menu.Item>
               <Menu.Item icon={<Logout size={14} />} onClick={() => router.push('/logout')}>
                 Logout

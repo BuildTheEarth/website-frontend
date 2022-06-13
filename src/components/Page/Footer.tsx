@@ -1,8 +1,4 @@
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable @next/next/no-img-element */
-
 import {Anchor, Container, Group, Menu, createStyles} from '@mantine/core'
-
 import React from 'react'
 
 const useStyles = createStyles(theme => ({
