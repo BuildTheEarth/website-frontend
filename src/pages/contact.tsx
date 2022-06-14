@@ -2,7 +2,7 @@ import {Button, Card, Grid, Text, ThemeIcon} from '@mantine/core'
 import React from 'react'
 import Image from 'next/image'
 import {NextPage} from 'next'
-import Page from '../components/Page'
+import Page from '../components'
 import {
   BrandDiscord,
   BrandFacebook,

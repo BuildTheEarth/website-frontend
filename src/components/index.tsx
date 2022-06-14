@@ -1,4 +1,4 @@
-import {Center, Container, Paper, Text, Title, useMantineTheme} from '@mantine/core'
+import {Center, Container, Text, Title, useMantineTheme} from '@mantine/core'
 import React from 'react'
 import Footer from './Footer'
 import Header from './Header'
