@@ -1,4 +1,5 @@
 import {
+  ActionIcon,
   Avatar,
   Burger,
   Button,
@@ -14,7 +15,7 @@ import {
   createStyles,
   useMantineColorScheme
 } from '@mantine/core'
-import {ChevronDown, FileSearch, FileUpload, Logout, MoonStars, Sun} from 'tabler-icons-react'
+import {Bell, ChevronDown, FileSearch, FileUpload, Logout, MoonStars, Sun} from 'tabler-icons-react'
 import React, {useState} from 'react'
 
 import {useBooleanToggle} from '@mantine/hooks'
@@ -156,9 +157,11 @@ const Header = ({links, user}: HeaderProps) => {
   return (
     <MantineHeader height={60} className={classes.root}>
       <Container className={classes.header} size={'xl'}>
-        <img src="/logo.gif" alt="Mantine" height="40" />
         <Group spacing={5} className={classes.links}>
+          <img src="/logo.gif" alt="Mantine" height="40" />
           {items}
+        </Group>
+        <Group spacing={5} className={classes.links}>
           {user ? (
             <Menu
               placement="end"
@@ -182,21 +185,22 @@ const Header = ({links, user}: HeaderProps) => {
                 </UnstyledButton>
               }
             >
-              <Menu.Item icon={<FileUpload size={14} />}>Upload World</Menu.Item>
+              <Menu.Item icon={<FileUpload size={14} />}>Upload world</Menu.Item>
               <Divider />
-              <Menu.Label>Quick Actions</Menu.Label>
+              <Menu.Label>Quick actions</Menu.Label>
               <Menu.Item
                 icon={colorScheme === 'dark' ? <MoonStars size={14} /> : <Sun size={14} />}
                 onClick={() => toggleColorScheme()}
               >
-                Toggle {colorScheme === 'dark' ? 'Light' : 'Dark'} Theme{' '}
-              </Menu.Item>
-              <Menu.Item icon={<Logout size={14} />} onClick={() => router.push('/logout')}>
-                Logout
+                Toggle {colorScheme === 'dark' ? 'light' : 'dark'} theme{' '}
               </Menu.Item>
               <Divider />
               <Menu.Label>Staff</Menu.Label>
-              <Menu.Item icon={<FileSearch size={14} />}>Review Claims</Menu.Item>
+              <Menu.Item icon={<FileSearch size={14} />}>Review claims</Menu.Item>
+              <Divider />
+              <Menu.Item icon={<Logout size={14} />} onClick={() => router.push('/logout')}>
+                Sign out
+              </Menu.Item>
             </Menu>
           ) : (
             <Button ml="md" onClick={() => router.push('/login')} radius="xl">
