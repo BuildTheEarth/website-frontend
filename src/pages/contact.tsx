@@ -71,7 +71,7 @@ const Home: NextPage = () => {
             through Discord.
           </Text>
           <h2>Social Media</h2>
-          <div style={{marginBottom: 40, display: 'flex', gap: '15px'}}>
+          <div style={{marginBottom: theme.spacing.xl * 2, display: 'flex', gap: '15px'}}>
             <a href={'https://www.facebook.com/BuildTheEarth'}>
               <ThemeIcon
                 variant="outline"
@@ -170,7 +170,7 @@ const Home: NextPage = () => {
             </a>
           </div>
           <div>
-            <div style={{marginBottom: 10}}>
+            <div style={{marginBottom: theme.spacing.xs}}>
               <Button variant="outline" leftIcon={<ExternalLink />} onClick={() => router.push('/privacy')}>
                 Privacy Policy
               </Button>
@@ -181,37 +181,38 @@ const Home: NextPage = () => {
               </Button>
             </div>
           </div>
-          <MediaQuery smallerThan={768} styles={{display:"none"}}>
-          <div style={{position: 'absolute', bottom: theme.spacing.md}}>
-            <Image src={'/logo.gif'} height={'128px'} width={'128px'} alt={''} />
-          </div>
+          <MediaQuery smallerThan={768} styles={{display: 'none'}}>
+            <div style={{position: 'absolute', bottom: theme.spacing.md}}>
+              <Image src={'/logo.gif'} height={'128px'} width={'128px'} alt={''} />
+            </div>
           </MediaQuery>
         </Grid.Col>
         <Grid.Col lg={1} sm={2}>
           <h2>Inquiries</h2>
           {contacts.map((contact, idx) => (
-            <Card key={idx} style={{marginBottom: 10}} shadow={'sm'}>
-              <Card.Section style={{margin: 10}}>
+            <Card key={idx} style={{marginBottom: theme.spacing.xs}} shadow={'sm'}>
+              <Card.Section style={{margin: theme.spacing.xs}}>
                 <h2>{contact.position}</h2>
                 <Text>{contact.name}</Text>
                 <Text>
                   Email:{' '}
-                  <a href={`mailto:${contact.mail}`} style={{color: '#5D85E3'}}>
+                  <a href={`mailto:${contact.mail}`} style={{color: theme.colors.blue[7]}}>
                     {contact.mail}
                   </a>
                 </Text>
                 <Text>
                   Discord:{' '}
-                  <a href={`https://discordapp.com/users/${contact.discordId}`} style={{color: '#5D85E3'}}>
+                  <a href={`https://discordapp.com/users/${contact.discordId}`} style={{color: theme.colors.blue[7]}}>
                     {contact.discord}
                   </a>
                 </Text>
               </Card.Section>
             </Card>
-          ))}<MediaQuery largerThan={768} styles={{display:"none"}}>
-          <div style={{marginTop:theme.spacing.md}}>
-            <Image src={'/logo.gif'} height={'128px'} width={'128px'} alt={''} />
-          </div>
+          ))}
+          <MediaQuery largerThan={768} styles={{display: 'none'}}>
+            <div style={{marginTop: theme.spacing.md}}>
+              <Image src={'/logo.gif'} height={'128px'} width={'128px'} alt={''} />
+            </div>
           </MediaQuery>
         </Grid.Col>
       </Grid>
