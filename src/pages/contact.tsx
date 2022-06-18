@@ -1,8 +1,3 @@
-import {Button, Card, Grid, Text, ThemeIcon} from '@mantine/core'
-import React from 'react'
-import Image from 'next/image'
-import {NextPage} from 'next'
-import Page from '../components'
 import {
   BrandDiscord,
   BrandFacebook,
@@ -14,6 +9,12 @@ import {
   BrandYoutube,
   ExternalLink
 } from 'tabler-icons-react'
+import {Button, Card, Grid, MediaQuery, Text, ThemeIcon, useMantineTheme} from '@mantine/core'
+
+import Image from 'next/image'
+import {NextPage} from 'next'
+import Page from '../components'
+import React from 'react'
 import {useRouter} from 'next/router'
 
 const contacts = [
@@ -49,6 +50,7 @@ const contacts = [
 
 const Home: NextPage = () => {
   const router = useRouter()
+  const theme = useMantineTheme()
   return (
     <Page
       head={{
@@ -62,7 +64,7 @@ const Home: NextPage = () => {
       }}
     >
       <Grid columns={2}>
-        <Grid.Col lg={1} sm={2}>
+        <Grid.Col lg={1} sm={2} style={{position: 'relative'}}>
           <h2>Contact</h2>
           <Text>
             To come in contact with the leadership of the Build The Earth project, you can send an email, or reach out
@@ -169,16 +171,21 @@ const Home: NextPage = () => {
           </div>
           <div>
             <div style={{marginBottom: 10}}>
-              <Button variant="outline" size="lg" leftIcon={<ExternalLink />} onClick={() => router.push('/privacy')}>
+              <Button variant="outline" leftIcon={<ExternalLink />} onClick={() => router.push('/privacy')}>
                 Privacy Policy
               </Button>
             </div>
             <div>
-              <Button variant="outline" size="lg" leftIcon={<ExternalLink />} onClick={() => router.push('/ban')}>
+              <Button variant="outline" leftIcon={<ExternalLink />} onClick={() => router.push('/ban')}>
                 Ban Appeals
               </Button>
             </div>
           </div>
+          <MediaQuery smallerThan={768} styles={{display:"none"}}>
+          <div style={{position: 'absolute', bottom: theme.spacing.md}}>
+            <Image src={'/logo.gif'} height={'128px'} width={'128px'} alt={''} />
+          </div>
+          </MediaQuery>
         </Grid.Col>
         <Grid.Col lg={1} sm={2}>
           <h2>Inquiries</h2>
@@ -201,12 +208,13 @@ const Home: NextPage = () => {
                 </Text>
               </Card.Section>
             </Card>
-          ))}
+          ))}<MediaQuery largerThan={768} styles={{display:"none"}}>
+          <div style={{marginTop:theme.spacing.md}}>
+            <Image src={'/logo.gif'} height={'128px'} width={'128px'} alt={''} />
+          </div>
+          </MediaQuery>
         </Grid.Col>
       </Grid>
-      <div style={{marginTop: 15}}>
-        <Image src={'/logo.gif'} height={'128px'} width={'128px'} alt={''} />
-      </div>
     </Page>
   )
 }
