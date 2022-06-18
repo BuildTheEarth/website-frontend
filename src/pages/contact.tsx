@@ -48,7 +48,7 @@ const contacts = [
   }
 ]
 
-const Home: NextPage = () => {
+const Contact: NextPage = () => {
   const router = useRouter()
   const theme = useMantineTheme()
   return (
@@ -236,4 +236,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default Contact
