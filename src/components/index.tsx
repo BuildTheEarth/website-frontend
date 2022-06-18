@@ -1,7 +1,8 @@
 import {Center, Container, Text, Title, useMantineTheme} from '@mantine/core'
-import React from 'react'
+
 import Footer from './Footer'
 import Header from './Header'
+import React from 'react'
 
 interface PageProps {
   children: React.ReactNode
@@ -97,7 +98,8 @@ const Page = (props: any) => {
             marginBottom: theme.spacing.xl * 2,
             padding: `${theme.spacing.xl}px ${theme.spacing.xl * 3}px`,
             flex: 1,
-            width: '100%'
+            width: '100%',
+            position: 'relative'
           }}
         >
           {props.children}
