@@ -158,7 +158,7 @@ const Header = ({links, user}: HeaderProps) => {
     <MantineHeader height={60} className={classes.root}>
       <Container className={classes.header} size={'xl'}>
         <Group spacing={5} className={classes.links}>
-          <img src="/logo.gif" alt="Mantine" height="40" />
+          <img src="/logo.gif" alt="Mantine" height="40" onClick={() => router.push("/")} style={{cursor:"pointer"}} />
           {items}
         </Group>
         <Group spacing={5} className={classes.links}>
