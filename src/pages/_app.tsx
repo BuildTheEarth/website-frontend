@@ -25,6 +25,7 @@ function MyApp({Component, pageProps}: AppProps) {
     <>
       <Head>
         <title>Build The Earth</title>
+        <link href="https://api.mapbox.com/mapbox-gl-js/v0.54.1/mapbox-gl.css" rel="stylesheet" />
       </Head>
       <SWRConfig
         value={{

@@ -41,7 +41,7 @@ const Page = (props: any) => {
           links={[
             {link: 'faq', label: 'FAQ'},
             {link: 'map', label: 'Map'},
-            {link: 'teams', label: 'Build Teams'},
+            {link: 'teams', label: 'Build teams'},
             {link: 'contact', label: 'Contact'}
           ]}
           user={props.user}
