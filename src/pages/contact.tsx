@@ -1,4 +1,3 @@
-import {ActionIcon, Button, Card, Grid, MediaQuery, SimpleGrid, Text, ThemeIcon, useMantineTheme} from '@mantine/core'
 import {
   BrandDiscord,
   BrandFacebook,
@@ -10,10 +9,11 @@ import {
   BrandYoutube,
   ExternalLink
 } from 'tabler-icons-react'
+import {Button, Card, Grid, MediaQuery, Text, ThemeIcon, useMantineTheme} from '@mantine/core'
 
 import Image from 'next/image'
 import {NextPage} from 'next'
-import Page from '../components'
+import Page from '../components/Page'
 import React from 'react'
 import {useRouter} from 'next/router'
 
@@ -71,119 +71,110 @@ const Contact: NextPage = () => {
             through Discord.
           </Text>
           <h2>Social Media</h2>
-          <div style={{marginBottom: theme.spacing.xl * 2,display: "flex", gap: "15px"}}>
-            
+          <div style={{marginBottom: theme.spacing.xl * 2, display: 'flex', gap: '15px'}}>
             <ThemeIcon
               variant="outline"
               radius="xl"
               size="xl"
               onClick={() => window.open('https://www.facebook.com/BuildTheEarth/', '_blank')}
-              sx={theme => ({
+              sx={{
                 backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
                 cursor: 'pointer'
-              })}
+              }}
             >
               <BrandFacebook />
             </ThemeIcon>
-           
-            
+
             <ThemeIcon
               variant="outline"
               radius="xl"
               size="xl"
               onClick={() => window.open('https://www.instagram.com/buildtheearth_', '_blank')}
-              sx={theme => ({
+              sx={{
                 backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
                 cursor: 'pointer'
-              })}
+              }}
             >
               <BrandInstagram />
             </ThemeIcon>
-           
-            
+
             <ThemeIcon
               variant="outline"
               radius="xl"
               size="xl"
               onClick={() => window.open('https://www.tiktok.com/@buildtheearth', '_blank')}
-              sx={theme => ({
+              sx={{
                 backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
                 cursor: 'pointer'
-              })}
+              }}
             >
-                <BrandTiktok />
-              </ThemeIcon>
-           
-            
+              <BrandTiktok />
+            </ThemeIcon>
+
             <ThemeIcon
               variant="outline"
               radius="xl"
               size="xl"
               onClick={() => window.open('https://buildtheearth.net/discord', '_blank')}
-              sx={theme => ({
+              sx={{
                 backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
                 cursor: 'pointer'
-              })}
+              }}
             >
-                <BrandDiscord />
-              </ThemeIcon>
-           
-            
+              <BrandDiscord />
+            </ThemeIcon>
+
             <ThemeIcon
               variant="outline"
               radius="xl"
               size="xl"
               onClick={() => window.open('https://www.snapchat.com/add/buildtheearth', '_blank')}
-              sx={theme => ({
+              sx={{
                 backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
                 cursor: 'pointer'
-              })}
+              }}
             >
-                <BrandSnapchat />
-              </ThemeIcon>
-           
-            
+              <BrandSnapchat />
+            </ThemeIcon>
+
             <ThemeIcon
               variant="outline"
               radius="xl"
               size="xl"
               onClick={() => window.open('https://www.youtube.com/c/BuildTheEarth', '_blank')}
-              sx={theme => ({
+              sx={{
                 backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
                 cursor: 'pointer'
-              })}
+              }}
             >
-                <BrandYoutube />
-              </ThemeIcon>
-           
-            
+              <BrandYoutube />
+            </ThemeIcon>
+
             <ThemeIcon
               variant="outline"
               radius="xl"
               size="xl"
               onClick={() => window.open('https://twitter.com/buildtheearth_', '_blank')}
-              sx={theme => ({
+              sx={{
                 backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
                 cursor: 'pointer'
-              })}
+              }}
             >
-                <BrandTwitter />
-              </ThemeIcon>
-           
-            
+              <BrandTwitter />
+            </ThemeIcon>
+
             <ThemeIcon
               variant="outline"
               radius="xl"
               size="xl"
               onClick={() => window.open('https://www.twitch.tv/buildtheearth', '_blank')}
-              sx={theme => ({
+              sx={{
                 backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
                 cursor: 'pointer'
-              })}
+              }}
             >
-                <BrandTwitch />
-              </ThemeIcon>
-           
+              <BrandTwitch />
+            </ThemeIcon>
           </div>
           <div>
             <div style={{marginBottom: theme.spacing.xs}}>

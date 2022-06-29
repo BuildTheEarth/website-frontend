@@ -1,7 +1,8 @@
 import {Accordion, createStyles} from '@mantine/core'
 
 import {NextPage} from 'next'
-import Page from '../components'
+import {Page} from '../components/Page'
+import React from 'react'
 
 const elements = [
   {

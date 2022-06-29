@@ -24,7 +24,7 @@ interface PageProps {
   }
 }
 
-const Page = (props: any) => {
+const Page = (props: PageProps) => {
   const theme = useMantineTheme()
   return (
     <div

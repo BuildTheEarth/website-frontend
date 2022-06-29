@@ -3,10 +3,10 @@ import '../styles/globals.css'
 // eslint-disable-next-line import/named
 import {ColorScheme, ColorSchemeProvider, MantineProvider} from '@mantine/core'
 import {useHotkeys, useLocalStorage} from '@mantine/hooks'
-import React from 'react'
 
 import type {AppProps} from 'next/app'
 import Head from 'next/head'
+import React from 'react'
 import {SWRConfig} from 'swr'
 
 function MyApp({Component, pageProps}: AppProps) {
@@ -30,7 +30,7 @@ function MyApp({Component, pageProps}: AppProps) {
       <SWRConfig
         value={{
           refreshInterval: 0,
-          fetcher: (resource: any, init: any) => fetch(resource, init).then(res => res.json()),
+          fetcher: (resource: string, init: any) => fetch(resource, init).then(res => res.json()),
           shouldRetryOnError: false,
           revalidateIfStale: false,
           revalidateOnFocus: false,

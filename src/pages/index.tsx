@@ -1,7 +1,7 @@
 import {Anchor} from '@mantine/core'
-import React from 'react'
 import {NextPage} from 'next'
-import Page from '../components'
+import Page from '../components/Page'
+import React from 'react'
 
 const Home: NextPage = () => {
   return (

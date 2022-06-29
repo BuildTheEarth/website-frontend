@@ -1,5 +1,4 @@
 import {
-  ActionIcon,
   Avatar,
   Burger,
   Button,
@@ -15,8 +14,8 @@ import {
   createStyles,
   useMantineColorScheme
 } from '@mantine/core'
-import {Bell, ChevronDown, FileSearch, FileUpload, Logout, MoonStars, Sun} from 'tabler-icons-react'
-import React, {useState} from 'react'
+import {ChevronDown, FileSearch, FileUpload, Logout, MoonStars, Sun} from 'tabler-icons-react'
+import React, {CSSProperties, useState} from 'react'
 
 import {useBooleanToggle} from '@mantine/hooks'
 import {useRouter} from 'next/router'
@@ -146,7 +145,7 @@ const Header = ({links, user}: HeaderProps) => {
       className={cx(classes.link, {
         [classes.linkActive]: router.pathname === link.link
       })}
-      onClick={event => {
+      onClick={() => {
         router.push(link.link)
         toggleOpened(false)
       }}
@@ -158,7 +157,7 @@ const Header = ({links, user}: HeaderProps) => {
     <MantineHeader height={60} className={classes.root}>
       <Container className={classes.header} size={'xl'}>
         <Group spacing={5} className={classes.links}>
-          <img src="/logo.gif" alt="Mantine" height="40" onClick={() => router.push("/")} style={{cursor:"pointer"}} />
+          <img src="/logo.gif" alt="Mantine" height="40" onClick={() => router.push('/')} style={{cursor: 'pointer'}} />
           {items}
         </Group>
         <Group spacing={5} className={classes.links}>
@@ -212,7 +211,7 @@ const Header = ({links, user}: HeaderProps) => {
         <Burger opened={opened} onClick={() => toggleOpened()} className={classes.burger} size="sm" />
 
         <Transition transition="pop-top-right" duration={200} mounted={opened}>
-          {(styles: any) => (
+          {(styles: CSSProperties) => (
             <Paper className={classes.dropdown} withBorder style={styles}>
               {items}
               {user && (

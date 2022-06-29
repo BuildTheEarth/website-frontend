@@ -19,7 +19,14 @@ module.exports = {
     'i18n-text',
     'no-only-tests'
   ],
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:@typescript-eslint/recommended'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript'
+  ],
   parser: '@typescript-eslint/parser',
   rules: {
     'constructor-super': 'error',
@@ -36,6 +43,7 @@ module.exports = {
       }
     ],
     'func-style': ['error', 'declaration', {allowArrowFunctions: true}],
+    'import/no-unresolved': 'off',
     'import/default': 'error',
     'import/export': 'error',
     'import/extensions': 'error',
@@ -63,7 +71,6 @@ module.exports = {
     'import/no-named-as-default': 'error',
     'import/no-named-as-default-member': 'error',
     'import/no-namespace': 'error',
-    'import/no-unresolved': 'error',
     'import/no-webpack-loader-syntax': 'error',
     'no-case-declarations': 'error',
     'no-class-assign': 'error',
