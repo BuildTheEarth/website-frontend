@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+
 import {
   BrandDiscord,
   BrandFacebook,
@@ -71,7 +73,7 @@ const Contact: NextPage = () => {
             through Discord.
           </Text>
           <h2>Social Media</h2>
-          <div style={{marginBottom: theme.spacing.xl * 2, display: 'flex', gap: '15px'}}>
+          <div style={{marginBottom: theme.spacing.xl * 2, display: 'flex', gap: '15px', flexWrap: 'wrap'}}>
             <ThemeIcon
               variant="outline"
               radius="xl"

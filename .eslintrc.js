@@ -39,7 +39,7 @@ module.exports = {
     'eslint-comments/no-use': [
       'error',
       {
-        allow: ['eslint', 'eslint-disable-next-line', 'eslint-env', 'globals']
+        allow: ['eslint', 'eslint-disable-next-line', 'eslint-env', 'globals', 'eslint-disable']
       }
     ],
     'func-style': ['error', 'declaration', {allowArrowFunctions: true}],
