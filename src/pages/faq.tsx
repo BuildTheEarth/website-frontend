@@ -1,7 +1,7 @@
 import {Accordion, createStyles} from '@mantine/core'
 
 import {NextPage} from 'next'
-import {Page} from '../components/Page'
+import Page from '../components/Page'
 import React from 'react'
 
 const elements = [
@@ -51,8 +51,7 @@ const useStyles = createStyles((theme, _params, getRef) => {
 
   return {
     control: {
-      ref: control,
-      lineHeight: 0
+      ref: control
     },
 
     item: {

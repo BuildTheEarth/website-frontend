@@ -3,6 +3,7 @@ import {Center, Container, Text, Title, useMantineTheme} from '@mantine/core'
 import Footer from './Footer'
 import Header from './Header'
 import React from 'react'
+import {useMediaQuery} from '@mantine/hooks'
 
 interface PageProps {
   children: React.ReactNode
@@ -25,6 +26,7 @@ interface PageProps {
 }
 
 const Page = (props: PageProps) => {
+  const matches = useMediaQuery('(min-width: 900px)')
   const theme = useMantineTheme()
   return (
     <div
@@ -96,7 +98,9 @@ const Page = (props: PageProps) => {
             boxShadow: theme.shadows.lg,
             marginTop: theme.spacing.xl * 2,
             marginBottom: theme.spacing.xl * 2,
-            padding: `${theme.spacing.xl}px ${theme.spacing.xl * 3}px`,
+            padding: !matches
+              ? `${theme.spacing.xs}px ${theme.spacing.xs * 3}px`
+              : `${theme.spacing.xl}px ${theme.spacing.xl * 3}px`,
             flex: 1,
             width: '100%',
             position: 'relative'
