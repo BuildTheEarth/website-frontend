@@ -1,4 +1,4 @@
-import {Avatar, Grid, Group, Text, TextInput, createStyles, useMantineTheme} from '@mantine/core'
+import {Avatar, Grid, Group, Pagination, Text, TextInput, createStyles, useMantineTheme} from '@mantine/core'
 import {Pin, Users} from 'tabler-icons-react'
 import React, {useState} from 'react'
 
@@ -10,34 +10,34 @@ const elements = [
   {
     logo: 'https://bte-germany.de/logo.gif',
     name: 'Build The Earth Germany',
-    short: 'BTE Germany',
+    short: 'BTE Germany (first element)',
     locations: ['Germany'],
     builders: ['Nudelsuppe_42_#3571', 'Nachwahl'],
     id: 'de'
   },
   {
-    logo: 'https://bte-germany.de/logo.gif',
-    name: 'Build The Earth Germany',
-    short: 'BTE Germany',
+    logo: 'https://buildtheearth.net/uploads/9f37ed8ed2904c48f97077bd7442b3a4a2051931.png',
+    name: 'Build The Earth Canada',
+    short: 'BTE Canada',
     locations: ['Germany'],
-    builders: ['Nudelsuppe_42_#3571', 'Nachwahl'],
-    id: 'de'
+    builders: [],
+    id: 'ca'
   },
   {
-    logo: 'https://bte-germany.de/logo.gif',
-    name: 'Build The Earth Germany',
-    short: 'BTE Germany',
-    locations: ['Germany'],
-    builders: ['Nudelsuppe_42_#3571', 'Nachwahl'],
-    id: 'de'
+    logo: 'https://buildtheearth.net/uploads/5f89364f1e49f7184ee8ccd1b093394e7940d56f.png',
+    name: 'Build The Earth Italy',
+    short: 'BTE Italy',
+    locations: ['Italy'],
+    builders: [],
+    id: 'it'
   },
   {
-    logo: 'https://bte-germany.de/logo.gif',
-    name: 'Build The Earth Germany',
-    short: 'BTE Germany',
-    locations: ['Germany'],
-    builders: ['Nudelsuppe_42_#3571', 'Nachwahl'],
-    id: 'de'
+    logo: 'https://buildtheearth.net/uploads/5d164a47b2d14f2b7ff2d18a58881f6d1337b4c1.png?size=2',
+    name: 'Build The Earth Iberia',
+    short: 'BTE Iberia',
+    locations: ['Spain', 'Portugal'],
+    builders: [],
+    id: 'ib'
   },
   {
     logo: 'https://alps-bte.com/api/assets/logo/0.webp',
@@ -46,6 +46,214 @@ const elements = [
     locations: ['Switzerland', 'Austria', 'Liechtenstein'],
     builders: ['Nachwahl'],
     id: 'alps'
+  },
+  {
+    logo: 'https://bte-germany.de/logo.gif',
+    name: 'Build The Earth Germany',
+    short: 'BTE Germany',
+    locations: ['Germany'],
+    builders: ['Nudelsuppe_42_#3571', 'Nachwahl'],
+    id: 'de'
+  },
+  {
+    logo: 'https://buildtheearth.net/uploads/9f37ed8ed2904c48f97077bd7442b3a4a2051931.png',
+    name: 'Build The Earth Canada',
+    short: 'BTE Canada',
+    locations: ['Germany'],
+    builders: [],
+    id: 'ca'
+  },
+  {
+    logo: 'https://buildtheearth.net/uploads/5f89364f1e49f7184ee8ccd1b093394e7940d56f.png',
+    name: 'Build The Earth Italy',
+    short: 'BTE Italy',
+    locations: ['Italy'],
+    builders: [],
+    id: 'it'
+  },
+  {
+    logo: 'https://buildtheearth.net/uploads/5d164a47b2d14f2b7ff2d18a58881f6d1337b4c1.png?size=2',
+    name: 'Build The Earth Iberia',
+    short: 'BTE Iberia',
+    locations: ['Spain', 'Portugal'],
+    builders: [],
+    id: 'ib'
+  },
+  {
+    logo: 'https://alps-bte.com/api/assets/logo/0.webp',
+    name: 'Build The Earth Alps',
+    short: 'Alps BTE',
+    locations: ['Switzerland', 'Austria', 'Liechtenstein'],
+    builders: ['Nachwahl'],
+    id: 'alps'
+  },
+  {
+    logo: 'https://bte-germany.de/logo.gif',
+    name: 'Build The Earth Germany',
+    short: 'BTE Germany',
+    locations: ['Germany'],
+    builders: ['Nudelsuppe_42_#3571', 'Nachwahl'],
+    id: 'de'
+  },
+  {
+    logo: 'https://buildtheearth.net/uploads/9f37ed8ed2904c48f97077bd7442b3a4a2051931.png',
+    name: 'Build The Earth Canada',
+    short: 'BTE Canada',
+    locations: ['Germany'],
+    builders: [],
+    id: 'ca'
+  },
+  {
+    logo: 'https://buildtheearth.net/uploads/5f89364f1e49f7184ee8ccd1b093394e7940d56f.png',
+    name: 'Build The Earth Italy',
+    short: 'BTE Italy',
+    locations: ['Italy'],
+    builders: [],
+    id: 'it'
+  },
+  {
+    logo: 'https://buildtheearth.net/uploads/5d164a47b2d14f2b7ff2d18a58881f6d1337b4c1.png?size=2',
+    name: 'Build The Earth Iberia',
+    short: 'BTE Iberia',
+    locations: ['Spain', 'Portugal'],
+    builders: [],
+    id: 'ib'
+  },
+  {
+    logo: 'https://alps-bte.com/api/assets/logo/0.webp',
+    name: 'Build The Earth Alps',
+    short: 'Alps BTE',
+    locations: ['Switzerland', 'Austria', 'Liechtenstein'],
+    builders: ['Nachwahl'],
+    id: 'alps'
+  },
+  {
+    logo: 'https://bte-germany.de/logo.gif',
+    name: 'Build The Earth Germany',
+    short: 'BTE Germany',
+    locations: ['Germany'],
+    builders: ['Nudelsuppe_42_#3571', 'Nachwahl'],
+    id: 'de'
+  },
+  {
+    logo: 'https://buildtheearth.net/uploads/9f37ed8ed2904c48f97077bd7442b3a4a2051931.png',
+    name: 'Build The Earth Canada',
+    short: 'BTE Canada',
+    locations: ['Germany'],
+    builders: [],
+    id: 'ca'
+  },
+  {
+    logo: 'https://buildtheearth.net/uploads/5f89364f1e49f7184ee8ccd1b093394e7940d56f.png',
+    name: 'Build The Earth Italy',
+    short: 'BTE Italy',
+    locations: ['Italy'],
+    builders: [],
+    id: 'it'
+  },
+  {
+    logo: 'https://buildtheearth.net/uploads/5d164a47b2d14f2b7ff2d18a58881f6d1337b4c1.png?size=2',
+    name: 'Build The Earth Iberia',
+    short: 'BTE Iberia',
+    locations: ['Spain', 'Portugal'],
+    builders: [],
+    id: 'ib'
+  },
+  {
+    logo: 'https://alps-bte.com/api/assets/logo/0.webp',
+    name: 'Build The Earth Alps',
+    short: 'Alps BTE',
+    locations: ['Switzerland', 'Austria', 'Liechtenstein'],
+    builders: ['Nachwahl'],
+    id: 'alps'
+  },
+  {
+    logo: 'https://bte-germany.de/logo.gif',
+    name: 'Build The Earth Germany',
+    short: 'BTE Germany',
+    locations: ['Germany'],
+    builders: ['Nudelsuppe_42_#3571', 'Nachwahl'],
+    id: 'de'
+  },
+  {
+    logo: 'https://buildtheearth.net/uploads/9f37ed8ed2904c48f97077bd7442b3a4a2051931.png',
+    name: 'Build The Earth Canada',
+    short: 'BTE Canada',
+    locations: ['Germany'],
+    builders: [],
+    id: 'ca'
+  },
+  {
+    logo: 'https://buildtheearth.net/uploads/5f89364f1e49f7184ee8ccd1b093394e7940d56f.png',
+    name: 'Build The Earth Italy',
+    short: 'BTE Italy',
+    locations: ['Italy'],
+    builders: [],
+    id: 'it'
+  },
+  {
+    logo: 'https://buildtheearth.net/uploads/5d164a47b2d14f2b7ff2d18a58881f6d1337b4c1.png?size=2',
+    name: 'Build The Earth Iberia',
+    short: 'BTE Iberia',
+    locations: ['Spain', 'Portugal'],
+    builders: [],
+    id: 'ib'
+  },
+  {
+    logo: 'https://alps-bte.com/api/assets/logo/0.webp',
+    name: 'Build The Earth Alps',
+    short: 'Alps BTE',
+    locations: ['Switzerland', 'Austria', 'Liechtenstein'],
+    builders: ['Nachwahl'],
+    id: 'alps'
+  },
+  {
+    logo: 'https://bte-germany.de/logo.gif',
+    name: 'Build The Earth Germany',
+    short: 'BTE Germany',
+    locations: ['Germany'],
+    builders: ['Nudelsuppe_42_#3571', 'Nachwahl'],
+    id: 'de'
+  },
+  {
+    logo: 'https://buildtheearth.net/uploads/9f37ed8ed2904c48f97077bd7442b3a4a2051931.png',
+    name: 'Build The Earth Canada',
+    short: 'BTE Canada',
+    locations: ['Germany'],
+    builders: [],
+    id: 'ca'
+  },
+  {
+    logo: 'https://buildtheearth.net/uploads/5f89364f1e49f7184ee8ccd1b093394e7940d56f.png',
+    name: 'Build The Earth Italy',
+    short: 'BTE Italy',
+    locations: ['Italy'],
+    builders: [],
+    id: 'it'
+  },
+  {
+    logo: 'https://buildtheearth.net/uploads/5d164a47b2d14f2b7ff2d18a58881f6d1337b4c1.png?size=2',
+    name: 'Build The Earth Iberia',
+    short: 'BTE Iberia',
+    locations: ['Spain', 'Portugal'],
+    builders: [],
+    id: 'ib'
+  },
+  {
+    logo: 'https://alps-bte.com/api/assets/logo/0.webp',
+    name: 'Build The Earth Alps',
+    short: 'Alps BTE',
+    locations: ['Switzerland', 'Austria', 'Liechtenstein'],
+    builders: ['Nachwahl'],
+    id: 'alps'
+  },
+  {
+    logo: 'https://bte-germany.de/logo.gif',
+    name: 'Build The Earth Germany',
+    short: 'BTE Germany (last element)',
+    locations: ['Germany'],
+    builders: ['Nudelsuppe_42_#3571', 'Nachwahl'],
+    id: 'de'
   }
 ]
 
@@ -64,6 +272,7 @@ const Faq: NextPage = () => {
   const theme = useMantineTheme()
   const {classes} = useStyles()
   const [search, setSearch] = useState<string | undefined>(undefined)
+  const [activePage, setPage] = useState(0)
   return (
     <Page
       head={{
@@ -101,6 +310,7 @@ const Faq: NextPage = () => {
               element.locations.filter(location => location.toLowerCase().includes(search?.toLowerCase() || ''))
                 .length > 0
           )
+          .slice(activePage * 14 - 14, activePage * 14)
           .map((element, i) => (
             <Grid.Col key={i} sm={6}>
               <Group
@@ -136,6 +346,15 @@ const Faq: NextPage = () => {
             </Grid.Col>
           ))}
       </Grid>
+      <Group position="center" pt="md">
+        <Pagination
+          total={elements.length > 14 ? Math.floor(elements.length / 14 + 1) : 0}
+          radius="xs"
+          page={activePage}
+          onChange={setPage}
+          siblings={1}
+        />
+      </Group>
     </Page>
   )
 }
