@@ -1,4 +1,4 @@
-import {Avatar, Grid, Group, Pagination, Text, TextInput, createStyles, useMantineTheme} from '@mantine/core'
+import {Avatar, Badge, Grid, Group, Pagination, Text, TextInput, createStyles, useMantineTheme} from '@mantine/core'
 import {Pin, Users} from 'tabler-icons-react'
 import React, {useState} from 'react'
 
@@ -324,9 +324,13 @@ const Faq: NextPage = () => {
               >
                 <Avatar src={element.logo} size={94} radius="md" />
                 <div>
-                  <Text size="lg" weight={500} className={classes.name}>
-                    {element.short}
-                  </Text>
+                  <Group position="apart">
+                    <Text size="lg" weight={500} className={classes.name}>
+                      {element.short}
+                    </Text>
+
+                    {element.builders.includes('Nudelsuppe_42_#3571') ? <Badge color="green">Builder</Badge> : null}
+                  </Group>
 
                   <Group noWrap spacing={10} mt={3}>
                     <Pin size={16} className={classes.icon} />
@@ -338,7 +342,7 @@ const Faq: NextPage = () => {
                   <Group noWrap spacing={10} mt={5}>
                     <Users size={16} className={classes.icon} />
                     <Text size="xs" color="dimmed">
-                      {element.builders.length}
+                      {element.builders.length}{' '}
                     </Text>
                   </Group>
                 </div>
