@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 
 // eslint-disable-next-line import/named
-import {ColorScheme, ColorSchemeProvider, MantineProvider} from '@mantine/core'
+import {ColorScheme, ColorSchemeProvider, Global, MantineProvider} from '@mantine/core'
 import {useHotkeys, useLocalStorage} from '@mantine/hooks'
 
 import type {AppProps} from 'next/app'
