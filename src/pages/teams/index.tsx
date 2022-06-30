@@ -93,12 +93,16 @@ const Faq: NextPage = () => {
         onChange={event => setSearch(event.currentTarget.value)}
       />
       <Grid gutter="xl" style={{marginTop: theme.spacing.xl}}>
-        {elements.map(element => {
-          if (search !== undefined && search !== '') {
-            if (!element.locations.includes(search)) return null
-          }
-          return (
-            <Grid.Col key={element.name} sm={6}>
+        {elements
+          .filter(
+            element =>
+              element.name.toLowerCase().includes(search?.toLowerCase() || '') ||
+              element.short.toLowerCase().includes(search?.toLowerCase() || '') ||
+              element.locations.filter(location => location.toLowerCase().includes(search?.toLowerCase() || ''))
+                .length > 0
+          )
+          .map((element, i) => (
+            <Grid.Col key={i} sm={6}>
               <Group
                 noWrap
                 style={{
@@ -130,8 +134,7 @@ const Faq: NextPage = () => {
                 </div>
               </Group>
             </Grid.Col>
-          )
-        })}
+          ))}
       </Grid>
     </Page>
   )
