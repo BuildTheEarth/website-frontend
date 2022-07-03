@@ -272,7 +272,7 @@ const Faq: NextPage = () => {
   const theme = useMantineTheme()
   const {classes} = useStyles()
   const [search, setSearch] = useState<string | undefined>(undefined)
-  const [activePage, setPage] = useState(0)
+  const [activePage, setPage] = useState(1)
   return (
     <Page
       head={{
