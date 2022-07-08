@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 
+import {Avatar, Button, Grid, MediaQuery, Modal, Text, ThemeIcon, Title, useMantineTheme} from '@mantine/core'
 import {
   BrandDiscord,
   BrandFacebook,
@@ -11,24 +12,11 @@ import {
   BrandYoutube,
   ExternalLink
 } from 'tabler-icons-react'
-import {
-  Avatar,
-  Button,
-  Grid,
-  MediaQuery,
-  Modal,
-  Text,
-  ThemeIcon,
-  Title,
-  Transition,
-  useMantineTheme
-} from '@mantine/core'
-import {useHover} from '@mantine/hooks'
+import React, {useState} from 'react'
 
 import Image from 'next/image'
 import {NextPage} from 'next'
 import Page from '../components/Page'
-import React, {useState} from 'react'
 import {useRouter} from 'next/router'
 
 const contacts = [
