@@ -22,7 +22,6 @@ import {useRouter} from 'next/router'
 
 const useStyles = createStyles(theme => ({
   root: {
-    position: 'relative',
     zIndex: 1
   },
 
@@ -154,7 +153,7 @@ const Header = ({links, user}: HeaderProps) => {
     </a>
   ))
   return (
-    <MantineHeader height={60} className={classes.root}>
+    <MantineHeader height={60} className={classes.root} fixed>
       <Container className={classes.header} size={'xl'}>
         <Group spacing={5} className={classes.links}>
           <img src="/logo.gif" alt="Mantine" height="40" onClick={() => router.push('/')} style={{cursor: 'pointer'}} />

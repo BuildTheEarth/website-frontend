@@ -64,7 +64,8 @@ const Page = (props: PageProps) => {
               background: `url(${props.head?.image})`,
               filter: props.head?.filter || 'brightness(0.8)',
               width: '100%',
-              height: '100%'
+              height: '100%',
+              marginTop: props.disabled?.header ? 0 : 60
             }}
           ></div>
           <Center
@@ -72,7 +73,7 @@ const Page = (props: PageProps) => {
               width: '100%',
               height: '100%',
               position: 'absolute',
-              top: 0,
+              top: props.disabled?.header ? 0 : 60,
               left: 0
             }}
           >
@@ -96,7 +97,7 @@ const Page = (props: PageProps) => {
           style={{
             backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : '#ffffff',
             boxShadow: theme.shadows.lg,
-            marginTop: theme.spacing.xl * 2,
+            marginTop: theme.spacing.xl * 2 + (props.disabled?.header ? 0 : 60),
             marginBottom: theme.spacing.xl * 2,
             padding: !matches
               ? `${theme.spacing.xs}px ${theme.spacing.xs * 3}px`
