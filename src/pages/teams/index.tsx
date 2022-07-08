@@ -1,5 +1,16 @@
-import {Avatar, Badge, Grid, Group, Pagination, Text, TextInput, createStyles, useMantineTheme} from '@mantine/core'
-import {Pin, Users} from 'tabler-icons-react'
+import {
+  ActionIcon,
+  Avatar,
+  Badge,
+  Grid,
+  Group,
+  Pagination,
+  Text,
+  TextInput,
+  createStyles,
+  useMantineTheme
+} from '@mantine/core'
+import {Pin, Users, X} from 'tabler-icons-react'
 import React, {useState} from 'react'
 
 import {NextPage} from 'next'
@@ -300,6 +311,11 @@ const Faq: NextPage = () => {
         required
         value={search}
         onChange={event => setSearch(event.currentTarget.value)}
+        rightSection={
+          <ActionIcon onClick={() => setSearch('')}>
+            <X />
+          </ActionIcon>
+        }
       />
       <Grid gutter="xl" style={{marginTop: theme.spacing.xl}}>
         {elements
