@@ -50,7 +50,7 @@ const Home: NextPage = () => {
               variant="outline"
               size="xl"
               style={{color: 'white', borderColor: 'white', borderWidth: 3, marginTop: theme.spacing.xl * 1.5}}
-              onClick={() => router.push('#start')}
+              onClick={() => router.push('/getstarted')}
             >
               Get Started
             </Button>
@@ -69,16 +69,30 @@ const Home: NextPage = () => {
             styles={{root: {height: 64, width: 64}}}
             radius="xs"
             variant="transparent"
-            onClick={() => router.push('#1')}
+            onClick={() => router.push('#more')}
           >
             <ChevronDown size={64} color="white" />
           </ActionIcon>
         </Center>
       </div>
-      <Box style={{background: '#ffffff', marginTop: 60, overflow: 'hidden'}}>
+      <Box
+        style={{
+          background: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+          marginTop: 60,
+          overflow: 'hidden'
+        }}
+      >
         <Grid>
-          <Grid.Col span={6}>
-            <h2>Our Grand Mission</h2>
+          <Grid.Col span={6} style={{paddingLeft: 200, paddingRight: 200, marginTop: 75, marginBottom: 75}}>
+            <h1 id="more">Our Grand Mission</h1>
+            <div
+              style={{
+                background: `linear-gradient(90deg, rgba(${
+                  theme.colorScheme === 'dark' ? '193, 194, 197' : '0, 0, 0'
+                },1) 20%, rgba(0,0,0,0) 20%)`,
+                height: 2
+              }}
+            />
             <p>
               Our mission is to fully recreate the entire Earth in Minecraft at a 1:1 scale. One block in Minecraft
               equates to roughly one meter in the real world, meaning that this project will fully recreate the size of
@@ -87,6 +101,46 @@ const Home: NextPage = () => {
               and regarded as our greatest attribute as we continue our journey to unite all of Humanity&apos;s greatest
               achievements into a single Minecraft world.
             </p>
+          </Grid.Col>
+          <Grid.Col
+            span={6}
+            style={{
+              backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+              background: `url("/images/home/mission.png")`
+            }}
+          ></Grid.Col>
+          <Grid.Col span={12}>
+            <h1>Gallery</h1>
+          </Grid.Col>
+
+          <Grid.Col
+            span={6}
+            style={{
+              backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+              background: `url("/images/home/getstarted.png")`
+            }}
+          ></Grid.Col>
+          <Grid.Col span={6} style={{paddingLeft: 200, paddingRight: 200, marginTop: 75, marginBottom: 75}}>
+            <h1>How You Can Help</h1>
+            <div
+              style={{
+                background: `linear-gradient(90deg, rgba(${
+                  theme.colorScheme === 'dark' ? '193, 194, 197' : '0, 0, 0'
+                },1) 20%, rgba(0,0,0,0) 20%)`,
+                height: 2
+              }}
+            />
+            <p>
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
+              et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+              Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+              amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+              aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
+              gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+            </p>
+            <Button<'a'> px={theme.spacing.xl * 2} component="a" href="/getstarted">
+              Get Started
+            </Button>
           </Grid.Col>
         </Grid>
       </Box>
