@@ -11,13 +11,7 @@ const Home: NextPage = () => {
   const theme = useMantineTheme()
   const router = useRouter()
   return (
-    <Page
-      user={{
-        name: 'Nudelsuppe_42_#3571',
-        avatar: 'https://cdn.discordapp.com/avatars/635411595253776385/66a67aa69149c976f3b962d72ca17146.png'
-      }}
-      fullWidth
-    >
+    <Page fullWidth>
       <div
         style={{
           width: '100%',

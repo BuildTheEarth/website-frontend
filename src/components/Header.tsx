@@ -201,9 +201,14 @@ const Header = ({links, user}: HeaderProps) => {
               </Menu.Item>
             </Menu>
           ) : (
-            <Button ml="md" onClick={() => router.push('/login')} radius="xl">
-              Sign In
-            </Button>
+            <>
+              <Button ml="md" onClick={() => router.push('/getstrted')}>
+                Get Started
+              </Button>
+              <Button ml="md" onClick={() => router.push('/login')} variant="outline">
+                Sign In
+              </Button>
+            </>
           )}
         </Group>
 
