@@ -1,6 +1,7 @@
 import {ActionIcon, Box, Button, Center, Grid, Title, useMantineTheme} from '@mantine/core'
 
 import {ChevronDown} from 'tabler-icons-react'
+import Gallery from '../components/Gallery'
 import {NextPage} from 'next'
 import Page from '../components/Page'
 import React from 'react'
@@ -110,7 +111,21 @@ const Home: NextPage = () => {
             }}
           ></Grid.Col>
           <Grid.Col span={12}>
-            <h1>Gallery</h1>
+            <Gallery
+              style={{height: '90vh'}}
+              images={[
+                {
+                  builder: 'BTE Germany',
+                  location: 'Schloss Drachenburg - Germany',
+                  src: 'https://cdn.discordapp.com/attachments/692849007038562434/964097226341244988/4final2k_1.png'
+                },
+                {
+                  builder: 'De leted#2098',
+                  location: 'Wisconsin State Capitol - USA',
+                  src: 'https://cdn.discordapp.com/attachments/811604280293064714/992899056361799680/Capitol5.png'
+                }
+              ]}
+            />
           </Grid.Col>
 
           <Grid.Col
