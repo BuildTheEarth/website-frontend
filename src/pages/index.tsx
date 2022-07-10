@@ -110,7 +110,7 @@ const Home: NextPage = () => {
               background: `url("/images/home/mission.png")`
             }}
           ></Grid.Col>
-          <Grid.Col span={12}>
+          <Grid.Col span={12} style={{padding: 0, margin: 0}}>
             <Gallery
               style={{height: '90vh'}}
               images={[

@@ -22,7 +22,7 @@ function Gallery(props: GalleryProps) {
           position: 'relative'
         }}
       >
-        <Box style={{color: '#ffffff', position: 'absolute', top: theme.spacing.md, left: theme.spacing.md}}>
+        <Box style={{color: '#ffffff', position: 'absolute', top: theme.spacing.md, left: theme.spacing.xl}}>
           <h1>{active.location}</h1>
           <div
             style={{
