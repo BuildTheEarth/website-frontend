@@ -1,11 +1,12 @@
 import {Grid, useMantineTheme} from '@mantine/core'
+import React, {useState} from 'react'
 
 import {NextPage} from 'next'
 import Page from '../components/Page'
-import React from 'react'
 
 const GetStarted: NextPage = () => {
   const theme = useMantineTheme()
+  const [focused, setFocused] = useState(0)
   return (
     <Page
       head={{
@@ -26,17 +27,21 @@ const GetStarted: NextPage = () => {
       </p>
       <Grid mt="lg" style={{minHeight: '60vh'}}>
         <Grid.Col
-          span={6}
+          span={focused > 0 ? (focused === 1 ? 8 : 4) : 6}
+          onClick={() => setFocused(1)}
           style={{
             backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-            background: `url("/images/getstarted/network.png") center center / cover`
+            background: `url("/images/getstarted/network.png") center center / cover`,
+            transition: 'all 0.2s ease-out'
           }}
         ></Grid.Col>
         <Grid.Col
-          span={6}
+          span={focused > 0 ? (focused === 2 ? 8 : 4) : 6}
+          onClick={() => setFocused(2)}
           style={{
             backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-            background: `url("/images/getstarted/buildteams.png") center center / cover`
+            background: `url("/images/getstarted/buildteams.png") center center / cover`,
+            transition: 'all 0.2s ease-out'
           }}
         ></Grid.Col>
       </Grid>
