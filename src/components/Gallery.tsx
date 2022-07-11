@@ -1,4 +1,4 @@
-import {Box, Group, Pagination, Title, useMantineTheme} from '@mantine/core'
+import {Box, Group, Pagination, useMantineTheme} from '@mantine/core'
 import React, {useState} from 'react'
 
 interface GalleryProps {
