@@ -99,9 +99,9 @@ const Page = (props: PageProps) => {
             boxShadow: theme.shadows.lg,
             marginTop: theme.spacing.xl * 2 + (props.disabled?.header ? 0 : 60),
             marginBottom: theme.spacing.xl * 2,
-            padding: !matches
-              ? `${theme.spacing.xs}px ${theme.spacing.xs * 3}px`
-              : `${theme.spacing.xl}px ${theme.spacing.xl * 3}px`,
+            padding: !matches ? `${theme.spacing.xs * 3}px` : `${theme.spacing.xl * 3}px`,
+            paddingBottom: !matches ? `${theme.spacing.xs * 1.5}px` : `${theme.spacing.xl * 1.5}px`,
+            paddingTop: !matches ? `${theme.spacing.xs * 1}px` : `${theme.spacing.xl * 1}px`,
             flex: 1,
             width: '100%',
             position: 'relative'
