@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 
-import {Avatar, Button, Grid, MediaQuery, Modal, Text, ThemeIcon, Title, useMantineTheme} from '@mantine/core'
 import {
+  At,
   BrandDiscord,
   BrandFacebook,
   BrandInstagram,
@@ -12,11 +12,11 @@ import {
   BrandYoutube,
   ExternalLink
 } from 'tabler-icons-react'
-import React, {useState} from 'react'
+import {Avatar, Button, Grid, Group, Text, ThemeIcon, useMantineTheme} from '@mantine/core'
 
-import Image from 'next/image'
 import {NextPage} from 'next'
 import Page from '../components/Page'
+import React from 'react'
 import {useRouter} from 'next/router'
 
 const contacts = [
@@ -55,7 +55,6 @@ const contacts = [
 ]
 
 const Contact: NextPage = () => {
-  const [opened, setOpened] = useState(false)
   const router = useRouter()
   const theme = useMantineTheme()
   return (
@@ -193,42 +192,34 @@ const Contact: NextPage = () => {
           </Button>
         </div>
       </div>
-      <MediaQuery smallerThan={768} styles={{display: 'none'}}>
-        <div style={{position: 'absolute', bottom: theme.spacing.md}}>
-          <Image src={'/logo.gif'} height={'128px'} width={'128px'} alt={''} />
-        </div>
-      </MediaQuery>
-      <Modal
-        opened={opened}
-        onClose={() => setOpened(false)}
-        styles={{overlay: {backgroundColor: '#1b1f24 !important', opacity: '0.5 !important'}}}
-      >
-        <Title order={2}>Suchet M.</Title>
-        <Text color="dimmed" size="sm" weight={400}>
-          CMO / Business Inq. Intl. / Media
-        </Text>
-      </Modal>
-      <Grid>
+      <Grid mt="md">
         {contacts.map(contact => (
-          // eslint-disable-next-line react/jsx-key
-          <Grid.Col
-            span={3}
-            sx={{
-              cursor: 'pointer',
-              transition: 'transform .4s cubic-bezier(0.16, 1, 0.3, 1)',
-              '&:hover': {
-                transform: 'scale3d(1.025, 1.025, 1.025)'
-              }
-            }}
-            onClick={() => setOpened(true)}
-          >
-            <Avatar src={contact.avatar} size={120} radius={6} mx="auto" />
-            <Text align="center" size="lg" weight={500} mt="md">
-              {contact.name}
-            </Text>
-            <Text align="center" color="dimmed" size="sm" weight={400}>
-              {contact.position}
-            </Text>
+          <Grid.Col key={contact.name} sm={6}>
+            <Group noWrap>
+              <Avatar src={contact.avatar} size={94} />
+              <div>
+                <Text size="xs" sx={{textTransform: 'uppercase'}} weight={700} color="dimmed">
+                  {contact.position}
+                </Text>
+                <Text size="lg" weight={500}>
+                  {contact.name}
+                </Text>
+
+                <Group noWrap spacing={10} mt={3}>
+                  <BrandDiscord size={16} />
+                  <Text size="xs" color="dimmed">
+                    {contact.discord}
+                  </Text>
+                </Group>
+
+                <Group noWrap spacing={10} mt={5}>
+                  <At size={16} />
+                  <Text size="xs" color="dimmed" onClick={() => window.open(`mailto:${contact.mail}`, '_blank')}>
+                    {contact.mail}
+                  </Text>
+                </Group>
+              </div>
+            </Group>
           </Grid.Col>
         ))}
       </Grid>
