@@ -331,9 +331,12 @@ const Faq: NextPage = () => {
             <Grid.Col key={i} sm={6}>
               <Group
                 noWrap
-                style={{
+                sx={{
                   backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
-                  borderRadius: theme.radius.xs
+                  borderRadius: theme.radius.xs,
+                  '&:hover': {
+                    backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[4]
+                  }
                 }}
                 p="md"
                 onClick={() => router.push(`/teams/${element.id}`)}
