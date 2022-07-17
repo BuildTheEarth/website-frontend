@@ -74,6 +74,38 @@ const Contact: NextPage = () => {
         To come in contact with the leadership of the Build The Earth project, you can send an email, or reach out
         through Discord.
       </Text>
+
+      <Grid mt="md">
+        {contacts.map(contact => (
+          <Grid.Col key={contact.name} sm={6}>
+            <Group noWrap>
+              <Avatar src={contact.avatar} size={94} />
+              <div>
+                <Text size="xs" sx={{textTransform: 'uppercase'}} weight={700} color="dimmed">
+                  {contact.position}
+                </Text>
+                <Text size="lg" weight={500}>
+                  {contact.name}
+                </Text>
+
+                <Group noWrap spacing={10} mt={3}>
+                  <BrandDiscord size={16} />
+                  <Text size="xs" color="dimmed">
+                    {contact.discord}
+                  </Text>
+                </Group>
+
+                <Group noWrap spacing={10} mt={5}>
+                  <At size={16} />
+                  <Text size="xs" color="dimmed" onClick={() => window.open(`mailto:${contact.mail}`, '_blank')}>
+                    {contact.mail}
+                  </Text>
+                </Group>
+              </div>
+            </Group>
+          </Grid.Col>
+        ))}
+      </Grid>
       <h2>Social Media</h2>
       <div style={{marginBottom: theme.spacing.xl * 2, display: 'flex', gap: '15px', flexWrap: 'wrap'}}>
         <ThemeIcon
@@ -192,37 +224,6 @@ const Contact: NextPage = () => {
           </Button>
         </div>
       </div>
-      <Grid mt="md">
-        {contacts.map(contact => (
-          <Grid.Col key={contact.name} sm={6}>
-            <Group noWrap>
-              <Avatar src={contact.avatar} size={94} />
-              <div>
-                <Text size="xs" sx={{textTransform: 'uppercase'}} weight={700} color="dimmed">
-                  {contact.position}
-                </Text>
-                <Text size="lg" weight={500}>
-                  {contact.name}
-                </Text>
-
-                <Group noWrap spacing={10} mt={3}>
-                  <BrandDiscord size={16} />
-                  <Text size="xs" color="dimmed">
-                    {contact.discord}
-                  </Text>
-                </Group>
-
-                <Group noWrap spacing={10} mt={5}>
-                  <At size={16} />
-                  <Text size="xs" color="dimmed" onClick={() => window.open(`mailto:${contact.mail}`, '_blank')}>
-                    {contact.mail}
-                  </Text>
-                </Group>
-              </div>
-            </Group>
-          </Grid.Col>
-        ))}
-      </Grid>
     </Page>
   )
 }
