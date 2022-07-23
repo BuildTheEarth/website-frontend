@@ -160,7 +160,7 @@ const Header = ({links, user}: HeaderProps) => {
     <a
       key={link.label}
       className={cx(classes.link, {
-        [classes.linkActive]: router.pathname === link.link
+        [classes.linkActive]: router.pathname.includes(link.link)
       })}
       onClick={() => {
         router.push(link.link)
