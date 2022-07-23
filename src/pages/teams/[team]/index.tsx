@@ -1,20 +1,10 @@
-import {ActionIcon, Avatar, Badge, Box, Button, Center, Container, Grid, Group, useMantineTheme} from '@mantine/core'
-import {
-  BrandDiscord,
-  BrandInstagram,
-  BrandTiktok,
-  BrandTwitch,
-  BrandTwitter,
-  BrandYoutube,
-  ChevronRight,
-  Server,
-  World
-} from 'tabler-icons-react'
-import React, {useState} from 'react'
+import {Center, Container, Grid, Group, useMantineTheme} from '@mantine/core'
+import {ChevronRight, Server} from 'tabler-icons-react'
 
-import Image from 'next/image'
+import {LogoHeader} from '../../../components/Header'
 import {NextPage} from 'next'
 import Page from '../../../components/Page'
+import React from 'react'
 import {useMediaQuery} from '@mantine/hooks'
 import {useRouter} from 'next/router'
 
@@ -46,7 +36,6 @@ const element = {
     'https://cdn.discordapp.com/attachments/692849007038562434/951198479869427722/2022-03-09_20.09.21.png',
     'https://buildtheearth.net/uploads/942a4bbd309c6765cb965ce841d60abd10c067d7.png',
     'https://cdn.discordapp.com/attachments/692849007038562434/969997709798953051/unknown.png',
-
     'https://cdn.discordapp.com/attachments/692849007038562434/951198479869427722/2022-03-09_20.09.21.png',
     'https://buildtheearth.net/uploads/942a4bbd309c6765cb965ce841d60abd10c067d7.png',
     'https://buildtheearth.net/uploads/942a4bbd309c6765cb965ce841d60abd10c067d7.png'
@@ -66,95 +55,7 @@ const Team: NextPage = () => {
       }}
       fullWidth
     >
-      <Box
-        style={{
-          backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-          background: `url("${element.head}") center center / cover`,
-          width: '100%',
-          height: '40vh'
-        }}
-      ></Box>
-      <Group
-        position="center"
-        style={{
-          width: '100%',
-          backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : '#fff',
-          borderBottom: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1]}`
-        }}
-      >
-        <Group
-          position="apart"
-          py="md"
-          style={{
-            width: '80%',
-            position: 'relative'
-          }}
-        >
-          <Group>
-            <Avatar
-              src={element.logo}
-              size={128}
-              mr="xl"
-              style={{
-                marginTop: -60,
-                backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : '#fff',
-                borderRadius: '50%',
-                padding: 16
-              }}
-            ></Avatar>
-            <h1 style={{lineHeight: 1, margin: 0}}>{element.name}</h1>
-          </Group>
-          <Group>
-            {element.socials.map((social: any) => {
-              let icon = null
-              switch (social.name) {
-                case 'website': {
-                  icon = <World />
-                  break
-                }
-                case 'youtube': {
-                  icon = <BrandYoutube />
-                  break
-                }
-                case 'twitter': {
-                  icon = <BrandTwitter />
-                  break
-                }
-                case 'discord': {
-                  icon = <BrandDiscord />
-                  break
-                }
-                case 'twitch': {
-                  icon = <BrandTwitch />
-                  break
-                }
-                case 'instagram': {
-                  icon = <BrandInstagram />
-                  break
-                }
-                case 'tiktok': {
-                  icon = <BrandTiktok />
-                  break
-                }
-                default:
-                  icon = <World />
-              }
-              return (
-                <ActionIcon component="a" href={social.url} target="_blank" key={social.name}>
-                  {icon}
-                </ActionIcon>
-              )
-            })}
-            {element.builders.includes('Nudelsuppe_42_#3571') ? (
-              <Badge color="green" size="lg">
-                {element.userStatus}
-              </Badge>
-            ) : (
-              <Button>Apply</Button>
-            )}
-          </Group>
-        </Group>
-      </Group>
+      <LogoHeader {...element} />
       <Container
         size="xl"
         style={{
@@ -185,7 +86,7 @@ const Team: NextPage = () => {
           )}
         </Group>
         <Grid>
-          {element.images.slice(0, 9).map((image: any, i: number) => {
+          {element.images.slice(0, 9).map((image: string, i: number) => {
             return (
               <Grid.Col
                 key={i}

@@ -1,5 +1,8 @@
 import {
+  ActionIcon,
   Avatar,
+  Badge,
+  Box,
   Burger,
   Button,
   Container,
@@ -12,9 +15,24 @@ import {
   Transition,
   UnstyledButton,
   createStyles,
-  useMantineColorScheme
+  useMantineColorScheme,
+  useMantineTheme
 } from '@mantine/core'
-import {ChevronDown, FileSearch, FileUpload, Logout, MoonStars, Sun} from 'tabler-icons-react'
+import {
+  BrandDiscord,
+  BrandInstagram,
+  BrandTiktok,
+  BrandTwitch,
+  BrandTwitter,
+  BrandYoutube,
+  ChevronDown,
+  FileSearch,
+  FileUpload,
+  Logout,
+  MoonStars,
+  Sun,
+  World
+} from 'tabler-icons-react'
 import React, {CSSProperties, useState} from 'react'
 
 import {useBooleanToggle} from '@mantine/hooks'
@@ -243,4 +261,112 @@ const Header = ({links, user}: HeaderProps) => {
     </MantineHeader>
   )
 }
+
+interface LogoHeaderProps {
+  head: string
+  logo: string
+  name: string
+  socials?: {name: string; url: string}[]
+  builders?: string[]
+  showStatus?: boolean
+  userStatus: string
+}
+
+export const LogoHeader = (props: LogoHeaderProps) => {
+  const theme = useMantineTheme()
+  return (
+    <>
+      <Box
+        style={{
+          backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+          background: `url("${props.head}") center center / cover`,
+          width: '100%',
+          height: '40vh'
+        }}
+      ></Box>
+      <Group
+        position="center"
+        style={{
+          width: '100%',
+          backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : '#fff',
+          borderBottom: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1]}`
+        }}
+      >
+        <Group
+          position="apart"
+          py="md"
+          style={{
+            width: '80%',
+            position: 'relative'
+          }}
+        >
+          <Group>
+            <Avatar
+              src={props.logo}
+              size={128}
+              mr="xl"
+              style={{
+                marginTop: -60,
+                backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : '#fff',
+                borderRadius: '50%',
+                padding: 16
+              }}
+            ></Avatar>
+            <h1 style={{lineHeight: 1, margin: 0}}>{props.name}</h1>
+          </Group>
+          <Group>
+            {props.socials?.map((social: {name: string; url: string}) => {
+              let icon = null
+              switch (social.name) {
+                case 'website': {
+                  icon = <World />
+                  break
+                }
+                case 'youtube': {
+                  icon = <BrandYoutube />
+                  break
+                }
+                case 'twitter': {
+                  icon = <BrandTwitter />
+                  break
+                }
+                case 'discord': {
+                  icon = <BrandDiscord />
+                  break
+                }
+                case 'twitch': {
+                  icon = <BrandTwitch />
+                  break
+                }
+                case 'instagram': {
+                  icon = <BrandInstagram />
+                  break
+                }
+                case 'tiktok': {
+                  icon = <BrandTiktok />
+                  break
+                }
+                default:
+                  icon = <World />
+              }
+              return (
+                <ActionIcon component="a" href={social.url} target="_blank" key={social.name}>
+                  {icon}
+                </ActionIcon>
+              )
+            })}
+            {props.builders?.includes('Nudelsuppe_42_#3571') || props.showStatus ? (
+              <Badge color="green" size="lg">
+                {props.userStatus}
+              </Badge>
+            ) : (
+              <Button>Apply</Button>
+            )}
+          </Group>
+        </Group>
+      </Group>
+    </>
+  )
+}
+
 export default Header
