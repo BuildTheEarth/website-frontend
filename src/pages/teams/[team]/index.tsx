@@ -79,7 +79,7 @@ const Team: NextPage = () => {
         <Group position="apart">
           <h4>Images</h4>
           {element.images.length > 9 && (
-            <Center inline style={{cursor: 'pointer'}} onClick={() => router.push(`/teams/${team}/images`)}>
+            <Center inline style={{cursor: 'pointer'}} onClick={() => router.push(`${team}/images`)}>
               <a>See more</a>
               <ChevronRight size={20} />
             </Center>
