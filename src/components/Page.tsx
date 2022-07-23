@@ -41,10 +41,10 @@ const Page = (props: PageProps) => {
       {!props.disabled?.header && (
         <Header
           links={[
-            {link: 'faq', label: 'FAQ'},
-            {link: 'map', label: 'Map'},
-            {link: 'teams', label: 'Build teams'},
-            {link: 'contact', label: 'Contact'}
+            {link: '/faq', label: 'FAQ'},
+            {link: '/map', label: 'Map'},
+            {link: '/teams', label: 'Build teams'},
+            {link: '/contact', label: 'Contact'}
           ]}
           user={props.user}
         />
@@ -114,9 +114,9 @@ const Page = (props: PageProps) => {
       {!props.disabled?.footer && (
         <Footer
           links={[
-            {link: 'faq', label: 'FAQ'},
-            {link: 'contact', label: 'Contact'},
-            {link: 'about', label: 'About us'}
+            {link: '/faq', label: 'FAQ'},
+            {link: '/contact', label: 'Contact'},
+            {link: '/about', label: 'About us'}
           ]}
         />
       )}
