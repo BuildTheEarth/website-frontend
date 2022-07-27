@@ -82,7 +82,7 @@ const GetStarted: NextPage = () => {
                   variant="outline"
                   size="lg"
                   style={{color: 'white', borderColor: 'white', borderWidth: 3, marginTop: theme.spacing.xl * 1.5}}
-                  onClick={() => router.push('/getstarted/buildteams')}
+                  onClick={() => router.push('/teams')}
                 >
                   Get Started
                 </Button>
