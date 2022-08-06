@@ -3,12 +3,14 @@ import React, {useState} from 'react'
 
 import {NextPage} from 'next'
 import Page from '../../components/Page'
+import {useMediaQuery} from '@mantine/hooks'
 import {useRouter} from 'next/router'
 
 const GetStarted: NextPage = () => {
   const theme = useMantineTheme()
   const router = useRouter()
-  const [focused, setFocused] = useState(0)
+  const largeScreen = useMediaQuery('(min-width: 900px)')
+  const [focused, setFocused] = useState<number | null>(null)
   return (
     <Page
       head={{
@@ -29,7 +31,7 @@ const GetStarted: NextPage = () => {
       </p>
       <Grid mt="lg" style={{minHeight: '60vh'}}>
         <Grid.Col
-          sm={focused > 0 ? (focused === 1 ? 8 : 4) : 6}
+          sm={focused ? (focused === 1 ? 8 : 4) : 6}
           onClick={() => setFocused(1)}
           style={{
             backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
@@ -41,8 +43,8 @@ const GetStarted: NextPage = () => {
           <Center style={{width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
             <div style={{color: '#ffffff', textAlign: 'center'}}>
               <h1>Official Network</h1>
-              <p>Join your friends in building on our very own Official Server</p>
-              <div style={{opacity: focused !== 1 ? 0 : 1, transition: 'all 0.2s ease-out'}}>
+              <p>Join your friends in building on our own Official Server</p>
+              <div style={{opacity: largeScreen && focused !== 1 ? 0 : 1, transition: 'all 0.2s ease-out'}}>
                 <h4>Compability</h4>
                 <p>
                   Java 1.8 - 1.19 <br />
@@ -51,7 +53,13 @@ const GetStarted: NextPage = () => {
                 <Button
                   variant="outline"
                   size="lg"
-                  style={{color: 'white', borderColor: 'white', borderWidth: 3, marginTop: theme.spacing.xl * 1.5}}
+                  style={{
+                    color: 'white',
+                    borderColor: 'white',
+                    borderWidth: 3,
+                    marginTop: theme.spacing.xl * 1.5,
+                    marginBottom: theme.spacing.md
+                  }}
                   onClick={() => router.push('/getstarted/network')}
                 >
                   Get Started
@@ -61,7 +69,7 @@ const GetStarted: NextPage = () => {
           </Center>
         </Grid.Col>
         <Grid.Col
-          sm={focused > 0 ? (focused === 2 ? 8 : 4) : 6}
+          sm={focused ? (focused === 2 ? 8 : 4) : 6}
           onClick={() => setFocused(2)}
           style={{
             backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
@@ -74,7 +82,7 @@ const GetStarted: NextPage = () => {
             <div style={{color: '#ffffff', textAlign: 'center'}}>
               <h1>Build Teams</h1>
               <p>Help build a whole country by joining a Build Team</p>
-              <div style={{opacity: focused !== 2 ? 0 : 1, transition: 'all 0.2s ease-out'}}>
+              <div style={{opacity: largeScreen && focused !== 2 ? 0 : 1, transition: 'all 0.2s ease-out'}}>
                 <h4>Compability</h4>
                 <p>
                   Java 1.8 - 1.19 <br />
@@ -83,7 +91,13 @@ const GetStarted: NextPage = () => {
                 <Button
                   variant="outline"
                   size="lg"
-                  style={{color: 'white', borderColor: 'white', borderWidth: 3, marginTop: theme.spacing.xl * 1.5}}
+                  style={{
+                    color: 'white',
+                    borderColor: 'white',
+                    borderWidth: 3,
+                    marginTop: theme.spacing.xl * 1.5,
+                    marginBottom: theme.spacing.md
+                  }}
                   onClick={() => router.push('/teams')}
                 >
                   Get Started
