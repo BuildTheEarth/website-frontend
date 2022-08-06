@@ -4,16 +4,16 @@ import KeycloakProvider from 'next-auth/providers/keycloak'
 export default NextAuth({
   providers: [
     KeycloakProvider({
-      clientId: '',
-      clientSecret: '',
-      issuer: '',
+      clientId: 'dev',
+      clientSecret: 'x9L192bczfjQqK8gts7ofQCn3AUuMBWX',
+      issuer: 'https://auth.bte-germany.de/realms/bte'
     })
   ],
-  callbacks: {
-    jwt: async ({ token, user }) => {
-      user && (token.user = user)
-      return token
-    }
+  pages: {
+    signIn: '/auth/signin',
+    signOut: '/auth/signout',
+    error: '/auth/error',
+    verifyRequest: '/auth/verify-request',
+    newUser: '/auth/new-user'
   }
-
 })
