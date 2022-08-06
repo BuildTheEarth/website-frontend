@@ -34,14 +34,15 @@ const GetStarted: NextPage = () => {
           style={{
             backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
             background: `url("/images/getstarted/network.png") center center / cover`,
-            transition: 'all 0.2s ease-out'
+            transition: 'all 0.2s ease-out',
+            padding: 0
           }}
         >
-          <Center style={{width: '100%', height: '100%'}}>
+          <Center style={{width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
             <div style={{color: '#ffffff', textAlign: 'center'}}>
               <h1>Official Network</h1>
-              <p>Join your friends in building large cities on our very own Official Server</p>
-              <div style={{visibility: focused !== 1 ? 'hidden' : undefined}}>
+              <p>Join your friends in building on our very own Official Server</p>
+              <div style={{opacity: focused !== 1 ? 0 : 1, transition: 'all 0.2s ease-out'}}>
                 <h4>Compability</h4>
                 <p>
                   Java 1.8 - 1.19 <br />
@@ -65,14 +66,15 @@ const GetStarted: NextPage = () => {
           style={{
             backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
             background: `url("/images/getstarted/buildteams.png") center center / cover`,
-            transition: 'all 0.2s ease-out'
+            transition: 'all 0.2s ease-out',
+            padding: 0
           }}
         >
-          <Center style={{width: '100%', height: '100%'}}>
+          <Center style={{width: '100%', height: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
             <div style={{color: '#ffffff', textAlign: 'center'}}>
               <h1>Build Teams</h1>
               <p>Help build a whole country by joining a Build Team</p>
-              <div style={{visibility: focused !== 2 ? 'hidden' : undefined}}>
+              <div style={{opacity: focused !== 2 ? 0 : 1, transition: 'all 0.2s ease-out'}}>
                 <h4>Compability</h4>
                 <p>
                   Java 1.8 - 1.19 <br />
