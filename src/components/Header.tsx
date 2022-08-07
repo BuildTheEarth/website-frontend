@@ -270,6 +270,7 @@ interface LogoHeaderProps {
   builders?: string[]
   showStatus?: boolean
   userStatus: string
+  applyHref?: string
 }
 
 export const LogoHeader = (props: LogoHeaderProps) => {
@@ -360,7 +361,9 @@ export const LogoHeader = (props: LogoHeaderProps) => {
                 {props.userStatus}
               </Badge>
             ) : (
-              <Button>Apply</Button>
+              <Button component="a" href={props.applyHref}>
+                Apply
+              </Button>
             )}
           </Group>
         </Group>

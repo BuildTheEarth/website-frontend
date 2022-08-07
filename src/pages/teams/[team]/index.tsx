@@ -14,7 +14,7 @@ const element = {
   logo: 'https://bte-germany.de/logo.gif',
   short: 'BTE Germany (first element)',
   locations: ['Germany'],
-  builders: ['Nachwahl', 'Nudelsuppe_42_#3571'],
+  builders: ['Nachwahl', 'udelsuppe_42_#3571'],
   minecraft: 'bte-germany.de',
   id: 'de',
   userStatus: 'Builder',
@@ -55,7 +55,7 @@ const Team: NextPage = () => {
       }}
       fullWidth
     >
-      <LogoHeader {...element} />
+      <LogoHeader {...element} applyHref={`${team}/apply`} />
       <Container
         size="xl"
         style={{
