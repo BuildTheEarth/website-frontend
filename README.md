@@ -1,3 +1,19 @@
+<!-- markdownlint-disable -->
+<div align="center">
+
+<img width="128" src="https://buildtheearth.net/assets/img/site-logo-animated.gif" />
+
+# Website Frontend
+
+_The Website for the Build The Earth Project._
+
+![official](https://go.buildtheearth.net/official-shield)
+[![chat](https://img.shields.io/discord/706317564904472627.svg?color=768AD4&label=discord&logo=https%3A%2F%2Fdiscordapp.com%2Fassets%2F8c9701b98ad4372b58f13fd9f65f966e.svg)](https://discord.gg/buildtheearth)
+
+</div>
+<!-- markdownlint-restore -->
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
