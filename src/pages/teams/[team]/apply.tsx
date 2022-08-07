@@ -98,9 +98,20 @@ const Team: NextPage = () => {
           <div>
             <Stepper active={user?.name ? (element.userStatus === 'Builder' ? 2 : 1) : 0}>
               <Stepper.Step label="Register" description="Create an account">
-                {/* Register Component or sth here */}
+                {/* TODO: Register Component or sth here */}
               </Stepper.Step>
-              <Stepper.Step label="Apply" description={`Apply for ${element.name}`}>
+              <Stepper.Step
+                label="Apply"
+                description={
+                  element.userStatus === 'Builder'
+                    ? `Application for ${element.name} accepted`
+                    : `Apply for ${element.name}`
+                }
+              >
+                <p>
+                  To build in this team you have to apply. Please fill out the form below and the Build team will get
+                  back to you shortly.
+                </p>
                 <form onSubmit={form.onSubmit(handleSubmit)}>
                   {element.apply.inputs.map((input: {id: any; name: string; placeholder: string}, i: number) => (
                     <TextInput
@@ -117,7 +128,7 @@ const Team: NextPage = () => {
                 </form>
               </Stepper.Step>
               <Stepper.Step label="Build" description="Build the Earth!">
-                Step 1 content: Create an account
+                {/* TODO: Tell them that they got accepted*/}
               </Stepper.Step>
             </Stepper>
           </div>
