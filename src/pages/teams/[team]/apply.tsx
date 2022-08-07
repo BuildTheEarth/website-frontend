@@ -1,6 +1,4 @@
-import {Button, Center, Container, Grid, Group, Input, Stepper, TextInput, useMantineTheme} from '@mantine/core'
-import {ChevronRight, Server} from 'tabler-icons-react'
-import Router, {useRouter} from 'next/router'
+import {Button, Container, Stepper, TextInput, useMantineTheme} from '@mantine/core'
 
 import {LogoHeader} from '../../../components/Header'
 import {NextPage} from 'next'
@@ -8,6 +6,7 @@ import Page from '../../../components/Page'
 import React from 'react'
 import {useForm} from '@mantine/form'
 import {useMediaQuery} from '@mantine/hooks'
+import {useRouter} from 'next/router'
 
 const element = {
   head: 'https://cdn.discordapp.com/attachments/692849007038562434/964097226341244988/4final2k_1.png',
@@ -62,7 +61,12 @@ const Team: NextPage = () => {
   const router = useRouter()
   const team = router.query.team
   const theme = useMantineTheme()
-  const form = useForm({initialValues: element.apply.inputs.map((input: any) => ({[input.id]: ''}))})
+  const form = useForm({
+    initialValues: element.apply.inputs.map((input: {id: string; name: string; placeholder: string}) => ({
+      [input.id]: ''
+    }))
+  })
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSubmit = (e: any) => {
     // eslint-disable-next-line no-console
     console.log(e)
@@ -98,7 +102,7 @@ const Team: NextPage = () => {
               </Stepper.Step>
               <Stepper.Step label="Apply" description={`Apply for ${element.name}`}>
                 <form onSubmit={form.onSubmit(handleSubmit)}>
-                  {element.apply.inputs.map((input: any, i: number) => (
+                  {element.apply.inputs.map((input: {id: any; name: string; placeholder: string}, i: number) => (
                     <TextInput
                       id={input.id}
                       key={i}
