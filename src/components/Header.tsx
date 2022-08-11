@@ -77,7 +77,12 @@ const useStyles = createStyles(theme => ({
   burger: {
     [theme.fn.largerThan('sm')]: {
       display: 'none'
-    }
+    },
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+    height: '100%'
   },
 
   link: {
@@ -230,13 +235,16 @@ const Header = ({links, user}: HeaderProps) => {
           )}
         </Group>
 
-        <Burger opened={opened} onClick={() => toggleOpened()} className={classes.burger} size="sm" />
+        <Group spacing={5} className={classes.burger}>
+          <img src="/logo.gif" alt="Mantine" height="40" onClick={() => router.push('/')} style={{cursor: 'pointer'}} />
+          <Burger opened={opened} onClick={() => toggleOpened()} size="sm" />
+        </Group>
 
-        <Transition transition="pop-top-right" duration={200} mounted={opened}>
+        <Transition transition="scale-y" duration={200} mounted={opened}>
           {(styles: CSSProperties) => (
             <Paper className={classes.dropdown} withBorder style={styles}>
               {items}
-              {user && (
+              {user ? (
                 <>
                   <Divider />
                   <UnstyledButton
@@ -250,6 +258,22 @@ const Header = ({links, user}: HeaderProps) => {
                       <Text weight={500} size="sm" sx={{lineHeight: 1}} mr={3}>
                         {user.name}
                       </Text>
+                    </Group>
+                  </UnstyledButton>
+                </>
+              ) : (
+                <>
+                  <Divider />
+                  <UnstyledButton
+                    className={cx(classes.user, {
+                      [classes.userActive]: userMenuOpened
+                    })}
+                  >
+                    <Group spacing={7}>
+                      <Button onClick={() => router.push('/getstarted')}>Get Started</Button>
+                      <Button ml="md" onClick={() => router.push('/login')} variant="outline">
+                        Sign In
+                      </Button>
                     </Group>
                   </UnstyledButton>
                 </>
