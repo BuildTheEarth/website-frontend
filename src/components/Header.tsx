@@ -34,8 +34,8 @@ import {
   World
 } from 'tabler-icons-react'
 import React, {CSSProperties, useState} from 'react'
+import {useBooleanToggle, useClickOutside} from '@mantine/hooks'
 
-import {useBooleanToggle} from '@mantine/hooks'
 import {useRouter} from 'next/router'
 
 const useStyles = createStyles(theme => ({
@@ -131,9 +131,6 @@ const useStyles = createStyles(theme => ({
     borderRadius: theme.radius.sm,
     marginLeft: theme.spacing.xs,
     transition: 'background-color 100ms ease',
-    '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[1]
-    },
     [theme.fn.smallerThan('sm')]: {
       borderRadius: 0,
       padding: theme.spacing.md,
@@ -160,6 +157,7 @@ const Header = ({links, user}: HeaderProps) => {
   const {colorScheme, toggleColorScheme} = useMantineColorScheme()
   const {classes, cx} = useStyles()
   const router = useRouter()
+  const mobilePaperRef = useClickOutside(() => toggleOpened(false))
 
   const items = links.map(link => (
     <a
@@ -242,7 +240,7 @@ const Header = ({links, user}: HeaderProps) => {
 
         <Transition transition="scale-y" duration={200} mounted={opened}>
           {(styles: CSSProperties) => (
-            <Paper className={classes.dropdown} withBorder style={styles}>
+            <Paper className={classes.dropdown} withBorder style={styles} ref={mobilePaperRef}>
               {items}
               {user ? (
                 <>
