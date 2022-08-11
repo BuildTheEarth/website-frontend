@@ -157,6 +157,7 @@ const Header = ({links, user}: HeaderProps) => {
   const {colorScheme, toggleColorScheme} = useMantineColorScheme()
   const {classes, cx} = useStyles()
   const router = useRouter()
+  const theme = useMantineTheme()
   const mobilePaperRef = useClickOutside(() => toggleOpened(false))
 
   const items = links.map(link => (
@@ -177,7 +178,13 @@ const Header = ({links, user}: HeaderProps) => {
     <MantineHeader height={60} className={classes.root} fixed>
       <Container className={classes.header} size={'xl'}>
         <Group spacing={5} className={classes.links}>
-          <img src="/logo.gif" alt="Mantine" height="40" onClick={() => router.push('/')} style={{cursor: 'pointer'}} />
+          <img
+            src="/logo.gif"
+            alt="Mantine"
+            height="40"
+            onClick={() => router.push('/')}
+            style={{cursor: 'pointer', marginRight: theme.spacing.md}}
+          />
           {items}
         </Group>
         <Group spacing={5} className={classes.links}>
