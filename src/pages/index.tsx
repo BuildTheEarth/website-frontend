@@ -1,13 +1,15 @@
-import {ActionIcon, Box, Button, Center, Grid, Title, useMantineTheme} from '@mantine/core'
+import {ActionIcon, Box, Button, Center, Grid, MediaQuery, Title, useMantineTheme} from '@mantine/core'
 
 import {ChevronDown} from 'tabler-icons-react'
 import Gallery from '../components/Gallery'
 import {NextPage} from 'next'
 import Page from '../components/Page'
 import React from 'react'
+import {useMediaQuery} from '@mantine/hooks'
 import {useRouter} from 'next/router'
 
 const Home: NextPage = () => {
+  const largeScreen = useMediaQuery('(min-width: 1200px)')
   const theme = useMantineTheme()
   const router = useRouter()
   return (
@@ -78,33 +80,41 @@ const Home: NextPage = () => {
         }}
       >
         <Grid>
-          <Grid.Col span={6} style={{paddingLeft: 200, paddingRight: 200, marginTop: 75, marginBottom: 75}}>
-            <h1 id="more">Our Grand Mission</h1>
-            <div
-              style={{
-                background: `linear-gradient(90deg, rgba(${
-                  theme.colorScheme === 'dark' ? '193, 194, 197' : '0, 0, 0'
-                },1) 20%, rgba(0,0,0,0) 20%)`,
-                height: 2
-              }}
-            />
-            <p>
-              Our mission is to fully recreate the entire Earth in Minecraft at a 1:1 scale. One block in Minecraft
-              equates to roughly one meter in the real world, meaning that this project will fully recreate the size of
-              our planet. Anyone is able to join us and contribute to the largest and most expansive build project to
-              ever have been attempted in Minecraft. Every language, nationality, and regional difference is accepted
-              and regarded as our greatest attribute as we continue our journey to unite all of Humanity&apos;s greatest
-              achievements into a single Minecraft world.
-            </p>
+          <Grid.Col lg={6} style={{marginTop: 50, marginBottom: 50}}>
+            <Center style={{width: '100%', height: '100%'}}>
+              <div style={{width: largeScreen ? '20vw' : '80vw'}}>
+                <h1 id="more">Our Grand Mission</h1>
+                <div
+                  style={{
+                    background: `linear-gradient(90deg, rgba(${
+                      theme.colorScheme === 'dark' ? '193, 194, 197' : '0, 0, 0'
+                    },1) 20%, rgba(0,0,0,0) 20%)`,
+                    height: 2
+                  }}
+                />
+                <p>
+                  Our mission is to fully recreate the entire Earth in Minecraft at a 1:1 scale. One block in Minecraft
+                  equates to roughly one meter in the real world, meaning that this project will fully recreate the size
+                  of our planet. Anyone is able to join us and contribute to the largest and most expansive build
+                  project to ever have been attempted in Minecraft. Every language, nationality, and regional difference
+                  is accepted and regarded as our greatest attribute as we continue our journey to unite all of
+                  Humanity&apos;s greatest achievements into a single Minecraft world.
+                </p>
+              </div>
+            </Center>
           </Grid.Col>
-          <Grid.Col
-            span={6}
-            style={{
-              backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-              background: `url("/images/home/mission.png")`
-            }}
-          ></Grid.Col>
-          <Grid.Col span={12} style={{padding: 0, margin: 0}}>
+
+          <MediaQuery smallerThan="lg" styles={{display: 'none'}}>
+            <Grid.Col
+              lg={6}
+              style={{
+                backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+                background: `url("/images/home/mission.png")`
+              }}
+            ></Grid.Col>
+          </MediaQuery>
+
+          <Grid.Col sm={12} style={{padding: 0, margin: 0}}>
             <Gallery
               style={{height: '90vh'}}
               images={[
@@ -122,34 +132,41 @@ const Home: NextPage = () => {
             />
           </Grid.Col>
 
-          <Grid.Col
-            span={6}
-            style={{
-              backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-              background: `url("/images/home/getstarted.png")`
-            }}
-          ></Grid.Col>
-          <Grid.Col span={6} style={{paddingLeft: 200, paddingRight: 200, marginTop: 75, marginBottom: 75}}>
-            <h1>How You Can Help</h1>
-            <div
+          <MediaQuery smallerThan="lg" styles={{display: 'none'}}>
+            <Grid.Col
+              lg={6}
               style={{
-                background: `linear-gradient(90deg, rgba(${
-                  theme.colorScheme === 'dark' ? '193, 194, 197' : '0, 0, 0'
-                },1) 20%, rgba(0,0,0,0) 20%)`,
-                height: 2
+                backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+                background: `url("/images/home/getstarted.png")`
               }}
-            />
-            <p>
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-              et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-              Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-              amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
-              aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-              gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-            </p>
-            <Button<'a'> px={theme.spacing.xl * 2} component="a" href="/getstarted">
-              Get Started
-            </Button>
+            ></Grid.Col>
+          </MediaQuery>
+
+          <Grid.Col lg={6} style={{marginTop: 50, marginBottom: 50}}>
+            <Center style={{width: '100%', height: '100%'}}>
+              <div style={{width: largeScreen ? '20vw' : '80vw'}}>
+                <h1>How You Can Help</h1>
+                <div
+                  style={{
+                    background: `linear-gradient(90deg, rgba(${
+                      theme.colorScheme === 'dark' ? '193, 194, 197' : '0, 0, 0'
+                    },1) 20%, rgba(0,0,0,0) 20%)`,
+                    height: 2
+                  }}
+                />
+                <p>
+                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
+                  labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
+                  et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
+                  ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+                  dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+                  rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                </p>
+                <Button<'a'> px={theme.spacing.xl * 2} component="a" href="/getstarted">
+                  Get Started
+                </Button>
+              </div>
+            </Center>
           </Grid.Col>
         </Grid>
       </Box>
