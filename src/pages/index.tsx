@@ -9,7 +9,7 @@ import {useMediaQuery} from '@mantine/hooks'
 import {useRouter} from 'next/router'
 
 const Home: NextPage = () => {
-  const largeScreen = useMediaQuery('(min-width: 1200px)')
+  const smallScreen = useMediaQuery('(max-width: 1200px)')
   const theme = useMantineTheme()
   const router = useRouter()
   return (
@@ -82,7 +82,7 @@ const Home: NextPage = () => {
         <Grid>
           <Grid.Col lg={6} style={{marginTop: 50, marginBottom: 50}}>
             <Center style={{width: '100%', height: '100%'}}>
-              <div style={{width: largeScreen ? '20vw' : '80vw'}}>
+              <div style={{width: smallScreen ? '80vw' : '20vw'}}>
                 <h1 id="more">Our Grand Mission</h1>
                 <div
                   style={{
@@ -144,7 +144,7 @@ const Home: NextPage = () => {
 
           <Grid.Col lg={6} style={{marginTop: 50, marginBottom: 50}}>
             <Center style={{width: '100%', height: '100%'}}>
-              <div style={{width: largeScreen ? '20vw' : '80vw'}}>
+              <div style={{width: smallScreen ? '80vw' : '20vw'}}>
                 <h1>How You Can Help</h1>
                 <div
                   style={{
