@@ -8,6 +8,7 @@ import type {AppProps} from 'next/app'
 import Head from 'next/head'
 import React from 'react'
 import {SWRConfig} from 'swr'
+import {SessionProvider} from 'next-auth/react'
 
 function MyApp({Component, pageProps}: AppProps) {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
@@ -22,7 +23,7 @@ function MyApp({Component, pageProps}: AppProps) {
 
   // TODO: Font
   return (
-    <>
+    <SessionProvider session={pageProps.session}>
       <Head>
         <title>Build The Earth</title>
         <link href="https://api.mapbox.com/mapbox-gl-js/v0.54.1/mapbox-gl.css" rel="stylesheet" />
@@ -43,7 +44,7 @@ function MyApp({Component, pageProps}: AppProps) {
           </MantineProvider>
         </ColorSchemeProvider>
       </SWRConfig>
-    </>
+    </SessionProvider>
   )
 }
 
