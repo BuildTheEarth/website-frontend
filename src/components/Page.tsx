@@ -8,10 +8,6 @@ import {useMediaQuery} from '@mantine/hooks'
 interface PageProps {
   children: React.ReactNode
   fullWidth?: boolean
-  user?: {
-    name: string
-    avatar: string
-  }
   disabled?: {
     header?: boolean
     footer?: boolean
@@ -46,7 +42,6 @@ const Page = (props: PageProps) => {
             {link: '/teams', label: 'Build teams'},
             {link: '/contact', label: 'Contact'}
           ]}
-          user={props.user}
         />
       )}
 

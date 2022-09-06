@@ -10,6 +10,7 @@ import Head from 'next/head'
 import {useRouter} from 'next/router'
 import React, {useEffect} from 'react'
 import {SWRConfig} from 'swr'
+import {SessionProvider} from 'next-auth/react'
 
 import NProgress from 'nprogress'
 
@@ -34,7 +35,7 @@ function MyApp({Component, pageProps}: AppProps) {
 
   // TODO: Font
   return (
-    <>
+    <SessionProvider session={pageProps.session}>
       <Head>
         <title>Build The Earth</title>
         <link href="https://api.mapbox.com/mapbox-gl-js/v0.54.1/mapbox-gl.css" rel="stylesheet" />
@@ -55,7 +56,7 @@ function MyApp({Component, pageProps}: AppProps) {
           </MantineProvider>
         </ColorSchemeProvider>
       </SWRConfig>
-    </>
+    </SessionProvider>
   )
 }
 
