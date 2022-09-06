@@ -236,7 +236,7 @@ const Header = ({links}: HeaderProps) => {
               <Button ml="md" onClick={() => router.push('/getstrted')}>
                 Get Started
               </Button>
-              <Button ml="md" onClick={() => signIn()} variant="outline">
+              <Button ml="md" onClick={() => signIn('keycloak')} variant="outline">
                 Sign In
               </Button>
             </>
@@ -284,7 +284,7 @@ const Header = ({links}: HeaderProps) => {
                   >
                     <Group spacing={7}>
                       <Button onClick={() => router.push('/getstarted')}>Get Started</Button>
-                      <Button ml="md" onClick={() => signIn()} variant="outline">
+                      <Button ml="md" onClick={() => signIn('keycloak')} variant="outline">
                         Sign In
                       </Button>
                     </Group>
