@@ -156,7 +156,6 @@ const Header = ({links}: HeaderProps) => {
   const router = useRouter()
   const theme = useMantineTheme()
   const mobilePaperRef = useClickOutside(() => toggleOpened(false))
-
   const {data: session} = useSession()
 
   const items = links.map(link => (

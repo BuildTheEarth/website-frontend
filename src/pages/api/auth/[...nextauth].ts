@@ -14,10 +14,12 @@ export default NextAuth({
       if (account) {
         token.apiToken = account.access_token
       }
+
       return token
     },
     session: async ({session, token}) => {
       session.apiToken = token.apiToken
+
       return session
     }
   }
