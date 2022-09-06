@@ -62,10 +62,25 @@ const useStyles = createStyles(theme => ({
 
   header: {
     display: 'flex',
-    justifyContent: 'space-between',
+    flexDirection: 'row',
     alignItems: 'center',
-    maxWidth: '100%',
+    width: '1200px',
+    margin: 'auto',
+    paddingLeft: '24px',
+    paddingRight: '24px',
+    justifyContent: 'space-between',
     height: '100%'
+  },
+
+  logo: {
+    fontFamily: 'Minecraft',
+    fontSize: '20px',
+    position: 'relative',
+    top: '2px',
+    img: {
+      position: 'relative',
+      top: '-2px'
+    }
   },
 
   links: {
@@ -92,12 +107,12 @@ const useStyles = createStyles(theme => ({
     cursor: 'pointer',
     borderRadius: theme.radius.sm,
     textDecoration: 'none',
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
+    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : '#666',
     fontSize: theme.fontSizes.sm,
-    fontWeight: 600,
 
     '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0]
+      backgroundColor: 'transparent',
+      color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : '#000'
     },
 
     [theme.fn.smallerThan('sm')]: {
@@ -108,15 +123,13 @@ const useStyles = createStyles(theme => ({
 
   linkActive: {
     '&, &:hover': {
-      backgroundColor:
-        theme.colorScheme === 'dark'
-          ? theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
-          : theme.colors[theme.primaryColor][0],
-      color: theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 3 : 7]
+      backgroundColor: 'transparent',
+      color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : '#000'
     }
   },
 
   userMenu: {
+    border: 'none !important',
     [theme.fn.smallerThan('xs')]: {
       display: 'none'
     }
@@ -177,21 +190,24 @@ const Header = ({links, user}: HeaderProps) => {
   return (
     <MantineHeader height={60} className={classes.root} fixed>
       <Container className={classes.header} size={'xl'}>
-        <Group spacing={5} className={classes.links}>
+        <Group spacing={5} className={classes.logo}>
           <img
             src="/logo.gif"
             alt="Mantine"
             height="40"
             onClick={() => router.push('/')}
-            style={{cursor: 'pointer', marginRight: theme.spacing.md}}
+            style={{cursor: 'pointer', marginRight: '4px'}}
           />
+          BuildTheEarth
+        </Group>
+        <Group spacing={5} className={classes.links}>
           {items}
         </Group>
         <Group spacing={5} className={classes.links}>
           {user ? (
             <Menu
               placement="end"
-              transition="pop-top-right"
+              transition="fade"
               className={classes.userMenu}
               onClose={() => setUserMenuOpened(false)}
               onOpen={() => setUserMenuOpened(true)}
