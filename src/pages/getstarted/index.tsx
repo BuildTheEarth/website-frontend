@@ -32,7 +32,7 @@ const GetStarted: NextPage = () => {
       <Grid mt="lg" style={{minHeight: '60vh'}}>
         <Grid.Col
           sm={focused ? (focused === 1 ? 8 : 4) : 6}
-          onClick={() => setFocused(1)}
+          onMouseEnter={() => setFocused(1)}
           style={{
             backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
             background: `url("/images/getstarted/network.png") center center / cover`,
@@ -70,7 +70,7 @@ const GetStarted: NextPage = () => {
         </Grid.Col>
         <Grid.Col
           sm={focused ? (focused === 2 ? 8 : 4) : 6}
-          onClick={() => setFocused(2)}
+          onMouseEnter={() => setFocused(2)}
           style={{
             backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
             background: `url("/images/getstarted/buildteams.png") center center / cover`,
