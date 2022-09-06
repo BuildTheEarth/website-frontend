@@ -34,6 +34,7 @@ import {
   World
 } from 'tabler-icons-react'
 import React, {CSSProperties, useState} from 'react'
+import {signIn, signOut, useSession} from 'next-auth/react'
 import {useBooleanToggle, useClickOutside} from '@mantine/hooks'
 
 import {useRouter} from 'next/router'
@@ -145,13 +146,9 @@ interface HeaderProps {
     link: string
     label: string
   }[]
-  user?: {
-    name: string
-    avatar: string
-  }
 }
 
-const Header = ({links, user}: HeaderProps) => {
+const Header = ({links}: HeaderProps) => {
   const [opened, toggleOpened] = useBooleanToggle(false)
   const [userMenuOpened, setUserMenuOpened] = useState(false)
   const {colorScheme, toggleColorScheme} = useMantineColorScheme()
@@ -159,6 +156,7 @@ const Header = ({links, user}: HeaderProps) => {
   const router = useRouter()
   const theme = useMantineTheme()
   const mobilePaperRef = useClickOutside(() => toggleOpened(false))
+  const {data: session} = useSession()
 
   const items = links.map(link => (
     <a
@@ -188,7 +186,7 @@ const Header = ({links, user}: HeaderProps) => {
           {items}
         </Group>
         <Group spacing={5} className={classes.links}>
-          {user ? (
+          {session != null && session?.user ? (
             <Menu
               placement="end"
               transition="pop-top-right"
@@ -202,9 +200,14 @@ const Header = ({links, user}: HeaderProps) => {
                   })}
                 >
                   <Group spacing={7}>
-                    <Avatar src={user.avatar} alt={user.name} radius="xl" size={20} />
+                    <Avatar
+                      src={session.user.image}
+                      alt={session.user.name || session.user.email || 'User Avatar'}
+                      radius="xl"
+                      size={20}
+                    />
                     <Text weight={500} size="sm" sx={{lineHeight: 1}} mr={3}>
-                      {user.name}
+                      {session.user.name || session.user.email}
                     </Text>
                     <ChevronDown size={12} />
                   </Group>
@@ -224,7 +227,7 @@ const Header = ({links, user}: HeaderProps) => {
               <Menu.Label>Staff</Menu.Label>
               <Menu.Item icon={<FileSearch size={14} />}>Review claims</Menu.Item>
               <Divider />
-              <Menu.Item icon={<Logout size={14} />} onClick={() => router.push('/logout')}>
+              <Menu.Item icon={<Logout size={14} />} onClick={() => signOut()}>
                 Sign out
               </Menu.Item>
             </Menu>
@@ -233,7 +236,7 @@ const Header = ({links, user}: HeaderProps) => {
               <Button ml="md" onClick={() => router.push('/getstrted')}>
                 Get Started
               </Button>
-              <Button ml="md" onClick={() => router.push('/login')} variant="outline">
+              <Button ml="md" onClick={() => signIn('keycloak')} variant="outline">
                 Sign In
               </Button>
             </>
@@ -249,7 +252,7 @@ const Header = ({links, user}: HeaderProps) => {
           {(styles: CSSProperties) => (
             <Paper className={classes.dropdown} withBorder style={styles} ref={mobilePaperRef}>
               {items}
-              {user ? (
+              {session != null && session?.user ? (
                 <>
                   <Divider />
                   <UnstyledButton
@@ -259,9 +262,14 @@ const Header = ({links, user}: HeaderProps) => {
                     onClick={() => router.push('/profile')}
                   >
                     <Group spacing={7}>
-                      <Avatar src={user.avatar} alt={user.name} radius="xl" size={25} />
+                      <Avatar
+                        src={session.user.image}
+                        alt={session.user.name || session.user.email || 'User Avatar'}
+                        radius="xl"
+                        size={25}
+                      />
                       <Text weight={500} size="sm" sx={{lineHeight: 1}} mr={3}>
-                        {user.name}
+                        {session.user.name || session.user.email}
                       </Text>
                     </Group>
                   </UnstyledButton>
@@ -276,7 +284,7 @@ const Header = ({links, user}: HeaderProps) => {
                   >
                     <Group spacing={7}>
                       <Button onClick={() => router.push('/getstarted')}>Get Started</Button>
-                      <Button ml="md" onClick={() => router.push('/login')} variant="outline">
+                      <Button ml="md" onClick={() => signIn('keycloak')} variant="outline">
                         Sign In
                       </Button>
                     </Group>
