@@ -1,6 +1,7 @@
 import {Anchor, Container, Group, Menu, createStyles} from '@mantine/core'
 
 import React from 'react'
+import {LanguageSwitcher} from "./LanguageSwitcher";
 
 const useStyles = createStyles(theme => ({
   footer: {
@@ -48,18 +49,7 @@ export default function Footer({links, style}: FooterSimpleProps) {
         </Anchor>
         <Group className={classes.links}>
           {items}
-          <Menu
-            position="top"
-            placement="end"
-            control={
-              <Anchor<'a'> color="dimmed" onClick={event => event.preventDefault()} size="sm">
-                Language
-              </Anchor>
-            }
-          >
-            <Menu.Item icon={<img src="https://countryflagsapi.com/png/gb" height={'15'} />}>English</Menu.Item>
-            <Menu.Item icon={<img src="https://countryflagsapi.com/png/de" height={'15'} />}>German</Menu.Item>
-          </Menu>
+          <LanguageSwitcher />
         </Group>
       </Container>
     </div>
