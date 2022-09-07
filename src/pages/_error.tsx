@@ -1,41 +1,8 @@
-import { Button, Center, Container, Group, Text, Title, createStyles, useMantineTheme } from '@mantine/core';
+import { Button, Center, Title, useMantineTheme } from '@mantine/core';
 
 import Page from '../components/Page';
 import { useRouter } from 'next/router';
 
-const useStyles = createStyles((theme) => ({
-	label: {
-		textAlign: 'center',
-		fontWeight: 900,
-		fontSize: 220,
-		lineHeight: 1,
-		marginBottom: theme.spacing.xl * 1.5,
-		color: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2],
-
-		[theme.fn.smallerThan('sm')]: {
-			fontSize: 120,
-		},
-	},
-
-	title: {
-		fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-		textAlign: 'center',
-		fontWeight: 900,
-		fontSize: 38,
-		color: '#ffffff',
-
-		[theme.fn.smallerThan('sm')]: {
-			fontSize: 32,
-		},
-	},
-
-	description: {
-		maxWidth: 500,
-		margin: 'auto',
-		marginTop: theme.spacing.xl,
-		marginBottom: theme.spacing.xl * 1.5,
-	},
-}));
 const errors = [
 	{
 		code: 300,
@@ -116,7 +83,6 @@ const errors = [
 
 function ErrorPage(props: any) {
 	const theme = useMantineTheme();
-	const { classes } = useStyles();
 	const code = props.code || props.statuscode;
 	const status = errors.find((e) => e.code === code) || {
 		code: code,
