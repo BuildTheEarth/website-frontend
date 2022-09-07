@@ -111,7 +111,7 @@ const useStyles = createStyles((theme) => ({
 		fontSize: theme.fontSizes.sm,
 
 		'&:hover': {
-			backgroundColor: 'transparent',
+			backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
 			color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : '#000',
 		},
 
@@ -123,7 +123,7 @@ const useStyles = createStyles((theme) => ({
 
 	linkActive: {
 		'&, &:hover': {
-			backgroundColor: 'transparent',
+			backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2],
 			color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : '#000',
 		},
 	},
@@ -135,7 +135,9 @@ const useStyles = createStyles((theme) => ({
 		},
 	},
 	userActive: {
-		backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
+		'&, &:hover': {
+			backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2],
+		},
 	},
 
 	user: {
@@ -149,6 +151,9 @@ const useStyles = createStyles((theme) => ({
 			padding: theme.spacing.md,
 			margin: 0,
 			width: '100%',
+		},
+		'&:hover': {
+			backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
 		},
 	},
 }));
