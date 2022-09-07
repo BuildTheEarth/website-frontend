@@ -17,13 +17,6 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.15.4":
-  version "7.19.0"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.19.0.tgz#22b11c037b094d27a8a2504ea4dcff00f50e2259"
-  integrity sha512-eR8Lo9hnDS7tqkO7NsV+mKvCmv5boaXFSZ70DnfhcgiEne8hv9oCEd36Klw74EtizEqLsy4YnW8UWwpBVolHZA==
-  dependencies:
-    regenerator-runtime "^0.13.4"
-
 "@emotion/cache@11.7.1", "@emotion/cache@^11.7.1":
   version "11.7.1"
   resolved "https://registry.npmjs.org/@emotion/cache/-/cache-11.7.1.tgz"
@@ -350,7 +343,7 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@panva/hkdf@^1.0.0":
+"@panva/hkdf@^1.0.1":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@panva/hkdf/-/hkdf-1.0.2.tgz#bab0f09d09de9fd83628220d496627681bc440d6"
   integrity sha512-MSAs9t3Go7GUkMhpKC44T58DJ5KGk2vBo+h1cqQeqlMfdGkxaVB78ZWpv9gYi/g2fa4sopag9gJsNvS8XGgWJA==
@@ -1819,15 +1812,15 @@ isexe@^2.0.0:
   resolved "https://registry.npmjs.org/isexe/-/isexe-2.0.0.tgz"
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
 
-jose@^4.1.2:
-  version "4.9.2"
-  resolved "https://registry.yarnpkg.com/jose/-/jose-4.9.2.tgz#268994df4443b9c191de0b001c2e3796ac6cf368"
-  integrity sha512-EqKvu2PqJCD3Jrg3PvcYZVS7D21qMVLSYMDAFcOdGUEOpJSLNtJO7NjLANvu3SYHVl6pdP2ff7ve6EZW2nX7Nw==
-
 jose@^4.1.4:
   version "4.9.1"
   resolved "https://registry.npmjs.org/jose/-/jose-4.9.1.tgz"
   integrity sha512-ETgCfJ2yxJavpJdVMgznN8ot3MJyZUiLyY2xiZ2sSNL/uEZh1EH74cmNYWhZgMSBwSdSz03ja5cMZU/9BSlqXg==
+
+jose@^4.3.7:
+  version "4.9.2"
+  resolved "https://registry.yarnpkg.com/jose/-/jose-4.9.2.tgz#268994df4443b9c191de0b001c2e3796ac6cf368"
+  integrity sha512-EqKvu2PqJCD3Jrg3PvcYZVS7D21qMVLSYMDAFcOdGUEOpJSLNtJO7NjLANvu3SYHVl6pdP2ff7ve6EZW2nX7Nw==
 
 js-sha256@^0.9.0:
   version "0.9.0"
@@ -2064,18 +2057,18 @@ natural-compare@^1.4.0:
   resolved "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
 
-next-auth@^4.0.0-beta.7:
-  version "4.0.0-beta.7"
-  resolved "https://registry.yarnpkg.com/next-auth/-/next-auth-4.0.0-beta.7.tgz#220aea0c1afa35bd9fa0bfad9bf2e62e91772bf2"
-  integrity sha512-bPoLak4MfmgrcLLaf26tEQttKJPBcP3KAtSXSo2xMhoG+PLnP9gwFmqLwFUX+FvVRf/iwuAUZjPRAqRQ9g3GOw==
+next-auth@^4.10.3:
+  version "4.10.3"
+  resolved "https://registry.yarnpkg.com/next-auth/-/next-auth-4.10.3.tgz#0a952dd5004fd2ac2ba414c990922cf9b33951a3"
+  integrity sha512-7zc4aXYc/EEln7Pkcsn21V1IevaTZsMLJwapfbnKA4+JY0+jFzWbt5p/ljugesGIrN4VOZhpZIw50EaFZyghJQ==
   dependencies:
-    "@babel/runtime" "^7.15.4"
-    "@panva/hkdf" "^1.0.0"
+    "@babel/runtime" "^7.16.3"
+    "@panva/hkdf" "^1.0.1"
     cookie "^0.4.1"
-    jose "^4.1.2"
+    jose "^4.3.7"
     oauth "^0.9.15"
-    openid-client "^5.0.2"
-    preact "^10.5.14"
+    openid-client "^5.1.0"
+    preact "^10.6.3"
     preact-render-to-string "^5.1.19"
     uuid "^8.3.2"
 
@@ -2204,7 +2197,7 @@ opener@^1.5.2:
   resolved "https://registry.npmjs.org/opener/-/opener-1.5.2.tgz"
   integrity sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==
 
-openid-client@^5.0.2:
+openid-client@^5.1.0:
   version "5.1.9"
   resolved "https://registry.yarnpkg.com/openid-client/-/openid-client-5.1.9.tgz#6887e75ad3fa8d0c78d0ed693a5ea107d39b54de"
   integrity sha512-o/11Xos2fRPpK1zQrPfSIhIusFrAkqGSPwkD0UlUB+CCuRzd7zrrBJwIjgnVv3VUSif9ZGXh2d3GSJNH2Koh5g==
@@ -2335,7 +2328,7 @@ preact-render-to-string@^5.1.19:
   dependencies:
     pretty-format "^3.8.0"
 
-preact@^10.5.14:
+preact@^10.6.3:
   version "10.10.6"
   resolved "https://registry.yarnpkg.com/preact/-/preact-10.10.6.tgz#1fe62aecf93974b64e6a42e09ba1f00f93207d14"
   integrity sha512-w0mCL5vICUAZrh1DuHEdOWBjxdO62lvcO++jbzr8UhhYcTbFkpegLH9XX+7MadjTl/y0feoqwQ/zAnzkc/EGog==
