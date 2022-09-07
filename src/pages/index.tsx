@@ -114,17 +114,19 @@ const Home: NextPage = () => {
 
 					<Grid.Col sm={12} style={{ padding: 0, margin: 0 }}>
 						<Gallery
-							style={{ height: '90vh' }}
+							style={{ height: '70vh' }}
 							images={[
 								{
 									builder: 'BTE Germany',
-									location: 'Schloss Drachenburg - Germany',
+									location: 'Schloss Drachenburg',
 									src: 'https://cdn.discordapp.com/attachments/692849007038562434/964097226341244988/4final2k_1.png',
+									country: "de"
 								},
 								{
 									builder: 'De leted#2098',
-									location: 'Wisconsin State Capitol - USA',
+									location: 'Wisconsin State Capitol',
 									src: 'https://cdn.discordapp.com/attachments/811604280293064714/992899056361799680/Capitol5.png',
+									country: "us"
 								},
 							]}
 						/>

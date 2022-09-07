@@ -1,74 +1,74 @@
-import {Box, Group, Pagination, useMantineTheme} from '@mantine/core'
+import {Box, Container, Group, Pagination, Title, useMantineTheme, Badge} from '@mantine/core'
 import React, {useState} from 'react'
+import {Carousel} from "@mantine/carousel";
 
 interface GalleryProps {
-  images: {location: string; builder: string; src: string}[]
-  style?: React.CSSProperties
+    images: { location: string; builder: string; src: string, country: string }[]
+    style?: React.CSSProperties
 }
-function Gallery(props: GalleryProps) {
-  const [active, setActive] = useState(props.images[0])
-  const theme = useMantineTheme()
 
-  return (
-    <Box style={props.style}>
-      <Box
-        style={{
-          backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-          background: `url("${active.src}") center center / cover`,
-          transition: 'background 0.2s ease-out',
-          height: '100%',
-          minHeight: '100px',
-          width: '100%',
-          position: 'relative'
-        }}
-      >
-        <Box style={{color: '#ffffff', position: 'absolute', top: theme.spacing.md, left: theme.spacing.xl}}>
-          <h1>{active.location}</h1>
-          <div
-            style={{
-              background: `linear-gradient(90deg, rgba(255,255,255
-          ,1) 20%, rgba(0,0,0,0) 20%)`,
-              height: 2
-            }}
-          />
-          <p>by {active.builder}</p>
+function Gallery(props: GalleryProps) {
+    const [active, setActive] = useState(props.images[0])
+    const theme = useMantineTheme()
+
+    return (
+        <Box style={props.style}>
+            <Carousel mx="auto" withIndicators height={"100%"} controlsOffset="xl" controlSize={37} loop styles={{
+                indicator: {
+                    width: 12,
+                    height: 4,
+                    transition: 'width 250ms ease',
+
+                    '&[data-active]': {
+                        width: 40,
+                    },
+                },
+            }}>
+                {
+                    props.images.map((i) => {
+                        return (
+                            <Carousel.Slide sx={{height: props.style?.height}} >
+                                <div style={{position: "relative", height: props.style?.height}}>
+                                    <img src={i.src} alt="" width={"100%"} height={"100%"}
+                                         style={{objectFit: "cover"}}/>
+                                    <div style={{
+                                        position: "absolute",
+                                        bottom: 0,
+                                        right: 0,
+                                        margin: theme.spacing.xl,
+                                        textAlign: "right",
+                                        zIndex: 50
+                                    }}>
+                                        <Title color={"white"} sx={{display: "flex", alignItems: "center"}}>
+                                        <span className={`fi fi-${i.country} fis`} style={{
+                                            borderRadius: "50%",
+                                            height: "25px",
+                                            width: "25px",
+                                            marginRight: theme.spacing.md,
+                                            marginTop: 5
+                                        }}></span>
+                                            {i.location}
+                                        </Title>
+                                        <Badge variant={"filled"}>{i.builder}</Badge>
+
+                                    </div>
+                                    <div style={{
+                                        position: "absolute",
+                                        bottom: 0,
+                                        right: 0,
+                                    }}>
+                                        <img src="/galleryoverlay.svg" alt="" width={"100%"}/>
+                                    </div>
+                                </div>
+
+
+                            </Carousel.Slide>
+                        )
+                    })
+                }
+            </Carousel>
         </Box>
-        <Group
-          position="center"
-          style={{position: 'absolute', bottom: theme.spacing.md, left: '50%', transform: 'translate(-50%,0%)'}}
-        >
-          <Pagination
-            siblings={3}
-            initialPage={1}
-            page={props.images.indexOf(active) + 1}
-            onChange={page => setActive(props.images[page - 1])}
-            total={props.images.length}
-            withControls={false}
-            size="sm"
-            radius="xl"
-            styles={{
-              item: {
-                color: '#ffffff00',
-                backgroundColor: '#ffffff',
-                border: 'none',
-                width: 25,
-                transition: 'all 0.2s ease-out',
-                boxShadow: theme.shadows.xl
-              },
-              active: {
-                color: '#ffffff00',
-                backgroundColor: '#ffffff',
-                border: 'none',
-                width: 50,
-                transition: 'all 0.2s ease-out',
-                boxShadow: theme.shadows.xl
-              }
-            }}
-          />
-        </Group>
-      </Box>
-    </Box>
-  )
+    )
 }
 
 export default Gallery
