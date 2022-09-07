@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import '../styles/nprogress.css'
 
 // eslint-disable-next-line import/named
 import {ColorScheme, ColorSchemeProvider, MantineProvider} from '@mantine/core'
@@ -6,10 +7,22 @@ import {useHotkeys, useLocalStorage} from '@mantine/hooks'
 
 import type {AppProps} from 'next/app'
 import Head from 'next/head'
-import React from 'react'
+import {useRouter} from 'next/router'
+import React, {useEffect} from 'react'
 import {SWRConfig} from 'swr'
+import {SessionProvider} from 'next-auth/react'
+
+import NProgress from 'nprogress'
 
 function MyApp({Component, pageProps}: AppProps) {
+  const router = useRouter()
+
+  useEffect(() => {
+    router.events.on('routeChangeStart', () => NProgress.start())
+    router.events.on('routeChangeComplete', () => NProgress.done())
+    router.events.on('routeChangeError', () => NProgress.done())
+  }, [])
+
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
     key: 'scheme',
     defaultValue: 'light',
@@ -22,7 +35,7 @@ function MyApp({Component, pageProps}: AppProps) {
 
   // TODO: Font
   return (
-    <>
+    <SessionProvider session={pageProps.session}>
       <Head>
         <title>Build The Earth</title>
         <link href="https://api.mapbox.com/mapbox-gl-js/v0.54.1/mapbox-gl.css" rel="stylesheet" />
@@ -43,7 +56,7 @@ function MyApp({Component, pageProps}: AppProps) {
           </MantineProvider>
         </ColorSchemeProvider>
       </SWRConfig>
-    </>
+    </SessionProvider>
   )
 }
 

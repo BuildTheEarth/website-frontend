@@ -34,6 +34,7 @@ import {
   World
 } from 'tabler-icons-react'
 import React, {CSSProperties, useState} from 'react'
+import {signIn, signOut, useSession} from 'next-auth/react'
 import {useBooleanToggle, useClickOutside} from '@mantine/hooks'
 
 import {useRouter} from 'next/router'
@@ -62,10 +63,25 @@ const useStyles = createStyles(theme => ({
 
   header: {
     display: 'flex',
-    justifyContent: 'space-between',
+    flexDirection: 'row',
     alignItems: 'center',
-    maxWidth: '100%',
+    width: '1200px',
+    margin: 'auto',
+    paddingLeft: '24px',
+    paddingRight: '24px',
+    justifyContent: 'space-between',
     height: '100%'
+  },
+
+  logo: {
+    fontFamily: 'Minecraft',
+    fontSize: '20px',
+    position: 'relative',
+    top: '2px',
+    img: {
+      position: 'relative',
+      top: '-2px'
+    }
   },
 
   links: {
@@ -92,12 +108,12 @@ const useStyles = createStyles(theme => ({
     cursor: 'pointer',
     borderRadius: theme.radius.sm,
     textDecoration: 'none',
-    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
+    color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : '#666',
     fontSize: theme.fontSizes.sm,
-    fontWeight: 600,
 
     '&:hover': {
-      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0]
+      backgroundColor: 'transparent',
+      color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : '#000'
     },
 
     [theme.fn.smallerThan('sm')]: {
@@ -108,15 +124,13 @@ const useStyles = createStyles(theme => ({
 
   linkActive: {
     '&, &:hover': {
-      backgroundColor:
-        theme.colorScheme === 'dark'
-          ? theme.fn.rgba(theme.colors[theme.primaryColor][9], 0.25)
-          : theme.colors[theme.primaryColor][0],
-      color: theme.colors[theme.primaryColor][theme.colorScheme === 'dark' ? 3 : 7]
+      backgroundColor: 'transparent',
+      color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : '#000'
     }
   },
 
   userMenu: {
+    border: 'none !important',
     [theme.fn.smallerThan('xs')]: {
       display: 'none'
     }
@@ -145,13 +159,9 @@ interface HeaderProps {
     link: string
     label: string
   }[]
-  user?: {
-    name: string
-    avatar: string
-  }
 }
 
-const Header = ({links, user}: HeaderProps) => {
+const Header = ({links}: HeaderProps) => {
   const [opened, toggleOpened] = useBooleanToggle(false)
   const [userMenuOpened, setUserMenuOpened] = useState(false)
   const {colorScheme, toggleColorScheme} = useMantineColorScheme()
@@ -159,6 +169,7 @@ const Header = ({links, user}: HeaderProps) => {
   const router = useRouter()
   const theme = useMantineTheme()
   const mobilePaperRef = useClickOutside(() => toggleOpened(false))
+  const {data: session} = useSession()
 
   const items = links.map(link => (
     <a
@@ -177,21 +188,24 @@ const Header = ({links, user}: HeaderProps) => {
   return (
     <MantineHeader height={60} className={classes.root} fixed>
       <Container className={classes.header} size={'xl'}>
-        <Group spacing={5} className={classes.links}>
+        <Group spacing={5} className={classes.logo}>
           <img
             src="/logo.gif"
             alt="Mantine"
             height="40"
             onClick={() => router.push('/')}
-            style={{cursor: 'pointer', marginRight: theme.spacing.md}}
+            style={{cursor: 'pointer', marginRight: '4px'}}
           />
+          BuildTheEarth
+        </Group>
+        <Group spacing={5} className={classes.links}>
           {items}
         </Group>
         <Group spacing={5} className={classes.links}>
-          {user ? (
+          {session != null && session?.user ? (
             <Menu
               placement="end"
-              transition="pop-top-right"
+              transition="fade"
               className={classes.userMenu}
               onClose={() => setUserMenuOpened(false)}
               onOpen={() => setUserMenuOpened(true)}
@@ -202,9 +216,14 @@ const Header = ({links, user}: HeaderProps) => {
                   })}
                 >
                   <Group spacing={7}>
-                    <Avatar src={user.avatar} alt={user.name} radius="xl" size={20} />
+                    <Avatar
+                      src={session.user.image}
+                      alt={session.user.name || session.user.email || 'User Avatar'}
+                      radius="xl"
+                      size={20}
+                    />
                     <Text weight={500} size="sm" sx={{lineHeight: 1}} mr={3}>
-                      {user.name}
+                      {session.user.name || session.user.email}
                     </Text>
                     <ChevronDown size={12} />
                   </Group>
@@ -224,7 +243,7 @@ const Header = ({links, user}: HeaderProps) => {
               <Menu.Label>Staff</Menu.Label>
               <Menu.Item icon={<FileSearch size={14} />}>Review claims</Menu.Item>
               <Divider />
-              <Menu.Item icon={<Logout size={14} />} onClick={() => router.push('/logout')}>
+              <Menu.Item icon={<Logout size={14} />} onClick={() => signOut()}>
                 Sign out
               </Menu.Item>
             </Menu>
@@ -233,7 +252,7 @@ const Header = ({links, user}: HeaderProps) => {
               <Button ml="md" onClick={() => router.push('/getstrted')}>
                 Get Started
               </Button>
-              <Button ml="md" onClick={() => router.push('/login')} variant="outline">
+              <Button ml="md" onClick={() => signIn('keycloak')} variant="outline">
                 Sign In
               </Button>
             </>
@@ -249,7 +268,7 @@ const Header = ({links, user}: HeaderProps) => {
           {(styles: CSSProperties) => (
             <Paper className={classes.dropdown} withBorder style={styles} ref={mobilePaperRef}>
               {items}
-              {user ? (
+              {session != null && session?.user ? (
                 <>
                   <Divider />
                   <UnstyledButton
@@ -259,9 +278,14 @@ const Header = ({links, user}: HeaderProps) => {
                     onClick={() => router.push('/profile')}
                   >
                     <Group spacing={7}>
-                      <Avatar src={user.avatar} alt={user.name} radius="xl" size={25} />
+                      <Avatar
+                        src={session.user.image}
+                        alt={session.user.name || session.user.email || 'User Avatar'}
+                        radius="xl"
+                        size={25}
+                      />
                       <Text weight={500} size="sm" sx={{lineHeight: 1}} mr={3}>
-                        {user.name}
+                        {session.user.name || session.user.email}
                       </Text>
                     </Group>
                   </UnstyledButton>
@@ -276,7 +300,7 @@ const Header = ({links, user}: HeaderProps) => {
                   >
                     <Group spacing={7}>
                       <Button onClick={() => router.push('/getstarted')}>Get Started</Button>
-                      <Button ml="md" onClick={() => router.push('/login')} variant="outline">
+                      <Button ml="md" onClick={() => signIn('keycloak')} variant="outline">
                         Sign In
                       </Button>
                     </Group>
