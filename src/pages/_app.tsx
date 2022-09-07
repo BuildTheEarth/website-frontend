@@ -7,19 +7,14 @@ import { useHotkeys, useLocalStorage } from '@mantine/hooks';
 
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import NProgress from 'nprogress';
 import { SWRConfig } from 'swr';
 import { SessionProvider } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import {RouterTransition} from "../components/RouterTransition";
 
 function MyApp({ Component, pageProps }: AppProps) {
 	const router = useRouter();
 
-	useEffect(() => {
-		router.events.on('routeChangeStart', () => NProgress.start());
-		router.events.on('routeChangeComplete', () => NProgress.done());
-		router.events.on('routeChangeError', () => NProgress.done());
-	}, []);
 
 	const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
 		key: 'scheme',
@@ -50,6 +45,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 			>
 				<ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
 					<MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
+						<RouterTransition />
 						<Component {...pageProps} />
 					</MantineProvider>
 				</ColorSchemeProvider>
