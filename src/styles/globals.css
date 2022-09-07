@@ -55,10 +55,5 @@ a {
 
 * {
   box-sizing: border-box;
-<<<<<<< HEAD
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-=======
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-    Helvetica Neue, sans-serif;
->>>>>>> a6b6ad59fcd109961fa0d4b82ab84e3d33f3d8ef
 }
