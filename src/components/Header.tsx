@@ -19,12 +19,6 @@ import {
 	useMantineTheme,
 } from '@mantine/core';
 import {
-	BrandDiscord,
-	BrandInstagram,
-	BrandTiktok,
-	BrandTwitch,
-	BrandTwitter,
-	BrandYoutube,
 	ChevronDown,
 	FileSearch,
 	FileUpload,
@@ -33,6 +27,7 @@ import {
 	Sun,
 	World,
 } from 'tabler-icons-react';
+import { Youtube, Twitter, Discord, Instagram, Tiktok, Twitch } from '@icons-pack/react-simple-icons';
 import React, { CSSProperties, useState } from 'react';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useClickOutside, useDisclosure } from '@mantine/hooks';
@@ -243,11 +238,18 @@ const Header = ({ links }: HeaderProps) => {
 						</Menu>
 					) : (
 						<>
-							<Button ml="md" onClick={() => router.push('/getstrted')}>
-								Get Started
-							</Button>
-							<Button ml="md" onClick={() => signIn('keycloak')} variant="outline">
-								Sign In
+                        	<a
+        		    	        className={cx(classes.link, {
+	        		    	        [classes.linkActive]: router.pathname.includes('/login'),
+    		        	        })}
+			                    onClick={() => {
+				                    signIn('keycloak');
+			                    }}
+		                    >
+                                Login
+                    		</a>
+							<Button style={{ fontWeight: '500' }} onClick={() => router.push('/getstarted')}>
+								Sign Up
 							</Button>
 						</>
 					)}
@@ -370,27 +372,27 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 									break;
 								}
 								case 'youtube': {
-									icon = <BrandYoutube />;
+									icon = <Youtube />;
 									break;
 								}
 								case 'twitter': {
-									icon = <BrandTwitter />;
+									icon = <Twitter />;
 									break;
 								}
 								case 'discord': {
-									icon = <BrandDiscord />;
+									icon = <Discord />;
 									break;
 								}
 								case 'twitch': {
-									icon = <BrandTwitch />;
+									icon = <Twitch />;
 									break;
 								}
 								case 'instagram': {
-									icon = <BrandInstagram />;
+									icon = <Instagram />;
 									break;
 								}
 								case 'tiktok': {
-									icon = <BrandTiktok />;
+									icon = <Tiktok />;
 									break;
 								}
 								default:

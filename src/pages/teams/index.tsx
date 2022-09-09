@@ -288,7 +288,6 @@ const Faq: NextPage = () => {
     <Page
       head={{
         title: 'Build Teams',
-        image: '/images/placeholder.png',
         large: true
       }}
       user={{
