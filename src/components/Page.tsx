@@ -15,7 +15,7 @@ interface PageProps {
   head?: {
     title: string
     subtitle?: string
-    image: string
+    image?: string
     filter?: string
     large?: boolean
   }
@@ -55,8 +55,7 @@ const Page = (props: PageProps) => {
         >
           <div
             style={{
-              backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-              background: `url(${props.head?.image})`,
+              backgroundColor: 'transparent',
               filter: props.head?.filter || 'brightness(0.8)',
               width: '100%',
               height: '100%',
@@ -72,7 +71,7 @@ const Page = (props: PageProps) => {
               left: 0
             }}
           >
-            <Title style={{color: '#ffffff'}} align="center" order={1}>
+            <Title style={{color: theme.colorScheme === 'dark' ? '#fff' : '#000', fontSize: '64px'}} align="center" order={1}>
               {props.head?.title}
               {props.head?.subtitle && (
                 <>

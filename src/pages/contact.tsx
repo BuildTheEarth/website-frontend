@@ -1,17 +1,7 @@
 /* eslint-disable no-undef */
 
-import {
-  At,
-  BrandDiscord,
-  BrandFacebook,
-  BrandInstagram,
-  BrandSnapchat,
-  BrandTiktok,
-  BrandTwitch,
-  BrandTwitter,
-  BrandYoutube,
-  ExternalLink
-} from 'tabler-icons-react'
+import { At, ExternalLink } from 'tabler-icons-react'
+import { Youtube, Facebook, Twitter, Discord, Instagram, Tiktok, Twitch, Snapchat } from '@icons-pack/react-simple-icons'
 import {Avatar, Button, Grid, Group, Text, ThemeIcon, useMantineTheme} from '@mantine/core'
 
 import {NextPage} from 'next'
@@ -89,7 +79,7 @@ const Contact: NextPage = () => {
                 </Text>
 
                 <Group noWrap spacing={10} mt={3}>
-                  <BrandDiscord size={16} />
+                  <Discord width={18} size={16} />
                   <Text size="xs" color="dimmed">
                     {contact.discord}
                   </Text>
@@ -118,7 +108,7 @@ const Contact: NextPage = () => {
             cursor: 'pointer'
           }}
         >
-          <BrandFacebook />
+          <Facebook />
         </ThemeIcon>
 
         <ThemeIcon
@@ -131,7 +121,7 @@ const Contact: NextPage = () => {
             cursor: 'pointer'
           }}
         >
-          <BrandInstagram />
+          <Instagram />
         </ThemeIcon>
 
         <ThemeIcon
@@ -144,7 +134,7 @@ const Contact: NextPage = () => {
             cursor: 'pointer'
           }}
         >
-          <BrandTiktok />
+          <Tiktok />
         </ThemeIcon>
 
         <ThemeIcon
@@ -157,7 +147,7 @@ const Contact: NextPage = () => {
             cursor: 'pointer'
           }}
         >
-          <BrandDiscord />
+          <Discord />
         </ThemeIcon>
 
         <ThemeIcon
@@ -170,7 +160,7 @@ const Contact: NextPage = () => {
             cursor: 'pointer'
           }}
         >
-          <BrandSnapchat />
+          <Snapchat />
         </ThemeIcon>
 
         <ThemeIcon
@@ -183,7 +173,7 @@ const Contact: NextPage = () => {
             cursor: 'pointer'
           }}
         >
-          <BrandYoutube />
+          <Youtube />
         </ThemeIcon>
 
         <ThemeIcon
@@ -196,7 +186,7 @@ const Contact: NextPage = () => {
             cursor: 'pointer'
           }}
         >
-          <BrandTwitter />
+          <Twitter />
         </ThemeIcon>
 
         <ThemeIcon
@@ -209,7 +199,7 @@ const Contact: NextPage = () => {
             cursor: 'pointer'
           }}
         >
-          <BrandTwitch />
+          <Twitch />
         </ThemeIcon>
       </div>
       <div>

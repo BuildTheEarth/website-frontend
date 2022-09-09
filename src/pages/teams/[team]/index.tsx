@@ -1,5 +1,4 @@
-import { Center, Container, Grid, Group, useMantineTheme } from '@mantine/core';
-import { ChevronRight, Server } from 'tabler-icons-react';
+import { Container, Divider, Grid, Group, Stack, useMantineTheme } from '@mantine/core';
 
 import Gallery from '../../../components/Gallery';
 import { LogoHeader } from '../../../components/Header';
@@ -19,6 +18,8 @@ const element = {
 	minecraft: 'bte-germany.de',
 	id: 'de',
 	userStatus: 'Builder',
+	leader: 'abti.fmx#1548',
+	members: '1072',
 	socials: [
 		{ name: 'website', url: 'https://bte-germany.de' },
 		{ name: 'youtube', url: 'https://www.youtube.com/c/BuildTheEarthGermany' },
@@ -50,30 +51,54 @@ const Team: NextPage = () => {
 	const theme = useMantineTheme();
 	return (
 		<Page fullWidth>
-			<LogoHeader {...element} applyHref={`${team}/apply`} />
-			<Container
-				size="xl"
-				style={{
-					backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : '#ffffff',
-					boxShadow: theme.shadows.lg,
-					marginBottom: theme.spacing.xl * 2,
-					marginTop: theme.spacing.xl * 2,
-					padding: !matches ? `${theme.spacing.xs * 3}px` : `${theme.spacing.xl * 3}px`,
-					paddingBottom: !matches ? `${theme.spacing.xs * 1.5}px` : `${theme.spacing.xl * 1.5}px`,
-					paddingTop: !matches ? `${theme.spacing.xs * 1}px` : `${theme.spacing.xl * 1}px`,
-					flex: 1,
-					width: '100%',
-					position: 'relative',
-				}}
-			>
-				<h4>About</h4>
-				<p>We are building Germany 1:1 in Minecraft!</p>
-				<Center inline>
-					<Server size={20} />
-					<p style={{ paddingLeft: 5 }}> Server IP: {element.minecraft}</p>
-				</Center>{' '}
+      <LogoHeader {...element} applyHref={`${team}/apply`} />
+      <Container
+        size="xl"
+        style={{
+          backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : '#ffffff',
+          boxShadow: theme.shadows.lg,
+          marginBottom: theme.spacing.xl * 2,
+          padding: !matches ? `${theme.spacing.xs * 3}px` : `${theme.spacing.xl * 3}px`,
+          paddingBottom: !matches ? `${theme.spacing.xs * 1.5}px` : `${theme.spacing.xl * 1.5}px`,
+          paddingTop: !matches ? `${theme.spacing.xs * 1}px` : `${theme.spacing.xl * 1}px`,
+          flex: 1,
+          width: '100%',
+          position: 'relative'
+        }}
+      >
+				<Grid>
+					<Grid.Col span={8}>
+						<h2>Overview</h2>
+						<p>We are building Germany 1:1 in Minecraft!</p>
+					</Grid.Col>
+					<Grid.Col span={4}>
+						<h2>Details</h2>
+            <Stack>
+              <div style={{ paddingTop: '12px', paddingBottom: '12px' }}>
+								<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+									<p>Server IP</p>
+									<p>{element.minecraft}</p>
+								</div>
+							</div>
+							<Divider style={{ margin: '0' }} my="sm" />
+              <div style={{ paddingTop: '12px', paddingBottom: '12px' }}>
+								<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+									<p>Members</p>
+									<p>{element.members}</p>
+								</div>
+							</div>
+							<Divider style={{ margin: '0' }} my="sm" />
+              <div style={{ paddingTop: '12px', paddingBottom: '12px' }}>
+								<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+									<p>Leader</p>
+									<p>{element.leader}</p>
+								</div>
+							</div>
+            </Stack>
+          </Grid.Col>
+				</Grid>
 				<Group position="apart">
-					<h4>Images</h4>
+					<h2>Images</h2>
 					<Gallery
 						style={{ height: '80vh' }}
 						images={[
