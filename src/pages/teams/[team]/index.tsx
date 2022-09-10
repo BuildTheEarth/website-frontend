@@ -56,7 +56,7 @@ const Team: NextPage = () => {
 				size="xl"
 				style={{
 					backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : '#ffffff',
-					boxShadow: theme.shadows.lg,
+					boxShadow: 'none',
 					marginBottom: theme.spacing.xl * 2,
 					padding: !matches ? `${theme.spacing.xs * 3}px` : `${theme.spacing.xl * 3}px`,
 					paddingBottom: !matches ? `${theme.spacing.xs * 1.5}px` : `${theme.spacing.xl * 1.5}px`,

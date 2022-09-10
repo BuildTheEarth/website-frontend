@@ -5,8 +5,8 @@ import React from 'react';
 
 const useStyles = createStyles((theme) => ({
 	footer: {
-		borderTop: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]}`,
-		backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : '#ffffff',
+		borderTop: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : '#eaeaea'}`,
+		backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : '#fafafa',
 	},
 
 	inner: {
@@ -44,8 +44,8 @@ export default function Footer({ links, style }: FooterSimpleProps) {
 	return (
 		<div className={classes.footer} style={style}>
 			<Container className={classes.inner} size={'xl'}>
-				<Anchor<'a'> color="dimmed" variant="text">
-					&copy; {new Date().getFullYear()} BuildTheEarth
+				<Anchor<'a'> style={{ fontSize: '14px' }} color="#666" variant="text">
+					Copyright &copy; {new Date().getFullYear()} BuildTheEarth. All rights reserved.
 				</Anchor>
 				<Group className={classes.links}>
 					{items}

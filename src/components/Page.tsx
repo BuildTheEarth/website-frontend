@@ -27,7 +27,7 @@ const Page = (props: PageProps) => {
 	return (
 		<div
 			style={{
-				backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+				backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
 				width: 'calc(100vw - (100vw - 100%))',
 				minHeight: '100vh',
 				display: 'flex',
@@ -72,14 +72,15 @@ const Page = (props: PageProps) => {
 							left: 0,
 						}}
 					>
-						<Title style={{ color: '#ffffff' }} align="center" order={1}>
+						<h1 style={{ color: '#ffffff', fontSize: '48px', zIndex: '99' }}>
 							{props.head?.title}
 							{props.head?.subtitle && (
 								<>
 									<Text style={{ fontWeight: 'normal' }}>{props.head?.subtitle}</Text>
 								</>
 							)}
-						</Title>
+						</h1>
+            <div style={{ position: 'absolute', bottom: '0', width: '100%', height: '100px', background: 'linear-gradient(180deg,transparent,rgba(0, 0, 0, 0.26))' }}></div>
 					</Center>
 				</div>
 			)}
@@ -91,7 +92,7 @@ const Page = (props: PageProps) => {
 					size="xl"
 					style={{
 						backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : '#ffffff',
-						boxShadow: theme.shadows.lg,
+						boxShadow: 'none',
 						marginTop: theme.spacing.xl * 2 + (props.disabled?.header ? 0 : 60),
 						marginBottom: theme.spacing.xl * 2,
 						padding: !matches ? `${theme.spacing.xs * 3}px` : `${theme.spacing.xl * 3}px`,

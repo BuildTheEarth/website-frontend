@@ -3,7 +3,7 @@ import '../styles/nprogress.css';
 
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
 import React, { useEffect } from 'react';
-import { useHotkeys, useLocalStorage } from '@mantine/hooks';
+import { useColorScheme, useHotkeys, useLocalStorage } from '@mantine/hooks';
 
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -15,10 +15,10 @@ import {RouterTransition} from "../components/RouterTransition";
 function MyApp({ Component, pageProps }: AppProps) {
 	const router = useRouter();
 
-
+  const preferredColorScheme = useColorScheme();
 	const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
 		key: 'scheme',
-		defaultValue: 'light',
+		defaultValue: preferredColorScheme,
 		getInitialValueInEffect: true,
 	});
 	const toggleColorScheme = (value?: ColorScheme) =>
@@ -44,7 +44,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 				}}
 			>
 				<ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-					<MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
+					<MantineProvider theme={{
+						colorScheme,
+						fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
+					}} withGlobalStyles withNormalizeCSS>
 						<RouterTransition />
 						<Component {...pageProps} />
 					</MantineProvider>

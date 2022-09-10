@@ -59,12 +59,9 @@ const Contact: NextPage = () => {
         avatar: 'https://cdn.discordapp.com/avatars/635411595253776385/66a67aa69149c976f3b962d72ca17146.png'
       }}
     >
-      <h2>Contact</h2>
-      <Text>
-        To come in contact with the leadership of the Build The Earth project, you can send an email, or reach out
-        through Discord.
-      </Text>
-
+      <h3 style={{ textAlign: 'center', fontSize: '30px', lineHeight: '0' }}>
+        Individual People
+      </h3>
       <Grid mt="md">
         {contacts.map(contact => (
           <Grid.Col key={contact.name} sm={6}>
@@ -96,7 +93,9 @@ const Contact: NextPage = () => {
           </Grid.Col>
         ))}
       </Grid>
-      <h2>Social Media</h2>
+      <h3 style={{ textAlign: 'center', fontSize: '30px', lineHeight: '48px' }}>
+        Social Media
+      </h3>
       <div style={{marginBottom: theme.spacing.xl * 2, display: 'flex', gap: '15px', flexWrap: 'wrap'}}>
         <ThemeIcon
           variant="outline"

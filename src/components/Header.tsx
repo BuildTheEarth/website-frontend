@@ -248,7 +248,7 @@ const Header = ({ links }: HeaderProps) => {
 		                    >
                                 Login
                     		</a>
-							<Button style={{ fontWeight: '500' }} onClick={() => router.push('/getstarted')}>
+							<Button style={{ fontWeight: '500', paddingLeft: '12px', paddingRight: '12px', height: '32px' }} onClick={() => router.push('/getstarted')}>
 								Sign Up
 							</Button>
 						</>
