@@ -1,5 +1,6 @@
 import { Anchor, Container, Group, Menu, createStyles } from '@mantine/core';
 
+import { ThemeSwitcher } from './ThemeSwitcher';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import React from 'react';
 
@@ -49,6 +50,9 @@ export default function Footer({ links, style }: FooterSimpleProps) {
 				</Anchor>
 				<Group className={classes.links}>
 					{items}
+				</Group>
+				<Group className={classes.links}>
+					<ThemeSwitcher />
 					<LanguageSwitcher />
 				</Group>
 			</Container>
