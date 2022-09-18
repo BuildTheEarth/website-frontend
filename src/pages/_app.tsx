@@ -3,19 +3,20 @@ import '../styles/nprogress.css';
 
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
 import React, { useEffect } from 'react';
+import { appWithI18Next, useSyncLanguage } from 'ni18n';
 import { useColorScheme, useHotkeys, useLocalStorage } from '@mantine/hooks';
 
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import { RouterTransition } from '../components/RouterTransition';
 import { SWRConfig } from 'swr';
 import { SessionProvider } from 'next-auth/react';
+import { ni18nConfig } from '../../ni18n.config';
 import { useRouter } from 'next/router';
-import {RouterTransition} from "../components/RouterTransition";
 
 function MyApp({ Component, pageProps }: AppProps) {
 	const router = useRouter();
-
-  const preferredColorScheme = useColorScheme();
+	const preferredColorScheme = useColorScheme();
 	const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
 		key: 'scheme',
 		defaultValue: preferredColorScheme,
@@ -23,7 +24,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 	});
 	const toggleColorScheme = (value?: ColorScheme) =>
 		setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
+	const locale = typeof window !== 'undefined' && window.localStorage.getItem('lang');
 
+	useSyncLanguage(locale || 'en');
 	useHotkeys([['mod+J', () => toggleColorScheme()]]);
 
 	// TODO: Font
@@ -44,10 +47,15 @@ function MyApp({ Component, pageProps }: AppProps) {
 				}}
 			>
 				<ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-					<MantineProvider theme={{
-						colorScheme,
-						fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
-					}} withGlobalStyles withNormalizeCSS>
+					<MantineProvider
+						theme={{
+							colorScheme,
+							fontFamily:
+								'"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
+						}}
+						withGlobalStyles
+						withNormalizeCSS
+					>
 						<RouterTransition />
 						<Component {...pageProps} />
 					</MantineProvider>
@@ -57,4 +65,4 @@ function MyApp({ Component, pageProps }: AppProps) {
 	);
 }
 
-export default MyApp;
+export default appWithI18Next(MyApp, ni18nConfig);

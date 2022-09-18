@@ -6,9 +6,11 @@ import { NextPage } from 'next';
 import Page from '../components/Page';
 import React from 'react';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
 
 const Home: NextPage = () => {
 	const theme = useMantineTheme();
+	const { t } = useTranslation();
 	const router = useRouter();
 	return (
 		<Page fullWidth>
@@ -47,7 +49,7 @@ const Home: NextPage = () => {
 							style={{ color: 'white', borderColor: 'white', borderWidth: 3, marginTop: theme.spacing.xl * 1.5 }}
 							onClick={() => router.push('/getstarted')}
 						>
-							Get Started
+							{t('test.test')} Get Started
 						</Button>
 					</Title>
 				</Center>
@@ -120,13 +122,13 @@ const Home: NextPage = () => {
 									builder: 'BTE Germany',
 									location: 'Schloss Drachenburg',
 									src: 'https://cdn.discordapp.com/attachments/692849007038562434/964097226341244988/4final2k_1.png',
-									country: "de"
+									country: 'de',
 								},
 								{
 									builder: 'De leted#2098',
 									location: 'Wisconsin State Capitol',
 									src: 'https://cdn.discordapp.com/attachments/811604280293064714/992899056361799680/Capitol5.png',
-									country: "us"
+									country: 'us',
 								},
 							]}
 						/>

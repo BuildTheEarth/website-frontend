@@ -5,6 +5,7 @@ import { Group, Image, Menu, UnstyledButton, createStyles } from '@mantine/core'
 import { ChevronDown } from 'tabler-icons-react';
 import { useLocalStorage } from '@mantine/hooks';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const data = [
 	{ label: 'English', code: 'gb' },
@@ -42,7 +43,9 @@ const useStyles = createStyles((theme, { opened }: { opened: boolean }) => ({
 
 export function LanguageSwitcher() {
 	const [opened, setOpened] = useState(false);
+	const { t, i18n } = useTranslation();
 	const { classes } = useStyles({ opened });
+
 	const [selected, setSelected] = useLocalStorage({
 		key: 'lang',
 		defaultValue: 'gb',
@@ -53,10 +56,16 @@ export function LanguageSwitcher() {
 			return data.find((e) => e.code == localStorageValue);
 		},
 	});
+
+	const changeLanguage = (i18n: any, lang: { label: string; code: string }) => {
+		setSelected(lang);
+		i18n.changeLanguage(lang.code);
+	};
+
 	const items = data.map((item) => (
 		<Menu.Item
 			icon={<span className={`fi fi-${item.code} fis`} style={{ height: 18, width: 18, borderRadius: '50%' }}></span>}
-			onClick={() => setSelected(item)}
+			onClick={() => changeLanguage(i18n, item)}
 			key={item.label}
 		>
 			{item.label}
