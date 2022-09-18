@@ -39,10 +39,10 @@ const Page = (props: PageProps) => {
 			{!props.disabled?.header && (
 				<Header
 					links={[
-						{ link: '/faq', label: t('header.faq_link') },
-						{ link: '/map', label: t('header.map_link') },
-						{ link: '/teams', label: t('header.buildteams_link') },
-						{ link: '/contact', label: t('header.contact_link') },
+						{ link: '/faq', label: t('pages.faq') },
+						{ link: '/map', label: t('pages.map') },
+						{ link: '/teams', label: t('pages.teams.multiple') },
+						{ link: '/contact', label: t('pages.contact') },
 					]}
 				/>
 			)}

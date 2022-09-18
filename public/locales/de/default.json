@@ -3,10 +3,6 @@
 		"signin": "Anmelden",
 		"signup": "Registrieren",
 		"signout": "Abmelden",
-		"faq_link": "FAQ",
-		"map_link": "Karte",
-		"buildteams_link": "Bau Teams",
-		"contact_link": "Kontakt",
 		"actions": {
 			"uploadworld": "Welt hochladen",
 			"quickactions": "Schnellaktionen",
@@ -15,5 +11,19 @@
 			"staff": "Mitarbeiter",
 			"reviewclaims": "Anfragen überprüfen"
 		}
+	},
+	"pages": {
+		"faq": "FAQ",
+		"getstarted": "Los geht's",
+		"privacy": "Datenschutz",
+		"teams": {
+			"multiple": "Bau Teams",
+			"apply": "Bewerben",
+			"single": "Bau Team"
+		},
+		"contact": "Kontakt",
+		"home": "Home",
+		"map": "Karte",
+		"me": "Ich"
 	}
 }

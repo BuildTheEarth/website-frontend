@@ -3,10 +3,6 @@
 		"signin": "Log In",
 		"signup": "Sign Up",
 		"signout": "Sign Out",
-		"faq_link": "FAQ",
-		"map_link": "Map",
-		"buildteams_link": "Build Teams",
-		"contact_link": "Contact",
 		"actions": {
 			"uploadworld": "Upload World",
 			"quickactions": "Quick Actions",
@@ -15,5 +11,19 @@
 			"staff": "Staff",
 			"reviewclaims": "Review Claims"
 		}
+	},
+	"pages": {
+		"faq": "FAQ",
+		"getstarted": "Get Started",
+		"privacy": "Privacy",
+		"teams": {
+			"multiple": "Build Teams",
+			"apply": "Apply",
+			"single": "Build Team"
+		},
+		"contact": "Contact",
+		"home": "Home",
+		"map": "Map",
+		"me": "Me"
 	}
 }
