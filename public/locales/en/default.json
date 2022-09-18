@@ -26,7 +26,8 @@
 		"contact": "Contact",
 		"home": "Home",
 		"map": "Map",
-		"me": "Me"
+		"me": "Me",
+		"about": "About Us"
 	},
 	"copyright": "Copyright © {{year}} BuildTheEarth. All rights reserved."
 }

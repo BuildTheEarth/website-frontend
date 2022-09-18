@@ -26,7 +26,8 @@
 		"contact": "Kontakt",
 		"home": "Home",
 		"map": "Karte",
-		"me": "Ich"
+		"me": "Ich",
+		"about": "Über uns"
 	},
 	"copyright": "Copyright © {{year}} BuildTheEarth. Alle Rechte vorbehalten."
 }

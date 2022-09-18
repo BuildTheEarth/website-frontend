@@ -120,9 +120,9 @@ const Page = (props: PageProps) => {
 			{!props.disabled?.footer && (
 				<Footer
 					links={[
-						{ link: '/faq', label: 'FAQ' },
-						{ link: '/contact', label: 'Contact' },
-						{ link: '/about', label: 'About us' },
+						{ link: '/faq', label: t('pages.faq') },
+						{ link: '/contact', label: t('pages.contact') },
+						{ link: '/about', label: t('pages.about') },
 					]}
 				/>
 			)}
