@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 const data = [
 	{ label: 'English', code: 'gb' },
-	{ label: 'Deutsch', code: 'de' },
+	{ label: 'German', code: 'de' },
 ];
 
 const useStyles = createStyles((theme, { opened }: { opened: boolean }) => ({
