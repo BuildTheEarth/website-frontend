@@ -4,6 +4,7 @@ import Footer from './Footer';
 import Header from './Header';
 import React from 'react';
 import { useMediaQuery } from '@mantine/hooks';
+import { useTranslation } from 'react-i18next';
 
 interface PageProps {
 	children: React.ReactNode;
@@ -22,6 +23,7 @@ interface PageProps {
 }
 
 const Page = (props: PageProps) => {
+	const { t } = useTranslation();
 	const matches = useMediaQuery('(min-width: 900px)');
 	const theme = useMantineTheme();
 	return (
@@ -37,10 +39,10 @@ const Page = (props: PageProps) => {
 			{!props.disabled?.header && (
 				<Header
 					links={[
-						{ link: '/faq', label: 'FAQ' },
-						{ link: '/map', label: 'Map' },
-						{ link: '/teams', label: 'Build teams' },
-						{ link: '/contact', label: 'Contact' },
+						{ link: '/faq', label: t('header.faq_link') },
+						{ link: '/map', label: t('header.map_link') },
+						{ link: '/teams', label: t('header.buildteams_link') },
+						{ link: '/contact', label: t('header.contact_link') },
 					]}
 				/>
 			)}
@@ -80,7 +82,15 @@ const Page = (props: PageProps) => {
 								</>
 							)}
 						</h1>
-            <div style={{ position: 'absolute', bottom: '0', width: '100%', height: '100px', background: 'linear-gradient(180deg,transparent,rgba(0, 0, 0, 0.26))' }}></div>
+						<div
+							style={{
+								position: 'absolute',
+								bottom: '0',
+								width: '100%',
+								height: '100px',
+								background: 'linear-gradient(180deg,transparent,rgba(0, 0, 0, 0.26))',
+							}}
+						></div>
 					</Center>
 				</div>
 			)}

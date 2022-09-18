@@ -1,0 +1,19 @@
+{
+	"header": {
+		"signin": "Log In",
+		"signup": "Sign Up",
+		"signout": "Sign Out",
+		"faq_link": "FAQ",
+		"map_link": "Map",
+		"buildteams_link": "Build Teams",
+		"contact_link": "Contact",
+		"actions": {
+			"uploadworld": "Upload World",
+			"quickactions": "Quick Actions",
+			"toggletheme_light": "Toggle Light Theme",
+			"toggletheme_dark": "Toggle Dark Theme",
+			"staff": "Staff",
+			"reviewclaims": "Review Claims"
+		}
+	}
+}

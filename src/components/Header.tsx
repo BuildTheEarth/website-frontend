@@ -18,21 +18,14 @@ import {
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
-import {
-	ChevronDown,
-	FileSearch,
-	FileUpload,
-	Logout,
-	MoonStars,
-	Sun,
-	World,
-} from 'tabler-icons-react';
-import { Youtube, Twitter, Discord, Instagram, Tiktok, Twitch } from '@icons-pack/react-simple-icons';
+import { ChevronDown, FileSearch, FileUpload, Logout, MoonStars, Sun, World } from 'tabler-icons-react';
+import { Discord, Instagram, Tiktok, Twitch, Twitter, Youtube } from '@icons-pack/react-simple-icons';
 import React, { CSSProperties, useState } from 'react';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useClickOutside, useDisclosure } from '@mantine/hooks';
 
 import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = createStyles((theme) => ({
 	root: {
@@ -161,6 +154,7 @@ interface HeaderProps {
 }
 
 const Header = ({ links }: HeaderProps) => {
+	const { t } = useTranslation();
 	const [opened, handler] = useDisclosure(false);
 	const [userMenuOpened, setUserMenuOpened] = useState(false);
 	const { colorScheme, toggleColorScheme } = useMantineColorScheme();
@@ -218,38 +212,43 @@ const Header = ({ links }: HeaderProps) => {
 								</UnstyledButton>
 							</Menu.Target>
 							<Menu.Dropdown>
-								<Menu.Item icon={<FileUpload size={14} />}>Upload world</Menu.Item>
+								<Menu.Item icon={<FileUpload size={14} />}>{t('header.actions.uploadworld')}</Menu.Item>
 								<Menu.Divider />
-								<Menu.Label>Quick actions</Menu.Label>
+								<Menu.Label>{t('header.actions.quickactions')}</Menu.Label>
 								<Menu.Item
 									icon={colorScheme === 'dark' ? <MoonStars size={14} /> : <Sun size={14} />}
 									onClick={() => toggleColorScheme()}
 								>
-									Toggle {colorScheme === 'dark' ? 'light' : 'dark'} theme{' '}
+									{colorScheme === 'dark'
+										? t('header.actions.toggletheme_light')
+										: t('header.actions.toggletheme_light')}
 								</Menu.Item>
 								<Menu.Divider />
-								<Menu.Label>Staff</Menu.Label>
-								<Menu.Item icon={<FileSearch size={14} />}>Review claims</Menu.Item>
+								<Menu.Label>{t('header.actions.staff')}</Menu.Label>
+								<Menu.Item icon={<FileSearch size={14} />}>{t('header.actions.reviewclaims')}</Menu.Item>
 								<Menu.Divider />
 								<Menu.Item icon={<Logout size={14} />} onClick={() => signOut()}>
-									Sign out
+									{t('header.signout')}
 								</Menu.Item>
 							</Menu.Dropdown>
 						</Menu>
 					) : (
 						<>
-                        	<a
-        		    	        className={cx(classes.link, {
-	        		    	        [classes.linkActive]: router.pathname.includes('/login'),
-    		        	        })}
-			                    onClick={() => {
-				                    signIn('keycloak');
-			                    }}
-		                    >
-                                Login
-                    		</a>
-							<Button style={{ fontWeight: '500', paddingLeft: '12px', paddingRight: '12px', height: '32px' }} onClick={() => router.push('/getstarted')}>
-								Sign Up
+							<a
+								className={cx(classes.link, {
+									[classes.linkActive]: router.pathname.includes('/login'),
+								})}
+								onClick={() => {
+									signIn('keycloak');
+								}}
+							>
+								{t('header.signin')}
+							</a>
+							<Button
+								style={{ fontWeight: '500', paddingLeft: '12px', paddingRight: '12px', height: '32px' }}
+								onClick={() => router.push('/getstarted')}
+							>
+								{t('header.signup')}
 							</Button>
 						</>
 					)}
@@ -294,9 +293,9 @@ const Header = ({ links }: HeaderProps) => {
 										})}
 									>
 										<Group spacing={7}>
-											<Button onClick={() => router.push('/getstarted')}>Get Started</Button>
+											<Button onClick={() => router.push('/getstarted')}>{t('header.signup')}</Button>
 											<Button ml="md" onClick={() => signIn('keycloak')} variant="outline">
-												Sign In
+												{t('header.signin')}
 											</Button>
 										</Group>
 									</UnstyledButton>

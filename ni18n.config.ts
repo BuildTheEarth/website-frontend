@@ -1,6 +1,6 @@
 import type { Ni18nOptions } from 'ni18n';
 
-const supportedLngs = ['gb', 'de'];
+const supportedLngs = ['en', 'de'];
 
 export const ni18nConfig: Ni18nOptions = {
 	/**

@@ -1,5 +1,19 @@
 {
-	"test": {
-		"test": "Hallo"
+	"header": {
+		"signin": "Anmelden",
+		"signup": "Registrieren",
+		"signout": "Abmelden",
+		"faq_link": "FAQ",
+		"map_link": "Karte",
+		"buildteams_link": "Bau Teams",
+		"contact_link": "Kontakt",
+		"actions": {
+			"uploadworld": "Welt hochladen",
+			"quickactions": "Schnellaktionen",
+			"toggletheme_light": "Lichtthema umschalten",
+			"toggletheme_dark": "Lichtthema umschalten",
+			"staff": "Mitarbeiter",
+			"reviewclaims": "Anfragen überprüfen"
+		}
 	}
 }
