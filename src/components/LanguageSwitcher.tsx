@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 
 const data = [
 	{ label: 'English', code: 'gb' },
-	{ label: 'German', code: 'de' },
+	{ label: 'Deutsch', code: 'de' },
 ];
 
 const useStyles = createStyles((theme, { opened }: { opened: boolean }) => ({
