@@ -36,7 +36,7 @@ import { useRouter } from 'next/router';
 
 const useStyles = createStyles((theme) => ({
 	root: {
-		zIndex: 999,
+		zIndex: 99,
 	},
 
 	dropdown: {
