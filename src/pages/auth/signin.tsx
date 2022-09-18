@@ -4,8 +4,10 @@ import { NextPage } from 'next';
 import Page from '../../components/Page';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
 
 const SignIn: NextPage = () => {
+	const { t } = useTranslation('signin');
 	const router = useRouter();
 	const theme = useMantineTheme();
 	if (router.query.error) {
@@ -14,20 +16,15 @@ const SignIn: NextPage = () => {
 	return (
 		<Page
 			head={{
-				title: 'Sign in',
+				title: t('head'),
 				image: '/images/placeholder.png',
 				large: true,
 			}}
 		>
-			<h2>Sign in to BuildTheEarth</h2>
-			<p>
-				On your My BuildTheEarth page, you can apply to join a Build Team or request to be verified as solo builder and
-				work on projects yourself. <br />
-				It is also the place where you can upload your world when you have finished. To access your page, you need to
-				Sign in. <br />
-			</p>
+			<h2>{t('title')}</h2>
+			<p>{t('content')}</p>
 			{router.query.error && <p style={{ color: theme.colors.red[6] }}>An error occurred, please try again later.</p>}
-			<Button onClick={() => signIn('keycloak')}>Sign in</Button>
+			<Button onClick={() => signIn('keycloak')}>{t('action')}</Button>
 		</Page>
 	);
 };
