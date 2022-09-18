@@ -1,0 +1,14 @@
+{
+	"head": "How would you like to participate?",
+	"content": "You can choose between either building on the Official BTE Server or on a regional Build Team's server, but remember, you can always join the other whenever you want!",
+	"compatibility": "Compatibility",
+	"action": "Get Started",
+	"network": {
+		"title": "Official Network",
+		"content": "Join your friends in building on our own Official Server"
+	},
+	"teams": {
+		"title": "Build Teams",
+		"content": "Help building a country by joining a Build Team"
+	}
+}

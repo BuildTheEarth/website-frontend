@@ -1,0 +1,14 @@
+{
+	"head": "Wie möchtest du mitmachen?",
+	"content": "Du kannst wählen, ob du auf dem offiziellen BTE-Server oder auf dem Server eines regionalen Build-Teams bauen möchtest, aber vergiss nicht, dass du jederzeit dem anderen Server beitreten kannst!",
+	"compatibility": "Kompatibilität",
+	"action": "Los geht's",
+	"network": {
+		"title": "Offizielles Netzwerk",
+		"content": "Schließe dich deinen Freunden an und baue auf unserem eigenen offiziellen Server"
+	},
+	"teams": {
+		"title": "Bau Teams",
+		"content": "Hilf mit, ein Land aufzubauen, indem du einem Bauteam beitrittst"
+	}
+}
