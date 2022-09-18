@@ -1,8 +1,5 @@
 {
 	"header": {
-		"signin": "Anmelden",
-		"signup": "Registrieren",
-		"signout": "Abmelden",
 		"actions": {
 			"uploadworld": "Welt hochladen",
 			"quickactions": "Schnellaktionen",
@@ -11,6 +8,11 @@
 			"staff": "Mitarbeiter",
 			"reviewclaims": "Anfragen überprüfen"
 		}
+	},
+	"auth": {
+		"signin": "Anmelden",
+		"signup": "Registrieren",
+		"signout": "Abmelden"
 	},
 	"pages": {
 		"faq": "FAQ",
@@ -25,5 +27,6 @@
 		"home": "Home",
 		"map": "Karte",
 		"me": "Ich"
-	}
+	},
+	"copyright": "Copyright © {{year}} BuildTheEarth. Alle Rechte vorbehalten."
 }

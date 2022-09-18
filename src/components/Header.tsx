@@ -228,7 +228,7 @@ const Header = ({ links }: HeaderProps) => {
 								<Menu.Item icon={<FileSearch size={14} />}>{t('header.actions.reviewclaims')}</Menu.Item>
 								<Menu.Divider />
 								<Menu.Item icon={<Logout size={14} />} onClick={() => signOut()}>
-									{t('header.signout')}
+									{t('auth.signout')}
 								</Menu.Item>
 							</Menu.Dropdown>
 						</Menu>
@@ -242,13 +242,13 @@ const Header = ({ links }: HeaderProps) => {
 									signIn('keycloak');
 								}}
 							>
-								{t('header.signin')}
+								{t('auth.signin')}
 							</a>
 							<Button
 								style={{ fontWeight: '500', paddingLeft: '12px', paddingRight: '12px', height: '32px' }}
 								onClick={() => router.push('/getstarted')}
 							>
-								{t('header.signup')}
+								{t('auth.signup')}
 							</Button>
 						</>
 					)}
@@ -293,9 +293,9 @@ const Header = ({ links }: HeaderProps) => {
 										})}
 									>
 										<Group spacing={7}>
-											<Button onClick={() => router.push('/getstarted')}>{t('header.signup')}</Button>
+											<Button onClick={() => router.push('/getstarted')}>{t('pages.getstarted')}</Button>
 											<Button ml="md" onClick={() => signIn('keycloak')} variant="outline">
-												{t('header.signin')}
+												{t('auth.signin')}
 											</Button>
 										</Group>
 									</UnstyledButton>

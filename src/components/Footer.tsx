@@ -2,6 +2,7 @@ import { Anchor, Container, Group, Menu, createStyles } from '@mantine/core';
 
 import { LanguageSwitcher } from './LanguageSwitcher';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = createStyles((theme) => ({
 	footer: {
@@ -35,6 +36,7 @@ interface FooterSimpleProps {
 
 export default function Footer({ links, style }: FooterSimpleProps) {
 	const { classes } = useStyles();
+	const { t } = useTranslation();
 	const items = links.map((link) => (
 		<Anchor<'a'> color="dimmed" key={link.label} href={link.link} size="sm">
 			{link.label}
@@ -45,7 +47,7 @@ export default function Footer({ links, style }: FooterSimpleProps) {
 		<div className={classes.footer} style={style}>
 			<Container className={classes.inner} size={'xl'}>
 				<Anchor<'a'> style={{ fontSize: '14px' }} color="#666" variant="text">
-					Copyright &copy; {new Date().getFullYear()} BuildTheEarth. All rights reserved.
+					{t('copyright', { year: new Date().getFullYear() })}
 				</Anchor>
 				<Group className={classes.links}>
 					{items}

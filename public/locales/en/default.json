@@ -1,8 +1,5 @@
 {
 	"header": {
-		"signin": "Log In",
-		"signup": "Sign Up",
-		"signout": "Sign Out",
 		"actions": {
 			"uploadworld": "Upload World",
 			"quickactions": "Quick Actions",
@@ -11,6 +8,11 @@
 			"staff": "Staff",
 			"reviewclaims": "Review Claims"
 		}
+	},
+	"auth": {
+		"signin": "Log In",
+		"signup": "Sign Up",
+		"signout": "Sign Out"
 	},
 	"pages": {
 		"faq": "FAQ",
@@ -25,5 +27,6 @@
 		"home": "Home",
 		"map": "Map",
 		"me": "Me"
-	}
+	},
+	"copyright": "Copyright © {{year}} BuildTheEarth. All rights reserved."
 }
