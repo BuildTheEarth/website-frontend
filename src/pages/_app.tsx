@@ -47,9 +47,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 					<MantineProvider theme={{
 						colorScheme,
 						fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
-						colors: {
-							['blue']: ['#0076ff', '#0076ff', '#0076ff', '#0076ff', '#0076ff', '#0076ff', '#0076ff', '#0076ff', '#0076ff', '#0076ff']
-						}
 					}} withGlobalStyles withNormalizeCSS>
 						<RouterTransition />
 						<Component {...pageProps} />
