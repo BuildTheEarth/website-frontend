@@ -7,6 +7,7 @@ import Page from '../../../components/Page';
 import React from 'react';
 import { useMediaQuery } from '@mantine/hooks';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
 
 const element = {
 	head: 'https://cdn.discordapp.com/attachments/692849007038562434/964097226341244988/4final2k_1.png',
@@ -45,6 +46,7 @@ const element = {
 };
 
 const Team: NextPage = () => {
+	const { t } = useTranslation('teams');
 	const matches = useMediaQuery('(min-width: 900px)');
 	const router = useRouter();
 	const team = router.query.team;
@@ -68,33 +70,33 @@ const Team: NextPage = () => {
 			>
 				<Grid>
 					<Grid.Col span={8}>
-						<h2>Overview</h2>
+						<h2>{t('team.overview')}</h2>
 						<p>We are building Germany 1:1 in Minecraft!</p>
 					</Grid.Col>
 					<Grid.Col span={4}>
-						<h2>Details</h2>
+						<h2>{t('team.details')}</h2>
 						<Stack>
 							<Group position="apart">
-								<p>Server IP</p>
+								<p>{t('team.serverip')}</p>
 								<p>{element.minecraft}</p>
 							</Group>
 							<Divider style={{ margin: '0' }} my="sm" />
 
 							<Group position="apart">
-								<p>Members</p>
+								<p>{t('team.members')}</p>
 								<p>{element.members}</p>
 							</Group>
 							<Divider style={{ margin: '0' }} my="sm" />
 
 							<Group position="apart">
-								<p>Leader</p>
+								<p>{t('team.leader')}</p>
 								<p>{element.leader}</p>
 							</Group>
 						</Stack>
 					</Grid.Col>
 				</Grid>
 				<Group position="apart">
-					<h2>Images</h2>
+					<h2>{t('team.images')}</h2>
 					<Gallery
 						style={{ height: '80vh' }}
 						images={[
