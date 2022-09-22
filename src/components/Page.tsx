@@ -19,6 +19,7 @@ interface PageProps {
 		filter?: string;
 		large?: boolean;
 	};
+	style?: React.CSSProperties;
 }
 
 const Page = (props: PageProps) => {
@@ -80,7 +81,15 @@ const Page = (props: PageProps) => {
 								</>
 							)}
 						</h1>
-            <div style={{ position: 'absolute', bottom: '0', width: '100%', height: '100px', background: 'linear-gradient(180deg,transparent,rgba(0, 0, 0, 0.26))' }}></div>
+						<div
+							style={{
+								position: 'absolute',
+								bottom: '0',
+								width: '100%',
+								height: '100px',
+								background: 'linear-gradient(180deg,transparent,rgba(0, 0, 0, 0.26))',
+							}}
+						></div>
 					</Center>
 				</div>
 			)}
@@ -101,6 +110,7 @@ const Page = (props: PageProps) => {
 						flex: 1,
 						width: '100%',
 						position: 'relative',
+						...props.style,
 					}}
 				>
 					{props.children}
