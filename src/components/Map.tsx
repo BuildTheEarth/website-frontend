@@ -4,7 +4,6 @@ import React from 'react';
 import mapboxgl from 'mapbox-gl';
 
 function MapboxMap() {
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [_map, setMap] = React.useState<mapboxgl.Map>();
 
 	const mapNode = React.useRef(null);

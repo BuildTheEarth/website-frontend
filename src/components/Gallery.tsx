@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Badge, Box, Container, Group, Pagination, Title, useMantineTheme } from '@mantine/core';
 import React, { useState } from 'react';
 

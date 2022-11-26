@@ -70,9 +70,7 @@ const Team: NextPage = () => {
 			[input.id]: '',
 		})),
 	});
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const handleSubmit = (e: any) => {
-		// eslint-disable-next-line no-console
 		console.log(e);
 	};
 	if (element.builders.includes('Nudelsuppe_42_#3571') && team) {
