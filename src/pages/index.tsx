@@ -49,7 +49,7 @@ const Home: NextPage = () => {
 							style={{ color: 'white', borderColor: 'white', borderWidth: 3, marginTop: theme.spacing.xl * 1.5 }}
 							onClick={() => router.push('/getstarted')}
 						>
-							{t('test.test')} Get Started
+							Get Started
 						</Button>
 					</Title>
 				</Center>

@@ -8,6 +8,7 @@ import {
 	Container,
 	Divider,
 	Group,
+	Indicator,
 	Header as MantineHeader,
 	Menu,
 	Paper,
@@ -190,6 +191,7 @@ const Header = ({ links }: HeaderProps) => {
 						<Menu
 							onClose={() => setUserMenuOpened(false)}
 							onOpen={() => {
+								console.log(session.user);
 								setUserMenuOpened(true);
 							}}
 						>
@@ -200,14 +202,16 @@ const Header = ({ links }: HeaderProps) => {
 									})}
 								>
 									<Group spacing={7}>
-										<Avatar
-											alt={session.user.username || session.user.email || 'User Avatar'}
-											radius="xl"
-											size={'sm'}
-											color="blue"
-										>
-											{(session.user.username || session.user.email).charAt(0)}
-										</Avatar>
+										<Indicator color="red" inline size={8} disabled={session.user.email_verified}>
+											<Avatar
+												alt={session.user.username || session.user.email || 'User Avatar'}
+												radius="xl"
+												size={'sm'}
+												color="blue"
+											>
+												{(session.user.username || session.user.email).charAt(0)}
+											</Avatar>
+										</Indicator>
 										<Text weight={500} size="sm" sx={{ lineHeight: 1 }} mr={3}>
 											{session.user.username || session.user.email}
 										</Text>
@@ -274,14 +278,16 @@ const Header = ({ links }: HeaderProps) => {
 										onClick={() => router.push('/profile')}
 									>
 										<Group spacing={7}>
-											<Avatar
-												alt={session.user.username || session.user.email || 'User Avatar'}
-												radius="xl"
-												size={'sm'}
-												color="blue"
-											>
-												{(session.user.username || session.user.email).charAt(0)}
-											</Avatar>
+											<Indicator color="red" inline size={8} disabled={session.user.email_verified}>
+												<Avatar
+													alt={session.user.username || session.user.email || 'User Avatar'}
+													radius="xl"
+													size={'sm'}
+													color="blue"
+												>
+													{(session.user.username || session.user.email).charAt(0)}
+												</Avatar>
+											</Indicator>
 											<Text weight={500} size="sm" sx={{ lineHeight: 1 }} mr={3}>
 												{session.user.username || session.user.email}
 											</Text>
