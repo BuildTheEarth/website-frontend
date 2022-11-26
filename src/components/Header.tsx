@@ -27,10 +27,10 @@ import {
 	Sun,
 	World,
 } from 'tabler-icons-react';
-import { Youtube, Twitter, Discord, Instagram, Tiktok, Twitch } from '@icons-pack/react-simple-icons';
-import React, { CSSProperties, useState } from 'react';
+import { Discord, Instagram, Tiktok, Twitch, Twitter, Youtube } from '@icons-pack/react-simple-icons';
+import React, { CSSProperties, useEffect, useState } from 'react';
 import { signIn, signOut, useSession } from 'next-auth/react';
-import { useClickOutside, useDisclosure } from '@mantine/hooks';
+import { useClickOutside, useDisclosure, useInterval } from '@mantine/hooks';
 
 import { useRouter } from 'next/router';
 
@@ -168,8 +168,7 @@ const Header = ({ links }: HeaderProps) => {
 	const router = useRouter();
 	const theme = useMantineTheme();
 	const mobilePaperRef = useClickOutside(() => handler.close());
-	const { data: session } = useSession();
-
+	const { data: session, status } = useSession();
 	const items = links.map((link) => (
 		<a
 			key={link.label}
@@ -196,7 +195,12 @@ const Header = ({ links }: HeaderProps) => {
 				</Group>
 				<Group spacing={5} className={classes.links}>
 					{session != null && session?.user ? (
-						<Menu onClose={() => setUserMenuOpened(false)} onOpen={() => setUserMenuOpened(true)}>
+						<Menu
+							onClose={() => setUserMenuOpened(false)}
+							onOpen={() => {
+								setUserMenuOpened(true);
+							}}
+						>
 							<Menu.Target>
 								<UnstyledButton
 									className={cx(classes.user, {
@@ -205,13 +209,15 @@ const Header = ({ links }: HeaderProps) => {
 								>
 									<Group spacing={7}>
 										<Avatar
-											src={session.user.image}
-											alt={session.user.name || session.user.email || 'User Avatar'}
+											alt={session.user.username || session.user.email || 'User Avatar'}
 											radius="xl"
-											size={20}
-										/>
+											size={'sm'}
+											color="blue"
+										>
+											{(session.user.username || session.user.email).charAt(0)}
+										</Avatar>
 										<Text weight={500} size="sm" sx={{ lineHeight: 1 }} mr={3}>
-											{session.user.name || session.user.email}
+											{session.user.username || session.user.email}
 										</Text>
 										<ChevronDown size={12} />
 									</Group>
@@ -238,17 +244,20 @@ const Header = ({ links }: HeaderProps) => {
 						</Menu>
 					) : (
 						<>
-                        	<a
-        		    	        className={cx(classes.link, {
-	        		    	        [classes.linkActive]: router.pathname.includes('/login'),
-    		        	        })}
-			                    onClick={() => {
-				                    signIn('keycloak');
-			                    }}
-		                    >
-                                Login
-                    		</a>
-							<Button style={{ fontWeight: '500', paddingLeft: '12px', paddingRight: '12px', height: '32px' }} onClick={() => router.push('/getstarted')}>
+							<a
+								className={cx(classes.link, {
+									[classes.linkActive]: router.pathname.includes('/login'),
+								})}
+								onClick={() => {
+									signIn('keycloak');
+								}}
+							>
+								Login
+							</a>
+							<Button
+								style={{ fontWeight: '500', paddingLeft: '12px', paddingRight: '12px', height: '32px' }}
+								onClick={() => router.push('/getstarted')}
+							>
 								Sign Up
 							</Button>
 						</>
@@ -274,13 +283,15 @@ const Header = ({ links }: HeaderProps) => {
 									>
 										<Group spacing={7}>
 											<Avatar
-												src={session.user.image}
-												alt={session.user.name || session.user.email || 'User Avatar'}
+												alt={session.user.username || session.user.email || 'User Avatar'}
 												radius="xl"
-												size={25}
-											/>
+												size={'sm'}
+												color="blue"
+											>
+												{(session.user.username || session.user.email).charAt(0)}
+											</Avatar>
 											<Text weight={500} size="sm" sx={{ lineHeight: 1 }} mr={3}>
-												{session.user.name || session.user.email}
+												{session.user.username || session.user.email}
 											</Text>
 										</Group>
 									</UnstyledButton>

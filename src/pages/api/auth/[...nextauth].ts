@@ -1,5 +1,47 @@
+import { JWT } from 'next-auth/jwt';
 import KeycloakProvider from 'next-auth/providers/keycloak';
 import NextAuth from 'next-auth';
+
+const refreshAccessToken = async (token: JWT) => {
+	try {
+		if (Date.now() > token.refreshTokenExpired) throw Error;
+		const details = {
+			client_id: process.env.KEYCLOAK_CLIENT_ID,
+			client_secret: process.env.KEYCLOAK_CLIENT_SECRET,
+			grant_type: ['refresh_token'],
+			refresh_token: token.refreshToken,
+		};
+		const formBody: string[] = [];
+		Object.entries(details).forEach(([key, value]: [string, any]) => {
+			const encodedKey = encodeURIComponent(key);
+			const encodedValue = encodeURIComponent(value);
+			formBody.push(encodedKey + '=' + encodedValue);
+		});
+		const formData = formBody.join('&');
+		const url = `${process.env.KEYCLOAK_BASE_URL}/token`;
+		const response = await fetch(url, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+			},
+			body: formData,
+		});
+		const refreshedTokens = await response.json();
+		if (!response.ok) throw refreshedTokens;
+		return {
+			...token,
+			accessToken: refreshedTokens.access_token,
+			accessTokenExpired: Date.now() + (refreshedTokens.expires_in - 15) * 1000,
+			refreshToken: refreshedTokens.refresh_token ?? token.refreshToken,
+			refreshTokenExpired: Date.now() + (refreshedTokens.refresh_expires_in - 15) * 1000,
+		};
+	} catch (error) {
+		return {
+			...token,
+			error: 'RefreshAccessTokenError',
+		};
+	}
+};
 
 export default NextAuth({
 	providers: [
@@ -7,19 +49,48 @@ export default NextAuth({
 			clientId: process.env.KEYCLOAK_ID || '',
 			clientSecret: process.env.KEYCLOAK_SECRET || '',
 			issuer: process.env.KEYCLOAK_URL || '',
+			profile: (profile) => {
+				return {
+					...profile,
+					username: capitalize(profile.preferred_username),
+					id: profile.sub,
+				};
+			},
 		}),
 	],
 	callbacks: {
-		jwt: async ({ token, account }) => {
-			if (account) {
-				token.apiToken = account.access_token;
+		signIn: async ({ user, account }) => {
+			if (account && user) {
+				return true;
+			} else {
+				// TODO : Add unauthorized page
+				return '/unauthorized';
 			}
-
-			return token;
 		},
-		session: async ({ session, token }) => {
-			session.apiToken = token.apiToken;
+		jwt: async ({ token, account, user }: any) => {
+			// Initial sign in
+			if (account && user) {
+				// Add access_token, refresh_token and expirations to the token right after signin
+				token.accessToken = account.accessToken;
+				token.refreshToken = account.refreshToken;
+				token.accessTokenExpired = Date.now() + (account.expires_in - 15) * 1000;
+				token.refreshTokenExpired = Date.now() + (account.refresh_expires_in - 15) * 1000;
+				token.user = user;
+				return token;
+			}
+			// Return previous token if the access token has not expired yet
+			if (Date.now() < token.accessTokenExpired) return token;
 
+			// Access token has expired, try to update it
+			return refreshAccessToken(token);
+		},
+		session: async ({ session, token }: any) => {
+			if (token) {
+				session.user = token.user;
+				session.error = token.error;
+				session.accessToken = token.accessToken;
+			}
+			console.log(session);
 			return session;
 		},
 	},
@@ -27,3 +98,7 @@ export default NextAuth({
 		signIn: '/auth/signin',
 	},
 });
+
+function capitalize(string: string) {
+	return string.charAt(0).toUpperCase() + string.slice(1);
+}
