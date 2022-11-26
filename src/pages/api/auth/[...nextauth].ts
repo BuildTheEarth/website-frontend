@@ -90,7 +90,6 @@ export default NextAuth({
 				session.error = token.error;
 				session.accessToken = token.accessToken;
 			}
-			console.log(session);
 			return session;
 		},
 	},
