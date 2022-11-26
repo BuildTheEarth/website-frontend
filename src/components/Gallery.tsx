@@ -35,7 +35,7 @@ function Gallery(props: GalleryProps) {
 			>
 				{props.images.map((i) => {
 					return (
-						<Carousel.Slide sx={{ height: props.style?.height }}>
+						<Carousel.Slide sx={{ height: props.style?.height }} key={`g-${i.location}-${i.builder}`}>
 							<div style={{ position: 'relative', height: props.style?.height }}>
 								<img src={i.src} alt="" width={'100%'} height={'100%'} style={{ objectFit: 'cover' }} />
 								<div
