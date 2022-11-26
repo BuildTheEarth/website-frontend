@@ -18,15 +18,7 @@ import {
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
-import {
-	ChevronDown,
-	FileSearch,
-	FileUpload,
-	Logout,
-	MoonStars,
-	Sun,
-	World,
-} from 'tabler-icons-react';
+import { ChevronDown, FileSearch, FileUpload, Logout, MoonStars, Sun, World } from 'tabler-icons-react';
 import { Discord, Instagram, Tiktok, Twitch, Twitter, Youtube } from '@icons-pack/react-simple-icons';
 import React, { CSSProperties, useEffect, useState } from 'react';
 import { signIn, signOut, useSession } from 'next-auth/react';
