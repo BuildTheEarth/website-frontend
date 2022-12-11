@@ -6,11 +6,14 @@ import { NextPage } from 'next';
 import Page from '../components/Page';
 import React from 'react';
 import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
 import { useTranslation } from 'react-i18next';
 
 const Home: NextPage = () => {
 	const theme = useMantineTheme();
 	const { t } = useTranslation();
+
+	const { data: session, status } = useSession();
 	const router = useRouter();
 	return (
 		<Page fullWidth>

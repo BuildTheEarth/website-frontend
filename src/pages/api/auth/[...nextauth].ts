@@ -6,9 +6,9 @@ const refreshAccessToken = async (token: JWT) => {
 	try {
 		if (Date.now() > token.refreshTokenExpired) throw Error;
 		const details = {
-			client_id: process.env.KEYCLOAK_CLIENT_ID,
-			client_secret: process.env.KEYCLOAK_CLIENT_SECRET,
-			grant_type: ['refresh_token'],
+			client_id: process.env.KEYCLOAK_ID,
+			client_secret: process.env.KEYCLOAK_SECRET,
+			grant_type: 'refresh_token',
 			refresh_token: token.refreshToken,
 		};
 		const formBody: string[] = [];
@@ -18,7 +18,7 @@ const refreshAccessToken = async (token: JWT) => {
 			formBody.push(encodedKey + '=' + encodedValue);
 		});
 		const formData = formBody.join('&');
-		const url = `${process.env.KEYCLOAK_BASE_URL}/token`;
+		const url = `${process.env.KEYCLOAK_URL}/protocol/openid-connect/token`;
 		const response = await fetch(url, {
 			method: 'POST',
 			headers: {
@@ -36,6 +36,7 @@ const refreshAccessToken = async (token: JWT) => {
 			refreshTokenExpired: Date.now() + (refreshedTokens.refresh_expires_in - 15) * 1000,
 		};
 	} catch (error) {
+		console.log(error);
 		return {
 			...token,
 			error: 'RefreshAccessTokenError',
@@ -71,8 +72,8 @@ export default NextAuth({
 			// Initial sign in
 			if (account && user) {
 				// Add access_token, refresh_token and expirations to the token right after signin
-				token.accessToken = account.accessToken;
-				token.refreshToken = account.refreshToken;
+				token.accessToken = account.access_token;
+				token.refreshToken = account.refresh_token;
 				token.accessTokenExpired = Date.now() + (account.expires_in - 15) * 1000;
 				token.refreshTokenExpired = Date.now() + (account.refresh_expires_in - 15) * 1000;
 				token.user = user;
