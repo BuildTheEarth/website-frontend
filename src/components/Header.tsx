@@ -191,7 +191,6 @@ const Header = ({ links }: HeaderProps) => {
 						<Menu
 							onClose={() => setUserMenuOpened(false)}
 							onOpen={() => {
-								console.log(session.user);
 								setUserMenuOpened(true);
 							}}
 						>

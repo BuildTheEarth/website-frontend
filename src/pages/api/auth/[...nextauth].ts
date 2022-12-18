@@ -36,7 +36,6 @@ const refreshAccessToken = async (token: JWT) => {
 			refreshTokenExpired: Date.now() + (refreshedTokens.refresh_expires_in - 15) * 1000,
 		};
 	} catch (error) {
-		console.log(error);
 		return {
 			...token,
 			error: 'RefreshAccessTokenError',

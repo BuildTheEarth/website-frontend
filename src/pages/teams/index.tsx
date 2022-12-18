@@ -16,6 +16,7 @@ import React, { useState } from 'react';
 import { NextPage } from 'next';
 import Page from '../../components/Page';
 import { useRouter } from 'next/router';
+import useSWR from 'swr';
 
 const elements = [
 	{
@@ -284,6 +285,7 @@ const Faq: NextPage = () => {
 	const { classes } = useStyles();
 	const [search, setSearch] = useState<string | undefined>(undefined);
 	const [activePage, setPage] = useState(1);
+	const { data } = useSWR(`/buildteams?page=${activePage - 1}`);
 	return (
 		<Page
 			head={{
@@ -314,16 +316,10 @@ const Faq: NextPage = () => {
 				}
 			/>
 			<Grid gutter="xl" style={{ marginTop: theme.spacing.xl }}>
-				{elements
-					.filter(
-						(element) =>
-							element.name.toLowerCase().includes(search?.toLowerCase() || '') ||
-							element.short.toLowerCase().includes(search?.toLowerCase() || '') ||
-							element.locations.filter((location) => location.toLowerCase().includes(search?.toLowerCase() || ''))
-								.length > 0,
-					)
-					.slice(activePage * 14 - 14, activePage * 14)
-					.map((element, i) => (
+				{data?.data
+					.filter((element: any) => element.name.toLowerCase().includes(search?.toLowerCase() || ''))
+					//.slice(activePage * 14 - 14, activePage * 14)
+					.map((element: any, i: number) => (
 						<Grid.Col key={i} sm={6}>
 							<Group
 								noWrap
@@ -337,27 +333,27 @@ const Faq: NextPage = () => {
 								p="md"
 								onClick={() => router.push(`/teams/${element.id}`)}
 							>
-								<Avatar src={element.logo} size={94} radius="md" />
+								<Avatar src={element.icon} size={94} radius="md" />
 								<div>
 									<Group position="apart">
 										<Text size="lg" weight={500} className={classes.name}>
-											{element.short}
+											{element.name}
 										</Text>
 
-										{element.builders.includes('Nudelsuppe_42_#3571') ? <Badge color="green">Builder</Badge> : null}
+										{/*element.builders.includes('Nudelsuppe_42_#3571') ? <Badge color="green">Builder</Badge> : null*/}
 									</Group>
 
 									<Group noWrap spacing={10} mt={3}>
 										<Pin size={16} className={classes.icon} />
 										<Text size="xs" color="dimmed">
-											{element.locations.join(', ')}
+											{/*element.locations.join(', ')*/}
 										</Text>
 									</Group>
 
 									<Group noWrap spacing={10} mt={5}>
 										<Users size={16} className={classes.icon} />
 										<Text size="xs" color="dimmed">
-											{element.builders.length}{' '}
+											{element._count.members} Members
 										</Text>
 									</Group>
 								</div>
@@ -366,13 +362,7 @@ const Faq: NextPage = () => {
 					))}
 			</Grid>
 			<Group position="center" pt="md">
-				<Pagination
-					total={elements.length > 14 ? Math.floor(elements.length / 14 + 1) : 0}
-					radius="xs"
-					page={activePage}
-					onChange={setPage}
-					siblings={1}
-				/>
+				<Pagination total={data?.pages || 1} radius="xs" page={activePage} onChange={setPage} siblings={1} />
 			</Group>
 		</Page>
 	);

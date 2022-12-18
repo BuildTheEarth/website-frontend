@@ -3,6 +3,7 @@ import '../styles/nprogress.css';
 
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
 import React, { useEffect } from 'react';
+import { SessionProvider, useSession } from 'next-auth/react';
 import { appWithI18Next, useSyncLanguage } from 'ni18n';
 import { useColorScheme, useHotkeys, useLocalStorage } from '@mantine/hooks';
 
@@ -10,7 +11,7 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { RouterTransition } from '../components/RouterTransition';
 import { SWRConfig } from 'swr';
-import { SessionProvider } from 'next-auth/react';
+import SWRProvider from '../components/SWRProvider';
 import { ni18nConfig } from '../../ni18n.config';
 import { useRouter } from 'next/router';
 
@@ -22,6 +23,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 		defaultValue: preferredColorScheme,
 		getInitialValueInEffect: true,
 	});
+
+	const [accessToken, setAccessToken] = useLocalStorage<string>({
+		key: 'accessToken',
+		defaultValue: '',
+	});
 	const toggleColorScheme = (value?: ColorScheme) =>
 		setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
 	const locale = typeof window !== 'undefined' && window.localStorage.getItem('lang');
@@ -32,20 +38,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 	// TODO: Font
 	return (
 		<SessionProvider session={pageProps.session}>
-			<Head>
-				<title>Build The Earth</title>
-				<link href="https://api.mapbox.com/mapbox-gl-js/v0.54.1/mapbox-gl.css" rel="stylesheet" />
-			</Head>
-			<SWRConfig
-				value={{
-					refreshInterval: 0,
-					fetcher: (resource: string, init: any) => fetch(resource, init).then((res) => res.json()),
-					shouldRetryOnError: false,
-					revalidateIfStale: false,
-					revalidateOnFocus: false,
-					revalidateOnReconnect: false,
-				}}
-			>
+			<SWRProvider>
+				<Head>
+					<title>Build The Earth</title>
+					<link href="https://api.mapbox.com/mapbox-gl-js/v0.54.1/mapbox-gl.css" rel="stylesheet" />
+				</Head>
 				<ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
 					<MantineProvider
 						theme={{
@@ -60,7 +57,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 						<Component {...pageProps} />
 					</MantineProvider>
 				</ColorSchemeProvider>
-			</SWRConfig>
+			</SWRProvider>
 		</SessionProvider>
 	);
 }

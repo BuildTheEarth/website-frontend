@@ -3,7 +3,9 @@ import { Center, Container, Text, Title, useMantineTheme } from '@mantine/core';
 import Footer from './Footer';
 import Header from './Header';
 import React from 'react';
+import { SWRConfig } from 'swr';
 import { useMediaQuery } from '@mantine/hooks';
+import { useSession } from 'next-auth/react';
 
 interface PageProps {
 	children: React.ReactNode;
@@ -24,6 +26,7 @@ interface PageProps {
 
 const Page = (props: PageProps) => {
 	const matches = useMediaQuery('(min-width: 900px)');
+	const { data: session } = useSession();
 	const theme = useMantineTheme();
 	return (
 		<div

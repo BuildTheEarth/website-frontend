@@ -18,6 +18,7 @@ declare module 'next-auth' {
 			org_name?: string;
 			telephone?: string;
 		};
+		accessToken: string;
 		error: string;
 	}
 	/**
