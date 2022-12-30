@@ -44,7 +44,7 @@ const Home: NextPage = () => {
 					}}
 				>
 					<Title style={{ color: '#ffffff' }} align="center" order={1}>
-						Recreating The Earth In Minecraft
+						Recreating The Earth In Minecraft {t('test.test')}
 						<br />
 						<Button
 							variant="outline"

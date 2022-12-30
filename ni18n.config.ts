@@ -1,15 +1,9 @@
-import type { Ni18nOptions } from 'ni18n';
+// ni18n.config.ts
 
-const supportedLngs = ['gb', 'de'];
+import type { Ni18nOptions } from 'ni18n';
+import { languages } from './src/components/LanguageSwitcher';
 
 export const ni18nConfig: Ni18nOptions = {
-	/**
-	 * Set `fallbackLng` to the `supportedLngs` array in order for them all to be loaded
-	 */
-	fallbackLng: supportedLngs,
-	supportedLngs,
-	ns: ['default'],
-	react: {
-		useSuspense: false,
-	},
+	supportedLngs: ['gb', 'de'],
+	ns: ['default', 'errors'],
 };

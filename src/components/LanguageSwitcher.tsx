@@ -7,7 +7,7 @@ import { useLocalStorage } from '@mantine/hooks';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const data = [
+export const languages = [
 	{ label: 'English', code: 'gb' },
 	{ label: 'German', code: 'de' },
 ];
@@ -53,7 +53,7 @@ export function LanguageSwitcher() {
 			return value.code;
 		},
 		deserialize: (localStorageValue) => {
-			return data.find((e) => e.code == localStorageValue);
+			return languages.find((e) => e.code == localStorageValue);
 		},
 	});
 
@@ -62,7 +62,7 @@ export function LanguageSwitcher() {
 		i18n.changeLanguage(lang.code);
 	};
 
-	const items = data.map((item) => (
+	const items = languages.map((item) => (
 		<Menu.Item
 			icon={<span className={`fi fi-${item.code} fis`} style={{ height: 18, width: 18, borderRadius: '50%' }}></span>}
 			onClick={() => changeLanguage(i18n, item)}

@@ -2,93 +2,13 @@ import { Button, Center, Title, useMantineTheme } from '@mantine/core';
 
 import Page from '../components/Page';
 import { useRouter } from 'next/router';
-
-const errors = [
-	{
-		code: 300,
-		title: 'Multiple Choices',
-		message: 'You requested a page that has too many options to choose from. Pleas try again with a different page.',
-	},
-	{
-		code: 301,
-		title: 'Moved Permanently',
-		message: 'The page you requested has been permanently moved to a different URL. Please try again with the new URL.',
-	},
-	{
-		code: 400,
-		title: 'Bad Request',
-		message: 'Please reload the page and check for a working internet connection.',
-	},
-	{
-		code: 401,
-		title: 'Unauthorized',
-		message: 'You are not allowed to access this page.',
-	},
-	{
-		code: 403,
-		title: 'Forbidden',
-		message: 'You are not allowed to access this page.',
-	},
-	{
-		code: 404,
-		title: 'Not Found',
-		message: "We can't find the page you're looking for. Please check the URL and try again.",
-	},
-	{
-		code: 405,
-		title: 'Method Not Allowed',
-		message: 'The method used to access this page is not allowed. Please try again with a GET method.',
-	},
-	{
-		code: 408,
-		title: 'Request Timeout',
-		message: 'The page you are looking for is taking too long to load. Please try again later.',
-	},
-	{
-		code: 418,
-		title: '🫖',
-		message: 'Please get comfortable with the Tea and try again.',
-	},
-	{
-		code: 429,
-		title: 'Too Many Requests',
-		message: 'You are trying to access this page too often. Please try again later.',
-	},
-	{
-		code: 500,
-		title: 'Internal Server Error',
-		message: "We're having some issues with our server, please try again later.",
-	},
-	{
-		code: 501,
-		title: 'Not Implemented',
-		message: 'Your browser does not support features our website requires. Please update your browser.',
-	},
-	{
-		code: 502,
-		title: 'Bad Gateway',
-		message: 'Our servers are overloaded at the given time, please try again later.',
-	},
-	{
-		code: 503,
-		title: 'Service Unavailable',
-		message: 'Our servers are overloaded at the given time, please try again later.',
-	},
-	{
-		code: 508,
-		title: 'Loop Detected',
-		message: 'We detected a loop. Please try again later.',
-	},
-];
+import { useTransition } from 'react';
+import { useTranslation } from 'react-i18next';
 
 function ErrorPage(props: any) {
 	const theme = useMantineTheme();
+	const { t } = useTranslation('errors');
 	const code = props.code || props.statuscode;
-	const status = errors.find((e) => e.code === code) || {
-		code: code,
-		title: 'You found a Error we dont even know of! (' + code + ')',
-		message: props.error.message || 'Something went wrong, please try again later and contact us.',
-	};
 	const router = useRouter();
 	return (
 		<Page fullWidth>
@@ -119,13 +39,13 @@ function ErrorPage(props: any) {
 				>
 					<div>
 						<Title style={{ color: '#ffffff', fontSize: 220 }} align="center" order={1}>
-							{status.code}
+							{code}
 						</Title>
 						<Title style={{ color: '#ffffff' }} align="center" order={1}>
-							{status.title}
+							{t([`${code}.title`, 'fallback.title'], { error: code })}
 						</Title>
 						<Title style={{ color: theme.colors.gray[4] }} align="center" order={3}>
-							{status.message}
+							{t([`${code}.message`, 'fallback.message'], { error: code })}
 							<br />
 							<Button
 								variant="outline"

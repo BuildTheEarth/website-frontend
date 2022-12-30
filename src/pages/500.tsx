@@ -2,14 +2,11 @@ import { Button, Center, Title, useMantineTheme } from '@mantine/core';
 
 import Page from '../components/Page';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
 
 function ErrorPage() {
 	const theme = useMantineTheme();
-	const status = {
-		code: 500,
-		title: 'Internal Server Error',
-		message: "We're having some issues with our server, please try again later.",
-	};
+	const { t } = useTranslation('errors');
 	const router = useRouter();
 	return (
 		<Page fullWidth>
@@ -40,13 +37,13 @@ function ErrorPage() {
 				>
 					<div>
 						<Title style={{ color: '#ffffff', fontSize: 220 }} align="center" order={1}>
-							{status.code}
+							500
 						</Title>
 						<Title style={{ color: '#ffffff' }} align="center" order={1}>
-							{status.title}
+							{t([`500.title`, 'fallback.title'], { error: 500 })}
 						</Title>
 						<Title style={{ color: theme.colors.gray[4] }} align="center" order={3}>
-							{status.message}
+							{t([`500.message`, 'fallback.message'], { error: 500 })}
 							<br />
 							<Button
 								variant="outline"

@@ -346,7 +346,7 @@ const Faq: NextPage = () => {
 									<Group noWrap spacing={10} mt={3}>
 										<Pin size={16} className={classes.icon} />
 										<Text size="xs" color="dimmed">
-											{/*element.locations.join(', ')*/}
+											{element.location}
 										</Text>
 									</Group>
 

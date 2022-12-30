@@ -2,14 +2,11 @@ import { Button, Center, Title, useMantineTheme } from '@mantine/core';
 
 import Page from '../components/Page';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
 
 function ErrorPage() {
+	const { t } = useTranslation('errors');
 	const theme = useMantineTheme();
-	const status = {
-		code: 404,
-		title: 'Not Found',
-		message: "We can't find the page you're looking for. Please check the URL and try again.",
-	};
 	const router = useRouter();
 	return (
 		<Page fullWidth>
@@ -40,13 +37,13 @@ function ErrorPage() {
 				>
 					<div>
 						<Title style={{ color: '#ffffff', fontSize: 220 }} align="center" order={1}>
-							{status.code}
+							404
 						</Title>
 						<Title style={{ color: '#ffffff' }} align="center" order={1}>
-							{status.title}
+							{t([`404.title`, 'fallback.title'], { error: 404 })}
 						</Title>
 						<Title style={{ color: theme.colors.gray[4] }} align="center" order={3}>
-							{status.message}
+							{t([`404.message`, 'fallback.message'], { error: 404 })}
 							<br />
 							<Button
 								variant="outline"
