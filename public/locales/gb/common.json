@@ -4,6 +4,7 @@
 	"buildtheearth": "BuildTheEarth",
 	"staff": "Staff",
 	"builder": "Builder",
+	"search": "Search...",
 	"auth": {
 		"signin": "Sign In",
 		"signout": "Sign Out",

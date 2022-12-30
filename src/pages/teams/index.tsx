@@ -17,6 +17,7 @@ import { NextPage } from 'next';
 import Page from '../../components/Page';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
+import { useTranslation } from 'react-i18next';
 
 const elements = [
 	{
@@ -281,6 +282,7 @@ const useStyles = createStyles((theme) => ({
 
 const Faq: NextPage = () => {
 	const router = useRouter();
+	const { t } = useTranslation('teams');
 	const theme = useMantineTheme();
 	const { classes } = useStyles();
 	const [search, setSearch] = useState<string | undefined>(undefined);
@@ -289,22 +291,19 @@ const Faq: NextPage = () => {
 	return (
 		<Page
 			head={{
-				title: 'Build Teams',
+				title: t('head.title'),
 				large: true,
 				image: '/images/placeholder.png',
 			}}
 		>
 			<p>
-				Build teams are the easiest way to join Build The Earth. These groups work together on a multiplayer server to
-				build cities, regions and sometimes even entire countries. All you need to do is click &apos;Apply to join&apos;
-				and within no time you can start helping out!
+				{t('description')}
 				<br />
-				<br /> To participate in a build team, you need to have purchased Minecraft Java Edition or Minecraft Bedrock
-				Edition, depending on the team. In most cases, you will also be required to have the Build The Earth Modpack
-				installed.
+				<br />
+				{t('joining')}
 			</p>
 			<TextInput
-				placeholder="Search..."
+				placeholder={t('common:search')}
 				radius="xs"
 				required
 				value={search}
