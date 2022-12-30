@@ -3,6 +3,7 @@ import { Accordion, createStyles } from '@mantine/core';
 import { NextPage } from 'next';
 import Page from '../components/Page';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const elements = [
 	{
@@ -66,10 +67,11 @@ const useStyles = createStyles((theme, _params, getRef) => {
 
 const Faq: NextPage = () => {
 	const { classes } = useStyles();
+	const { t } = useTranslation('faq');
 	return (
 		<Page
 			head={{
-				title: 'Frequently asked questions',
+				title: t('head.title'),
 				image: '/images/placeholder.png',
 				large: true,
 			}}
