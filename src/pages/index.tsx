@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 
 const Home: NextPage = () => {
 	const theme = useMantineTheme();
-	const { t } = useTranslation();
+	const { t } = useTranslation('home');
 
 	const { data: session, status } = useSession();
 	const router = useRouter();
@@ -44,7 +44,7 @@ const Home: NextPage = () => {
 					}}
 				>
 					<Title style={{ color: '#ffffff' }} align="center" order={1}>
-						Recreating The Earth In Minecraft {t('test.test')}
+						{t('head.title')}
 						<br />
 						<Button
 							variant="outline"
@@ -52,7 +52,7 @@ const Home: NextPage = () => {
 							style={{ color: 'white', borderColor: 'white', borderWidth: 3, marginTop: theme.spacing.xl * 1.5 }}
 							onClick={() => router.push('/getstarted')}
 						>
-							Get Started
+							{t('head.action')}
 						</Button>
 					</Title>
 				</Center>
@@ -86,7 +86,7 @@ const Home: NextPage = () => {
 					<Grid.Col lg={6} style={{ marginTop: 50, marginBottom: 50 }}>
 						<Center style={{ width: '100%', height: '100%' }}>
 							<div style={{ padding: '0px 10%' }}>
-								<h1 id="more">Our Grand Mission</h1>
+								<h1 id="more">{t('mission.title')}</h1>
 								<div
 									style={{
 										background: `linear-gradient(90deg, rgba(${
@@ -95,14 +95,7 @@ const Home: NextPage = () => {
 										height: 2,
 									}}
 								/>
-								<p>
-									Our mission is to fully recreate the entire Earth in Minecraft at a 1:1 scale. One block in Minecraft
-									equates to roughly one meter in the real world, meaning that this project will fully recreate the size
-									of our planet. Anyone is able to join us and contribute to the largest and most expansive build
-									project to ever have been attempted in Minecraft. Every language, nationality, and regional difference
-									is accepted and regarded as our greatest attribute as we continue our journey to unite all of
-									Humanity&apos;s greatest achievements into a single Minecraft world.
-								</p>
+								<p>{t('mission.content')}</p>
 							</div>
 						</Center>
 					</Grid.Col>
@@ -150,7 +143,7 @@ const Home: NextPage = () => {
 					<Grid.Col lg={6} style={{ marginTop: 50, marginBottom: 50 }}>
 						<Center style={{ width: '100%', height: '100%' }}>
 							<div style={{ padding: '0px 10%' }}>
-								<h1>How You Can Help</h1>
+								<h1>{t('join.title')}</h1>
 								<div
 									style={{
 										background: `linear-gradient(90deg, rgba(${
@@ -159,16 +152,9 @@ const Home: NextPage = () => {
 										height: 2,
 									}}
 								/>
-								<p>
-									Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut
-									labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-									et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-									ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
-									dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-									rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-								</p>
+								<p>{t('join.content')}</p>
 								<Button<'a'> px={theme.spacing.xl * 2} component="a" href="/getstarted">
-									Get Started
+									{t('join.action')}
 								</Button>
 							</div>
 						</Center>
