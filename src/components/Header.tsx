@@ -26,6 +26,7 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 import { useClickOutside, useDisclosure, useInterval } from '@mantine/hooks';
 
 import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
 
 const useStyles = createStyles((theme) => ({
 	root: {
@@ -149,13 +150,14 @@ const useStyles = createStyles((theme) => ({
 interface HeaderProps {
 	links: {
 		link: string;
-		label: string;
+		translation: string;
 	}[];
 }
 
 const Header = ({ links }: HeaderProps) => {
 	const [opened, handler] = useDisclosure(false);
 	const [userMenuOpened, setUserMenuOpened] = useState(false);
+	const { t } = useTranslation();
 	const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 	const { classes, cx } = useStyles();
 	const router = useRouter();
@@ -164,7 +166,7 @@ const Header = ({ links }: HeaderProps) => {
 	const { data: session, status } = useSession();
 	const items = links.map((link) => (
 		<a
-			key={link.label}
+			key={link.translation}
 			className={cx(classes.link, {
 				[classes.linkActive]: router.pathname.includes(link.link),
 			})}
@@ -173,7 +175,7 @@ const Header = ({ links }: HeaderProps) => {
 				handler.close();
 			}}
 		>
-			{link.label}
+			{t(`links.${link.translation}`)}
 		</a>
 	));
 	return (
@@ -181,7 +183,7 @@ const Header = ({ links }: HeaderProps) => {
 			<Container className={classes.header} size={'xl'}>
 				<Group spacing={5} className={classes.logo} onClick={() => router.push('/')}>
 					<img src="/logo.gif" alt="Mantine" height="40" style={{ marginRight: '4px' }} />
-					BuildTheEarth
+					{t('buildtheearth')}
 				</Group>
 				<Group spacing={5} className={classes.links}>
 					{items}
@@ -219,21 +221,21 @@ const Header = ({ links }: HeaderProps) => {
 								</UnstyledButton>
 							</Menu.Target>
 							<Menu.Dropdown>
-								<Menu.Item icon={<FileUpload size={14} />}>Upload world</Menu.Item>
+								<Menu.Item icon={<FileUpload size={14} />}>{t('user.upload')}</Menu.Item>
 								<Menu.Divider />
-								<Menu.Label>Quick actions</Menu.Label>
+								<Menu.Label>{t('user.quickActions')}</Menu.Label>
 								<Menu.Item
 									icon={colorScheme === 'dark' ? <MoonStars size={14} /> : <Sun size={14} />}
 									onClick={() => toggleColorScheme()}
 								>
-									Toggle {colorScheme === 'dark' ? 'light' : 'dark'} theme{' '}
+									{t(`user.theme.${colorScheme}`)}
 								</Menu.Item>
 								<Menu.Divider />
-								<Menu.Label>Staff</Menu.Label>
-								<Menu.Item icon={<FileSearch size={14} />}>Review claims</Menu.Item>
+								<Menu.Label>{t('staff')}</Menu.Label>
+								<Menu.Item icon={<FileSearch size={14} />}>{t('user.review')}</Menu.Item>
 								<Menu.Divider />
 								<Menu.Item icon={<Logout size={14} />} onClick={() => signOut()}>
-									Sign out
+									{t('auth.signout')}
 								</Menu.Item>
 							</Menu.Dropdown>
 						</Menu>
@@ -247,13 +249,13 @@ const Header = ({ links }: HeaderProps) => {
 									signIn('keycloak');
 								}}
 							>
-								Login
+								{t('auth.signin')}
 							</a>
 							<Button
 								style={{ fontWeight: '500', paddingLeft: '12px', paddingRight: '12px', height: '32px' }}
 								onClick={() => router.push('/getstarted')}
 							>
-								Sign Up
+								{t('auth.signup')}
 							</Button>
 						</>
 					)}
@@ -302,9 +304,9 @@ const Header = ({ links }: HeaderProps) => {
 										})}
 									>
 										<Group spacing={7}>
-											<Button onClick={() => router.push('/getstarted')}>Get Started</Button>
+											<Button onClick={() => router.push('/getstarted')}>{t('auth.signup')}</Button>
 											<Button ml="md" onClick={() => signIn('keycloak')} variant="outline">
-												Sign In
+												{t('auth.signin')}
 											</Button>
 										</Group>
 									</UnstyledButton>
