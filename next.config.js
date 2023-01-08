@@ -8,6 +8,7 @@ const nextConfig = {
 		defaultLocale: 'en',
 		locales: ['en', 'de'],
 	},
+	output: 'standalone',
 };
 
 module.exports = nextConfig
