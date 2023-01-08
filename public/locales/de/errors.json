@@ -1,63 +1,63 @@
 {
-	"fallback": {
-		"title": "Etwas ist schiefgelaufen ({{error}})",
-		"message": "Bitte versuche es später erneut."
-	},
-	"301": {
-		"title": "Moved Permanently",
-		"message": "The page you requested has been permanently moved to a different URL. Please try again with the new URL."
-	},
-	"400": {
-		"title": "Bad Request",
-		"message": "Please reload the page and check for a working internet connection."
-	},
-	"401": {
-		"title": "Unauthorized",
-		"message": "You are not allowed to access this page."
-	},
-	"403": {
-		"title": "Forbidden",
-		"message": "You are not allowed to access this page."
-	},
-	"404": {
-		"title": "Nicht Gefunden",
-		"message": "Wir können die gesuchte Seite nicht finden. Bitte überprüfe die URL und versuche es erneut."
-	},
-	"405": {
-		"title": "Method Not Allowed",
-		"message": "The method used to access this page is not allowed. Please try again with a GET method."
-	},
-	"408": {
-		"title": "Request Timeout",
-		"message": "The page you are looking for is taking too long to load. Please try again later."
-	},
-	"418": {
-		"title": "🫖",
-		"message": "Please get comfortable with the Tea and try again."
-	},
-	"429": {
-		"title": "Too Many Requests",
-		"message": "You are trying to access this page too often. Please try again later."
-	},
-	"500": {
-		"code": "500",
-		"title": "Interner Server Error",
-		"message": "Wir haben einige Probleme mit unseren Servern, bitte versuche es später noch einmal."
-	},
-	"501": {
-		"title": "Not Implemented",
-		"message": "Your browser does not support features our website requires. Please update your browser."
-	},
-	"502": {
-		"title": "Bad Gateway",
-		"message": "Our servers are overloaded at the given time, please try again later."
-	},
-	"503": {
-		"title": "Service Unavailable",
-		"message": "Our servers are overloaded at the given time, please try again later."
-	},
-	"508": {
-		"title": "Loop Detected",
-		"message": "We detected a loop. Please try again later."
-	}
+    "fallback": {
+        "title": "Etwas ist schiefgelaufen ({{error}})",
+        "message": "Bitte versuche es später erneut."
+    },
+    "301": {
+        "title": "",
+        "message": ""
+    },
+    "400": {
+        "title": "",
+        "message": ""
+    },
+    "401": {
+        "title": "",
+        "message": ""
+    },
+    "403": {
+        "title": "",
+        "message": ""
+    },
+    "404": {
+        "title": "Nicht Gefunden",
+        "message": "Wir können die gesuchte Seite nicht finden. Bitte überprüfe die URL und versuche es erneut."
+    },
+    "405": {
+        "title": "",
+        "message": ""
+    },
+    "408": {
+        "title": "",
+        "message": ""
+    },
+    "418": {
+        "title": "🫖",
+        "message": ""
+    },
+    "429": {
+        "title": "",
+        "message": ""
+    },
+    "500": {
+        "code": "500",
+        "title": "Interner Server Error",
+        "message": "Wir haben einige Probleme mit unseren Servern, bitte versuche es später noch einmal."
+    },
+    "501": {
+        "title": "",
+        "message": ""
+    },
+    "502": {
+        "title": "",
+        "message": "Our servers are overloaded at the given time, please try again later."
+    },
+    "503": {
+        "title": "",
+        "message": ""
+    },
+    "508": {
+        "title": "",
+        "message": ""
+    }
 }
