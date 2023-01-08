@@ -1,0 +1,25 @@
+{
+	"head": {
+		"title": "How would you like to participate?"
+	},
+	"description": "You can choose between either building on the Official BTE Server or on a regional Build Team's server, but remember, you can always join the other whenever you want! something about buildteams beeing on the main network?",
+	"compability": "Compability",
+	"network": {
+		"title": "Official Network",
+		"description": "Join your friends in building on our own Official Server",
+		"compability": {
+			"java": "Java: 1.8 - 1.19",
+			"bedrock": "Bedrock: Latest"
+		},
+		"getStarted": "Get Started"
+	},
+	"teams": {
+		"title": "Build Teams",
+		"description": "Help build a whole contry by joining a Build Team",
+		"compability": {
+			"java": "Java: 1.8 - 1.19",
+			"bedrock": "Bedrock: Latest"
+		},
+		"getStarted": "Get Started"
+	}
+}
