@@ -15,9 +15,10 @@ import React, { useState } from 'react';
 
 import { NextPage } from 'next';
 import Page from '../../components/Page';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 const elements = [
 	{
@@ -368,3 +369,11 @@ const Faq: NextPage = () => {
 };
 
 export default Faq;
+
+export async function getStaticProps({ locale }: any) {
+	return {
+		props: {
+			...(await serverSideTranslations(locale, ['common', 'teams'])),
+		},
+	};
+}

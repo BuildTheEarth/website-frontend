@@ -4,7 +4,6 @@ import '../styles/nprogress.css';
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
 import React, { useEffect } from 'react';
 import { SessionProvider, useSession } from 'next-auth/react';
-import { appWithI18Next, useSyncLanguage } from 'ni18n';
 import { useColorScheme, useHotkeys, useLocalStorage } from '@mantine/hooks';
 
 import type { AppProps } from 'next/app';
@@ -12,7 +11,7 @@ import Head from 'next/head';
 import { RouterTransition } from '../components/RouterTransition';
 import { SWRConfig } from 'swr';
 import SWRProvider from '../components/SWRProvider';
-import { ni18nConfig } from '../../ni18n.config';
+import { appWithTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -30,9 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 	});
 	const toggleColorScheme = (value?: ColorScheme) =>
 		setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
-	const locale = typeof window !== 'undefined' && window.localStorage.getItem('lang');
 
-	useSyncLanguage(locale || 'en');
 	useHotkeys([['mod+J', () => toggleColorScheme()]]);
 
 	// TODO: Font
@@ -62,4 +59,4 @@ function MyApp({ Component, pageProps }: AppProps) {
 	);
 }
 
-export default appWithI18Next(MyApp, ni18nConfig);
+export default appWithTranslation(MyApp);

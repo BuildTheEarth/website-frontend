@@ -1,9 +1,10 @@
 import { Button, Center, Title, useMantineTheme } from '@mantine/core';
 
 import Page from '../components/Page';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useTransition } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 function ErrorPage(props: any) {
 	const theme = useMantineTheme();
@@ -63,14 +64,10 @@ function ErrorPage(props: any) {
 		</Page>
 	);
 }
-export function getServerSideProps({ res, err }: any) {
-	if (new Date().getDate() === 1 && new Date().getMonth() === 4) {
-		res.statusCode = 418;
-	}
-
+export async function getStaticProps({ locale }: any) {
 	return {
 		props: {
-			code: res.statusCode,
+			...(await serverSideTranslations(locale, ['common', 'errors'])),
 		},
 	};
 }

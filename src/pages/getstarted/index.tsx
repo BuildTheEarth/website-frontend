@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 import { NextPage } from 'next';
 import Page from '../../components/Page';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useMediaQuery } from '@mantine/hooks';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
@@ -107,3 +108,11 @@ const GetStarted: NextPage = () => {
 };
 
 export default GetStarted;
+
+export async function getStaticProps({ locale }: any) {
+	return {
+		props: {
+			...(await serverSideTranslations(locale, ['common', 'getstarted'])),
+		},
+	};
+}

@@ -1,8 +1,9 @@
 import { Button, Center, Title, useMantineTheme } from '@mantine/core';
 
 import Page from '../components/Page';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 function ErrorPage() {
 	const theme = useMantineTheme();
@@ -62,3 +63,11 @@ function ErrorPage() {
 	);
 }
 export default ErrorPage;
+
+export async function getStaticProps({ locale }: any) {
+	return {
+		props: {
+			...(await serverSideTranslations(locale, ['common', 'errors'])),
+		},
+	};
+}

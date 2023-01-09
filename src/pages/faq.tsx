@@ -3,7 +3,8 @@ import { Accordion, createStyles } from '@mantine/core';
 import { NextPage } from 'next';
 import Page from '../components/Page';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'next-i18next';
 
 const elements = [
 	{
@@ -89,3 +90,11 @@ const Faq: NextPage = () => {
 };
 
 export default Faq;
+
+export async function getStaticProps({ locale }: any) {
+	return {
+		props: {
+			...(await serverSideTranslations(locale, ['common', 'faq'])),
+		},
+	};
+}

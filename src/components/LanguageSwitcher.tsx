@@ -3,13 +3,19 @@ import '/node_modules/flag-icons/css/flag-icons.min.css';
 import { Group, Image, Menu, UnstyledButton, createStyles } from '@mantine/core';
 
 import { ChevronDown } from 'tabler-icons-react';
+import { loadLanguages } from 'i18next';
 import { useLocalStorage } from '@mantine/hooks';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 export const languages = [
-	{ label: 'English', code: 'gb' },
-	{ label: 'German', code: 'de' },
+	{ label: 'English', code: 'en', flag: 'gb' },
+	{ label: 'German', code: 'de', flag: 'de' },
+	{ label: 'Dutch', code: 'nl', flag: 'nl' },
+	{ label: 'French', code: 'fr', flag: 'fr' },
+	{ label: 'Spanish', code: 'es', flag: 'es' },
+	{ label: 'Russian', code: 'ru', flag: 'ru' },
 ];
 
 const useStyles = createStyles((theme, { opened }: { opened: boolean }) => ({
@@ -43,7 +49,8 @@ const useStyles = createStyles((theme, { opened }: { opened: boolean }) => ({
 
 export function LanguageSwitcher() {
 	const [opened, setOpened] = useState(false);
-	const { t, i18n } = useTranslation();
+	const { t } = useTranslation();
+	const router = useRouter();
 	const { classes } = useStyles({ opened });
 
 	const [selected, setSelected] = useLocalStorage({
@@ -57,15 +64,17 @@ export function LanguageSwitcher() {
 		},
 	});
 
-	const changeLanguage = (i18n: any, lang: { label: string; code: string }) => {
+	const changeLanguage = (lang: { label: string; code: string }) => {
 		setSelected(lang);
-		i18n.changeLanguage(lang.code);
+		const { pathname, asPath, query } = router;
+		console.log(pathname, asPath, query);
+		router.push(pathname, pathname, { locale: lang.code });
 	};
 
 	const items = languages.map((item) => (
 		<Menu.Item
-			icon={<span className={`fi fi-${item.code} fis`} style={{ height: 18, width: 18, borderRadius: '50%' }}></span>}
-			onClick={() => changeLanguage(i18n, item)}
+			icon={<span className={`fi fi-${item.flag} fis`} style={{ height: 18, width: 18, borderRadius: '50%' }}></span>}
+			onClick={() => changeLanguage(item)}
 			key={item.label}
 		>
 			{item.label}
@@ -78,7 +87,7 @@ export function LanguageSwitcher() {
 				<UnstyledButton className={classes.control}>
 					<Group spacing="xs">
 						<span
-							className={`fi fi-${selected.code} fis`}
+							className={`fi fi-${selected.flag} fis`}
 							style={{ height: 22, width: 22, borderRadius: '50%' }}
 						></span>
 						<span className={classes.label}>{selected.label}</span>

@@ -5,9 +5,10 @@ import Gallery from '../components/Gallery';
 import { NextPage } from 'next';
 import Page from '../components/Page';
 import React from 'react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next';
 
 const Home: NextPage = () => {
 	const theme = useMantineTheme();
@@ -166,3 +167,11 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+export async function getStaticProps({ locale }: any) {
+	return {
+		props: {
+			...(await serverSideTranslations(locale, ['common', 'home'])),
+		},
+	};
+}
