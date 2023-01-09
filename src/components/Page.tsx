@@ -1,4 +1,4 @@
-import { Center, Container, Text, Title, useMantineTheme } from '@mantine/core';
+import { BackgroundImage, Center, Container, Text, Title, useMantineTheme } from '@mantine/core';
 
 import Footer from './Footer';
 import Header from './Header';
@@ -50,30 +50,12 @@ const Page = (props: PageProps) => {
 			)}
 
 			{props.head && (
-				<div
-					style={{
-						width: '100%',
-						height: '20vh',
-						position: 'relative',
-					}}
-				>
-					<div
-						style={{
-							backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-							background: `url(${props.head?.image})`,
-							filter: props.head?.filter || 'brightness(0.8)',
-							width: '100%',
-							height: '100%',
-							marginTop: props.disabled?.header ? 0 : 60,
-						}}
-					></div>
+				<BackgroundImage src={props.head?.image || ''} style={{ width: '100%', height: '25vh' }}>
 					<Center
 						style={{
 							width: '100%',
 							height: '100%',
-							position: 'absolute',
-							top: props.disabled?.header ? 0 : 60,
-							left: 0,
+							backgroundColor: '#00000077',
 						}}
 					>
 						<h1 style={{ color: '#ffffff', fontSize: '48px', zIndex: '99' }}>
@@ -84,17 +66,8 @@ const Page = (props: PageProps) => {
 								</>
 							)}
 						</h1>
-						<div
-							style={{
-								position: 'absolute',
-								bottom: '0',
-								width: '100%',
-								height: '100px',
-								background: 'linear-gradient(180deg,transparent,rgba(0, 0, 0, 0.26))',
-							}}
-						></div>
 					</Center>
-				</div>
+				</BackgroundImage>
 			)}
 
 			{props.fullWidth ? (
@@ -105,7 +78,7 @@ const Page = (props: PageProps) => {
 					style={{
 						backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : '#ffffff',
 						boxShadow: 'none',
-						marginTop: theme.spacing.xl * 2 + (props.disabled?.header ? 0 : 60),
+						marginTop: theme.spacing.xl * 2,
 						marginBottom: theme.spacing.xl * 2,
 						padding: !matches ? `${theme.spacing.xs * 3}px` : `${theme.spacing.xl * 3}px`,
 						paddingBottom: !matches ? `${theme.spacing.xs * 1.5}px` : `${theme.spacing.xl * 1.5}px`,

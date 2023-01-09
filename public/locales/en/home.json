@@ -2,7 +2,8 @@
 	"head": { "title": "Recreating The Earth In Minecraft ", "action": "Get Started" },
 	"mission": {
 		"title": "Our Grand Mission",
-		"content": "Our mission is to fully recreate the entire Earth in Minecraft at a 1:1 scale. One block in Minecraft equates to roughly one meter in the real world, meaning that this project will fully recreate the size of our planet. Anyone is able to join us and contribute to the largest and most expansive build project to ever have been attempted in Minecraft. Every language, nationality, and regional difference is accepted and regarded as our greatest attribute as we continue our journey to unite all of Humanity's greatest achievements into a single Minecraft world."
+		"content": "Our mission is to fully recreate the entire Earth in Minecraft at a 1:1 scale. One block in Minecraft equates to roughly one meter in the real world, meaning that this project will fully recreate the size of our planet. Anyone is able to join us and contribute to the largest and most expansive build project to ever have been attempted in Minecraft. Every language, nationality, and regional difference is accepted and regarded as our greatest attribute as we continue our journey to unite all of Humanity's greatest achievements into a single Minecraft world.",
+		"action": "About Us"
 	},
 	"join": {
 		"title": "How You Can Help",
