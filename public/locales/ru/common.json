@@ -1,3 +1,35 @@
 {
-    "language": "Русский"
+    "language": "Русский",
+    "copyright": "",
+    "buildtheearth": "",
+    "staff": "",
+    "builder": "",
+    "auth": {
+        "signin": "",
+        "signout": "",
+        "signup": ""
+    },
+    "user": {
+        "quickActions": "",
+        "upload": "",
+        "theme": {
+            "dark": "",
+            "light": ""
+        },
+        "review": ""
+    },
+    "button": {
+        "save": "",
+        "delete": "",
+        "copy": "",
+        "back": "",
+        "submit": ""
+    },
+    "links": {
+        "faq": "",
+        "map": "",
+        "teams": "",
+        "contact": "",
+        "aboutUs": ""
+    }
 }
