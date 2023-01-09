@@ -1,1 +1,12 @@
-{}
+{
+    "head": {
+        "title": "Bau Teams"
+    },
+    "description": "Bauteams sind der einfachste Weg, an Build The Earth teilzunehmen. Diese Gruppen arbeiten auf einem Multiplayer-Server zusammen, um Städte, Regionen und manchmal sogar ganze Länder aufzubauen. Alles, was du tun musst, ist auf \"Bewerben\" zu klicken und schon kannst du mithelfen!",
+    "joining": "Um an einem Build-Team teilzunehmen, musst du je nach Team die Minecraft Java Edition oder die Minecraft Bedrock Edition besitzen. In den meisten Fällen musst du auch das Build The Earth Modpack installiert haben.",
+    "team": {
+        "overview": "Übersicht",
+        "images": "Bilder",
+        "details": "Details"
+    }
+}
