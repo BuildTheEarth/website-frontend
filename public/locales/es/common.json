@@ -1,3 +1,35 @@
 {
-    "language": "Español"
+    "language": "Español",
+    "auth": {
+        "signin": "",
+        "signout": "",
+        "signup": ""
+    },
+    "user": {
+        "quickActions": "",
+        "upload": "",
+        "theme": {
+            "dark": "",
+            "light": ""
+        },
+        "review": ""
+    },
+    "copyright": "",
+    "buildtheearth": "",
+    "staff": "",
+    "builder": "",
+    "button": {
+        "save": "",
+        "delete": "",
+        "copy": "",
+        "back": "",
+        "submit": ""
+    },
+    "links": {
+        "faq": "",
+        "map": "",
+        "teams": "",
+        "contact": "",
+        "aboutUs": ""
+    }
 }
