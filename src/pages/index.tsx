@@ -33,10 +33,7 @@ const Home: NextPage = () => {
 					style={{
 						width: '100%',
 						height: '100%',
-						position: 'absolute',
 						backgroundColor: '#000000aa',
-						top: 0,
-						left: 0,
 					}}
 				>
 					<Title style={{ color: '#ffffff' }} align="center" order={1}>
