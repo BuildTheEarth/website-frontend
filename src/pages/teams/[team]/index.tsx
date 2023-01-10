@@ -8,6 +8,7 @@ import React from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useMediaQuery } from '@mantine/hooks';
 import { useRouter } from 'next/router';
+import useSWR from 'swr';
 import { useTranslation } from 'next-i18next';
 
 const element = {
@@ -127,5 +128,11 @@ export async function getStaticProps({ locale }: any) {
 		props: {
 			...(await serverSideTranslations(locale, ['common', 'teams'])),
 		},
+	};
+}
+export async function getStaticPaths() {
+	return {
+		paths: [],
+		fallback: true,
 	};
 }
