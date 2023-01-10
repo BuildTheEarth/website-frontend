@@ -73,7 +73,7 @@ const Faq: NextPage = () => {
 		<Page
 			head={{
 				title: t('head.title'),
-				image: '/images/placeholder.png',
+				image: '/images/placeholder.webp',
 				large: true,
 			}}
 		>

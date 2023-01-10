@@ -10,7 +10,7 @@ const Team: NextPage = () => {
 		<Page
 			head={{
 				title: 'Privacy',
-				image: '/images/placeholder.png',
+				image: '/images/placeholder.webp',
 				large: true,
 			}}
 		>

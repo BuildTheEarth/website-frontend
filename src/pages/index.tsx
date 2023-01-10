@@ -28,7 +28,7 @@ const Home: NextPage = () => {
 	const router = useRouter();
 	return (
 		<Page fullWidth>
-			<BackgroundImage src="/images/placeholder.png" style={{ height: '100vh', width: '100%' }} mb="0">
+			<BackgroundImage src="/images/placeholder.webp" style={{ height: '100vh', width: '100%' }} mb="0">
 				<Center
 					style={{
 						width: '100%',
@@ -97,7 +97,7 @@ const Home: NextPage = () => {
 
 					<MediaQuery smallerThan="lg" styles={{ display: 'none' }}>
 						<Grid.Col lg={7} style={{ padding: 0 }}>
-							<BackgroundImage src="/images/home/mission.png" style={{ width: '100%', height: '100%' }} />
+							<BackgroundImage src="/images/home/mission.webp" style={{ width: '100%', height: '100%' }} />
 						</Grid.Col>
 					</MediaQuery>
 
@@ -141,7 +141,7 @@ const Home: NextPage = () => {
 
 					<MediaQuery smallerThan="lg" styles={{ display: 'none' }}>
 						<Grid.Col lg={7} style={{ padding: 0 }}>
-							<BackgroundImage src="/images/home/getstarted.png" style={{ width: '100%', height: '100%' }} />
+							<BackgroundImage src="/images/home/getstarted.webp" style={{ width: '100%', height: '100%' }} />
 						</Grid.Col>
 					</MediaQuery>
 

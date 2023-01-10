@@ -62,7 +62,7 @@ const Contact: NextPage = () => {
 		<Page
 			head={{
 				title: 'Contact',
-				image: '/images/placeholder.png',
+				image: '/images/placeholder.webp',
 				large: true,
 			}}
 		>

@@ -15,7 +15,7 @@ const SignIn: NextPage = () => {
 		<Page
 			head={{
 				title: 'Sign in',
-				image: '/images/placeholder.png',
+				image: '/images/placeholder.webp',
 				large: true,
 			}}
 		>

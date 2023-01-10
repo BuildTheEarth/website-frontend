@@ -19,7 +19,7 @@ const GetStarted: NextPage = () => {
 		<Page
 			head={{
 				title: t('head.title'),
-				image: '/images/placeholder.png',
+				image: '/images/placeholder.webp',
 				large: true,
 			}}
 		>
@@ -35,7 +35,7 @@ const GetStarted: NextPage = () => {
 					onMouseEnter={() => setFocused(1)}
 					style={{
 						backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-						background: `url("/images/getstarted/network.png") center center / cover`,
+						background: `url("/images/getstarted/network.webp") center center / cover`,
 						transition: 'all 0.2s ease-out',
 						padding: 0,
 					}}
@@ -74,7 +74,7 @@ const GetStarted: NextPage = () => {
 					onMouseEnter={() => setFocused(2)}
 					style={{
 						backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-						background: `url("/images/getstarted/buildteams.png") center center / cover`,
+						background: `url("/images/getstarted/buildteams.webp") center center / cover`,
 						transition: 'all 0.2s ease-out',
 						padding: 0,
 					}}
