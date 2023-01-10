@@ -53,18 +53,9 @@ export function LanguageSwitcher() {
 	const router = useRouter();
 	const { classes } = useStyles({ opened });
 
-	const [selected, setSelected] = useLocalStorage({
-		key: 'lang',
-		defaultValue: 'gb',
-		serialize: (value: any) => {
-			return value.code;
-		},
-		deserialize: (localStorageValue) => {
-			return languages.find((e) => e.code == localStorageValue);
-		},
-	});
-
-	const changeLanguage = (lang: { label: string; code: string }) => {
+	const [selected, setSelected] = useState(languages.find((l: any) => l.code == (router.locale || 'en')));
+	console.log(router.locale);
+	const changeLanguage = (lang: { label: string; code: string; flag: string }) => {
 		setSelected(lang);
 		const { pathname, asPath, query } = router;
 		console.log(pathname, asPath, query);
@@ -87,10 +78,10 @@ export function LanguageSwitcher() {
 				<UnstyledButton className={classes.control}>
 					<Group spacing="xs">
 						<span
-							className={`fi fi-${selected.flag} fis`}
+							className={`fi fi-${selected && selected.flag} fis`}
 							style={{ height: 22, width: 22, borderRadius: '50%' }}
 						></span>
-						<span className={classes.label}>{selected.label}</span>
+						<span className={classes.label}>{selected && selected.label}</span>
 					</Group>
 					<ChevronDown size={16} className={classes.icon} />
 				</UnstyledButton>
