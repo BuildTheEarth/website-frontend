@@ -1,6 +1,7 @@
-import { Button, Center, Grid, useMantineTheme } from '@mantine/core';
+import { Alert, Button, Center, Grid, useMantineTheme } from '@mantine/core';
 import React, { useState } from 'react';
 
+import { AlertCircle } from 'tabler-icons-react';
 import { NextPage } from 'next';
 import Page from '../../components/Page';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -22,6 +23,11 @@ const GetStarted: NextPage = () => {
 				large: true,
 			}}
 		>
+			{' '}
+			{/* TODO: yea, i think you know \/ */}
+			<Alert icon={<AlertCircle size={16} />} title="Warning" color="red" variant="filled">
+				This content is out of date. We are aware of this and will update it soon. Please dont add issues about this.
+			</Alert>
 			<p>{t('description')}</p>
 			<Grid mt="lg" style={{ minHeight: '60vh' }}>
 				<Grid.Col

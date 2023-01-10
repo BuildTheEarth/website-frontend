@@ -5,8 +5,10 @@ import { LogoHeader } from '../../../components/Header';
 import { NextPage } from 'next';
 import Page from '../../../components/Page';
 import React from 'react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useMediaQuery } from '@mantine/hooks';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
 const element = {
 	head: 'https://cdn.discordapp.com/attachments/692849007038562434/964097226341244988/4final2k_1.png',
@@ -119,3 +121,11 @@ const Team: NextPage = () => {
 };
 
 export default Team;
+
+export async function getStaticProps({ locale }: any) {
+	return {
+		props: {
+			...(await serverSideTranslations(locale, ['common', 'teams'])),
+		},
+	};
+}

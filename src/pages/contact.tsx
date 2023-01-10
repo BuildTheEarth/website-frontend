@@ -1,22 +1,24 @@
 /* eslint-disable no-undef */
 
 import { At, ExternalLink } from 'tabler-icons-react';
+import { Avatar, Button, Grid, Group, Text, ThemeIcon, useMantineTheme } from '@mantine/core';
 import {
-	Youtube,
-	Facebook,
-	Twitter,
 	Discord,
+	Facebook,
 	Instagram,
+	Snapchat,
 	Tiktok,
 	Twitch,
-	Snapchat,
+	Twitter,
+	Youtube,
 } from '@icons-pack/react-simple-icons';
-import { Avatar, Button, Grid, Group, Text, ThemeIcon, useMantineTheme } from '@mantine/core';
 
 import { NextPage } from 'next';
 import Page from '../components/Page';
 import React from 'react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
 const contacts = [
 	{
@@ -219,3 +221,11 @@ const Contact: NextPage = () => {
 };
 
 export default Contact;
+
+export async function getStaticProps({ locale }: any) {
+	return {
+		props: {
+			...(await serverSideTranslations(locale, ['common'])),
+		},
+	};
+}

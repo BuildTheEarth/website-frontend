@@ -2,6 +2,7 @@ import { Anchor } from '@mantine/core';
 import { NextPage } from 'next';
 import Page from '../../components/Page';
 import React from 'react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Team: NextPage = () => {
 	//TODO: This privacy has to be reworked
@@ -55,3 +56,11 @@ const Team: NextPage = () => {
 };
 
 export default Team;
+
+export async function getStaticProps({ locale }: any) {
+	return {
+		props: {
+			...(await serverSideTranslations(locale, ['common'])),
+		},
+	};
+}
