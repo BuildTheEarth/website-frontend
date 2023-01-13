@@ -5,6 +5,7 @@ import Header from './Header';
 import React from 'react';
 import { SWRConfig } from 'swr';
 import { useMediaQuery } from '@mantine/hooks';
+import { useScrollPosition } from '../hooks/useScrollPosition';
 import { useSession } from 'next-auth/react';
 
 interface PageProps {
@@ -21,12 +22,14 @@ interface PageProps {
 		filter?: string;
 		large?: boolean;
 	};
+	hideHeaderOnInitialScroll?: boolean;
 	style?: React.CSSProperties;
 }
 
 const Page = (props: PageProps) => {
 	const matches = useMediaQuery('(min-width: 900px)');
 	const { data: session } = useSession();
+	const { scrollY } = useScrollPosition();
 	const theme = useMantineTheme();
 	return (
 		<div
@@ -46,6 +49,10 @@ const Page = (props: PageProps) => {
 						{ link: '/teams', translation: 'teams' },
 						{ link: '/contact', translation: 'contact' },
 					]}
+					style={{
+						opacity: props.hideHeaderOnInitialScroll && scrollY <= 20 ? 0 : 1,
+						transition: 'opacity 0.2s linear',
+					}}
 				/>
 			)}
 

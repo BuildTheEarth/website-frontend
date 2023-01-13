@@ -17,26 +17,23 @@ import Page from '../components/Page';
 import React from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
-import { useSession } from 'next-auth/react';
 import { useTranslation } from 'next-i18next';
 
 const Home: NextPage = () => {
 	const theme = useMantineTheme();
 	const { t } = useTranslation('home');
-
-	const { data: session, status } = useSession();
 	const router = useRouter();
 	return (
 		<Page fullWidth>
-			<BackgroundImage src="/images/placeholder.webp" style={{ height: '100vh', width: '100%' }} mb="0">
+			<BackgroundImage src="/images/home/head.png" style={{ height: '100vh', width: '100%' }} mb="0">
 				<Center
 					style={{
 						width: '100%',
 						height: '100%',
-						backgroundColor: '#000000aa',
+						backgroundColor: '#00000055',
 					}}
 				>
-					<Title style={{ color: '#ffffff' }} align="center" order={1}>
+					<Title style={{ color: '#ffffff', fontSize: 64 }} align="center" order={1}>
 						{t('head.title')}
 						<br />
 						<Button

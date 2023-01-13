@@ -152,9 +152,10 @@ interface HeaderProps {
 		link: string;
 		translation: string;
 	}[];
+	style?: React.CSSProperties;
 }
 
-const Header = ({ links }: HeaderProps) => {
+const Header = ({ links, style }: HeaderProps) => {
 	const [opened, handler] = useDisclosure(false);
 	const [userMenuOpened, setUserMenuOpened] = useState(false);
 	const { t } = useTranslation();
@@ -179,7 +180,7 @@ const Header = ({ links }: HeaderProps) => {
 		</a>
 	));
 	return (
-		<MantineHeader height={60} className={classes.root} fixed>
+		<MantineHeader height={60} className={classes.root} fixed style={style}>
 			<Container className={classes.header} size={'xl'}>
 				<Group spacing={5} className={classes.logo} onClick={() => router.push('/')}>
 					<img src="/logo.gif" alt="Mantine" height="40" style={{ marginRight: '4px' }} />
