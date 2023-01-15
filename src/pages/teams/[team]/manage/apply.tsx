@@ -49,4 +49,18 @@ const Apply: NextPage = () => {
 		</Page>
 	);
 };
+export async function getStaticProps({ locale }: any) {
+	return {
+		props: {
+			...(await serverSideTranslations(locale, ['common', 'teams'])),
+		},
+	};
+}
 export default Apply;
+
+export async function getStaticPaths() {
+	return {
+		paths: [],
+		fallback: true,
+	};
+}
