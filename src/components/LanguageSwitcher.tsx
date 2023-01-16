@@ -54,11 +54,9 @@ export function LanguageSwitcher() {
 	const { classes } = useStyles({ opened });
 
 	const [selected, setSelected] = useState(languages.find((l: any) => l.code == (router.locale || 'en')));
-	console.log(router.locale);
 	const changeLanguage = (lang: { label: string; code: string; flag: string }) => {
 		setSelected(lang);
 		const { pathname, asPath, query } = router;
-		console.log(pathname, asPath, query);
 		router.push(pathname, pathname, { locale: lang.code });
 	};
 

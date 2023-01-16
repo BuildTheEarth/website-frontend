@@ -72,9 +72,7 @@ const Team: NextPage = () => {
 			[input.id]: '',
 		})),
 	});
-	const handleSubmit = (e: any) => {
-		console.log(e);
-	};
+	const handleSubmit = (e: any) => {};
 	if (element.builders.includes('Nudelsuppe_42_#3571') && team) {
 		router.push(`/teams/${team}`);
 	}

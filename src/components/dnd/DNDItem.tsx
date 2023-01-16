@@ -76,7 +76,6 @@ export function DNDItem({ data }: DNDItemProps) {
 		<DragDropContext
 			onDragEnd={({ destination, source }) => {
 				handlers.reorder({ from: source.index, to: destination?.index || 0 });
-				console.log('test');
 			}}
 		>
 			<Droppable droppableId="dnd-list" direction="vertical">
