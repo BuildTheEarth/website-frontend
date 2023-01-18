@@ -1,4 +1,4 @@
-import { Alert, Button, Center, Grid, useMantineTheme } from '@mantine/core';
+import { Alert, Button, Center, Grid, Text, useMantineTheme } from '@mantine/core';
 import React, { useState } from 'react';
 
 import { AlertCircle } from 'tabler-icons-react';
@@ -109,6 +109,12 @@ const GetStarted: NextPage = () => {
 					</Center>
 				</Grid.Col>
 			</Grid>
+			<Text mt="lg">
+				<Text color="red" span inherit>
+					*
+				</Text>
+				No cost, no subscription, you can leave/switch at any point
+			</Text>
 		</Page>
 	);
 };

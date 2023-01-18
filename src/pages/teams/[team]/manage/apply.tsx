@@ -1,3 +1,5 @@
+import { CalendarEvent, LetterT } from 'tabler-icons-react';
+
 import { DNDItem } from '../../../../components/dnd/DNDItem';
 import { NextPage } from 'next';
 import Page from '../../../../components/Page';
@@ -15,34 +17,18 @@ const Apply: NextPage = () => {
 			<DNDItem
 				data={[
 					{
-						position: 6,
-						mass: 12.011,
-						symbol: 'C',
-						name: 'Carbon',
+						position: 1,
+						icon: <LetterT />,
+						title: 'What is your Minecraft name?',
+						subtitle: 'Short text input',
+						content: 'nö',
 					},
 					{
-						position: 7,
-						mass: 14.007,
-						symbol: 'N',
-						name: 'Nitrogen',
-					},
-					{
-						position: 39,
-						mass: 88.906,
-						symbol: 'Y',
-						name: 'Yttrium',
-					},
-					{
-						position: 56,
-						mass: 137.33,
-						symbol: 'Ba',
-						name: 'Barium',
-					},
-					{
-						position: 58,
-						mass: 140.12,
-						symbol: 'Ce',
-						name: 'Cerium',
+						position: 2,
+						icon: <LetterT />,
+						title: 'What is your Minecraft name?',
+						subtitle: 'Short text input',
+						content: 'nö',
 					},
 				]}
 			></DNDItem>

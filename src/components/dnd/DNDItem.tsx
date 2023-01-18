@@ -1,19 +1,18 @@
+import { Accordion, Group, Text, createStyles } from '@mantine/core';
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
-import { Text, createStyles } from '@mantine/core';
 
 import { IconGripVertical } from '@tabler/icons';
 import { useListState } from '@mantine/hooks';
 
 const useStyles = createStyles((theme) => ({
 	item: {
-		display: 'flex',
-		alignItems: 'center',
 		borderRadius: theme.radius.md,
-		border: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[2]}`,
-		padding: `${theme.spacing.sm}px ${theme.spacing.xl}px`,
-		paddingLeft: theme.spacing.xl - theme.spacing.md, // to offset drag handle
+		border: 'none',
 		backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.white,
-		marginBottom: theme.spacing.sm,
+		'&[data-active]': {
+			border: 'none',
+			backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.white,
+		},
 	},
 
 	itemDragging: {
@@ -41,9 +40,10 @@ const useStyles = createStyles((theme) => ({
 interface DNDItemProps {
 	data: {
 		position: number;
-		mass: number;
-		symbol: string;
-		name: string;
+		icon: any;
+		title: string;
+		subtitle: string;
+		content: any;
 	}[];
 }
 
@@ -52,22 +52,30 @@ export function DNDItem({ data }: DNDItemProps) {
 	const [state, handlers] = useListState(data);
 
 	const items = state.map((item, index) => (
-		<Draggable key={item.symbol} index={index} draggableId={item.symbol}>
+		<Draggable key={item.position} index={index} draggableId={item.position + ''}>
 			{(provided, snapshot) => (
-				<div
-					className={cx(classes.item, { [classes.itemDragging]: snapshot.isDragging })}
+				<Accordion.Item
+					value={item.position + ''}
 					ref={provided.innerRef}
 					{...provided.draggableProps}
-					{...provided.dragHandleProps}
+					className={classes.item}
 				>
-					<Text className={classes.symbol}>{item.symbol}</Text>
-					<div>
-						<Text>{item.name}</Text>
-						<Text color="dimmed" size="sm">
-							Position: {item.position} • Mass: {item.mass}
-						</Text>
-					</div>
-				</div>
+					<Accordion.Control>
+						<Group>
+							<div {...provided.dragHandleProps}>
+								<IconGripVertical size={18} stroke={1.5} />
+							</div>
+							<Text>{item.icon}</Text>
+							<div>
+								<Text weight={700}>{item.title}</Text>
+								<Text color="dimmed" size="sm">
+									{item.subtitle}
+								</Text>
+							</div>
+						</Group>
+					</Accordion.Control>
+					<Accordion.Panel>{item.content}</Accordion.Panel>
+				</Accordion.Item>
 			)}
 		</Draggable>
 	));
@@ -81,8 +89,10 @@ export function DNDItem({ data }: DNDItemProps) {
 			<Droppable droppableId="dnd-list" direction="vertical">
 				{(provided) => (
 					<div {...provided.droppableProps} ref={provided.innerRef}>
-						{items}
-						{provided.placeholder}
+						<Accordion variant="separated">
+							{items}
+							{provided.placeholder}
+						</Accordion>
 					</div>
 				)}
 			</Droppable>
