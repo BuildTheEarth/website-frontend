@@ -52,6 +52,7 @@ const Page = (props: PageProps) => {
 					style={{
 						opacity: props.hideHeaderOnInitialScroll && scrollY <= 20 ? 0 : 1,
 						transition: 'opacity 0.2s linear',
+						zIndex: 9999,
 					}}
 				/>
 			)}
