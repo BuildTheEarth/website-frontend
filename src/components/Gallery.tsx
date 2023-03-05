@@ -10,7 +10,7 @@ interface GalleryProps {
 }
 
 function Gallery(props: GalleryProps) {
-	const [active, setActive] = useState(props.images[0]);
+	const [active, setActive] = useState(0);
 	const theme = useMantineTheme();
 
 	return (
@@ -19,8 +19,15 @@ function Gallery(props: GalleryProps) {
 				mx="auto"
 				withIndicators
 				height={'100%'}
+				initialSlide={active}
 				controlsOffset="xl"
 				controlSize={37}
+				onPreviousSlide={() => {
+					setActive(active - 1);
+				}}
+				onNextSlide={() => {
+					setActive(active + 1);
+				}}
 				loop
 				styles={{
 					indicator: {
@@ -36,7 +43,10 @@ function Gallery(props: GalleryProps) {
 			>
 				{props.images.map((i) => {
 					return (
-						<Carousel.Slide sx={{ height: props.style?.height }} key={`g-${i.location}-${i.builder}`}>
+						<Carousel.Slide
+							sx={{ height: props.style?.height, position: 'relative' }}
+							key={`g-${i.location}-${i.builder}`}
+						>
 							<div style={{ position: 'relative', height: props.style?.height }}>
 								<img src={i.src} alt="" width={'100%'} height={'100%'} style={{ objectFit: 'cover' }} />
 								<div

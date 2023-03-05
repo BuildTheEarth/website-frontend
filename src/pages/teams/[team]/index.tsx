@@ -62,7 +62,7 @@ const Team: NextPage = () => {
 					</Grid.Col>
 				</Grid>
 				{data?.showcases && data.showcases.length >= 1 ? (
-					<Group position="apart">
+					<Group>
 						<h2>Images</h2>
 						<Gallery
 							style={{ height: '80vh' }}
@@ -70,7 +70,7 @@ const Team: NextPage = () => {
 								data?.showcases.map(({ image, title }: any) => ({
 									src: image,
 									location: title,
-								})) || []
+								})) || [{}]
 							}
 						/>
 					</Group>
