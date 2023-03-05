@@ -25,6 +25,7 @@ import React, { CSSProperties, useEffect, useState } from 'react';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useClickOutside, useDisclosure, useInterval } from '@mantine/hooks';
 
+import Icon from './Icon';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 
@@ -322,14 +323,15 @@ const Header = ({ links, style }: HeaderProps) => {
 };
 
 interface LogoHeaderProps {
-	head: string;
-	logo: string;
+	backgroundImage: string;
+	icon: string;
 	name: string;
-	socials?: { name: string; url: string }[];
+	socials?: { name: string; url: string; icon: string }[];
 	builders?: string[];
 	showStatus?: boolean;
 	userStatus: string;
 	applyHref?: string;
+	invite?: string;
 }
 
 export const LogoHeader = (props: LogoHeaderProps) => {
@@ -339,7 +341,7 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 			<Box
 				style={{
 					backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-					background: `url("${props.head}") center center / cover`,
+					background: `url("${props.backgroundImage}") center center / cover`,
 					width: '100%',
 					height: '40vh',
 				}}
@@ -362,7 +364,7 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 				>
 					<Group>
 						<Avatar
-							src={props.logo}
+							src={props.icon}
 							size={128}
 							mr="xl"
 							style={{
@@ -375,9 +377,9 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 						<h1 style={{ lineHeight: 1, margin: 0 }}>{props.name}</h1>
 					</Group>
 					<Group>
-						{props.socials?.map((social: { name: string; url: string }) => {
+						{props.socials?.map((social) => {
 							let icon = null;
-							switch (social.name) {
+							switch (social.icon.toLowerCase()) {
 								case 'website': {
 									icon = <World />;
 									break;
@@ -407,7 +409,7 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 									break;
 								}
 								default:
-									icon = <World />;
+									icon = <Icon icon={social.icon} />;
 							}
 							return (
 								<ActionIcon component="a" href={social.url} target="_blank" key={social.name}>
@@ -415,6 +417,11 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 								</ActionIcon>
 							);
 						})}
+						{props.invite && (
+							<ActionIcon component="a" href={props.invite} target="_blank" key={'discord-inv'}>
+								<Discord />
+							</ActionIcon>
+						)}
 						{props.builders?.includes('Nudelsuppe_42_#3571') || props.showStatus ? (
 							<Badge color="green" size="lg">
 								{props.userStatus}
