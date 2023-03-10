@@ -1,7 +1,6 @@
 import { Canvas, useLoader } from '@react-three/fiber';
-import { Cloud, OrbitControls, Sky, Stats, Text } from '@react-three/drei';
+import { OrbitControls, Stats } from '@react-three/drei';
 
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { Suspense } from 'react';
 
