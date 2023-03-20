@@ -74,7 +74,7 @@ const Apply: NextPage = () => {
 			d
 			{data.map((d, i) => {
 				const Question = ApplicationQuestions[d.type];
-				return <Question key={i} id={d.id} {...d.props} form={...form.getInputProps(d.id)} />;
+				return <Question key={i} id={d.id} {...d.props} form={form.getInputProps(d.id)} />;
 			})}
 		</Page>
 	);
