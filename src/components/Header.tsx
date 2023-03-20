@@ -28,6 +28,7 @@ import { useClickOutside, useDisclosure, useInterval } from '@mantine/hooks';
 import Icon from './Icon';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
+import {motion, useScroll, useSpring, useTransform} from "framer-motion";
 
 const useStyles = createStyles((theme) => ({
 	root: {
@@ -336,16 +337,21 @@ interface LogoHeaderProps {
 
 export const LogoHeader = (props: LogoHeaderProps) => {
 	const theme = useMantineTheme();
+	const { scrollY, scrollYProgress } = useScroll();
+	const blur = useTransform(scrollYProgress, latest => `blur(${latest * 20}px)`);
+	const bgPosY = useTransform(scrollYProgress, latest => `${latest * 20 + 50}%`);
 	return (
 		<>
-			<Box
+			<motion.div
 				style={{
 					backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
 					background: `url("${props.backgroundImage}") center center / cover`,
+					backgroundPositionY: bgPosY,
+
 					width: '100%',
-					height: '40vh',
+					height: '50vh',
 				}}
-			></Box>
+			></motion.div>
 			<Group
 				position="center"
 				style={{

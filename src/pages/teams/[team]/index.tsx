@@ -10,6 +10,8 @@ import { useMediaQuery } from '@mantine/hooks';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import { useTranslation } from 'next-i18next';
+import {useScroll} from "framer-motion";
+
 
 const Team: NextPage = () => {
 	const router = useRouter();
@@ -17,6 +19,7 @@ const Team: NextPage = () => {
 	const { data } = useSWR(`/buildteams/${team}?builds=true&showcase=true`);
 	const matches = useMediaQuery('(min-width: 900px)');
 	const theme = useMantineTheme();
+	const { scrollY } = useScroll();
 	return (
 		<Page fullWidth>
 			<LogoHeader {...data} applyHref={`${team}/apply`} />
