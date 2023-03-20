@@ -1,0 +1,36 @@
+import { IconBuilding, IconTextSize } from '@tabler/icons';
+import { Slider, TextInput, Textarea } from '@mantine/core';
+
+import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
+
+export interface SliderQuestionProps extends ApplicationQuestion {
+	steps?: number;
+	max?: number;
+	min?: number;
+	unit?: string;
+}
+
+function validation(value: any, props: SliderQuestionProps): boolean {
+	return true;
+}
+
+const SliderQuestion = (props: SliderQuestionProps) => {
+	return (
+		<Slider
+			{...props.form}
+			icon={<IconBuilding />}
+			required={props.required}
+			description={props.description}
+			label={props.title}
+			style={props.style}
+			max={props.max}
+			min={props.min}
+			step={props.steps}
+			{...props.form}
+		/>
+	);
+};
+
+SliderQuestion.validation = validation;
+SliderQuestion.icon = IconTextSize;
+export default SliderQuestion;

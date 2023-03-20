@@ -9,7 +9,7 @@ export interface LongTextQuestionProps extends ApplicationQuestion {
 }
 
 function validation(value: any, props: LongTextQuestionProps): boolean {
-	return true;
+	return value.split().length <= (props.length || 200);
 }
 
 const LongTextQuestion = (props: LongTextQuestionProps) => {

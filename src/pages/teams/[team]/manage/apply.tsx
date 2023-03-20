@@ -3,13 +3,10 @@ import {
 	generateInitialValues,
 	generateValidation,
 } from '../../../../utils/application/ApplicationQuestions';
-import { CalendarEvent, LetterT } from 'tabler-icons-react';
 
-import { DNDItem } from '../../../../components/dnd/DNDItem';
-import LongTextQuestion from '../../../../components/application/questions/LongTextQuestion';
 import { NextPage } from 'next';
 import Page from '../../../../components/Page';
-import TextQuestion from '../../../../components/application/questions/TextQuestion';
+import UrlQuestion from '../../../../components/application/questions/UrlQuestion';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useForm } from '@mantine/form';
 
@@ -17,12 +14,47 @@ const data = [
 	{
 		id: 't',
 		type: 'SHORT_INPUT',
-		props: { title: 'test' },
+		props: { title: 'Text Input' },
 	},
 	{
 		id: 'urlt',
-		type: 'URL',
+		type: 'LONG_INPUT',
+		props: { title: 'Long Text Input' },
+	} /*
+	{
+		id: 'fafw',
+		type: 'DROPDOWN',
 		props: { title: 'url' },
+	},*/,
+	{
+		id: 'dwead',
+		type: 'CITY',
+		props: { title: 'City Input' },
+	},
+	{
+		id: 'gght',
+		type: 'URL',
+		props: { title: 'URL Input' },
+	},
+	{
+		id: 'dwrg',
+		type: 'MINECRAFT',
+		props: { title: 'Minecraft Name' },
+	},
+	{
+		id: 't4g',
+		type: 'SLIDER',
+		props: { title: 'Slider Input' },
+	},
+	{
+		id: 'gmioe',
+		type: 'IMAGE',
+		props: { title: 'Image Input' },
+	},
+	{
+		id: 'dwr4thb',
+		type: 'CHECKBOX',
+		props: { title: 'Checkbox Input' },
 	},
 ];
 
@@ -39,9 +71,10 @@ const Apply: NextPage = () => {
 				large: true,
 			}}
 		>
+			d
 			{data.map((d, i) => {
 				const Question = ApplicationQuestions[d.type];
-				return <Question key={i} id={d.id} {...d.props} form={form.getInputProps(d.id)} />;
+				return <Question key={i} id={d.id} {...d.props} form={...form.getInputProps(d.id)} />;
 			})}
 		</Page>
 	);
@@ -61,3 +94,4 @@ export async function getStaticPaths() {
 		fallback: true,
 	};
 }
+

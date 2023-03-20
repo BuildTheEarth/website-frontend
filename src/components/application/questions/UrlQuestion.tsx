@@ -6,7 +6,6 @@ import { TextInput } from '@mantine/core';
 export interface UrlQuestionProps extends ApplicationQuestion {}
 
 function validation(value: any, props: UrlQuestionProps): boolean {
-	console.log('hi');
 	return /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/.test(
 		value,
 	);
