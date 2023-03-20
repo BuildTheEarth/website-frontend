@@ -1,5 +1,6 @@
 import '../styles/globals.css';
 import '../styles/nprogress.css';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
 import React, { useEffect } from 'react';
@@ -38,7 +39,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 			<SWRProvider>
 				<Head>
 					<title>Build The Earth</title>
-					<link href="https://api.mapbox.com/mapbox-gl-js/v0.54.1/mapbox-gl.css" rel="stylesheet" />
 				</Head>
 				<ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
 					<MantineProvider
