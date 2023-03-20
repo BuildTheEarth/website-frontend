@@ -40,9 +40,9 @@ const Faq: NextPage = () => {
 		>
 			{
 				!data &&
-				new Array(5).fill(0).map(() => {
+				new Array(5).fill(0).map((_, idx) => {
 					return (
-						<Skeleton height={50} my={"md"}/>
+						<Skeleton height={50} my={"md"} key={idx}/>
 					)
 				})
 			}
