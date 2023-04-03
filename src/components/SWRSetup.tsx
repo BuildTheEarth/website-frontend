@@ -1,0 +1,41 @@
+import Page from './Page';
+import { SWRConfig } from 'swr';
+import SWRProvider from './SWRProvider';
+import { useSession } from 'next-auth/react';
+
+export default function SWRSetup({ content }: any) {
+	const session = useSession();
+	if (session.status == 'loading') {
+		return (
+			<Page>
+				<h1>Loading...</h1>
+			</Page>
+		);
+	}
+	return (
+		<SWRProvider>
+			<SWRConfig
+				value={{
+					refreshInterval: 0,
+					fetcher: (resource: any, init: any) =>
+						fetch(process.env.NEXT_PUBLIC_API_URL + resource, {
+							headers: {
+								'Access-Control-Allow-Origin': '*',
+								Authorization: 'Bearer ' + session.data?.accessToken,
+								...init?.headers,
+							},
+							...init,
+						})
+							.then((res) => res.json())
+							.then((d) => d),
+					shouldRetryOnError: false,
+					revalidateIfStale: false,
+					revalidateOnFocus: false,
+					revalidateOnReconnect: false,
+				}}
+			>
+				{content}
+			</SWRConfig>
+		</SWRProvider>
+	);
+}

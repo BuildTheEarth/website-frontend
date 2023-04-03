@@ -9,9 +9,11 @@ import { useColorScheme, useHotkeys, useLocalStorage } from '@mantine/hooks';
 
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import { NotificationsProvider } from '@mantine/notifications';
 import { RouterTransition } from '../components/RouterTransition';
 import { SWRConfig } from 'swr';
 import SWRProvider from '../components/SWRProvider';
+import SWRSetup from '../components/SWRSetup';
 import { appWithTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 
@@ -36,25 +38,31 @@ function MyApp({ Component, pageProps }: AppProps) {
 	// TODO: Font
 	return (
 		<SessionProvider session={pageProps.session}>
-			<SWRProvider>
-				<Head>
-					<title>Build The Earth</title>
-				</Head>
-				<ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-					<MantineProvider
-						theme={{
-							colorScheme,
-							fontFamily:
-								'"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
-						}}
-						withGlobalStyles
-						withNormalizeCSS
-					>
-						<RouterTransition />
-						<Component {...pageProps} />
-					</MantineProvider>
-				</ColorSchemeProvider>
-			</SWRProvider>
+			<Head>
+				<title>Build The Earth</title>
+			</Head>
+			<ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
+				<MantineProvider
+					theme={{
+						colorScheme,
+						fontFamily:
+							'"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
+					}}
+					withGlobalStyles
+					withNormalizeCSS
+				>
+					<NotificationsProvider>
+						<SWRSetup
+							content={
+								<>
+									<RouterTransition />
+									<Component {...pageProps} />
+								</>
+							}
+						></SWRSetup>
+					</NotificationsProvider>
+				</MantineProvider>
+			</ColorSchemeProvider>
 		</SessionProvider>
 	);
 }
