@@ -1,39 +1,37 @@
-import {
-	Accordion,
-	ActionIcon,
-	Button,
-	Divider,
-	Flex,
-	Group,
-	Input,
-	MultiSelect,
-	Select,
-	SimpleGrid,
-	Skeleton,
-	Text,
-	TextInput,
-	useMantineTheme,
-} from '@mantine/core';
-import { IconCheck, IconChevronLeft, IconEdit, IconQuestionMark } from '@tabler/icons';
-import React, { useState } from 'react';
+import { ActionIcon, Button, Group, Input, SimpleGrid, TextInput } from '@mantine/core';
+import { IconCheck, IconChevronLeft, IconPlus, IconQuestionMark } from '@tabler/icons';
 
 import { GridButton } from '../../components/GridButton';
 import { NextPage } from 'next';
 import Page from '../../components/Page';
 import RTE from '../../components/RTE';
-import sanitizeHtml from 'sanitize-html';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { showNotification } from '@mantine/notifications';
 import { useForm } from '@mantine/form';
-import { useRouter } from 'next/router';
 import useSWR from 'swr';
-import { useTranslation } from 'next-i18next';
+import { useState } from 'react';
 import { useUser } from '../../hooks/useUser';
+import { v4 as uuidv4 } from 'uuid';
 
 const Faq: NextPage = () => {
 	const { data } = useSWR(`/faq`);
+	const [action, setAction] = useState('Select');
 	const user = useUser();
 	const form = useForm({ initialValues: { id: '', question: '', answer: '', links: [] } });
+
+	const handleSubmit = (e: any) => {
+		switch (action) {
+			case 'Edit':
+				handleEdit(e);
+				break;
+			case 'Delete':
+				handleDelete(e);
+				break;
+			case 'Add':
+				handleAdd(e);
+				break;
+		}
+	};
 
 	const handleEdit = (e: any) => {
 		fetch(process.env.NEXT_PUBLIC_API_URL + `/faq/${form.values.id}`, {
@@ -67,6 +65,46 @@ const Faq: NextPage = () => {
 			});
 	};
 
+	const handleDelete = (e: any) => {
+		showNotification({
+			title: 'Deletion failed',
+			message: 'Not Implemented',
+			color: 'red',
+		});
+	};
+
+	const handleAdd = (e: any) => {
+		fetch(process.env.NEXT_PUBLIC_API_URL + `/faq`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + user.token,
+			},
+			body: JSON.stringify({
+				question: form.values.question,
+				answer: form.values.answer,
+				links: form.values.links,
+			}),
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				if (res.error) {
+					showNotification({
+						title: 'Adding failed',
+						message: res.error,
+						color: 'red',
+					});
+				} else {
+					showNotification({
+						title: 'Question added',
+						message: 'All Data has been saved',
+						color: 'green',
+						icon: <IconCheck />,
+					});
+				}
+			});
+	};
+
 	return (
 		<Page
 			head={{
@@ -77,9 +115,9 @@ const Faq: NextPage = () => {
 		>
 			{!data ? (
 				<></>
-			) : form.values.id == '' ? (
+			) : action == 'Select' ? (
 				<>
-					<h2>Select Question to Edit</h2>
+					<h2>{action} FAQ Question</h2>
 					<SimpleGrid cols={3}>
 						{data?.map((q: any) => (
 							<GridButton
@@ -87,6 +125,7 @@ const Faq: NextPage = () => {
 								icon={<IconQuestionMark />}
 								key={q.id}
 								onClick={() => {
+									setAction('Edit');
 									form.setValues({
 										id: q.id,
 										question: q.question,
@@ -96,17 +135,33 @@ const Faq: NextPage = () => {
 								}}
 							/>
 						))}
+						<GridButton
+							solid
+							text={'Add new question'}
+							icon={<IconPlus />}
+							onClick={() => {
+								setAction('Add');
+								const uuid = uuidv4();
+								form.setFieldValue('id', uuid);
+								console.log(uuid);
+							}}
+						/>
 					</SimpleGrid>
 				</>
 			) : (
 				<>
 					<Group spacing={0}>
-						<ActionIcon onClick={() => form.reset()}>
+						<ActionIcon
+							onClick={() => {
+								form.reset();
+								setAction('Select');
+							}}
+						>
 							<IconChevronLeft />
 						</ActionIcon>
-						<h2>Edit FAQ Question</h2>
+						<h2>{action} FAQ Question</h2>
 					</Group>
-					<form onSubmit={form.onSubmit(handleEdit)}>
+					<form onSubmit={form.onSubmit(handleSubmit)}>
 						<TextInput
 							mt="md"
 							placeholder="How can i ... ?"
@@ -118,13 +173,21 @@ const Faq: NextPage = () => {
 						<Input.Wrapper label="Answer" mt="md" required description="Answer to the question">
 							<RTE style={{ marginTop: '5px' }} {...form.getInputProps('answer')} />
 						</Input.Wrapper>
-						<Button type="submit" mt="md">
-							Save changes
-						</Button>
+						{action != 'Add' ? (
+							<Group mt="md">
+								<Button type="submit">Save changes</Button>
+								<Button variant="outline" onClick={handleDelete}>
+									Delete Question
+								</Button>
+							</Group>
+						) : (
+							<Button type="submit" mt="md">
+								Add question
+							</Button>
+						)}
 					</form>
 				</>
 			)}
-			<Divider my="md" />
 		</Page>
 	);
 };

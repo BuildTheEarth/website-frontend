@@ -19,11 +19,25 @@ const useStyles = createStyles((theme) => ({
 		},
 	},
 }));
-export const GridButton = ({ icon, text, onClick }: { icon: any; text: string; onClick?: () => void }) => {
-	const { classes } = useStyles();
+export const GridButton = ({
+	icon,
+	text,
+	onClick,
+	solid,
+}: {
+	icon: any;
+	text: string;
+	onClick?: () => void;
+	solid?: boolean;
+}) => {
+	const { classes, theme } = useStyles();
 
 	return (
-		<UnstyledButton className={classes.button} onClick={onClick}>
+		<UnstyledButton
+			className={classes.button}
+			onClick={onClick}
+			style={{ backgroundColor: solid ? theme.colors.gray[8] : undefined }}
+		>
 			{icon}
 			<Text>{text}</Text>
 		</UnstyledButton>
