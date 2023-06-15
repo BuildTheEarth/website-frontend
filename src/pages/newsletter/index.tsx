@@ -32,15 +32,15 @@ const NewsletterList: NextPage = () => {
 						<Box key={newsletter.id} p="1rem" px="auto" style={{width: "100%"}}>
 							<Grid>
 									<Grid.Col span={10}>
-										<Text size="xl">{new Date(newsletter.published_date).toLocaleString("default", {month: "long", year: "numeric"})}</Text>
-										<Text size="sm">{newsletter.title}</Text>
+										<Text size="xl">{new Date(newsletter?.published_date).toLocaleString("default", {month: "long", year: "numeric"})}</Text>
+										<Text size="sm">{newsletter?.title}</Text>
 									</Grid.Col>
 									<Grid.Col span={2}>
 										<Button
 											variant="outline"
 											color="blue"
 											size="sm"
-											onClick={() => router.push(`/newsletter/${newsletter.issue}`)}
+											onClick={() => router.push(`/newsletter/${newsletter?.issue}`)}
 											style={{top: "50%", left: "50%", transform: "translate(-50%, -50%)"}}
 										>
 											<ExternalLink size={18} />
