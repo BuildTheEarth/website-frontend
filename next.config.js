@@ -2,11 +2,11 @@
 const nextConfig = {
 	reactStrictMode: true,
 	images: {
-		domains: ['cdn.discordapp.com'],
+		domains: ['cdn.discordapp.com', "i.imgur.com"],
 	},
 	i18n: {
 		defaultLocale: 'en',
-		locales: ['en', 'de', 'es', 'fr', 'ru', 'nl'],
+		locales: ['en', 'de', 'es', 'fr', 'ru', 'nl']
 	},
 	output: 'standalone',
 };
