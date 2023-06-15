@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 
-import { ArrowNarrowLeft, At, ExternalLink } from 'tabler-icons-react';
-import { Avatar, Button, Center, Grid, Group, Pagination, Text, ThemeIcon, useMantineTheme, Image } from '@mantine/core';
+import { ArrowNarrowLeft } from 'tabler-icons-react';
+import { Group, useMantineTheme, Image, ActionIcon } from '@mantine/core';
 
 import { NextPage } from 'next';
 import Page from '../../../components/Page';
@@ -21,26 +21,26 @@ const Newsletter: NextPage = () => {
 	return (
 		<Page
 			head={{
-				title: data.title,
-				image: '/images/placeholder.webp',
+				title: data?.title,
+				image: data?.links[0] || '/images/placeholder.webp',
 				large: true,
 			}}
 		>
-			<div style={{paddingLeft: "auto", paddingRight: "auto"}}>
+			<Group position="center" pt="md" style={{padding: "1rem"}}>
+			<ActionIcon color="blue" size="xl" variant="outline" onClick={() => router.push(`/newsletter`)}>
+					<ArrowNarrowLeft size={18} />
+			</ActionIcon>
+			</Group>
+			<Group style={{width: "100%"}}>
 				{
 					data?.links.map((link: any) => (
-						<div key={link.id} style={{padding: "1rem", marginLeft: "auto"}}>
-							<Image src={link} alt={data.title} width={"100%"} />
-						</div>
+						<Group key={link.id} p="1rem" style={{width: "100%"}}>
+							<Image src={link} alt={data.title} />
+						</Group>
 					))
 					
 				}
 
-			</div>
-			<Group position="center" pt="md" style={{padding: "1rem"}}>
-				<Button variant="outline" color="blue" size="sm" onClick={() => router.push(`/newsletter`)}>
-					<ArrowNarrowLeft size={18} />
-				</Button>
 			</Group>
 		</Page>
 	);

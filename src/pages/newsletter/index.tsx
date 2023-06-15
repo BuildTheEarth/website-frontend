@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 
 import { At, ExternalLink } from 'tabler-icons-react';
-import { Avatar, Button, Center, Grid, Group, Pagination, Text, ThemeIcon, useMantineTheme } from '@mantine/core';
+import { Avatar, Box, Button, Center, Grid, Group, Pagination, Text, ThemeIcon, useMantineTheme } from '@mantine/core';
 
 import { NextPage } from 'next';
 import Page from '../../components/Page';
@@ -26,10 +26,10 @@ const NewsletterList: NextPage = () => {
 				large: true,
 			}}
 		>
-			<div style={{paddingLeft: "auto", paddingRight: "auto"}}>
+			<Group px="auto"  >
 				{
 					data?.data.map((newsletter: any) => (
-						<div key={newsletter.id} style={{padding: "1rem", marginLeft: "auto"}}>
+						<Box key={newsletter.id} p="1rem" px="auto" style={{width: "100%"}}>
 							<Grid>
 									<Grid.Col span={10}>
 										<Text size="xl">{new Date(newsletter.published_date).toLocaleString("default", {month: "long", year: "numeric"})}</Text>
@@ -47,11 +47,10 @@ const NewsletterList: NextPage = () => {
 										</Button>
 									</Grid.Col>
 							</Grid>
-							</div>
+						</Box>
 					))
 				}
-
-			</div>
+			</Group>
 			<Group position="center" pt="md">
 				<Pagination total={data?.pages || 1} radius="xs" page={activePage} onChange={setPage} siblings={1} />
 			</Group>
