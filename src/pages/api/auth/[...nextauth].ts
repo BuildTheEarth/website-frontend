@@ -44,6 +44,7 @@ const refreshAccessToken = async (token: JWT) => {
 };
 
 export default NextAuth({
+	secret: process.env.NEXTAUTH_SECRET,
 	providers: [
 		KeycloakProvider({
 			clientId: process.env.KEYCLOAK_ID || '',
