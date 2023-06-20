@@ -48,7 +48,10 @@ const NewsletterList: NextPage = () => {
 				large: true,
 			}}
 		>
-			<p>for here</p>
+			<p>
+				The BuildTheEarth Newsletter is a monthly set of articles showcasing teams, builders, and miscellaneous topics
+				throughout the project.
+			</p>
 			<Group px="auto" mt="xl">
 				{data?.data.map((newsletter: any, i: number) => (
 					<Group
