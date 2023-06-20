@@ -58,19 +58,30 @@ const Page = (props: PageProps) => {
 			)}
 
 			{props.head && (
-				<BackgroundImage src={props.head?.image || ''} style={{ width: '100%', height: '25vh' }}>
+				<BackgroundImage src={props.head?.image || ''} style={{ width: '100%', minHeight: '25vh' }}>
 					<Center
 						style={{
 							width: '100%',
-							height: '100%',
 							backgroundColor: '#00000077',
+							textAlign: 'center',
+							height: '100%',
+							minHeight: '25vh',
 						}}
 					>
-						<h1 style={{ color: '#ffffff', fontSize: '48px', zIndex: '99' }}>
+						<h1
+							style={{
+								color: '#ffffff',
+								fontSize: theme.fontSizes.xl * 2,
+								zIndex: '99',
+								marginTop: '60px',
+								marginRight: theme.spacing.md,
+								marginLeft: theme.spacing.md,
+							}}
+						>
 							{props.head?.title}
 							{props.head?.subtitle && (
 								<>
-									<Text style={{ fontWeight: 'normal' }}>{props.head?.subtitle}</Text>
+									<Text style={{ fontWeight: 'normal', fontSize: theme.fontSizes.lg }}>{props.head?.subtitle}</Text>
 								</>
 							)}
 						</h1>
