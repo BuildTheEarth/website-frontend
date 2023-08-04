@@ -15,6 +15,7 @@ import React, { useState } from 'react';
 
 import { NextPage } from 'next';
 import Page from '../../components/Page';
+import SearchInput from '../../components/SearchInput';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
@@ -52,18 +53,7 @@ const Faq: NextPage = () => {
 				<br />
 				{t('joining')}
 			</p>
-			<TextInput
-				placeholder={t('common:search')}
-				radius="xs"
-				required
-				value={search}
-				onChange={(event) => setSearch(event.currentTarget.value)}
-				rightSection={
-					<ActionIcon onClick={() => setSearch('')}>
-						<X />
-					</ActionIcon>
-				}
-			/>
+			<SearchInput onSearch={(search) => setSearch(search)} />
 			<Grid gutter="xl" style={{ marginTop: theme.spacing.xl }}>
 				{data?.data
 					.filter((element: any) => element.name.toLowerCase().includes(search?.toLowerCase() || ''))
