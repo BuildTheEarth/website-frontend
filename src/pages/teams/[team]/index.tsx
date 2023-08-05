@@ -10,8 +10,7 @@ import { useMediaQuery } from '@mantine/hooks';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import { useTranslation } from 'next-i18next';
-import {useScroll} from "framer-motion";
-
+import { useScroll } from 'framer-motion';
 
 const Team: NextPage = () => {
 	const router = useRouter();

@@ -1,6 +1,7 @@
 import Page from './Page';
 import { SWRConfig } from 'swr';
 import SWRProvider from './SWRProvider';
+import { Session } from 'next-auth';
 import { useSession } from 'next-auth/react';
 
 export default function SWRSetup({ content }: any) {
@@ -18,6 +19,7 @@ export default function SWRSetup({ content }: any) {
 				value={{
 					refreshInterval: 0,
 					fetcher: (resource: any, init: any) =>
+						!resource.includes('/undefined') &&
 						fetch(process.env.NEXT_PUBLIC_API_URL + resource, {
 							headers: {
 								'Access-Control-Allow-Origin': '*',
@@ -28,7 +30,7 @@ export default function SWRSetup({ content }: any) {
 						})
 							.then((res) => res.json())
 							.then((d) => d),
-					shouldRetryOnError: false,
+					shouldRetryOnError: true,
 					revalidateIfStale: false,
 					revalidateOnFocus: false,
 					revalidateOnReconnect: false,

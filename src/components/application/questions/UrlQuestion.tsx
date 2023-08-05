@@ -17,7 +17,7 @@ const UrlQuestion = (props: UrlQuestionProps) => {
 			{...props.form}
 			icon={<IconLink />}
 			required={props.required}
-			description={props.description}
+			description={props.subtitle}
 			placeholder={props.placeholder}
 			label={props.title}
 			style={props.style}

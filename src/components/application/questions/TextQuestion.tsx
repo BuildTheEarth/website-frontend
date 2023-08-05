@@ -17,7 +17,7 @@ const TextQuestion = (props: TextQuestionProps) => {
 			{...props.form}
 			icon={<IconTextSize />}
 			required={props.required}
-			description={props.description}
+			description={props.subtitle}
 			placeholder={props.placeholder}
 			label={props.title}
 			style={props.style}

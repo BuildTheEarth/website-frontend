@@ -20,7 +20,7 @@ const SliderQuestion = (props: SliderQuestionProps) => {
 			{...props.form}
 			icon={<IconBuilding />}
 			required={props.required}
-			description={props.description}
+			description={props.subtitle}
 			label={props.title}
 			style={props.style}
 			max={props.max}

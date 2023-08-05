@@ -26,7 +26,7 @@ export const ApplicationQuestions: { [key: string]: any } = {
 export interface ApplicationQuestion {
 	id: string;
 	title: string;
-	description?: string;
+	subtitle?: string;
 	placeholder: string;
 	required?: boolean;
 	form?: any;

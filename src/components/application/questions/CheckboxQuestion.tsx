@@ -1,7 +1,7 @@
+import { Checkbox, Switch } from '@mantine/core';
 import { IconBuilding, IconTextSize } from '@tabler/icons';
 
 import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
-import { Checkbox } from '@mantine/core';
 
 export interface CheckboxQuestionProps extends ApplicationQuestion {
 	ifTrue?: ApplicationQuestion[];
@@ -14,10 +14,10 @@ function validation(value: any, props: CheckboxQuestionProps): boolean {
 
 const CheckboxQuestion = (props: CheckboxQuestionProps) => {
 	return (
-		<Checkbox
+		<Switch
 			{...props.form}
 			required={props.required}
-			description={props.description}
+			description={props.subtitle}
 			label={props.title}
 			style={props.style}
 			{...props.form}

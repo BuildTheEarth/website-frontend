@@ -71,7 +71,6 @@ const Apply: NextPage = () => {
 				large: true,
 			}}
 		>
-			d
 			{data.map((d, i) => {
 				const Question = ApplicationQuestions[d.type];
 				return <Question key={i} id={d.id} {...d.props} form={form.getInputProps(d.id)} />;
@@ -94,4 +93,3 @@ export async function getStaticPaths() {
 		fallback: true,
 	};
 }
-

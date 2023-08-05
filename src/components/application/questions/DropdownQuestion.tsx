@@ -20,7 +20,7 @@ const DropdownQuestion = (props: DropdownQuestionProps) => {
 			{...props.form}
 			icon={<IconBuilding />}
 			required={props.required}
-			description={props.description}
+			description={props.subtitle}
 			label={props.title}
 			style={props.style}
 			limit={props.maxSelect}
