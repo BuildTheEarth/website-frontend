@@ -1,7 +1,6 @@
-import { Accordion, ActionIcon, Button, Flex, Group, Skeleton, TextInput, useMantineTheme } from '@mantine/core';
-import { IconEdit, IconSearch } from '@tabler/icons';
-import React, { useState } from 'react';
+import { Accordion, Button, Flex, Skeleton, useMantineTheme } from '@mantine/core';
 
+import { IconEdit } from '@tabler/icons';
 import { NextPage } from 'next';
 import Page from '../../components/Page';
 import SearchInput from '../../components/SearchInput';
@@ -9,6 +8,7 @@ import sanitizeHtml from 'sanitize-html';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
+import { useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useUser } from '../../hooks/useUser';
 

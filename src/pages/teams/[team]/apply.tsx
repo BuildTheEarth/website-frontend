@@ -1,21 +1,13 @@
 import { Alert, Button, SegmentedControl, Skeleton, useMantineTheme } from '@mantine/core';
-import {
-	ApplicationQuestions,
-	generateInitialValues,
-	generateValidation,
-} from '../../../utils/application/ApplicationQuestions';
-import { GetServerSideProps, NextPage } from 'next';
-import React, { useState } from 'react';
 
+import { ApplicationQuestions } from '../../../utils/application/ApplicationQuestions';
 import { IconAlertCircle } from '@tabler/icons';
+import { NextPage } from 'next';
 import Page from '../../../components/Page';
-import build from 'next/dist/build';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useDisclosure } from '@mantine/hooks';
-import { useForm } from '@mantine/form';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
-import { useSession } from 'next-auth/react';
+import { useState } from 'react';
 
 const Apply: NextPage = () => {
 	const router = useRouter();

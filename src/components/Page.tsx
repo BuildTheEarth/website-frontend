@@ -1,9 +1,8 @@
-import { BackgroundImage, Center, Container, Text, Title, useMantineTheme } from '@mantine/core';
+import { BackgroundImage, Center, Container, Text, useMantineTheme } from '@mantine/core';
 
 import Footer from './Footer';
 import Header from './Header';
 import React from 'react';
-import { SWRConfig } from 'swr';
 import { useMediaQuery } from '@mantine/hooks';
 import { useScrollPosition } from '../hooks/useScrollPosition';
 import { useSession } from 'next-auth/react';

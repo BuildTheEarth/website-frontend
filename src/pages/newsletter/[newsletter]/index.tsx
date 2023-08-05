@@ -1,14 +1,13 @@
 /* eslint-disable no-undef */
 
-import { ActionIcon, Group, Image, useMantineTheme } from '@mantine/core';
-import React, { useState } from 'react';
+import { Group, Image, useMantineTheme } from '@mantine/core';
 
-import { ArrowNarrowLeft } from 'tabler-icons-react';
 import { NextPage } from 'next';
 import Page from '../../../components/Page';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
+import { useState } from 'react';
 
 const Newsletter: NextPage = () => {
 	const router = useRouter();

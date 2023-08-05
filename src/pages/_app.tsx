@@ -1,19 +1,16 @@
+import 'mapbox-gl/dist/mapbox-gl.css';
 import '../styles/globals.css';
 import '../styles/nprogress.css';
-import 'mapbox-gl/dist/mapbox-gl.css';
 
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core';
-import React, { useEffect } from 'react';
-import { SessionProvider, useSession } from 'next-auth/react';
 import { useColorScheme, useHotkeys, useLocalStorage } from '@mantine/hooks';
 
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { NotificationsProvider } from '@mantine/notifications';
 import { RouterTransition } from '../components/RouterTransition';
-import { SWRConfig } from 'swr';
-import SWRProvider from '../components/SWRProvider';
 import SWRSetup from '../components/SWRSetup';
+import { SessionProvider } from 'next-auth/react';
 import { appWithTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 

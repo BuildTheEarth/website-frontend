@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Link, RichTextEditor } from '@mantine/tiptap';
 
 import Highlight from '@tiptap/extension-highlight';

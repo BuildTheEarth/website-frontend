@@ -1,9 +1,8 @@
-import { ActionIcon, TextInput, TextInputProps, useMantineTheme } from '@mantine/core';
-import { IconSearch, IconX } from '@tabler/icons';
-import { useDebouncedState, useDebouncedValue } from '@mantine/hooks';
+import { TextInput, TextInputProps, useMantineTheme } from '@mantine/core';
 import { useEffect, useState } from 'react';
 
-import { DefaultValue } from '@mantine/core/lib/MultiSelect/DefaultValue/DefaultValue';
+import { IconSearch } from '@tabler/icons';
+import { useDebouncedValue } from '@mantine/hooks';
 
 interface SearchInputProps {
 	onSearch?: (search: string) => void;

@@ -1,7 +1,5 @@
 import { Button, Paper, Text, Title, createStyles } from '@mantine/core';
 
-import { R } from '@icons-pack/react-simple-icons';
-
 const useStyles = createStyles((theme) => ({
 	card: {
 		display: 'flex',

@@ -1,7 +1,5 @@
 import { Text, UnstyledButton, createStyles } from '@mantine/core';
 
-import React from 'react';
-
 const useStyles = createStyles((theme) => ({
 	button: {
 		paddingTop: theme.spacing.sm,

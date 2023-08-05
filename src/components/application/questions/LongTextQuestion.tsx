@@ -1,7 +1,6 @@
-import { TextInput, Textarea } from '@mantine/core';
-
 import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
 import { IconTextSize } from '@tabler/icons';
+import { Textarea } from '@mantine/core';
 
 export interface LongTextQuestionProps extends ApplicationQuestion {
 	validation?: string;

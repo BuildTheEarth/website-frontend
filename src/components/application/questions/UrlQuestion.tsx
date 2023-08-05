@@ -1,6 +1,5 @@
-import { IconLink, IconTextSize } from '@tabler/icons';
-
 import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
+import { IconLink } from '@tabler/icons';
 import { TextInput } from '@mantine/core';
 
 export interface UrlQuestionProps extends ApplicationQuestion {}

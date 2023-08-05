@@ -1,8 +1,7 @@
 import { IconBuilding, IconTextSize } from '@tabler/icons';
-import { MultiSelect, Slider, TextInput, Textarea } from '@mantine/core';
 
 import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
-import ImageUploadQuestionProps from './ImageUploadQuestion';
+import { MultiSelect } from '@mantine/core';
 
 export interface DropdownQuestionProps extends ApplicationQuestion {
 	maxSelect?: number;

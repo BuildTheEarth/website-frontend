@@ -2,7 +2,6 @@ import {
 	ActionIcon,
 	Avatar,
 	Badge,
-	Box,
 	Burger,
 	Button,
 	Container,
@@ -21,14 +20,14 @@ import {
 } from '@mantine/core';
 import { ChevronDown, FileSearch, FileUpload, Logout, MoonStars, Sun, World } from 'tabler-icons-react';
 import { Discord, Instagram, Tiktok, Twitch, Twitter, Youtube } from '@icons-pack/react-simple-icons';
-import React, { CSSProperties, useEffect, useState } from 'react';
+import React, { CSSProperties, useState } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { signIn, signOut, useSession } from 'next-auth/react';
-import { useClickOutside, useDisclosure, useInterval } from '@mantine/hooks';
+import { useClickOutside, useDisclosure } from '@mantine/hooks';
 
 import Icon from './Icon';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 
 const useStyles = createStyles((theme) => ({
 	root: {

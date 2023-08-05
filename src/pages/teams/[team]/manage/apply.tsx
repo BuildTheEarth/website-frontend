@@ -6,7 +6,6 @@ import {
 
 import { NextPage } from 'next';
 import Page from '../../../../components/Page';
-import UrlQuestion from '../../../../components/application/questions/UrlQuestion';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useForm } from '@mantine/form';
 

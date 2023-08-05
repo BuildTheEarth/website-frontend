@@ -1,26 +1,14 @@
 /* eslint-disable no-undef */
 
-import { At, Calendar, ExternalLink, Number } from 'tabler-icons-react';
-import {
-	Avatar,
-	Box,
-	Button,
-	Center,
-	Grid,
-	Group,
-	Pagination,
-	Text,
-	ThemeIcon,
-	createStyles,
-	useMantineTheme,
-} from '@mantine/core';
-import React, { useState } from 'react';
+import { Avatar, Group, Pagination, Text, createStyles, useMantineTheme } from '@mantine/core';
+import { Calendar, Number } from 'tabler-icons-react';
 
 import { NextPage } from 'next';
 import Page from '../../components/Page';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
+import { useState } from 'react';
 import { useTranslation } from 'next-i18next';
 
 const useStyles = createStyles((theme) => ({

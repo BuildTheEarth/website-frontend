@@ -1,4 +1,4 @@
-import { Anchor, Container, Group, Menu, createStyles } from '@mantine/core';
+import { Anchor, Container, Group, createStyles } from '@mantine/core';
 
 import { LanguageSwitcher } from './LanguageSwitcher';
 import React from 'react';

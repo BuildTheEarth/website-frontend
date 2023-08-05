@@ -1,17 +1,5 @@
-import {
-	ActionIcon,
-	Avatar,
-	Badge,
-	Grid,
-	Group,
-	Pagination,
-	Text,
-	TextInput,
-	createStyles,
-	useMantineTheme,
-} from '@mantine/core';
-import { Pin, Users, X } from 'tabler-icons-react';
-import React, { useState } from 'react';
+import { Avatar, Grid, Group, Pagination, Text, createStyles, useMantineTheme } from '@mantine/core';
+import { Pin, Users } from 'tabler-icons-react';
 
 import { NextPage } from 'next';
 import Page from '../../components/Page';
@@ -19,6 +7,7 @@ import SearchInput from '../../components/SearchInput';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
+import { useState } from 'react';
 import { useTranslation } from 'next-i18next';
 
 const useStyles = createStyles((theme) => ({

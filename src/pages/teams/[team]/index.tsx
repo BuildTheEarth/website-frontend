@@ -4,12 +4,10 @@ import Gallery from '../../../components/Gallery';
 import { LogoHeader } from '../../../components/Header';
 import { NextPage } from 'next';
 import Page from '../../../components/Page';
-import React from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useMediaQuery } from '@mantine/hooks';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
-import { useTranslation } from 'next-i18next';
 import { useScroll } from 'framer-motion';
 
 const Team: NextPage = () => {

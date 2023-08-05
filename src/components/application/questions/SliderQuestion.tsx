@@ -1,7 +1,7 @@
 import { IconBuilding, IconTextSize } from '@tabler/icons';
-import { Slider, TextInput, Textarea } from '@mantine/core';
 
 import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
+import { Slider } from '@mantine/core';
 
 export interface SliderQuestionProps extends ApplicationQuestion {
 	steps?: number;

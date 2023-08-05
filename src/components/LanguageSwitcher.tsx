@@ -1,10 +1,8 @@
 import '/node_modules/flag-icons/css/flag-icons.min.css';
 
-import { Group, Image, Menu, UnstyledButton, createStyles } from '@mantine/core';
+import { Group, Menu, UnstyledButton, createStyles } from '@mantine/core';
 
 import { ChevronDown } from 'tabler-icons-react';
-import { loadLanguages } from 'i18next';
-import { useLocalStorage } from '@mantine/hooks';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTranslation } from 'next-i18next';

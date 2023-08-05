@@ -1,7 +1,6 @@
-import { Checkbox, Switch } from '@mantine/core';
-import { IconBuilding, IconTextSize } from '@tabler/icons';
-
 import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
+import { IconTextSize } from '@tabler/icons';
+import { Switch } from '@mantine/core';
 
 export interface CheckboxQuestionProps extends ApplicationQuestion {
 	ifTrue?: ApplicationQuestion[];

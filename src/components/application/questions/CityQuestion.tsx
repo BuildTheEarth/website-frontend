@@ -1,7 +1,7 @@
 import { IconBuilding, IconTextSize } from '@tabler/icons';
-import { TextInput, Textarea } from '@mantine/core';
 
 import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
+import { TextInput } from '@mantine/core';
 
 export interface CityQuestionProps extends ApplicationQuestion {
 	country?: string;

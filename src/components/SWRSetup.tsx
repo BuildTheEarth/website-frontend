@@ -1,7 +1,6 @@
 import Page from './Page';
 import { SWRConfig } from 'swr';
 import SWRProvider from './SWRProvider';
-import { Session } from 'next-auth';
 import { useSession } from 'next-auth/react';
 
 export default function SWRSetup({ content }: any) {

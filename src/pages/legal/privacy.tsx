@@ -1,7 +1,6 @@
 import { Anchor } from '@mantine/core';
 import { NextPage } from 'next';
 import Page from '../../components/Page';
-import React from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 const Team: NextPage = () => {

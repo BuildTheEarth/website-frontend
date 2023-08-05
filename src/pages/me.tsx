@@ -1,6 +1,5 @@
 import { NextPage } from 'next';
 import Page from '../components/Page';
-import React from 'react';
 import { useSession } from 'next-auth/react';
 
 const Me: NextPage = () => {

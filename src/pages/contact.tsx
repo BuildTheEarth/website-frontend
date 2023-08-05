@@ -15,11 +15,9 @@ import {
 
 import { NextPage } from 'next';
 import Page from '../components/Page';
-import React from 'react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
-import { useTranslation } from 'next-i18next';
 
 const Contact: NextPage = () => {
 	const router = useRouter();
