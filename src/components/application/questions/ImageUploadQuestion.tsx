@@ -1,6 +1,6 @@
-import { IconBuilding, IconTextSize } from '@tabler/icons';
-
 import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
+import Icon from '../../Icon';
+import { IconPhoto } from '@tabler/icons';
 import { TextInput } from '@mantine/core';
 
 export interface ImageUploadQuestionProps extends ApplicationQuestion {
@@ -17,7 +17,7 @@ const ImageUploadQuestion = (props: ImageUploadQuestionProps) => {
 	return (
 		<TextInput
 			{...props.form}
-			icon={<IconBuilding />}
+			icon={<Icon name={props.icon} />}
 			required={props.required}
 			description={props.subtitle}
 			label={props.title}
@@ -27,6 +27,12 @@ const ImageUploadQuestion = (props: ImageUploadQuestionProps) => {
 	);
 };
 
+const EditQuestion = ({ editingQuestion, handleUpdateEditingQuestion }: any) => {
+	return <></>;
+};
+
+ImageUploadQuestion.edit = EditQuestion;
+ImageUploadQuestion.mockdata = { maxSize: 100, maxAmount: 1 };
 ImageUploadQuestion.validation = validation;
-ImageUploadQuestion.icon = IconTextSize;
+ImageUploadQuestion.icon = IconPhoto;
 export default ImageUploadQuestion;

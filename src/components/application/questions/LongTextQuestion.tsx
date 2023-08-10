@@ -1,21 +1,24 @@
 import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
+import Icon from '../../Icon';
 import { IconTextSize } from '@tabler/icons';
 import { Textarea } from '@mantine/core';
 
 export interface LongTextQuestionProps extends ApplicationQuestion {
-	validation?: string;
-	length?: number;
+	additionalData: {
+		validation?: string;
+		length?: number;
+	};
 }
 
 function validation(value: any, props: LongTextQuestionProps): boolean {
-	return value.split().length <= (props.length || 200);
+	return value.split().length <= (props.additionalData.length || 200);
 }
 
 const LongTextQuestion = (props: LongTextQuestionProps) => {
 	return (
 		<Textarea
 			{...props.form}
-			icon={<IconTextSize />}
+			icon={<Icon name={props.icon} />}
 			required={props.required}
 			description={props.subtitle}
 			placeholder={props.placeholder}
@@ -29,6 +32,12 @@ const LongTextQuestion = (props: LongTextQuestionProps) => {
 	);
 };
 
+const EditQuestion = ({ editingQuestion, handleUpdateEditingQuestion }: any) => {
+	return <></>;
+};
+
+LongTextQuestion.edit = EditQuestion;
+LongTextQuestion.mockdata = {};
 LongTextQuestion.validation = validation;
 LongTextQuestion.icon = IconTextSize;
 export default LongTextQuestion;

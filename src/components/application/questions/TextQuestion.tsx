@@ -1,10 +1,13 @@
 import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
+import Icon from '../../Icon';
 import { IconTextSize } from '@tabler/icons';
 import { TextInput } from '@mantine/core';
 
 export interface TextQuestionProps extends ApplicationQuestion {
-	validation?: string;
-	length?: number;
+	additionalData: {
+		validation?: string;
+		length?: number;
+	};
 }
 
 function validation(value: any, props: TextQuestionProps): boolean {
@@ -15,7 +18,7 @@ const TextQuestion = (props: TextQuestionProps) => {
 	return (
 		<TextInput
 			{...props.form}
-			icon={<IconTextSize />}
+			icon={<Icon name={props.icon} />}
 			required={props.required}
 			description={props.subtitle}
 			placeholder={props.placeholder}
@@ -26,6 +29,12 @@ const TextQuestion = (props: TextQuestionProps) => {
 	);
 };
 
+// const EditQuestion = ({ editingQuestion, handleUpdateEditingQuestion }: any) => {
+// 	return <></>;
+// };
+
+// TextQuestion.edit = EditQuestion;
+TextQuestion.mockdata = {};
 TextQuestion.validation = validation;
 TextQuestion.icon = IconTextSize;
 export default TextQuestion;

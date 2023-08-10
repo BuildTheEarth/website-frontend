@@ -1,8 +1,11 @@
 import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
+import Icon from '../../Icon';
 import { IconLink } from '@tabler/icons';
 import { TextInput } from '@mantine/core';
 
-export interface UrlQuestionProps extends ApplicationQuestion {}
+export interface UrlQuestionProps extends ApplicationQuestion {
+	additionalData: {};
+}
 
 function validation(value: any, props: UrlQuestionProps): boolean {
 	return /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/.test(
@@ -14,7 +17,7 @@ const UrlQuestion = (props: UrlQuestionProps) => {
 	return (
 		<TextInput
 			{...props.form}
-			icon={<IconLink />}
+			icon={<Icon name={props.icon} />}
 			required={props.required}
 			description={props.subtitle}
 			placeholder={props.placeholder}
@@ -25,6 +28,12 @@ const UrlQuestion = (props: UrlQuestionProps) => {
 	);
 };
 
+const EditQuestion = ({ editingQuestion, handleUpdateEditingQuestion }: any) => {
+	return <></>;
+};
+
+UrlQuestion.edit = EditQuestion;
+UrlQuestion.mockdata = {};
 UrlQuestion.validation = validation;
 UrlQuestion.icon = IconLink;
 export default UrlQuestion;

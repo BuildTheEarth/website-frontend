@@ -29,6 +29,7 @@ export interface ApplicationQuestion {
 	subtitle?: string;
 	placeholder: string;
 	required?: boolean;
+	icon?: string;
 	form?: any;
 	style?: CSSProperties;
 }
@@ -47,4 +48,29 @@ export function generateValidation(data: any) {
 		console.log('t', d.type, ApplicationQuestions[d.type].validation('https://google.com', d.props));
 	});
 	return validation;
+}
+
+export function toReadable(question: typeof ApplicationQuestions) {
+	switch (question) {
+		case TextQuestion:
+			return 'Short Input';
+		case LongTextQuestion:
+			return 'Long Input';
+		case DropdownQuestion:
+			return 'Dropdown';
+		case CityQuestion:
+			return 'City';
+		case UrlQuestion:
+			return 'URL';
+		case MinecraftQuestion:
+			return 'Minecraft Username';
+		case SliderQuestion:
+			return 'Slider';
+		case ImageUploadQuestion:
+			return 'Image Upload';
+		case CheckboxQuestion:
+			return 'Checkbox';
+		default:
+			return 'Text';
+	}
 }
