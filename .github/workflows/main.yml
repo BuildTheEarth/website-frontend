@@ -1,0 +1,23 @@
+name: Docker Publish
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Docker login
+      run: |
+        echo "${{ github.token }}" | docker login https://ghcr.io -u ${GITHUB_ACTOR} --password-stdin
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag ghcr.io/buildtheearth/website-frontend:$(git rev-parse --short HEAD) --tag ghcr.io/buildtheearth/website-frontend:latest
+    - name: Docker push tag
+      run: docker push ghcr.io/buildtheearth/website-frontend:$(git rev-parse --short HEAD)
+    - name: Docker push latest
+      run: docker push ghcr.io/buildtheearth/website-frontend:latest

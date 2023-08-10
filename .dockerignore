@@ -1,0 +1,4 @@
+node_modules
+.git
+keycloak.json
+.env.local
