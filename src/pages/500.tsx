@@ -10,7 +10,7 @@ function ErrorPage() {
 	const { t } = useTranslation('errors');
 	const router = useRouter();
 	return (
-		<Page fullWidth>
+		<Page fullWidth seo={{ nofollow: true, noindex: true }}>
 			<div
 				style={{
 					width: '100%',

@@ -35,6 +35,8 @@ const NewsletterList: NextPage = () => {
 				image: '/images/placeholder.webp',
 				large: true,
 			}}
+			description="The BuildTheEarth Newsletter is a monthly set of articles showcasing teams, builders, and miscellaneous topics
+				throughout the project"
 		>
 			<p>
 				The BuildTheEarth Newsletter is a monthly set of articles showcasing teams, builders, and miscellaneous topics

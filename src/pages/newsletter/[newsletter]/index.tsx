@@ -25,6 +25,9 @@ const Newsletter: NextPage = () => {
 				large: true,
 				subtitle: `Issue ${data?.issue}, ${new Date(data?.published_date).toLocaleDateString()}`,
 			}}
+			description={`BuildTheEarth Newsletter Issue ${data?.issue}, ${new Date(
+				data?.published_date,
+			).toLocaleDateString()}`}
 		>
 			<Group style={{ width: '100%' }}>
 				{data?.links.slice(1).map((link: any) => (

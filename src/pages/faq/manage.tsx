@@ -112,6 +112,7 @@ const Faq: NextPage = () => {
 				image: '/images/placeholder.webp',
 				large: true,
 			}}
+			seo={{ nofollow: true, noindex: true }}
 		>
 			{!data ? (
 				<></>

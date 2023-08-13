@@ -12,6 +12,14 @@ const defaultSeo: DefaultSeoProps = {
 		type: 'website',
 		description: 'Recreating The Whole Earth In Minecraft',
 		siteName: 'BuildTheEarth',
+		images: [
+			{
+				url: 'https://beta.buildtheearth.net/images/placeholder.webp',
+				width: 1920,
+				height: 1080,
+				alt: 'New York City',
+			},
+		],
 	},
 };
 

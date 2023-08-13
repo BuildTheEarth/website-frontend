@@ -26,6 +26,8 @@ const Faq: NextPage = () => {
 				image: '/images/placeholder.webp',
 				large: true,
 			}}
+			title="FAQ"
+			description="Answers to all frrequently asked Questions about the BuildTheEarth Project"
 		>
 			<Flex justify="flex-end" align="center" direction="row" mb="md">
 				<SearchInput onSearch={(search) => setSearch(search)} />

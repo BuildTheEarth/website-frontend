@@ -27,6 +27,8 @@ const Apply: NextPage = () => {
 				image: '/images/placeholder.webp',
 				large: true,
 			}}
+			title={buildteam?.name}
+			description={buildteam?.about}
 		>
 			{!(data && buildteam)
 				? new Array(6).fill(0).map((_, idx) => {

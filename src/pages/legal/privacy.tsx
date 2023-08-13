@@ -12,6 +12,7 @@ const Team: NextPage = () => {
 				image: '/images/placeholder.webp',
 				large: true,
 			}}
+			seo={{ nofollow: true, noindex: true }}
 		>
 			<h1>Privacy</h1>
 			<h2>What information we keep</h2>

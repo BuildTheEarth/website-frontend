@@ -18,7 +18,7 @@ const Team: NextPage = () => {
 	const theme = useMantineTheme();
 	const { scrollY } = useScroll();
 	return (
-		<Page fullWidth>
+		<Page fullWidth title={data?.name} description={data?.about}>
 			<LogoHeader {...data} applyHref={`${team}/apply`} />
 			<Container
 				size="xl"

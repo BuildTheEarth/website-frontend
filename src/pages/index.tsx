@@ -23,7 +23,7 @@ const Home: NextPage = () => {
 	const { t } = useTranslation('home');
 	const router = useRouter();
 	return (
-		<Page fullWidth>
+		<Page fullWidth title="Home">
 			<BackgroundImage src="/images/home/head.png" style={{ height: '100vh', width: '100%' }} mb="0">
 				<Center
 					style={{

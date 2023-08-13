@@ -35,6 +35,7 @@ const Faq: NextPage = () => {
 				large: true,
 				image: '/images/placeholder.webp',
 			}}
+			description="Build Teams work together on a multiplayer server to build cities, regions and sometimes even entire countries for the BuildTheEarth Project"
 		>
 			<p>
 				{t('description')}

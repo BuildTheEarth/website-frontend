@@ -31,6 +31,7 @@ const Contact: NextPage = () => {
 				image: '/images/placeholder.webp',
 				large: true,
 			}}
+			description="Get in touch with BuildTheEarth Staff Members"
 		>
 			<h3 style={{ textAlign: 'center', fontSize: '30px', lineHeight: '0' }}>Individual People</h3>
 			<Grid mt="md">

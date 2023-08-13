@@ -18,6 +18,7 @@ const SignIn: NextPage = () => {
 				image: '/images/placeholder.webp',
 				large: true,
 			}}
+			seo={{ nofollow: true, noindex: true }}
 		>
 			<h2>Sign in to BuildTheEarth</h2>
 			<p>
