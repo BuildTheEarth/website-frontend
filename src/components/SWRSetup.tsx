@@ -12,6 +12,7 @@ export default function SWRSetup({ content }: any) {
 			</Page>
 		);
 	}
+	console.log(process.env.NEXT_PUBLIC_API_URL);
 	return (
 		<SWRConfig
 			value={{
