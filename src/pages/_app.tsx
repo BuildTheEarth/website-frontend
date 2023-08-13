@@ -18,10 +18,9 @@ import { useRouter } from 'next/router';
 
 function MyApp({ Component, pageProps }: AppProps) {
 	const router = useRouter();
-	const preferredColorScheme = useColorScheme();
 	const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
-		key: 'scheme',
-		defaultValue: preferredColorScheme,
+		key: 'color',
+		defaultValue: 'dark',
 		getInitialValueInEffect: true,
 	});
 
