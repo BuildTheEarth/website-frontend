@@ -59,6 +59,7 @@
 		"next": "12.2.5",
 		"next-auth": "^4.18.8",
 		"next-i18next": "^13.0.3",
+		"next-seo": "^6.1.0",
 		"react": "18.2.0",
 		"react-beautiful-dnd": "^13.1.1",
 		"react-dom": "18.2.0",

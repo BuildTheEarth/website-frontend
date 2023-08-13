@@ -6,12 +6,14 @@ import { ColorScheme, ColorSchemeProvider, MantineProvider } from '@mantine/core
 import { useColorScheme, useHotkeys, useLocalStorage } from '@mantine/hooks';
 
 import type { AppProps } from 'next/app';
+import { DefaultSeo } from 'next-seo';
 import Head from 'next/head';
 import { NotificationsProvider } from '@mantine/notifications';
 import { RouterTransition } from '../components/RouterTransition';
 import SWRSetup from '../components/SWRSetup';
 import { SessionProvider } from 'next-auth/react';
 import { appWithTranslation } from 'next-i18next';
+import defaultSeo from '../../next-seo.config';
 import { useRouter } from 'next/router';
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -35,9 +37,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 	// TODO: Font
 	return (
 		<SessionProvider session={pageProps.session}>
-			<Head>
-				<title>Build The Earth</title>
-			</Head>
+			<DefaultSeo {...defaultSeo} />
 			<ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
 				<MantineProvider
 					theme={{
