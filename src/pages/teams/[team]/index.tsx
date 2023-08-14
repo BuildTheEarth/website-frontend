@@ -4,16 +4,17 @@ import Gallery from '../../../components/Gallery';
 import { LogoHeader } from '../../../components/Header';
 import { NextPage } from 'next';
 import Page from '../../../components/Page';
+import fetcher from '../../../utils/Fetcher';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useMediaQuery } from '@mantine/hooks';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import { useScroll } from 'framer-motion';
 
-const Team: NextPage = () => {
+const Team: NextPage = ({ data }: any) => {
 	const router = useRouter();
 	const team = router.query.team;
-	const { data } = useSWR(`/buildteams/${team}?builds=true&showcase=true`);
+	// const { data } = useSWR(`/buildteams/${team}?builds=true&showcase=true`);
 	const matches = useMediaQuery('(min-width: 900px)');
 	const theme = useMantineTheme();
 	const { scrollY } = useScroll();
@@ -82,16 +83,23 @@ const Team: NextPage = () => {
 
 export default Team;
 
-export async function getStaticProps({ locale }: any) {
+export async function getStaticProps({ locale, params }: any) {
+	const res = await fetcher(`/buildteams/${params.team}?builds=true&showcase=true`);
 	return {
 		props: {
 			...(await serverSideTranslations(locale, ['common', 'teams'])),
+			data: res,
 		},
 	};
 }
 export async function getStaticPaths() {
+	const res = await fetcher('/buildteams');
 	return {
-		paths: [],
+		paths: res.map((team: any) => ({
+			params: {
+				team: team.id,
+			},
+		})),
 		fallback: true,
 	};
 }

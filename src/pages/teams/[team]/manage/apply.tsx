@@ -205,7 +205,6 @@ const Apply: NextPage = () => {
 						disabled={saveLoading}
 						onChange={(value) => {
 							setTrial(value === '1');
-							console.log(trial);
 						}}
 						color="blue"
 						mb="md"

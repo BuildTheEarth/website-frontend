@@ -378,6 +378,7 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 								borderRadius: '50%',
 								padding: 16,
 							}}
+							alt={'Logo'}
 						></Avatar>
 						<h1 style={{ lineHeight: 1, margin: 0 }}>{props.name}</h1>
 					</Group>

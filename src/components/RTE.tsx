@@ -33,7 +33,6 @@ export default function RTE({
 		],
 		content: value,
 		onUpdate: (e) => {
-			console.log(e.editor.getHTML());
 			onChange && onChange(e.editor.getHTML());
 			onClick && onClick(e);
 		},

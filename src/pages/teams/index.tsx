@@ -110,7 +110,6 @@ export default Teams;
 
 export async function getStaticProps({ locale }: any) {
 	const res = await fetcher('/buildteams');
-	console.log(res?.length);
 
 	return { props: { data: res, ...(await serverSideTranslations(locale, ['common', 'teams'])) } };
 }

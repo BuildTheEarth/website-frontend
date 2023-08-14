@@ -196,7 +196,6 @@ export default Contact;
 
 export async function getStaticProps({ locale }: any) {
 	const res = await fetcher('/contacts');
-	console.log(res?.length);
 
 	return { props: { data: res, ...(await serverSideTranslations(locale, ['common'])) } };
 }

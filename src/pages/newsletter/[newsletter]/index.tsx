@@ -15,7 +15,6 @@ const Newsletter: NextPage = () => {
 	const [activePage, setPage] = useState(1);
 	const newsletter = router.query.newsletter;
 	const { data } = useSWR(`/newsletter/${newsletter}?isIssue=true`);
-	console.log(data);
 
 	return (
 		<Page

@@ -45,7 +45,6 @@ const Apply: NextPage = () => {
 									<SegmentedControl
 										onChange={(value) => {
 											setTrial(value === '1');
-											console.log(trial);
 										}}
 										color="blue"
 										mb="md"
@@ -78,7 +77,6 @@ const Apply: NextPage = () => {
 };
 export default Apply;
 export async function getStaticProps({ locale }: any) {
-	console.log(locale);
 	return {
 		props: {
 			...(await serverSideTranslations(locale, ['common', 'teams'])),

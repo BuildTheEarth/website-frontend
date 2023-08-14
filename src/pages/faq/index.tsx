@@ -56,7 +56,5 @@ export default Faq;
 
 export async function getStaticProps({ locale }: any) {
 	const res = await fetcher('/faq');
-	console.log(res?.length);
-
 	return { props: { data: res, ...(await serverSideTranslations(locale, ['common', 'faq'])) } };
 }

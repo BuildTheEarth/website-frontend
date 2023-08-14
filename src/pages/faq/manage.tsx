@@ -144,7 +144,6 @@ const Faq: NextPage = () => {
 								setAction('Add');
 								const uuid = uuidv4();
 								form.setFieldValue('id', uuid);
-								console.log(uuid);
 							}}
 						/>
 					</SimpleGrid>
