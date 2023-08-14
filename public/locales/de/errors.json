@@ -1,63 +1,63 @@
 {
-    "fallback": {
-        "title": "Etwas ist schiefgelaufen ({{error}})",
-        "message": "Bitte versuche es später erneut."
-    },
-    "301": {
-        "title": "",
-        "message": ""
-    },
-    "400": {
-        "title": "",
-        "message": ""
-    },
-    "401": {
-        "title": "",
-        "message": ""
-    },
-    "403": {
-        "title": "",
-        "message": ""
-    },
-    "404": {
-        "title": "Nicht Gefunden",
-        "message": "Wir können die gesuchte Seite nicht finden. Bitte überprüfe die URL und versuche es erneut."
-    },
-    "405": {
-        "title": "",
-        "message": ""
-    },
-    "408": {
-        "title": "",
-        "message": ""
-    },
-    "418": {
-        "title": "🫖",
-        "message": ""
-    },
-    "429": {
-        "title": "",
-        "message": ""
-    },
-    "500": {
-        "code": "500",
-        "title": "Interner Server Error",
-        "message": "Wir haben einige Probleme mit unseren Servern, bitte versuche es später noch einmal."
-    },
-    "501": {
-        "title": "",
-        "message": ""
-    },
-    "502": {
-        "title": "",
-        "message": "Our servers are overloaded at the given time, please try again later."
-    },
-    "503": {
-        "title": "",
-        "message": ""
-    },
-    "508": {
-        "title": "",
-        "message": ""
-    }
+	"fallback": {
+		"title": "Etwas ist schiefgelaufen ({{error}})",
+		"message": "Bitte versuche es später erneut."
+	},
+	"301": {
+		"title": "",
+		"message": ""
+	},
+	"400": {
+		"title": "",
+		"message": ""
+	},
+	"401": {
+		"title": "",
+		"message": ""
+	},
+	"403": {
+		"title": "",
+		"message": ""
+	},
+	"404": {
+		"title": "Nicht Gefunden",
+		"message": "Wir können die gesuchte Seite nicht finden. Bitte überprüfe die URL und versuche es erneut."
+	},
+	"405": {
+		"title": "",
+		"message": ""
+	},
+	"408": {
+		"title": "",
+		"message": ""
+	},
+	"418": {
+		"title": "🫖",
+		"message": ""
+	},
+	"429": {
+		"title": "",
+		"message": ""
+	},
+	"500": {
+		"code": "500",
+		"title": "Interner Server Error",
+		"message": "Wir haben einige Probleme mit unseren Servern, bitte versuche es später noch einmal."
+	},
+	"501": {
+		"title": "",
+		"message": ""
+	},
+	"502": {
+		"title": "",
+		"message": "Our servers are overloaded at the given time, please try again later."
+	},
+	"503": {
+		"title": "",
+		"message": ""
+	},
+	"508": {
+		"title": "",
+		"message": ""
+	}
 }
