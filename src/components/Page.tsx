@@ -12,6 +12,7 @@ import { useSession } from 'next-auth/react';
 interface PageProps {
 	children: React.ReactNode;
 	fullWidth?: boolean;
+	smallPadding?: boolean;
 	disabled?: {
 		header?: boolean;
 		footer?: boolean;
@@ -114,7 +115,7 @@ const Page = (props: PageProps) => {
 							boxShadow: 'none',
 							marginTop: theme.spacing.xl * 2,
 							marginBottom: theme.spacing.xl * 2,
-							padding: !matches ? `${theme.spacing.xs * 3}px` : `${theme.spacing.xl * 3}px`,
+							padding: !matches || props.smallPadding ? `${theme.spacing.xs * 3}px` : `${theme.spacing.xl * 3}px`,
 							paddingBottom: !matches ? `${theme.spacing.xs * 1.5}px` : `${theme.spacing.xl * 1.5}px`,
 							paddingTop: !matches ? `${theme.spacing.xs * 1}px` : `${theme.spacing.xl * 1}px`,
 							flex: 1,

@@ -336,6 +336,7 @@ interface LogoHeaderProps {
 	showStatus?: boolean;
 	userStatus: string;
 	applyHref?: string;
+	settingsHref?: string;
 	invite?: string;
 }
 
@@ -442,6 +443,10 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 								Apply
 							</Button>
 						)}
+						<Button component="a" href={props.settingsHref} variant="outline">
+							{/*TODO: Add Permision check */}
+							Settings
+						</Button>
 					</Group>
 				</Group>
 			</Group>

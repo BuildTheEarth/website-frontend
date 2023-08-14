@@ -27,6 +27,7 @@ import App from 'next/app';
 import Icon from '../../../../components/Icon';
 import { NextPage } from 'next';
 import Page from '../../../../components/Page';
+import SettingsTabs from '../../../../components/SettingsTabs';
 import TextQuestion from '../../../../components/application/questions/TextQuestion';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useState } from 'react';
@@ -115,185 +116,188 @@ const Apply: NextPage = () => {
 
 	return (
 		<Page
+			smallPadding
 			head={{
 				title: 'Edit Application Questions',
 				image: '/images/placeholder.webp',
 			}}
 			seo={{ nofollow: true, noindex: true }}
 		>
-			<Modal
-				zIndex={9999}
-				opened={editingQuestion != null}
-				onClose={() => setEditingQuestion(null)}
-				title="Edit Question"
-				centered
-				size="lg"
-			>
-				<TextInput
-					required
-					defaultValue={editingQuestion?.title}
-					label="Title"
-					description="The question title"
-					mb="md"
-					onChange={(e) => handleUpdateEditingQuestion({ title: e.target.value })}
-				/>
-				<Group grow>
+			<SettingsTabs>
+				<Modal
+					zIndex={9999}
+					opened={editingQuestion != null}
+					onClose={() => setEditingQuestion(null)}
+					title="Edit Question"
+					centered
+					size="lg"
+				>
 					<TextInput
-						defaultValue={editingQuestion?.subtitle}
-						label="Subtitle"
-						description="The question subtitle"
+						required
+						defaultValue={editingQuestion?.title}
+						label="Title"
+						description="The question title"
 						mb="md"
-						onChange={(e) => handleUpdateEditingQuestion({ subtitle: e.target.value })}
+						onChange={(e) => handleUpdateEditingQuestion({ title: e.target.value })}
 					/>
-					<TextInput
-						defaultValue={editingQuestion?.placeholder}
-						label="Placeholder"
-						description="The question placeholder"
-						mb="md"
-						onChange={(e) => handleUpdateEditingQuestion({ placeholder: e.target.value })}
-					/>
-				</Group>
-				<Group grow>
-					<Switch
-						defaultChecked={editingQuestion?.required}
-						label="Required Question"
-						description="If this question has to be answered"
-						onChange={(e) => handleUpdateEditingQuestion({ required: e.target.checked })}
-					/>
-					<TextInput
-						defaultValue={editingQuestion?.icon}
-						label="Icon"
-						description="The question icon"
-						mb="md"
-						onChange={(e) => handleUpdateEditingQuestion({ icon: e.target.value })}
-					/>
-				</Group>
-				{editingQuestion?.type && <EditQuestion type={editingQuestion?.type} {...editingQuestion.additionalData} />}
-				<Text color="dimmed" size="sm" mt="md">
-					A list of all Supported Icons can be found at{' '}
-					<Anchor href="https://tabler-icons.io/" target="_blank">
-						tabler-icons
-					</Anchor>
-				</Text>
-				<Button
-					mt="md"
-					onClick={() => {
-						handleUpdateQuestion(editingQuestion?.id, editingQuestion);
+					<Group grow>
+						<TextInput
+							defaultValue={editingQuestion?.subtitle}
+							label="Subtitle"
+							description="The question subtitle"
+							mb="md"
+							onChange={(e) => handleUpdateEditingQuestion({ subtitle: e.target.value })}
+						/>
+						<TextInput
+							defaultValue={editingQuestion?.placeholder}
+							label="Placeholder"
+							description="The question placeholder"
+							mb="md"
+							onChange={(e) => handleUpdateEditingQuestion({ placeholder: e.target.value })}
+						/>
+					</Group>
+					<Group grow>
+						<Switch
+							defaultChecked={editingQuestion?.required}
+							label="Required Question"
+							description="If this question has to be answered"
+							onChange={(e) => handleUpdateEditingQuestion({ required: e.target.checked })}
+						/>
+						<TextInput
+							defaultValue={editingQuestion?.icon}
+							label="Icon"
+							description="The question icon"
+							mb="md"
+							onChange={(e) => handleUpdateEditingQuestion({ icon: e.target.value })}
+						/>
+					</Group>
+					{editingQuestion?.type && <EditQuestion type={editingQuestion?.type} {...editingQuestion.additionalData} />}
+					<Text color="dimmed" size="sm" mt="md">
+						A list of all Supported Icons can be found at{' '}
+						<Anchor href="https://tabler-icons.io/" target="_blank">
+							tabler-icons
+						</Anchor>
+					</Text>
+					<Button
+						mt="md"
+						onClick={() => {
+							handleUpdateQuestion(editingQuestion?.id, editingQuestion);
 
-						setEditingQuestion(null);
-					}}
-				>
-					Save
-				</Button>
-				<Button
-					variant="outline"
-					ml="sm"
-					onClick={() => {
-						handleDeleteQuestion(editingQuestion?.id);
-						setEditingQuestion(null);
-					}}
-				>
-					Delete
-				</Button>
-				<Divider my="md" label="Example" labelPosition="center" />
-				{editingQuestion?.type && <Question {...editingQuestion} />}
-			</Modal>
-			<Group grow>
-				<div>
-					<SegmentedControl
-						disabled={saveLoading}
-						onChange={(value) => {
-							setTrial(value === '1');
+							setEditingQuestion(null);
 						}}
-						color="blue"
-						mb="md"
-						styles={{ label: { minWidth: 100 } }}
-						data={[
-							{ label: 'Builder', value: '0' },
-							{ label: 'Trial', value: '1' },
-						]}
-					/>
-				</div>
-				<Group position="right">
-					<Button loading={saveLoading} onClick={handleSubmit}>
+					>
 						Save
 					</Button>
-					<Menu withinPortal>
-						<Menu.Target>
-							<Button leftIcon={<IconPlus />} pr={12} variant="outline" disabled={saveLoading}>
-								Add new Question
-							</Button>
-						</Menu.Target>
-						<Menu.Dropdown>
-							{Object.keys(ApplicationQuestions).map((q: string, i: number) => {
-								const Question = ApplicationQuestions[q];
-								const QIcon = Question.icon || IconLetterT;
-								return (
-									<Menu.Item
-										key={i}
-										icon={<QIcon size="1rem" color={theme.colors.blue[6]} stroke={1.5} />}
+					<Button
+						variant="outline"
+						ml="sm"
+						onClick={() => {
+							handleDeleteQuestion(editingQuestion?.id);
+							setEditingQuestion(null);
+						}}
+					>
+						Delete
+					</Button>
+					<Divider my="md" label="Example" labelPosition="center" />
+					{editingQuestion?.type && <Question {...editingQuestion} />}
+				</Modal>
+				<Group grow>
+					<div>
+						<SegmentedControl
+							disabled={saveLoading}
+							onChange={(value) => {
+								setTrial(value === '1');
+							}}
+							color="blue"
+							mb="md"
+							styles={{ label: { minWidth: 100 } }}
+							data={[
+								{ label: 'Builder', value: '0' },
+								{ label: 'Trial', value: '1' },
+							]}
+						/>
+					</div>
+					<Group position="right">
+						<Button loading={saveLoading} onClick={handleSubmit}>
+							Save
+						</Button>
+						<Menu withinPortal>
+							<Menu.Target>
+								<Button leftIcon={<IconPlus />} pr={12} variant="outline" disabled={saveLoading}>
+									Add new Question
+								</Button>
+							</Menu.Target>
+							<Menu.Dropdown>
+								{Object.keys(ApplicationQuestions).map((q: string, i: number) => {
+									const Question = ApplicationQuestions[q];
+									const QIcon = Question.icon || IconLetterT;
+									return (
+										<Menu.Item
+											key={i}
+											icon={<QIcon size="1rem" color={theme.colors.blue[6]} stroke={1.5} />}
+											onClick={() => {
+												const newQuestion = {
+													id: uuidv4(),
+													title: 'New Question',
+													subtitle: '',
+													placeholder: '',
+													required: false,
+													type: q,
+													icon: 'question-mark',
+													additionalData: Question.mockdata,
+													buildTeamId: data[0].buildTeamId,
+													sort: data.filter((d) => d.trial == trial).slice(-1)[0].sort + 1,
+													trial,
+												};
+												handleAddQuestion(newQuestion);
+												setEditingQuestion(newQuestion);
+											}}
+										>
+											{toReadable(Question)}
+										</Menu.Item>
+									);
+								})}
+							</Menu.Dropdown>
+						</Menu>
+					</Group>
+				</Group>
+				{data
+					.filter((d) => d.trial == trial)
+					.sort((a, b) => a.sort - b.sort)
+					.map((d, i) => (
+						<Card key={d.id} withBorder mt={i > 0 ? 'md' : undefined}>
+							<Group style={{ display: 'flex' }}>
+								<Stack spacing={0}>
+									<ActionIcon
+										variant={i == 0 ? 'transparent' : undefined}
+										disabled={i == 0}
 										onClick={() => {
-											const newQuestion = {
-												id: uuidv4(),
-												title: 'New Question',
-												subtitle: '',
-												placeholder: '',
-												required: false,
-												type: q,
-												icon: 'question-mark',
-												additionalData: Question.mockdata,
-												buildTeamId: data[0].buildTeamId,
-												sort: data.filter((d) => d.trial == trial).slice(-1)[0].sort + 1,
-												trial,
-											};
-											handleAddQuestion(newQuestion);
-											setEditingQuestion(newQuestion);
+											handleUpdateQuestion(d.id, { sort: d.sort - 1 });
 										}}
 									>
-										{toReadable(Question)}
-									</Menu.Item>
-								);
-							})}
-						</Menu.Dropdown>
-					</Menu>
-				</Group>
-			</Group>
-			{data
-				.filter((d) => d.trial == trial)
-				.sort((a, b) => a.sort - b.sort)
-				.map((d, i) => (
-					<Card key={d.id} withBorder mt={i > 0 ? 'md' : undefined}>
-						<Group style={{ display: 'flex' }}>
-							<Stack spacing={0}>
-								<ActionIcon
-									variant={i == 0 ? 'transparent' : undefined}
-									disabled={i == 0}
-									onClick={() => {
-										handleUpdateQuestion(d.id, { sort: d.sort - 1 });
-									}}
-								>
-									<IconChevronUp />
-								</ActionIcon>
-								<ActionIcon
-									variant={i == data.filter((d) => d.trial == trial).length - 1 ? 'transparent' : undefined}
-									disabled={i == data.filter((d) => d.trial == trial).length - 1}
-									onClick={() => {
-										handleUpdateQuestion(d.id, { sort: d.sort + 1 });
-									}}
-								>
-									<IconChevronDown />
-								</ActionIcon>
-							</Stack>
-							<Divider orientation="vertical" />
-							<Stack spacing={0} style={{ cursor: 'pointer', flexGrow: 1 }} onClick={() => setEditingQuestion(d)}>
-								<Title order={4} style={{ display: 'flex', alignItems: 'center' }}>
-									<Icon name={d.icon} style={{ height: 20, marginRight: 4 }} /> {d.title}
-								</Title>
-								<Text color="dimmed">{toReadable(ApplicationQuestions[d.type])}</Text>
-							</Stack>
-						</Group>
-					</Card>
-				))}
+										<IconChevronUp />
+									</ActionIcon>
+									<ActionIcon
+										variant={i == data.filter((d) => d.trial == trial).length - 1 ? 'transparent' : undefined}
+										disabled={i == data.filter((d) => d.trial == trial).length - 1}
+										onClick={() => {
+											handleUpdateQuestion(d.id, { sort: d.sort + 1 });
+										}}
+									>
+										<IconChevronDown />
+									</ActionIcon>
+								</Stack>
+								<Divider orientation="vertical" />
+								<Stack spacing={0} style={{ cursor: 'pointer', flexGrow: 1 }} onClick={() => setEditingQuestion(d)}>
+									<Title order={4} style={{ display: 'flex', alignItems: 'center' }}>
+										<Icon name={d.icon} style={{ height: 20, marginRight: 4 }} /> {d.title}
+									</Title>
+									<Text color="dimmed">{toReadable(ApplicationQuestions[d.type])}</Text>
+								</Stack>
+							</Group>
+						</Card>
+					))}
+			</SettingsTabs>
 		</Page>
 	);
 };

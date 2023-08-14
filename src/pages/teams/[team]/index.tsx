@@ -20,7 +20,7 @@ const Team: NextPage = ({ data }: any) => {
 	const { scrollY } = useScroll();
 	return (
 		<Page fullWidth title={data?.name} description={data?.about}>
-			<LogoHeader {...data} applyHref={`${team}/apply`} />
+			<LogoHeader {...data} applyHref={`${team}/apply`} settingsHref={`${team}/manage/settings`} />
 			<Container
 				size="xl"
 				style={{
