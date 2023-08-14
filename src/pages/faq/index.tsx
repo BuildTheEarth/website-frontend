@@ -4,6 +4,7 @@ import { IconEdit } from '@tabler/icons';
 import { NextPage } from 'next';
 import Page from '../../components/Page';
 import SearchInput from '../../components/SearchInput';
+import fetcher from '../../utils/Fetcher';
 import sanitizeHtml from 'sanitize-html';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
@@ -12,13 +13,11 @@ import { useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useUser } from '../../hooks/useUser';
 
-const Faq: NextPage = () => {
+const Faq: NextPage = ({ data }: any) => {
 	const router = useRouter();
 	const [search, setSearch] = useState('');
 	const { t } = useTranslation('faq');
-	const { data } = useSWR(`/faq`);
 	const user = useUser();
-	const theme = useMantineTheme();
 	return (
 		<Page
 			head={{
@@ -37,10 +36,6 @@ const Faq: NextPage = () => {
 					</Button>
 				)}
 			</Flex>
-			{!data &&
-				new Array(5).fill(0).map((_, idx) => {
-					return <Skeleton height={50} my={'md'} key={idx} />;
-				})}
 			<Accordion variant="separated">
 				{data
 					?.filter((element: any) => element.question.toLowerCase().includes(search.toLowerCase()))
@@ -59,10 +54,9 @@ const Faq: NextPage = () => {
 
 export default Faq;
 
-export async function getStaticProps({ locale }: any) {
-	return {
-		props: {
-			...(await serverSideTranslations(locale, ['common', 'faq'])),
-		},
-	};
+export async function getServerSideProps({ locale }: any) {
+	const res = await fetcher('/faq');
+	console.log(res?.length);
+
+	return { props: { data: res, ...(await serverSideTranslations(locale, ['common', 'faq'])) } };
 }

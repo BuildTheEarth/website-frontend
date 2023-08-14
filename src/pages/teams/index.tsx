@@ -28,7 +28,6 @@ const Teams: NextPage = ({ data }: any) => {
 	const { classes } = useStyles();
 	const [search, setSearch] = useState<string | undefined>(undefined);
 	const [activePage, setPage] = useState(1);
-	console.log(activePage * 14 - 14, activePage * 14, data?.slice(activePage * 14 - 14, activePage * 14));
 	return (
 		<Page
 			head={{
