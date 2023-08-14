@@ -176,6 +176,7 @@ const Header = ({ links, style }: HeaderProps) => {
 				router.push(link.link);
 				handler.close();
 			}}
+			href={link.link}
 		>
 			{t(`links.${link.translation}`)}
 		</a>
