@@ -54,7 +54,7 @@ const Faq: NextPage = ({ data }: any) => {
 
 export default Faq;
 
-export async function getServerSideProps({ locale }: any) {
+export async function getStaticProps({ locale }: any) {
 	const res = await fetcher('/faq');
 	console.log(res?.length);
 

@@ -108,15 +108,7 @@ const Teams: NextPage = ({ data }: any) => {
 
 export default Teams;
 
-// export async function getStaticProps({ locale }: any) {
-// 	return {
-// 		props: {
-
-// 		},
-// 	};
-// }
-
-export async function getServerSideProps({ locale }: any) {
+export async function getStaticProps({ locale }: any) {
 	const res = await fetcher('/buildteams');
 	console.log(res?.length);
 
