@@ -1,36 +1,36 @@
 {
-    "language": "Deutsch",
-    "copyright": "Copyright © {{year}} BuildTheEarth. Alle Rechte vorbehalten.",
-    "buildtheearth": "BuildTheEarth",
-    "auth": {
-        "signin": "Anmelden",
-        "signout": "Abmelden",
-        "signup": "Loslegen"
-    },
-    "user": {
-        "quickActions": "Schnellzugriff",
-        "upload": "Welt hochladen",
-        "theme": {
-            "dark": "Helles Design umschalten",
-            "light": "Dunkles Design umschalten"
-        },
-        "review": "Claims überprüfen"
-    },
-    "button": {
-        "save": "Speichern",
-        "delete": "Löschen",
-        "copy": "Kopieren",
-        "back": "Zurück",
-        "submit": "Senden"
-    },
-    "links": {
-        "faq": "FAQ",
-        "map": "Karte",
-        "contact": "Kontakt",
-        "aboutUs": "Über uns",
-        "teams": "Bau Teams"
-    },
-    "search": "Suchen…",
-    "staff": "",
-    "builder": ""
+	"language": "Deutsch",
+	"copyright": "Copyright © {{year}} BuildTheEarth",
+	"buildtheearth": "BuildTheEarth",
+	"auth": {
+		"signin": "Anmelden",
+		"signout": "Abmelden",
+		"signup": "Loslegen"
+	},
+	"user": {
+		"quickActions": "Schnellzugriff",
+		"upload": "Welt hochladen",
+		"theme": {
+			"dark": "Helles Design umschalten",
+			"light": "Dunkles Design umschalten"
+		},
+		"review": "Claims überprüfen"
+	},
+	"button": {
+		"save": "Speichern",
+		"delete": "Löschen",
+		"copy": "Kopieren",
+		"back": "Zurück",
+		"submit": "Senden"
+	},
+	"links": {
+		"faq": "FAQ",
+		"map": "Karte",
+		"contact": "Kontakt",
+		"aboutUs": "Über uns",
+		"teams": "Bau Teams"
+	},
+	"search": "Suchen…",
+	"staff": "",
+	"builder": ""
 }

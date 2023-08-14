@@ -1,3 +1,4 @@
+import { LoadingOverlay } from '@mantine/core';
 import Page from './Page';
 import { SWRConfig } from 'swr';
 import SWRProvider from './SWRProvider';
@@ -5,13 +6,9 @@ import { useSession } from 'next-auth/react';
 
 export default function SWRSetup({ content }: any) {
 	const session = useSession();
-	if (session.status == 'loading') {
-		return (
-			<Page>
-				<h1>Loading...</h1>
-			</Page>
-		);
-	}
+	// if (session.status == 'loading') {
+	// 	return <LoadingOverlay visible />;
+	// }
 	return (
 		<SWRConfig
 			value={{

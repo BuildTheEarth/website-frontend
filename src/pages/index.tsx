@@ -75,7 +75,9 @@ const Home: NextPage = () => {
 					<Grid.Col lg={5} style={{ marginTop: 50, marginBottom: 50, minHeight: '30vh' }}>
 						<Center style={{ width: '100%', height: '100%' }}>
 							<div style={{ padding: '0px 10%' }}>
-								<h1 id="more">{t('mission.title')}</h1>
+								<h1 id="more" style={{ scrollMarginTop: 70 }}>
+									{t('mission.title')}
+								</h1>
 								<div
 									style={{
 										background: `linear-gradient(90deg, rgba(${

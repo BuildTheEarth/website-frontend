@@ -1,9 +1,10 @@
-import { Avatar, Grid, Group, Pagination, Text, createStyles, useMantineTheme } from '@mantine/core';
+import { Avatar, Grid, Group, Pagination, Skeleton, Text, createStyles, useMantineTheme } from '@mantine/core';
 import { Pin, Users } from 'tabler-icons-react';
 
 import { NextPage } from 'next';
 import Page from '../../components/Page';
 import SearchInput from '../../components/SearchInput';
+import fetcher from '../../utils/Fetcher';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
@@ -20,14 +21,14 @@ const useStyles = createStyles((theme) => ({
 	},
 }));
 
-const Faq: NextPage = () => {
+const Teams: NextPage = ({ data }: any) => {
 	const router = useRouter();
 	const { t } = useTranslation('teams');
 	const theme = useMantineTheme();
 	const { classes } = useStyles();
 	const [search, setSearch] = useState<string | undefined>(undefined);
 	const [activePage, setPage] = useState(1);
-	const { data } = useSWR(`/buildteams?page=${activePage - 1}`);
+	console.log(activePage * 14 - 14, activePage * 14, data?.slice(activePage * 14 - 14, activePage * 14));
 	return (
 		<Page
 			head={{
@@ -45,9 +46,9 @@ const Faq: NextPage = () => {
 			</p>
 			<SearchInput onSearch={(search) => setSearch(search)} />
 			<Grid gutter="xl" style={{ marginTop: theme.spacing.xl }}>
-				{data?.data
-					.filter((element: any) => element.name.toLowerCase().includes(search?.toLowerCase() || ''))
-					//.slice(activePage * 14 - 14, activePage * 14)
+				{data
+					?.filter((element: any) => element.name.toLowerCase().includes(search?.toLowerCase() || ''))
+					.slice(activePage * 8 - 8, activePage * 8)
 					.map((element: any, i: number) => (
 						<Grid.Col key={i} sm={6}>
 							<Group
@@ -58,6 +59,7 @@ const Faq: NextPage = () => {
 									'&:hover': {
 										backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[4],
 									},
+									cursor: 'pointer',
 								}}
 								p="md"
 								onClick={() => router.push(`/teams/${element.id}`)}
@@ -91,18 +93,33 @@ const Faq: NextPage = () => {
 					))}
 			</Grid>
 			<Group position="center" pt="md">
-				<Pagination total={data?.pages || 1} radius="xs" page={activePage} onChange={setPage} siblings={1} />
+				<Pagination
+					total={Math.ceil(
+						data?.filter((element: any) => element.name.toLowerCase().includes(search?.toLowerCase() || '')).length / 8,
+					)}
+					radius="xs"
+					page={activePage}
+					onChange={setPage}
+					siblings={1}
+				/>
 			</Group>
 		</Page>
 	);
 };
 
-export default Faq;
+export default Teams;
 
-export async function getStaticProps({ locale }: any) {
-	return {
-		props: {
-			...(await serverSideTranslations(locale, ['common', 'teams'])),
-		},
-	};
+// export async function getStaticProps({ locale }: any) {
+// 	return {
+// 		props: {
+
+// 		},
+// 	};
+// }
+
+export async function getServerSideProps({ locale }: any) {
+	const res = await fetcher('/buildteams');
+	console.log(res?.length);
+
+	return { props: { data: res, ...(await serverSideTranslations(locale, ['common', 'teams'])) } };
 }
