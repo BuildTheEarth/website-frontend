@@ -26,6 +26,7 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 import { useClickOutside, useDisclosure } from '@mantine/hooks';
 
 import Icon from './Icon';
+import { IconSettings } from '@tabler/icons';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 
@@ -225,6 +226,9 @@ const Header = ({ links, style }: HeaderProps) => {
 							</Menu.Target>
 							<Menu.Dropdown>
 								<Menu.Item icon={<FileUpload size={14} />}>{t('user.upload')}</Menu.Item>
+								<Menu.Item icon={<IconSettings size={14} />} component="a" href="/me/settings">
+									Settings
+								</Menu.Item>
 								<Menu.Divider />
 								<Menu.Label>{t('user.quickActions')}</Menu.Label>
 								<Menu.Item
