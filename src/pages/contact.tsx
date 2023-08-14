@@ -15,13 +15,13 @@ import {
 
 import { NextPage } from 'next';
 import Page from '../components/Page';
+import fetcher from '../utils/Fetcher';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
-const Contact: NextPage = () => {
+const Contact: NextPage = ({ data }: any) => {
 	const router = useRouter();
-	const { data } = useSWR('/contacts');
 	const theme = useMantineTheme();
 
 	return (
@@ -195,9 +195,8 @@ const Contact: NextPage = () => {
 export default Contact;
 
 export async function getStaticProps({ locale }: any) {
-	return {
-		props: {
-			...(await serverSideTranslations(locale, ['common'])),
-		},
-	};
+	const res = await fetcher('/contacts');
+	console.log(res?.length);
+
+	return { props: { data: res, ...(await serverSideTranslations(locale, ['common'])) } };
 }
