@@ -10,7 +10,6 @@ const Team: NextPage = () => {
 			head={{
 				title: 'Privacy',
 				image: '/images/placeholder.webp',
-				large: true,
 			}}
 			seo={{ nofollow: true, noindex: true }}
 		>

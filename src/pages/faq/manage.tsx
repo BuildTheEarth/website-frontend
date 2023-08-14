@@ -110,7 +110,6 @@ const Faq: NextPage = () => {
 			head={{
 				title: 'Edit FAQ',
 				image: '/images/placeholder.webp',
-				large: true,
 			}}
 			seo={{ nofollow: true, noindex: true }}
 		>

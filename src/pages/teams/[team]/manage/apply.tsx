@@ -118,7 +118,6 @@ const Apply: NextPage = () => {
 			head={{
 				title: 'Edit Application Questions',
 				image: '/images/placeholder.webp',
-				large: true,
 			}}
 			seo={{ nofollow: true, noindex: true }}
 		>

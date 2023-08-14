@@ -16,7 +16,6 @@ const SignIn: NextPage = () => {
 			head={{
 				title: 'Sign in',
 				image: '/images/placeholder.webp',
-				large: true,
 			}}
 			seo={{ nofollow: true, noindex: true }}
 		>

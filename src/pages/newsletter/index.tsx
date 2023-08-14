@@ -33,7 +33,6 @@ const NewsletterList: NextPage = () => {
 			head={{
 				title: 'Newsletter',
 				image: '/images/placeholder.webp',
-				large: true,
 			}}
 			description="The BuildTheEarth Newsletter is a monthly set of articles showcasing teams, builders, and miscellaneous topics
 				throughout the project"

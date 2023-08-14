@@ -70,14 +70,17 @@ const Page = (props: PageProps) => {
 				)}
 
 				{props.head && (
-					<BackgroundImage src={props.head?.image || ''} style={{ width: '100%', minHeight: '25vh' }}>
+					<BackgroundImage
+						src={props.head?.image || ''}
+						style={{ width: '100%', minHeight: props.head.large ? '30vh' : '25vh' }}
+					>
 						<Center
 							style={{
 								width: '100%',
 								backgroundColor: '#00000077',
 								textAlign: 'center',
 								height: '100%',
-								minHeight: '25vh',
+								minHeight: props.head.large ? '30vh' : '25vh',
 							}}
 						>
 							<h1
