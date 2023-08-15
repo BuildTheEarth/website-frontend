@@ -1,1 +1,63 @@
-{}
+{
+	"fallback": {
+		"title": "Er is iets misgegaan ({{error}})",
+		"message": "Probeer het later opnieuw."
+	},
+	"301": {
+		"title": "Permanent verhuisd",
+		"message": "De pagina waar je om vroeg is permanent verhuisd naar een andere URL. Probeer het alsjeblieft opnieuw met de nieuwe URL."
+	},
+	"400": {
+		"title": "Slecht verzoek",
+		"message": "Herlaad alsjeblieft de pagina en check uw internetverbinding."
+	},
+	"401": {
+		"title": "Geen toegang",
+		"message": "U hebt geen toegang tot deze pagina."
+	},
+	"403": {
+		"title": "Verboden",
+		"message": "U hebt geen toegang tot deze pagina."
+	},
+	"404": {
+		"title": "Terwijl we bezig zijn met het bouwen van de aarde, hebben we deze pagina nog niet gebouwd..",
+		"message": "We kunnen de pagina die je zoekt niet vinden. Kijk de URL na en probeer opnieuw."
+	},
+	"405": {
+		"title": "Methode niet toegestaan",
+		"message": "De gebruikte methode om toegang te kijken tot deze pagina is niet toegestaan. Probeer het alsjeblieft opnieuw met een GET methode."
+	},
+	"408": {
+		"title": "Verzoek Time-out",
+		"message": "De pagina die je zoekt duurt te lang om te laden. Probeer het alsjeblieft later opnieuw."
+	},
+	"418": {
+		"title": "🫖",
+		"message": "Wordt comfortabel met de thee en probeer het opnieuw."
+	},
+	"429": {
+		"title": "Te veel verzoeken",
+		"message": "Je probeert te vaak om toegang te krijgen tot deze pagina. Probeer het alsjeblieft later opnieuw."
+	},
+	"500": {
+		"code": "500",
+		"title": "Interne Server Fout",
+		"message": "We ondervinden wat problemen met onze server, probeer het alsjeblieft later opnieuw."
+	},
+	"501": {
+		"title": "Niet geïmplementeerd",
+		"message": "Uw browser ondersteund bepaalde functies niet die onze website nodig heeft. Update alsjeblieft uw browser."
+	},
+	"502": {
+		"title": "Slechte Poort",
+		"message": "Onze servers zijn momenteel overbelast, probeer het alsjeblieft later opnieuw."
+	},
+	"503": {
+		"title": "Dienst Niet Beschikbaar",
+		"message": "Onze servers zijn momenteel overbelast, probeer het alsjeblieft later opnieuw."
+	},
+	"508": {
+		"title": "Lus Gedetecteerd",
+		"message": "We hebben een lus gedetecteerd. Probeer het alsjeblieft later opnieuw."
+	}
+}
