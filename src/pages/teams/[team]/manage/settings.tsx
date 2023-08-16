@@ -103,7 +103,7 @@ const Settings = ({ data: tempData }: any) => {
 			}}
 			seo={{ nofollow: true, noindex: true }}
 		>
-			<SettingsTabs team={data.id}>
+			<SettingsTabs team={data?.id}>
 				{data && (
 					<>
 						<form onSubmit={handleSave}>
