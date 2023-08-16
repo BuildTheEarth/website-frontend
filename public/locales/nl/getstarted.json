@@ -2,7 +2,7 @@
 	"head": {
 		"title": "Hoe zou jij graag deelnemen?"
 	},
-    "description": "Om het bouwen van de aarde makkelijker te maken hebben we de wereld opgesplitst in lokale teams die zich concentreren op de verschillende landen. Deze teams zijn communities van Minecraft spelers van het land die samenwerken. Iedereen is welkom bij de teams, ook als je niet van het land bent.\n Daarbovenop hebben we het globale netwerk waarin we de moeite van alle teams proberen te combineren. Het is de internationale hub die ons allemaal verbindt tot één enkel project.",
+	"description": "Om het bouwen van de aarde makkelijker te maken hebben we de wereld opgesplitst in lokale teams die zich concentreren op de verschillende landen. Deze teams zijn communities van Minecraft spelers van het land die samenwerken. Iedereen is welkom bij de teams, ook als je niet van het land bent.\n Daarbovenop hebben we het globale netwerk waarin we de moeite van alle teams proberen te combineren. Het is de internationale hub die ons allemaal verbindt tot één enkel project.",
 	"compability": "Compatibiliteit",
 	"network": {
 		"title": "Globale Netwerk",
@@ -15,7 +15,7 @@
 	},
 	"teams": {
 		"title": "Bouw een land",
-        "description": "Alle landen en regio's hebben Bouwteams die zich concentreren op specifieke landen. Ze zijn communities van Bouwers van deze Landen/Regio's die samenwerken en het werk van hun regio organiseren.\nAls je al weet waar je wilt bouwen kan je jouw land vinden en het team rechtstreeks joinen.",
+		"description": "Alle landen en regio's hebben Bouwteams die zich concentreren op specifieke landen. Ze zijn communities van Bouwers van deze Landen/Regio's die samenwerken en het werk van hun regio organiseren.\nAls je al weet waar je wilt bouwen kan je jouw land vinden en het team rechtstreeks joinen.",
 		"compability": {
 			"java": "Java: 1.8 - 1.19",
 			"bedrock": "Bedrock: Laatste versie"
