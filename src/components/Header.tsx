@@ -29,6 +29,7 @@ import Icon from './Icon';
 import { IconSettings } from '@tabler/icons';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
+import { useUser } from '../hooks/useUser';
 
 const useStyles = createStyles((theme) => ({
 	root: {
@@ -338,11 +339,13 @@ interface LogoHeaderProps {
 	applyHref?: string;
 	settingsHref?: string;
 	invite?: string;
+	id: string;
 }
 
 export const LogoHeader = (props: LogoHeaderProps) => {
 	const theme = useMantineTheme();
 	const { scrollY, scrollYProgress } = useScroll();
+	const user = useUser();
 	const blur = useTransform(scrollYProgress, (latest) => `blur(${latest * 20}px)`);
 	const bgPosY = useTransform(scrollYProgress, (latest) => `${latest * 20 + 50}%`);
 	return (
@@ -443,10 +446,21 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 								Apply
 							</Button>
 						)}
-						<Button component="a" href={props.settingsHref} variant="outline">
-							{/*TODO: Add Permision check */}
-							Settings
-						</Button>
+						{user.hasPermissions(
+							[
+								'team.settings.edit',
+								'team.socials.edit',
+								'team.application.edit',
+								'team.application.list',
+								'team.application.review',
+							],
+							props.id,
+						) && (
+							<Button component="a" href={props.settingsHref} variant="outline">
+								{/*TODO: Add Permision check */}
+								Settings
+							</Button>
+						)}
 					</Group>
 				</Group>
 			</Group>

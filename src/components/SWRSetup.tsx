@@ -1,7 +1,6 @@
 import { LoadingOverlay } from '@mantine/core';
 import Page from './Page';
 import { SWRConfig } from 'swr';
-import SWRProvider from './SWRProvider';
 import { useSession } from 'next-auth/react';
 
 export default function SWRSetup({ content }: any) {
