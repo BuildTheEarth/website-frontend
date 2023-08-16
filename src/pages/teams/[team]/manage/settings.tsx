@@ -236,13 +236,3 @@ export async function getStaticPaths() {
 		fallback: true,
 	};
 }
-
-/*
- name,
-      icon,
-      backgroundImage,
-      socials,
-      invite,
-      about,
-      location,
-      slug,*/
