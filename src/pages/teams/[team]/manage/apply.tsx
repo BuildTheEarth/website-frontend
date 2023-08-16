@@ -123,7 +123,7 @@ const Apply: NextPage = () => {
 			}}
 			seo={{ nofollow: true, noindex: true }}
 		>
-			<SettingsTabs>
+			<SettingsTabs team={'03c6ff11-0d72-4ed7-9c5d-f75abe03c4d3'}>
 				<Modal
 					zIndex={9999}
 					opened={editingQuestion != null}
