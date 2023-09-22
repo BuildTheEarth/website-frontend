@@ -1,13 +1,13 @@
-import { useMantineTheme } from '@mantine/core';
+import { useMantineColorScheme } from '@mantine/core';
 
 /* eslint-disable jsx-a11y/alt-text */
 const Icon = ({ name, ...rest }: any) => {
-	const theme = useMantineTheme();
+	const scheme = useMantineColorScheme();
 	return (
 		<img
 			src={'/icons/' + name + '.svg'}
 			{...rest}
-			style={{ filter: theme.colorScheme == 'dark' ? 'invert(100%)' : '', ...rest.style }}
+			style={{ filter: scheme.colorScheme == 'dark' ? 'invert(100%)' : '', ...rest.style }}
 		/>
 	);
 };

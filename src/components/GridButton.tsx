@@ -1,22 +1,7 @@
-import { Text, UnstyledButton, createStyles } from '@mantine/core';
+import { Text, UnstyledButton } from '@mantine/core';
 
-const useStyles = createStyles((theme) => ({
-	button: {
-		paddingTop: theme.spacing.sm,
-		paddingBottom: theme.spacing.sm,
-		paddingLeft: theme.spacing.xl,
-		paddingRight: theme.spacing.xl,
-		border: `2px solid ${theme.colors.gray[8]}`,
-		borderRadius: theme.radius.md,
-		display: 'flex',
-		alignItems: 'center',
-		gap: theme.spacing.md,
-		flexDirection: 'row',
-		'&:hover': {
-			backgroundColor: theme.colors.gray[8],
-		},
-	},
-}));
+import classes from '../styles/components/GridButton.module.css';
+
 export const GridButton = ({
 	icon,
 	text,
@@ -28,13 +13,11 @@ export const GridButton = ({
 	onClick?: () => void;
 	solid?: boolean;
 }) => {
-	const { classes, theme } = useStyles();
-
 	return (
 		<UnstyledButton
 			className={classes.button}
 			onClick={onClick}
-			style={{ backgroundColor: solid ? theme.colors.gray[8] : undefined }}
+			style={{ backgroundColor: solid ? 'var(--mantine-color-gray-8)' : undefined }}
 		>
 			{icon}
 			<Text>{text}</Text>

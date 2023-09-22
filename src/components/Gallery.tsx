@@ -15,7 +15,6 @@ function Gallery(props: GalleryProps) {
 	return (
 		<Box style={props.style}>
 			<Carousel
-				mx="auto"
 				withIndicators
 				height={'100%'}
 				initialSlide={active}
@@ -28,17 +27,6 @@ function Gallery(props: GalleryProps) {
 					setActive(active + 1);
 				}}
 				loop
-				styles={{
-					indicator: {
-						width: 12,
-						height: 4,
-						transition: 'width 250ms ease',
-
-						'&[data-active]': {
-							width: 40,
-						},
-					},
-				}}
 			>
 				{props.images.map((i) => {
 					return (
@@ -58,7 +46,7 @@ function Gallery(props: GalleryProps) {
 										zIndex: 50,
 									}}
 								>
-									<Title color={'white'} style={{ display: 'flex', alignItems: 'center' }}>
+									<Title style={{ display: 'flex', alignItems: 'center', color: 'var(--mantine-color-white)' }}>
 										<span
 											className={`fi fi-${i.country} fis`}
 											style={{

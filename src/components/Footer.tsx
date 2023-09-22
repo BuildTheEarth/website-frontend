@@ -1,33 +1,9 @@
-import { Anchor, Container, Group, createStyles } from '@mantine/core';
+import { Anchor, Container, Group } from '@mantine/core';
 
 import { LanguageSwitcher } from './LanguageSwitcher';
 import React from 'react';
+import classes from '../styles/components/Footer.module.css';
 import { useTranslation } from 'react-i18next';
-
-const useStyles = createStyles((theme) => ({
-	footer: {
-		borderTop: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : '#eaeaea'}`,
-		backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : '#fafafa',
-	},
-
-	inner: {
-		display: 'flex',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-		paddingTop: theme.spacing.sm,
-		paddingBottom: theme.spacing.sm,
-
-		[theme.fn.smallerThan('xs')]: {
-			flexDirection: 'column',
-		},
-	},
-
-	links: {
-		[theme.fn.smallerThan('xs')]: {
-			marginTop: theme.spacing.md,
-		},
-	},
-}));
 
 interface FooterSimpleProps {
 	links: { link: string; translation: string }[];
@@ -35,7 +11,6 @@ interface FooterSimpleProps {
 }
 
 export default function Footer({ links, style }: FooterSimpleProps) {
-	const { classes } = useStyles();
 	const { t } = useTranslation();
 	const items = links.map((link) => (
 		<Anchor<'a'> color="dimmed" key={link.translation} href={link.link} size="sm">

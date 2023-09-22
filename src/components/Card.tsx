@@ -1,29 +1,6 @@
-import { Button, Paper, Text, Title, createStyles } from '@mantine/core';
+import { Button, Paper, Text, Title } from '@mantine/core';
 
-const useStyles = createStyles((theme) => ({
-	card: {
-		display: 'flex',
-		flexDirection: 'column',
-		justifyContent: 'space-between',
-		alignItems: 'flex-start',
-		backgroundSize: 'cover',
-		backgroundPosition: 'center',
-	},
-
-	title: {
-		fontWeight: 900,
-		color: theme.white,
-		lineHeight: 1.2,
-		marginTop: theme.spacing.xs,
-	},
-
-	category: {
-		color: theme.white,
-		opacity: 0.7,
-		fontWeight: 700,
-		textTransform: 'uppercase',
-	},
-}));
+import classes from '../styles/components/Card.module.css';
 
 interface ArticleCardImageProps {
 	image: string;
@@ -44,8 +21,6 @@ export function BackgroundCard({
 	buttonText,
 	onClick,
 }: ArticleCardImageProps) {
-	const { classes } = useStyles();
-
 	return (
 		<Paper
 			shadow="md"

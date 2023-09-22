@@ -26,7 +26,7 @@ const SearchInput = (props: SearchInputProps) => {
 	return (
 		<TextInput
 			placeholder="Search..."
-			icon={<IconSearch size="1rem" stroke={1.5} />}
+			leftSection={<IconSearch size="1rem" stroke={1.5} />}
 			{...props.inputProps}
 			defaultValue={value}
 			onChange={(event) => setValue(event.currentTarget.value)}

@@ -1,0 +1,33 @@
+.control: {
+    width: 200;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: var(--mantine-radius-md);
+    border: `1px solid light-dark(var(--mantine-color-gray-2),var(--mantine-color-dark-6));
+    transition: background-color 150ms ease;
+    background-color: light-dark(var(--mantine-color-white),var(--mantine-color-dark-6));
+
+    &:hover: {
+        background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-5));
+    }
+
+    &[data-opened] {
+        background-color: light-dark(var(--mantine-color-gray-0),var(--mantine-color-dark-5));
+    }
+}
+
+.label: {
+    font-weight: 500;
+    font-size: theme.fontSizes.sm;
+}
+
+.icon: {
+    transition: transform 150ms ease;
+    transform: rotate(0deg);
+
+    &[data-opened] {
+        transform: rotate(180deg);
+    }
+}

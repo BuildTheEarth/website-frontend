@@ -1,4 +1,4 @@
-import { BackgroundImage, Center, Container, Text, useMantineTheme } from '@mantine/core';
+import { BackgroundImage, Center, Container, Text, useMantineColorScheme, useMantineTheme } from '@mantine/core';
 import { NextSeo, NextSeoProps } from 'next-seo';
 
 import Footer from './Footer';
@@ -37,6 +37,7 @@ const Page = (props: PageProps) => {
 	const { data: session } = useSession();
 	const { scrollY } = useScrollPosition();
 	const theme = useMantineTheme();
+	const scheme = useMantineColorScheme();
 	return (
 		<>
 			<NextSeo
@@ -47,7 +48,7 @@ const Page = (props: PageProps) => {
 			/>
 			<div
 				style={{
-					backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
+					backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
 					width: 'calc(100vw - (100vw - 100%))',
 					minHeight: '100vh',
 					display: 'flex',
@@ -87,7 +88,7 @@ const Page = (props: PageProps) => {
 							<h1
 								style={{
 									color: '#ffffff',
-									fontSize: theme.fontSizes.xl * 2,
+									fontSize: 'calc(var(--mantine-font-size-xl) * 2)',
 									zIndex: '99',
 									marginTop: '60px',
 									marginRight: theme.spacing.md,
@@ -111,13 +112,18 @@ const Page = (props: PageProps) => {
 					<Container
 						size="xl"
 						style={{
-							backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : '#ffffff',
+							backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[7] : '#ffffff',
 							boxShadow: 'none',
-							marginTop: theme.spacing.xl * 2,
-							marginBottom: theme.spacing.xl * 2,
-							padding: !matches || props.smallPadding ? `${theme.spacing.xs * 3}px` : `${theme.spacing.xl * 3}px`,
-							paddingBottom: !matches ? `${theme.spacing.xs * 1.5}px` : `${theme.spacing.xl * 1.5}px`,
-							paddingTop: !matches ? `${theme.spacing.xs * 1}px` : `${theme.spacing.xl * 1}px`,
+							marginTop: 'calc(var(--mantine-spacing-xl) * 2)',
+							marginBottom: 'calc(var(--mantine-spacing-xl) * 2)',
+							padding:
+								!matches || props.smallPadding
+									? 'calc(var(--mantine-spacing-xs) * 3)'
+									: 'calc(var(--mantine-spacing-xl) * 3)',
+							paddingBottom: !matches
+								? 'calc(var(--mantine-spacing-xs) * 1.5)'
+								: 'calc(var(--mantine-spacing-xl) * 1.5)',
+							paddingTop: !matches ? 'var(--mantine-spacing-xs' : 'var(--mantine-spacing-xl',
 							flex: 1,
 							width: '100%',
 							position: 'relative',

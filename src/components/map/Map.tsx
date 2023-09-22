@@ -3,7 +3,7 @@ import 'mapbox-gl-style-switcher/styles.css';
 
 import * as React from 'react';
 
-import { LoadingOverlay, useMantineTheme } from '@mantine/core';
+import { LoadingOverlay, useMantineColorScheme, useMantineTheme } from '@mantine/core';
 import { MapboxStyleDefinition, MapboxStyleSwitcherControl } from 'mapbox-gl-style-switcher';
 import axios, { AxiosResponse } from 'axios';
 
@@ -55,7 +55,7 @@ function Map({
 	// Boolean if map is loading (-> Display mapLoader)
 	const [loading, setLoading] = React.useState(true);
 	// Mantine Theme
-	const theme = useMantineTheme();
+	const theme = useMantineColorScheme();
 	// Ref to the map div
 	const mapNode = React.useRef(null);
 

@@ -1,5 +1,6 @@
 import {
 	ActionIcon,
+	AppShellHeader,
 	Avatar,
 	Badge,
 	Burger,
@@ -8,13 +9,11 @@ import {
 	Divider,
 	Group,
 	Indicator,
-	Header as MantineHeader,
 	Menu,
 	Paper,
 	Text,
 	Transition,
 	UnstyledButton,
-	createStyles,
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
@@ -27,128 +26,10 @@ import { useClickOutside, useDisclosure } from '@mantine/hooks';
 
 import Icon from './Icon';
 import { IconSettings } from '@tabler/icons';
+import classes from '../styles/components/Header.module.css';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import { useUser } from '../hooks/useUser';
-
-const useStyles = createStyles((theme) => ({
-	root: {
-		zIndex: 99,
-	},
-
-	dropdown: {
-		position: 'absolute',
-		top: 60,
-		left: 0,
-		right: 0,
-		zIndex: 0,
-		borderTopRightRadius: 0,
-		borderTopLeftRadius: 0,
-		borderTopWidth: 0,
-		overflow: 'hidden',
-		boxShadow: theme.shadows.md,
-
-		[theme.fn.largerThan('sm')]: {
-			display: 'none',
-		},
-	},
-
-	header: {
-		display: 'flex',
-		alignItems: 'center',
-		margin: 'auto',
-		paddingLeft: '24px',
-		paddingRight: '24px',
-		justifyContent: 'space-between',
-		height: '100%',
-	},
-
-	logo: {
-		fontFamily: 'Minecraft',
-		fontSize: '20px',
-		position: 'relative',
-		top: '2px',
-		cursor: 'pointer',
-		userSelect: 'none',
-		WebkitUserSelect: 'none',
-		img: {
-			position: 'relative',
-			top: '-2px',
-		},
-	},
-
-	links: {
-		[theme.fn.smallerThan('sm')]: {
-			display: 'none',
-		},
-	},
-
-	burger: {
-		[theme.fn.largerThan('sm')]: {
-			display: 'none',
-		},
-		display: 'flex',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-	},
-
-	link: {
-		display: 'block',
-		lineHeight: 1,
-		padding: '8px 12px',
-		cursor: 'pointer',
-		borderRadius: theme.radius.sm,
-		textDecoration: 'none',
-		color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : '#666',
-		fontSize: theme.fontSizes.sm,
-
-		'&:hover': {
-			backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
-			color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : '#000',
-		},
-
-		[theme.fn.smallerThan('sm')]: {
-			borderRadius: 0,
-			padding: theme.spacing.md,
-		},
-	},
-
-	linkActive: {
-		'&, &:hover': {
-			backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2],
-			color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : '#000',
-		},
-	},
-
-	userMenu: {
-		border: 'none !important',
-		[theme.fn.smallerThan('xs')]: {
-			display: 'none',
-		},
-	},
-	userActive: {
-		'&, &:hover': {
-			backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[2],
-		},
-	},
-
-	user: {
-		color: theme.colorScheme === 'dark' ? theme.colors.dark[0] : theme.colors.gray[7],
-		padding: `${theme.spacing.xs}px ${theme.spacing.sm}px`,
-		borderRadius: theme.radius.sm,
-		marginLeft: theme.spacing.xs,
-		transition: 'background-color 100ms ease',
-		[theme.fn.smallerThan('sm')]: {
-			borderRadius: 0,
-			padding: theme.spacing.md,
-			margin: 0,
-			width: '100%',
-		},
-		'&:hover': {
-			backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
-		},
-	},
-}));
 
 interface HeaderProps {
 	links: {
@@ -163,7 +44,6 @@ const Header = ({ links, style }: HeaderProps) => {
 	const [userMenuOpened, setUserMenuOpened] = useState(false);
 	const { t } = useTranslation();
 	const { colorScheme, toggleColorScheme } = useMantineColorScheme();
-	const { classes, cx } = useStyles();
 	const router = useRouter();
 	const theme = useMantineTheme();
 	const mobilePaperRef = useClickOutside(() => handler.close());
@@ -171,29 +51,28 @@ const Header = ({ links, style }: HeaderProps) => {
 	const items = links.map((link) => (
 		<a
 			key={link.translation}
-			className={cx(classes.link, {
-				[classes.linkActive]: router.pathname.includes(link.link),
-			})}
+			className={classes.link}
 			onClick={() => {
 				router.push(link.link);
 				handler.close();
 			}}
 			href={link.link}
+			data-linkactive={router.pathname.includes(link.link)}
 		>
 			{t(`links.${link.translation}`)}
 		</a>
 	));
 	return (
-		<MantineHeader height={60} className={classes.root} fixed style={style}>
+		<AppShellHeader h={60} className={classes.root} /*fixed*/ style={style}>
 			<Container className={classes.header} size={'xl'}>
-				<Group spacing={5} className={classes.logo} onClick={() => router.push('/')}>
+				<Group gap={5} className={classes.logo} onClick={() => router.push('/')}>
 					<img src="/logo.gif" alt="Mantine" height="40" style={{ marginRight: '4px' }} />
 					{t('buildtheearth')}
 				</Group>
-				<Group spacing={5} className={classes.links}>
+				<Group gap={5} className={classes.links}>
 					{items}
 				</Group>
-				<Group spacing={5} className={classes.links}>
+				<Group gap={5} className={classes.links}>
 					{session != null && session?.user ? (
 						<Menu
 							onClose={() => setUserMenuOpened(false)}
@@ -202,12 +81,8 @@ const Header = ({ links, style }: HeaderProps) => {
 							}}
 						>
 							<Menu.Target>
-								<UnstyledButton
-									className={cx(classes.user, {
-										[classes.userActive]: userMenuOpened,
-									})}
-								>
-									<Group spacing={7}>
+								<UnstyledButton className={classes.user} data-useractive={userMenuOpened}>
+									<Group gap={7}>
 										<Indicator color="red" inline size={8} disabled={session.user.email_verified}>
 											<Avatar
 												alt={session.user.username || session.user.email || 'User Avatar'}
@@ -218,7 +93,7 @@ const Header = ({ links, style }: HeaderProps) => {
 												{(session.user.username || session.user.email).charAt(0)}
 											</Avatar>
 										</Indicator>
-										<Text weight={500} size="sm" style={{ lineHeight: 1 }} mr={3}>
+										<Text fw={500} fs="sm" style={{ lineHeight: 1 }} mr={3}>
 											{session.user.username || session.user.email}
 										</Text>
 										<ChevronDown size={12} />
@@ -226,23 +101,23 @@ const Header = ({ links, style }: HeaderProps) => {
 								</UnstyledButton>
 							</Menu.Target>
 							<Menu.Dropdown>
-								<Menu.Item icon={<FileUpload size={14} />}>{t('user.upload')}</Menu.Item>
-								<Menu.Item icon={<IconSettings size={14} />} component="a" href="/me/settings">
+								<Menu.Item leftSection={<FileUpload size={14} />}>{t('user.upload')}</Menu.Item>
+								<Menu.Item leftSection={<IconSettings size={14} />} component="a" href="/me/settings">
 									Settings
 								</Menu.Item>
 								<Menu.Divider />
 								<Menu.Label>{t('user.quickActions')}</Menu.Label>
 								<Menu.Item
-									icon={colorScheme === 'dark' ? <MoonStars size={14} /> : <Sun size={14} />}
+									leftSection={colorScheme === 'dark' ? <MoonStars size={14} /> : <Sun size={14} />}
 									onClick={() => toggleColorScheme()}
 								>
 									{t(`user.theme.${colorScheme}`)}
 								</Menu.Item>
 								<Menu.Divider />
 								<Menu.Label>{t('staff')}</Menu.Label>
-								<Menu.Item icon={<FileSearch size={14} />}>{t('user.review')}</Menu.Item>
+								<Menu.Item leftSection={<FileSearch size={14} />}>{t('user.review')}</Menu.Item>
 								<Menu.Divider />
-								<Menu.Item icon={<Logout size={14} />} onClick={() => signOut()}>
+								<Menu.Item leftSection={<Logout size={14} />} onClick={() => signOut()}>
 									{t('auth.signout')}
 								</Menu.Item>
 							</Menu.Dropdown>
@@ -250,9 +125,7 @@ const Header = ({ links, style }: HeaderProps) => {
 					) : (
 						<>
 							<a
-								className={cx(classes.link, {
-									[classes.linkActive]: router.pathname.includes('/login'),
-								})}
+								className={classes.link}
 								onClick={() => {
 									signIn('keycloak');
 								}}
@@ -269,7 +142,7 @@ const Header = ({ links, style }: HeaderProps) => {
 					)}
 				</Group>
 
-				<Group spacing={5} className={classes.burger}>
+				<Group gap={5} className={classes.burger}>
 					<Burger opened={opened} onClick={() => handler.open()} size="sm" />
 				</Group>
 
@@ -281,12 +154,11 @@ const Header = ({ links, style }: HeaderProps) => {
 								<>
 									<Divider />
 									<UnstyledButton
-										className={cx(classes.user, {
-											[classes.userActive]: userMenuOpened,
-										})}
+										className={classes.user}
 										onClick={() => router.push('/profile')}
+										data-useractive={userMenuOpened}
 									>
-										<Group spacing={7}>
+										<Group gap={7}>
 											<Indicator color="red" inline size={8} disabled={session.user.email_verified}>
 												<Avatar
 													alt={session.user.username || session.user.email || 'User Avatar'}
@@ -297,7 +169,7 @@ const Header = ({ links, style }: HeaderProps) => {
 													{(session.user.username || session.user.email).charAt(0)}
 												</Avatar>
 											</Indicator>
-											<Text weight={500} size="sm" style={{ lineHeight: 1 }} mr={3}>
+											<Text fw={500} fs="sm" style={{ lineHeight: 1 }} mr={3}>
 												{session.user.username || session.user.email}
 											</Text>
 										</Group>
@@ -306,12 +178,8 @@ const Header = ({ links, style }: HeaderProps) => {
 							) : (
 								<>
 									<Divider />
-									<UnstyledButton
-										className={cx(classes.user, {
-											[classes.userActive]: userMenuOpened,
-										})}
-									>
-										<Group spacing={7}>
+									<UnstyledButton className={classes.user} data-useractive={userMenuOpened}>
+										<Group gap={7}>
 											<Button onClick={() => router.push('/getstarted')}>{t('auth.signup')}</Button>
 											<Button ml="md" onClick={() => signIn('keycloak')} variant="outline">
 												{t('auth.signin')}
@@ -324,7 +192,7 @@ const Header = ({ links, style }: HeaderProps) => {
 					)}
 				</Transition>
 			</Container>
-		</MantineHeader>
+		</AppShellHeader>
 	);
 };
 
@@ -344,6 +212,7 @@ interface LogoHeaderProps {
 
 export const LogoHeader = (props: LogoHeaderProps) => {
 	const theme = useMantineTheme();
+	const scheme = useMantineColorScheme();
 	const { scrollY, scrollYProgress } = useScroll();
 	const user = useUser();
 	const blur = useTransform(scrollYProgress, (latest) => `blur(${latest * 20}px)`);
@@ -352,7 +221,7 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 		<>
 			<motion.div
 				style={{
-					backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+					backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
 					background: `url("${props.backgroundImage}") center center / cover`,
 					backgroundPositionY: bgPosY,
 
@@ -361,15 +230,15 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 				}}
 			></motion.div>
 			<Group
-				position="center"
+				justify="space-between"
 				style={{
 					width: '100%',
-					backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : '#fff',
-					borderBottom: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1]}`,
+					backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[7] : '#fff',
+					borderBottom: `1px solid ${scheme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1]}`,
 				}}
 			>
 				<Group
-					position="apart"
+					justify="space-between"
 					py="md"
 					style={{
 						width: '80%',
@@ -383,7 +252,7 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 							mr="xl"
 							style={{
 								marginTop: -60,
-								backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : '#fff',
+								backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[7] : '#fff',
 								borderRadius: '50%',
 								padding: 16,
 							}}
