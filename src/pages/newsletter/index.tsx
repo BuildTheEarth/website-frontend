@@ -45,7 +45,7 @@ const NewsletterList: NextPage = () => {
 				{data?.data.map((newsletter: any, i: number) => (
 					<Group
 						noWrap
-						sx={{
+						style={{
 							backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 							borderRadius: theme.radius.xs,
 							'&:hover': {

@@ -51,7 +51,7 @@ const Teams: NextPage = ({ data }: any) => {
 						<Grid.Col key={i} sm={6}>
 							<Group
 								noWrap
-								sx={{
+								style={{
 									backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 									borderRadius: theme.radius.xs,
 									'&:hover': {

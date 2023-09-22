@@ -51,7 +51,7 @@ export function BackgroundCard({
 			shadow="md"
 			p="xl"
 			radius="md"
-			sx={{ backgroundImage: `url(${image})`, position: 'relative', ...style }}
+			style={{ backgroundImage: `url(${image})`, position: 'relative', ...style }}
 			className={classes.card}
 		>
 			<div style={{ zIndex: 8 }}>

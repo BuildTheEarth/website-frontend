@@ -64,7 +64,7 @@ const SettingsTabs = ({ children, team }: { children: any; team: string }) => {
 				</Tabs.List>
 			</Tabs>
 			<Box
-				sx={(theme) => ({
+				style={(theme) => ({
 					backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
 					padding: `${theme.spacing.xs * 3}px`,
 					paddingTop: theme.spacing.md,

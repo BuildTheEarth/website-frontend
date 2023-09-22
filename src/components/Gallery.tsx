@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import { Badge, Box, Title, useMantineTheme } from '@mantine/core';
 import React, { useState } from 'react';
 
@@ -44,7 +43,7 @@ function Gallery(props: GalleryProps) {
 				{props.images.map((i) => {
 					return (
 						<Carousel.Slide
-							sx={{ height: props.style?.height, position: 'relative' }}
+							style={{ height: props.style?.height, position: 'relative' }}
 							key={`g-${i.location}-${i.builder}`}
 						>
 							<div style={{ position: 'relative', height: props.style?.height }}>
@@ -59,7 +58,7 @@ function Gallery(props: GalleryProps) {
 										zIndex: 50,
 									}}
 								>
-									<Title color={'white'} sx={{ display: 'flex', alignItems: 'center' }}>
+									<Title color={'white'} style={{ display: 'flex', alignItems: 'center' }}>
 										<span
 											className={`fi fi-${i.country} fis`}
 											style={{

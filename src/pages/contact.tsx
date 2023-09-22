@@ -40,7 +40,7 @@ const Contact: NextPage = ({ data }: any) => {
 						<Group noWrap>
 							<Avatar src={contact.avatar} size={94} style={{ filter: 'invert(0)' }} />
 							<div>
-								<Text size="xs" sx={{ textTransform: 'uppercase' }} weight={700} color="dimmed">
+								<Text size="xs" style={{ textTransform: 'uppercase' }} weight={700} color="dimmed">
 									{contact.role}
 								</Text>
 								<Text size="lg" weight={500}>
@@ -77,7 +77,7 @@ const Contact: NextPage = ({ data }: any) => {
 					radius="xl"
 					size="xl"
 					onClick={() => window.open('https://www.facebook.com/BuildTheEarth/', '_blank')}
-					sx={{
+					style={{
 						backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 						cursor: 'pointer',
 					}}
@@ -90,7 +90,7 @@ const Contact: NextPage = ({ data }: any) => {
 					radius="xl"
 					size="xl"
 					onClick={() => window.open('https://www.instagram.com/buildtheearth_', '_blank')}
-					sx={{
+					style={{
 						backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 						cursor: 'pointer',
 					}}
@@ -103,7 +103,7 @@ const Contact: NextPage = ({ data }: any) => {
 					radius="xl"
 					size="xl"
 					onClick={() => window.open('https://www.tiktok.com/@buildtheearth', '_blank')}
-					sx={{
+					style={{
 						backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 						cursor: 'pointer',
 					}}
@@ -116,7 +116,7 @@ const Contact: NextPage = ({ data }: any) => {
 					radius="xl"
 					size="xl"
 					onClick={() => window.open('https://buildtheearth.net/discord', '_blank')}
-					sx={{
+					style={{
 						backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 						cursor: 'pointer',
 					}}
@@ -129,7 +129,7 @@ const Contact: NextPage = ({ data }: any) => {
 					radius="xl"
 					size="xl"
 					onClick={() => window.open('https://www.snapchat.com/add/buildtheearth', '_blank')}
-					sx={{
+					style={{
 						backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 						cursor: 'pointer',
 					}}
@@ -142,7 +142,7 @@ const Contact: NextPage = ({ data }: any) => {
 					radius="xl"
 					size="xl"
 					onClick={() => window.open('https://www.youtube.com/c/BuildTheEarth', '_blank')}
-					sx={{
+					style={{
 						backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 						cursor: 'pointer',
 					}}
@@ -155,7 +155,7 @@ const Contact: NextPage = ({ data }: any) => {
 					radius="xl"
 					size="xl"
 					onClick={() => window.open('https://twitter.com/buildtheearth_', '_blank')}
-					sx={{
+					style={{
 						backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 						cursor: 'pointer',
 					}}
@@ -168,7 +168,7 @@ const Contact: NextPage = ({ data }: any) => {
 					radius="xl"
 					size="xl"
 					onClick={() => window.open('https://www.twitch.tv/buildtheearth', '_blank')}
-					sx={{
+					style={{
 						backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 						cursor: 'pointer',
 					}}

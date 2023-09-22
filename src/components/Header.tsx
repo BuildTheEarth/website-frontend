@@ -218,7 +218,7 @@ const Header = ({ links, style }: HeaderProps) => {
 												{(session.user.username || session.user.email).charAt(0)}
 											</Avatar>
 										</Indicator>
-										<Text weight={500} size="sm" sx={{ lineHeight: 1 }} mr={3}>
+										<Text weight={500} size="sm" style={{ lineHeight: 1 }} mr={3}>
 											{session.user.username || session.user.email}
 										</Text>
 										<ChevronDown size={12} />
@@ -297,7 +297,7 @@ const Header = ({ links, style }: HeaderProps) => {
 													{(session.user.username || session.user.email).charAt(0)}
 												</Avatar>
 											</Indicator>
-											<Text weight={500} size="sm" sx={{ lineHeight: 1 }} mr={3}>
+											<Text weight={500} size="sm" style={{ lineHeight: 1 }} mr={3}>
 												{session.user.username || session.user.email}
 											</Text>
 										</Group>
