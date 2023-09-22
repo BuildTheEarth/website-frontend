@@ -217,13 +217,13 @@ const Apply: NextPage = () => {
 							]}
 						/>
 					</div>
-					<Group position="right">
+					<Group justify="flex-end">
 						<Button loading={saveLoading} onClick={handleSubmit}>
 							Save
 						</Button>
 						<Menu withinPortal>
 							<Menu.Target>
-								<Button leftIcon={<IconPlus />} pr={12} variant="outline" disabled={saveLoading}>
+								<Button leftSection={<IconPlus />} pr={12} variant="outline" disabled={saveLoading}>
 									Add new Question
 								</Button>
 							</Menu.Target>
@@ -234,7 +234,7 @@ const Apply: NextPage = () => {
 									return (
 										<Menu.Item
 											key={i}
-											icon={<QIcon size="1rem" color={theme.colors.blue[6]} stroke={1.5} />}
+											leftSection={<QIcon size="1rem" color={theme.colors.blue[6]} stroke={1.5} />}
 											onClick={() => {
 												const newQuestion = {
 													id: uuidv4(),
@@ -267,7 +267,7 @@ const Apply: NextPage = () => {
 					.map((d, i) => (
 						<Card key={d.id} withBorder mt={i > 0 ? 'md' : undefined}>
 							<Group style={{ display: 'flex' }}>
-								<Stack spacing={0}>
+								<Stack gap={0}>
 									<ActionIcon
 										variant={i == 0 ? 'transparent' : undefined}
 										disabled={i == 0}
@@ -288,11 +288,11 @@ const Apply: NextPage = () => {
 									</ActionIcon>
 								</Stack>
 								<Divider orientation="vertical" />
-								<Stack spacing={0} style={{ cursor: 'pointer', flexGrow: 1 }} onClick={() => setEditingQuestion(d)}>
+								<Stack gap={0} style={{ cursor: 'pointer', flexGrow: 1 }} onClick={() => setEditingQuestion(d)}>
 									<Title order={4} style={{ display: 'flex', alignItems: 'center' }}>
 										<Icon name={d.icon} style={{ height: 20, marginRight: 4 }} /> {d.title}
 									</Title>
-									<Text color="dimmed">{toReadable(ApplicationQuestions[d.type])}</Text>
+									<Text c="dimmed">{toReadable(ApplicationQuestions[d.type])}</Text>
 								</Stack>
 							</Group>
 						</Card>

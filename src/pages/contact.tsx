@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 
 import { At, ExternalLink } from 'tabler-icons-react';
-import { Avatar, Button, Grid, Group, Text, ThemeIcon, useMantineTheme } from '@mantine/core';
+import { Avatar, Button, Grid, Group, Text, ThemeIcon, useMantineColorScheme, useMantineTheme } from '@mantine/core';
 import {
 	Discord,
 	Facebook,
@@ -23,6 +23,7 @@ import useSWR from 'swr';
 const Contact: NextPage = ({ data }: any) => {
 	const router = useRouter();
 	const theme = useMantineTheme();
+	const scheme = useMantineColorScheme();
 
 	return (
 		<Page
@@ -36,29 +37,29 @@ const Contact: NextPage = ({ data }: any) => {
 			<h3 style={{ textAlign: 'center', fontSize: '30px', lineHeight: '0' }}>Individual People</h3>
 			<Grid mt="md">
 				{data?.map((contact: any) => (
-					<Grid.Col key={contact.id} sm={6}>
-						<Group noWrap>
+					<Grid.Col key={contact.id} span={{ sp: 6 }}>
+						<Group wrap="nowrap">
 							<Avatar src={contact.avatar} size={94} style={{ filter: 'invert(0)' }} />
 							<div>
-								<Text size="xs" style={{ textTransform: 'uppercase' }} weight={700} color="dimmed">
+								<Text size="xs" style={{ textTransform: 'uppercase' }} fw={700} c="dimmed">
 									{contact.role}
 								</Text>
-								<Text size="lg" weight={500}>
+								<Text size="lg" fw={500}>
 									{contact.name}
 								</Text>
 
-								<Group noWrap spacing={10} mt={3}>
+								<Group wrap="nowrap" gap={10} mt={3}>
 									<Discord width={18} size={16} />
-									<Text size="xs" color="dimmed">
+									<Text size="xs" c="dimmed">
 										{contact.discord}
 									</Text>
 								</Group>
 
-								<Group noWrap spacing={10} mt={5}>
+								<Group wrap="nowrap" gap={10} mt={5}>
 									<At size={16} />
 									<Text
 										size="xs"
-										color="dimmed"
+										c="dimmed"
 										style={{ cursor: 'pointer' }}
 										onClick={() => window.open(`mailto:${contact.mail}`, '_blank')}
 									>
@@ -71,14 +72,16 @@ const Contact: NextPage = ({ data }: any) => {
 				))}
 			</Grid>
 			<h3 style={{ textAlign: 'center', fontSize: '30px', lineHeight: '48px' }}>Social Media</h3>
-			<div style={{ marginBottom: theme.spacing.xl * 2, display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
+			<div
+				style={{ marginBottom: 'calc(var(--mantine-spacing-xl)*2)', display: 'flex', gap: '15px', flexWrap: 'wrap' }}
+			>
 				<ThemeIcon
 					variant="outline"
 					radius="xl"
 					size="xl"
 					onClick={() => window.open('https://www.facebook.com/BuildTheEarth/', '_blank')}
 					style={{
-						backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
+						backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 						cursor: 'pointer',
 					}}
 				>
@@ -91,7 +94,7 @@ const Contact: NextPage = ({ data }: any) => {
 					size="xl"
 					onClick={() => window.open('https://www.instagram.com/buildtheearth_', '_blank')}
 					style={{
-						backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
+						backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 						cursor: 'pointer',
 					}}
 				>
@@ -104,7 +107,7 @@ const Contact: NextPage = ({ data }: any) => {
 					size="xl"
 					onClick={() => window.open('https://www.tiktok.com/@buildtheearth', '_blank')}
 					style={{
-						backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
+						backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 						cursor: 'pointer',
 					}}
 				>
@@ -117,7 +120,7 @@ const Contact: NextPage = ({ data }: any) => {
 					size="xl"
 					onClick={() => window.open('https://buildtheearth.net/discord', '_blank')}
 					style={{
-						backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
+						backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 						cursor: 'pointer',
 					}}
 				>
@@ -130,7 +133,7 @@ const Contact: NextPage = ({ data }: any) => {
 					size="xl"
 					onClick={() => window.open('https://www.snapchat.com/add/buildtheearth', '_blank')}
 					style={{
-						backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
+						backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 						cursor: 'pointer',
 					}}
 				>
@@ -143,7 +146,7 @@ const Contact: NextPage = ({ data }: any) => {
 					size="xl"
 					onClick={() => window.open('https://www.youtube.com/c/BuildTheEarth', '_blank')}
 					style={{
-						backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
+						backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 						cursor: 'pointer',
 					}}
 				>
@@ -156,7 +159,7 @@ const Contact: NextPage = ({ data }: any) => {
 					size="xl"
 					onClick={() => window.open('https://twitter.com/buildtheearth_', '_blank')}
 					style={{
-						backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
+						backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 						cursor: 'pointer',
 					}}
 				>
@@ -169,7 +172,7 @@ const Contact: NextPage = ({ data }: any) => {
 					size="xl"
 					onClick={() => window.open('https://www.twitch.tv/buildtheearth', '_blank')}
 					style={{
-						backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
+						backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 						cursor: 'pointer',
 					}}
 				>
@@ -178,12 +181,12 @@ const Contact: NextPage = ({ data }: any) => {
 			</div>
 			<div>
 				<div style={{ marginBottom: theme.spacing.xs }}>
-					<Button variant="outline" leftIcon={<ExternalLink />} onClick={() => router.push('/privacy')}>
+					<Button variant="outline" leftSection={<ExternalLink />} onClick={() => router.push('/privacy')}>
 						Privacy Policy
 					</Button>
 				</div>
 				<div>
-					<Button variant="outline" leftIcon={<ExternalLink />} onClick={() => router.push('/ban')}>
+					<Button variant="outline" leftSection={<ExternalLink />} onClick={() => router.push('/ban')}>
 						Ban Appeals
 					</Button>
 				</div>

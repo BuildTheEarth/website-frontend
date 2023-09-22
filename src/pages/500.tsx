@@ -1,4 +1,4 @@
-import { Button, Center, Title, useMantineTheme } from '@mantine/core';
+import { Button, Center, Title, useMantineColorScheme, useMantineTheme } from '@mantine/core';
 
 import Page from '../components/Page';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -7,6 +7,7 @@ import { useTranslation } from 'next-i18next';
 
 function ErrorPage() {
 	const theme = useMantineTheme();
+	const scheme = useMantineColorScheme();
 	const { t } = useTranslation('errors');
 	const router = useRouter();
 	return (
@@ -19,7 +20,7 @@ function ErrorPage() {
 			>
 				<div
 					style={{
-						backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+						backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
 						background: `url("/images/placeholder.webp")`,
 						filter: 'brightness(0.5)',
 						width: '100%',
@@ -37,19 +38,24 @@ function ErrorPage() {
 					}}
 				>
 					<div>
-						<Title style={{ color: '#ffffff', fontSize: 220 }} align="center" order={1}>
+						<Title style={{ color: '#ffffff', fontSize: 220 }} ta="center" order={1}>
 							500
 						</Title>
-						<Title style={{ color: '#ffffff' }} align="center" order={1}>
+						<Title style={{ color: '#ffffff' }} ta="center" order={1}>
 							{t([`500.title`, 'fallback.title'], { error: 500 })}
 						</Title>
-						<Title style={{ color: theme.colors.gray[4] }} align="center" order={3}>
+						<Title style={{ color: theme.colors.gray[4] }} ta="center" order={3}>
 							{t([`500.message`, 'fallback.message'], { error: 500 })}
 							<br />
 							<Button
 								variant="outline"
 								size="xl"
-								style={{ color: 'white', borderColor: 'white', borderWidth: 3, marginTop: theme.spacing.xl * 1.5 }}
+								style={{
+									color: 'white',
+									borderColor: 'white',
+									borderWidth: 3,
+									marginTop: 'calc(var(--mantine-spacing-xl)*1.5)',
+								}}
 								onClick={() => router.back()}
 							>
 								Go Back

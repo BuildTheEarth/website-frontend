@@ -10,6 +10,7 @@ import {
 	Switch,
 	TextInput,
 	Textarea,
+	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
 import { IconCheck, IconPlus, IconTrash } from '@tabler/icons';
@@ -27,7 +28,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const Settings = ({ data: tempData }: any) => {
 	const theme = useMantineTheme();
-	const router = useRouter();
+	const scheme = useMantineColorScheme();
 	const user = useUser();
 	const [data, setData] = useState(tempData);
 	const [allowSocial, setAllowSocial] = useState(false);
@@ -163,10 +164,10 @@ const Settings = ({ data: tempData }: any) => {
 													marginTop: '5px',
 												},
 												content: {
-													backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+													backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
 												},
 												toolbar: {
-													backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+													backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
 												},
 											}}
 											value={data.about}
@@ -224,7 +225,7 @@ const Settings = ({ data: tempData }: any) => {
 						<h3>Socials</h3>
 						<form>
 							<Button
-								leftIcon={<IconPlus />}
+								leftSection={<IconPlus />}
 								mb="md"
 								onClick={() => handleAddSocial({ id: uuidv4(), buildTeamId: data.id })}
 								disabled={!allowSocial}
@@ -238,7 +239,7 @@ const Settings = ({ data: tempData }: any) => {
 										label="Type"
 										placeholder="Select Type"
 										searchable
-										nothingFound="No Types Found"
+										nothingFoundMessage="No Types Found"
 										data={[
 											{ value: 'discord', label: 'Discord' },
 											{ value: 'twitter', label: 'Twitter' },
@@ -269,7 +270,7 @@ const Settings = ({ data: tempData }: any) => {
 									<Button
 										variant="outline"
 										style={{ maxWidth: '12%' }}
-										leftIcon={<IconTrash />}
+										leftSection={<IconTrash />}
 										disabled={!allowSocial}
 										onClick={() => handleDeleteSocial(social.id)}
 									>

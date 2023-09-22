@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 
-import { Avatar, Group, Pagination, Text, createStyles, useMantineTheme } from '@mantine/core';
+import { Avatar, Group, Pagination, Text, useMantineColorScheme, useMantineTheme } from '@mantine/core';
 import { Calendar, Number } from 'tabler-icons-react';
 
 import { NextPage } from 'next';
@@ -11,19 +11,10 @@ import useSWR from 'swr';
 import { useState } from 'react';
 import { useTranslation } from 'next-i18next';
 
-const useStyles = createStyles((theme) => ({
-	icon: {
-		color: theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.gray[5],
-	},
-
-	name: {
-		fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-	},
-}));
 const NewsletterList: NextPage = () => {
 	const router = useRouter();
 	const theme = useMantineTheme();
-	const { classes } = useStyles();
+	const scheme = useMantineColorScheme();
 	const { t } = useTranslation('newsletter');
 	const [activePage, setPage] = useState(1);
 	const { data } = useSWR(`/newsletter?page=${activePage - 1}`);
@@ -44,13 +35,14 @@ const NewsletterList: NextPage = () => {
 			<Group px="auto" mt="xl">
 				{data?.data.map((newsletter: any, i: number) => (
 					<Group
-						noWrap
+						wrap="nowrap"
 						style={{
-							backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
+							backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 							borderRadius: theme.radius.xs,
-							'&:hover': {
-								backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[4],
-							},
+							// TODO
+							// '&:hover': {
+							// 	backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[4],
+							// },
 							width: '100%',
 						}}
 						key={`i-${i}`}
@@ -59,22 +51,22 @@ const NewsletterList: NextPage = () => {
 					>
 						<Avatar src={newsletter.links[0]} size={94} radius="md" />
 						<div>
-							<Group position="apart">
-								<Text size="lg" weight={500} className={classes.name}>
+							<Group justify="space-between">
+								<Text size="lg" fw={500}>
 									{newsletter.title}
 								</Text>
 							</Group>
 
-							<Group noWrap spacing={10} mt={3}>
-								<Number size={16} className={classes.icon} />
-								<Text size="xs" color="dimmed">
+							<Group wrap="nowrap" gap={10} mt={3}>
+								<Number size={16} />
+								<Text size="xs" c="dimmed">
 									Issue {newsletter.issue}
 								</Text>
 							</Group>
 
-							<Group noWrap spacing={10} mt={5}>
-								<Calendar size={16} className={classes.icon} />
-								<Text size="xs" color="dimmed">
+							<Group wrap="nowrap" gap={10} mt={5}>
+								<Calendar size={16} />
+								<Text size="xs" c="dimmed">
 									{new Date(newsletter.published_date).toLocaleDateString()}
 								</Text>
 							</Group>
@@ -82,8 +74,8 @@ const NewsletterList: NextPage = () => {
 					</Group>
 				))}
 			</Group>
-			<Group position="center" pt="md">
-				<Pagination total={data?.pages || 1} radius="xs" page={activePage} onChange={setPage} siblings={1} />
+			<Group justify="center" pt="md">
+				<Pagination total={data?.pages || 1} radius="xs" value={activePage} onChange={setPage} siblings={1} />
 			</Group>
 		</Page>
 	);

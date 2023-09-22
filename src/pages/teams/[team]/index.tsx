@@ -1,4 +1,4 @@
-import { Container, Divider, Grid, Group, Stack, useMantineTheme } from '@mantine/core';
+import { Container, Divider, Grid, Group, Stack, useMantineColorScheme, useMantineTheme } from '@mantine/core';
 
 import Gallery from '../../../components/Gallery';
 import { LogoHeader } from '../../../components/Header';
@@ -17,19 +17,19 @@ const Team: NextPage = ({ data }: any) => {
 	// const { data } = useSWR(`/buildteams/${team}?builds=true&showcase=true`);
 	const matches = useMediaQuery('(min-width: 900px)');
 	const theme = useMantineTheme();
-	const { scrollY } = useScroll();
+	const scheme = useMantineColorScheme();
 	return (
 		<Page fullWidth title={data?.name} description={data?.about}>
 			<LogoHeader {...data} applyHref={`${team}/apply`} settingsHref={`${team}/manage/settings`} />
 			<Container
 				size="xl"
 				style={{
-					backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : '#ffffff',
+					backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[7] : '#ffffff',
 					boxShadow: 'none',
-					marginBottom: theme.spacing.xl * 2,
-					padding: !matches ? `${theme.spacing.xs * 3}px` : `${theme.spacing.xl * 3}px`,
-					paddingBottom: !matches ? `${theme.spacing.xs * 1.5}px` : `${theme.spacing.xl * 1.5}px`,
-					paddingTop: !matches ? `${theme.spacing.xs * 1}px` : `${theme.spacing.xl * 1}px`,
+					marginBottom: 'calc(var(--mantine-spacing-xl)*2)',
+					padding: !matches ? 'calc(var(--mantine-spacing-xs)*3)' : 'calc(var(--mantine-spacing-xl)*3)',
+					paddingBottom: !matches ? 'calc(var(--mantine-spacing-xs)*1.5)' : 'calc(var(--mantine-spacing-xl)*1.5)',
+					paddingTop: !matches ? 'var(--mantine-spacing-xs' : 'var(--mantine-spacing-xl',
 					flex: 1,
 					width: '100%',
 					position: 'relative',
@@ -43,19 +43,19 @@ const Team: NextPage = ({ data }: any) => {
 					<Grid.Col span={4}>
 						<h2>Details</h2>
 						<Stack>
-							<Group position="apart">
+							<Group justify="space-between">
 								<p>Location</p>
 								<p>{data?.location}</p>
 							</Group>
 							<Divider style={{ margin: '0' }} my="sm" />
 
-							<Group position="apart">
+							<Group justify="space-between">
 								<p>Members</p>
 								<p>{data?._count?.members}</p>
 							</Group>
 							<Divider style={{ margin: '0' }} my="sm" />
 
-							<Group position="apart">
+							<Group justify="space-between">
 								<p>Builds</p>
 								<p>{data?._count?.builds}</p>
 							</Group>

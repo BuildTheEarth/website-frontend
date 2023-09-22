@@ -149,7 +149,7 @@ const Faq: NextPage = () => {
 				</>
 			) : (
 				<>
-					<Group spacing={0}>
+					<Group gap={0}>
 						<ActionIcon
 							onClick={() => {
 								form.reset();

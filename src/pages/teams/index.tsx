@@ -1,4 +1,4 @@
-import { Avatar, Grid, Group, Pagination, Skeleton, Text, createStyles, useMantineTheme } from '@mantine/core';
+import { Avatar, Grid, Group, Pagination, Skeleton, Text, useMantineColorScheme, useMantineTheme } from '@mantine/core';
 import { Pin, Users } from 'tabler-icons-react';
 
 import { NextPage } from 'next';
@@ -11,21 +11,11 @@ import useSWR from 'swr';
 import { useState } from 'react';
 import { useTranslation } from 'next-i18next';
 
-const useStyles = createStyles((theme) => ({
-	icon: {
-		color: theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.gray[5],
-	},
-
-	name: {
-		fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-	},
-}));
-
 const Teams: NextPage = ({ data }: any) => {
 	const router = useRouter();
 	const { t } = useTranslation('teams');
 	const theme = useMantineTheme();
-	const { classes } = useStyles();
+	const scheme = useMantineColorScheme();
 	const [search, setSearch] = useState<string | undefined>(undefined);
 	const [activePage, setPage] = useState(1);
 	return (
@@ -48,15 +38,16 @@ const Teams: NextPage = ({ data }: any) => {
 					?.filter((element: any) => element.name.toLowerCase().includes(search?.toLowerCase() || ''))
 					.slice(activePage * 8 - 8, activePage * 8)
 					.map((element: any, i: number) => (
-						<Grid.Col key={i} sm={6}>
+						<Grid.Col key={i} span={{ sm: 6 }}>
 							<Group
-								noWrap
+								wrap="nowrap"
 								style={{
-									backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
+									backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 									borderRadius: theme.radius.xs,
-									'&:hover': {
-										backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[4],
-									},
+									// TODO
+									// '&:hover': {
+									// 	backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[4],
+									// },
 									cursor: 'pointer',
 								}}
 								p="md"
@@ -64,24 +55,24 @@ const Teams: NextPage = ({ data }: any) => {
 							>
 								<Avatar src={element.icon} size={94} radius="md" />
 								<div>
-									<Group position="apart">
-										<Text size="lg" weight={500} className={classes.name}>
+									<Group justify="space-between">
+										<Text size="lg" fw={500}>
 											{element.name}
 										</Text>
 
 										{/*element.builders.includes('Nudelsuppe_42_#3571') ? <Badge color="green">Builder</Badge> : null*/}
 									</Group>
 
-									<Group noWrap spacing={10} mt={3}>
-										<Pin size={16} className={classes.icon} />
-										<Text size="xs" color="dimmed">
+									<Group wrap="nowrap" gap={10} mt={3}>
+										<Pin size={16} />
+										<Text size="xs" c="dimmed">
 											{element.location}
 										</Text>
 									</Group>
 
-									<Group noWrap spacing={10} mt={5}>
-										<Users size={16} className={classes.icon} />
-										<Text size="xs" color="dimmed">
+									<Group wrap="nowrap" gap={10} mt={5}>
+										<Users size={16} />
+										<Text size="xs" c="dimmed">
 											{element._count.members} Members
 										</Text>
 									</Group>
@@ -90,13 +81,13 @@ const Teams: NextPage = ({ data }: any) => {
 						</Grid.Col>
 					))}
 			</Grid>
-			<Group position="center" pt="md">
+			<Group justify="center" pt="md">
 				<Pagination
 					total={Math.ceil(
 						data?.filter((element: any) => element.name.toLowerCase().includes(search?.toLowerCase() || '')).length / 8,
 					)}
 					radius="xs"
-					page={activePage}
+					value={activePage}
 					onChange={setPage}
 					siblings={1}
 				/>

@@ -5,8 +5,8 @@ import {
 	Button,
 	Center,
 	Grid,
-	MediaQuery,
 	Title,
+	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
 
@@ -20,6 +20,7 @@ import { useTranslation } from 'next-i18next';
 
 const Home: NextPage = () => {
 	const theme = useMantineTheme();
+	const scheme = useMantineColorScheme();
 	const { t } = useTranslation('home');
 	const router = useRouter();
 	return (
@@ -33,13 +34,18 @@ const Home: NextPage = () => {
 						padding: 16,
 					}}
 				>
-					<Title style={{ color: '#ffffff', fontSize: 64 }} align="center" order={1}>
+					<Title style={{ color: '#ffffff', fontSize: 64 }} ta="center" order={1}>
 						{t('head.title')}
 						<br />
 						<Button
 							variant="outline"
 							size="xl"
-							style={{ color: 'white', borderColor: 'white', borderWidth: 3, marginTop: theme.spacing.xl * 1.5 }}
+							style={{
+								color: 'white',
+								borderColor: 'white',
+								borderWidth: 3,
+								marginTop: 'calc(var(--mantine-spacing-xl)*1.5)',
+							}}
 							onClick={() => router.push('/getstarted')}
 						>
 							{t('head.action')}
@@ -67,12 +73,12 @@ const Home: NextPage = () => {
 			</BackgroundImage>
 			<Box
 				style={{
-					background: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+					background: scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
 					overflow: 'hidden',
 				}}
 			>
 				<Grid>
-					<Grid.Col lg={5} style={{ marginTop: 50, marginBottom: 50, minHeight: '30vh' }}>
+					<Grid.Col span={{ lg: 5 }} style={{ marginTop: 50, marginBottom: 50, minHeight: '30vh' }}>
 						<Center style={{ width: '100%', height: '100%' }}>
 							<div style={{ padding: '0px 10%' }}>
 								<h1 id="more" style={{ scrollMarginTop: 70 }}>
@@ -81,26 +87,26 @@ const Home: NextPage = () => {
 								<div
 									style={{
 										background: `linear-gradient(90deg, rgba(${
-											theme.colorScheme === 'dark' ? '193, 194, 197' : '0, 0, 0'
+											scheme.colorScheme === 'dark' ? '193, 194, 197' : '0, 0, 0'
 										},1) 20%, rgba(0,0,0,0) 20%)`,
 										height: 2,
 									}}
 								/>
 								<p>{t('mission.content')}</p>
-								<Button<'a'> px={theme.spacing.xl * 2} component="a" href="/about" mt="md">
+								<Button<'a'> px={'calc(var(--mantine-spacing-xl)*2)'} component="a" href="/about" mt="md">
 									{t('mission.action')}
 								</Button>
 							</div>
 						</Center>
 					</Grid.Col>
+					{/* TODO */}
+					{/* <MediaQuery smallerThan="lg" styles={{ display: 'none' }}> */}
+					<Grid.Col span={{ lg: 7 }} style={{ padding: 0 }}>
+						<BackgroundImage src="/images/home/mission.webp" style={{ width: '100%', height: '100%' }} />
+					</Grid.Col>
+					{/* </MediaQuery> */}
 
-					<MediaQuery smallerThan="lg" styles={{ display: 'none' }}>
-						<Grid.Col lg={7} style={{ padding: 0 }}>
-							<BackgroundImage src="/images/home/mission.webp" style={{ width: '100%', height: '100%' }} />
-						</Grid.Col>
-					</MediaQuery>
-
-					<Grid.Col sm={12} style={{ padding: 0, margin: 0 }}>
+					<Grid.Col span={{ sm: 12 }} style={{ padding: 0, margin: 0 }}>
 						<Gallery
 							style={{ height: '70vh' }}
 							images={[
@@ -137,27 +143,27 @@ const Home: NextPage = () => {
 							]}
 						/>
 					</Grid.Col>
+					{/* TODO */}
+					{/* <MediaQuery smallerThan="lg" styles={{ display: 'none' }}> */}
+					<Grid.Col span={{ lg: 7 }} style={{ padding: 0 }}>
+						<BackgroundImage src="/images/home/getstarted.webp" style={{ width: '100%', height: '100%' }} />
+					</Grid.Col>
+					{/* </MediaQuery> */}
 
-					<MediaQuery smallerThan="lg" styles={{ display: 'none' }}>
-						<Grid.Col lg={7} style={{ padding: 0 }}>
-							<BackgroundImage src="/images/home/getstarted.webp" style={{ width: '100%', height: '100%' }} />
-						</Grid.Col>
-					</MediaQuery>
-
-					<Grid.Col lg={5} style={{ marginTop: 50, marginBottom: 50, minHeight: '30vh' }}>
+					<Grid.Col span={{ lg: 5 }} style={{ marginTop: 50, marginBottom: 50, minHeight: '30vh' }}>
 						<Center style={{ width: '100%', height: '100%' }}>
 							<div style={{ padding: '0px 10%' }}>
 								<h1>{t('join.title')}</h1>
 								<div
 									style={{
 										background: `linear-gradient(90deg, rgba(${
-											theme.colorScheme === 'dark' ? '193, 194, 197' : '0, 0, 0'
+											scheme.colorScheme === 'dark' ? '193, 194, 197' : '0, 0, 0'
 										},1) 20%, rgba(0,0,0,0) 20%)`,
 										height: 2,
 									}}
 								/>
 								<p>{t('join.content')}</p>
-								<Button<'a'> px={theme.spacing.xl * 2} component="a" href="/getstarted" mt="md">
+								<Button<'a'> px={'calc(var(--mantine-spacing-xl)*2)'} component="a" href="/getstarted" mt="md">
 									{t('join.action')}
 								</Button>
 							</div>

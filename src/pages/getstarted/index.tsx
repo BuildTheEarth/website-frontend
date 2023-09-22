@@ -26,7 +26,7 @@ const GetStarted: NextPage = () => {
 		>
 			<p>{t('description')}</p>
 			<Grid style={{ height: '50vh' }}>
-				<Grid.Col sm={6} onMouseOver={() => setFocused(1)}>
+				<Grid.Col span={{ sm: 6 }} onMouseOver={() => setFocused(1)}>
 					<BackgroundCard
 						image="/images/getstarted/buildteams.webp"
 						title="Explore BuildTheEarth"
@@ -36,7 +36,7 @@ const GetStarted: NextPage = () => {
 						buttonText="Select"
 					/>
 				</Grid.Col>
-				<Grid.Col sm={6} onMouseOver={() => setFocused(2)}>
+				<Grid.Col span={{ sm: 6 }} onMouseOver={() => setFocused(2)}>
 					<BackgroundCard
 						image="/images/getstarted/network.webp"
 						title="Start Building"
@@ -49,7 +49,7 @@ const GetStarted: NextPage = () => {
 			</Grid>
 
 			<Text mt="lg">
-				<Text color="red" span inherit pr="sm">
+				<Text c="red" span inherit pr="sm">
 					*
 				</Text>
 				No cost, no subscription, you can leave/switch at any point
