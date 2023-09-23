@@ -20,7 +20,7 @@ export const GridButton = ({
 			style={{ backgroundColor: solid ? 'var(--mantine-color-gray-8)' : undefined }}
 		>
 			{icon}
-			<Text>{text}</Text>
+			<Text truncate="end">{text}</Text>
 		</UnstyledButton>
 	);
 };

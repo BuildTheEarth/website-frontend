@@ -4,6 +4,7 @@ import '@mantine/notifications/styles.css';
 import '@mantine/core/styles.css';
 import '@mantine/nprogress/styles.css';
 import '@mantine/carousel/styles.css';
+import '@mantine/tiptap/styles.css';
 
 import { useHotkeys, useLocalStorage } from '@mantine/hooks';
 

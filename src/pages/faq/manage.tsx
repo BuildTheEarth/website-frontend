@@ -1,5 +1,6 @@
 import { ActionIcon, Button, Group, Input, SimpleGrid, TextInput } from '@mantine/core';
 import { IconCheck, IconChevronLeft, IconPlus, IconQuestionMark } from '@tabler/icons';
+import useSWR, { mutate } from 'swr';
 
 import { GridButton } from '../../components/GridButton';
 import { NextPage } from 'next';
@@ -8,18 +9,19 @@ import RTE from '../../components/RTE';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { showNotification } from '@mantine/notifications';
 import { useForm } from '@mantine/form';
-import useSWR from 'swr';
 import { useState } from 'react';
 import { useUser } from '../../hooks/useUser';
 import { v4 as uuidv4 } from 'uuid';
 
 const Faq: NextPage = () => {
 	const { data } = useSWR(`/faq`);
+	const [loading, setLoading] = useState({ loading: false, error: null });
 	const [action, setAction] = useState('Select');
 	const user = useUser();
 	const form = useForm({ initialValues: { id: '', question: '', answer: '', links: [] } });
 
 	const handleSubmit = (e: any) => {
+		setLoading({ loading: true, error: null });
 		switch (action) {
 			case 'Edit':
 				handleEdit(e);
@@ -54,23 +56,52 @@ const Faq: NextPage = () => {
 						message: res.error,
 						color: 'red',
 					});
+					setLoading({ loading: false, error: res.error });
 				} else {
+					mutate('/faq');
 					showNotification({
 						title: 'Question updated',
 						message: 'All Data has been saved',
 						color: 'green',
 						icon: <IconCheck />,
 					});
+					setLoading({ loading: false, error: null });
+					form.reset();
+					setAction('Select');
 				}
 			});
 	};
 
 	const handleDelete = (e: any) => {
-		showNotification({
-			title: 'Deletion failed',
-			message: 'Not Implemented',
-			color: 'red',
-		});
+		fetch(process.env.NEXT_PUBLIC_API_URL + `/faq/${form.values.id}`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + user.token,
+			},
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				if (res.error) {
+					showNotification({
+						title: 'Delete failed',
+						message: res.error,
+						color: 'red',
+					});
+					setLoading({ loading: false, error: res.error });
+				} else {
+					mutate('/faq');
+					showNotification({
+						title: 'Delete updated',
+						message: 'All Data has been saved',
+						color: 'green',
+						icon: <IconCheck />,
+					});
+					setLoading({ loading: false, error: null });
+					form.reset();
+					setAction('Select');
+				}
+			});
 	};
 
 	const handleAdd = (e: any) => {
@@ -94,13 +125,18 @@ const Faq: NextPage = () => {
 						message: res.error,
 						color: 'red',
 					});
+					setLoading({ loading: false, error: res.error });
 				} else {
+					mutate('/faq');
 					showNotification({
 						title: 'Question added',
 						message: 'All Data has been saved',
 						color: 'green',
 						icon: <IconCheck />,
 					});
+					setLoading({ loading: false, error: null });
+					form.reset();
+					setAction('Select');
 				}
 			});
 	};
@@ -118,7 +154,7 @@ const Faq: NextPage = () => {
 			) : action == 'Select' ? (
 				<>
 					<h2>{action} FAQ Question</h2>
-					<SimpleGrid cols={3}>
+					<SimpleGrid cols={2}>
 						{data?.map((q: any) => (
 							<GridButton
 								text={q.question}
@@ -155,6 +191,7 @@ const Faq: NextPage = () => {
 								form.reset();
 								setAction('Select');
 							}}
+							mr="md"
 						>
 							<IconChevronLeft />
 						</ActionIcon>
@@ -174,13 +211,15 @@ const Faq: NextPage = () => {
 						</Input.Wrapper>
 						{action != 'Add' ? (
 							<Group mt="md">
-								<Button type="submit">Save changes</Button>
-								<Button variant="outline" onClick={handleDelete}>
+								<Button type="submit" loading={loading.loading}>
+									Save changes
+								</Button>
+								<Button variant="outline" onClick={handleDelete} loading={loading.loading}>
 									Delete Question
 								</Button>
 							</Group>
 						) : (
-							<Button type="submit" mt="md">
+							<Button type="submit" mt="md" loading={loading.loading}>
 								Add question
 							</Button>
 						)}

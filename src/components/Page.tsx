@@ -62,19 +62,7 @@ const Page = (props: PageProps) => {
 					}}
 				/>
 			)}
-			<Paper
-				className={classes.root}
-				// style={
-				// 	{
-				// backgroundColor: 'var(--mantine-color-dark-8)',
-				// backgroundColor: 'light-dark(var(--mantine-color-white), var(--mantine-color-dark-8))',
-				// width: 'calc(100vw - (100vw - 100%))',
-				// minHeight: '100vh',
-				// display: 'flex',
-				// flexDirection: 'column',
-				// 	}
-				// }
-			>
+			<Paper className={classes.root}>
 				{props.head && (
 					<BackgroundImage
 						src={props.head?.image || ''}
@@ -123,7 +111,7 @@ const Page = (props: PageProps) => {
 						links={[
 							{ link: '/faq', translation: 'faq' },
 							{ link: '/contact', translation: 'contact' },
-							{ link: '/about', translation: 'aboutUs' },
+							{ link: 'https://status.buildtheearth.net', translation: 'status' },
 						]}
 					/>
 				)}

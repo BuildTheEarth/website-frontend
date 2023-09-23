@@ -4,7 +4,7 @@
 	padding-left: var(--mantine-spacing-xl);
 	padding-right: var(--mantine-spacing-xl);
 	border: 2px solid var(--mantine-color-gray-8);
-	border-radius: var(mantine-radius-md);
+	border-radius: var(--mantine-radius-md);
 	display: flex;
 	align-items: center;
 	gap: var(--mantine-spacing-md);
