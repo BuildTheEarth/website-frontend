@@ -4,6 +4,7 @@ import {
 	Button,
 	Divider,
 	Flex,
+	Grid,
 	Group,
 	Input,
 	Select,
@@ -109,8 +110,8 @@ const Settings = ({ data: tempData }: any) => {
 					<>
 						<form onSubmit={handleSave}>
 							<h3>General Settings</h3>
-							<Group grow>
-								<div>
+							<Grid grow>
+								<Grid.Col span={{ md: 6 }}>
 									<TextInput
 										required
 										label="BuildTeam Name"
@@ -155,8 +156,8 @@ const Settings = ({ data: tempData }: any) => {
 										disabled={!allowSettings}
 										onChange={(e) => handleUpdate('allowTrial', e.target.checked)}
 									/>
-								</div>
-								<div>
+								</Grid.Col>
+								<Grid.Col span={{ md: 6 }}>
 									<Input.Wrapper label="About" mt="md" description="The about section on the Build Team Page." mb="md">
 										<RTE
 											style={{
@@ -182,30 +183,33 @@ const Settings = ({ data: tempData }: any) => {
 										disabled={!allowSettings}
 										onChange={(e) => handleUpdate('slug', e.target.value)}
 									/>
-								</div>
-							</Group>
+								</Grid.Col>
+							</Grid>
 							<h4>Messages</h4>
-							<Group grow>
-								<Textarea
-									label="Acception Message"
-									mb="md"
-									description="The Message the Discord Bot should send Users if they get accepted as Builders."
-									defaultValue={data.acceptionMessage}
-									minRows={9}
-									disabled={!allowSettings}
-									onChange={(e) => handleUpdate('acceptionMessage', e.target.value)}
-								/>
-
-								<Textarea
-									label="Rejection Message"
-									mb="md"
-									description="The Message the Discord Bot should send Users if they get rejected from beeing a Builders."
-									defaultValue={data.rejectionMessage}
-									minRows={9}
-									disabled={!allowSettings}
-									onChange={(e) => handleUpdate('rejectionMessage', e.target.value)}
-								/>
-							</Group>
+							<Grid grow>
+								<Grid.Col span={{ md: 6 }}>
+									<Textarea
+										label="Acception Message"
+										mb="md"
+										description="The Message the Discord Bot should send Users if they get accepted as Builders."
+										defaultValue={data.acceptionMessage}
+										minRows={9}
+										disabled={!allowSettings}
+										onChange={(e) => handleUpdate('acceptionMessage', e.target.value)}
+									/>
+								</Grid.Col>
+								<Grid.Col span={{ md: 6 }}>
+									<Textarea
+										label="Rejection Message"
+										mb="md"
+										description="The Message the Discord Bot should send Users if they get rejected from beeing a Builders."
+										defaultValue={data.rejectionMessage}
+										minRows={9}
+										disabled={!allowSettings}
+										onChange={(e) => handleUpdate('rejectionMessage', e.target.value)}
+									/>
+								</Grid.Col>
+							</Grid>
 							<Textarea
 								label="Trial Acception Message"
 								mb="md"
@@ -269,7 +273,7 @@ const Settings = ({ data: tempData }: any) => {
 									/>
 									<Button
 										variant="outline"
-										style={{ maxWidth: '12%' }}
+										style={{ width: '80%' }}
 										leftSection={<IconTrash />}
 										disabled={!allowSocial}
 										onClick={() => handleDeleteSocial(social.id)}
