@@ -1,4 +1,5 @@
 import { Anchor } from '@mantine/core';
+import Link from 'next/link';
 import { NextPage } from 'next';
 import Page from '../../components/Page';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -41,8 +42,10 @@ const Team: NextPage = () => {
 				13. Personal data is only collected when a visitor logs in on <i>My BuildTheEarth</i>, which requires a Discord
 				account. It is against Discord&apos;s Terms of Service for children younger than 13 to create an account. If you
 				think that your child provided this kind of information on our website, we strongly encourage you{' '}
-				<Anchor href="/contact">contact</Anchor> us immediately and we will do our best efforts to promptly remove such
-				information from our records.
+				<Anchor component={Link} href="/contact">
+					contact
+				</Anchor>{' '}
+				us immediately and we will do our best efforts to promptly remove such information from our records.
 			</p>
 			<h2>Online Privacy Policy Only</h2>
 			<p>

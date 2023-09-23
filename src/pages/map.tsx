@@ -6,7 +6,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 const MapPage: NextPage = () => {
 	return (
 		<Page fullWidth>
-			<div style={{ height: '96vh', width: '100%', marginTop: '60px' }}>
+			<div style={{ height: '96vh', width: '100%' }}>
 				<Map />
 			</div>
 		</Page>

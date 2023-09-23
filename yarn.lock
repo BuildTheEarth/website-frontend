@@ -389,12 +389,10 @@
   resolved "https://registry.yarnpkg.com/@linaria/core/-/core-3.0.0-beta.13.tgz#049c5be5faa67e341e413a0f6b641d5d78d91056"
   integrity sha512-3zEi5plBCOsEzUneRVuQb+2SAx3qaC1dj0FfFAI6zIJQoDWu0dlSwKijMRack7oO9tUWrchfj3OkKQAd1LBdVg==
 
-"@mantine/carousel@^5.2.6":
-  version "5.10.5"
-  resolved "https://registry.yarnpkg.com/@mantine/carousel/-/carousel-5.10.5.tgz#0735228c62e934dabd5f14521ae83d5cd56b6a15"
-  integrity sha512-r7KSNqGia/HHvZGSeOqcV2ptOpk/ljrgm6L92DE03i4DgUNT1y8QlF3hCK865xHecyj6nTRYDnoBLAuBufe/Yw==
-  dependencies:
-    "@mantine/utils" "5.10.5"
+"@mantine/carousel@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@mantine/carousel/-/carousel-7.0.0.tgz#65674170d2ececdd5110c00441ecc443ebbce159"
+  integrity sha512-3GGEBU7primkZ+MUGjQYwtqRYaf1rdr3aQ+qc5RVXKizUkwMymceS1R8T8Zo+pwQf9si2+cvf5wBx/X7nJR+lw==
 
 "@mantine/core@^7.0.0":
   version "7.0.0"
@@ -512,11 +510,6 @@
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@mantine/tiptap/-/tiptap-7.0.0.tgz#d116dcc11a609a2b51fac710eb3729c07faa7971"
   integrity sha512-Xe+chsf3H2uoM3QrYSfEyKUNByXYOtGcr4hUB95Bxu7dMHMf4ciSeDeOoKJBujsLxXU1pfmtSZLlhco4xcEzrg==
-
-"@mantine/utils@5.10.5":
-  version "5.10.5"
-  resolved "https://registry.yarnpkg.com/@mantine/utils/-/utils-5.10.5.tgz#ad620d714e545c6efb7f69d94ce46e3fd2fe01fb"
-  integrity sha512-FGMq4dGs5HhDAtI0z46uzxzKKPmZ3h5uKUyKg1ZHoFR1mBtcUMbB6FylFmHqKFRWlJ5IXqX9dwmiVrLYUOfTmA==
 
 "@mantine/utils@6.0.21":
   version "6.0.21"

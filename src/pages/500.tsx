@@ -25,7 +25,6 @@ function ErrorPage() {
 						filter: 'brightness(0.5)',
 						width: '100%',
 						height: 'calc(100vh - 60px)',
-						marginTop: 60,
 					}}
 				></div>
 				<Center
@@ -38,7 +37,7 @@ function ErrorPage() {
 					}}
 				>
 					<div>
-						<Title style={{ color: '#ffffff', fontSize: 220 }} ta="center" order={1}>
+						<Title style={{ color: '#ffffff', fontSize: 220, userSelect: 'none' }} ta="center" order={1}>
 							500
 						</Title>
 						<Title style={{ color: '#ffffff' }} ta="center" order={1}>

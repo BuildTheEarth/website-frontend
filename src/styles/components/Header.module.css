@@ -1,8 +1,8 @@
-.root: {
-		z-index: 99;
-	}
+.root {
+	z-index: 99;
+}
 
-.dropdown: {
+.dropdown {
 	position: absolute;
 	top: 60;
 	left: 0;
@@ -10,16 +10,16 @@
 	z-index: 0;
 	border-top-right-radius: 0;
 	border-top-left-radius: 0;
-	botrder-top-width: 0;
+	border-top-width: 0;
 	overflow: hidden;
 	box-shadow: var(--mantine-shadow-md);
 
 	@media (min-width: $mantine-breakpoint-sm) {
 		display: none;
-	};
+	}
 }
 
-.header: {
+.header {
 	display: flex;
 	align-items: center;
 	margin: auto;
@@ -29,87 +29,80 @@
 	height: 100%;
 }
 
-.logo: {
+.logo {
 	font-family: Minecraft;
 	font-size: 20px;
 	position: relative;
 	top: 2px;
 	cursor: pointer;
 	user-select: none;
-	img: {
+	img {
 		position: relative;
 		top: -2px;
-	};
+	}
 }
 
-.links: {
+.links {
 	@media (max-width: $mantine-breakpoint-sm) {
 		display: none;
-	};
+	}
 }
 
-.burger: {
-	@media (min-width: $mantine-breakpoint-sm) {
-		display: none;
-	};
+.burger {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+
+	@media (min-width: $mantine-breakpoint-sm) {
+		display: none;
+	}
 }
 
-.link: {
+.link {
 	display: block;
 	line-height: 1;
 	padding: 8px 12px;
 	cursor: pointer;
-	border-radius: var(--mantine-radius-sm);
+	border-radius: 0;
 	text-decoration: none;
-	color: light-dark(var(#666,--mantine-color-dark-0));
+	color: light-dark(#666, var(--mantine-color-dark-0));
 	font-size: var(--mantine-font-size-sm);
 
 	@media (min-width: $mantine-breakpoint-sm) {
-		border-radius: 0;
-		padding: var(--mantine-spacing-md);
+		border-radius: var(--mantine-radius-sm);
 	}
 
-	&:hover: {
+	&:hover {
 		background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
 		color: light-dark(#000, var(--mantine-color-dark-0));
 	}
-
-	&[data-linkactive] {
-		/* &; &:hover: { */
-		background-color: light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-4));
-		color: var(--mantine-color-dark-0);
-		
-	}
 }
 
-.userMenu: {
+.userMenu {
 	border: none !important;
 	@media (max-width: $mantine-breakpoint-sm) {
 		display: none;
-	};
+	}
 
 	&[data-useractive] {
-	/* &; &:hover: { */
+		/* &; &:hover: { */
 		background-color: light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-4));
 	}
 }
 
-.user: {
+.user {
 	color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0));
 	padding: var(--mantine-spacing-xs) var(--mantine-spacing-sm);
 	border-radius: var(--mantine-radius-sm);
-	marginLeft: var(--mantine-spacing-xs);
+	marginleft: var(--mantine-spacing-xs);
 	transition: background-color 100ms ease;
 	@media (max-width: $mantine-breakpoint-sm) {
 		border-radius: 0;
 		padding: var(--mantine-spacing-md);
 		margin: 0;
 		width: 100%;
-	};
-	&:hover: {
-		backgroundColor: light-dark(var(--mantine-color-gray-0, var(--mantine-color-dark-6));
-	};
+	}
+	&:hover {
+		backgroundcolor: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
+	}
 }

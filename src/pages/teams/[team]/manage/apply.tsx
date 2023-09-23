@@ -25,6 +25,7 @@ import Question, { EditQuestion } from '../../../../components/application/quest
 
 import App from 'next/app';
 import Icon from '../../../../components/Icon';
+import Link from 'next/link';
 import { NextPage } from 'next';
 import Page from '../../../../components/Page';
 import SettingsTabs from '../../../../components/SettingsTabs';
@@ -172,9 +173,9 @@ const Apply: NextPage = () => {
 						/>
 					</Group>
 					{editingQuestion?.type && <EditQuestion type={editingQuestion?.type} {...editingQuestion.additionalData} />}
-					<Text color="dimmed" size="sm" mt="md">
+					<Text c="dimmed" size="sm" mt="md">
 						A list of all Supported Icons can be found at{' '}
-						<Anchor href="https://tabler-icons.io/" target="_blank">
+						<Anchor component={Link} href="https://tabler-icons.io/" target="_blank">
 							tabler-icons
 						</Anchor>
 					</Text>

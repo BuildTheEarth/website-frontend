@@ -1,8 +1,10 @@
 import {
 	ActionIcon,
+	Anchor,
 	AppShellHeader,
 	Avatar,
 	Badge,
+	Box,
 	Burger,
 	Button,
 	Container,
@@ -26,6 +28,7 @@ import { useClickOutside, useDisclosure } from '@mantine/hooks';
 
 import Icon from './Icon';
 import { IconSettings } from '@tabler/icons';
+import Link from 'next/link';
 import classes from '../styles/components/Header.module.css';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
@@ -48,22 +51,22 @@ const Header = ({ links, style }: HeaderProps) => {
 	const theme = useMantineTheme();
 	const mobilePaperRef = useClickOutside(() => handler.close());
 	const { data: session, status } = useSession();
+	console.log(router.pathname);
 	const items = links.map((link) => (
-		<a
+		<Anchor
+			component={Link}
 			key={link.translation}
 			className={classes.link}
 			onClick={() => {
-				router.push(link.link);
 				handler.close();
 			}}
 			href={link.link}
-			data-linkactive={router.pathname.includes(link.link)}
 		>
 			{t(`links.${link.translation}`)}
-		</a>
+		</Anchor>
 	));
 	return (
-		<AppShellHeader h={60} className={classes.root} /*fixed*/ style={style}>
+		<Box className={classes.root} /*fixed*/ style={{ ...style, height: 60 }}>
 			<Container className={classes.header} size={'xl'}>
 				<Group gap={5} className={classes.logo} onClick={() => router.push('/')}>
 					<img src="/logo.gif" alt="Mantine" height="40" style={{ marginRight: '4px' }} />
@@ -102,7 +105,7 @@ const Header = ({ links, style }: HeaderProps) => {
 							</Menu.Target>
 							<Menu.Dropdown>
 								<Menu.Item leftSection={<FileUpload size={14} />}>{t('user.upload')}</Menu.Item>
-								<Menu.Item leftSection={<IconSettings size={14} />} component="a" href="/me/settings">
+								<Menu.Item leftSection={<IconSettings size={14} />} component={Link} href="/me/settings">
 									Settings
 								</Menu.Item>
 								<Menu.Divider />
@@ -124,14 +127,14 @@ const Header = ({ links, style }: HeaderProps) => {
 						</Menu>
 					) : (
 						<>
-							<a
+							<Anchor
 								className={classes.link}
 								onClick={() => {
 									signIn('keycloak');
 								}}
 							>
 								{t('auth.signin')}
-							</a>
+							</Anchor>
 							<Button
 								style={{ fontWeight: '500', paddingLeft: '12px', paddingRight: '12px', height: '32px' }}
 								onClick={() => router.push('/getstarted')}
@@ -192,7 +195,7 @@ const Header = ({ links, style }: HeaderProps) => {
 					)}
 				</Transition>
 			</Container>
-		</AppShellHeader>
+		</Box>
 	);
 };
 
@@ -224,13 +227,12 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 					backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
 					background: `url("${props.backgroundImage}") center center / cover`,
 					backgroundPositionY: bgPosY,
-
 					width: '100%',
 					height: '50vh',
 				}}
-			></motion.div>
+			/>
 			<Group
-				justify="space-between"
+				justify="center"
 				style={{
 					width: '100%',
 					backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[7] : '#fff',
@@ -296,13 +298,27 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 									icon = <Icon icon={social.icon} />;
 							}
 							return (
-								<ActionIcon component="a" href={social.url} target="_blank" key={social.name}>
+								<ActionIcon
+									component={Link}
+									href={social.url}
+									target="_blank"
+									variant="transparent"
+									color="gray"
+									key={social.name}
+								>
 									{icon}
 								</ActionIcon>
 							);
 						})}
 						{props.invite && (
-							<ActionIcon component="a" href={props.invite} target="_blank" key={'discord-inv'}>
+							<ActionIcon
+								component={Link}
+								href={props.invite}
+								target="_blank"
+								variant="transparent"
+								color="gray"
+								key={'discord-inv'}
+							>
 								<Discord />
 							</ActionIcon>
 						)}
@@ -311,7 +327,7 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 								{props.userStatus}
 							</Badge>
 						) : (
-							<Button component="a" href={props.applyHref}>
+							<Button component={Link} href={props.applyHref || ''}>
 								Apply
 							</Button>
 						)}
@@ -325,8 +341,7 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 							],
 							props.id,
 						) && (
-							<Button component="a" href={props.settingsHref} variant="outline">
-								{/*TODO: Add Permision check */}
+							<Button component={Link} href={props.settingsHref || ''} variant="outline">
 								Settings
 							</Button>
 						)}

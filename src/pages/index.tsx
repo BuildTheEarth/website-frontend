@@ -12,6 +12,7 @@ import {
 
 import { ChevronDown } from 'tabler-icons-react';
 import Gallery from '../components/Gallery';
+import Link from 'next/link';
 import { NextPage } from 'next';
 import Page from '../components/Page';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -93,7 +94,7 @@ const Home: NextPage = () => {
 									}}
 								/>
 								<p>{t('mission.content')}</p>
-								<Button<'a'> px={'calc(var(--mantine-spacing-xl)*2)'} component="a" href="/about" mt="md">
+								<Button px={'calc(var(--mantine-spacing-xl)*2)'} component={Link} href="/about" mt="md">
 									{t('mission.action')}
 								</Button>
 							</div>
@@ -163,7 +164,7 @@ const Home: NextPage = () => {
 									}}
 								/>
 								<p>{t('join.content')}</p>
-								<Button<'a'> px={'calc(var(--mantine-spacing-xl)*2)'} component="a" href="/getstarted" mt="md">
+								<Button px={'calc(var(--mantine-spacing-xl)*2)'} component={Link} href="/getstarted" mt="md">
 									{t('join.action')}
 								</Button>
 							</div>

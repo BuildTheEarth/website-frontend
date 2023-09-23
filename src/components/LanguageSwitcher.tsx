@@ -26,7 +26,7 @@ export function LanguageSwitcher() {
 	const changeLanguage = (lang: { label: string; code: string; flag: string }) => {
 		setSelected(lang);
 		const { pathname, asPath, query } = router;
-		router.push(pathname, pathname, { locale: lang.code });
+		router.push({ pathname, query }, asPath, { locale: lang.code });
 	};
 
 	const items = languages.map((item) => (

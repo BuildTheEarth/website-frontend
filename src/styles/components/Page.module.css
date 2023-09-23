@@ -1,0 +1,26 @@
+.root {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	width: 100%;
+	background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-8));
+}
+
+.container {
+	background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-7));
+	box-shadow: none;
+    flex: 1;
+    width: 100%;
+    position: relative;
+	margin-top: calc(var(--mantine-spacing-xl) * 2);
+	margin-bottom: calc(var(--mantine-spacing-xl) * 2);
+	padding: calc(var(--mantine-spacing-xl) * 1.5) calc(var(--mantine-spacing-xl) * 3);
+
+	&[data-smallpadding] {
+		padding: calc(var(--mantine-spacing-xs) * 2) calc(var(--mantine-spacing-xs) * 3);
+	}
+
+	@media (max-width: $mantine-breakpoint-md) {
+		padding: calc(var(--mantine-spacing-xs) * 2) calc(var(--mantine-spacing-xs) * 3);
+	}
+}

@@ -1,23 +1,24 @@
 .footer {
-	border-top: 1px solid light-dark(#eaeaea, var(--mantine-color-dark-5));
-	background-color: light-dark(#fafafa, var(--mantine-color-dark-7));
+	border-top: 1px solid light-dark(var(--mantine-color-gray-2), var(--mantine-color-dark-5));
+	background-color: light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-7));
 }
 
 .inner {
-	display: 'flex';
-		justify-content: 'space-between';
-		align-items: 'center';
-		padding-top: var(--mantine-spacing-sm);
-		padding-bottom: var(--mantine-spacing-sm);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-top: var(--mantine-spacing-sm);
+	padding-bottom: var(--mantine-spacing-sm);
 
-		@media (max-width: $mantine-breakpoint-xs) {
-		flex-direction: 'column';
-	    }
+	@media (max-width: $mantine-breakpoint-xs) {
+		flex-direction: column;
+	}
 }
 
 .links {
-    @media (max-width: $mantine-breakpoint-xs) {
-		margin-top: var(--mantine-spacing-md);
+	width: fit-content;
 
-    }
+	@media (max-width: $mantine-breakpoint-xs) {
+		margin-top: var(--mantine-spacing-md);
+	}
 }
