@@ -9,9 +9,9 @@
 .container {
 	background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-7));
 	box-shadow: none;
-    flex: 1;
-    width: 100%;
-    position: relative;
+	flex: 1;
+	width: 100%;
+	position: relative;
 	margin-top: calc(var(--mantine-spacing-xl) * 2);
 	margin-bottom: calc(var(--mantine-spacing-xl) * 2);
 	padding: calc(var(--mantine-spacing-xl) * 1.5) calc(var(--mantine-spacing-xl) * 3);

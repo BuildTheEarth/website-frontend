@@ -1,15 +1,16 @@
-.button: {
-		padding-top: var(--mantine-spacing-sm);
-		paddingBottom: var(--mantine-spacing-sm);
-		paddingLeft: var(--mantine-spacing-xl);
-		paddingRight: var(--mantine-spacing-xl);
-		border: 2px solid var(--mantine-color-gray-8);
-		borderRadius: var(mantine-radius-md);
-		display: 'flex';
-		alignItems: 'center';
-		gap: var(--mantine-spacing-md);
-		flexDirection: 'row';
-		:hover: {
-			backgroundColor: var(--mantine-color-gray-8);
-		},
-	},
+.button {
+	padding-top: var(--mantine-spacing-sm);
+	padding-bottom: var(--mantine-spacing-sm);
+	padding-left: var(--mantine-spacing-xl);
+	padding-right: var(--mantine-spacing-xl);
+	border: 2px solid var(--mantine-color-gray-8);
+	border-radius: var(mantine-radius-md);
+	display: flex;
+	align-items: center;
+	gap: var(--mantine-spacing-md);
+	flex-direction: row;
+
+	&:hover {
+		background-color: var(--mantine-color-gray-8);
+	}
+}
