@@ -14,6 +14,7 @@ import {
 	Menu,
 	Paper,
 	Text,
+	Tooltip,
 	Transition,
 	UnstyledButton,
 	useMantineColorScheme,
@@ -204,9 +205,8 @@ interface LogoHeaderProps {
 	icon: string;
 	name: string;
 	socials?: { name: string; url: string; icon: string }[];
-	builders?: string[];
+	members?: { id: string }[];
 	showStatus?: boolean;
-	userStatus: string;
 	applyHref?: string;
 	settingsHref?: string;
 	invite?: string;
@@ -218,8 +218,8 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 	const scheme = useMantineColorScheme();
 	const { scrollY, scrollYProgress } = useScroll();
 	const user = useUser();
-	const blur = useTransform(scrollYProgress, (latest) => `blur(${latest * 20}px)`);
 	const bgPosY = useTransform(scrollYProgress, (latest) => `${latest * 20 + 50}%`);
+	const userStatus = props?.members?.find((m: any) => m.id == user.user?.id) ? 'Joined' : 'Not Joined';
 	return (
 		<>
 			<motion.div
@@ -322,10 +322,12 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 								<Discord />
 							</ActionIcon>
 						)}
-						{props.builders?.includes('Nudelsuppe_42_#3571') || props.showStatus ? (
-							<Badge color="green" size="lg">
-								{props.userStatus}
-							</Badge>
+						{userStatus != 'Not Joined' ? (
+							<Tooltip label="You are a member of this Buildteam" openDelay={200}>
+								<Badge color="green" size="lg">
+									{userStatus}
+								</Badge>
+							</Tooltip>
 						) : (
 							<Button component={Link} href={props.applyHref || ''}>
 								Apply

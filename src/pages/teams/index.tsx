@@ -1,4 +1,14 @@
-import { Avatar, Grid, Group, Pagination, Skeleton, Text, useMantineColorScheme, useMantineTheme } from '@mantine/core';
+import {
+	Avatar,
+	Badge,
+	Grid,
+	Group,
+	Pagination,
+	Skeleton,
+	Text,
+	useMantineColorScheme,
+	useMantineTheme,
+} from '@mantine/core';
 import { Pin, Users } from 'tabler-icons-react';
 
 import { NextPage } from 'next';
@@ -10,6 +20,7 @@ import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import { useState } from 'react';
 import { useTranslation } from 'next-i18next';
+import { useUser } from '../../hooks/useUser';
 
 const Teams: NextPage = ({ data }: any) => {
 	const router = useRouter();
@@ -60,7 +71,7 @@ const Teams: NextPage = ({ data }: any) => {
 											{element.name}
 										</Text>
 
-										{/*element.builders.includes('Nudelsuppe_42_#3571') ? <Badge color="green">Builder</Badge> : null*/}
+										{element?.members?.length >= 1 ? <Badge color="green">Builder</Badge> : null}
 									</Group>
 
 									<Group wrap="nowrap" gap={10} mt={3}>

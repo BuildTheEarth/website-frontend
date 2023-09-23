@@ -1,24 +1,17 @@
-import { Container, Divider, Grid, Group, Stack, useMantineColorScheme, useMantineTheme } from '@mantine/core';
-import Page, { LogoPage } from '../../../components/Page';
+import { Divider, Grid, Group, Stack } from '@mantine/core';
 
 import Gallery from '../../../components/Gallery';
-import { LogoHeader } from '../../../components/Header';
+import { LogoPage } from '../../../components/Page';
 import { NextPage } from 'next';
 import fetcher from '../../../utils/Fetcher';
 import sanitizeHtml from 'sanitize-html';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useMediaQuery } from '@mantine/hooks';
 import { useRouter } from 'next/router';
-import useSWR from 'swr';
-import { useScroll } from 'framer-motion';
 
 const Team: NextPage = ({ data }: any) => {
 	const router = useRouter();
 	const team = router.query.team;
-	// const { data } = useSWR(`/buildteams/${team}?builds=true&showcase=true`);
-	const matches = useMediaQuery('(min-width: 900px)');
-	const theme = useMantineTheme();
-	const scheme = useMantineColorScheme();
+
 	return (
 		<LogoPage fullWidth title={data?.name} description={data?.about} headData={data} team={team?.toString() || ''}>
 			<Grid>
@@ -28,7 +21,8 @@ const Team: NextPage = ({ data }: any) => {
 				</Grid.Col>
 				<Grid.Col span={4}>
 					<h2>Details</h2>
-					<Stack>
+					<Stack gap={0}>
+						<Divider style={{ margin: '0' }} my="sm" />
 						<Group justify="space-between">
 							<p>Location</p>
 							<p>{data?.location}</p>
@@ -69,7 +63,7 @@ const Team: NextPage = ({ data }: any) => {
 export default Team;
 
 export async function getStaticProps({ locale, params }: any) {
-	const res = await fetcher(`/buildteams/${params.team}?builds=true&showcase=true`);
+	const res = await fetcher(`/buildteams/${params.team}?builds=true&showcase=true&members=true`);
 	return {
 		props: {
 			...(await serverSideTranslations(locale, ['common', 'teams'])),
