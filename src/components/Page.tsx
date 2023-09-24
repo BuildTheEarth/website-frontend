@@ -24,7 +24,6 @@ interface PageProps {
 		subtitle?: string;
 		image?: string;
 		filter?: string;
-		large?: boolean;
 	};
 	title?: string;
 	description?: string;
@@ -67,15 +66,12 @@ const Page = (props: PageProps) => {
 			<Paper className={classes.root}>
 				{props.head && (
 					<motion.div
-						// src={props.head?.image || ''}
-						// style={{ width: '100%', minHeight: props.head.large ? '30vh' : '25vh' }}
 						style={{
 							backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
 							background: `url("${props.head?.image || ''}") center center / cover`,
 							backgroundPositionY: bgPosY,
 							width: '100%',
-							// height: '50vh',
-							minHeight: props.head.large ? '30vh' : '25vh',
+							minHeight: '25vh',
 						}}
 					>
 						<Center
@@ -84,7 +80,7 @@ const Page = (props: PageProps) => {
 								backgroundColor: '#00000077',
 								textAlign: 'center',
 								height: '100%',
-								minHeight: props.head.large ? '30vh' : '25vh',
+								minHeight: '25vh',
 							}}
 						>
 							<h1

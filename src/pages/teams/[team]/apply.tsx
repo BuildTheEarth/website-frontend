@@ -27,7 +27,6 @@ const Apply: NextPage = () => {
 			head={{
 				title: t('apply.title', { team: buildteam?.name || 'BTE' }),
 				image: 'https://cdn.buildtheearth.net/static/thumbnails/apply.png',
-				large: true,
 			}}
 			title={buildteam?.name}
 			description={buildteam?.about}

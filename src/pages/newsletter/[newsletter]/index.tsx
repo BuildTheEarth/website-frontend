@@ -21,7 +21,6 @@ const Newsletter: NextPage = () => {
 			head={{
 				title: data?.title,
 				image: data?.links[0] || 'https://cdn.buildtheearth.net/static/thumbnails/newsletter.png',
-				large: true,
 				subtitle: `Issue ${data?.issue}, ${new Date(data?.published_date).toLocaleDateString()}`,
 			}}
 			description={`BuildTheEarth Newsletter Issue ${data?.issue}, ${new Date(
