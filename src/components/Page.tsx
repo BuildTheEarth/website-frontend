@@ -1,6 +1,7 @@
 import { BackgroundImage, Center, Container, Paper, Text, useMantineColorScheme, useMantineTheme } from '@mantine/core';
 import Header, { LogoHeader } from './Header';
 import { NextSeo, NextSeoProps } from 'next-seo';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 import Footer from './Footer';
 import React from 'react';
@@ -36,9 +37,10 @@ const Page = (props: PageProps) => {
 	const matches = useMediaQuery('(min-width: 900px)');
 	const router = useRouter();
 	const { data: session } = useSession();
-	const { scrollY } = useScrollPosition();
 	const theme = useMantineTheme();
 	const scheme = useMantineColorScheme();
+	const { scrollY, scrollYProgress } = useScroll();
+	const bgPosY = useTransform(scrollYProgress, (latest) => `${latest * 5 + 50}%`);
 	return (
 		<>
 			<NextSeo
@@ -56,7 +58,7 @@ const Page = (props: PageProps) => {
 						{ link: '/contact', translation: 'contact' },
 					]}
 					style={{
-						opacity: props.hideHeaderOnInitialScroll && scrollY <= 20 ? 0 : 1,
+						// opacity: props.hideHeaderOnInitialScroll && scrollY <= 20 ? 0 : 1,
 						transition: 'opacity 0.2s linear',
 						zIndex: 9999,
 					}}
@@ -64,9 +66,17 @@ const Page = (props: PageProps) => {
 			)}
 			<Paper className={classes.root}>
 				{props.head && (
-					<BackgroundImage
-						src={props.head?.image || ''}
-						style={{ width: '100%', minHeight: props.head.large ? '30vh' : '25vh' }}
+					<motion.div
+						// src={props.head?.image || ''}
+						// style={{ width: '100%', minHeight: props.head.large ? '30vh' : '25vh' }}
+						style={{
+							backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+							background: `url("${props.head?.image || ''}") center center / cover`,
+							backgroundPositionY: bgPosY,
+							width: '100%',
+							// height: '50vh',
+							minHeight: props.head.large ? '30vh' : '25vh',
+						}}
 					>
 						<Center
 							style={{
@@ -95,7 +105,7 @@ const Page = (props: PageProps) => {
 								)}
 							</h1>
 						</Center>
-					</BackgroundImage>
+					</motion.div>
 				)}
 
 				{props.fullWidth ? (
