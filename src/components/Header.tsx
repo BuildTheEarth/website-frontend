@@ -138,7 +138,7 @@ const Header = ({ links, style }: HeaderProps) => {
 							</Anchor>
 							<Button
 								style={{ fontWeight: '500', paddingLeft: '12px', paddingRight: '12px', height: '32px' }}
-								onClick={() => router.push('/getstarted')}
+								onClick={() => router.push('/join')}
 							>
 								{t('auth.signup')}
 							</Button>

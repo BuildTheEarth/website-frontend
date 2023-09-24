@@ -65,7 +65,7 @@ const Home: NextPage = () => {
 								textShadow: '0px 0px 28px #000',
 								borderWidth: '2px',
 							}}
-							href="/getstarted"
+							href="/join"
 						>
 							{t('head.action')}
 						</Button>
@@ -81,11 +81,12 @@ const Home: NextPage = () => {
 					}}
 				>
 					<motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-						<ActionIcon<'a'>
+						<ActionIcon
+							component={Link}
 							styles={{ root: { height: 64, width: 64, textShadow: '0px 0px 28px #000' } }}
 							radius="xs"
 							variant="transparent"
-							onClick={() => router.push('#more')}
+							href="#more"
 						>
 							<ChevronDown size={64} color="white" />
 						</ActionIcon>
@@ -223,7 +224,7 @@ const Home: NextPage = () => {
 								<Button
 									px={'var(--mantine-spacing-xl)'}
 									component={Link}
-									href="/getstarted"
+									href="/join"
 									mt="md"
 									rightSection={<ChevronRight />}
 								>

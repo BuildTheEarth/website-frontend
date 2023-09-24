@@ -7,11 +7,13 @@
 	"compability": "Compability",
 	"visit": {
 		"title": "Explore BuildTheEarth",
-		"subtitle": "Visiting"
+		"subtitle": "Visit countries, cities and even villages, which we have already build.",
+		"button": "Join the server"
 	},
 	"build": {
 		"title": "Start Building",
-		"subtitle": "Building"
+		"subtitle": "Apply to become a Builder and help us with our goal to build the Earth in Minecraft.",
+		"button": "Apply"
 	},
-	"disclaimer": "No cost, no subscription, you can leave/switch at any point"
+	"more": "Read more"
 }

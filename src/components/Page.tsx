@@ -63,7 +63,7 @@ const Page = (props: PageProps) => {
 					}}
 				/>
 			)}
-			<Paper className={classes.root}>
+			<Paper className={classes.root} style={props.fullWidth ? props.style : undefined}>
 				{props.head && (
 					<motion.div
 						style={{
