@@ -1,9 +1,6 @@
 import {
-	ActionIcon,
-	Box,
 	Button,
 	Divider,
-	Flex,
 	Grid,
 	Group,
 	Input,
@@ -23,7 +20,6 @@ import SettingsTabs from '../../../../components/SettingsTabs';
 import fetcher from '../../../../utils/Fetcher';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { showNotification } from '@mantine/notifications';
-import { useRouter } from 'next/router';
 import { useUser } from '../../../../hooks/useUser';
 import { v4 as uuidv4 } from 'uuid';
 

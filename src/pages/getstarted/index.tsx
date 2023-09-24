@@ -1,19 +1,14 @@
-import { Grid, Text, useMantineTheme } from '@mantine/core';
+import { Grid, Text } from '@mantine/core';
 
 import { BackgroundCard } from '../../components/Card';
 import { NextPage } from 'next';
 import Page from '../../components/Page';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useMediaQuery } from '@mantine/hooks';
-import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const GetStarted: NextPage = () => {
-	const theme = useMantineTheme();
 	const { t } = useTranslation('getstarted');
-	const router = useRouter();
-	const largeScreen = useMediaQuery('(min-width: 900px)');
 	const [focused, setFocused] = useState<number>(1);
 	return (
 		<Page

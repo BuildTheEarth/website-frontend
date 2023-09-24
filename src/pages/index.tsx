@@ -1,13 +1,9 @@
 import {
 	ActionIcon,
-	BackgroundImage,
-	Badge,
 	Box,
 	Button,
 	Center,
 	Grid,
-	Group,
-	Space,
 	Stack,
 	Title,
 	useMantineColorScheme,
@@ -17,8 +13,6 @@ import { ChevronDown, ChevronRight } from 'tabler-icons-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 import Gallery from '../components/Gallery';
-import { IconArrowRight } from '@tabler/icons';
-import Image from 'next/image';
 import Link from 'next/link';
 import { NextPage } from 'next';
 import Page from '../components/Page';
@@ -29,7 +23,7 @@ import { useTranslation } from 'next-i18next';
 const Home: NextPage = () => {
 	const theme = useMantineTheme();
 	const scheme = useMantineColorScheme();
-	const { scrollY, scrollYProgress } = useScroll();
+	const { scrollYProgress } = useScroll();
 	const { t } = useTranslation('home');
 	const router = useRouter();
 	const headBgPosY = useTransform(scrollYProgress, (latest) => `${latest * 5 + 50}%`);

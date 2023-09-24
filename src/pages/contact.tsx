@@ -18,7 +18,6 @@ import Page from '../components/Page';
 import fetcher from '../utils/Fetcher';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
-import useSWR from 'swr';
 
 const Contact: NextPage = ({ data }: any) => {
 	const router = useRouter();

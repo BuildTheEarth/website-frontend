@@ -1,18 +1,15 @@
 /* eslint-disable no-undef */
 
-import { Group, Image, useMantineTheme } from '@mantine/core';
+import { Group, Image } from '@mantine/core';
 
 import { NextPage } from 'next';
 import Page from '../../../components/Page';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
-import { useState } from 'react';
 
 const Newsletter: NextPage = () => {
 	const router = useRouter();
-	const theme = useMantineTheme();
-	const [activePage, setPage] = useState(1);
 	const newsletter = router.query.newsletter;
 	const { data } = useSWR(`/newsletter/${newsletter}?isIssue=true`);
 

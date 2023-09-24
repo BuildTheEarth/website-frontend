@@ -1,4 +1,4 @@
-import { Accordion, Button, Flex, Skeleton, useMantineTheme } from '@mantine/core';
+import { Accordion, Button, Flex } from '@mantine/core';
 
 import { IconEdit } from '@tabler/icons';
 import { NextPage } from 'next';
@@ -8,7 +8,6 @@ import fetcher from '../../utils/Fetcher';
 import sanitizeHtml from 'sanitize-html';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
-import useSWR from 'swr';
 import { useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { useUser } from '../../hooks/useUser';

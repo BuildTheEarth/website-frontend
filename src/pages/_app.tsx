@@ -1,12 +1,10 @@
+import '@mantine/carousel/styles.css';
+import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
+import '@mantine/nprogress/styles.css';
+import '@mantine/tiptap/styles.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import '../styles/globals.css';
-import '@mantine/notifications/styles.css';
-import '@mantine/core/styles.css';
-import '@mantine/nprogress/styles.css';
-import '@mantine/carousel/styles.css';
-import '@mantine/tiptap/styles.css';
-
-import { useHotkeys, useLocalStorage } from '@mantine/hooks';
 
 import type { AppProps } from 'next/app';
 import { DefaultSeo } from 'next-seo';
@@ -17,11 +15,9 @@ import SWRSetup from '../components/SWRSetup';
 import { SessionProvider } from 'next-auth/react';
 import { appWithTranslation } from 'next-i18next';
 import defaultSeo from '../../next-seo.config';
-import { useRouter } from 'next/router';
+import { useLocalStorage } from '@mantine/hooks';
 
 function MyApp({ Component, pageProps }: AppProps) {
-	const router = useRouter();
-
 	const [accessToken, setAccessToken] = useLocalStorage<string>({
 		key: 'accessToken',
 		defaultValue: '',

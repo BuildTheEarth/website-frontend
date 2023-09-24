@@ -1,14 +1,4 @@
-import {
-	Avatar,
-	Badge,
-	Grid,
-	Group,
-	Pagination,
-	Skeleton,
-	Text,
-	useMantineColorScheme,
-	useMantineTheme,
-} from '@mantine/core';
+import { Avatar, Badge, Grid, Group, Pagination, Text, useMantineColorScheme, useMantineTheme } from '@mantine/core';
 import { Pin, Users } from 'tabler-icons-react';
 
 import { NextPage } from 'next';
@@ -17,10 +7,8 @@ import SearchInput from '../../components/SearchInput';
 import fetcher from '../../utils/Fetcher';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
-import useSWR from 'swr';
 import { useState } from 'react';
 import { useTranslation } from 'next-i18next';
-import { useUser } from '../../hooks/useUser';
 
 const Teams: NextPage = ({ data }: any) => {
 	const router = useRouter();

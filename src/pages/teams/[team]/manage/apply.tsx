@@ -15,21 +15,15 @@ import {
 	Title,
 	useMantineTheme,
 } from '@mantine/core';
-import {
-	ApplicationQuestion,
-	ApplicationQuestions,
-	toReadable,
-} from '../../../../utils/application/ApplicationQuestions';
+import { ApplicationQuestions, toReadable } from '../../../../utils/application/ApplicationQuestions';
 import { IconChevronDown, IconChevronUp, IconLetterT, IconPlus } from '@tabler/icons';
 import Question, { EditQuestion } from '../../../../components/application/questions/Question';
 
-import App from 'next/app';
 import Icon from '../../../../components/Icon';
 import Link from 'next/link';
 import { NextPage } from 'next';
 import Page from '../../../../components/Page';
 import SettingsTabs from '../../../../components/SettingsTabs';
-import TextQuestion from '../../../../components/application/questions/TextQuestion';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
