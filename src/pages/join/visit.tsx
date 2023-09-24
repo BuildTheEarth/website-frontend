@@ -39,8 +39,8 @@ const GetStarted: NextPage = ({ data }: any) => {
 	const router = useRouter();
 	const [search, setSearch] = useState<string | undefined>(undefined);
 	const [selected, setSelected] = useState<any>(undefined);
-	const { scrollYProgress } = useScroll();
-	const titleOp = useTransform(scrollYProgress, [0, 1], ['0', '1']);
+	const { scrollY, scrollYProgress } = useScroll();
+	const titleOp = useTransform(scrollY, [0, 500], ['0', '1']);
 
 	const locations: any = [];
 	data?.forEach((element: any) =>
