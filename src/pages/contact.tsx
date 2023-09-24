@@ -29,7 +29,7 @@ const Contact: NextPage = ({ data }: any) => {
 		<Page
 			head={{
 				title: 'Contact',
-				image: '/images/placeholder.webp',
+				image: 'https://cdn.buildtheearth.net/static/placeholder.webp',
 				large: true,
 			}}
 			description="Get in touch with BuildTheEarth Staff Members"

@@ -2,7 +2,7 @@
 const nextConfig = {
 	reactStrictMode: true,
 	images: {
-		domains: ['cdn.discordapp.com', 'i.imgur.com'],
+		domains: ['cdn.discordapp.com', 'i.imgur.com', 'cdn.buildtheearth.net'],
 	},
 	i18n: {
 		defaultLocale: 'en',

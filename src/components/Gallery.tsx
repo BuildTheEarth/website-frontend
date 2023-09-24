@@ -1,4 +1,4 @@
-import { Badge, Box, Title, useMantineTheme } from '@mantine/core';
+import { BackgroundImage, Badge, Box, Image, Title, useMantineTheme } from '@mantine/core';
 import React, { useState } from 'react';
 
 import { Carousel } from '@mantine/carousel';
@@ -13,7 +13,7 @@ function Gallery(props: GalleryProps) {
 	const theme = useMantineTheme();
 
 	return (
-		<Box style={props.style}>
+		<Box style={{ ...props.style, display: 'flex' }}>
 			<Carousel
 				withIndicators
 				height={'100%'}
@@ -27,50 +27,61 @@ function Gallery(props: GalleryProps) {
 					setActive(active + 1);
 				}}
 				loop
+				align="center"
+				slideGap={0}
+				style={{ flex: 1 }}
 			>
 				{props.images.map((i) => {
 					return (
-						<Carousel.Slide
-							style={{ height: props.style?.height, position: 'relative' }}
-							key={`g-${i.location}-${i.builder}`}
-						>
-							<div style={{ position: 'relative', height: props.style?.height }}>
-								<img src={i.src} alt="" width={'100%'} height={'100%'} style={{ objectFit: 'cover' }} />
+						<Carousel.Slide key={`g-${i.location}-${i.builder}`}>
+							<BackgroundImage
+								src={i.src}
+								style={{
+									width: '100%',
+									height: '100%',
+								}}
+							>
 								<div
 									style={{
-										position: 'absolute',
-										bottom: 0,
-										right: 0,
-										margin: theme.spacing.xl,
-										textAlign: 'right',
-										zIndex: 50,
+										height: '100%',
+										position: 'relative',
+										width: '100%',
+										background: 'linear-gradient(160deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0,0.8))',
 									}}
 								>
-									<Title style={{ display: 'flex', alignItems: 'center', color: 'var(--mantine-color-white)' }}>
-										<span
-											className={`fi fi-${i.country} fis`}
+									<div
+										style={{
+											position: 'absolute',
+											bottom: 0,
+											right: 0,
+											margin: theme.spacing.xl,
+											textAlign: 'right',
+											zIndex: 50,
+										}}
+									>
+										<Title
 											style={{
-												borderRadius: '50%',
-												height: '25px',
-												width: '25px',
-												marginRight: theme.spacing.md,
-												marginTop: 5,
+												display: 'flex',
+												alignItems: 'center',
+												color: 'var(--mantine-color-white)',
+												textShadow: '0px 0px 28px #000',
 											}}
-										></span>
-										{i.location}
-									</Title>
-									{i.builder && <Badge variant={'filled'}>{i.builder}</Badge>}
+										>
+											<span
+												className={`fi fi-${i.country} fis`}
+												style={{
+													borderRadius: '50%',
+													height: '25px',
+													width: '25px',
+													marginRight: theme.spacing.md,
+												}}
+											></span>
+											{i.location}
+										</Title>
+										{i.builder && <Badge variant="gradient">{i.builder}</Badge>}
+									</div>
 								</div>
-								<div
-									style={{
-										position: 'absolute',
-										bottom: 0,
-										right: 0,
-									}}
-								>
-									<img src="/galleryoverlay.svg" alt="" width={'100%'} />
-								</div>
-							</div>
+							</BackgroundImage>
 						</Carousel.Slide>
 					);
 				})}

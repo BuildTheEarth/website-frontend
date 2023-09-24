@@ -10,7 +10,7 @@ const Team: NextPage = () => {
 		<Page
 			head={{
 				title: 'Privacy',
-				image: '/images/placeholder.webp',
+				image: 'https://cdn.buildtheearth.net/static/placeholder.webp',
 			}}
 			seo={{ nofollow: true, noindex: true }}
 		>

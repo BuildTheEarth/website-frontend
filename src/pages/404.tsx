@@ -21,7 +21,7 @@ function ErrorPage() {
 				<div
 					style={{
 						backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-						background: `url("/images/placeholder.webp")`,
+						background: `url("https://cdn.buildtheearth.net/static/placeholder.webp")`,
 						filter: 'brightness(0.5)',
 						width: '100%',
 						height: 'calc(100vh - 60px)',

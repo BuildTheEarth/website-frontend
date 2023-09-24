@@ -22,7 +22,7 @@ const Faq: NextPage = ({ data }: any) => {
 		<Page
 			head={{
 				title: t('head.title'),
-				image: '/images/placeholder.webp',
+				image: 'https://cdn.buildtheearth.net/static/placeholder.webp',
 			}}
 			title="FAQ"
 			description="Answers to all frrequently asked Questions about the BuildTheEarth Project"

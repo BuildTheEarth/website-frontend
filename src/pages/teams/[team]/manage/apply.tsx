@@ -120,7 +120,7 @@ const Apply: NextPage = () => {
 			smallPadding
 			head={{
 				title: 'Edit Application Questions',
-				image: '/images/placeholder.webp',
+				image: 'https://cdn.buildtheearth.net/static/placeholder.webp',
 			}}
 			seo={{ nofollow: true, noindex: true }}
 		>

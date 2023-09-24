@@ -145,7 +145,7 @@ const Faq: NextPage = () => {
 		<Page
 			head={{
 				title: 'Edit FAQ',
-				image: '/images/placeholder.webp',
+				image: 'https://cdn.buildtheearth.net/static/placeholder.webp',
 			}}
 			seo={{ nofollow: true, noindex: true }}
 		>

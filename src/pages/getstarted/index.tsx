@@ -19,7 +19,7 @@ const GetStarted: NextPage = () => {
 		<Page
 			head={{
 				title: t('head.title'),
-				image: '/images/placeholder.webp',
+				image: 'https://cdn.buildtheearth.net/static/placeholder.webp',
 			}}
 			title="Participate"
 			description="Participate in Building the Earth"
@@ -28,7 +28,7 @@ const GetStarted: NextPage = () => {
 			<Grid style={{ height: '50vh' }}>
 				<Grid.Col span={{ sm: 6 }} onMouseOver={() => setFocused(1)}>
 					<BackgroundCard
-						image="/images/getstarted/buildteams.webp"
+						image="https://cdn.buildtheearth.net/static/getstarted/buildteams.webp"
 						title={t('visit.title')}
 						category={t('visit.subtitle')}
 						style={{ height: '100%' }}
@@ -38,7 +38,7 @@ const GetStarted: NextPage = () => {
 				</Grid.Col>
 				<Grid.Col span={{ sm: 6 }} onMouseOver={() => setFocused(2)}>
 					<BackgroundCard
-						image="/images/getstarted/network.webp"
+						image="https://cdn.buildtheearth.net/static/getstarted/network.webp"
 						title={t('build.title')}
 						category={t('build.subtitle')}
 						style={{ height: '100%' }}

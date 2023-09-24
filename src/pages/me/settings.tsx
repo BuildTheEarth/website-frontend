@@ -11,7 +11,7 @@ const Settings: NextPage = () => {
 		<Page
 			head={{
 				title: 'Account Settings',
-				image: '/images/placeholder.webp',
+				image: 'https://cdn.buildtheearth.net/static/placeholder.webp',
 			}}
 		>
 			<h2>

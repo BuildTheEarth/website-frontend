@@ -15,7 +15,7 @@ const SignIn: NextPage = () => {
 		<Page
 			head={{
 				title: 'Sign in',
-				image: '/images/placeholder.webp',
+				image: 'https://cdn.buildtheearth.net/static/placeholder.webp',
 			}}
 			seo={{ nofollow: true, noindex: true }}
 		>
