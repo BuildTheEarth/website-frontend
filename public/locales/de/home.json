@@ -1,15 +1,16 @@
 {
-	"head": {
-		"title": "Die Erde in Minecraft ",
-		"action": "Loslegen"
-	},
-	"mission": {
-		"title": "Unsere Mission",
-		"content": "Unser Ziel ist es, die gesamte Erde in Minecraft im Maßstab 1:1 nachzubilden. Ein Block in Minecraft entspricht etwa einem Meter in der realen Welt, was bedeutet, dass dieses Projekt die Größe unseres Planeten vollständig nachbilden wird. Jeder kann sich uns anschließen und zum größten und umfangreichsten Bauprojekt beitragen, das jemals in Minecraft versucht wurde. Jede Sprache, jede Nationalität wird akzeptiert und als unser größtes Attribut angesehen, während wir unsere Reise fortsetzen, um alle großen Errungenschaften der Menschheit in einer einzigen Minecraft-Welt zu vereinen."
-	},
-	"join": {
-		"title": "Wie du helfen kannst",
-		"action": "Loslegen",
-		"content": "Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
-	}
+    "head": {
+        "title": "Die Erde in Minecraft ",
+        "action": "Schließe dich uns an"
+    },
+    "mission": {
+        "title": "Unsere Mission",
+        "content": "Unser Ziel ist es, die gesamte Erde in Minecraft im Maßstab 1:1 nachzubilden. Ein Block in Minecraft entspricht etwa einem Meter in der realen Welt, was bedeutet, dass dieses Projekt die Größe unseres Planeten vollständig nachbilden wird. Jeder kann sich uns anschließen und zum größten und umfangreichsten Bauprojekt beitragen, das jemals in Minecraft versucht wurde. Jede Sprache, jede Nationalität wird akzeptiert und als unser größtes Attribut angesehen, während wir unsere Reise fortsetzen, um alle großen Errungenschaften der Menschheit in einer einzigen Minecraft-Welt zu vereinen.",
+        "action": "Über uns"
+    },
+    "join": {
+        "title": "Wie du helfen kannst",
+        "action": "Loslegen",
+        "content": "Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+    }
 }
