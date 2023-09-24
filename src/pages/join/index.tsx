@@ -1,14 +1,11 @@
 import {
 	ActionIcon,
-	Anchor,
 	BackgroundImage,
-	Box,
 	Button,
 	Card,
 	Center,
 	Container,
 	Grid,
-	Group,
 	Text,
 	Title,
 	useMantineColorScheme,
@@ -17,7 +14,6 @@ import {
 import { ChevronDown, ChevronRight } from 'tabler-icons-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { NextPage } from 'next';
 import Page from '../../components/Page';
@@ -49,7 +45,7 @@ const GetStarted: NextPage = () => {
 					}}
 				>
 					<Title style={{ color: '#ffffff', fontSize: 64, textShadow: '0px 0px 28px #000' }} ta="center" order={1}>
-						{t('head.title')}
+						{t('choose.title')}
 					</Title>
 				</Center>
 				<Center
@@ -67,7 +63,7 @@ const GetStarted: NextPage = () => {
 							styles={{ root: { height: 64, width: 64, textShadow: '0px 0px 28px #000' } }}
 							radius="xs"
 							variant="transparent"
-							href="#choose"
+							href="#more"
 						>
 							<ChevronDown size={64} color="white" />
 						</ActionIcon>
@@ -84,7 +80,7 @@ const GetStarted: NextPage = () => {
 				my="xl"
 			>
 				<motion.h1
-					id="choose"
+					id="more"
 					style={{
 						opacity: titleOp,
 						margin: 'var(--mantine-spacing-xl) 0px',
@@ -92,7 +88,7 @@ const GetStarted: NextPage = () => {
 						color: 'var(--mantine-color-white)',
 					}}
 				>
-					{t('head.title')}
+					{t('choose.title')}
 				</motion.h1>
 				<Grid style={{ width: '100%' }} my="xl" pb="xl" gutter={{ base: 'md', sm: '10%' }}>
 					<Grid.Col span={{ xs: 6, base: 9 }}>
@@ -109,21 +105,21 @@ const GetStarted: NextPage = () => {
 							</Card.Section>
 
 							<Title order={2} mt="md">
-								{t('visit.title')}
+								{t('choose.visit.title')}
 							</Title>
 
 							<Text mt="xs" c="dimmed" size="md">
-								{t('visit.subtitle')}
+								{t('choose.visit.subtitle')}
 							</Text>
 							<Button
 								component={Link}
-								href="/join/visit"
+								href="/join/visit#more"
 								rightSection={<ChevronRight />}
 								px={'var(--mantine-spacing-xl)'}
 								mt="md"
 								style={{ width: 'fit-content' }}
 							>
-								{t('visit.button')}
+								{t('choose.visit.button')}
 							</Button>
 						</Card>
 					</Grid.Col>
@@ -141,59 +137,26 @@ const GetStarted: NextPage = () => {
 							</Card.Section>
 
 							<Title order={2} mt="md">
-								{t('build.title')}
+								{t('choose.build.title')}
 							</Title>
 
 							<Text mt="xs" c="dimmed" size="md">
-								{t('build.subtitle')}
+								{t('choose.build.subtitle')}
 							</Text>
 							<Button
 								component={Link}
-								href="/join/build"
+								href="/join/build#more"
 								rightSection={<ChevronRight />}
 								px={'var(--mantine-spacing-xl)'}
 								mt="md"
 								style={{ width: 'fit-content' }}
 							>
-								{t('build.button')}
+								{t('choose.build.button')}
 							</Button>
 						</Card>
 					</Grid.Col>
 				</Grid>
-				<Text c="dimmed" fs="sm" mt="xl" pt="xl" component={Link} href="https://docs.buildtheearth.net/docs/intro">
-					{t('more')}
-				</Text>
 			</Container>
-			{/* <p>{t('description')}</p>
-			<Grid style={{ height: '50vh' }}>
-				<Grid.Col span={{ sm: 6 }} onMouseOver={() => setFocused(1)}>
-					<BackgroundCard
-						image="https://cdn.buildtheearth.net/static/getstarted/buildteams.webp"
-						title={t('visit.title')}
-						category={t('visit.subtitle')}
-						style={{ height: '100%' }}
-						showButton={focused == 1}
-						buttonText={t('select')}
-					/>
-				</Grid.Col>
-				<Grid.Col span={{ sm: 6 }} onMouseOver={() => setFocused(2)}>
-					<BackgroundCard
-						image="https://cdn.buildtheearth.net/static/getstarted/network.webp"
-						title={t('build.title')}
-						category={t('build.subtitle')}
-						style={{ height: '100%' }}
-						showButton={focused == 2}
-						buttonText={t('select')}
-					/>
-				</Grid.Col>
-			</Grid>
-
-			<Text mt="lg">
-				<Text c="red" span inherit pr="sm">
-					*
-				</Text>
-				{t('disclaimer')}
-			</Text> */}
 		</Page>
 	);
 };

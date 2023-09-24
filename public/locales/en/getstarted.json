@@ -1,19 +1,30 @@
 {
-	"head": {
-		"title": "How would you like to participate?"
+	"choose": {
+		"title": "How would you like to participate?",
+		"visit": {
+			"title": "Explore BuildTheEarth",
+			"subtitle": "Visit countries, cities and even villages, which we have already build.",
+			"button": "Join the server"
+		},
+		"build": {
+			"title": "Start Building",
+			"subtitle": "Apply to become a Builder and help us with our goal to build the Earth in Minecraft.",
+			"button": "Apply"
+		}
 	},
-	"select": "Select",
-	"description": "To make building the earth easier we have split the effort into Local Teams that concentrate on the different countries. These teams are communities of Minecraft players from the country that work together. Everybody is welcome to the teams even when you are not from the country though.\nIn addition to that we have the a global network in which we try to combine the effort from all teams. It Is the international hub which connects all of us into a single project.",
-	"compability": "Compability",
 	"visit": {
 		"title": "Explore BuildTheEarth",
-		"subtitle": "Visit countries, cities and even villages, which we have already build.",
-		"button": "Join the server"
-	},
-	"build": {
-		"title": "Start Building",
-		"subtitle": "Apply to become a Builder and help us with our goal to build the Earth in Minecraft.",
-		"button": "Apply"
+		"description": "Search a country below to see detailed instructions on how to visit this country.",
+		"country": {
+			"title": "How to visit {{country}}",
+			"network": {
+				"description": "The Team <b>{{team}}</b> can be visited on the server hub when running <b>/bt {{slug}}</b>."
+			},
+			"standalone": {
+				"description": "The Team {{team}} can be visited on their server with the ip {{ip}}."
+			}
+		},
+		"back": "Back"
 	},
 	"more": "Read more"
 }
