@@ -84,7 +84,7 @@ const Teams: NextPage = ({ data }: any) => {
 									<Group wrap="nowrap" gap={10} mt={5}>
 										<Users size={16} />
 										<Text size="xs" c="dimmed">
-											{element._count.members} Members
+											{t('members', { num: element._count.members })}
 										</Text>
 									</Group>
 								</div>

@@ -1,25 +1,17 @@
 {
-	"description": "Du kannst wählen, ob du auf dem offiziellen BTE-Server oder auf dem Server eines regionalen Build-Teams bauen willst, aber vergess nicht, dass du dem anderen jederzeit beitreten kannst!",
 	"head": {
-		"title": "Wie möchtest du mitmachen?"
+		"title": ""
 	},
-	"compability": "Kompatibilität",
-	"network": {
-		"title": "Offizielles Netzwerk",
-		"description": "Baue mit deinen Freunden auf unserem eigenen offiziellen Server",
-		"compability": {
-			"java": "Java: 1.8 - 1.19",
-			"bedrock": "Bedrock: Aktuellste"
-		},
-		"getStarted": "Weiter"
+	"select": "",
+	"description": "",
+	"compability": "",
+	"visit": {
+		"title": "",
+		"subtitle": ""
 	},
-	"teams": {
-		"title": "bau Teams",
-		"description": "Helfe mit, ein ganzes Land zu bauen, indem du einem Bau Team beitrittst",
-		"compability": {
-			"java": "Java: 1.8 - 1.19",
-			"bedrock": "Bedrock: Aktuellste"
-		},
-		"getStarted": "Weiter"
-	}
+	"build": {
+		"title": "",
+		"subtitle": ""
+	},
+	"disclaimer": ""
 }

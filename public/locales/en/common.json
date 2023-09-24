@@ -4,6 +4,7 @@
 	"buildtheearth": "BuildTheEarth",
 	"staff": "Staff",
 	"builder": "Builder",
+	"trial": "Trial",
 	"search": "Search…",
 	"auth": {
 		"signin": "Sign In",
@@ -24,13 +25,16 @@
 		"delete": "Delete",
 		"copy": "Copy",
 		"back": "Back",
-		"submit": "Submit"
+		"submit": "Submit",
+		"apply": "Apply",
+		"cancel": "Cancel"
 	},
 	"links": {
 		"faq": "FAQ",
 		"map": "Map",
 		"teams": "Buildteams",
 		"contact": "Contact",
-		"aboutUs": "About us"
+		"aboutUs": "About us",
+		"newsletter": "Newsletter"
 	}
 }

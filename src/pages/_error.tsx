@@ -58,7 +58,7 @@ function ErrorPage(props: any) {
 								}}
 								onClick={() => router.back()}
 							>
-								Go Back
+								{t('button.back', { ns: 'common' })}
 							</Button>
 						</Title>
 					</div>

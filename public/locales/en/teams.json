@@ -4,9 +4,20 @@
 	},
 	"description": "Build teams are the easiest way to join Build The Earth. These groups work together on a multiplayer server to build cities, regions and sometimes even entire countries. All you need to do is click 'Apply to join' and within no time you can start helping out!",
 	"joining": "To participate in a build team, you need to have purchased Minecraft Java Edition or Minecraft Bedrock Edition, depending on the team. In most cases, you will also be required to have the Build The Earth Modpack installed.",
+	"members": "{{num}} Members",
 	"team": {
 		"overview": "Overview",
 		"images": "Images",
-		"details": "Details"
+		"details": "Details",
+		"location": "Location",
+		"members": "Members",
+		"builds": "Builds"
+	},
+	"apply": {
+		"title": "Join {{team}}",
+		"trial": {
+			"title": "Trial Application",
+			"description": "This buildteam supports trial applications. You can apply as trial when selecting the button below."
+		}
 	}
 }

@@ -1,1 +1,22 @@
-{}
+{
+	"head": {
+		"title": ""
+	},
+	"description": "",
+	"members": "",
+	"team": {
+		"overview": "",
+		"images": "",
+		"details": "",
+		"location": "",
+		"members": "",
+		"builds": ""
+	},
+	"apply": {
+		"title": "",
+		"trial": {
+			"title": "",
+			"description": ""
+		}
+	}
+}

@@ -31,7 +31,7 @@ const Faq: NextPage = ({ data }: any) => {
 				<SearchInput onSearch={(search) => setSearch(search)} />
 				{(user.hasPermission('faq.add') || user.hasPermission('faq.edit') || user.hasPermission('faq.remove')) && (
 					<Button leftSection={<IconEdit />} onClick={() => router.push('faq/manage')} ml="md">
-						Edit Questions
+						{t('edit')}
 					</Button>
 				)}
 			</Flex>

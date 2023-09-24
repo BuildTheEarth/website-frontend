@@ -1,36 +1,40 @@
 {
-	"language": "Nederlands",
-	"copyright": "Auteursrecht © {{year}} BuildTheEarth",
-	"buildtheearth": "BuildTheEarth",
-	"staff": "Staff",
-	"builder": "Bouwer",
-	"search": "Zoek…",
+	"language": "Deutsch",
+	"copyright": "",
+	"buildtheearth": "",
+	"staff": "",
+	"builder": "",
+	"trial": "",
+	"search": "",
 	"auth": {
-		"signin": "Log in",
-		"signout": "Log uit",
-		"signup": "Ga van start"
+		"signin": "",
+		"signout": "",
+		"signup": ""
 	},
 	"user": {
-		"quickActions": "Snelle acties",
-		"upload": "Upload wereld",
+		"quickActions": "",
+		"upload": "",
 		"theme": {
-			"dark": "Schakel naar licht thema",
-			"light": "Schakel naar donker thema"
+			"dark": "",
+			"light": ""
 		},
-		"review": "Beoordeel Claims"
+		"review": ""
 	},
 	"button": {
-		"save": "Sla op",
-		"delete": "Verwijder",
-		"copy": "Kopieer",
-		"back": "Terug",
-		"submit": "Dien in"
+		"save": "",
+		"delete": "",
+		"copy": "",
+		"back": "",
+		"submit": "",
+		"apply": "",
+		"cancel": ""
 	},
 	"links": {
-		"faq": "FAQ",
-		"map": "Kaart",
-		"teams": "Bouwteams",
-		"contact": "Contact",
-		"aboutUs": "Over ons"
+		"faq": "",
+		"map": "",
+		"teams": "",
+		"contact": "",
+		"aboutUs": "",
+		"newsletter": ""
 	}
 }

@@ -8,11 +8,13 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Apply: NextPage = () => {
 	const router = useRouter();
 	const team = router.query.team;
 	const theme = useMantineTheme();
+	const { t } = useTranslation('teams');
 	const { data: buildteam } = useSWR(`/buildteams/${team}`);
 	const { data } = useSWR(`/buildteams/${team}/application/questions`);
 	const [trial, setTrial] = useState(false);
@@ -23,7 +25,7 @@ const Apply: NextPage = () => {
 	return (
 		<Page
 			head={{
-				title: `Join ${buildteam?.name || 'BTE'}`,
+				title: t('apply.title', { team: buildteam?.name || 'BTE' }),
 				image: '/images/placeholder.webp',
 				large: true,
 			}}
@@ -39,8 +41,8 @@ const Apply: NextPage = () => {
 							<p>{buildteam?.about}</p>
 							{buildteam?.allowTrial && (
 								<>
-									<Alert mb="md" icon={<IconAlertCircle size="1rem" />} title="Trial Application">
-										This buildteam supports trial applications. You can apply as trial when selecting the button below.
+									<Alert mb="md" icon={<IconAlertCircle size="1rem" />} title={t('apply.trial.title')}>
+										{t('apply.trial.description')}
 									</Alert>
 									<SegmentedControl
 										onChange={(value) => {
@@ -50,8 +52,8 @@ const Apply: NextPage = () => {
 										mb="md"
 										styles={{ label: { minWidth: 100 } }}
 										data={[
-											{ label: 'Builder', value: '0' },
-											{ label: 'Trial', value: '1' },
+											{ label: t('builder', { ns: 'common' }), value: '0' },
+											{ label: t('trial', { ns: 'common' }), value: '1' },
 										]}
 									/>
 								</>
@@ -65,10 +67,10 @@ const Apply: NextPage = () => {
 									);
 								})}
 							<Button type="submit" variant="filled" color="blue" mt="md">
-								Apply
+								{t('button.apply', { ns: 'common' })}
 							</Button>
 							<Button type="submit" variant="outline" color="blue" ml="md" mt="md" onClick={() => router.back()}>
-								Cancel
+								{t('button.cancel', { ns: 'common' })}
 							</Button>
 						</form>
 				  )}

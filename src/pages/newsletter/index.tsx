@@ -22,16 +22,13 @@ const NewsletterList: NextPage = () => {
 	return (
 		<Page
 			head={{
-				title: 'Newsletter',
+				title: t('head.title'),
 				image: '/images/placeholder.webp',
 			}}
 			description="The BuildTheEarth Newsletter is a monthly set of articles showcasing teams, builders, and miscellaneous topics
 				throughout the project"
 		>
-			<p>
-				The BuildTheEarth Newsletter is a monthly set of articles showcasing teams, builders, and miscellaneous topics
-				throughout the project.
-			</p>
+			<p>{t('description')}</p>
 			<Group px="auto" mt="xl">
 				{data?.data.map((newsletter: any, i: number) => (
 					<Group
@@ -60,7 +57,7 @@ const NewsletterList: NextPage = () => {
 							<Group wrap="nowrap" gap={10} mt={3}>
 								<Number size={16} />
 								<Text size="xs" c="dimmed">
-									Issue {newsletter.issue}
+									{t('issue', { num: newsletter.issue })}
 								</Text>
 							</Group>
 
@@ -86,7 +83,7 @@ export default NewsletterList;
 export async function getStaticProps({ locale }: any) {
 	return {
 		props: {
-			...(await serverSideTranslations(locale, ['common'])),
+			...(await serverSideTranslations(locale, ['common', `newsletter`])),
 		},
 	};
 }

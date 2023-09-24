@@ -1,1 +1,17 @@
-{}
+{
+	"head": {
+		"title": ""
+	},
+	"select": "",
+	"description": "",
+	"compability": "",
+	"visit": {
+		"title": "",
+		"subtitle": ""
+	},
+	"build": {
+		"title": "",
+		"subtitle": ""
+	},
+	"disclaimer": ""
+}

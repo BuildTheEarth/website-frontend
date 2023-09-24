@@ -1,36 +1,40 @@
 {
 	"language": "Deutsch",
-	"copyright": "Copyright © {{year}} BuildTheEarth",
-	"buildtheearth": "BuildTheEarth",
+	"copyright": "",
+	"buildtheearth": "",
+	"staff": "",
+	"builder": "",
+	"trial": "",
+	"search": "",
 	"auth": {
-		"signin": "Anmelden",
-		"signout": "Abmelden",
-		"signup": "Loslegen"
+		"signin": "",
+		"signout": "",
+		"signup": ""
 	},
 	"user": {
-		"quickActions": "Schnellzugriff",
-		"upload": "Welt hochladen",
+		"quickActions": "",
+		"upload": "",
 		"theme": {
-			"dark": "Helles Design umschalten",
-			"light": "Dunkles Design umschalten"
+			"dark": "",
+			"light": ""
 		},
-		"review": "Claims überprüfen"
+		"review": ""
 	},
 	"button": {
-		"save": "Speichern",
-		"delete": "Löschen",
-		"copy": "Kopieren",
-		"back": "Zurück",
-		"submit": "Senden"
+		"save": "",
+		"delete": "",
+		"copy": "",
+		"back": "",
+		"submit": "",
+		"apply": "",
+		"cancel": ""
 	},
 	"links": {
-		"faq": "FAQ",
-		"map": "Karte",
-		"contact": "Kontakt",
-		"aboutUs": "Über uns",
-		"teams": "Bau Teams"
-	},
-	"search": "Suchen…",
-	"staff": "",
-	"builder": ""
+		"faq": "",
+		"map": "",
+		"teams": "",
+		"contact": "",
+		"aboutUs": "",
+		"newsletter": ""
+	}
 }

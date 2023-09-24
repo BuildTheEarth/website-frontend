@@ -29,21 +29,21 @@ const GetStarted: NextPage = () => {
 				<Grid.Col span={{ sm: 6 }} onMouseOver={() => setFocused(1)}>
 					<BackgroundCard
 						image="/images/getstarted/buildteams.webp"
-						title="Explore BuildTheEarth"
-						category="visiting"
+						title={t('visit.title')}
+						category={t('visit.subtitle')}
 						style={{ height: '100%' }}
 						showButton={focused == 1}
-						buttonText="Select"
+						buttonText={t('select')}
 					/>
 				</Grid.Col>
 				<Grid.Col span={{ sm: 6 }} onMouseOver={() => setFocused(2)}>
 					<BackgroundCard
 						image="/images/getstarted/network.webp"
-						title="Start Building"
-						category="building"
+						title={t('build.title')}
+						category={t('build.subtitle')}
 						style={{ height: '100%' }}
 						showButton={focused == 2}
-						buttonText="Select"
+						buttonText={t('select')}
 					/>
 				</Grid.Col>
 			</Grid>
@@ -52,7 +52,7 @@ const GetStarted: NextPage = () => {
 				<Text c="red" span inherit pr="sm">
 					*
 				</Text>
-				No cost, no subscription, you can leave/switch at any point
+				{t('disclaimer')}
 			</Text>
 		</Page>
 	);

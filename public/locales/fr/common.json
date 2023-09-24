@@ -1,9 +1,11 @@
 {
-	"language": "Français",
+	"language": "Deutsch",
 	"copyright": "",
 	"buildtheearth": "",
 	"staff": "",
 	"builder": "",
+	"trial": "",
+	"search": "",
 	"auth": {
 		"signin": "",
 		"signout": "",
@@ -23,14 +25,16 @@
 		"delete": "",
 		"copy": "",
 		"back": "",
-		"submit": ""
+		"submit": "",
+		"apply": "",
+		"cancel": ""
 	},
 	"links": {
 		"faq": "",
 		"map": "",
 		"teams": "",
 		"contact": "",
-		"aboutUs": ""
-	},
-	"search": ""
+		"aboutUs": "",
+		"newsletter": ""
+	}
 }
