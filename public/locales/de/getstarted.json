@@ -1,17 +1,17 @@
 {
-	"head": {
-		"title": ""
-	},
-	"select": "",
-	"description": "",
-	"compability": "",
-	"visit": {
-		"title": "",
-		"subtitle": ""
-	},
-	"build": {
-		"title": "",
-		"subtitle": ""
-	},
-	"disclaimer": ""
+    "head": {
+        "title": "Wie möchtest du mitmachen?"
+    },
+    "select": "",
+    "description": "Um den Aufbau der Erde zu erleichtern, haben wir die Arbeit in lokale Teams aufgeteilt, die sich auf die verschiedenen Länder konzentrieren. Diese Teams sind Gemeinschaften von Minecraft-Spielern aus dem jeweiligen Land, die zusammenarbeiten. Jeder ist in den Teams willkommen, auch wenn man nicht aus dem Land kommt.\nDarüber hinaus haben wir ein globales Netzwerk, in dem wir versuchen, die Anstrengungen aller Teams zu bündeln. Es ist der internationale Knotenpunkt, der uns alle zu einem einzigen Projekt verbindet.",
+    "compability": "Kompatibilität",
+    "visit": {
+        "title": "Erkunde BuildTheEarth",
+        "subtitle": "Besuchen"
+    },
+    "build": {
+        "title": "",
+        "subtitle": "Bauen"
+    },
+    "disclaimer": "Keine Kosten, kein Abonnement"
 }
