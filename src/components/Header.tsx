@@ -70,7 +70,7 @@ const Header = ({ links, style }: HeaderProps) => {
 		<Box className={classes.root} /*fixed*/ style={{ ...style, height: 60 }}>
 			<Container className={classes.header} size={'xl'}>
 				<Group gap={5} className={classes.logo} onClick={() => router.push('/')}>
-					<img src="/logo.gif" alt="Mantine" height="40" style={{ marginRight: '4px' }} />
+					<img src="/logo.gif" alt="Logo" height="40" style={{ marginRight: '4px' }} />
 					{t('buildtheearth')}
 				</Group>
 				<Group gap={5} className={classes.links}>
