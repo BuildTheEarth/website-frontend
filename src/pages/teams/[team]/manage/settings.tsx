@@ -101,7 +101,7 @@ const Settings = ({ data: tempData }: any) => {
 			smallPadding
 			head={{
 				title: 'Settings',
-				image: 'https://cdn.buildtheearth.net/static/placeholder.webp',
+				image: 'https://cdn.buildtheearth.net/static/thumbnails/teams.png',
 			}}
 			seo={{ nofollow: true, noindex: true }}
 		>

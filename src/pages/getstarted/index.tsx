@@ -19,7 +19,7 @@ const GetStarted: NextPage = () => {
 		<Page
 			head={{
 				title: t('head.title'),
-				image: 'https://cdn.buildtheearth.net/static/placeholder.webp',
+				image: 'https://cdn.buildtheearth.net/static/thumbnails/getstarted.png',
 			}}
 			title="Participate"
 			description="Participate in Building the Earth"

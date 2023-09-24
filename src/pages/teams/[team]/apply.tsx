@@ -26,7 +26,7 @@ const Apply: NextPage = () => {
 		<Page
 			head={{
 				title: t('apply.title', { team: buildteam?.name || 'BTE' }),
-				image: 'https://cdn.buildtheearth.net/static/placeholder.webp',
+				image: 'https://cdn.buildtheearth.net/static/thumbnails/apply.png',
 				large: true,
 			}}
 			title={buildteam?.name}

@@ -20,7 +20,7 @@ const Newsletter: NextPage = () => {
 		<Page
 			head={{
 				title: data?.title,
-				image: data?.links[0] || 'https://cdn.buildtheearth.net/static/placeholder.webp',
+				image: data?.links[0] || 'https://cdn.buildtheearth.net/static/thumbnails/newsletter.png',
 				large: true,
 				subtitle: `Issue ${data?.issue}, ${new Date(data?.published_date).toLocaleDateString()}`,
 			}}
