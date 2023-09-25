@@ -1,7 +1,5 @@
-import { ApplicationQuestion, ApplicationQuestions } from '../../../utils/application/ApplicationQuestions';
-import { Divider, Switch } from '@mantine/core';
-
-import { IconTextSize } from '@tabler/icons';
+import { ApplicationQuestions } from '../../../utils/application/ApplicationQuestions';
+import { Divider } from '@mantine/core';
 
 const Question = (props: any) => {
 	const QuestionType = ApplicationQuestions[props.type];

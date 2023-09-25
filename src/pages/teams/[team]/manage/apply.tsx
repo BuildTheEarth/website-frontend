@@ -24,61 +24,64 @@ import Link from 'next/link';
 import { NextPage } from 'next';
 import Page from '../../../../components/Page';
 import SettingsTabs from '../../../../components/SettingsTabs';
+import fetcher from '../../../../utils/Fetcher';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-const tempData = [
-	{
-		id: 'c52c53a9-5334-4055-a75f-53fa5b5d6abc',
-		title: 'How are you?',
-		subtitle: 'Honestly',
-		placeholder: 'Great',
-		required: true,
-		type: 'SHORT_INPUT',
-		icon: 'question-mark',
-		additionalData: {},
-		buildTeamId: '03c6ff11-0d72-4ed7-9c5d-f75abe03c4d3',
-		sort: 0,
-		trial: false,
-	},
-	{
-		id: 'cdw5g9-5334-4055-a75f-53fa5b5d6abc',
-		title: 'Sorted 1 at beginning',
-		subtitle: 'Honestly',
-		placeholder: 'Great',
-		required: true,
-		type: 'SHORT_INPUT',
-		icon: 'question-mark',
-		additionalData: {},
-		buildTeamId: '03c6ff11-0d72-4ed7-9c5d-f75abe03c4d3',
-		sort: 1,
-		trial: false,
-	},
-	{
-		id: '03bf2fad-c2f6-4044-a8a9-589b76dfbd00',
-		title: 'Question two',
-		subtitle: 'Answer this',
-		placeholder: '',
-		required: false,
-		type: 'CHECKBOX',
-		icon: 'question-mark',
-		additionalData: {},
-		buildTeamId: '03c6ff11-0d72-4ed7-9c5d-f75abe03c4d3',
-		sort: 0,
-		trial: true,
-	},
-];
+// const tempData = [
+// 	{
+// 		id: 'c52c53a9-5334-4055-a75f-53fa5b5d6abc',
+// 		title: 'How are you?',
+// 		subtitle: 'Honestly',
+// 		placeholder: 'Great',
+// 		required: true,
+// 		type: 'SHORT_INPUT',
+// 		icon: 'question-mark',
+// 		additionalData: {},
+// 		buildTeamId: '03c6ff11-0d72-4ed7-9c5d-f75abe03c4d3',
+// 		sort: 0,
+// 		trial: false,
+// 	},
+// 	{
+// 		id: 'cdw5g9-5334-4055-a75f-53fa5b5d6abc',
+// 		title: 'Sorted 1 at beginning',
+// 		subtitle: 'Honestly',
+// 		placeholder: 'Great',
+// 		required: true,
+// 		type: 'SHORT_INPUT',
+// 		icon: 'question-mark',
+// 		additionalData: {},
+// 		buildTeamId: '03c6ff11-0d72-4ed7-9c5d-f75abe03c4d3',
+// 		sort: 1,
+// 		trial: false,
+// 	},
+// 	{
+// 		id: '03bf2fad-c2f6-4044-a8a9-589b76dfbd00',
+// 		title: 'Question two',
+// 		subtitle: 'Answer this',
+// 		placeholder: '',
+// 		required: false,
+// 		type: 'CHECKBOX',
+// 		icon: 'question-mark',
+// 		additionalData: {},
+// 		buildTeamId: '03c6ff11-0d72-4ed7-9c5d-f75abe03c4d3',
+// 		sort: 0,
+// 		trial: true,
+// 	},
+// ];
 
-const Apply: NextPage = () => {
+const Apply: NextPage = ({ data: tempData }: any) => {
 	const [trial, setTrial] = useState(false);
 	const theme = useMantineTheme();
+	const router = useRouter();
 	const [data, setData] = useState(tempData);
 	const [editingQuestion, setEditingQuestion] = useState<any>(null);
 	const [saveLoading, setSaveLoading] = useState(false);
 
 	const handleUpdateQuestion = (id: string, question: any) => {
-		const updatedData = data.map((d) => {
+		const updatedData = data.map((d: any) => {
 			if (d.id === id) {
 				return { ...d, ...question };
 			}
@@ -91,7 +94,7 @@ const Apply: NextPage = () => {
 		setData(updatedData);
 	};
 	const handleDeleteQuestion = (id: string) => {
-		const updatedData = data.filter((d) => d.id !== id);
+		const updatedData = data.filter((d: any) => d.id !== id);
 		setData(updatedData);
 	};
 	const handleUpdateEditingQuestion = (question: any) => {
@@ -240,8 +243,8 @@ const Apply: NextPage = () => {
 													type: q,
 													icon: 'question-mark',
 													additionalData: Question.mockdata,
-													buildTeamId: data[0].buildTeamId,
-													sort: data.filter((d) => d.trial == trial).slice(-1)[0].sort + 1,
+													buildTeamId: router.query.id,
+													sort: data?.filter((d: any) => d.trial == trial)?.slice(-1)[0]?.sort + 1,
 													trial,
 												};
 												handleAddQuestion(newQuestion);
@@ -257,9 +260,9 @@ const Apply: NextPage = () => {
 					</Group>
 				</Group>
 				{data
-					.filter((d) => d.trial == trial)
-					.sort((a, b) => a.sort - b.sort)
-					.map((d, i) => (
+					?.filter((d: any) => d.trial == trial)
+					.sort((a: any, b: any) => a.sort - b.sort)
+					.map((d: any, i: any) => (
 						<Card key={d.id} withBorder mt={i > 0 ? 'md' : undefined}>
 							<Group style={{ display: 'flex' }}>
 								<Stack gap={0}>
@@ -273,8 +276,8 @@ const Apply: NextPage = () => {
 										<IconChevronUp />
 									</ActionIcon>
 									<ActionIcon
-										variant={i == data.filter((d) => d.trial == trial).length - 1 ? 'transparent' : undefined}
-										disabled={i == data.filter((d) => d.trial == trial).length - 1}
+										variant={i == data.filter((d: any) => d.trial == trial).length - 1 ? 'transparent' : undefined}
+										disabled={i == data.filter((d: any) => d.trial == trial).length - 1}
 										onClick={() => {
 											handleUpdateQuestion(d.id, { sort: d.sort + 1 });
 										}}
@@ -296,21 +299,29 @@ const Apply: NextPage = () => {
 		</Page>
 	);
 };
-export async function getStaticProps({ locale }: any) {
+export default Apply;
+
+export async function getStaticProps({ locale, params }: any) {
+	const res = await fetcher(`/buildteams/${params.team}/application/questions`);
 	return {
 		props: {
 			...(await serverSideTranslations(locale, ['common', 'teams'])),
+			data: res,
 		},
 	};
 }
-export default Apply;
-
 export async function getStaticPaths() {
+	const res = await fetcher('/buildteams');
 	return {
-		paths: [],
+		paths: res.map((team: any) => ({
+			params: {
+				team: team.id,
+			},
+		})),
 		fallback: true,
 	};
 }
+
 
 function reduceSortValues(data: any[]) {
 	const dataTrial = data

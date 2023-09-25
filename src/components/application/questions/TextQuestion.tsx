@@ -29,11 +29,11 @@ const TextQuestion = (props: TextQuestionProps) => {
 	);
 };
 
-// const EditQuestion = ({ editingQuestion, handleUpdateEditingQuestion }: any) => {
-// 	return <></>;
-// };
+const EditQuestion = ({ editingQuestion, handleUpdateEditingQuestion }: any) => {
+	return <></>;
+};
 
-// TextQuestion.edit = EditQuestion;
+TextQuestion.edit = EditQuestion;
 TextQuestion.mockdata = {};
 TextQuestion.validation = validation;
 TextQuestion.icon = IconTextSize;
