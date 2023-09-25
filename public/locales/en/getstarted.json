@@ -17,12 +17,34 @@
 		"description": "Search a country below to see detailed instructions on how to visit this country.",
 		"country": {
 			"title": "How to visit {{country}}",
-			"network": {
-				"description": "The Team <b>{{team}}</b> can be visited on the server hub when running <b>/bt {{slug}}</b>."
+			"step0": {
+				"title": "Search for the Country",
+				"description": "in the search box above"
 			},
-			"standalone": {
-				"description": "The Team {{team}} can be visited on their server with the ip {{ip}}."
+			"step1": {
+				"title": "Start Minecraft",
+				"description": "using the Launcher"
+			},
+			"step2": {
+				"title": "Use the Ip {{ip}}",
+				"description": "to connect to the server"
+			},
+			"step3": {
+				"title": "Run /bt {{slug}}",
+				"description": "to connect to the country"
+			},
+			"step4": {
+				"title": "Start exploring",
+				"description": "{{country}}"
 			}
+		},
+		"back": "Back"
+	},
+	"build": {
+		"title": "Build in BuildTheEarth",
+		"description": "Search a country or team below to apply for it.",
+		"country": {
+			"title": "How to visit {{country}}"
 		},
 		"back": "Back"
 	},

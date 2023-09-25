@@ -45,7 +45,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const Visit: NextPage = ({ data }: any) => {
+const Build: NextPage = ({ data }: any) => {
 	const { t } = useTranslation('getstarted');
 	const scheme = useMantineColorScheme();
 	const theme = useMantineTheme();
@@ -55,37 +55,12 @@ const Visit: NextPage = ({ data }: any) => {
 	const { scrollY, scrollYProgress } = useScroll();
 	const titleOp = useTransform(scrollY, [0, 500], ['0', '1']);
 
-	const locations: any = [];
-	data?.forEach((element: any) =>
-		!element.location.includes('glb')
-			? element.location.includes(', ')
-				? element.location.split(', ').map((part: any) =>
-						locations.push({
-							location: getCountryName(part),
-							raw: part,
-							team: element.name,
-							tid: element.id,
-							ip: element.ip,
-							slug: element.slug,
-						}),
-				  )
-				: locations.push({
-						location: getCountryName(element.location),
-						raw: element.location,
-						team: element.name,
-						tid: element.id,
-						ip: element.ip,
-						slug: element.slug,
-				  })
-			: null,
-	);
-
 	return (
 		<Page fullWidth title="Visit" description="Visit Building the Earth">
 			<div
 				style={{
 					backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-					background: `url("https://cdn.buildtheearth.net/static/getstarted/visit.webp") center center / cover`,
+					background: `url("https://cdn.buildtheearth.net/static/getstarted/build.webp") center center / cover`,
 					width: '100%',
 					height: '95vh',
 				}}
@@ -99,7 +74,7 @@ const Visit: NextPage = ({ data }: any) => {
 					}}
 				>
 					<Title style={{ color: '#ffffff', fontSize: 64, textShadow: '0px 0px 28px #000' }} ta="center" order={1}>
-						{t('visit.title')}
+						{t('build.title')}
 					</Title>
 				</Center>
 				<Center
@@ -142,14 +117,13 @@ const Visit: NextPage = ({ data }: any) => {
 						color: 'var(--mantine-color-white)',
 					}}
 				>
-					{t('visit.title')}
+					{t('build.title')}
 				</motion.h1>
-				<p>{t('visit.description')}</p>
+				<p>{t('build.description')}</p>
 				<SearchInput onSearch={(search) => setSearch(search)} />
 				<Grid mt="xl" pt="xl" gutter={{ base: '3%' }}>
-					{locations
-						?.filter((element: any) => !element.location.includes('Globe'))
-						?.filter((element: any) => element.location?.toLowerCase().includes(search?.toLowerCase() || ''))
+					{data
+						?.filter((element: any) => element.name?.toLowerCase().includes(search?.toLowerCase() || ''))
 						.sort((a: any, b: any) => a.location.localeCompare(b.location))
 						.slice(0, 8)
 						.map((element: any, i: number) => (
@@ -163,24 +137,21 @@ const Visit: NextPage = ({ data }: any) => {
 										boxShadow: '10px 10px 0px 4px rgba(0,0,0,0.45)',
 									}}
 									p="md"
-									onClick={() => {
-										setSelected({
-											...element,
-											type: element.ip && element.ip != 'buildtheearth.net' ? 'standalone' : 'network',
-										});
-										router.push('#country');
-									}}
+									onClick={() => router.push(`/teams/${element.id}/apply`)}
 								>
-									<span
-										className={`fi fi-${element.raw} fis`}
-										style={{ height: 90, width: 90, borderRadius: '50%' }}
-									></span>
+									<Avatar src={element.icon} size={94} radius="md" />
 									<div>
 										<Stack gap={'xs'}>
 											<Text fs="xl" fw="bold">
-												{element.location.split(', ').slice(0, 3).join(', ')}
+												{element.name}
 											</Text>
-											<Text size="md">Team: {element.team}</Text>
+											<Text size="md">
+												{element.location
+													.split(', ')
+													.slice(0, 3)
+													.map((e: string) => getCountryName(e))
+													.join(', ')}
+											</Text>
 										</Stack>
 									</div>
 								</Group>
@@ -206,48 +177,11 @@ const Visit: NextPage = ({ data }: any) => {
 							color: 'var(--mantine-color-white)',
 						}}
 					>
-						{t('visit.country.title', { country: selected.location })}
+						{t('build.country.title', { country: selected.location })}
 					</h1>
-					<Stepper active={1} orientation="vertical" my="xl">
-						<Stepper.Step
-							label={t('visit.country.step0.title')}
-							description={t('visit.country.step0.description')}
-							icon={<IconSearch style={{ width: rem(18), height: rem(18) }} />}
-						/>
-						<Stepper.Step
-							label={t('visit.country.step1.title')}
-							description={t('visit.country.step1.description')}
-							icon={<IconBox style={{ width: rem(18), height: rem(18) }} />}
-						/>
-						{selected.type == 'standalone' ? (
-							<Stepper.Step
-								label={t('visit.country.step2.title', { ip: selected?.ip })}
-								description={t('visit.country.step2.description', { ip: selected?.ip })}
-								icon={<IconServer style={{ width: rem(18), height: rem(18) }} />}
-							/>
-						) : (
-							<>
-								<Stepper.Step
-									label={t('visit.country.step2.title', { ip: 'buildtheearth.net' })}
-									description={t('visit.country.step2.description', { ip: 'buildtheearth.net' })}
-									icon={<IconServer style={{ width: rem(18), height: rem(18) }} />}
-								/>
-								<Stepper.Step
-									label={t('visit.country.step3.title', { slug: selected?.slug })}
-									description={t('visit.country.step3.description', { slug: selected?.slug })}
-									icon={<IconPrompt style={{ width: rem(18), height: rem(18) }} />}
-								/>
-							</>
-						)}
-						<Stepper.Step
-							label={t('visit.country.step3.title', { slug: selected?.location })}
-							description={t('visit.country.step3.description', { slug: selected?.location })}
-							icon={<IconBuildingCommunity style={{ width: rem(18), height: rem(18) }} />}
-						/>
-					</Stepper>
+
 					<Button mt="xl" component={Link} href="/join#more" leftSection={<IconChevronLeft />}>
-						{' '}
-						{t('visit.back')}
+						{t('build.back')}
 					</Button>
 				</Container>
 			)}
@@ -255,7 +189,7 @@ const Visit: NextPage = ({ data }: any) => {
 	);
 };
 
-export default Visit;
+export default Build;
 
 export async function getStaticProps({ locale }: any) {
 	const res = await fetcher('/buildteams');

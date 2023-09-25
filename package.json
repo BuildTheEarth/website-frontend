@@ -33,7 +33,7 @@
 		"@react-three/drei": "^9.56.10",
 		"@react-three/fiber": "^8.10.1",
 		"@tabler/icons": "^1.119.0",
-		"@tabler/icons-react": "^2.13.2",
+		"@tabler/icons-react": "^2.35.0",
 		"@tiptap/extension-highlight": "^2.0.2",
 		"@tiptap/extension-link": "^2.0.2",
 		"@tiptap/extension-subscript": "^2.0.2",
