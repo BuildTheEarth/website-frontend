@@ -1,4 +1,5 @@
 import {
+	Alert,
 	Button,
 	Divider,
 	Grid,
@@ -11,7 +12,7 @@ import {
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
-import { IconCheck, IconPlus, IconTrash } from '@tabler/icons';
+import { IconAlertCircle, IconCheck, IconPlus, IconTrash } from '@tabler/icons';
 import { useEffect, useState } from 'react';
 
 import Page from '../../../../components/Page';
@@ -138,19 +139,28 @@ const Settings = ({ data: tempData }: any) => {
 									<TextInput
 										required
 										label="Locations"
-										description="A comma seperated list of countries that the Build Team is building in. If its a global Build Team this should be set to `Global`"
+										description="A comma seperated list of 2-letter-ISO-codes that the Build Team is building in. If its a global Build Team this should be set to `glb`"
 										mb="md"
 										defaultValue={data.location}
 										disabled={!allowSettings}
 										onChange={(e) => handleUpdate('location', e.target.value)}
 									/>
-									<Switch
-										label="Trial Applications"
-										description="If new Users should be able to apply as Trial to the Build Team and then build their builder application builds on the Build Team´s server."
-										defaultChecked={data.allowTrial}
-										mb="md"
+									<TextInput
+										required
+										label="Build Team Slug"
+										description="A short form of the Build Team name that can be used in the URL. Has to be unique, coordinate with BTE Staff. Use the countrie´s two-letter code if possible."
+										defaultValue={data.slug}
 										disabled={!allowSettings}
-										onChange={(e) => handleUpdate('allowTrial', e.target.checked)}
+										onChange={(e) => handleUpdate('slug', e.target.value)}
+									/>
+									<TextInput
+										required
+										label="Minecraft IP"
+										description="Either your actual IP people have to enter ingame, or, if you are on the network, `buildtheearth.net` - The website will then use your slug to generate the /bt command."
+										defaultValue={data.ip}
+										disabled={!allowSettings}
+										mt="md"
+										onChange={(e) => handleUpdate('ip', e.target.value)}
 									/>
 								</Grid.Col>
 								<Grid.Col span={{ md: 6 }}>
@@ -171,22 +181,21 @@ const Settings = ({ data: tempData }: any) => {
 											onChange={(e) => allowSettings && handleUpdate('about', e)}
 										/>
 									</Input.Wrapper>
-									<TextInput
-										required
-										label="Build Team Slug"
-										description="A short form of the Build Team name that can be used in the URL. Has to be unique, coordinate with BTE Staff. Use the countrie´s two-letter code if possible."
-										defaultValue={data.slug}
+									<Switch
+										label="Trial Applications"
+										description="If new Users should be able to apply as Trial to the Build Team and then build their builder application builds on the Build Team´s server."
+										defaultChecked={data.allowTrial}
+										mt="md"
 										disabled={!allowSettings}
-										onChange={(e) => handleUpdate('slug', e.target.value)}
+										onChange={(e) => handleUpdate('allowTrial', e.target.checked)}
 									/>
 								</Grid.Col>
 							</Grid>
 							<h4>Messages</h4>
-							<Grid grow>
+							<Grid grow mb="md">
 								<Grid.Col span={{ md: 6 }}>
 									<Textarea
 										label="Acception Message"
-										mb="md"
 										description="The Message the Discord Bot should send Users if they get accepted as Builders."
 										defaultValue={data.acceptionMessage}
 										minRows={9}
@@ -197,8 +206,7 @@ const Settings = ({ data: tempData }: any) => {
 								<Grid.Col span={{ md: 6 }}>
 									<Textarea
 										label="Rejection Message"
-										mb="md"
-										description="The Message the Discord Bot should send Users if they get rejected from beeing a Builders."
+										description="The Message the Discord Bot should send Users if they get Rejected."
 										defaultValue={data.rejectionMessage}
 										minRows={9}
 										disabled={!allowSettings}
@@ -212,7 +220,7 @@ const Settings = ({ data: tempData }: any) => {
 								disabled={!allowSettings || !data.allowTrial}
 								description="The Message the Discord Bot should send Users if they get accepted as Trials."
 								defaultValue={data.trialMessage}
-								placeholder="Trial Applcations disabled"
+								placeholder={!data.allowTrial ? 'Trial Applications disabled' : undefined}
 								minRows={9}
 								style={{ maxWidth: '49.5%' }}
 								onChange={(e) => handleUpdate('trialMessage', e.target.value)}
@@ -223,7 +231,16 @@ const Settings = ({ data: tempData }: any) => {
 						</form>
 						<Divider mt="md" />
 						<h3>Socials</h3>
-						<form>
+						<form onSubmit={handleSave}>
+							<Alert
+								variant="light"
+								color="yellow"
+								mb="md"
+								icon={<IconAlertCircle />}
+								title="Editing Social Links currently does not work"
+							>
+								If there are any bugged social links on the build team page right now, message us.
+							</Alert>
 							<Button
 								leftSection={<IconPlus />}
 								mb="md"
@@ -278,6 +295,7 @@ const Settings = ({ data: tempData }: any) => {
 									</Button>
 								</Group>
 							))}
+							<br />
 							<Button type="submit" disabled={!allowSocial}>
 								Save
 							</Button>

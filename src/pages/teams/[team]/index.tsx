@@ -4,6 +4,7 @@ import Gallery from '../../../components/Gallery';
 import { LogoPage } from '../../../components/Page';
 import { NextPage } from 'next';
 import fetcher from '../../../utils/Fetcher';
+import getCountryName from '../../../utils/ISOCountries';
 import sanitizeHtml from 'sanitize-html';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
@@ -26,8 +27,18 @@ const Team: NextPage = ({ data }: any) => {
 					<Stack gap={0}>
 						<Divider style={{ margin: '0' }} my="sm" />
 						<Group justify="space-between">
+							<p>Minecraft IP</p>
+							<p>{data?.ip}</p>
+						</Group>
+						<Divider style={{ margin: '0' }} my="sm" />
+						<Group justify="space-between">
 							<p>{t('team.location')}</p>
-							<p>{data?.location}</p>
+							<p>
+								{data?.location
+									.split(', ')
+									.map((e: string) => getCountryName(e))
+									.join(', ')}
+							</p>
 						</Group>
 						<Divider style={{ margin: '0' }} my="sm" />
 

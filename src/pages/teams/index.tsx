@@ -5,6 +5,7 @@ import { NextPage } from 'next';
 import Page from '../../components/Page';
 import SearchInput from '../../components/SearchInput';
 import fetcher from '../../utils/Fetcher';
+import getCountryName from '../../utils/ISOCountries';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -65,7 +66,11 @@ const Teams: NextPage = ({ data }: any) => {
 									<Group wrap="nowrap" gap={10} mt={3}>
 										<Pin size={16} />
 										<Text size="xs" c="dimmed">
-											{element.location}
+											{element.location
+												.split(', ')
+												.slice(0, 3)
+												.map((e: string) => getCountryName(e))
+												.join(', ')}
 										</Text>
 									</Group>
 
