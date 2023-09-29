@@ -23,7 +23,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 		defaultValue: '',
 	});
 
-	// TODO: Font
 	return (
 		<SessionProvider session={pageProps.session}>
 			<DefaultSeo {...defaultSeo} />

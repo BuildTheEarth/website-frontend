@@ -3,7 +3,7 @@ import { Head, Html, Main, NextScript } from 'next/document';
 import { ColorSchemeScript } from '@mantine/core';
 import { createGetInitialProps } from '@mantine/next';
 
-const getInitialProps = createGetInitialProps();
+export const getInitialProps = createGetInitialProps();
 
 export default function Document() {
 	// static getInitialProps = getInitialProps;

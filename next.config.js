@@ -4,6 +4,9 @@ const nextConfig = {
 	images: {
 		domains: ['cdn.discordapp.com', 'i.imgur.com', 'cdn.buildtheearth.net'],
 	},
+	// compiler: {
+	// 	styledComponents: true,
+	// },
 	i18n: {
 		defaultLocale: 'en',
 		locales: ['en', 'de', 'es', 'fr', 'ru', 'nl'],
