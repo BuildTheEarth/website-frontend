@@ -70,11 +70,6 @@ export default function RTE({
 					<RichTextEditor.Subscript />
 					<RichTextEditor.Superscript />
 				</RichTextEditor.ControlsGroup>
-
-				<RichTextEditor.ControlsGroup>
-					<RichTextEditor.Link />
-					<RichTextEditor.Unlink />
-				</RichTextEditor.ControlsGroup>
 			</RichTextEditor.Toolbar>
 
 			<RichTextEditor.Content />
