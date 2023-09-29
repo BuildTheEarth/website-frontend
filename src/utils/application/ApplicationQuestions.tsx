@@ -45,7 +45,6 @@ export function generateValidation(data: any) {
 	const validation: any = {};
 	data.forEach((d: any) => {
 		validation[d.id] = (value: any) => ApplicationQuestions[d.type].validation(value, d.props);
-		console.log('t', d.type, ApplicationQuestions[d.type].validation('https://google.com', d.props));
 	});
 	return validation;
 }

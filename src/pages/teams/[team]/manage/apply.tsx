@@ -16,7 +16,7 @@ import {
 	useMantineTheme,
 } from '@mantine/core';
 import { ApplicationQuestions, toReadable } from '../../../../utils/application/ApplicationQuestions';
-import { IconChevronDown, IconChevronUp, IconLetterT, IconPlus } from '@tabler/icons';
+import { IconCheck, IconChevronDown, IconChevronUp, IconLetterT, IconPlus } from '@tabler/icons';
 import Question, { EditQuestion } from '../../../../components/application/questions/Question';
 
 import Icon from '../../../../components/Icon';
@@ -24,10 +24,13 @@ import Link from 'next/link';
 import { NextPage } from 'next';
 import Page from '../../../../components/Page';
 import SettingsTabs from '../../../../components/SettingsTabs';
+import Team from '../../../legal/privacy';
 import fetcher from '../../../../utils/Fetcher';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { showNotification } from '@mantine/notifications';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { useUser } from '../../../../hooks/useUser';
 import { v4 as uuidv4 } from 'uuid';
 
 // const tempData = [
@@ -72,10 +75,11 @@ import { v4 as uuidv4 } from 'uuid';
 // 	},
 // ];
 
-const Apply: NextPage = ({ data: tempData }: any) => {
+const Apply: NextPage = ({ data: tempData, team }: any) => {
 	const [trial, setTrial] = useState(false);
 	const theme = useMantineTheme();
 	const router = useRouter();
+	const user = useUser();
 	const [data, setData] = useState(tempData);
 	const [editingQuestion, setEditingQuestion] = useState<any>(null);
 	const [saveLoading, setSaveLoading] = useState(false);
@@ -94,8 +98,7 @@ const Apply: NextPage = ({ data: tempData }: any) => {
 		setData(updatedData);
 	};
 	const handleDeleteQuestion = (id: string) => {
-		const updatedData = data.filter((d: any) => d.id !== id);
-		setData(updatedData);
+		handleUpdateQuestion(id, { sort: -1 });
 	};
 	const handleUpdateEditingQuestion = (question: any) => {
 		setEditingQuestion({ ...editingQuestion, ...question });
@@ -104,12 +107,48 @@ const Apply: NextPage = ({ data: tempData }: any) => {
 	const handleSubmit = async () => {
 		setSaveLoading(true);
 
-		// Reduce sort values to lowest possible
 		setData(reduceSortValues(data));
 
-		// TODO: put api
+		if (data.length < 1) {
+			showNotification({
+				title: 'Settings updated',
+				message: 'All Data has been saved',
+				color: 'green',
+				icon: <IconCheck />,
+			});
+			setSaveLoading(false);
 
-		setSaveLoading(false);
+			return;
+		}
+
+		fetch(process.env.NEXT_PUBLIC_API_URL + `/buildteams/${team}/application/questions`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + user.token,
+			},
+			body: JSON.stringify(data),
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				if (res.errors) {
+					showNotification({
+						title: 'Update failed',
+						message: res.error,
+						color: 'red',
+					});
+					setSaveLoading(false);
+				} else {
+					showNotification({
+						title: 'Settings updated',
+						message: 'All Data has been saved',
+						color: 'green',
+						icon: <IconCheck />,
+					});
+					setData(res);
+					setSaveLoading(false);
+				}
+			});
 	};
 
 	return (
@@ -121,7 +160,7 @@ const Apply: NextPage = ({ data: tempData }: any) => {
 			}}
 			seo={{ nofollow: true, noindex: true }}
 		>
-			<SettingsTabs team={'03c6ff11-0d72-4ed7-9c5d-f75abe03c4d3'}>
+			<SettingsTabs team={team}>
 				<Modal
 					zIndex={9999}
 					opened={editingQuestion != null}
@@ -244,7 +283,10 @@ const Apply: NextPage = ({ data: tempData }: any) => {
 													icon: 'question-mark',
 													additionalData: Question.mockdata,
 													buildTeamId: router.query.id,
-													sort: data?.filter((d: any) => d.trial == trial)?.slice(-1)[0]?.sort + 1,
+													sort:
+														data?.filter((d: any) => d.trial == trial).length > 1
+															? data?.filter((d: any) => d.trial == trial)?.slice(-1)[0]?.sort + 1
+															: 1,
 													trial,
 												};
 												handleAddQuestion(newQuestion);
@@ -260,7 +302,7 @@ const Apply: NextPage = ({ data: tempData }: any) => {
 					</Group>
 				</Group>
 				{data
-					?.filter((d: any) => d.trial == trial)
+					?.filter((d: any) => d.trial == trial && d.sort >= 0)
 					.sort((a: any, b: any) => a.sort - b.sort)
 					.map((d: any, i: any) => (
 						<Card key={d.id} withBorder mt={i > 0 ? 'md' : undefined}>
@@ -307,6 +349,7 @@ export async function getStaticProps({ locale, params }: any) {
 		props: {
 			...(await serverSideTranslations(locale, ['common', 'teams'])),
 			data: res,
+			team: params.team,
 		},
 	};
 }

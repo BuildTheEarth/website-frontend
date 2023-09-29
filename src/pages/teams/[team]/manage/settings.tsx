@@ -42,7 +42,6 @@ const Settings = ({ data: tempData }: any) => {
 	const handleSave = (e: any) => {
 		e.preventDefault();
 		const uploadingData = { ...data, socials: undefined, _count: undefined };
-		console.log(uploadingData);
 		fetch(process.env.NEXT_PUBLIC_API_URL + `/buildteams/${uploadingData.id}`, {
 			method: 'POST',
 			headers: {
@@ -66,7 +65,6 @@ const Settings = ({ data: tempData }: any) => {
 						color: 'green',
 						icon: <IconCheck />,
 					});
-					console.log(res);
 					setData({ ...data, ...res });
 				}
 			});

@@ -52,7 +52,6 @@ const Header = ({ links, style }: HeaderProps) => {
 	const theme = useMantineTheme();
 	const mobilePaperRef = useClickOutside(() => handler.close());
 	const { data: session, status } = useSession();
-	console.log(router.pathname);
 	const items = links.map((link) => (
 		<Anchor
 			component={Link}
