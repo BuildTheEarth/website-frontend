@@ -365,7 +365,6 @@ export async function getStaticPaths() {
 	};
 }
 
-
 function reduceSortValues(data: any[]) {
 	const dataTrial = data
 		.filter((d) => d.trial == true)
