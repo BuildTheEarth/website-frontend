@@ -160,7 +160,7 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 			}}
 			seo={{ nofollow: true, noindex: true }}
 		>
-			<SettingsTabs team={team}>
+			<SettingsTabs team={team} loading={!data}>
 				<Modal
 					zIndex={9999}
 					opened={editingQuestion != null}

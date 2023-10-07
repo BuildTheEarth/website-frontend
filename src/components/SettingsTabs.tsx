@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import { useUser } from '../hooks/useUser';
 
-const SettingsTabs = ({ children, team }: { children: any; team: string }) => {
+const SettingsTabs = ({ children, team, loading = false }: { children: any; team: string; loading?: boolean }) => {
 	const theme = useMantineTheme();
 	const scheme = useMantineColorScheme();
 	const user = useUser();
@@ -65,7 +65,7 @@ const SettingsTabs = ({ children, team }: { children: any; team: string }) => {
 							Members
 						</Tabs.Tab>
 						<Tabs.Tab
-							value="members"
+							value="images"
 							leftSection={<IconUsers size="0.8rem" />}
 							disabled={!user.hasPermission('team.socials.edit', team)}
 						>
@@ -93,7 +93,7 @@ const SettingsTabs = ({ children, team }: { children: any; team: string }) => {
 					position: 'relative',
 				})}
 			>
-				<LoadingOverlay visible={user.isLoading} overlayProps={{ blur: 4 }} />
+				<LoadingOverlay visible={user.isLoading && loading} overlayProps={{ blur: 4 }} />
 				{children}
 			</Box>
 		</>

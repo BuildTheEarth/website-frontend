@@ -5289,6 +5289,11 @@ uuid@^9.0.0:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-9.0.0.tgz#592f550650024a38ceb0c562f2f6aa435761efb5"
   integrity sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==
 
+vague-time@^2.4.2:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/vague-time/-/vague-time-2.4.2.tgz#28cb39384419e460c8788393709ab32991db1657"
+  integrity sha512-28IHT/x6pmAhUPV/wXDHFWNouZLynayka5hvmbntsT838vvx30Qa3k+3TVKwLwty/FkfgJdStlGxrLNcrDJEhA==
+
 void-elements@3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-3.1.0.tgz#614f7fbf8d801f0bb5f0661f5b2f5785750e4f09"

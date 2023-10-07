@@ -9,6 +9,7 @@ import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { DefaultSeo } from 'next-seo';
 import { MantineProvider } from '@mantine/core';
+import { ModalsProvider } from '@mantine/modals';
 import { Notifications } from '@mantine/notifications';
 import { RouterTransition } from '../components/RouterTransition';
 import SWRSetup from '../components/SWRSetup';
@@ -40,15 +41,17 @@ function MyApp({ Component, pageProps }: AppProps) {
 					},
 				}}
 			>
-				<Notifications />
-				<SWRSetup
-					content={
-						<>
-							<RouterTransition />
-							<Component {...pageProps} />
-						</>
-					}
-				></SWRSetup>
+				<ModalsProvider>
+					<Notifications />
+					<SWRSetup
+						content={
+							<>
+								<RouterTransition />
+								<Component {...pageProps} />
+							</>
+						}
+					/>
+				</ModalsProvider>
 			</MantineProvider>
 		</SessionProvider>
 	);
