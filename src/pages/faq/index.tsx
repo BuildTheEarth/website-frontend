@@ -7,6 +7,7 @@ import SearchInput from '../../components/SearchInput';
 import fetcher from '../../utils/Fetcher';
 import sanitizeHtml from 'sanitize-html';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useIsClient } from '../../hooks/useIsClient';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTranslation } from 'next-i18next';
@@ -17,6 +18,8 @@ const Faq: NextPage = ({ data }: any) => {
 	const [search, setSearch] = useState('');
 	const { t } = useTranslation('faq');
 	const user = useUser();
+	const isClient = useIsClient();
+
 	return (
 		<Page
 			head={{
@@ -41,7 +44,7 @@ const Faq: NextPage = ({ data }: any) => {
 						<Accordion.Item value={element.id} key={element.id}>
 							<Accordion.Control>{element.question}</Accordion.Control>
 							<Accordion.Panel>
-								<div dangerouslySetInnerHTML={{ __html: sanitizeHtml(element.answer) }} />
+								<div dangerouslySetInnerHTML={{ __html: isClient ? sanitizeHtml(element.answer) : '' }} />
 							</Accordion.Panel>
 						</Accordion.Item>
 					))}
