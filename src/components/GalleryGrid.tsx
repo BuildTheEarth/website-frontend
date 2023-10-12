@@ -27,76 +27,56 @@ interface GalleryGridProps {
 
 function GalleryGrid(props: GalleryGridProps) {
 	const theme = useMantineTheme();
-	const [opened, setOpened] = useState(-1);
 	const isClient = useIsClient();
 
 	return (
-		<>
-			{opened != -1 && (
-				<Modal
-					opened={opened != -1}
-					onClose={() => setOpened(-1)}
-					radius={0}
-					centered
-					size="auto"
-					title={props.images[opened].name}
-					styles={{ body: { padding: 0 } }}
+		<SimpleGrid spacing="md" cols={2 + (props.images.length % 2)}>
+			{props.images.map((i, index) => (
+				<BackgroundImage
+					src={i.src}
+					style={{
+						width: '100%',
+						aspectRatio: '16/9',
+					}}
+					key={index}
 				>
-					<AspectRatio ratio={16 / 9} miw={'75vw'}>
-						<Image alt={props.images[opened].name} src={props.images[opened].src}></Image>
-					</AspectRatio>
-				</Modal>
-			)}
-			<SimpleGrid spacing="md" cols={2 + (props.images.length % 2)}>
-				{props.images.map((i, index) => (
-					<BackgroundImage
-						src={i.src}
+					<div
 						style={{
+							height: '100%',
+							position: 'relative',
 							width: '100%',
-							aspectRatio: '16/9',
-							cursor: 'pointer',
+							background: 'linear-gradient(160deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0,0.8))',
 						}}
-						key={index}
-						onClick={() => setOpened(index)}
 					>
 						<div
 							style={{
-								height: '100%',
-								position: 'relative',
-								width: '100%',
-								background: 'linear-gradient(160deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0,0.8))',
+								position: 'absolute',
+								bottom: 0,
+								right: 0,
+								margin: theme.spacing.xl,
+								textAlign: 'right',
+								zIndex: 50,
 							}}
 						>
-							<div
+							<Title
 								style={{
-									position: 'absolute',
-									bottom: 0,
-									right: 0,
-									margin: theme.spacing.xl,
-									textAlign: 'right',
-									zIndex: 50,
+									color: 'var(--mantine-color-white)',
+									textShadow: '0px 0px 28px #000',
+									userSelect: 'none',
 								}}
 							>
-								<Title
-									style={{
-										color: 'var(--mantine-color-white)',
-										textShadow: '0px 0px 28px #000',
-										userSelect: 'none',
-									}}
-								>
-									{i.name}
-								</Title>
-								{i.date && (
-									<Badge variant="gradient" style={{ userSelect: 'none' }}>
-										{isClient ? new Date(i.date).toLocaleDateString() : ''}
-									</Badge>
-								)}
-							</div>
+								{i.name}
+							</Title>
+							{i.date && (
+								<Badge variant="gradient" style={{ userSelect: 'none' }}>
+									{isClient ? new Date(i.date).toLocaleDateString() : ''}
+								</Badge>
+							)}
 						</div>
-					</BackgroundImage>
-				))}
-			</SimpleGrid>
-		</>
+					</div>
+				</BackgroundImage>
+			))}
+		</SimpleGrid>
 	);
 }
 
