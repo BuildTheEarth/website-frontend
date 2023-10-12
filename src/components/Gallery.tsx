@@ -1,10 +1,20 @@
-import { BackgroundImage, Badge, Box, Image, Title, useMantineTheme } from '@mantine/core';
+import { Avatar, BackgroundImage, Badge, Box, Title, useMantineTheme } from '@mantine/core';
 import React, { useState } from 'react';
 
 import { Carousel } from '@mantine/carousel';
+import Link from 'next/link';
 
 interface GalleryProps {
-	images: { location?: string; builder?: string; src: string; country?: string }[];
+	images: {
+		name?: string;
+		buildTeam?: string;
+		buildTeamId?: string;
+		src: string;
+		icon?: string;
+		hash?: string;
+		width?: number;
+		height?: number;
+	}[];
 	style?: React.CSSProperties;
 }
 
@@ -33,7 +43,7 @@ function Gallery(props: GalleryProps) {
 			>
 				{props.images.map((i) => {
 					return (
-						<Carousel.Slide key={`g-${i.location}-${i.builder}`}>
+						<Carousel.Slide key={`g-${i.name}-${i.buildTeam}`}>
 							<BackgroundImage
 								src={i.src}
 								style={{
@@ -67,18 +77,20 @@ function Gallery(props: GalleryProps) {
 												textShadow: '0px 0px 28px #000',
 											}}
 										>
-											<span
-												className={`fi fi-${i.country} fis`}
-												style={{
-													borderRadius: '50%',
-													height: '25px',
-													width: '25px',
-													marginRight: theme.spacing.md,
-												}}
-											></span>
-											{i.location}
+											<Avatar src={i.icon} radius="xl" mx="md" />
+
+											{i.name}
 										</Title>
-										{i.builder && <Badge variant="gradient">{i.builder}</Badge>}
+										{i.buildTeam && (
+											<Badge
+												component={Link}
+												href={`/teams/${i.buildTeamId}`}
+												variant="gradient"
+												style={{ cursor: 'pointer' }}
+											>
+												{i.buildTeam}
+											</Badge>
+										)}
 									</div>
 								</div>
 							</BackgroundImage>

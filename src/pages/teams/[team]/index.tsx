@@ -1,18 +1,20 @@
 import { Divider, Grid, Group, Stack } from '@mantine/core';
 
-import Gallery from '../../../components/Gallery';
+import GalleryGrid from '../../../components/GalleryGrid';
 import { LogoPage } from '../../../components/Page';
 import { NextPage } from 'next';
 import fetcher from '../../../utils/Fetcher';
 import getCountryName from '../../../utils/ISOCountries';
 import sanitizeHtml from 'sanitize-html';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useIsClient } from '../../../hooks/useIsClient';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 
-const Team: NextPage = ({ data }: any) => {
+const Team: NextPage = ({ data, data2 }: any) => {
 	const router = useRouter();
 	const { t } = useTranslation('teams');
+	const isClient = useIsClient();
 	const team = router.query.team;
 
 	return (
@@ -20,7 +22,7 @@ const Team: NextPage = ({ data }: any) => {
 			<Grid>
 				<Grid.Col span={8}>
 					<h2>{t('team.overview')}</h2>
-					<p dangerouslySetInnerHTML={{ __html: sanitizeHtml(data?.about) }} />
+					<p dangerouslySetInnerHTML={{ __html: isClient ? sanitizeHtml(data?.about) : '' }} />
 				</Grid.Col>
 				<Grid.Col span={4}>
 					<h2>{t('team.details')}</h2>
@@ -55,20 +57,16 @@ const Team: NextPage = ({ data }: any) => {
 					</Stack>
 				</Grid.Col>
 			</Grid>
-			{data?.showcases && data.showcases.length >= 1 ? (
-				<Group>
-					<h2>{t('team.images')}</h2>
-					<Gallery
-						style={{ height: '80vh' }}
-						images={
-							data?.showcases.map(({ image, title }: any) => ({
-								src: image,
-								location: title,
-							})) || [{}]
-						}
-					/>
-				</Group>
-			) : undefined}
+			<h2>{t('team.images')}</h2>
+			<GalleryGrid
+				images={
+					data2?.map((d: any) => ({
+						name: d?.title,
+						src: `https://cdn.buildtheearth.net/upload/${d?.image?.name}`,
+						date: d?.createdAt,
+					})) || [{}]
+				}
+			/>
 		</LogoPage>
 	);
 };
@@ -76,11 +74,13 @@ const Team: NextPage = ({ data }: any) => {
 export default Team;
 
 export async function getStaticProps({ locale, params }: any) {
-	const res = await fetcher(`/buildteams/${params.team}?builds=true&showcase=true&members=true`);
+	const res = await fetcher(`/buildteams/${params.team}?builds=true&members=true`);
+	const res2 = await fetcher(`/buildteams/${params.team}/showcases`);
 	return {
 		props: {
 			...(await serverSideTranslations(locale, ['common', 'teams'])),
 			data: res,
+			data2: res2,
 		},
 	};
 }

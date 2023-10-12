@@ -16,11 +16,12 @@ import Gallery from '../components/Gallery';
 import Link from 'next/link';
 import { NextPage } from 'next';
 import Page from '../components/Page';
+import fetcher from '../utils/Fetcher';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 
-const Home: NextPage = () => {
+const Home: NextPage = ({ data }: any) => {
 	const theme = useMantineTheme();
 	const scheme = useMantineColorScheme();
 	const { scrollYProgress } = useScroll();
@@ -158,38 +159,16 @@ const Home: NextPage = () => {
 									height: '70vh',
 									width: '100%',
 								}}
-								images={[
-									{
-										builder: 'Criffane 14#7255',
-										location: 'Krasnodar Park',
-										src: 'https://cdn.discordapp.com/attachments/811604280293064714/846615357585752084/image0.jpg',
-										country: 'ru',
-									},
-									{
-										builder: 'BTE Germany',
-										location: 'Schloss Drachenburg',
-										src: 'https://cdn.discordapp.com/attachments/692849007038562434/964097226341244988/4final2k_1.png',
-										country: 'de',
-									},
-									{
-										builder: 'mcnoided#4059',
-										location: 'Viaduc de Millau',
-										src: 'https://cdn.discordapp.com/attachments/811604280293064714/824403619587031070/Capture2.png',
-										country: 'fr',
-									},
-									{
-										builder: 'De leted#2098',
-										location: 'Wisconsin State Capitol',
-										src: 'https://cdn.discordapp.com/attachments/811604280293064714/992899056361799680/Capitol5.png',
-										country: 'us',
-									},
-									{
-										builder: 'BTE NYC',
-										location: 'Tribeca Seafront, NYC',
-										src: 'https://cdn.discordapp.com/attachments/714797791913705472/975523840652378162/seafront_2.png',
-										country: 'us',
-									},
-								]}
+								images={data.map((d: any) => ({
+									buildTeam: d.buildTeam.name,
+									buildTeamId: d.buildTeam.id,
+									name: d.title,
+									src: `https://cdn.buildtheearth.net/upload/${d.image.name}`,
+									icon: d.buildTeam.icon,
+									height: d.image.height,
+									width: d.image.width,
+									hash: d.image.hash,
+								}))}
 							/>
 						</motion.div>
 					</Grid.Col>
@@ -242,9 +221,8 @@ const Home: NextPage = () => {
 export default Home;
 
 export async function getStaticProps({ locale }: any) {
+	const res = await fetcher('/showcases/random?limit=4');
 	return {
-		props: {
-			...(await serverSideTranslations(locale, ['common', 'home'])),
-		},
+		props: { data: res, ...(await serverSideTranslations(locale, ['common', 'home'])) },
 	};
 }
