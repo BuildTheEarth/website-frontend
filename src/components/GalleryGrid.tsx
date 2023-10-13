@@ -30,7 +30,7 @@ function GalleryGrid(props: GalleryGridProps) {
 	const isClient = useIsClient();
 
 	return (
-		<SimpleGrid spacing="md" cols={2 + (props.images.length % 2)}>
+		<SimpleGrid spacing="md" cols={2}>
 			{props.images.map((i, index) => (
 				<BackgroundImage
 					src={i.src}
@@ -64,11 +64,12 @@ function GalleryGrid(props: GalleryGridProps) {
 									textShadow: '0px 0px 28px #000',
 									userSelect: 'none',
 								}}
+								order={2}
 							>
 								{i.name}
 							</Title>
 							{i.date && (
-								<Badge variant="gradient" style={{ userSelect: 'none' }}>
+								<Badge variant="gradient" style={{ userSelect: 'none' }} size="sm">
 									{isClient ? new Date(i.date).toLocaleDateString() : ''}
 								</Badge>
 							)}

@@ -67,7 +67,7 @@ const SettingsTabs = ({ children, team, loading = false }: { children: any; team
 						<Tabs.Tab
 							value="images"
 							leftSection={<IconUsers size="0.8rem" />}
-							disabled={!user.hasPermission('team.socials.edit', team)}
+							disabled={!user.hasPermission('team.showcases.edit', team)}
 						>
 							Showcase Images
 						</Tabs.Tab>

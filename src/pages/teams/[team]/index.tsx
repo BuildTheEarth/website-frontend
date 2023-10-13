@@ -60,7 +60,7 @@ const Team: NextPage = ({ data, data2 }: any) => {
 			<h2>{t('team.images')}</h2>
 			<GalleryGrid
 				images={
-					data2?.map((d: any) => ({
+					data2?.slice(0, 10).map((d: any) => ({
 						name: d?.title,
 						src: `https://cdn.buildtheearth.net/upload/${d?.image?.name}`,
 						date: d?.createdAt,

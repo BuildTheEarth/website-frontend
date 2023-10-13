@@ -4,6 +4,8 @@ import '@mantine/notifications/styles.css';
 import '@mantine/nprogress/styles.css';
 import '@mantine/tiptap/styles.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import '@mantine/dropzone/styles.css';
+import '@mantine/dates/styles.css';
 import '../styles/globals.css';
 
 import type { AppProps } from 'next/app';
