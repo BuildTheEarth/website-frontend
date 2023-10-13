@@ -221,7 +221,7 @@ const Home: NextPage = ({ data }: any) => {
 export default Home;
 
 export async function getStaticProps({ locale }: any) {
-	const res = await fetcher('/showcases/random?limit=4');
+	const res = await fetcher('/showcases/random?limit=6');
 	return {
 		props: { data: res, ...(await serverSideTranslations(locale, ['common', 'home'])) },
 	};

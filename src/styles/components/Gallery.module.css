@@ -1,0 +1,17 @@
+.control {
+    background-color: transparent;
+    color: var(--mantine-color-white);
+    opacity: 1;
+}
+
+.indicator {
+    z-index: 42;
+  width: rem(1.5vw);
+  height: rem(4px);
+  transition: all 150ms ease;
+  background:var(--mantine-color-white);
+
+  &[data-active] {
+    width: rem(4vw);
+  }
+}

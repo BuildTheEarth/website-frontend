@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 import { Carousel } from '@mantine/carousel';
 import Link from 'next/link';
+import classes from '../styles/components/Gallery.module.css';
 
 interface GalleryProps {
 	images: {
@@ -40,6 +41,7 @@ function Gallery(props: GalleryProps) {
 				align="center"
 				slideGap={0}
 				style={{ flex: 1 }}
+				classNames={classes}
 			>
 				{props.images.map((i) => {
 					return (
