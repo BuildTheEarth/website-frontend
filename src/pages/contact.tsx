@@ -1,7 +1,18 @@
 /* eslint-disable no-undef */
 
-import { At, ExternalLink } from 'tabler-icons-react';
-import { Avatar, Button, Grid, Group, Text, ThemeIcon, useMantineColorScheme, useMantineTheme } from '@mantine/core';
+import { At, Divide, ExternalLink } from 'tabler-icons-react';
+import {
+	Avatar,
+	Button,
+	Divider,
+	Grid,
+	Group,
+	Text,
+	ThemeIcon,
+	Title,
+	useMantineColorScheme,
+	useMantineTheme,
+} from '@mantine/core';
 import {
 	Discord,
 	Facebook,
@@ -13,6 +24,7 @@ import {
 	Youtube,
 } from '@icons-pack/react-simple-icons';
 
+import { IconMail } from '@tabler/icons-react';
 import { NextPage } from 'next';
 import Page from '../components/Page';
 import fetcher from '../utils/Fetcher';
@@ -32,54 +44,49 @@ const Contact: NextPage = ({ data }: any) => {
 			}}
 			description="Get in touch with BuildTheEarth Staff Members"
 		>
-			<h3 style={{ textAlign: 'center', fontSize: '30px', lineHeight: '0' }}>Individual People</h3>
-			<Grid mt="md">
+			<Title order={2}>Administration</Title>
+			<Grid mt="md" maw={'100%'} w={'75%'}>
 				{data?.map((contact: any) => (
-					<Grid.Col key={contact.id} span={{ sp: 6 }}>
-						<Group wrap="nowrap">
-							<Avatar src={contact.avatar} size={94} style={{ filter: 'invert(0)' }} />
-							<div>
-								<Text size="xs" style={{ textTransform: 'uppercase' }} fw={700} c="dimmed">
-									{contact.role}
-								</Text>
-								<Text size="lg" fw={500}>
-									{contact.name}
-								</Text>
+					<Grid.Col key={contact.id} span={{ sm: 6 }}>
+						<Text size="xs" style={{ textTransform: 'uppercase' }} fw={700} c="dimmed">
+							{contact.role}
+						</Text>
+						<Text size="lg" fw={500}>
+							{contact.name}
+						</Text>
 
-								<Group wrap="nowrap" gap={10} mt={3}>
-									<Discord width={18} size={16} />
-									<Text size="xs" c="dimmed">
-										{contact.discord}
-									</Text>
-								</Group>
-
-								<Group wrap="nowrap" gap={10} mt={5}>
-									<At size={16} />
-									<Text
-										size="xs"
-										c="dimmed"
-										style={{ cursor: 'pointer' }}
-										onClick={() => window.open(`mailto:${contact.mail}`, '_blank')}
-									>
-										{contact.email}
-									</Text>
-								</Group>
-							</div>
+						<Group wrap="nowrap" gap={10} mt={3} justify="flex-start">
+							<Discord width={18} size={16} />
+							<Text size="xs" c="dimmed">
+								{contact.discord}
+							</Text>
 						</Group>
+
+						<Group wrap="nowrap" gap={10} mt={5} justify="flex-start">
+							<At size={16} />
+							<Text
+								size="xs"
+								c="blue.4"
+								style={{ cursor: 'pointer' }}
+								onClick={() => window.open(`mailto:${contact.mail}`, '_blank')}
+							>
+								{contact.email}
+							</Text>
+						</Group>
+						<Divider mt="md" />
 					</Grid.Col>
 				))}
 			</Grid>
-			<h3 style={{ textAlign: 'center', fontSize: '30px', lineHeight: '48px' }}>Social Media</h3>
-			<div
-				style={{ marginBottom: 'calc(var(--mantine-spacing-xl)*2)', display: 'flex', gap: '15px', flexWrap: 'wrap' }}
-			>
+			<Title order={2} mt="md">
+				Social Media
+			</Title>
+			<Group mt="lg">
 				<ThemeIcon
 					variant="outline"
 					radius="xl"
 					size="xl"
 					onClick={() => window.open('https://www.facebook.com/BuildTheEarth/', '_blank')}
 					style={{
-						backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 						cursor: 'pointer',
 					}}
 				>
@@ -92,7 +99,6 @@ const Contact: NextPage = ({ data }: any) => {
 					size="xl"
 					onClick={() => window.open('https://www.instagram.com/buildtheearth_', '_blank')}
 					style={{
-						backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 						cursor: 'pointer',
 					}}
 				>
@@ -105,7 +111,6 @@ const Contact: NextPage = ({ data }: any) => {
 					size="xl"
 					onClick={() => window.open('https://www.tiktok.com/@buildtheearth', '_blank')}
 					style={{
-						backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 						cursor: 'pointer',
 					}}
 				>
@@ -118,7 +123,6 @@ const Contact: NextPage = ({ data }: any) => {
 					size="xl"
 					onClick={() => window.open('https://buildtheearth.net/discord', '_blank')}
 					style={{
-						backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 						cursor: 'pointer',
 					}}
 				>
@@ -131,7 +135,6 @@ const Contact: NextPage = ({ data }: any) => {
 					size="xl"
 					onClick={() => window.open('https://www.snapchat.com/add/buildtheearth', '_blank')}
 					style={{
-						backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 						cursor: 'pointer',
 					}}
 				>
@@ -144,7 +147,6 @@ const Contact: NextPage = ({ data }: any) => {
 					size="xl"
 					onClick={() => window.open('https://www.youtube.com/c/BuildTheEarth', '_blank')}
 					style={{
-						backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 						cursor: 'pointer',
 					}}
 				>
@@ -157,7 +159,6 @@ const Contact: NextPage = ({ data }: any) => {
 					size="xl"
 					onClick={() => window.open('https://twitter.com/buildtheearth_', '_blank')}
 					style={{
-						backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 						cursor: 'pointer',
 					}}
 				>
@@ -170,25 +171,23 @@ const Contact: NextPage = ({ data }: any) => {
 					size="xl"
 					onClick={() => window.open('https://www.twitch.tv/buildtheearth', '_blank')}
 					style={{
-						backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 						cursor: 'pointer',
 					}}
 				>
 					<Twitch />
 				</ThemeIcon>
-			</div>
-			<div>
-				<div style={{ marginBottom: theme.spacing.xs }}>
-					<Button variant="outline" leftSection={<ExternalLink />} onClick={() => router.push('/privacy')}>
-						Privacy Policy
-					</Button>
-				</div>
-				<div>
-					<Button variant="outline" leftSection={<ExternalLink />} onClick={() => router.push('/ban')}>
-						Ban Appeals
-					</Button>
-				</div>
-			</div>
+			</Group>
+			<Title order={2} mt="lg">
+				Ban Appeals
+			</Title>
+			<p>If you wish to appeal your ban on the Discord server, please send an email to appeals@buildtheearth.net.</p>
+			<p>
+				In order to submit a ban appeal, you must include your Discord tag and user ID, screenshot of your ban message
+				and your reason for appealing. Illegitimate appeals will be ignored.
+			</p>
+			<Button component="a" variant="outline" leftSection={<IconMail />} href="mailto:appeals@buildtheearth.net">
+				Send an Email
+			</Button>
 		</Page>
 	);
 };
