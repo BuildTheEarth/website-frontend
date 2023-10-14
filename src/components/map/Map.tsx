@@ -7,7 +7,6 @@ import { LoadingOverlay, useMantineColorScheme, useMantineTheme } from '@mantine
 import { MapboxStyleDefinition, MapboxStyleSwitcherControl } from 'mapbox-gl-style-switcher';
 
 import { IconCheck } from '@tabler/icons';
-import { MapboxMap } from 'react-map-gl';
 import ReactDOM from 'react-dom';
 import mapboxgl from 'mapbox-gl';
 import { showNotification } from '@mantine/notifications';
@@ -186,7 +185,7 @@ export function mapCopyCoordinates(map: any, clipboard: any) {
 // Map Load Helper Functions
 
 export async function mapLoadGeoJson(
-	map: MapboxMap,
+	map: mapboxgl.Map,
 	url: string,
 	layer: string,
 	layerType: any,

@@ -105,7 +105,7 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 							Copy Coordinates
 						</Button>
 						{data.owner?.id == user?.id && (
-							<Button component="a" variant="outline" leftSection={<IconPencil />} href={`/claims/${props.id}`}>
+							<Button component="a" variant="outline" leftSection={<IconPencil />} href={`/me/claims/${props.id}`}>
 								Edit Claim
 							</Button>
 						)}
