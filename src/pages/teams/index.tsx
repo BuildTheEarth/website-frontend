@@ -44,10 +44,6 @@ const Teams: NextPage = ({ data }: any) => {
 								style={{
 									backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 									borderRadius: theme.radius.xs,
-									// TODO
-									// '&:hover': {
-									// 	backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[4],
-									// },
 									cursor: 'pointer',
 								}}
 								p="md"
@@ -86,15 +82,7 @@ const Teams: NextPage = ({ data }: any) => {
 					))}
 			</Grid>
 			<Group justify="center" pt="md">
-				<Pagination
-					total={Math.ceil(
-						data?.filter((element: any) => element.name.toLowerCase().includes(search?.toLowerCase() || '')).length / 8,
-					)}
-					radius="xs"
-					value={activePage}
-					onChange={setPage}
-					siblings={1}
-				/>
+				<Pagination total={Math.ceil(data?.filter((element: any) => element.name.toLowerCase().includes(search?.toLowerCase() || '')).length / 8)} radius="xs" value={activePage} onChange={setPage} siblings={1} />
 			</Group>
 		</Page>
 	);
@@ -105,5 +93,5 @@ export default Teams;
 export async function getStaticProps({ locale }: any) {
 	const res = await fetcher('/buildteams');
 
-	return { props: { data: res, ...(await serverSideTranslations(locale, ['common'])) } };
+	return { props: { data: res, ...(await serverSideTranslations(locale, ['common', 'teams'])) } };
 }

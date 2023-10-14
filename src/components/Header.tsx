@@ -29,6 +29,7 @@ import { useClickOutside, useDisclosure } from '@mantine/hooks';
 
 import Icon from './Icon';
 import { IconSettings } from '@tabler/icons';
+import { IconUser } from '@tabler/icons-react';
 import Link from 'next/link';
 import classes from '../styles/components/Header.module.css';
 import { useRouter } from 'next/router';
@@ -104,7 +105,9 @@ const Header = ({ links, style }: HeaderProps) => {
 								</UnstyledButton>
 							</Menu.Target>
 							<Menu.Dropdown>
-								<Menu.Item leftSection={<FileUpload size={14} />}>{t('user.upload')}</Menu.Item>
+								<Menu.Item component={Link} href="/me" leftSection={<IconUser size={14} />}>
+									My BuildTheEarth
+								</Menu.Item>
 								<Menu.Item leftSection={<IconSettings size={14} />} component={Link} href="/me/settings">
 									Settings
 								</Menu.Item>
