@@ -1,14 +1,14 @@
-import 'mapbox-gl/dist/mapbox-gl.css';
 import 'mapbox-gl-style-switcher/styles.css';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 import * as React from 'react';
 
 import { LoadingOverlay, useMantineColorScheme, useMantineTheme } from '@mantine/core';
 import { MapboxStyleDefinition, MapboxStyleSwitcherControl } from 'mapbox-gl-style-switcher';
-import axios, { AxiosResponse } from 'axios';
 
 import { IconCheck } from '@tabler/icons';
-import MapLoader from './MapLoader';
+import { MapboxMap } from 'react-map-gl';
+import ReactDOM from 'react-dom';
 import mapboxgl from 'mapbox-gl';
 import { showNotification } from '@mantine/notifications';
 import { useRouter } from 'next/router';
@@ -20,21 +20,22 @@ interface IMap {
 	allowFullscreen?: boolean;
 	savePos?: boolean;
 	themeControls?: boolean;
+	src?: string;
 	layerSetup?(map: mapboxgl.Map): void;
 }
 
 const styles: MapboxStyleDefinition[] = [
 	{
 		title: 'Dark',
-		uri: 'mapbox://styles/nudelsuppe/cl7hfjfa0002h14o7h6ai832o',
+		uri: 'mapbox://styles/mapbox/dark-v11',
 	},
 	{
 		title: 'Light',
-		uri: 'mapbox://styles/mapbox/light-v9',
+		uri: 'mapbox://styles/mapbox/light-v11',
 	},
-	{ title: 'Outdoors', uri: 'mapbox://styles/mapbox/outdoors-v11' },
-	{ title: 'Satellite', uri: 'mapbox://styles/mapbox/satellite-streets-v11' },
-	{ title: 'Streets', uri: 'mapbox://styles/mapbox/streets-v11' },
+	{ title: 'Outdoors', uri: 'mapbox://styles/mapbox/outdoors-v12' },
+	{ title: 'Satellite', uri: 'mapbox://styles/mapbox/satellite-streets-v12' },
+	{ title: 'Streets', uri: 'mapbox://styles/mapbox/streets-v12' },
 ];
 
 function Map({
@@ -45,6 +46,7 @@ function Map({
 	savePos = true,
 	themeControls = true,
 	layerSetup,
+	src,
 }: IMap) {
 	// Mapbox map
 	const [map, setMap] = React.useState<mapboxgl.Map>();
@@ -55,7 +57,8 @@ function Map({
 	// Boolean if map is loading (-> Display mapLoader)
 	const [loading, setLoading] = React.useState(true);
 	// Mantine Theme
-	const theme = useMantineColorScheme();
+	const theme = useMantineTheme();
+	const scheme = useMantineColorScheme();
 	// Ref to the map div
 	const mapNode = React.useRef(null);
 
@@ -84,9 +87,11 @@ function Map({
 		const mapboxMap = new mapboxgl.Map({
 			container: node,
 			accessToken: process.env.NEXT_PUBLIC_MAPBOX_TOKEN,
-			style: theme.colorScheme == 'dark' ? styles[0].uri : styles[1].uri,
+			style: scheme.colorScheme == 'dark' ? styles[0].uri : styles[1].uri,
 			zoom: 1,
 			antialias: true,
+			//@ts-ignore
+			projection: 'mercator',
 			...initialOptions,
 		});
 
@@ -98,13 +103,16 @@ function Map({
 			onMapLoaded && (await onMapLoaded(mapboxMap));
 			setLoading(false);
 
+			src &&
+				mapLoadGeoJson(mapboxMap, src, 'claims', 'fill', 'claims-source', mapStatusColorPolygon, mapStatusColorLine);
+
 			layerSetup && (await layerSetup(mapboxMap));
 
 			if (allowFullscreen) mapboxMap.addControl(new mapboxgl.FullscreenControl());
 			if (themeControls)
 				mapboxMap.addControl(
 					new MapboxStyleSwitcherControl(styles, {
-						defaultStyle: theme.colorScheme == 'dark' ? 'Dark' : 'Light',
+						defaultStyle: scheme.colorScheme == 'dark' ? 'Dark' : 'Light',
 					}),
 				);
 		});
@@ -146,63 +154,26 @@ function Map({
 }
 
 // Map Event Helper Functions
-
-export function mapHoverEffect(map: any, layer: string, source: string, text: (feature: any) => string) {
-	// Hover effect
-	let hoveredStateId: string | number | undefined = undefined;
-	const popup = new mapboxgl.Popup({
-		closeButton: false,
-		closeOnClick: false,
+export function mapCursorHover(map: any, layer: string) {
+	map.on('mouseenter', layer, () => {
+		map.getCanvas().style.cursor = 'pointer';
 	});
 
-	map.on('mousemove', layer, (e: any) => {
-		if (!e.features) {
-			popup.remove();
-			return;
-		}
-		if (e?.features.length > 0) {
-			// Hover effect
-			if (hoveredStateId !== undefined) {
-				map.setFeatureState({ source: source, id: hoveredStateId }, { hover: false });
-			}
-			hoveredStateId = e.features[0].id;
-			map.setFeatureState({ source: source, id: hoveredStateId }, { hover: true });
-
-			// Tooltip
-			const features = map.queryRenderedFeatures(e.point, {
-				layers: [layer],
-			});
-
-			popup
-				.setLngLat(e.lngLat)
-				//@ts-ignore
-				.setText(text(features[0]))
-				.addTo(map);
-		}
-	});
 	map.on('mouseleave', layer, () => {
-		if (hoveredStateId !== undefined) {
-			map.setFeatureState({ source: source, id: hoveredStateId }, { hover: false });
-		}
-		hoveredStateId = undefined;
+		map.getCanvas().style.cursor = '';
+	});
+}
 
-		popup.remove();
-	});
-}
 export function mapClickEvent(map: any, layer: string, callback: (feature: any) => void) {
-	map.on('click', (e: any) => {
-		// Find features intersecting the bounding box.
-		const selectedFeatures = map.queryRenderedFeatures(e.point, {
-			layers: [layer],
-		});
-		if (selectedFeatures.length > 0) {
-			callback(selectedFeatures[0]);
+	map.on('click', layer, (e: any) => {
+		if (e.features.length > 0) {
+			callback(e.features[0]);
 		}
 	});
 }
+
 export function mapCopyCoordinates(map: any, clipboard: any) {
 	map.on('contextmenu', (e: any) => {
-		const user = JSON.parse(window.localStorage.getItem('auth') || '{}');
 		clipboard.copy(e.lngLat.lat + ', ' + e.lngLat.lng);
 		showNotification({
 			title: 'Coordinates copied',
@@ -215,28 +186,19 @@ export function mapCopyCoordinates(map: any, clipboard: any) {
 // Map Load Helper Functions
 
 export async function mapLoadGeoJson(
-	map: any,
-	url: string | AxiosResponse,
+	map: MapboxMap,
+	url: string,
 	layer: string,
-	layerType: string,
+	layerType: any,
 	source: string,
 	paint: any,
 	outline?: boolean | any,
-	afterFetch?: (geojson: any) => void,
 ) {
-	var geojson = null;
-	if (typeof url == 'string') {
-		geojson = await axios.get(url);
-	} else {
-		geojson = url;
-	}
-
-	afterFetch && afterFetch(geojson);
-
+	console.log(url);
 	if (!map.getSource(source)) {
 		map.addSource(source, {
 			type: 'geojson',
-			data: geojson.data,
+			data: url,
 		});
 	}
 
@@ -247,53 +209,17 @@ export async function mapLoadGeoJson(
 		paint: paint,
 	});
 	if (outline)
-		mapLoadGeoJson(
-			map,
-			geojson,
-			layer + '-outline',
-			'line',
-			source,
-			typeof outline == 'boolean' ? paint : outline,
-			false,
-		);
+		mapLoadGeoJson(map, url, layer + '-outline', 'line', source, typeof outline == 'boolean' ? paint : outline, false);
 }
 
 // Map Color Helper Functions
 
 export const mapStatusColorPolygon = {
-	'fill-color': [
-		'match',
-		['get', 'status'],
-		0,
-		'rgb(201, 42, 42)',
-		1,
-		'rgb(16, 152, 173)',
-		2,
-		'rgb(245, 159, 0)',
-		3,
-		'rgb(245, 159, 0)',
-		4,
-		'rgb(55, 178, 77)',
-		'rgb(201, 42, 42)',
-	],
+	'fill-color': ['case', ['==', ['get', 'finished'], true], 'rgb(55, 178, 77)', 'rgb(201, 42, 42)'],
 	'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 1, 0.37],
 };
 export const mapStatusColorLine = {
-	'line-color': [
-		'match',
-		['get', 'status'],
-		0,
-		'rgb(201, 42, 42)',
-		1,
-		'rgb(16, 152, 173)',
-		2,
-		'rgb(245, 159, 0)',
-		3,
-		'rgb(245, 159, 0)',
-		4,
-		'rgb(55, 178, 77)',
-		'rgb(201, 42, 42)',
-	],
+	'line-color': ['case', ['==', ['get', 'finished'], true], 'rgb(55, 178, 77)', 'rgb(201, 42, 42)'],
 	'line-width': 2,
 };
 
