@@ -88,12 +88,7 @@ const Header = ({ links, style }: HeaderProps) => {
 								<UnstyledButton className={classes.user} data-useractive={userMenuOpened}>
 									<Group gap={7}>
 										<Indicator color="red" inline size={8} disabled={session.user.email_verified}>
-											<Avatar
-												alt={session.user.username || session.user.email || 'User Avatar'}
-												radius="xl"
-												size={'sm'}
-												color="blue"
-											>
+											<Avatar alt={session.user.username || session.user.email || 'User Avatar'} radius="xl" size={'sm'} color="blue">
 												{(session.user.username || session.user.email).charAt(0)}
 											</Avatar>
 										</Indicator>
@@ -108,15 +103,12 @@ const Header = ({ links, style }: HeaderProps) => {
 								<Menu.Item component={Link} href="/me" leftSection={<IconUser size={14} />}>
 									My BuildTheEarth
 								</Menu.Item>
-								<Menu.Item leftSection={<IconSettings size={14} />} component={Link} href="/me/settings">
+								<Menu.Item leftSection={<IconSettings size={14} />} component={Link} href="/me/settings/general">
 									Settings
 								</Menu.Item>
 								<Menu.Divider />
 								<Menu.Label>{t('user.quickActions')}</Menu.Label>
-								<Menu.Item
-									leftSection={colorScheme === 'dark' ? <MoonStars size={14} /> : <Sun size={14} />}
-									onClick={() => toggleColorScheme()}
-								>
+								<Menu.Item leftSection={colorScheme === 'dark' ? <MoonStars size={14} /> : <Sun size={14} />} onClick={() => toggleColorScheme()}>
 									{t(`user.theme.${colorScheme}`)}
 								</Menu.Item>
 								<Menu.Divider />
@@ -138,10 +130,7 @@ const Header = ({ links, style }: HeaderProps) => {
 							>
 								{t('auth.signin')}
 							</Anchor>
-							<Button
-								style={{ fontWeight: '500', paddingLeft: '12px', paddingRight: '12px', height: '32px' }}
-								onClick={() => router.push('/join')}
-							>
+							<Button style={{ fontWeight: '500', paddingLeft: '12px', paddingRight: '12px', height: '32px' }} onClick={() => router.push('/join')}>
 								{t('auth.signup')}
 							</Button>
 						</>
@@ -159,19 +148,10 @@ const Header = ({ links, style }: HeaderProps) => {
 							{session != null && session?.user ? (
 								<>
 									<Divider />
-									<UnstyledButton
-										className={classes.user}
-										onClick={() => router.push('/profile')}
-										data-useractive={userMenuOpened}
-									>
+									<UnstyledButton className={classes.user} onClick={() => router.push('/profile')} data-useractive={userMenuOpened}>
 										<Group gap={7}>
 											<Indicator color="red" inline size={8} disabled={session.user.email_verified}>
-												<Avatar
-													alt={session.user.username || session.user.email || 'User Avatar'}
-													radius="xl"
-													size={'sm'}
-													color="blue"
-												>
+												<Avatar alt={session.user.username || session.user.email || 'User Avatar'} radius="xl" size={'sm'} color="blue">
 													{(session.user.username || session.user.email).charAt(0)}
 												</Avatar>
 											</Indicator>

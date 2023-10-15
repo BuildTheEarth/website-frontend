@@ -33,7 +33,7 @@ const MePage: NextPage = () => {
 						Linked Minecraft Username: <Code>{data.name}</Code>
 					</Text>
 					<Group>
-						<Button leftSection={<IconPencil />} component={Link} href={`/me/settings`} mt="md">
+						<Button leftSection={<IconPencil />} component={Link} href={`/me/settings/general`} mt="md">
 							Open Settings
 						</Button>
 
