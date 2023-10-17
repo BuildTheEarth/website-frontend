@@ -1,22 +1,11 @@
 import { Alert, Avatar, Button, Center, Drawer, Flex, Group, Loader, ScrollArea, Text } from '@mantine/core';
-import {
-	Icon123,
-	IconBuilding,
-	IconCheck,
-	IconCopy,
-	IconCrane,
-	IconDotsCircleHorizontal,
-	IconPencil,
-	IconPin,
-	IconRuler2,
-	IconUser,
-	IconUsersGroup,
-} from '@tabler/icons-react';
+import { Icon123, IconBuilding, IconCheck, IconCopy, IconCrane, IconDotsCircleHorizontal, IconPencil, IconPin, IconRuler2, IconUser, IconUsersGroup, IconZoomIn } from '@tabler/icons-react';
 
 import { StatsGrid } from '../Stats';
 import classes from '../styles/components/Card.module.css';
 import { domainToASCII } from 'url';
 import { getAreaOfPolygon } from 'geolib';
+import mapboxgl from 'mapbox-gl';
 import { showNotification } from '@mantine/notifications';
 import { useClipboard } from '@mantine/hooks';
 import useSWR from 'swr';
@@ -26,6 +15,7 @@ interface ClaimDrawerProps {
 	setOpen: (bool: boolean) => void;
 	open: boolean;
 	id: string | null;
+	map?: mapboxgl.Map;
 }
 
 export function ClaimDrawer(props: ClaimDrawerProps) {
@@ -36,15 +26,7 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 	if (props.id == null) return <></>;
 
 	return (
-		<Drawer
-			opened={props.open}
-			onClose={() => props.setOpen(false)}
-			title={`Claim Details`}
-			size="md"
-			overlayProps={{ blur: 3 }}
-			lockScroll
-			scrollAreaComponent={ScrollArea.Autosize}
-		>
+		<Drawer opened={props.open} onClose={() => props.setOpen(false)} title={`Claim Details`} size="md" overlayProps={{ blur: 3 }} lockScroll scrollAreaComponent={ScrollArea.Autosize}>
 			{isValidating || !data ? (
 				<Center h="100%" w="100%">
 					<Loader mt={'xl'} />
@@ -104,12 +86,22 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 						>
 							Copy Coordinates
 						</Button>
-						{data.owner?.id == user?.id && (
-							<Button component="a" variant="outline" leftSection={<IconPencil />} href={`/me/claims/${props.id}`}>
-								Edit Claim
+						{props.map && (
+							<Button
+								leftSection={<IconZoomIn />}
+								onClick={() => {
+									props.map?.flyTo({ center: data.center.split(', ').map(Number), zoom: 15 });
+								}}
+							>
+								Zoom to fit
 							</Button>
 						)}
 					</Group>
+					{data.owner?.id == user?.id && (
+						<Button component="a" variant="outline" leftSection={<IconPencil />} href={`/me/claims/${props.id}`} mt="md" fullWidth>
+							Edit Claim
+						</Button>
+					)}
 				</>
 			)}
 		</Drawer>
