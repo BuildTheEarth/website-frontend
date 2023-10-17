@@ -1,5 +1,5 @@
 import { Alert, Avatar, Button, Center, Drawer, Flex, Group, Loader, ScrollArea, Text } from '@mantine/core';
-import { Icon123, IconBuilding, IconCheck, IconCopy, IconCrane, IconDotsCircleHorizontal, IconPencil, IconPin, IconRuler2, IconUser, IconUsersGroup, IconZoomIn } from '@tabler/icons-react';
+import { Icon123, IconBuilding, IconCheck, IconCopy, IconCrane, IconDotsCircleHorizontal, IconLink, IconPencil, IconPin, IconRuler2, IconUser, IconUsersGroup, IconZoomIn } from '@tabler/icons-react';
 
 import { StatsGrid } from '../Stats';
 import classes from '../styles/components/Card.module.css';
@@ -93,15 +93,32 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 									props.map?.flyTo({ center: data.center.split(', ').map(Number), zoom: 15 });
 								}}
 							>
-								Zoom to fit
+								Zoom
 							</Button>
 						)}
 					</Group>
-					{data.owner?.id == user?.id && (
-						<Button component="a" variant="outline" leftSection={<IconPencil />} href={`/me/claims/${props.id}`} mt="md" fullWidth>
-							Edit Claim
+					<Group grow mt="md">
+						<Button
+							leftSection={<IconLink />}
+							variant="outline"
+							onClick={() => {
+								clipboard.copy('https://beta.buildtheearth.net/map?claim=' + data.id);
+								showNotification({
+									title: 'Link copied',
+									message: 'Share it anywhere.',
+									icon: <IconCheck size={18} />,
+									color: 'teal',
+								});
+							}}
+						>
+							Link
 						</Button>
-					)}
+						{data.owner?.id == user?.id && (
+							<Button component="a" variant="outline" leftSection={<IconPencil />} href={`/me/claims/${props.id}`}>
+								Edit Claim
+							</Button>
+						)}
+					</Group>
 				</>
 			)}
 		</Drawer>

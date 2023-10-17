@@ -20,6 +20,7 @@ interface IMap {
 	savePos?: boolean;
 	themeControls?: boolean;
 	src?: string;
+	initialStyle?: number;
 	layerSetup?(map: mapboxgl.Map): void;
 }
 
@@ -37,16 +38,7 @@ const styles: MapboxStyleDefinition[] = [
 	{ title: 'Streets', uri: 'mapbox://styles/mapbox/streets-v12' },
 ];
 
-function Map({
-	initialOptions = {},
-	onMapLoaded,
-	onMapRemoved,
-	allowFullscreen,
-	savePos = true,
-	themeControls = true,
-	layerSetup,
-	src,
-}: IMap) {
+function Map({ initialOptions = {}, onMapLoaded, onMapRemoved, allowFullscreen, savePos = true, themeControls = true, layerSetup, src, initialStyle }: IMap) {
 	// Mapbox map
 	const [map, setMap] = React.useState<mapboxgl.Map>();
 	// Next Router
@@ -86,7 +78,7 @@ function Map({
 		const mapboxMap = new mapboxgl.Map({
 			container: node,
 			accessToken: process.env.NEXT_PUBLIC_MAPBOX_TOKEN,
-			style: scheme.colorScheme == 'dark' ? styles[0].uri : styles[1].uri,
+			style: initialStyle || scheme.colorScheme == 'dark' ? styles[0].uri : styles[1].uri,
 			zoom: 1,
 			antialias: true,
 			//@ts-ignore
@@ -102,8 +94,7 @@ function Map({
 			onMapLoaded && (await onMapLoaded(mapboxMap));
 			setLoading(false);
 
-			src &&
-				mapLoadGeoJson(mapboxMap, src, 'claims', 'fill', 'claims-source', mapStatusColorPolygon, mapStatusColorLine);
+			src && mapLoadGeoJson(mapboxMap, src, 'claims', 'fill', 'claims-source', mapStatusColorPolygon, mapStatusColorLine);
 
 			layerSetup && (await layerSetup(mapboxMap));
 
@@ -114,6 +105,11 @@ function Map({
 						defaultStyle: scheme.colorScheme == 'dark' ? 'Dark' : 'Light',
 					}),
 				);
+
+			mapboxMap.on('style.load', async () => {
+				src && mapLoadGeoJson(mapboxMap, src, 'claims', 'fill', 'claims-source', mapStatusColorPolygon, mapStatusColorLine, true);
+				layerSetup && (await layerSetup(mapboxMap));
+			});
 		});
 
 		// Move to pos from query
@@ -184,17 +180,8 @@ export function mapCopyCoordinates(map: any, clipboard: any) {
 }
 // Map Load Helper Functions
 
-export async function mapLoadGeoJson(
-	map: mapboxgl.Map,
-	url: string,
-	layer: string,
-	layerType: any,
-	source: string,
-	paint: any,
-	outline?: boolean | any,
-) {
-	console.log(url);
-	if (!map.getSource(source)) {
+export async function mapLoadGeoJson(map: mapboxgl.Map, url: string, layer: string, layerType: any, source: string, paint: any, outline?: boolean | any, noSource?: boolean) {
+	if (!noSource && !map.getSource(source)) {
 		map.addSource(source, {
 			type: 'geojson',
 			data: url,
@@ -207,8 +194,7 @@ export async function mapLoadGeoJson(
 		source: source,
 		paint: paint,
 	});
-	if (outline)
-		mapLoadGeoJson(map, url, layer + '-outline', 'line', source, typeof outline == 'boolean' ? paint : outline, false);
+	if (outline) mapLoadGeoJson(map, url, layer + '-outline', 'line', source, typeof outline == 'boolean' ? paint : outline, false);
 }
 
 // Map Color Helper Functions

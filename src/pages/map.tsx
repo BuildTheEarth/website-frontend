@@ -37,6 +37,7 @@ const MapPage: NextPage = () => {
 							setOpened(true);
 						});
 					}}
+					initialStyle={Number.parseInt(router.query.style as string)}
 				/>
 			</div>
 		</Page>
