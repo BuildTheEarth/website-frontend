@@ -1,4 +1,4 @@
-import { Group, NumberInput, Slider, TextInput } from '@mantine/core';
+import { Group, Input, NumberInput, Slider, Stack, TextInput } from '@mantine/core';
 import { IconAdjustments, IconTextSize } from '@tabler/icons';
 
 import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
@@ -13,12 +13,21 @@ export interface SliderQuestionProps extends ApplicationQuestion {
 	};
 }
 
-function validation(value: any, props: SliderQuestionProps): boolean {
-	return true;
+function validation(props: SliderQuestionProps): (value: string) => void {
+	return (value: string) => {
+		return 'dw';
+	};
 }
 
 const SliderQuestion = (props: SliderQuestionProps) => {
-	return <Slider {...props.form} icon={<Icon name={props.icon} />} required={props.required} description={props.subtitle} label={props.title} style={props.style} max={props.additionalData.max} min={props.additionalData.min} step={props.additionalData.steps} {...props.form} />;
+	return (
+		<Stack style={props.style} gap={0}>
+			<Input.Label>{props.title}</Input.Label>
+			<Input.Description>{props.subtitle}</Input.Description>
+			<Slider label={(value) => (props.additionalData.unit ? `${value} ${props.additionalData.unit}` : value)} max={props.additionalData.max} min={props.additionalData.min} step={props.additionalData.steps} onChange={(e) => props.onChange && props.onChange(e)} />
+			<Input.Error mt={4}>{props.error}</Input.Error>
+		</Stack>
+	);
 };
 
 const EditQuestion = ({ editingQuestion, handleUpdateEditingQuestion }: any) => {

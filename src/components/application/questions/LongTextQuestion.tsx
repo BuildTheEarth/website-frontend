@@ -6,17 +6,18 @@ import { IconTextSize } from '@tabler/icons';
 
 export interface LongTextQuestionProps extends ApplicationQuestion {
 	additionalData: {
-		validation?: string;
 		length?: number;
 	};
 }
 
-function validation(value: any, props: LongTextQuestionProps): boolean {
-	return value.split().length <= (props.additionalData.length || 200);
+function validation(props: LongTextQuestionProps): (value: string) => void {
+	return (value: string) => {
+		return value.split('').length > (props.additionalData.length || 200) ? `Text is too long, please reduce it to ${props.additionalData.length || 200} characters` : false;
+	};
 }
 
 const LongTextQuestion = (props: LongTextQuestionProps) => {
-	return <Textarea {...props.form} icon={<Icon name={props.icon} />} required={props.required} description={props.subtitle} placeholder={props.placeholder} label={props.title} style={props.style} autosize minRows={2} maxRows={5} {...props.form} />;
+	return <Textarea leftSection={<Icon name={props.icon} />} required={props.required} description={props.subtitle} placeholder={props.placeholder} label={props.title} style={props.style} autosize minRows={2} maxRows={5} onChange={(e) => props.onChange && props.onChange(e.target.value)} error={props.error} />;
 };
 
 const EditQuestion = ({ editingQuestion, handleUpdateEditingQuestion }: any) => {

@@ -8,23 +8,14 @@ export interface ImageUploadQuestionProps extends ApplicationQuestion {
 	maxAmount?: number;
 }
 
-function validation(value: any, props: ImageUploadQuestionProps): boolean {
-	// TODO: Somehow split it
-	return value.split(';').length <= (props.maxAmount || 1);
+function validation(props: ImageUploadQuestionProps): (value: string) => void {
+	return (value: string) => {
+		return false;
+	};
 }
 
 const ImageUploadQuestion = (props: ImageUploadQuestionProps) => {
-	return (
-		<TextInput
-			{...props.form}
-			icon={<Icon name={props.icon} />}
-			required={props.required}
-			description={props.subtitle}
-			label={props.title}
-			style={props.style}
-			{...props.form}
-		/>
-	);
+	return <TextInput leftSection={<Icon name={props.icon} />} required={props.required} description={props.subtitle} label={props.title} style={props.style} onChange={(e) => props.onChange && props.onChange(e.target.value)} error={props.error} />;
 };
 
 const EditQuestion = ({ editingQuestion, handleUpdateEditingQuestion }: any) => {

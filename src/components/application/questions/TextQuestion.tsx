@@ -10,12 +10,14 @@ export interface TextQuestionProps extends ApplicationQuestion {
 	};
 }
 
-function validation(value: any, props: TextQuestionProps): boolean {
-	return true;
+function validation(props: TextQuestionProps): (value: string) => void {
+	return (value: string) => {
+		return value.split('').length > (props.additionalData.length || 200) ? `Text is too long, please reduce it to ${props.additionalData.length || 200} characters` : false;
+	};
 }
 
 const TextQuestion = (props: TextQuestionProps) => {
-	return <TextInput {...props.form} icon={<Icon name={props.icon} />} required={props.required} description={props.subtitle} placeholder={props.placeholder} label={props.title} style={props.style} {...props.form} />;
+	return <TextInput leftSection={<Icon name={props.icon} />} required={props.required} description={props.subtitle} placeholder={props.placeholder} label={props.title} style={props.style} onChange={(e) => props.onChange && props.onChange(e.target.value)} error={props.error} />;
 };
 
 const EditQuestion = ({ editingQuestion, handleUpdateEditingQuestion }: any) => {

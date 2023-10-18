@@ -9,27 +9,14 @@ export interface CityQuestionProps extends ApplicationQuestion {
 	};
 }
 
-function validation(value: any, props: CityQuestionProps): boolean {
-	//TODO: Validate City
-	return true;
+function validation(props: CityQuestionProps): (value: string) => void {
+	return (value: string) => {
+		return false;
+	};
 }
 
 const CityQuestion = (props: CityQuestionProps) => {
-	return (
-		<TextInput
-			{...props.form}
-			icon={<Icon name={props.icon} />}
-			required={props.required}
-			description={props.subtitle}
-			placeholder={props.placeholder}
-			label={props.title}
-			style={props.style}
-			autosize
-			minRows={2}
-			maxRows={5}
-			{...props.form}
-		/>
-	);
+	return <TextInput leftSection={<Icon name={props.icon} />} required={props.required} description={props.subtitle} placeholder={props.placeholder} label={props.title} style={props.style} onChange={(e) => props.onChange && props.onChange(e.target.value)} error={props.error} />;
 };
 
 const EditQuestion = ({ editingQuestion, handleUpdateEditingQuestion }: any) => {

@@ -7,25 +7,14 @@ export interface UrlQuestionProps extends ApplicationQuestion {
 	additionalData: {};
 }
 
-function validation(value: any, props: UrlQuestionProps): boolean {
-	return /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/.test(
-		value,
-	);
+function validation(props: UrlQuestionProps): (value: string) => void {
+	return (value: string) => {
+		return /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/.test(value) ? false : 'Not a valid URL';
+	};
 }
 
 const UrlQuestion = (props: UrlQuestionProps) => {
-	return (
-		<TextInput
-			{...props.form}
-			icon={<Icon name={props.icon} />}
-			required={props.required}
-			description={props.subtitle}
-			placeholder={props.placeholder}
-			label={props.title}
-			style={props.style}
-			{...props.form}
-		/>
-	);
+	return <TextInput leftSection={<Icon name={props.icon} />} required={props.required} description={props.subtitle} placeholder={props.placeholder} label={props.title} style={props.style} onChange={(e) => props.onChange && props.onChange(e.target.value)} error={props.error} />;
 };
 
 const EditQuestion = undefined;

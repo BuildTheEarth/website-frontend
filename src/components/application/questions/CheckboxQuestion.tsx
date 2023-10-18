@@ -7,12 +7,14 @@ export interface CheckboxQuestionProps extends ApplicationQuestion {
 	additionalData: {};
 }
 
-function validation(value: any, props: CheckboxQuestionProps): boolean {
-	return true;
+function validation(props: CheckboxQuestionProps): (value: string) => void {
+	return (value: string) => {
+		return false;
+	};
 }
 
 const CheckboxQuestion = (props: CheckboxQuestionProps) => {
-	return <Switch {...props.form} icon={<Icon name={props.icon} />} required={props.required} description={props.subtitle} label={props.title} style={props.style} {...props.form} />;
+	return <Switch onLabel={<Icon name={props.icon} />} offLabel={<Icon name={props.icon} />} required={props.required} description={props.subtitle} label={props.title} style={props.style} onChange={(e) => props.onChange && props.onChange(e.target.checked)} error={props.error} />;
 };
 
 const EditQuestion = ({ editingQuestion, handleUpdateEditingQuestion }: any) => {

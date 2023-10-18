@@ -8,17 +8,17 @@ export interface DropdownQuestionProps extends ApplicationQuestion {
 	additionalData: {
 		maxSelect?: number;
 		options: string[];
-		conditions?: ApplicationQuestion;
 	};
 }
 
-function validation(value: any, props: DropdownQuestionProps): boolean {
-	// TODO
-	return true;
+function validation(props: DropdownQuestionProps): (value: string) => void {
+	return (value: string) => {
+		return false;
+	};
 }
 
 const DropdownQuestion = (props: DropdownQuestionProps) => {
-	return <MultiSelect {...props.form} icon={<Icon name={props.icon} />} required={props.required} description={props.subtitle} label={props.title} data={props.additionalData.options} style={props.style} limit={props.additionalData.maxSelect} {...props.form} />;
+	return <MultiSelect leftSection={<Icon name={props.icon} />} required={props.required} description={props.subtitle} label={props.title} data={props.additionalData.options} style={props.style} max={props.additionalData.maxSelect} onChange={(e) => props.onChange && props.onChange(e)} error={props.error} />;
 };
 
 const EditQuestion = ({ editingQuestion, handleUpdateEditingQuestion }: any) => {
