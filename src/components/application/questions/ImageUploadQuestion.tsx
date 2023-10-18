@@ -28,7 +28,7 @@ const ImageUploadQuestion = (props: ImageUploadQuestionProps) => {
 };
 
 const EditQuestion = ({ editingQuestion, handleUpdateEditingQuestion }: any) => {
-	return <></>;
+	return undefined;
 };
 
 ImageUploadQuestion.edit = EditQuestion;

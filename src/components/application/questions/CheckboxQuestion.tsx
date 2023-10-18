@@ -4,10 +4,7 @@ import { IconCheckbox } from '@tabler/icons';
 import { Switch } from '@mantine/core';
 
 export interface CheckboxQuestionProps extends ApplicationQuestion {
-	additionalData: {
-		ifTrue?: ApplicationQuestion[];
-		ifFalse?: ApplicationQuestion[];
-	};
+	additionalData: {};
 }
 
 function validation(value: any, props: CheckboxQuestionProps): boolean {
@@ -15,21 +12,11 @@ function validation(value: any, props: CheckboxQuestionProps): boolean {
 }
 
 const CheckboxQuestion = (props: CheckboxQuestionProps) => {
-	return (
-		<Switch
-			{...props.form}
-			icon={<Icon name={props.icon} />}
-			required={props.required}
-			description={props.subtitle}
-			label={props.title}
-			style={props.style}
-			{...props.form}
-		/>
-	);
+	return <Switch {...props.form} icon={<Icon name={props.icon} />} required={props.required} description={props.subtitle} label={props.title} style={props.style} {...props.form} />;
 };
 
 const EditQuestion = ({ editingQuestion, handleUpdateEditingQuestion }: any) => {
-	return <></>;
+	return undefined;
 };
 
 CheckboxQuestion.edit = EditQuestion;

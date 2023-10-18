@@ -100,8 +100,12 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 	const handleDeleteQuestion = (id: string) => {
 		handleUpdateQuestion(id, { sort: -1 });
 	};
-	const handleUpdateEditingQuestion = (question: any) => {
-		setEditingQuestion({ ...editingQuestion, ...question });
+	const handleUpdateEditingQuestion = (question: any, additional?: boolean) => {
+		if (additional) {
+			setEditingQuestion({ ...editingQuestion, additionalData: { ...editingQuestion.additionalData, ...question } });
+		} else {
+			setEditingQuestion({ ...editingQuestion, ...question });
+		}
 	};
 
 	const handleSubmit = async () => {
@@ -161,54 +165,17 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 			seo={{ nofollow: true, noindex: true }}
 		>
 			<SettingsTabs team={team} loading={!data}>
-				<Modal
-					zIndex={9999}
-					opened={editingQuestion != null}
-					onClose={() => setEditingQuestion(null)}
-					title="Edit Question"
-					centered
-					size="lg"
-				>
-					<TextInput
-						required
-						defaultValue={editingQuestion?.title}
-						label="Title"
-						description="The question title"
-						mb="md"
-						onChange={(e) => handleUpdateEditingQuestion({ title: e.target.value })}
-					/>
+				<Modal zIndex={9999} opened={editingQuestion != null} onClose={() => setEditingQuestion(null)} title="Edit Question" centered size="lg">
+					<TextInput required defaultValue={editingQuestion?.title} label="Title" description="The question title" mb="md" onChange={(e) => handleUpdateEditingQuestion({ title: e.target.value })} />
 					<Group grow>
-						<TextInput
-							defaultValue={editingQuestion?.subtitle}
-							label="Subtitle"
-							description="The question subtitle"
-							mb="md"
-							onChange={(e) => handleUpdateEditingQuestion({ subtitle: e.target.value })}
-						/>
-						<TextInput
-							defaultValue={editingQuestion?.placeholder}
-							label="Placeholder"
-							description="The question placeholder"
-							mb="md"
-							onChange={(e) => handleUpdateEditingQuestion({ placeholder: e.target.value })}
-						/>
+						<TextInput defaultValue={editingQuestion?.subtitle} label="Subtitle" description="The question subtitle" mb="md" onChange={(e) => handleUpdateEditingQuestion({ subtitle: e.target.value })} />
+						<TextInput defaultValue={editingQuestion?.placeholder} label="Placeholder" description="The question placeholder" mb="md" onChange={(e) => handleUpdateEditingQuestion({ placeholder: e.target.value })} />
 					</Group>
 					<Group grow>
-						<Switch
-							defaultChecked={editingQuestion?.required}
-							label="Required Question"
-							description="If this question has to be answered"
-							onChange={(e) => handleUpdateEditingQuestion({ required: e.target.checked })}
-						/>
-						<TextInput
-							defaultValue={editingQuestion?.icon}
-							label="Icon"
-							description="The question icon"
-							mb="md"
-							onChange={(e) => handleUpdateEditingQuestion({ icon: e.target.value })}
-						/>
+						<Switch defaultChecked={editingQuestion?.required} label="Required Question" description="If this question has to be answered" onChange={(e) => handleUpdateEditingQuestion({ required: e.target.checked })} />
+						<TextInput defaultValue={editingQuestion?.icon} label="Icon" description="The question icon" mb="md" onChange={(e) => handleUpdateEditingQuestion({ icon: e.target.value })} />
 					</Group>
-					{editingQuestion?.type && <EditQuestion type={editingQuestion?.type} {...editingQuestion.additionalData} />}
+					{editingQuestion?.type && <EditQuestion type={editingQuestion?.type} editingQuestion={editingQuestion} handleUpdateEditingQuestion={handleUpdateEditingQuestion} />}
 					<Text c="dimmed" size="sm" mt="md">
 						A list of all Supported Icons can be found at{' '}
 						<Anchor component={Link} href="https://tabler-icons.io/" target="_blank">
@@ -283,15 +250,13 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 													icon: 'question-mark',
 													additionalData: Question.mockdata,
 													buildTeamId: router.query.id,
-													sort:
-														data?.filter((d: any) => d.trial == trial).length > 1
-															? data?.filter((d: any) => d.trial == trial)?.slice(-1)[0]?.sort + 1
-															: 1,
+													sort: data?.filter((d: any) => d.trial == trial).length > 1 ? data?.filter((d: any) => d.trial == trial)?.slice(-1)[0]?.sort + 1 : 1,
 													trial,
 												};
 												handleAddQuestion(newQuestion);
 												setEditingQuestion(newQuestion);
 											}}
+											disabled={q.toLowerCase() == 'city' || q.toLowerCase() == 'image'}
 										>
 											{toReadable(Question)}
 										</Menu.Item>
@@ -367,11 +332,11 @@ export async function getStaticPaths() {
 
 function reduceSortValues(data: any[]) {
 	const dataTrial = data
-		.filter((d) => d.trial == true)
+		.filter((d) => d.trial == true && d.sort >= 0)
 		.sort((a, b) => a.sort - b.sort)
 		.map((d, i) => ({ ...d, sort: i }));
 	const dataBuilder = data
-		.filter((d) => d.trial == false)
+		.filter((d) => d.trial == false && d.sort >= 0)
 		.sort((a, b) => a.sort - b.sort)
 		.map((d, i) => ({ ...d, sort: i }));
 	return [...dataBuilder, ...dataTrial];

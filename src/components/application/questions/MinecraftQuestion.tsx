@@ -4,37 +4,21 @@ import { IconDeviceGamepad } from '@tabler/icons';
 import { TextInput } from '@mantine/core';
 
 export interface MinecraftQuestionProps extends ApplicationQuestion {
-	additionalData: {
-		allowBedrock?: boolean;
-	};
+	additionalData: {};
 }
 
 function validation(value: any, props: MinecraftQuestionProps): boolean {
-	// TODO: validate
-	return true;
+	return /^[a-zA-Z0-9_]{2,16}$/gm.test(value);
 }
 
 const MinecraftQuestion = (props: MinecraftQuestionProps) => {
-	return (
-		<TextInput
-			{...props.form}
-			icon={<Icon name={props.icon} />}
-			required={props.required}
-			description={props.subtitle}
-			placeholder={props.placeholder}
-			label={props.title}
-			style={props.style}
-			{...props.form}
-		/>
-	);
+	return <TextInput {...props.form} icon={<Icon name={props.icon} />} required={props.required} description={props.subtitle} placeholder={props.placeholder} label={props.title} style={props.style} {...props.form} />;
 };
 
-const EditQuestion = ({ editingQuestion, handleUpdateEditingQuestion }: any) => {
-	return <></>;
-};
+const EditQuestion = undefined;
 
 MinecraftQuestion.edit = EditQuestion;
-MinecraftQuestion.mockdata = { allowBedrock: false };
+MinecraftQuestion.mockdata = {};
 MinecraftQuestion.validation = validation;
 MinecraftQuestion.icon = IconDeviceGamepad;
 export default MinecraftQuestion;
