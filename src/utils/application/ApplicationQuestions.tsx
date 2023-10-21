@@ -33,6 +33,7 @@ export interface ApplicationQuestion {
 	onChange?: (v: any) => void;
 	error?: boolean | string;
 	style?: MantineStyleProp;
+	disabled?: boolean;
 }
 
 export function generateInitialValues(data: any) {

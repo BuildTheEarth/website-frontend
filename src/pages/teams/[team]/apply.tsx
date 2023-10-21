@@ -19,6 +19,7 @@ const Apply: NextPage = ({ data }: any) => {
 	const team = router.query.team;
 	const theme = useMantineTheme();
 	const { t } = useTranslation('teams');
+	const [loading, setLoading] = useState(false);
 	const { data: buildteam } = useSWR(`/buildteams/${team}`);
 	// const { data } = useSWR(`/buildteams/${team}/application/questions`);
 	const [trial, setTrial] = useState(false);
@@ -26,9 +27,7 @@ const Apply: NextPage = ({ data }: any) => {
 		validate: generateValidation(data?.filter((d: any) => d.trial == trial)),
 	});
 
-	const handleSubmit = (e: any) => {
-		console.log(form.errors);
-	};
+	const handleSubmit = (e: any) => {};
 
 	return (
 		<Page
@@ -58,6 +57,7 @@ const Apply: NextPage = ({ data }: any) => {
 										color="blue"
 										mb="md"
 										styles={{ label: { minWidth: 100 } }}
+										disabled={loading}
 										data={[
 											{ label: t('builder', { ns: 'common' }), value: '0' },
 											{ label: t('trial', { ns: 'common' }), value: '1' },
@@ -69,12 +69,12 @@ const Apply: NextPage = ({ data }: any) => {
 								?.filter((d: any) => d.trial == trial)
 								.map((d: any, i: number) => {
 									const Question = ApplicationQuestions[d.type];
-									return <Question key={d.id} {...d} style={{ marginTop: i > 0 && theme.spacing.md, maxWidth: '55%' }} onChange={(v: any) => form.setFieldValue(d.id, v)} error={form.errors[d.id]} />;
+									return <Question key={d.id} {...d} style={{ marginTop: i > 0 && theme.spacing.md, maxWidth: '55%' }} onChange={(v: any) => form.setFieldValue(d.id, v)} error={form.errors[d.id]} disabled={loading} />;
 								})}
-							<Button type="submit" variant="filled" color="blue" mt="md">
+							<Button type="submit" variant="filled" color="blue" mt="md" disabled={loading}>
 								{t('button.apply', { ns: 'common' })}
 							</Button>
-							<Button variant="outline" color="blue" ml="md" mt="md" onClick={() => router.back()}>
+							<Button variant="outline" color="blue" ml="md" mt="md" onClick={() => router.back()} disabled={loading}>
 								{t('button.cancel', { ns: 'common' })}
 							</Button>
 						</form>

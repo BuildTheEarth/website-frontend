@@ -24,7 +24,7 @@ const SliderQuestion = (props: SliderQuestionProps) => {
 		<Stack style={props.style} gap={0}>
 			<Input.Label>{props.title}</Input.Label>
 			<Input.Description>{props.subtitle}</Input.Description>
-			<Slider label={(value) => (props.additionalData.unit ? `${value} ${props.additionalData.unit}` : value)} max={props.additionalData.max} min={props.additionalData.min} step={props.additionalData.steps} onChange={(e) => props.onChange && props.onChange(e)} />
+			<Slider label={(value) => (props.additionalData.unit ? `${value} ${props.additionalData.unit}` : value)} max={props.additionalData.max} min={props.additionalData.min} step={props.additionalData.steps} onChange={(e) => props.onChange && props.onChange(e)} disabled={props.disabled} />
 			<Input.Error mt={4}>{props.error}</Input.Error>
 		</Stack>
 	);

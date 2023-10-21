@@ -18,7 +18,7 @@ function validation(props: DropdownQuestionProps): (value: string) => void {
 }
 
 const DropdownQuestion = (props: DropdownQuestionProps) => {
-	return <MultiSelect leftSection={<Icon name={props.icon} />} required={props.required} description={props.subtitle} label={props.title} data={props.additionalData.options} style={props.style} maxValues={props.additionalData.maxSelect} onChange={(e) => props.onChange && props.onChange(e)} error={props.error} />;
+	return <MultiSelect leftSection={<Icon name={props.icon} />} required={props.required} description={props.subtitle} label={props.title} data={props.additionalData.options} style={props.style} maxValues={props.additionalData.maxSelect} onChange={(e) => props.onChange && props.onChange(e)} error={props.error} disabled={props.disabled} />;
 };
 
 const EditQuestion = ({ editingQuestion, handleUpdateEditingQuestion }: any) => {
