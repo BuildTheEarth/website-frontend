@@ -15,7 +15,7 @@ export interface SliderQuestionProps extends ApplicationQuestion {
 
 function validation(props: SliderQuestionProps): (value: string) => void {
 	return (value: string) => {
-		return 'dw';
+		return false;
 	};
 }
 

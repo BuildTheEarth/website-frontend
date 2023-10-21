@@ -1,23 +1,26 @@
 import { Alert, Button, SegmentedControl, Skeleton, useMantineTheme } from '@mantine/core';
+import { IconAlertCircle, IconCheck } from '@tabler/icons';
 
 import { ApplicationQuestions } from '../../../utils/application/ApplicationQuestions';
 import CheckboxQuestion from '../../../components/application/questions/CheckboxQuestion';
-import { IconAlertCircle } from '@tabler/icons';
 import { NextPage } from 'next';
 import Page from '../../../components/Page';
 import fetcher from '../../../utils/Fetcher';
 import sanitize from 'sanitize-html';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { showNotification } from '@mantine/notifications';
 import { useForm } from '@mantine/form';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useUser } from '../../../hooks/useUser';
 
 const Apply: NextPage = ({ data }: any) => {
 	const router = useRouter();
 	const team = router.query.team;
 	const theme = useMantineTheme();
+	const user = useUser();
 	const { t } = useTranslation('teams');
 	const [loading, setLoading] = useState(false);
 	const { data: buildteam } = useSWR(`/buildteams/${team}`);
@@ -27,7 +30,36 @@ const Apply: NextPage = ({ data }: any) => {
 		validate: generateValidation(data?.filter((d: any) => d.trial == trial)),
 	});
 
-	const handleSubmit = (e: any) => {};
+	const handleSubmit = (e: any) => {
+		setLoading(true);
+		fetch(process.env.NEXT_PUBLIC_API_URL + `/buildteams/${team}/apply${trial ? '?trial=true' : ''}`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + user.token,
+			},
+			body: JSON.stringify(e),
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				if (res.errors || res.message) {
+					showNotification({
+						title: 'Application failed',
+						message: res.message,
+						color: 'red',
+					});
+					setLoading(false);
+				} else {
+					showNotification({
+						title: 'Application sent',
+						message: 'Your Application will be reviewed shortly',
+						color: 'green',
+						icon: <IconCheck />,
+					});
+					setLoading(false);
+				}
+			});
+	};
 
 	return (
 		<Page
@@ -71,7 +103,7 @@ const Apply: NextPage = ({ data }: any) => {
 									const Question = ApplicationQuestions[d.type];
 									return <Question key={d.id} {...d} style={{ marginTop: i > 0 && theme.spacing.md, maxWidth: '55%' }} onChange={(v: any) => form.setFieldValue(d.id, v)} error={form.errors[d.id]} disabled={loading} />;
 								})}
-							<Button type="submit" variant="filled" color="blue" mt="md" disabled={loading}>
+							<Button type="submit" variant="filled" color="blue" mt="md" loading={loading}>
 								{t('button.apply', { ns: 'common' })}
 							</Button>
 							<Button variant="outline" color="blue" ml="md" mt="md" onClick={() => router.back()} disabled={loading}>
