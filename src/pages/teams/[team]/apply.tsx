@@ -1,5 +1,6 @@
 import { Alert, Button, SegmentedControl, Skeleton, useMantineTheme } from '@mantine/core';
 import { IconAlertCircle, IconCheck } from '@tabler/icons';
+import useSWR, { mutate } from 'swr';
 
 import { ApplicationQuestions } from '../../../utils/application/ApplicationQuestions';
 import CheckboxQuestion from '../../../components/application/questions/CheckboxQuestion';
@@ -12,7 +13,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { showNotification } from '@mantine/notifications';
 import { useForm } from '@mantine/form';
 import { useRouter } from 'next/router';
-import useSWR from 'swr';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useUser } from '../../../hooks/useUser';
@@ -57,6 +57,7 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 						icon: <IconCheck />,
 					});
 					setLoading(false);
+					mutate(`/buildteams/${buildteam?.id}/applications/${user.user?.id}`);
 				}
 			});
 	};
@@ -77,7 +78,7 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 			) : (
 				<form onSubmit={form.onSubmit(handleSubmit)}>
 					<div dangerouslySetInnerHTML={{ __html: sanitize(buildteam?.about) }} />
-					{pastApplications?.length == 0 ? (
+					{!pastApplications?.some((a: any) => a.status == 'SEND' || a.status == 'REVIEWING' || a.status == 'ACCEPTED') ? (
 						<>
 							{buildteam?.allowTrial && (
 								<>
