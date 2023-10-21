@@ -3,6 +3,7 @@ import { IconAlertCircle, IconCheck } from '@tabler/icons';
 
 import { ApplicationQuestions } from '../../../utils/application/ApplicationQuestions';
 import CheckboxQuestion from '../../../components/application/questions/CheckboxQuestion';
+import { IconChevronLeft } from '@tabler/icons-react';
 import { NextPage } from 'next';
 import Page from '../../../components/Page';
 import fetcher from '../../../utils/Fetcher';
@@ -16,15 +17,14 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useUser } from '../../../hooks/useUser';
 
-const Apply: NextPage = ({ data }: any) => {
+const Apply: NextPage = ({ data, buildteam }: any) => {
 	const router = useRouter();
 	const team = router.query.team;
 	const theme = useMantineTheme();
 	const user = useUser();
+	const { data: pastApplications } = useSWR(`/buildteams/${buildteam?.id}/applications/${user.user?.id}`);
 	const { t } = useTranslation('teams');
 	const [loading, setLoading] = useState(false);
-	const { data: buildteam } = useSWR(`/buildteams/${team}`);
-	// const { data } = useSWR(`/buildteams/${team}/application/questions`);
 	const [trial, setTrial] = useState(false);
 	const form = useForm({
 		validate: generateValidation(data?.filter((d: any) => d.trial == trial)),
@@ -70,13 +70,15 @@ const Apply: NextPage = ({ data }: any) => {
 			title={buildteam?.name}
 			description={buildteam?.about}
 		>
-			{!(data && buildteam)
-				? new Array(6).fill(0).map((_, idx) => {
-						return <Skeleton height={50} my={'md'} key={idx} />;
-				  })
-				: !data?.errors && (
-						<form onSubmit={form.onSubmit(handleSubmit)}>
-							<div dangerouslySetInnerHTML={{ __html: sanitize(buildteam?.about) }} />
+			{!(data && buildteam && pastApplications) ? (
+				new Array(6).fill(0).map((_, idx) => {
+					return <Skeleton height={50} my={'md'} key={idx} />;
+				})
+			) : (
+				<form onSubmit={form.onSubmit(handleSubmit)}>
+					<div dangerouslySetInnerHTML={{ __html: sanitize(buildteam?.about) }} />
+					{pastApplications?.length == 0 ? (
+						<>
 							{buildteam?.allowTrial && (
 								<>
 									<Alert mb="md" icon={<IconAlertCircle size="1rem" />} title={t('apply.trial.title')}>
@@ -109,17 +111,43 @@ const Apply: NextPage = ({ data }: any) => {
 							<Button variant="outline" color="blue" ml="md" mt="md" onClick={() => router.back()} disabled={loading}>
 								{t('button.cancel', { ns: 'common' })}
 							</Button>
-						</form>
-				  )}
+						</>
+					) : (
+						<>
+							{pastApplications.some((a: any) => a.status == 'SEND' || a.status == 'REVIEWING') && (
+								<>
+									<Alert title="Pending Application" color="yellow" icon={<IconAlertCircle size="1rem" />} mt="md">
+										You have already applied to this buildteam on the {new Date(pastApplications[0].createdAt).toLocaleDateString()}. Please wait for this application to be reviewed
+									</Alert>
+								</>
+							)}
+							{pastApplications
+								.filter((a: any) => a.status == 'ACCEPTED')
+								.map((a: any) => (
+									<>
+										<Alert title="Accepted Application" color="green" icon={<IconAlertCircle size="1rem" />} mt="md">
+											You were already accepted to this buildteam on the {new Date(a.reviewedAt).toLocaleDateString()}.
+										</Alert>
+									</>
+								))}
+							<Button leftSection={<IconChevronLeft />} mt="md" onClick={() => router.back()}>
+								Back
+							</Button>
+						</>
+					)}
+				</form>
+			)}
 		</Page>
 	);
 };
 export default Apply;
 export async function getStaticProps({ locale, params }: any) {
 	const res = await fetcher(`/buildteams/${params.team}/application/questions`);
+	const res2 = await fetcher(`/buildteams/${params.team}`);
 	return {
 		props: {
 			data: res,
+			buildteam: res2,
 			...(await serverSideTranslations(locale, ['common', 'teams'])),
 		},
 	};
