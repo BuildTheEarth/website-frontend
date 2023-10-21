@@ -11,7 +11,7 @@ import useSWR from 'swr';
 
 var vagueTime = require('vague-time');
 const Review = ({ team }: any) => {
-	const { data } = useSWR(`/buildteams/${team}/applications`);
+	const { data } = useSWR(`/buildteams/${team}/applications?review=true`);
 	return (
 		<Page
 			smallPadding
@@ -34,39 +34,61 @@ const Review = ({ team }: any) => {
 							</Table.Tr>
 						</Table.Thead>
 						<Table.Tbody>
-							{data?.map((a: any) => (
-								<Table.Tr key={a.id}>
+							{data?.length > 0 ? (
+								data?.map((a: any) => (
+									<Table.Tr key={a.id}>
+										<Table.Td>
+											<Tooltip label={a.id}>
+												<p>{a.id.split('-')[0]}</p>
+											</Tooltip>
+										</Table.Td>
+										<Table.Td>
+											{a.status == 'SEND' ? (
+												<Badge variant="gradient" gradient={{ from: 'orange', to: 'yellow' }}>
+													Needs Review
+												</Badge>
+											) : (
+												<Badge variant="gradient" gradient={{ from: 'green', to: 'lime' }}>
+													Accepted
+												</Badge>
+											)}
+										</Table.Td>
+										<Table.Td>{a.trial ? 'Yes' : 'No'}</Table.Td>
+										<Table.Td>
+											<Tooltip withinPortal label={a.createdAt ? vagueTime.get({ to: new Date(a.createdAt) }) : ''} position="top-start">
+												<p>{new Date(a.createdAt).toLocaleDateString()} </p>
+											</Tooltip>
+										</Table.Td>
+										<Table.Td>
+											<Group gap={0} justify="flex-end">
+												<ActionIcon variant="subtle" component={Link} href={`/teams/${team}/manage/review/${a.id}`}>
+													<IconChevronRight />
+												</ActionIcon>
+											</Group>
+										</Table.Td>
+									</Table.Tr>
+								))
+							) : (
+								<Table.Tr>
 									<Table.Td>
-										<Tooltip label={a.id}>
-											<p>{a.id.split('-')[0]}</p>
-										</Tooltip>
+										<p>--------</p>
 									</Table.Td>
 									<Table.Td>
-										{a.status == 'SEND' ? (
-											<Badge variant="gradient" gradient={{ from: 'orange', to: 'yellow' }}>
-												Needs Review
-											</Badge>
-										) : (
-											<Badge variant="gradient" gradient={{ from: 'green', to: 'lime' }}>
-												Accepted
-											</Badge>
-										)}
+										<Badge color="gray">None</Badge>
 									</Table.Td>
-									<Table.Td>{a.trial ? 'Yes' : 'No'}</Table.Td>
+									<Table.Td>--</Table.Td>
 									<Table.Td>
-										<Tooltip withinPortal label={a.createdAt ? vagueTime.get({ to: new Date(a.createdAt) }) : ''} position="top-start">
-											<p>{new Date(a.createdAt).toLocaleDateString()} </p>
-										</Tooltip>
+										<p>--</p>
 									</Table.Td>
 									<Table.Td>
 										<Group gap={0} justify="flex-end">
-											<ActionIcon variant="subtle" component={Link} href={`/teams/${team}/manage/review/${a.id}`}>
+											<ActionIcon variant="subtle" disabled>
 												<IconChevronRight />
 											</ActionIcon>
 										</Group>
 									</Table.Td>
 								</Table.Tr>
-							))}
+							)}
 						</Table.Tbody>
 					</Table>
 				</Table.ScrollContainer>

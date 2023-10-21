@@ -1,5 +1,6 @@
-import { ActionIcon, Alert, Badge, Button, Divider, Grid, Group, Stack, Text, useMantineTheme } from '@mantine/core';
+import { ActionIcon, Alert, Badge, Button, Divider, Grid, Group, Stack, Text, Textarea, useMantineTheme } from '@mantine/core';
 import { IconCheck, IconCopy, IconLink, IconUsersGroup, IconX } from '@tabler/icons-react';
+import useSWR, { mutate } from 'swr';
 
 import { ApplicationQuestions } from '../../../../../utils/application/ApplicationQuestions';
 import { IconUser } from '@tabler/icons';
@@ -8,15 +9,70 @@ import { NextPage } from 'next';
 import Page from '../../../../../components/Page';
 import SettingsTabs from '../../../../../components/SettingsTabs';
 import fetcher from '../../../../../utils/Fetcher';
+import { modals } from '@mantine/modals';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { showNotification } from '@mantine/notifications';
 import { useClipboard } from '@mantine/hooks';
 import { useRouter } from 'next/router';
-import useSWR from 'swr';
+import { useUser } from '../../../../../hooks/useUser';
 
-const Apply: NextPage = ({ data: questions, team, id }: any) => {
-	const router = useRouter();
+const Apply: NextPage = ({ team, id }: any) => {
 	const theme = useMantineTheme();
-	const clipboard = useClipboard();
+	const user = useUser();
 	const { data } = useSWR(`/buildteams/${team}/applications/${id}?includeAnswers=true`);
+
+	const handleSubmit = (accept: boolean) => {
+		const body = { reason: '', status: accept ? (data.trial ? 'TRIAL' : 'ACCEPTED') : 'DECLINED' };
+
+		const continueSubmit = () => {
+			fetch(process.env.NEXT_PUBLIC_API_URL + `/buildteams/${team}/applications/${id}`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: 'Bearer ' + user.token,
+				},
+				body: JSON.stringify(body),
+			})
+				.then((res) => res.json())
+				.then((res) => {
+					if (res.errors || res.message) {
+						showNotification({
+							title: 'Update failed',
+							message: res.message,
+							color: 'red',
+						});
+					} else {
+						showNotification({
+							title: `Application ${accept ? 'accepted' : 'declined'}`,
+							message: 'All Data has been saved',
+							color: 'green',
+							icon: <IconCheck />,
+						});
+						mutate(`/buildteams/${team}/applications/${id}?includeAnswers=true`, res);
+					}
+				});
+		};
+
+		if (!accept) {
+			modals.openConfirmModal({
+				title: 'Decline Application',
+				children: (
+					<>
+						<Text size="sm">Please enter Feedback below.</Text>
+						<Textarea placeholder="Feedback" autosize minRows={3} mt="md" onChange={(e) => (body.reason = e.target.value)} />
+					</>
+				),
+				labels: { confirm: 'Confirm', cancel: 'Cancel' },
+				onCancel: () =>
+					showNotification({
+						message: `Application was not declined.`,
+						title: 'Cancelled application',
+						color: 'yellow',
+					}),
+				onConfirm: continueSubmit,
+			});
+		} else continueSubmit();
+	};
 
 	return (
 		<Page
@@ -72,15 +128,15 @@ const Apply: NextPage = ({ data: questions, team, id }: any) => {
 							<h2>Actions</h2>
 							{data.status == 'SEND' ? (
 								<Group>
-									<Button leftSection={<IconCheck />} onClick={() => clipboard.copy(data.userId)} color="green">
+									<Button leftSection={<IconCheck />} onClick={() => handleSubmit(true)} color="green">
 										Accept
 									</Button>
-									<Button leftSection={<IconX />} onClick={() => clipboard.copy(data.userId)} color="red">
+									<Button leftSection={<IconX />} onClick={() => handleSubmit(false)} color="red">
 										Decline
 									</Button>
 								</Group>
 							) : (
-								<Alert title="Reviewer Feedback">{data.reason}</Alert>
+								<Alert title="Reviewer Feedback">{data.reason || '-- None provided --'}</Alert>
 							)}
 						</Grid.Col>
 					</Grid>
@@ -97,6 +153,7 @@ export async function getStaticProps({ locale, params }: any) {
 			data: res,
 			team: params.team,
 			id: params.id,
+			...(await serverSideTranslations(locale, ['common', 'teams'])),
 		},
 	};
 }

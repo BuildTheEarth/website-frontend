@@ -31,7 +31,7 @@ const DropdownQuestion = (props: DropdownQuestionProps) => {
 			error={props.error}
 			disabled={props.disabled}
 			readOnly={props.readonly}
-			value={JSON.parse(props.value)}
+			value={props.value && JSON.parse(props.value)}
 		/>
 	);
 };
