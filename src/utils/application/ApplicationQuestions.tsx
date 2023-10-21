@@ -34,6 +34,8 @@ export interface ApplicationQuestion {
 	error?: boolean | string;
 	style?: MantineStyleProp;
 	disabled?: boolean;
+	value?: any;
+	readonly?: boolean;
 }
 
 export function generateInitialValues(data: any) {

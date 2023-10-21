@@ -17,7 +17,7 @@ function validation(props: TextQuestionProps): (value: string) => void {
 }
 
 const TextQuestion = (props: TextQuestionProps) => {
-	return <TextInput leftSection={<Icon name={props.icon} />} required={props.required} description={props.subtitle} placeholder={props.placeholder} label={props.title} style={props.style} onChange={(e) => props.onChange && props.onChange(e.target.value)} error={props.error} disabled={props.disabled} />;
+	return <TextInput leftSection={<Icon name={props.icon} />} required={props.required} description={props.subtitle} placeholder={props.placeholder} label={props.title} style={props.style} onChange={(e) => props.onChange && props.onChange(e.target.value)} error={props.error} disabled={props.disabled} readOnly={props.readonly} value={props.value} />;
 };
 
 const EditQuestion = ({ editingQuestion, handleUpdateEditingQuestion }: any) => {

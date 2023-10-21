@@ -17,7 +17,24 @@ function validation(props: LongTextQuestionProps): (value: string) => void {
 }
 
 const LongTextQuestion = (props: LongTextQuestionProps) => {
-	return <Textarea leftSection={<Icon name={props.icon} />} required={props.required} description={props.subtitle} placeholder={props.placeholder} label={props.title} style={props.style} autosize minRows={2} maxRows={5} onChange={(e) => props.onChange && props.onChange(e.target.value)} error={props.error} disabled={props.disabled} />;
+	return (
+		<Textarea
+			leftSection={<Icon name={props.icon} />}
+			required={props.required}
+			description={props.subtitle}
+			placeholder={props.placeholder}
+			label={props.title}
+			style={props.style}
+			autosize
+			minRows={2}
+			maxRows={5}
+			onChange={(e) => props.onChange && props.onChange(e.target.value)}
+			error={props.error}
+			disabled={props.disabled}
+			readOnly={props.readonly}
+			value={props.value}
+		/>
+	);
 };
 
 const EditQuestion = ({ editingQuestion, handleUpdateEditingQuestion }: any) => {

@@ -14,7 +14,9 @@ function validation(props: CheckboxQuestionProps): (value: string) => void {
 }
 
 const CheckboxQuestion = (props: CheckboxQuestionProps) => {
-	return <Switch onLabel={<Icon name={props.icon} />} offLabel={<Icon name={props.icon} />} required={props.required} description={props.subtitle} label={props.title} style={props.style} onChange={(e) => props.onChange && props.onChange(e.target.checked)} error={props.error} disabled={props.disabled} />;
+	return (
+		<Switch onLabel={<Icon name={props.icon} />} offLabel={<Icon name={props.icon} />} required={props.required} description={props.subtitle} label={props.title} style={props.style} onChange={(e) => props.onChange && props.onChange(e.target.checked)} error={props.error} disabled={props.disabled} readOnly={props.readonly} value={props.value} />
+	);
 };
 
 const EditQuestion = ({ editingQuestion, handleUpdateEditingQuestion }: any) => {

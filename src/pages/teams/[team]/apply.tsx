@@ -22,7 +22,7 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 	const team = router.query.team;
 	const theme = useMantineTheme();
 	const user = useUser();
-	const { data: pastApplications } = useSWR(`/buildteams/${buildteam?.id}/applications/${user.user?.id}`);
+	const { data: pastApplications } = useSWR(`/buildteams/${buildteam?.id}/applications/user/${user.user?.id}`);
 	const { t } = useTranslation('teams');
 	const [loading, setLoading] = useState(false);
 	const [trial, setTrial] = useState(false);
