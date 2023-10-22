@@ -8,12 +8,14 @@ import mapboxgl from 'mapbox-gl';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useClipboard } from '@mantine/hooks';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
 
 const MapPage: NextPage = () => {
 	const clipboard = useClipboard();
 	const [opened, setOpened] = useState(false);
 	const [selected, setSelected] = useState<null | string>(null);
 	const [map, setMap] = useState<mapboxgl.Map>();
+	const { t } = useTranslation('map');
 	const router = useRouter();
 
 	useEffect(() => {
@@ -24,7 +26,7 @@ const MapPage: NextPage = () => {
 	}, [router.query.claim]);
 	return (
 		<Page fullWidth>
-			<ClaimDrawer open={opened} setOpen={setOpened} id={selected} map={map} />
+			<ClaimDrawer open={opened} setOpen={setOpened} id={selected} map={map} t={t} />
 			<div style={{ height: '96vh', width: '100%' }}>
 				<Map
 					src={`${process.env.NEXT_PUBLIC_API_URL}/claims/geojson`}
@@ -49,7 +51,7 @@ export default MapPage;
 export async function getStaticProps({ locale }: any) {
 	return {
 		props: {
-			...(await serverSideTranslations(locale, ['common'])),
+			...(await serverSideTranslations(locale, ['common', 'map'])),
 		},
 	};
 }

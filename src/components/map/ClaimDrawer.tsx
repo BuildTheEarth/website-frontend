@@ -16,32 +16,34 @@ interface ClaimDrawerProps {
 	open: boolean;
 	id: string | null;
 	map?: mapboxgl.Map;
+	t: any;
 }
 
 export function ClaimDrawer(props: ClaimDrawerProps) {
 	const { data, isValidating } = useSWR('/claims/' + props.id);
 	const { user } = useUser();
+	const t = props.t;
 	const clipboard = useClipboard();
 
 	if (props.id == null) return <></>;
 
 	return (
-		<Drawer opened={props.open} onClose={() => props.setOpen(false)} title={`Claim Details`} size="md" overlayProps={{ blur: 3 }} lockScroll scrollAreaComponent={ScrollArea.Autosize}>
+		<Drawer opened={props.open} onClose={() => props.setOpen(false)} title={t('claim.details.title')} size="md" overlayProps={{ blur: 3 }} lockScroll scrollAreaComponent={ScrollArea.Autosize}>
 			{isValidating || !data ? (
 				<Center h="100%" w="100%">
 					<Loader mt={'xl'} />
 				</Center>
 			) : (
 				<>
-					<StatsGrid title="Name" icon={IconPin} paperProps={{ mb: 'md' }}>
+					<StatsGrid title={t('claim.details.name')} icon={IconPin} paperProps={{ mb: 'md' }}>
 						{data.name}
 					</StatsGrid>
 					{!data.finished && (
-						<Alert color="red" mb="md" radius="md" title="Claim Status" icon={<IconCrane />}>
-							This Claim is still under construction and not completed yet.
+						<Alert color="red" mb="md" radius="md" title={t('claim.details.status.title')} icon={<IconCrane />}>
+							{t('claim.details.status.description')}
 						</Alert>
 					)}
-					<StatsGrid title="Team" icon={IconUsersGroup} paperProps={{ mb: 'md' }}>
+					<StatsGrid title={t('claim.details.team')} icon={IconUsersGroup} paperProps={{ mb: 'md' }}>
 						<Flex justify="flex-start" align="center" direction="row" wrap="wrap" gap="md">
 							<Avatar src={data.buildTeam.icon} size={60} component="a" href={`/teams/${data.buildTeam.id}`} />
 							<Text size="xl" fw={700}>
@@ -49,7 +51,7 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 							</Text>
 						</Flex>
 					</StatsGrid>
-					<StatsGrid title="Owner" icon={IconUser} paperProps={{ mb: 'md' }}>
+					<StatsGrid title={t('claim.details.owner')} icon={IconUser} paperProps={{ mb: 'md' }}>
 						<Flex justify="flex-start" align="center" direction="row" wrap="wrap" gap="md">
 							<Avatar size={60}>{data.owner.name?.at(0)}</Avatar>
 							<Text size="xl" fw={700}>
@@ -58,7 +60,7 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 						</Flex>
 					</StatsGrid>
 					{data.builders && (
-						<StatsGrid title="Builders" icon={IconUsersGroup} paperProps={{ mb: 'md' }}>
+						<StatsGrid title={t('claim.details.builders')} icon={IconUsersGroup} paperProps={{ mb: 'md' }}>
 							<Avatar.Group>
 								{data.builders.slice(0, 4).map((b: any) => (
 									<Avatar key={b.id}>{b?.name?.at(0)}</Avatar>
@@ -67,7 +69,7 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 							</Avatar.Group>
 						</StatsGrid>
 					)}
-					<StatsGrid title="Area" icon={IconRuler2} paperProps={{ mb: 'md' }} isText>
+					<StatsGrid title={t('claim.details.area')} icon={IconRuler2} paperProps={{ mb: 'md' }} isText>
 						{Math.round(getAreaOfPolygon(data.area.map((p: string) => p.split(', ').map(Number)))).toLocaleString()} m²
 					</StatsGrid>
 					<Group grow>
@@ -84,7 +86,7 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 								});
 							}}
 						>
-							Copy Coordinates
+							{t('claim.details.actions.coordinates')}
 						</Button>
 						{props.map && (
 							<Button
@@ -93,7 +95,7 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 									props.map?.flyTo({ center: data.center.split(', ').map(Number), zoom: 15 });
 								}}
 							>
-								Zoom
+								{t('claim.details.actions.zoom')}
 							</Button>
 						)}
 					</Group>
@@ -111,11 +113,11 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 								});
 							}}
 						>
-							Link
+							{t('claim.details.actions.link')}
 						</Button>
 						{data.owner?.id == user?.id && (
 							<Button component="a" variant="outline" leftSection={<IconPencil />} href={`/me/claims/${props.id}`}>
-								Edit Claim
+								{t('claim.details.actions.edit')}
 							</Button>
 						)}
 					</Group>

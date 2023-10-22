@@ -56,7 +56,7 @@ const Teams: NextPage = ({ data }: any) => {
 											{element.name}
 										</Text>
 
-										{element?.members?.length >= 1 ? <Badge color="green">Builder</Badge> : null}
+										{element?.members?.length >= 1 ? <Badge color="green">{t('common:builder')}</Badge> : null}
 									</Group>
 
 									<Group wrap="nowrap" gap={10} mt={3}>

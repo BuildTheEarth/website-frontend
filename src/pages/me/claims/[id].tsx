@@ -11,6 +11,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { showNotification } from '@mantine/notifications';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useUser } from '../../../hooks/useUser';
 
 const ClaimPage: NextPage = ({ claimId, data }: any) => {
@@ -24,6 +25,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 		},
 	});
 	const [draw, setDraw] = useState(new MapboxDraw({ displayControlsDefault: false }));
+	const { t } = useTranslation('map');
 	const user = useUser();
 	const router = useRouter();
 	const [loading, setLoading] = useState(false);
@@ -74,7 +76,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 	return (
 		<Page
 			head={{
-				title: 'Edit Claim',
+				title: t('edit.title'),
 				image: 'https://cdn.buildtheearth.net/static/thumbnails/me.png',
 			}}
 			smallPadding
@@ -84,27 +86,27 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 			) : (
 				<Grid>
 					<Grid.Col span={{ md: 6 }}>
-						<TextInput label="Claim Name" required defaultValue={additionalData.name} onChange={(e) => editData('name', e.target.value)} mb="md" />
-						<Switch defaultChecked={additionalData.finished} label="Claim is finished" onChange={(e) => editData('finished', e.target.checked)} mb="md" />
-						<Switch defaultChecked={additionalData.active} label="Show on map" onChange={(e) => editData('active', e.target.checked)} mb="md" />
-						<h3>Builders</h3>
-						<Alert variant="light" color="yellow" mb="xl" icon={<IconAlertCircle />} title="Editing Builders currently does not work">
-							If there are any incorrect Builders listed for this claim, message us.
+						<TextInput label={t('edit.name')} required defaultValue={additionalData.name} onChange={(e) => editData('name', e.target.value)} mb="md" />
+						<Switch defaultChecked={additionalData.finished} label={t('edit.finished')} onChange={(e) => editData('finished', e.target.checked)} mb="md" />
+						<Switch defaultChecked={additionalData.active} label={t('edit.active')} onChange={(e) => editData('active', e.target.checked)} mb="md" />
+						<h3>{t('edit.builders.title')}</h3>
+						<Alert variant="light" color="yellow" mb="xl" icon={<IconAlertCircle />} title={t('edit.builders.alert')}>
+							{t('edit.builders.description')}
 						</Alert>
 						<Group>
 							<Button variant="outline" component="a" href={router.query.z && router.query.lat && router.query.lng ? `/map?z=${router.query.z}&lat=${router.query.lat}&lng=${router.query.lng}` : '/map'} leftSection={<IconChevronLeft />}>
-								Back
+								{t('common:button.back')}
 							</Button>
 							<Button onClick={handleSubmit} disabled={!user?.token} loading={loading} leftSection={<IconDeviceFloppy />}>
-								Save
+								{t('common:button.save')}
 							</Button>
 						</Group>
-						<Alert variant="light" color="blue" mt="xl" icon={<IconQuestionMark />} title="How to edit Claim Polygons">
-							You can find an tutorial how to use the map on the right side{' '}
+						<Alert variant="light" color="blue" mt="xl" icon={<IconQuestionMark />} title={t('edit.help.title')}>
+							{t('edit.help.description')}
+							<br />
 							<Anchor href="https://docs.buildtheearth.net/docs/building/guidebook/" target="_blank">
-								here
+								https://docs.buildtheearth.net
 							</Anchor>
-							.
 						</Alert>
 					</Grid.Col>
 					<Grid.Col span={{ md: 6 }}>
@@ -136,7 +138,7 @@ export async function getServerSideProps(context: any) {
 		props: {
 			claimId: context.query.id,
 			data: res,
-			...(await serverSideTranslations(context.locale, ['common'])),
+			...(await serverSideTranslations(context.locale, ['common', 'map'])),
 		},
 	};
 }
