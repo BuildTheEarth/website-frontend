@@ -18,7 +18,7 @@ interface ClaimDrawerProps {
 }
 
 export function ClaimDrawer(props: ClaimDrawerProps) {
-	const { data, isValidating } = useSWR('/claims/' + props.id);
+	const { data, isLoading } = useSWR('/claims/' + props.id);
 	const { user } = useUser();
 	const t = props.t;
 	const clipboard = useClipboard();
@@ -27,7 +27,7 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 
 	return (
 		<Drawer opened={props.open} onClose={() => props.setOpen(false)} title={t('claim.details.title')} size="md" overlayProps={{ blur: 3 }} lockScroll scrollAreaComponent={ScrollArea.Autosize}>
-			{isValidating || !data ? (
+			{isLoading || !data ? (
 				<Center h="100%" w="100%">
 					<Loader mt={'xl'} />
 				</Center>

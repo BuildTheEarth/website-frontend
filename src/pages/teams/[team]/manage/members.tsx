@@ -20,7 +20,7 @@ const Settings = () => {
 	const [hasUpdated, setHasUpdated] = useState(false);
 	const [filter, setFilter] = useState('');
 	const { data: builders } = useSWR(`/buildteams/${router.query.team}/members`);
-	const { data: managers, isValidating: loadingManagers } = useSWR(`/buildteams/${router.query.team}/managers`);
+	const { data: managers, isLoading: loadingManagers } = useSWR(`/buildteams/${router.query.team}/managers`);
 	const { data: permissions } = useSWR(`/permissions`);
 
 	const handleRemoveBuilder = (member: any) => {

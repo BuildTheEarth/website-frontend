@@ -16,7 +16,7 @@ import { useUser } from '../../../hooks/useUser';
 
 const Settings: NextPage = ({ type }: any) => {
 	const user = useUser();
-	const { data, isValidating } = useSWR(`/users/${user?.user?.id}/kc`);
+	const { data, isLoading } = useSWR(`/users/${user?.user?.id}/kc`);
 	const router = useRouter();
 	const [loading, setLoading] = useState(false);
 	const { t } = useTranslation('me');
@@ -24,8 +24,8 @@ const Settings: NextPage = ({ type }: any) => {
 	const form = useForm({});
 
 	useEffect(() => {
-		if (!isValidating) form.setValues({ username: data.username, email: data.email, avatar: data.avatar, firstName: data.firstName, lastName: data.lastName, name: data.name });
-	}, [isValidating]);
+		if (!isLoading) form.setValues({ username: data.username, email: data.email, avatar: data.avatar, firstName: data.firstName, lastName: data.lastName, name: data.name });
+	}, [isLoading]);
 
 	const handleSubmit = (e: any) => {
 		setLoading(true);
