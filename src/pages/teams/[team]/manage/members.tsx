@@ -202,6 +202,7 @@ const Settings = () => {
 				image: 'https://cdn.buildtheearth.net/static/thumbnails/teams.png',
 			}}
 			seo={{ nofollow: true, noindex: true }}
+			requiredPermissions={['team.settings.edit', 'team.socials.edit', 'team.application.edit', 'team.application.list', 'team.application.review']}
 		>
 			<SettingsTabs team={router.query.team?.toString() || ''} loading={!(builders && managers)}>
 				<SearchInput onSearch={setFilter} inputProps={{ placeholder: 'Filter...' }} />

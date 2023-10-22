@@ -76,6 +76,7 @@ const Apply: NextPage = ({ team, id }: any) => {
 				title: 'Review Application',
 				image: 'https://cdn.buildtheearth.net/static/thumbnails/apply.png',
 			}}
+			requiredPermissions={['team.application.review']}
 		>
 			<SettingsTabs team={team} loading={!data}>
 				{data && (

@@ -64,6 +64,7 @@ const Settings: NextPage = ({ type }: any) => {
 				title: 'Account Settings',
 				image: 'https://cdn.buildtheearth.net/static/thumbnails/me.png',
 			}}
+			requiredPermissions={['account.edit', 'account.info']}
 		>
 			<Tabs value={type} onChange={(v) => router.push({ query: { type: v } })}>
 				<Tabs.List>

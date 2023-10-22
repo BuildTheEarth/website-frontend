@@ -86,6 +86,7 @@ const Settings = ({ data: tempData }: any) => {
 				image: 'https://cdn.buildtheearth.net/static/thumbnails/teams.png',
 			}}
 			seo={{ nofollow: true, noindex: true }}
+			requiredPermissions={['team.settings.edit', 'team.socials.edit', 'team.application.edit', 'team.application.list', 'team.application.review']}
 		>
 			<SettingsTabs team={data?.id} loading={!data}>
 				{data && (

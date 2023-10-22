@@ -1,14 +1,18 @@
 import { Center, Container, Paper, Text, useMantineColorScheme, useMantineTheme } from '@mantine/core';
 import Header, { LogoHeader } from './Header';
 import { NextSeo, NextSeoProps } from 'next-seo';
+import React, { useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
+import Error from 'next/error';
+import ErrorPage from '../pages/_error';
 import Footer from './Footer';
-import React from 'react';
+import { NextResponse } from 'next/server';
 import classes from '../styles/components/Page.module.css';
 import { useMediaQuery } from '@mantine/hooks';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
+import { useUser } from '../hooks/useUser';
 
 interface PageProps {
 	children: React.ReactNode;
@@ -29,17 +33,21 @@ interface PageProps {
 	seo?: NextSeoProps;
 	hideHeaderOnInitialScroll?: boolean;
 	style?: React.CSSProperties;
+	requiredPermissions?: string[];
 }
 
 const Page = (props: PageProps) => {
 	const matches = useMediaQuery('(min-width: 900px)');
 	const router = useRouter();
-	const { data: session } = useSession();
+	const user = useUser();
 	const theme = useMantineTheme();
 	const scheme = useMantineColorScheme();
 	const { scrollY, scrollYProgress } = useScroll();
 	const bgPosY = useTransform(scrollYProgress, (latest) => `${latest * 5 + 50}%`);
-	return (
+
+	return props.requiredPermissions && !user.hasPermissions(props.requiredPermissions) ? (
+		<ErrorPage code={403} />
+	) : (
 		<>
 			<NextSeo title={props.title || props.head?.title} canonical={'https://beta.buildtheearth.net' + router.pathname} description={props.description} {...props.seo} />
 			{!props.disabled?.header && (
@@ -57,6 +65,7 @@ const Page = (props: PageProps) => {
 					}}
 				/>
 			)}
+
 			<Paper className={classes.root} style={props.fullWidth ? props.style : undefined}>
 				{props.head && (
 					<motion.div

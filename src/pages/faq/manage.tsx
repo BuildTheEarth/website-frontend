@@ -148,6 +148,7 @@ const Faq: NextPage = () => {
 				image: 'https://cdn.buildtheearth.net/static/thumbnails/faq.png',
 			}}
 			seo={{ nofollow: true, noindex: true }}
+			requiredPermissions={['faq.edit', 'faq.remove', 'faq.add']}
 		>
 			{!data ? (
 				<></>

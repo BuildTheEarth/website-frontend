@@ -26,6 +26,7 @@ const MePage: NextPage = () => {
 				title: t('head.title'),
 				image: 'https://cdn.buildtheearth.net/static/thumbnails/me.png',
 			}}
+			requiredPermissions={['account.info']}
 		>
 			{data ? (
 				<>

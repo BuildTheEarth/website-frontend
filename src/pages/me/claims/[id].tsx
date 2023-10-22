@@ -79,6 +79,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 				image: 'https://cdn.buildtheearth.net/static/thumbnails/me.png',
 			}}
 			smallPadding
+			requiredPermissions={['account.edit', 'account.info']}
 		>
 			{!data ? (
 				<></>
