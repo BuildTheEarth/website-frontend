@@ -1,6 +1,7 @@
+import NextAuth, { NextAuthOptions } from 'next-auth';
+
 import { JWT } from 'next-auth/jwt';
 import KeycloakProvider from 'next-auth/providers/keycloak';
-import NextAuth from 'next-auth';
 
 const refreshAccessToken = async (token: JWT) => {
 	try {
@@ -43,7 +44,7 @@ const refreshAccessToken = async (token: JWT) => {
 	}
 };
 
-export default NextAuth({
+export const nextAuthConfig: NextAuthOptions = {
 	secret: process.env.NEXTAUTH_SECRET,
 	providers: [
 		KeycloakProvider({
@@ -97,7 +98,9 @@ export default NextAuth({
 	pages: {
 		signIn: '/auth/signin',
 	},
-});
+};
+
+export default NextAuth(nextAuthConfig);
 
 function capitalize(string: string) {
 	return string.charAt(0).toUpperCase() + string.slice(1);
