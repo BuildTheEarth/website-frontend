@@ -41,7 +41,7 @@ const UrlQuestion = (props: UrlQuestionProps) => {
 	);
 };
 
-const EditQuestion = undefined;
+const EditQuestion: any = undefined;
 
 UrlQuestion.edit = EditQuestion;
 UrlQuestion.mockdata = {};

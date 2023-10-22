@@ -43,6 +43,7 @@ function Gallery(props: GalleryProps) {
 				slideGap={0}
 				style={{ flex: 1 }}
 				classNames={classes}
+				aria-controls="Controls"
 			>
 				{props.images.map((i) => {
 					return (
@@ -92,7 +93,7 @@ export function GalleryImage(i: GalleryImageProps) {
 							textShadow: '0px 0px 28px #000',
 						}}
 					>
-						<Avatar src={i.icon} radius="xl" mx="md" />
+						<Avatar src={i.icon} radius="xl" mx="md" alt={i.name + ' Logo'} />
 
 						{i.name}
 					</Title>

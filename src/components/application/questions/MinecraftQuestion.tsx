@@ -17,7 +17,7 @@ const MinecraftQuestion = (props: MinecraftQuestionProps) => {
 	return <TextInput leftSection={<Icon name={props.icon} />} required={props.required} description={props.subtitle} placeholder={props.placeholder} label={props.title} style={props.style} onChange={(e) => props.onChange && props.onChange(e.target.value)} error={props.error} disabled={props.disabled} readOnly={props.readonly} value={props.value} />;
 };
 
-const EditQuestion = undefined;
+const EditQuestion: any = undefined;
 
 MinecraftQuestion.edit = EditQuestion;
 MinecraftQuestion.mockdata = {};

@@ -19,9 +19,7 @@ const CheckboxQuestion = (props: CheckboxQuestionProps) => {
 	);
 };
 
-const EditQuestion = ({ editingQuestion, handleUpdateEditingQuestion }: any) => {
-	return undefined;
-};
+const EditQuestion: any = undefined;
 
 CheckboxQuestion.edit = EditQuestion;
 CheckboxQuestion.mockdata = {};

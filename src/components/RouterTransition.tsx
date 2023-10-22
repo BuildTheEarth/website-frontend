@@ -22,5 +22,5 @@ export function RouterTransition() {
 		};
 	}, [router.asPath]);
 
-	return <NavigationProgress />;
+	return <NavigationProgress aria-label="Navigation Progress" />;
 }

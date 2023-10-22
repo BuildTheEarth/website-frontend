@@ -72,7 +72,7 @@ const Home: NextPage = ({ data }: any) => {
 					}}
 				>
 					<motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-						<ActionIcon component={Link} styles={{ root: { height: 64, width: 64, textShadow: '0px 0px 28px #000' } }} radius="xs" variant="transparent" href="#more">
+						<ActionIcon component={Link} styles={{ root: { height: 64, width: 64, textShadow: '0px 0px 28px #000' } }} radius="xs" variant="transparent" href="#more" aria-label="View more">
 							<ChevronDown size={64} color="white" />
 						</ActionIcon>
 					</motion.div>
