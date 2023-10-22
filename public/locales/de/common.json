@@ -1,6 +1,6 @@
 {
     "language": "Deutsch",
-    "copyright": "Copyright © {{year}} BuildTheEarth. Alle Rechte vorbehalten.",
+    "copyright": "Copyright © {{year}} BuildTheEarth. Nicht assoziiert mit Mojang oder Minecraft",
     "buildtheearth": "BuildTheEarth",
     "staff": "Staff",
     "builder": "Builder",
@@ -18,7 +18,9 @@
             "dark": "Helles Design umschalten",
             "light": "Dunkles Design umschalten"
         },
-        "review": "Claims überprüfen"
+        "review": "Claims überprüfen",
+        "profile": "Mein BuildTheEarth",
+        "settings": "Einstellungen"
     },
     "button": {
         "save": "Speichern",
@@ -26,8 +28,11 @@
         "copy": "Kopieren",
         "back": "Zurück",
         "submit": "Senden",
-        "apply": "Anmelden",
-        "cancel": "Abbrechen"
+        "apply": "Bewerben",
+        "cancel": "Abbrechen",
+        "reset": "Zurücksetzen",
+        "unlink": "Trennen",
+        "link": "Verbinden"
     },
     "links": {
         "faq": "FAQ",
