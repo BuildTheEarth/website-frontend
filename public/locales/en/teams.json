@@ -18,6 +18,20 @@
 		"trial": {
 			"title": "Trial Application",
 			"description": "This buildteam supports trial applications. You can apply as trial when selecting the button below."
+		},
+		"messages": {
+			"error": "Application failed",
+			"success": { "title": "Application sent", "description": "Your Application will be reviewed shortly" }
+		},
+		"duplicate": {
+			"pending": {
+				"title": "Pending Application",
+				"description": "You have already applied to this buildteam on the {{date}}. Please wait for this application to be reviewed."
+			},
+			"accepted": {
+				"title": "Accepted Application",
+				"description": "You were already accepted to this buildteam on the {{date}}."
+			}
 		}
 	}
 }

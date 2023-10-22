@@ -44,15 +44,15 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 			.then((res) => {
 				if (res.errors || res.message) {
 					showNotification({
-						title: 'Application failed',
+						title: t('apply.messages.error'),
 						message: res.message,
 						color: 'red',
 					});
 					setLoading(false);
 				} else {
 					showNotification({
-						title: 'Application sent',
-						message: 'Your Application will be reviewed shortly',
+						title: t('apply.messages.success.title'),
+						message: t('apply.messages.success.description'),
 						color: 'green',
 						icon: <IconCheck />,
 					});
@@ -107,18 +107,18 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 									return <Question key={d.id} {...d} style={{ marginTop: i > 0 && theme.spacing.md, maxWidth: '55%' }} onChange={(v: any) => form.setFieldValue(d.id, v)} error={form.errors[d.id]} disabled={loading} />;
 								})}
 							<Button type="submit" variant="filled" color="blue" mt="md" loading={loading}>
-								{t('button.apply', { ns: 'common' })}
+								{t('common:button.apply')}
 							</Button>
 							<Button variant="outline" color="blue" ml="md" mt="md" onClick={() => router.back()} disabled={loading}>
-								{t('button.cancel', { ns: 'common' })}
+								{t('common:button.cancel')}
 							</Button>
 						</>
 					) : (
 						<>
 							{pastApplications.some((a: any) => a.status == 'SEND' || a.status == 'REVIEWING') && (
 								<>
-									<Alert title="Pending Application" color="yellow" icon={<IconAlertCircle size="1rem" />} mt="md">
-										You have already applied to this buildteam on the {new Date(pastApplications[0].createdAt).toLocaleDateString()}. Please wait for this application to be reviewed
+									<Alert title={t('apply.duplicate.pending.title')} color="yellow" icon={<IconAlertCircle size="1rem" />} mt="md">
+										{t('apply.duplicate.pending.description', { date: new Date(pastApplications[0].createdAt).toLocaleDateString() })}
 									</Alert>
 								</>
 							)}
@@ -126,13 +126,13 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 								.filter((a: any) => a.status == 'ACCEPTED')
 								.map((a: any) => (
 									<>
-										<Alert title="Accepted Application" color="green" icon={<IconAlertCircle size="1rem" />} mt="md">
-											You were already accepted to this buildteam on the {new Date(a.reviewedAt).toLocaleDateString()}.
+										<Alert title={t('apply.duplicate.accepted.title')} color="green" icon={<IconAlertCircle size="1rem" />} mt="md">
+											{t('apply.duplicate.accepted.description', { date: new Date(pastApplications[0].createdAt).toLocaleDateString() })}
 										</Alert>
 									</>
 								))}
 							<Button leftSection={<IconChevronLeft />} mt="md" onClick={() => router.back()}>
-								Back
+								{t('common:button.back')}
 							</Button>
 						</>
 					)}
