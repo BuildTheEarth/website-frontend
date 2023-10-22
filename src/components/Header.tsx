@@ -80,10 +80,10 @@ const Header = ({ links, style }: HeaderProps) => {
 							</Menu.Target>
 							<Menu.Dropdown>
 								<Menu.Item component={Link} href="/me" leftSection={<IconUser size={14} />}>
-									My BuildTheEarth
+									{t('user.profile')}
 								</Menu.Item>
 								<Menu.Item leftSection={<IconSettings size={14} />} component={Link} href="/me/settings/general">
-									Settings
+									{t('user.settings')}
 								</Menu.Item>
 								<Menu.Divider />
 								<Menu.Label>{t('user.quickActions')}</Menu.Label>

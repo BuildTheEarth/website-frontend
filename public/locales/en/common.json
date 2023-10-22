@@ -18,7 +18,9 @@
 			"dark": "Toggle light theme",
 			"light": "Toggle dark theme"
 		},
-		"review": "Review Claims"
+		"review": "Review Claims",
+		"settings": "Settings",
+		"profile": "My BuildTheEarth"
 	},
 	"button": {
 		"save": "Save",
