@@ -6,7 +6,32 @@
             "status": {
                 "title": "Claim Status",
                 "description": "Dieser Claim ist noch im Bau und nicht fertiggestellt."
-            }
+            },
+            "actions": {
+                "coordinates": "Koordinaten kopieren",
+                "zoom": "Zoomen",
+                "link": "Link",
+                "edit": "Claim bearbeiten"
+            },
+            "team": "Team",
+            "owner": "Besitzer",
+            "builders": "Helfer",
+            "area": "Größe"
+        }
+    },
+    "edit": {
+        "title": "Claim bearbeiten",
+        "name": "Claim Name",
+        "finished": "Claim ist fertig",
+        "active": "Auf der Karte anzeigen",
+        "builders": {
+            "title": "Helfer",
+            "aler": "Helfer zu bearbeiten funktioniert aktuell nicht",
+            "description": "Falls es falsch eingetragene Helfer gibt, schreibe uns eine Nachricht."
+        },
+        "help": {
+            "title": "Claim Polygone bearbeiten",
+            "description": "Eine Anleitung zur Verwendung der Karte auf der rechten Seite findest du hier:"
         }
     }
 }
