@@ -1,1 +1,12 @@
-{}
+{
+    "claim": {
+        "details": {
+            "title": "Claim Details",
+            "name": "Name",
+            "status": {
+                "title": "Claim Status",
+                "description": "Dieser Claim ist noch im Bau und nicht fertiggestellt."
+            }
+        }
+    }
+}
