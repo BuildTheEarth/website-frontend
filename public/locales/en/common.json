@@ -27,7 +27,10 @@
 		"back": "Back",
 		"submit": "Submit",
 		"apply": "Apply",
-		"cancel": "Cancel"
+		"cancel": "Cancel",
+		"reset": "Reset",
+		"link": "Link",
+		"unlink": "Unlink"
 	},
 	"links": {
 		"faq": "FAQ",

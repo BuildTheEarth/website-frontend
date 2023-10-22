@@ -25,6 +25,7 @@ const Settings: NextPage = ({ type }: any) => {
 	const { data, isValidating } = useSWR(`/users/${user?.user?.id}/kc`);
 	const router = useRouter();
 	const [loading, setLoading] = useState(false);
+	const { t } = useTranslation('me');
 
 	const form = useForm({});
 
@@ -98,7 +99,7 @@ const Settings: NextPage = ({ type }: any) => {
 						<TextInput label="Avatar" {...form.getInputProps('avatar')} mt="md" placeholder="https://..." />
 						<Group mt="md">
 							<Button type="submit" leftSection={<IconDeviceFloppy />} loading={loading}>
-								Save
+								{t('common:button.save')}
 							</Button>
 							<Button
 								variant="outline"
@@ -109,15 +110,15 @@ const Settings: NextPage = ({ type }: any) => {
 								leftSection={<IconReload />}
 								loading={loading}
 							>
-								Reset
+								{t('common:button.reset')}
 							</Button>
 						</Group>
 					</form>
 				</Tabs.Panel>
 
 				<Tabs.Panel value="security" mt="md">
-					<Alert color="red" icon={<IconAlertCircle />} title="Reset Password">
-						To reset your current password, please log out and back in and choose &quot;Forgot Password&quot;, an email with instructions will be sent to you. If you encounter any problems, message us.
+					<Alert color="red" icon={<IconAlertCircle />} title={t('settings.security.alert')}>
+						{t('settions.security.description')}
 					</Alert>
 				</Tabs.Panel>
 
@@ -164,7 +165,7 @@ export async function getServerSideProps({ locale, params }: any) {
 	return {
 		props: {
 			type: params.type,
-			...(await serverSideTranslations(locale, ['common'])),
+			...(await serverSideTranslations(locale, ['common', 'me'])),
 		},
 	};
 }

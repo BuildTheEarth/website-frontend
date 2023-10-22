@@ -1,0 +1,46 @@
+{
+	"head": {
+		"title": "My BuildTheEarth"
+	},
+	"description": "Welcome to your own section of BuildTheEarth. Here you can see your own progress, joined BuildTeams and other usefull information.",
+	"account": {
+		"title": "Account Information",
+		"minecraft": "Linked Minecraft Username:",
+		"settings": "Open Settings"
+	},
+	"teams": {
+		"title": "Joined BuildTeams",
+		"description": "Build teams are the easiest way to join Build The Earth. These groups work together on a multiplayer server to build cities, regions and sometimes even entire countries.",
+		"empty": { "description": "You have not joined any Team yet", "action": "Browse Teams" }
+	},
+	"owned": {
+		"title": "Owned BuildTeams",
+		"description": "The BuildTeams listed below are all owned by you.",
+		"action": "Edit Settings"
+	},
+	"claims": {
+		"title": "Claims",
+		"description": "Claims are Buildings or Areas you are working on or have finished. They help us keep track of what is already build.",
+		"status": {
+			"finished": "Finished",
+			"building": "Under Construction"
+		},
+		"action": "Edit Claim"
+	},
+	"settings": {
+		"general": {
+			"title": "Profile Information"
+		},
+		"security": {
+			"title": "Security Details",
+			"description": "To reset your current password, please log out and back in and choose `Forgot Password`, an email with instructions will be sent to you. If you encounter any problems, message us.",
+			"alert": "Reset Password"
+		},
+		"accounts": {
+			"title": "Linked Accounts"
+		},
+		"session": {
+			"title": "Active Sessions"
+		}
+	}
+}

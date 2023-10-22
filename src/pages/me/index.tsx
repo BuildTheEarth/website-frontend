@@ -10,39 +10,41 @@ import getCountryName from '../../utils/ISOCountries';
 import router from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import useSWR from 'swr';
+import { useTranslation } from 'react-i18next';
 import { useUser } from '../../hooks/useUser';
 
 const MePage: NextPage = () => {
 	const user = useUser();
 	const { data } = useSWR(`/users/${user?.user?.id}`);
+	const { t } = useTranslation('me');
 	const scheme = useMantineColorScheme();
 	const theme = useMantineTheme();
 
 	return (
 		<Page
 			head={{
-				title: 'My BuildTheEarth',
+				title: t('head.title'),
 				image: 'https://cdn.buildtheearth.net/static/thumbnails/me.png',
 			}}
 		>
 			{data ? (
 				<>
-					<p>Welcome to your own section of BuildTheEarth. Here you can see your own progress, joined BuildTeams and other usefull information.</p>
-					<h2>Account Information</h2>
+					<p>{t('description')}</p>
+					<h2>{t('account.title')}</h2>
 					<Text>
-						Linked Minecraft Username: <Code>{data.name}</Code>
+						{t('account.minecraft')} <Code>{data.name}</Code>
 					</Text>
 					<Group>
 						<Button leftSection={<IconPencil />} component={Link} href={`/me/settings/general`} mt="md">
-							Open Settings
+							{t('account.settings')}
 						</Button>
 
 						<Button leftSection={<IconLogout />} mt="md" onClick={() => signOut({ callbackUrl: '/' })} variant="outline">
-							Sign out
+							{t('common:auth.signout')}
 						</Button>
 					</Group>
-					<h2>Joined BuildTeams</h2>
-					<p>Build teams are the easiest way to join Build The Earth. These groups work together on a multiplayer server to build cities, regions and sometimes even entire countries.</p>
+					<h2>{t('teams.title')}</h2>
+					<p>{t('teams.description')}</p>
 					<Grid mb="md">
 						{data.joinedBuildTeams.length > 0 ? (
 							data.joinedBuildTeams?.map((element: any, i: number) => (
@@ -64,7 +66,7 @@ const MePage: NextPage = () => {
 													{element.name}
 												</Text>
 											</Group>
-											<Badge variant="gradient">Builder</Badge>
+											<Badge variant="gradient">{t('common:builder')}</Badge>
 
 											<Group wrap="nowrap" gap={10} mt={8}>
 												<Pin size={16} />
@@ -93,10 +95,10 @@ const MePage: NextPage = () => {
 							>
 								<Stack align="center" m="md">
 									<Text fw="bold" size="lg">
-										You have not joined any Team yet
+										{t('teams.empty.description')}
 									</Text>
 									<Button leftSection={<IconExternalLink />} variant="gradient" component={Link} href="/teams">
-										Browse Teams
+										{t('teams.empty.action')}
 									</Button>
 								</Stack>
 							</Grid.Col>
@@ -104,8 +106,8 @@ const MePage: NextPage = () => {
 					</Grid>
 					{data.createdBuildTeams.length > 0 && (
 						<>
-							<h2>Owned BuildTeams</h2>
-							<p>The BuildTeams listed below are all owned by you.</p>
+							<h2>{t('owned.title')}</h2>
+							<p>{t('owned.description')}</p>
 							<Grid mb="md">
 								{data.createdBuildTeams?.map((element: any, i: number) => (
 									<Grid.Col key={i} span={{ sm: 6 }}>
@@ -138,7 +140,7 @@ const MePage: NextPage = () => {
 													</Text>
 												</Group>
 												<Button mt="xs" variant="gradient" size="xs" leftSection={<IconPencil />} component={Link} href={`/teams/${element.id}/settings`}>
-													Edit Settings
+													{t('owned.action')}
 												</Button>
 											</div>
 										</Group>
@@ -149,8 +151,8 @@ const MePage: NextPage = () => {
 					)}
 					{data.claims.length > 0 && (
 						<>
-							<h2>Claims</h2>
-							<p>Claims are Buildings or Areas you are working on or have finished. They help us keep track of what is already build.</p>
+							<h2>{t('claims.title')}</h2>
+							<p>{t('claims.description')}</p>
 							<Grid mb="md" mih="10vh">
 								{data.claims?.concat(data.claimsBuilder).map((element: any, i: number) => (
 									<Grid.Col key={i} span={{ sm: 6 }}>
@@ -174,16 +176,16 @@ const MePage: NextPage = () => {
 												</Group>
 												{element.finished ? (
 													<Badge variant="gradient" gradient={{ from: 'green', to: 'lime' }} leftSection={<IconConfetti style={{ width: rem(16), height: rem(16) }} />}>
-														Finished
+														{t('claims.status.finished')}
 													</Badge>
 												) : (
 													<Badge variant="gradient" gradient={{ from: 'orange', to: 'yellow' }} leftSection={<IconCrane style={{ width: rem(12), height: rem(12) }} />}>
-														Under Construction
+														{t('claims.status.building')}
 													</Badge>
 												)}
 												<Group justify="space-between">
 													<Button mt="xs" variant="gradient" size="xs" leftSection={<IconPencil />} component={Link} href={`/me/claims/${element.id}`}>
-														Edit Claim
+														{t('claims.action')}
 													</Button>
 												</Group>
 											</div>
@@ -206,7 +208,7 @@ export default MePage;
 export async function getStaticProps({ locale }: any) {
 	return {
 		props: {
-			...(await serverSideTranslations(locale, ['common'])),
+			...(await serverSideTranslations(locale, ['common', 'me'])),
 		},
 	};
 }
