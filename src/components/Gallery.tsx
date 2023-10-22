@@ -5,17 +5,18 @@ import { Carousel } from '@mantine/carousel';
 import Link from 'next/link';
 import classes from '../styles/components/Gallery.module.css';
 
+interface GalleryImageProps {
+	name?: string;
+	buildTeam?: string;
+	buildTeamId?: string;
+	src: string;
+	icon?: string;
+	hash?: string;
+	width?: number;
+	height?: number;
+}
 interface GalleryProps {
-	images: {
-		name?: string;
-		buildTeam?: string;
-		buildTeamId?: string;
-		src: string;
-		icon?: string;
-		hash?: string;
-		width?: number;
-		height?: number;
-	}[];
+	images: GalleryImageProps[];
 	style?: React.CSSProperties;
 }
 
@@ -46,61 +47,63 @@ function Gallery(props: GalleryProps) {
 				{props.images.map((i) => {
 					return (
 						<Carousel.Slide key={`g-${i.name}-${i.buildTeam}`}>
-							<BackgroundImage
-								src={i.src}
-								style={{
-									width: '100%',
-									height: '100%',
-								}}
-							>
-								<div
-									style={{
-										height: '100%',
-										position: 'relative',
-										width: '100%',
-										background: 'linear-gradient(160deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0,0.8))',
-									}}
-								>
-									<div
-										style={{
-											position: 'absolute',
-											bottom: 0,
-											right: 0,
-											margin: theme.spacing.xl,
-											textAlign: 'right',
-											zIndex: 50,
-										}}
-									>
-										<Title
-											style={{
-												display: 'flex',
-												alignItems: 'center',
-												color: 'var(--mantine-color-white)',
-												textShadow: '0px 0px 28px #000',
-											}}
-										>
-											<Avatar src={i.icon} radius="xl" mx="md" />
-
-											{i.name}
-										</Title>
-										{i.buildTeam && (
-											<Badge
-												component={Link}
-												href={`/teams/${i.buildTeamId}`}
-												variant="gradient"
-												style={{ cursor: 'pointer' }}
-											>
-												{i.buildTeam}
-											</Badge>
-										)}
-									</div>
-								</div>
-							</BackgroundImage>
+							<GalleryImage {...i} />
 						</Carousel.Slide>
 					);
 				})}
 			</Carousel>
 		</Box>
+	);
+}
+
+export function GalleryImage(i: GalleryImageProps) {
+	const theme = useMantineTheme();
+	return (
+		<BackgroundImage
+			src={i.src}
+			style={{
+				width: '100%',
+				height: '100%',
+			}}
+		>
+			<div
+				style={{
+					height: '100%',
+					position: 'relative',
+					width: '100%',
+					background: 'linear-gradient(160deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0,0.8))',
+				}}
+			>
+				<div
+					style={{
+						position: 'absolute',
+						bottom: 0,
+						right: 0,
+						margin: theme.spacing.xl,
+						textAlign: 'right',
+						zIndex: 50,
+					}}
+				>
+					<Title
+						style={{
+							display: 'flex',
+							alignItems: 'center',
+							color: 'var(--mantine-color-white)',
+							textShadow: '0px 0px 28px #000',
+						}}
+					>
+						<Avatar src={i.icon} radius="xl" mx="md" />
+
+						{i.name}
+					</Title>
+					{i.buildTeam && (
+						<Badge component={Link} href={`/teams/${i.buildTeamId}`} variant="gradient" style={{ cursor: 'pointer' }}>
+							{i.buildTeam}
+						</Badge>
+					)}
+				</div>
+			</div>
+		</BackgroundImage>
 	);
 }
 
