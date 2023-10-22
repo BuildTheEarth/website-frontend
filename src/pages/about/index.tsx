@@ -8,12 +8,14 @@ import { Youtube } from '@icons-pack/react-simple-icons';
 import fetcher from '../../utils/Fetcher';
 import { motion } from 'framer-motion';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useTranslation } from 'react-i18next';
 
 const Home: NextPage = () => {
 	const theme = useMantineTheme();
 	const scheme = useMantineColorScheme();
+	const { t } = useTranslation('about');
 	return (
-		<Page fullWidth title="About Us">
+		<Page fullWidth title={t('head.title')}>
 			<motion.div
 				style={{
 					backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
@@ -31,15 +33,15 @@ const Home: NextPage = () => {
 					}}
 				>
 					<Title style={{ color: '#ffffff', fontSize: 64, textShadow: '0px 0px 28px #000' }} ta="center" order={1}>
-						About us
+						{t('head.title')}
 					</Title>
 				</Center>
 			</motion.div>
 			<Container my="xl" size={'md'}>
-				<h1>Our Mission</h1>
+				<h1>{t('mission.title')}</h1>
 				<Grid>
 					<Grid.Col span={{ md: 7 }}>
-						<Text>Here at Build the Earth, we have one simple goal, to recreate the whole Earth in Minecraft, 1:1 scale. Our project was started by PippenFTS, who created the YouTube video that started it all. With the help of a few mods, the height limit in Minecraft was removed and a version of the world with terrain was created.</Text>
+						<Text>{t('mission.content.1')}</Text>
 					</Grid.Col>
 					<Grid.Col span={{ md: 5 }}>
 						<Blockquote m="md" cite="– @miallv14" color="red" icon={<Youtube />} mt="lg" iconSize={40}>
@@ -47,22 +49,13 @@ const Home: NextPage = () => {
 						</Blockquote>
 					</Grid.Col>
 				</Grid>
-				<Text>
-					Countless hours were spent debating over which projection to use, and whether to change it at all. In the end, it was settled to use a modified version of the Air-ocean projection, which keeps distortion low and preserves scale unlike the equirectangular map projection used before. So far great progress has been made and we hope that one
-					day we will be able to recreate the majority of the Earth in Minecraft, 1:1 scale.
-				</Text>
-				<h1>How does BuildTheEarth work?</h1>
-				<Text>
-					Isn’t there a height limit in Minecraft? Prior to the existence of the Cubic Chunks Mod, a project like ours couldn’t have existed. Thanks to the release of the Cubic Chunks mod, which changes how Minecraft stores world data, we are now able to have a theoretically infinite build height, therefore allowing the replication of the world on
-					a 1:1 scale. In addition, newer versions of Minecraft introduced a greater height limit.
-				</Text>
-				<h1>Our History and Future</h1>
+				<Text>{t('mission.content.2')}</Text>
+				<h1>{t('system.title')}</h1>
+				<Text>{t('system.content')}</Text>
+				<h1>{t('history.title')}</h1>
 				<Grid>
 					<Grid.Col span={{ md: 7 }}>
-						<Text>
-							With more than 15 million views, it is safe to say that we’ve amassed a massive response to the call to action. Overnight a staff team was assembled, growing to the hundred-plus staff that we have today, each with their special purpose and role in the project. With over five thousand builders and build teams of all regions on earth,
-							we are well on our way to building the Earth. Here at Build the Earth, we don’t have any deadlines for when we want certain places to be built, as we have faith that our builders will complete their plots of land whenever they can.
-						</Text>
+						<Text>{t('history.content.1')}</Text>
 					</Grid.Col>
 					<Grid.Col span={{ md: 5 }}>
 						<Blockquote m="md" cite="– @lukastrommer" color="red" icon={<Youtube />} mt="lg" iconSize={40}>
@@ -70,12 +63,9 @@ const Home: NextPage = () => {
 						</Blockquote>
 					</Grid.Col>
 				</Grid>
-				<Text>
-					There have already been massive leaps and bounds made in construction. Large cities like New York City, London, Paris, and Los Angeles all have teams tirelessly working on them. If you’d like to check out our progress, videos and photographs are available in our Discord server, Youtube, and Instagram. We would love to have more people
-					join in on Building The Earth, so if you or your friends can build, join our Discord, and apply for the builder position on our website.
-				</Text>
+				<Text>{t('history.content.1')}</Text>
 				<Button px={'xl'} mb="xl" component={Link} href="/join" mt="md" rightSection={<ChevronRight />}>
-					Join us
+					{t('history.action')}
 				</Button>
 			</Container>
 		</Page>
@@ -86,6 +76,6 @@ export default Home;
 
 export async function getStaticProps({ locale }: any) {
 	return {
-		props: { ...(await serverSideTranslations(locale, ['common', 'home'])) },
+		props: { ...(await serverSideTranslations(locale, ['common', 'about'])) },
 	};
 }
