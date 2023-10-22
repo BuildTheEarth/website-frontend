@@ -7,7 +7,6 @@ import { LoadingOverlay, useMantineColorScheme, useMantineTheme } from '@mantine
 import { MapboxStyleDefinition, MapboxStyleSwitcherControl } from 'mapbox-gl-style-switcher';
 
 import { IconCheck } from '@tabler/icons';
-import ReactDOM from 'react-dom';
 import mapboxgl from 'mapbox-gl';
 import { showNotification } from '@mantine/notifications';
 import { useRouter } from 'next/router';

@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { NextPage } from 'next';
 import Page from '../../components/Page';
 import { Youtube } from '@icons-pack/react-simple-icons';
-import fetcher from '../../utils/Fetcher';
 import { motion } from 'framer-motion';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'react-i18next';

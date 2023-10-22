@@ -1,9 +1,8 @@
-import { ActionIcon, AspectRatio, Button, FileInput, Group, Image, Table, Text, TextInput, Tooltip, rem } from '@mantine/core';
-import { IconPencil, IconPlus, IconTrash } from '@tabler/icons';
+import { ActionIcon, AspectRatio, Button, FileInput, Group, Table, Text, TextInput, Tooltip, rem } from '@mantine/core';
+import { IconPlus, IconTrash } from '@tabler/icons';
 import useSWR, { mutate } from 'swr';
 
 import { DateInput } from '@mantine/dates';
-import { Dropzone } from '../../../../components/Dropzone';
 import Page from '../../../../components/Page';
 import SettingsTabs from '../../../../components/SettingsTabs';
 import fetcher from '../../../../utils/Fetcher';

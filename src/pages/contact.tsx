@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
 
-import { At, Divide, ExternalLink } from 'tabler-icons-react';
-import { Avatar, Button, Divider, Grid, Group, Text, ThemeIcon, Title, useMantineColorScheme, useMantineTheme } from '@mantine/core';
+import { Button, Divider, Grid, Group, Text, ThemeIcon, Title, useMantineColorScheme, useMantineTheme } from '@mantine/core';
 import { Discord, Facebook, Instagram, Snapchat, Tiktok, Twitch, Twitter, Youtube } from '@icons-pack/react-simple-icons';
 
+import { At } from 'tabler-icons-react';
 import { IconMail } from '@tabler/icons-react';
 import { NextPage } from 'next';
 import Page from '../components/Page';

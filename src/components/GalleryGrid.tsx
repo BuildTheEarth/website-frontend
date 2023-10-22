@@ -1,6 +1,6 @@
-import { AspectRatio, Avatar, BackgroundImage, Badge, Box, Image, Modal, Overlay, Portal, SimpleGrid, Title, useMantineTheme } from '@mantine/core';
-import React, { useState } from 'react';
+import { BackgroundImage, Badge, SimpleGrid, Title, useMantineTheme } from '@mantine/core';
 
+import React from 'react';
 import { useIsClient } from '../hooks/useIsClient';
 
 interface GalleryGridProps {

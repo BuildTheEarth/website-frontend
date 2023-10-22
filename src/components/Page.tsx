@@ -1,4 +1,4 @@
-import { BackgroundImage, Center, Container, Paper, Text, useMantineColorScheme, useMantineTheme } from '@mantine/core';
+import { Center, Container, Paper, Text, useMantineColorScheme, useMantineTheme } from '@mantine/core';
 import Header, { LogoHeader } from './Header';
 import { NextSeo, NextSeoProps } from 'next-seo';
 import { motion, useScroll, useTransform } from 'framer-motion';
@@ -8,7 +8,6 @@ import React from 'react';
 import classes from '../styles/components/Page.module.css';
 import { useMediaQuery } from '@mantine/hooks';
 import { useRouter } from 'next/router';
-import { useScrollPosition } from '../hooks/useScrollPosition';
 import { useSession } from 'next-auth/react';
 
 interface PageProps {

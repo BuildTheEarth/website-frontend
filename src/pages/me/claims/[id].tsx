@@ -1,7 +1,6 @@
 import { Alert, Anchor, Button, Grid, Group, Switch, TextInput } from '@mantine/core';
 import { IconAlertCircle, IconCheck, IconChevronLeft, IconDeviceFloppy, IconQuestionMark } from '@tabler/icons-react';
 
-import { Divide } from 'tabler-icons-react';
 import Map from '../../../components/map/Map';
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
 import { NextPage } from 'next';

@@ -1,7 +1,4 @@
-import { ActionIcon, Avatar, Badge, Group, Select, Skeleton, Table, Text, Tooltip, rem } from '@mantine/core';
-import { IconPencil, IconTrash } from '@tabler/icons';
-
-import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
+import { Avatar, Badge, Group, Skeleton, Table, Text, Tooltip } from '@mantine/core';
 
 var vagueTime = require('vague-time');
 const rolesData = ['Manager', 'Collaborator', 'Contractor'];

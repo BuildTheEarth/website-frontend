@@ -3,7 +3,6 @@ import { IconAlertCircle, IconCheck } from '@tabler/icons';
 import useSWR, { mutate } from 'swr';
 
 import { ApplicationQuestions } from '../../../utils/application/ApplicationQuestions';
-import CheckboxQuestion from '../../../components/application/questions/CheckboxQuestion';
 import { IconChevronLeft } from '@tabler/icons-react';
 import { NextPage } from 'next';
 import Page from '../../../components/Page';

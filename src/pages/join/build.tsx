@@ -1,15 +1,13 @@
-import { ActionIcon, Anchor, Avatar, BackgroundImage, Box, Button, Card, Center, Container, Grid, Group, Stack, Stepper, Text, Title, rem, useMantineColorScheme, useMantineTheme } from '@mantine/core';
-import { IconBox, IconBracketsContainStart, IconBuildingCommunity, IconChevronDown, IconChevronLeft, IconCommand, IconPrompt, IconRun, IconSearch, IconServer } from '@tabler/icons';
+import { ActionIcon, Avatar, Button, Center, Container, Grid, Group, Stack, Text, Title, useMantineColorScheme, useMantineTheme } from '@mantine/core';
+import { IconChevronDown, IconChevronLeft } from '@tabler/icons';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { NextPage } from 'next';
 import Page from '../../components/Page';
 import SearchInput from '../../components/SearchInput';
 import fetcher from '../../utils/Fetcher';
 import getCountryName from '../../utils/ISOCountries';
-import sanitizeHtml from 'sanitize-html';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useState } from 'react';

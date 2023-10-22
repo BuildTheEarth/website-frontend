@@ -1,22 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Alert, Badge, Box, Button, Card, Flex, Group, PasswordInput, Tabs, Text, TextInput, Title, rem } from '@mantine/core';
-import { IconAlertCircle, IconBrandDiscord, IconBroadcast, IconBrowser, IconCheck, IconDeviceFloppy, IconKey, IconLink, IconReload, IconSettings, IconUnlink } from '@tabler/icons-react';
+import { Alert, Badge, Button, Card, Flex, Group, Tabs, Text, TextInput, Title, rem } from '@mantine/core';
+import { IconAlertCircle, IconBroadcast, IconBrowser, IconCheck, IconDeviceFloppy, IconKey, IconLink, IconReload, IconSettings } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 import useSWR, { mutate } from 'swr';
 
 import { Discord } from '@icons-pack/react-simple-icons';
-import { IconBrandDiscordFilled } from '@tabler/icons-react';
 import { NextPage } from 'next';
 import Page from '../../../components/Page';
-import axios from 'axios';
-import getPkce from 'oauth-pkce';
-import handler from '../../api/revalidate';
-import { modals } from '@mantine/modals';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { showNotification } from '@mantine/notifications';
 import { useForm } from '@mantine/form';
 import { useRouter } from 'next/router';
-import { useSession } from 'next-auth/react';
 import { useTranslation } from 'react-i18next';
 import { useUser } from '../../../hooks/useUser';
 

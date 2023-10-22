@@ -1,9 +1,7 @@
 import { Alert, Avatar, Button, Center, Drawer, Flex, Group, Loader, ScrollArea, Text } from '@mantine/core';
-import { Icon123, IconBuilding, IconCheck, IconCopy, IconCrane, IconDotsCircleHorizontal, IconLink, IconPencil, IconPin, IconRuler2, IconUser, IconUsersGroup, IconZoomIn } from '@tabler/icons-react';
+import { IconCheck, IconCopy, IconCrane, IconLink, IconPencil, IconPin, IconRuler2, IconUser, IconUsersGroup, IconZoomIn } from '@tabler/icons-react';
 
 import { StatsGrid } from '../Stats';
-import classes from '../styles/components/Card.module.css';
-import { domainToASCII } from 'url';
 import { getAreaOfPolygon } from 'geolib';
 import mapboxgl from 'mapbox-gl';
 import { showNotification } from '@mantine/notifications';

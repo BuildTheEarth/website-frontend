@@ -1,14 +1,14 @@
-import { Avatar, Badge, Button, Center, Code, Grid, Group, Stack, Text, rem, useMantineColorScheme, useMantineTheme } from '@mantine/core';
-import { IconBuilding, IconConfetti, IconCrane, IconExternalLink, IconLink, IconLogout, IconPencil, IconPin } from '@tabler/icons-react';
-import { Pin, Users } from 'tabler-icons-react';
-import { signOut, useSession } from 'next-auth/react';
+import { Avatar, Badge, Button, Code, Grid, Group, Stack, Text, rem, useMantineColorScheme, useMantineTheme } from '@mantine/core';
+import { IconConfetti, IconCrane, IconExternalLink, IconLogout, IconPencil, IconPin } from '@tabler/icons-react';
 
 import Link from 'next/link';
 import { NextPage } from 'next';
 import Page from '../../components/Page';
+import { Pin } from 'tabler-icons-react';
 import getCountryName from '../../utils/ISOCountries';
 import router from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { signOut } from 'next-auth/react';
 import useSWR from 'swr';
 import { useTranslation } from 'react-i18next';
 import { useUser } from '../../hooks/useUser';

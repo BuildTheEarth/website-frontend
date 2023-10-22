@@ -1,5 +1,5 @@
-import { ActionIcon, Anchor, AppShellHeader, Avatar, Badge, Box, Burger, Button, Container, Divider, Group, Indicator, Menu, Paper, Text, Tooltip, Transition, UnstyledButton, useMantineColorScheme, useMantineTheme } from '@mantine/core';
-import { ChevronDown, FileSearch, FileUpload, Logout, MoonStars, Sun, World } from 'tabler-icons-react';
+import { ActionIcon, Anchor, Avatar, Badge, Box, Burger, Button, Container, Divider, Group, Indicator, Menu, Paper, Text, Tooltip, Transition, UnstyledButton, useMantineColorScheme, useMantineTheme } from '@mantine/core';
+import { ChevronDown, FileSearch, Logout, MoonStars, Sun, World } from 'tabler-icons-react';
 import { Discord, Instagram, Tiktok, Twitch, Twitter, Youtube } from '@icons-pack/react-simple-icons';
 import React, { CSSProperties, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';

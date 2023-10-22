@@ -1,5 +1,4 @@
 import { Anchor } from '@mantine/core';
-import Link from 'next/link';
 import { NextPage } from 'next';
 import Page from '../../components/Page';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';

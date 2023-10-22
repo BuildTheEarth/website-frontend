@@ -1,7 +1,6 @@
-import { ActionIcon, Badge, Group, Table, Tooltip, rem } from '@mantine/core';
-import { IconChevronRight, IconTrash } from '@tabler/icons-react';
+import { ActionIcon, Badge, Group, Table, Tooltip } from '@mantine/core';
 
-import { GetServerSideProps } from 'next';
+import { IconChevronRight } from '@tabler/icons-react';
 import Link from 'next/link';
 import Page from '../../../../../components/Page';
 import SettingsTabs from '../../../../../components/SettingsTabs';

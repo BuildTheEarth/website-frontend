@@ -8,7 +8,6 @@ import Link from 'next/link';
 import { NextPage } from 'next';
 import Page from '../../../../components/Page';
 import SettingsTabs from '../../../../components/SettingsTabs';
-import Team from '../../../legal/tos';
 import fetcher from '../../../../utils/Fetcher';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { showNotification } from '@mantine/notifications';

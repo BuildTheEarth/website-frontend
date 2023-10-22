@@ -1,10 +1,8 @@
-import { ActionIcon, Alert, Badge, Button, Divider, Grid, Group, Stack, Text, Textarea, useMantineTheme } from '@mantine/core';
-import { IconCheck, IconCopy, IconLink, IconUsersGroup, IconX } from '@tabler/icons-react';
+import { Alert, Badge, Button, Divider, Grid, Group, Stack, Text, Textarea, useMantineTheme } from '@mantine/core';
+import { IconCheck, IconX } from '@tabler/icons-react';
 import useSWR, { mutate } from 'swr';
 
 import { ApplicationQuestions } from '../../../../../utils/application/ApplicationQuestions';
-import { IconUser } from '@tabler/icons';
-import Link from 'next/link';
 import { NextPage } from 'next';
 import Page from '../../../../../components/Page';
 import SettingsTabs from '../../../../../components/SettingsTabs';
@@ -12,8 +10,6 @@ import fetcher from '../../../../../utils/Fetcher';
 import { modals } from '@mantine/modals';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { showNotification } from '@mantine/notifications';
-import { useClipboard } from '@mantine/hooks';
-import { useRouter } from 'next/router';
 import { useUser } from '../../../../../hooks/useUser';
 
 const Apply: NextPage = ({ team, id }: any) => {

@@ -1,5 +1,3 @@
-import { LoadingOverlay } from '@mantine/core';
-import Page from './Page';
 import { SWRConfig } from 'swr';
 import { useSession } from 'next-auth/react';
 

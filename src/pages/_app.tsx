@@ -1,12 +1,12 @@
 import '@mantine/carousel/styles.css';
 import '@mantine/core/styles.css';
+import '@mantine/dates/styles.css';
+import '@mantine/dropzone/styles.css';
 import '@mantine/notifications/styles.css';
 import '@mantine/nprogress/styles.css';
 import '@mantine/tiptap/styles.css';
-import 'mapbox-gl/dist/mapbox-gl.css';
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
-import '@mantine/dropzone/styles.css';
-import '@mantine/dates/styles.css';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import '../styles/globals.css';
 
 import type { AppProps } from 'next/app';

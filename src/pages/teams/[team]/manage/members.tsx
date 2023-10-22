@@ -1,5 +1,5 @@
-import { ActionIcon, Badge, Button, Checkbox, Chip, Group, ScrollArea, ScrollAreaAutosize, Stack, Table, Text, TextInput, Title, rem, useMantineColorScheme, useMantineTheme } from '@mantine/core';
-import { IconEdit, IconPencil, IconPlus, IconStar, IconTrash } from '@tabler/icons';
+import { ActionIcon, Badge, Button, Checkbox, Group, ScrollAreaAutosize, Stack, Table, Text, TextInput, Title, rem } from '@mantine/core';
+import { IconPencil, IconPlus, IconTrash } from '@tabler/icons';
 import useSWR, { mutate } from 'swr';
 
 import Page from '../../../../components/Page';
