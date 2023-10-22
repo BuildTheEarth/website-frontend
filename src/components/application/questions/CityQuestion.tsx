@@ -22,14 +22,7 @@ const CityQuestion = (props: CityQuestionProps) => {
 const EditQuestion = ({ editingQuestion, handleUpdateEditingQuestion }: any) => {
 	return (
 		<>
-			<TextInput
-				required
-				defaultValue={editingQuestion?.additionalData.country}
-				label="Country"
-				description="The country to autocomplete"
-				mb="md"
-				onChange={(e) => handleUpdateEditingQuestion({ additionalData: { country: e.target.value } })}
-			/>
+			<TextInput required defaultValue={editingQuestion?.additionalData.country} label="Country" description="The country to autocomplete" mb="md" onChange={(e) => handleUpdateEditingQuestion({ additionalData: { country: e.target.value } })} />
 		</>
 	);
 };

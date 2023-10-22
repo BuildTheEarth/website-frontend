@@ -30,13 +30,7 @@ export function LanguageSwitcher() {
 	};
 
 	const items = languages.map((item) => (
-		<Menu.Item
-			leftSection={
-				<span className={`fi fi-${item.flag} fis`} style={{ height: 18, width: 18, borderRadius: '50%' }}></span>
-			}
-			onClick={() => changeLanguage(item)}
-			key={item.label}
-		>
+		<Menu.Item leftSection={<span className={`fi fi-${item.flag} fis`} style={{ height: 18, width: 18, borderRadius: '50%' }}></span>} onClick={() => changeLanguage(item)} key={item.label}>
 			{item.label}
 		</Menu.Item>
 	));
@@ -46,10 +40,7 @@ export function LanguageSwitcher() {
 			<Menu.Target>
 				<UnstyledButton className={classes.control} data-opened={opened}>
 					<Group gap="xs">
-						<span
-							className={`fi fi-${selected && selected.flag} fis`}
-							style={{ height: 22, width: 22, borderRadius: '50%' }}
-						></span>
+						<span className={`fi fi-${selected && selected.flag} fis`} style={{ height: 22, width: 22, borderRadius: '50%' }}></span>
 						<span className={classes.label}>{selected && selected.label}</span>
 					</Group>
 					<ChevronDown size={16} className={classes.icon} data-opened={opened} />

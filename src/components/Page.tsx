@@ -42,12 +42,7 @@ const Page = (props: PageProps) => {
 	const bgPosY = useTransform(scrollYProgress, (latest) => `${latest * 5 + 50}%`);
 	return (
 		<>
-			<NextSeo
-				title={props.title || props.head?.title}
-				canonical={'https://beta.buildtheearth.net' + router.pathname}
-				description={props.description}
-				{...props.seo}
-			/>
+			<NextSeo title={props.title || props.head?.title} canonical={'https://beta.buildtheearth.net' + router.pathname} description={props.description} {...props.seo} />
 			{!props.disabled?.header && (
 				<Header
 					links={[
@@ -129,11 +124,7 @@ const Page = (props: PageProps) => {
 export const LogoPage = (props: PageProps & { headData: any; team: string }) => {
 	return (
 		<Page {...props} fullWidth>
-			<LogoHeader
-				{...props.headData}
-				applyHref={`${props.team}/apply`}
-				settingsHref={`${props.team}/manage/settings`}
-			/>
+			<LogoHeader {...props.headData} applyHref={`${props.team}/apply`} settingsHref={`${props.team}/manage/settings`} />
 			<ContentContainer style={props.style} smallPadding={props.smallPadding}>
 				{props.children}
 			</ContentContainer>

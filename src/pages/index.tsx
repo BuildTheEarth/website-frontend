@@ -1,14 +1,4 @@
-import {
-	ActionIcon,
-	Box,
-	Button,
-	Center,
-	Grid,
-	Stack,
-	Title,
-	useMantineColorScheme,
-	useMantineTheme,
-} from '@mantine/core';
+import { ActionIcon, Box, Button, Center, Grid, Stack, Title, useMantineColorScheme, useMantineTheme } from '@mantine/core';
 import { ChevronDown, ChevronRight } from 'tabler-icons-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
@@ -82,13 +72,7 @@ const Home: NextPage = ({ data }: any) => {
 					}}
 				>
 					<motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-						<ActionIcon
-							component={Link}
-							styles={{ root: { height: 64, width: 64, textShadow: '0px 0px 28px #000' } }}
-							radius="xs"
-							variant="transparent"
-							href="#more"
-						>
+						<ActionIcon component={Link} styles={{ root: { height: 64, width: 64, textShadow: '0px 0px 28px #000' } }} radius="xs" variant="transparent" href="#more">
 							<ChevronDown size={64} color="white" />
 						</ActionIcon>
 					</motion.div>
@@ -109,20 +93,12 @@ const Home: NextPage = ({ data }: any) => {
 								</h1>
 								<div
 									style={{
-										background: `linear-gradient(90deg, rgba(${
-											scheme.colorScheme === 'dark' ? '193, 194, 197' : '0, 0, 0'
-										},1) 20%, rgba(0,0,0,0) 20%)`,
+										background: `linear-gradient(90deg, rgba(${scheme.colorScheme === 'dark' ? '193, 194, 197' : '0, 0, 0'},1) 20%, rgba(0,0,0,0) 20%)`,
 										height: 2,
 									}}
 								/>
 								<p>{t('mission.content')}</p>
-								<Button
-									px={'var(--mantine-spacing-xl)'}
-									component={Link}
-									href="/about"
-									mt="md"
-									rightSection={<ChevronRight />}
-								>
+								<Button px={'var(--mantine-spacing-xl)'} component={Link} href="/about" mt="md" rightSection={<ChevronRight />}>
 									{t('mission.action')}
 								</Button>
 							</div>
@@ -141,10 +117,7 @@ const Home: NextPage = ({ data }: any) => {
 							}}
 						/>
 					</Grid.Col>
-					<Grid.Col
-						span={{ sm: 12 }}
-						style={{ marginTop: 5, marginBottom: 25, display: 'flex', justifyContent: 'center' }}
-					>
+					<Grid.Col span={{ sm: 12 }} style={{ marginTop: 5, marginBottom: 25, display: 'flex', justifyContent: 'center' }}>
 						<motion.div
 							style={{
 								height: '70vh',
@@ -193,20 +166,12 @@ const Home: NextPage = ({ data }: any) => {
 								</h1>
 								<div
 									style={{
-										background: `linear-gradient(90deg, rgba(${
-											scheme.colorScheme === 'dark' ? '193, 194, 197' : '0, 0, 0'
-										},1) 20%, rgba(0,0,0,0) 20%)`,
+										background: `linear-gradient(90deg, rgba(${scheme.colorScheme === 'dark' ? '193, 194, 197' : '0, 0, 0'},1) 20%, rgba(0,0,0,0) 20%)`,
 										height: 2,
 									}}
 								/>
 								<p>{t('join.content')}</p>
-								<Button
-									px={'var(--mantine-spacing-xl)'}
-									component={Link}
-									href="/join"
-									mt="md"
-									rightSection={<ChevronRight />}
-								>
+								<Button px={'var(--mantine-spacing-xl)'} component={Link} href="/join" mt="md" rightSection={<ChevronRight />}>
 									{t('join.action')}
 								</Button>
 							</div>

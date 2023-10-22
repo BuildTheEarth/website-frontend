@@ -1,35 +1,5 @@
-import {
-	ActionIcon,
-	Anchor,
-	Avatar,
-	BackgroundImage,
-	Box,
-	Button,
-	Card,
-	Center,
-	Container,
-	Grid,
-	Group,
-	Stack,
-	Stepper,
-	Text,
-	Title,
-	rem,
-	useMantineColorScheme,
-	useMantineTheme,
-} from '@mantine/core';
-import {
-	IconBox,
-	IconBracketsContainStart,
-	IconBuildingCommunity,
-	IconChevronDown,
-	IconChevronLeft,
-	IconCommand,
-	IconPrompt,
-	IconRun,
-	IconSearch,
-	IconServer,
-} from '@tabler/icons';
+import { ActionIcon, Anchor, Avatar, BackgroundImage, Box, Button, Card, Center, Container, Grid, Group, Stack, Stepper, Text, Title, rem, useMantineColorScheme, useMantineTheme } from '@mantine/core';
+import { IconBox, IconBracketsContainStart, IconBuildingCommunity, IconChevronDown, IconChevronLeft, IconCommand, IconPrompt, IconRun, IconSearch, IconServer } from '@tabler/icons';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 import Image from 'next/image';
@@ -112,13 +82,7 @@ const Visit: NextPage = ({ data }: any) => {
 					}}
 				>
 					<motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-						<ActionIcon
-							component={Link}
-							styles={{ root: { height: 64, width: 64, textShadow: '0px 0px 28px #000' } }}
-							radius="xs"
-							variant="transparent"
-							href="#more"
-						>
+						<ActionIcon component={Link} styles={{ root: { height: 64, width: 64, textShadow: '0px 0px 28px #000' } }} radius="xs" variant="transparent" href="#more">
 							<IconChevronDown size={64} color="white" />
 						</ActionIcon>
 					</motion.div>
@@ -171,10 +135,7 @@ const Visit: NextPage = ({ data }: any) => {
 										router.push('#country');
 									}}
 								>
-									<span
-										className={`fi fi-${element.raw} fis`}
-										style={{ height: 90, width: 90, borderRadius: '50%' }}
-									></span>
+									<span className={`fi fi-${element.raw} fis`} style={{ height: 90, width: 90, borderRadius: '50%' }}></span>
 									<div>
 										<Stack gap={'xs'}>
 											<Text fs="xl" fw="bold">
@@ -209,41 +170,17 @@ const Visit: NextPage = ({ data }: any) => {
 						{t('visit.country.title', { country: selected.location })}
 					</h1>
 					<Stepper active={1} orientation="vertical" my="xl">
-						<Stepper.Step
-							label={t('visit.country.step0.title')}
-							description={t('visit.country.step0.description')}
-							icon={<IconSearch style={{ width: rem(18), height: rem(18) }} />}
-						/>
-						<Stepper.Step
-							label={t('visit.country.step1.title')}
-							description={t('visit.country.step1.description')}
-							icon={<IconBox style={{ width: rem(18), height: rem(18) }} />}
-						/>
+						<Stepper.Step label={t('visit.country.step0.title')} description={t('visit.country.step0.description')} icon={<IconSearch style={{ width: rem(18), height: rem(18) }} />} />
+						<Stepper.Step label={t('visit.country.step1.title')} description={t('visit.country.step1.description')} icon={<IconBox style={{ width: rem(18), height: rem(18) }} />} />
 						{selected.type == 'standalone' ? (
-							<Stepper.Step
-								label={t('visit.country.step2.title', { ip: selected?.ip })}
-								description={t('visit.country.step2.description', { ip: selected?.ip })}
-								icon={<IconServer style={{ width: rem(18), height: rem(18) }} />}
-							/>
+							<Stepper.Step label={t('visit.country.step2.title', { ip: selected?.ip })} description={t('visit.country.step2.description', { ip: selected?.ip })} icon={<IconServer style={{ width: rem(18), height: rem(18) }} />} />
 						) : (
 							<>
-								<Stepper.Step
-									label={t('visit.country.step2.title', { ip: 'buildtheearth.net' })}
-									description={t('visit.country.step2.description', { ip: 'buildtheearth.net' })}
-									icon={<IconServer style={{ width: rem(18), height: rem(18) }} />}
-								/>
-								<Stepper.Step
-									label={t('visit.country.step3.title', { slug: selected?.slug })}
-									description={t('visit.country.step3.description', { slug: selected?.slug })}
-									icon={<IconPrompt style={{ width: rem(18), height: rem(18) }} />}
-								/>
+								<Stepper.Step label={t('visit.country.step2.title', { ip: 'buildtheearth.net' })} description={t('visit.country.step2.description', { ip: 'buildtheearth.net' })} icon={<IconServer style={{ width: rem(18), height: rem(18) }} />} />
+								<Stepper.Step label={t('visit.country.step3.title', { slug: selected?.slug })} description={t('visit.country.step3.description', { slug: selected?.slug })} icon={<IconPrompt style={{ width: rem(18), height: rem(18) }} />} />
 							</>
 						)}
-						<Stepper.Step
-							label={t('visit.country.step3.title', { slug: selected?.location })}
-							description={t('visit.country.step3.description', { slug: selected?.location })}
-							icon={<IconBuildingCommunity style={{ width: rem(18), height: rem(18) }} />}
-						/>
+						<Stepper.Step label={t('visit.country.step3.title', { slug: selected?.location })} description={t('visit.country.step3.description', { slug: selected?.location })} icon={<IconBuildingCommunity style={{ width: rem(18), height: rem(18) }} />} />
 					</Stepper>
 					<Button mt="xl" component={Link} href="/join#more" leftSection={<IconChevronLeft />}>
 						{' '}

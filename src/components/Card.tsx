@@ -12,23 +12,9 @@ interface ArticleCardImageProps {
 	onClick?: () => void;
 }
 
-export function BackgroundCard({
-	image,
-	title,
-	category,
-	style,
-	showButton,
-	buttonText,
-	onClick,
-}: ArticleCardImageProps) {
+export function BackgroundCard({ image, title, category, style, showButton, buttonText, onClick }: ArticleCardImageProps) {
 	return (
-		<Paper
-			shadow="md"
-			p="xl"
-			radius="md"
-			style={{ backgroundImage: `url(${image})`, position: 'relative', ...style }}
-			className={classes.card}
-		>
+		<Paper shadow="md" p="xl" radius="md" style={{ backgroundImage: `url(${image})`, position: 'relative', ...style }} className={classes.card}>
 			<div style={{ zIndex: 8 }}>
 				<Text className={classes.category} size="xs">
 					{category}

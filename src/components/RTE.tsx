@@ -10,27 +10,9 @@ import Underline from '@tiptap/extension-underline';
 import { useEditor } from '@tiptap/react';
 import { useEffect } from 'react';
 
-export default function RTE({
-	value,
-	onChange,
-	onClick,
-	style,
-}: {
-	value?: string;
-	onChange?: (e: string) => void;
-	onClick?: (e: any) => void;
-	style?: any;
-}) {
+export default function RTE({ value, onChange, onClick, style }: { value?: string; onChange?: (e: string) => void; onClick?: (e: any) => void; style?: any }) {
 	const editor = useEditor({
-		extensions: [
-			StarterKit,
-			Underline,
-			Link,
-			Superscript,
-			SubScript,
-			Highlight,
-			TextAlign.configure({ types: ['heading', 'paragraph'] }),
-		],
+		extensions: [StarterKit, Underline, Link, Superscript, SubScript, Highlight, TextAlign.configure({ types: ['heading', 'paragraph'] })],
 		content: value,
 		onUpdate: (e) => {
 			onChange && onChange(e.editor.getHTML());

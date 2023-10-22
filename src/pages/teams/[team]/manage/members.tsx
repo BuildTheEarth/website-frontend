@@ -1,21 +1,4 @@
-import {
-	ActionIcon,
-	Badge,
-	Button,
-	Checkbox,
-	Chip,
-	Group,
-	ScrollArea,
-	ScrollAreaAutosize,
-	Stack,
-	Table,
-	Text,
-	TextInput,
-	Title,
-	rem,
-	useMantineColorScheme,
-	useMantineTheme,
-} from '@mantine/core';
+import { ActionIcon, Badge, Button, Checkbox, Chip, Group, ScrollArea, ScrollAreaAutosize, Stack, Table, Text, TextInput, Title, rem, useMantineColorScheme, useMantineTheme } from '@mantine/core';
 import { IconEdit, IconPencil, IconPlus, IconStar, IconTrash } from '@tabler/icons';
 import useSWR, { mutate } from 'swr';
 
@@ -44,12 +27,7 @@ const Settings = () => {
 		modals.openConfirmModal({
 			title: `Remove ${capitalize(member.username)}`,
 			centered: true,
-			children: (
-				<Text>
-					Are you sure you want to remove {capitalize(member.username)} from the team? This action cannot be undone, the
-					user needs to reapply.
-				</Text>
-			),
+			children: <Text>Are you sure you want to remove {capitalize(member.username)} from the team? This action cannot be undone, the user needs to reapply.</Text>,
 			labels: { confirm: 'Remove Builder', cancel: 'Cancel' },
 			confirmProps: { color: 'red' },
 			onCancel: () =>
@@ -95,12 +73,7 @@ const Settings = () => {
 			onClose: () => (hasUpdated ? mutate(`/buildteams/${router.query.team}/managers`) : null),
 			children: (
 				<>
-					<TextInput
-						label="ID"
-						description="The ID of the User"
-						placeholder={user.user.id}
-						onChange={(e) => (id = e.target.value)}
-					/>
+					<TextInput label="ID" description="The ID of the User" placeholder={user.user.id} onChange={(e) => (id = e.target.value)} />
 					<Button mt="md" onClick={() => handleEditManager({ id, username: id })}>
 						Next
 					</Button>
@@ -154,11 +127,7 @@ const Settings = () => {
 		modals.openConfirmModal({
 			title: `Remove ${capitalize(member.username)}´s Permissions`,
 			centered: true,
-			children: (
-				<Text>
-					Are you sure you want to remove {capitalize(member.username)}´s Permissions? This action cannot be undone.
-				</Text>
-			),
+			children: <Text>Are you sure you want to remove {capitalize(member.username)}´s Permissions? This action cannot be undone.</Text>,
 			labels: { confirm: 'Remove Permissions', cancel: 'Cancel' },
 			confirmProps: { color: 'red' },
 			onCancel: () =>
@@ -244,12 +213,7 @@ const Settings = () => {
 					data={builders ? builders.filter((b: any) => b.username.toLowerCase().includes(filter.toLowerCase())) : []}
 					actions={(data) => (
 						<Group gap={0} justify="flex-end">
-							<ActionIcon
-								variant="subtle"
-								color="red"
-								onClick={() => handleRemoveBuilder(data)}
-								loading={loadingManagers}
-							>
+							<ActionIcon variant="subtle" color="red" onClick={() => handleRemoveBuilder(data)} loading={loadingManagers}>
 								<IconTrash style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
 							</ActionIcon>
 						</Group>
@@ -273,20 +237,10 @@ const Settings = () => {
 					data={managers ? managers.filter((b: any) => b.username.toLowerCase().includes(filter.toLowerCase())) : []}
 					actions={(data) => (
 						<Group gap={0} justify="flex-end">
-							<ActionIcon
-								variant="subtle"
-								color="gray"
-								onClick={() => handleEditManager(data)}
-								loading={loadingManagers}
-							>
+							<ActionIcon variant="subtle" color="gray" onClick={() => handleEditManager(data)} loading={loadingManagers}>
 								<IconPencil style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
 							</ActionIcon>
-							<ActionIcon
-								variant="subtle"
-								color="red"
-								onClick={() => handleRemoveManager(data)}
-								loading={loadingManagers}
-							>
+							<ActionIcon variant="subtle" color="red" onClick={() => handleRemoveManager(data)} loading={loadingManagers}>
 								<IconTrash style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
 							</ActionIcon>
 						</Group>
@@ -294,12 +248,7 @@ const Settings = () => {
 					extraHead={<Table.Th>Permissions</Table.Th>}
 					extraContent={(data) => (
 						<Table.Td>
-							<Badge
-								color="yellow"
-								variant="light"
-								style={{ cursor: 'pointer' }}
-								onClick={() => handleEditManager(data)}
-							>
+							<Badge color="yellow" variant="light" style={{ cursor: 'pointer' }} onClick={() => handleEditManager(data)}>
 								{data.permissions.length}
 							</Badge>
 						</Table.Td>

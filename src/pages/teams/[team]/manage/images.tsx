@@ -1,16 +1,4 @@
-import {
-	ActionIcon,
-	AspectRatio,
-	Button,
-	FileInput,
-	Group,
-	Image,
-	Table,
-	Text,
-	TextInput,
-	Tooltip,
-	rem,
-} from '@mantine/core';
+import { ActionIcon, AspectRatio, Button, FileInput, Group, Image, Table, Text, TextInput, Tooltip, rem } from '@mantine/core';
 import { IconPencil, IconPlus, IconTrash } from '@tabler/icons';
 import useSWR, { mutate } from 'swr';
 
@@ -40,8 +28,7 @@ const Settings = () => {
 			centered: true,
 			children: (
 				<Text>
-					Are you sure you want to delete the showcase image of <b>{image.title}</b> from the team? This action cannot
-					be undone.
+					Are you sure you want to delete the showcase image of <b>{image.title}</b> from the team? This action cannot be undone.
 				</Text>
 			),
 			labels: { confirm: 'Delete Image', cancel: 'Cancel' },
@@ -89,20 +76,8 @@ const Settings = () => {
 			title: 'Add a new Showcase Image',
 			children: (
 				<>
-					<TextInput
-						label="Name"
-						description="The Name of the Showcase"
-						required
-						onChange={(e) => (name = e.target.value)}
-					/>
-					<FileInput
-						label="Image"
-						placeholder="Select an image..."
-						mt="md"
-						required
-						onChange={(e) => (image = e)}
-						accept="image/*"
-					/>
+					<TextInput label="Name" description="The Name of the Showcase" required onChange={(e) => (name = e.target.value)} />
+					<FileInput label="Image" placeholder="Select an image..." mt="md" required onChange={(e) => (image = e)} accept="image/*" />
 					<DateInput defaultValue={new Date()} onChange={(e) => (date = e)} label="Date" mt="md" />
 					<Button
 						mt="md"
@@ -189,11 +164,7 @@ const Settings = () => {
 										</AspectRatio>
 									</Table.Td>
 									<Table.Td>
-										<Tooltip
-											withinPortal
-											label={s.createdAt ? vagueTime.get({ to: new Date(s.createdAt) }) : ''}
-											position="top-start"
-										>
+										<Tooltip withinPortal label={s.createdAt ? vagueTime.get({ to: new Date(s.createdAt) }) : ''} position="top-start">
 											<p>{new Date(s.createdAt).toLocaleDateString()} </p>
 										</Tooltip>
 									</Table.Td>

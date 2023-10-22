@@ -30,52 +30,21 @@ const SettingsTabs = ({ children, team, loading = false }: { children: any; team
 						: {}
 				}
 			>
-				<Tabs
-					defaultValue="settings"
-					variant="pills"
-					orientation={!mobileLayout ? 'vertical' : 'horizontal'}
-					value={router.pathname.split('/manage/')[1]}
-					onChange={(value) =>
-						value == 'quit'
-							? router.push(`/teams/${router.query.team}`)
-							: router.push(`/teams/${router.query.team}/manage/${value}`)
-					}
-					style={{ width: '100%' }}
-				>
+				<Tabs defaultValue="settings" variant="pills" orientation={!mobileLayout ? 'vertical' : 'horizontal'} value={router.pathname.split('/manage/')[1]} onChange={(value) => (value == 'quit' ? router.push(`/teams/${router.query.team}`) : router.push(`/teams/${router.query.team}/manage/${value}`))} style={{ width: '100%' }}>
 					<Tabs.List>
-						<Tabs.Tab
-							value="settings"
-							leftSection={<IconSettings size="0.8rem" />}
-							disabled={!user.hasPermissions(['team.socials.edit', 'team.settings.edit'], team)}
-						>
+						<Tabs.Tab value="settings" leftSection={<IconSettings size="0.8rem" />} disabled={!user.hasPermissions(['team.socials.edit', 'team.settings.edit'], team)}>
 							Settings
 						</Tabs.Tab>
-						<Tabs.Tab
-							value="apply"
-							leftSection={<IconSend size="0.8rem" />}
-							disabled={!user.hasPermission('team.application.edit', team)}
-						>
+						<Tabs.Tab value="apply" leftSection={<IconSend size="0.8rem" />} disabled={!user.hasPermission('team.application.edit', team)}>
 							Application Questions
 						</Tabs.Tab>
-						<Tabs.Tab
-							value="members"
-							leftSection={<IconUsers size="0.8rem" />}
-							disabled={!user.hasPermissions(['permission.add', 'permission.remove'], team)}
-						>
+						<Tabs.Tab value="members" leftSection={<IconUsers size="0.8rem" />} disabled={!user.hasPermissions(['permission.add', 'permission.remove'], team)}>
 							Members
 						</Tabs.Tab>
-						<Tabs.Tab
-							value="images"
-							leftSection={<IconUsers size="0.8rem" />}
-							disabled={!user.hasPermission('team.showcases.edit', team)}
-						>
+						<Tabs.Tab value="images" leftSection={<IconUsers size="0.8rem" />} disabled={!user.hasPermission('team.showcases.edit', team)}>
 							Showcase Images
 						</Tabs.Tab>
-						<Tabs.Tab
-							value="review"
-							leftSection={<IconSearch size="0.8rem" />}
-							disabled={!user.hasPermissions(['team.application.review', 'team.application.list'], team)}
-						>
+						<Tabs.Tab value="review" leftSection={<IconSearch size="0.8rem" />} disabled={!user.hasPermissions(['team.application.review', 'team.application.list'], team)}>
 							Review
 						</Tabs.Tab>
 						<Tabs.Tab value="quit" leftSection={<IconDashboard size="0.8rem" />}>

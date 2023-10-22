@@ -1,25 +1,4 @@
-import {
-	ActionIcon,
-	Anchor,
-	AppShellHeader,
-	Avatar,
-	Badge,
-	Box,
-	Burger,
-	Button,
-	Container,
-	Divider,
-	Group,
-	Indicator,
-	Menu,
-	Paper,
-	Text,
-	Tooltip,
-	Transition,
-	UnstyledButton,
-	useMantineColorScheme,
-	useMantineTheme,
-} from '@mantine/core';
+import { ActionIcon, Anchor, AppShellHeader, Avatar, Badge, Box, Burger, Button, Container, Divider, Group, Indicator, Menu, Paper, Text, Tooltip, Transition, UnstyledButton, useMantineColorScheme, useMantineTheme } from '@mantine/core';
 import { ChevronDown, FileSearch, FileUpload, Logout, MoonStars, Sun, World } from 'tabler-icons-react';
 import { Discord, Instagram, Tiktok, Twitch, Twitter, Youtube } from '@icons-pack/react-simple-icons';
 import React, { CSSProperties, useState } from 'react';
@@ -280,27 +259,13 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 									icon = <Icon icon={social.icon} />;
 							}
 							return (
-								<ActionIcon
-									component={Link}
-									href={social.url}
-									target="_blank"
-									variant="transparent"
-									color="gray"
-									key={social.name}
-								>
+								<ActionIcon component={Link} href={social.url} target="_blank" variant="transparent" color="gray" key={social.name}>
 									{icon}
 								</ActionIcon>
 							);
 						})}
 						{props.invite && (
-							<ActionIcon
-								component={Link}
-								href={props.invite}
-								target="_blank"
-								variant="transparent"
-								color="gray"
-								key={'discord-inv'}
-							>
+							<ActionIcon component={Link} href={props.invite} target="_blank" variant="transparent" color="gray" key={'discord-inv'}>
 								<Discord />
 							</ActionIcon>
 						)}
@@ -315,16 +280,7 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 								Apply
 							</Button>
 						)}
-						{user.hasPermissions(
-							[
-								'team.settings.edit',
-								'team.socials.edit',
-								'team.application.edit',
-								'team.application.list',
-								'team.application.review',
-							],
-							props.id,
-						) && (
+						{user.hasPermissions(['team.settings.edit', 'team.socials.edit', 'team.application.edit', 'team.application.list', 'team.application.review'], props.id) && (
 							<Button component={Link} href={props.settingsHref || ''} variant="outline">
 								Settings
 							</Button>

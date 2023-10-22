@@ -1,35 +1,5 @@
-import {
-	ActionIcon,
-	Anchor,
-	Avatar,
-	BackgroundImage,
-	Box,
-	Button,
-	Card,
-	Center,
-	Container,
-	Grid,
-	Group,
-	Stack,
-	Stepper,
-	Text,
-	Title,
-	rem,
-	useMantineColorScheme,
-	useMantineTheme,
-} from '@mantine/core';
-import {
-	IconBox,
-	IconBracketsContainStart,
-	IconBuildingCommunity,
-	IconChevronDown,
-	IconChevronLeft,
-	IconCommand,
-	IconPrompt,
-	IconRun,
-	IconSearch,
-	IconServer,
-} from '@tabler/icons';
+import { ActionIcon, Anchor, Avatar, BackgroundImage, Box, Button, Card, Center, Container, Grid, Group, Stack, Stepper, Text, Title, rem, useMantineColorScheme, useMantineTheme } from '@mantine/core';
+import { IconBox, IconBracketsContainStart, IconBuildingCommunity, IconChevronDown, IconChevronLeft, IconCommand, IconPrompt, IconRun, IconSearch, IconServer } from '@tabler/icons';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 import Image from 'next/image';
@@ -87,13 +57,7 @@ const Build: NextPage = ({ data }: any) => {
 					}}
 				>
 					<motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-						<ActionIcon
-							component={Link}
-							styles={{ root: { height: 64, width: 64, textShadow: '0px 0px 28px #000' } }}
-							radius="xs"
-							variant="transparent"
-							href="#more"
-						>
+						<ActionIcon component={Link} styles={{ root: { height: 64, width: 64, textShadow: '0px 0px 28px #000' } }} radius="xs" variant="transparent" href="#more">
 							<IconChevronDown size={64} color="white" />
 						</ActionIcon>
 					</motion.div>

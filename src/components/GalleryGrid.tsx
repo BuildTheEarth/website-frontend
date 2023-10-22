@@ -1,17 +1,4 @@
-import {
-	AspectRatio,
-	Avatar,
-	BackgroundImage,
-	Badge,
-	Box,
-	Image,
-	Modal,
-	Overlay,
-	Portal,
-	SimpleGrid,
-	Title,
-	useMantineTheme,
-} from '@mantine/core';
+import { AspectRatio, Avatar, BackgroundImage, Badge, Box, Image, Modal, Overlay, Portal, SimpleGrid, Title, useMantineTheme } from '@mantine/core';
 import React, { useState } from 'react';
 
 import { useIsClient } from '../hooks/useIsClient';

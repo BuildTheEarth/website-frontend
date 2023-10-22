@@ -84,54 +84,18 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 			) : (
 				<Grid>
 					<Grid.Col span={{ md: 6 }}>
-						<TextInput
-							label="Claim Name"
-							required
-							defaultValue={additionalData.name}
-							onChange={(e) => editData('name', e.target.value)}
-							mb="md"
-						/>
-						<Switch
-							defaultChecked={additionalData.finished}
-							label="Claim is finished"
-							onChange={(e) => editData('finished', e.target.checked)}
-							mb="md"
-						/>
-						<Switch
-							defaultChecked={additionalData.active}
-							label="Show on map"
-							onChange={(e) => editData('active', e.target.checked)}
-							mb="md"
-						/>
+						<TextInput label="Claim Name" required defaultValue={additionalData.name} onChange={(e) => editData('name', e.target.value)} mb="md" />
+						<Switch defaultChecked={additionalData.finished} label="Claim is finished" onChange={(e) => editData('finished', e.target.checked)} mb="md" />
+						<Switch defaultChecked={additionalData.active} label="Show on map" onChange={(e) => editData('active', e.target.checked)} mb="md" />
 						<h3>Builders</h3>
-						<Alert
-							variant="light"
-							color="yellow"
-							mb="xl"
-							icon={<IconAlertCircle />}
-							title="Editing Builders currently does not work"
-						>
+						<Alert variant="light" color="yellow" mb="xl" icon={<IconAlertCircle />} title="Editing Builders currently does not work">
 							If there are any incorrect Builders listed for this claim, message us.
 						</Alert>
 						<Group>
-							<Button
-								variant="outline"
-								component="a"
-								href={
-									router.query.z && router.query.lat && router.query.lng
-										? `/map?z=${router.query.z}&lat=${router.query.lat}&lng=${router.query.lng}`
-										: '/map'
-								}
-								leftSection={<IconChevronLeft />}
-							>
+							<Button variant="outline" component="a" href={router.query.z && router.query.lat && router.query.lng ? `/map?z=${router.query.z}&lat=${router.query.lat}&lng=${router.query.lng}` : '/map'} leftSection={<IconChevronLeft />}>
 								Back
 							</Button>
-							<Button
-								onClick={handleSubmit}
-								disabled={!user?.token}
-								loading={loading}
-								leftSection={<IconDeviceFloppy />}
-							>
+							<Button onClick={handleSubmit} disabled={!user?.token} loading={loading} leftSection={<IconDeviceFloppy />}>
 								Save
 							</Button>
 						</Group>

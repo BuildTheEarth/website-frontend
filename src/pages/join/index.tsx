@@ -1,16 +1,4 @@
-import {
-	ActionIcon,
-	BackgroundImage,
-	Button,
-	Card,
-	Center,
-	Container,
-	Grid,
-	Text,
-	Title,
-	useMantineColorScheme,
-	useMantineTheme,
-} from '@mantine/core';
+import { ActionIcon, BackgroundImage, Button, Card, Center, Container, Grid, Text, Title, useMantineColorScheme, useMantineTheme } from '@mantine/core';
 import { ChevronDown, ChevronRight } from 'tabler-icons-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
@@ -58,13 +46,7 @@ const GetStarted: NextPage = () => {
 					}}
 				>
 					<motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-						<ActionIcon
-							component={Link}
-							styles={{ root: { height: 64, width: 64, textShadow: '0px 0px 28px #000' } }}
-							radius="xs"
-							variant="transparent"
-							href="#more"
-						>
+						<ActionIcon component={Link} styles={{ root: { height: 64, width: 64, textShadow: '0px 0px 28px #000' } }} radius="xs" variant="transparent" href="#more">
 							<ChevronDown size={64} color="white" />
 						</ActionIcon>
 					</motion.div>
@@ -92,16 +74,9 @@ const GetStarted: NextPage = () => {
 				</motion.h1>
 				<Grid style={{ width: '100%' }} my="xl" pb="xl" gutter={{ base: 'md', sm: '10%' }}>
 					<Grid.Col span={{ xs: 6, base: 9 }}>
-						<Card
-							padding="xl"
-							radius={0}
-							style={{ width: '100%', height: '100%', boxShadow: '10px 10px 0px 4px rgba(0,0,0,0.45)' }}
-						>
+						<Card padding="xl" radius={0} style={{ width: '100%', height: '100%', boxShadow: '10px 10px 0px 4px rgba(0,0,0,0.45)' }}>
 							<Card.Section>
-								<BackgroundImage
-									src="https://cdn.buildtheearth.net/static/getstarted/visit.webp"
-									style={{ height: '25vh' }}
-								/>
+								<BackgroundImage src="https://cdn.buildtheearth.net/static/getstarted/visit.webp" style={{ height: '25vh' }} />
 							</Card.Section>
 
 							<Title order={2} mt="md">
@@ -111,29 +86,15 @@ const GetStarted: NextPage = () => {
 							<Text mt="xs" c="dimmed" size="md">
 								{t('choose.visit.subtitle')}
 							</Text>
-							<Button
-								component={Link}
-								href="/join/visit#more"
-								rightSection={<ChevronRight />}
-								px={'var(--mantine-spacing-xl)'}
-								mt="md"
-								style={{ width: 'fit-content' }}
-							>
+							<Button component={Link} href="/join/visit#more" rightSection={<ChevronRight />} px={'var(--mantine-spacing-xl)'} mt="md" style={{ width: 'fit-content' }}>
 								{t('choose.visit.button')}
 							</Button>
 						</Card>
 					</Grid.Col>
 					<Grid.Col span={{ xs: 6, base: 9 }}>
-						<Card
-							padding="xl"
-							radius={0}
-							style={{ width: '100%', height: '100%', boxShadow: '10px 10px 0px 4px rgba(0,0,0,0.45)' }}
-						>
+						<Card padding="xl" radius={0} style={{ width: '100%', height: '100%', boxShadow: '10px 10px 0px 4px rgba(0,0,0,0.45)' }}>
 							<Card.Section>
-								<BackgroundImage
-									src="https://cdn.buildtheearth.net/static/getstarted/build.webp"
-									style={{ height: '25vh' }}
-								/>
+								<BackgroundImage src="https://cdn.buildtheearth.net/static/getstarted/build.webp" style={{ height: '25vh' }} />
 							</Card.Section>
 
 							<Title order={2} mt="md">
@@ -143,14 +104,7 @@ const GetStarted: NextPage = () => {
 							<Text mt="xs" c="dimmed" size="md">
 								{t('choose.build.subtitle')}
 							</Text>
-							<Button
-								component={Link}
-								href="/join/build#more"
-								rightSection={<ChevronRight />}
-								px={'var(--mantine-spacing-xl)'}
-								mt="md"
-								style={{ width: 'fit-content' }}
-							>
+							<Button component={Link} href="/join/build#more" rightSection={<ChevronRight />} px={'var(--mantine-spacing-xl)'} mt="md" style={{ width: 'fit-content' }}>
 								{t('choose.build.button')}
 							</Button>
 						</Card>
