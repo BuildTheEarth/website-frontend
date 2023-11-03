@@ -18,7 +18,7 @@ var vagueTime = require('vague-time');
 const Settings = () => {
 	const user = useUser();
 	const router = useRouter();
-	const { data } = useSWR(`/buildteams/${router.query.team}/showcases`);
+	const { data } = useSWR(`/buildteams/${router.query.team}/showcases?slug=true`);
 	const [loading, setLoading] = useState(false);
 
 	const handleDeleteImage = (image: any) => {

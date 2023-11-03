@@ -56,7 +56,7 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 						icon: <IconCheck />,
 					});
 					setLoading(false);
-					mutate(`/buildteams/${buildteam?.id}/applications/${user.user?.id}`);
+					mutate(`/buildteams/${buildteam?.id}/applications/user/${user.user?.id}`);
 				}
 			});
 	};
@@ -142,8 +142,8 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 };
 export default Apply;
 export async function getStaticProps({ locale, params }: any) {
-	const res = await fetcher(`/buildteams/${params.team}/application/questions`);
-	const res2 = await fetcher(`/buildteams/${params.team}`);
+	const res = await fetcher(`/buildteams/${params.team}/application/questions?slug=true`);
+	const res2 = await fetcher(`/buildteams/${params.team}?slug=true`);
 	return {
 		props: {
 			data: res,

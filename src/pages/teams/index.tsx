@@ -47,7 +47,7 @@ const Teams: NextPage = ({ data }: any) => {
 									cursor: 'pointer',
 								}}
 								p="md"
-								onClick={() => router.push(`/teams/${element.id}`)}
+								onClick={() => router.push(`/teams/${element.slug}`)}
 							>
 								<Avatar src={element.icon} size={94} radius="md" />
 								<div>

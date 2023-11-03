@@ -294,7 +294,7 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 export default Apply;
 
 export async function getStaticProps({ locale, params }: any) {
-	const res = await fetcher(`/buildteams/${params.team}/application/questions`);
+	const res = await fetcher(`/buildteams/${params.team}/application/questions?slug=true`);
 	return {
 		props: {
 			...(await serverSideTranslations(locale, ['common', 'teams'])),

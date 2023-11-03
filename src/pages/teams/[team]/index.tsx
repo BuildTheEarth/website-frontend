@@ -74,8 +74,8 @@ const Team: NextPage = ({ data, data2 }: any) => {
 export default Team;
 
 export async function getStaticProps({ locale, params }: any) {
-	const res = await fetcher(`/buildteams/${params.team}?builds=true&members=true`);
-	const res2 = await fetcher(`/buildteams/${params.team}/showcases`);
+	const res = await fetcher(`/buildteams/${params.team}?builds=true&members=true&slug=true`);
+	const res2 = await fetcher(`/buildteams/${params.team}/showcases?slug=true`);
 	return {
 		props: {
 			...(await serverSideTranslations(locale, ['common', 'teams'])),

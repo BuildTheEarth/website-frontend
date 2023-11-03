@@ -10,7 +10,7 @@ import useSWR from 'swr';
 
 var vagueTime = require('vague-time');
 const Review = ({ team }: any) => {
-	const { data } = useSWR(`/buildteams/${team}/applications?review=true`);
+	const { data } = useSWR(`/buildteams/${team}/applications?review=true&slug=true`);
 	return (
 		<Page
 			smallPadding

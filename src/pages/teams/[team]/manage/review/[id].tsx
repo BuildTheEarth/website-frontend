@@ -15,7 +15,7 @@ import { useUser } from '../../../../../hooks/useUser';
 const Apply: NextPage = ({ team, id }: any) => {
 	const theme = useMantineTheme();
 	const user = useUser();
-	const { data } = useSWR(`/buildteams/${team}/applications/${id}?includeAnswers=true`);
+	const { data } = useSWR(`/buildteams/${team}/applications/${id}?includeAnswers=true?slug=true`);
 
 	const handleSubmit = (accept: boolean) => {
 		const body = { reason: '', status: accept ? (data.trial ? 'TRIAL' : 'ACCEPTED') : 'DECLINED' };

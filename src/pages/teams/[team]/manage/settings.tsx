@@ -207,7 +207,7 @@ const Settings = ({ data: tempData }: any) => {
 
 export default Settings;
 export async function getStaticProps({ locale, params }: any) {
-	const res = await fetcher(`/buildteams/${params.team}`);
+	const res = await fetcher(`/buildteams/${params.team}?slug=true`);
 	return {
 		props: {
 			...(await serverSideTranslations(locale, ['common', 'teams'])),
