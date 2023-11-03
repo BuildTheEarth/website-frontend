@@ -20,6 +20,7 @@ const Review = ({ team }: any) => {
 			}}
 			seo={{ nofollow: true, noindex: true }}
 			requiredPermissions={['team.settings.edit', 'team.socials.edit', 'team.application.edit', 'team.application.list', 'team.application.review']}
+			loading={!data}
 		>
 			<SettingsTabs team={team} loading={!data}>
 				<Table.ScrollContainer minWidth={800}>

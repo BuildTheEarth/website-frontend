@@ -87,6 +87,7 @@ const Settings = ({ data: tempData }: any) => {
 			}}
 			seo={{ nofollow: true, noindex: true }}
 			requiredPermissions={['team.settings.edit', 'team.socials.edit', 'team.application.edit', 'team.application.list', 'team.application.review']}
+			loading={!data}
 		>
 			<SettingsTabs team={data?.id} loading={!data}>
 				{data && (

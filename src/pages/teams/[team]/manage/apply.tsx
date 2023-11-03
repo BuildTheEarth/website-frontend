@@ -147,6 +147,7 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 			}}
 			seo={{ nofollow: true, noindex: true }}
 			requiredPermissions={['team.settings.edit', 'team.socials.edit', 'team.application.edit', 'team.application.list', 'team.application.review']}
+			loading={!data}
 		>
 			<SettingsTabs team={team} loading={!data}>
 				<Modal zIndex={9999} opened={editingQuestion != null} onClose={() => setEditingQuestion(null)} title="Edit Question" centered size="lg">

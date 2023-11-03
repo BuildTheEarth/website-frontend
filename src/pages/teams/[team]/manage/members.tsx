@@ -203,6 +203,7 @@ const Settings = () => {
 			}}
 			seo={{ nofollow: true, noindex: true }}
 			requiredPermissions={['team.settings.edit', 'team.socials.edit', 'team.application.edit', 'team.application.list', 'team.application.review']}
+			loading={!(builders && managers)}
 		>
 			<SettingsTabs team={router.query.team?.toString() || ''} loading={!(builders && managers)}>
 				<SearchInput onSearch={setFilter} inputProps={{ placeholder: 'Filter...' }} />

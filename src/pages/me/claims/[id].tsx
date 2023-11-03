@@ -80,6 +80,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 			}}
 			smallPadding
 			requiredPermissions={['account.edit', 'account.info']}
+			loading={!data}
 		>
 			{!data ? (
 				<></>

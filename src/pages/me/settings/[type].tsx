@@ -58,13 +58,14 @@ const Settings: NextPage = ({ type }: any) => {
 			});
 	};
 
-	https: return data ? (
+	return (
 		<Page
 			head={{
 				title: 'Account Settings',
 				image: 'https://cdn.buildtheearth.net/static/thumbnails/me.png',
 			}}
 			requiredPermissions={['account.edit', 'account.info']}
+			loading={!data}
 		>
 			<Tabs value={type} onChange={(v) => router.push({ query: { type: v } })}>
 				<Tabs.List>
@@ -145,11 +146,6 @@ const Settings: NextPage = ({ type }: any) => {
 					))}
 				</Tabs.Panel>
 			</Tabs>
-		</Page>
-	) : (
-		<Page>
-			<Title>You are not logged in</Title>
-			<Text>You need to be logged in to view this page.</Text>
 		</Page>
 	);
 };

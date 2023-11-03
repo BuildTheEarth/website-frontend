@@ -141,6 +141,7 @@ const Settings = () => {
 			}}
 			seo={{ nofollow: true, noindex: true }}
 			requiredPermissions={['team.settings.edit', 'team.socials.edit', 'team.application.edit', 'team.application.list', 'team.application.review']}
+			loading={!data}
 		>
 			<SettingsTabs team={router.query.team?.toString() || ''} loading={!data || loading}>
 				<Table.ScrollContainer minWidth={800}>

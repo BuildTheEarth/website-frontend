@@ -27,8 +27,9 @@ const MePage: NextPage = () => {
 				image: 'https://cdn.buildtheearth.net/static/thumbnails/me.png',
 			}}
 			requiredPermissions={['account.info']}
+			loading={!data}
 		>
-			{data ? (
+			{data && (
 				<>
 					<p>{t('description')}</p>
 					<h2>{t('account.title')}</h2>
@@ -197,8 +198,6 @@ const MePage: NextPage = () => {
 						</>
 					)}
 				</>
-			) : (
-				<>loading</>
 			)}
 		</Page>
 	);

@@ -1,4 +1,4 @@
-import { Button, Center, Title, useMantineColorScheme, useMantineTheme } from '@mantine/core';
+import { Button, Center, Loader, Title, useMantineColorScheme, useMantineTheme } from '@mantine/core';
 
 import Page from '../components/Page';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -38,28 +38,36 @@ function ErrorPage(props: any) {
 					}}
 				>
 					<div>
-						<Title style={{ color: '#ffffff', fontSize: 220, userSelect: 'none' }} ta="center" order={1}>
-							{code}
-						</Title>
+						{code == 1 ? (
+							<Title ta="center" order={1}>
+								<Loader color="white" size="xl" />
+							</Title>
+						) : (
+							<Title style={{ color: '#ffffff', fontSize: 220, userSelect: 'none' }} ta="center" order={1}>
+								{code}
+							</Title>
+						)}
 						<Title style={{ color: '#ffffff' }} ta="center" order={1}>
 							{errors[code].title}
 						</Title>
 						<Title style={{ color: theme.colors.gray[4] }} ta="center" order={3}>
 							{errors[code].message}
 							<br />
-							<Button
-								variant="outline"
-								size="xl"
-								style={{
-									color: 'white',
-									borderColor: 'white',
-									borderWidth: 3,
-									marginTop: 'calc(var(--mantine-spacing-xl)*1.5)',
-								}}
-								onClick={() => router.back()}
-							>
-								{t('button.back', { ns: 'common' })}
-							</Button>
+							{code != 1 && (
+								<Button
+									variant="outline"
+									size="xl"
+									style={{
+										color: 'white',
+										borderColor: 'white',
+										borderWidth: 3,
+										marginTop: 'calc(var(--mantine-spacing-xl)*1.5)',
+									}}
+									onClick={() => router.back()}
+								>
+									{t('button.back', { ns: 'common' })}
+								</Button>
+							)}
 						</Title>
 					</div>
 				</Center>
@@ -78,9 +86,9 @@ export async function getStaticProps({ locale }: any) {
 export default ErrorPage;
 
 const errors: any = {
-	fallback: {
-		title: 'Something went wrong',
-		message: 'Please try again later.',
+	'1': {
+		title: 'Loading data',
+		message: 'You will be redirected shortly',
 	},
 	'301': {
 		title: 'Moved Permanently',

@@ -149,6 +149,7 @@ const Faq: NextPage = () => {
 			}}
 			seo={{ nofollow: true, noindex: true }}
 			requiredPermissions={['faq.edit', 'faq.remove', 'faq.add']}
+			loading={!data}
 		>
 			{!data ? (
 				<></>

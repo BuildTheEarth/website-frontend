@@ -34,6 +34,7 @@ interface PageProps {
 	hideHeaderOnInitialScroll?: boolean;
 	style?: React.CSSProperties;
 	requiredPermissions?: string[];
+	loading?: boolean;
 }
 
 const Page = (props: PageProps) => {
@@ -45,8 +46,10 @@ const Page = (props: PageProps) => {
 	const { scrollY, scrollYProgress } = useScroll();
 	const bgPosY = useTransform(scrollYProgress, (latest) => `${latest * 5 + 50}%`);
 
-	return props.requiredPermissions && !user.hasPermissions(props.requiredPermissions) ? (
-		<ErrorPage code={403} />
+	return props.loading ? (
+		<ErrorPage code={'1'} />
+	) : props.requiredPermissions && !user.hasPermissions(props.requiredPermissions) ? (
+		<ErrorPage code={'403'} />
 	) : (
 		<>
 			<NextSeo title={props.title || props.head?.title} canonical={'https://beta.buildtheearth.net' + router.pathname} description={props.description} {...props.seo} />
