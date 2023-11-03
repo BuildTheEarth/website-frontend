@@ -39,30 +39,32 @@ const Settings = () => {
 					color: 'yellow',
 				}),
 			onConfirm: () => {
-				fetch(process.env.NEXT_PUBLIC_API_URL + `/buildteams/${router.query.team}/showcases/${image.id}`, {
-					method: 'DELETE',
-					headers: {
-						'Content-Type': 'application/json',
-						Authorization: 'Bearer ' + user.token,
-					},
-				})
-					.then((res) => res.json())
-					.then((res) => {
-						if (res.errors) {
-							showNotification({
-								title: 'Update failed',
-								message: res.error,
-								color: 'red',
-							});
-						} else {
-							showNotification({
-								title: 'Showcase Image removed',
-								message: 'All Data has been saved',
-								color: 'green',
-							});
-							mutate(`/buildteams/${router.query.team}/showcases`);
-						}
-					});
+							setLoading(true);
+							fetch(process.env.NEXT_PUBLIC_API_URL + `/buildteams/${router.query.team}/showcases/${image.id}`, {
+								method: 'DELETE',
+								headers: {
+									'Content-Type': 'application/json',
+									Authorization: 'Bearer ' + user.token,
+								},
+							})
+								.then((res) => res.json())
+								.then((res) => {
+									setLoading(false);
+									if (res.errors) {
+										showNotification({
+											title: 'Update failed',
+											message: res.error,
+											color: 'red',
+										});
+									} else {
+										showNotification({
+											title: 'Showcase Image removed',
+											message: 'All Data has been saved',
+											color: 'green',
+										});
+										mutate(`/buildteams/${router.query.team}/showcases`);
+									}
+								});
 			},
 		});
 	};
@@ -142,7 +144,7 @@ const Settings = () => {
 		>
 			<SettingsTabs team={router.query.team?.toString() || ''} loading={!data || loading}>
 				<Table.ScrollContainer minWidth={800}>
-					<Button leftSection={<IconPlus />} onClick={() => handleAddImage()} mb="md">
+					<Button leftSection={<IconPlus />} onClick={() => handleAddImage()} mb="md" loading={loading}>
 						Add Showcase Image
 					</Button>
 					<Table verticalSpacing="sm">
