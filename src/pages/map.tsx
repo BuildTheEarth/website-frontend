@@ -33,6 +33,14 @@ const MapPage: NextPage = () => {
 		}
 	}, [router.query.claim]);
 
+
+	useEffect(() => {
+		if (router.query.s) {
+			spotlight.open();
+			router.query.s = undefined;
+		}
+	}, [router.query.s, router.query]);
+
 	useEffect(() => {
 		if (!query) {
 			setSearchActions([]);

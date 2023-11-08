@@ -1,14 +1,14 @@
 import { ActionIcon, Anchor, Avatar, Badge, Box, Burger, Button, Container, Divider, Group, Indicator, Menu, Paper, Text, Tooltip, Transition, UnstyledButton, useMantineColorScheme, useMantineTheme } from '@mantine/core';
 import { ChevronDown, FileSearch, Logout, MoonStars, Sun, World } from 'tabler-icons-react';
 import { Discord, Instagram, Tiktok, Twitch, Twitter, Youtube } from '@icons-pack/react-simple-icons';
+import { IconMoonStars, IconUser } from '@tabler/icons-react';
+import { IconSearch, IconSettings, IconSun } from '@tabler/icons';
 import React, { CSSProperties, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { useClickOutside, useDisclosure } from '@mantine/hooks';
 
 import Icon from './Icon';
-import { IconSettings } from '@tabler/icons';
-import { IconUser } from '@tabler/icons-react';
 import Link from 'next/link';
 import classes from '../styles/components/Header.module.css';
 import { useRouter } from 'next/router';
@@ -54,6 +54,9 @@ const Header = ({ links, style }: HeaderProps) => {
 				</Group>
 				<Group gap={5} className={classes.links}>
 					{items}
+					<ActionIcon variant="subtle" color="gray" aria-label="Search on map" component={Link} href="/map?s=true">
+						<IconSearch stroke={1.5} style={{ width: '70%', height: '70%' }} />
+					</ActionIcon>
 				</Group>
 				<Group gap={5} className={classes.links}>
 					{session != null && session?.user ? (
@@ -87,8 +90,11 @@ const Header = ({ links, style }: HeaderProps) => {
 								</Menu.Item>
 								<Menu.Divider />
 								<Menu.Label>{t('user.quickActions')}</Menu.Label>
-								<Menu.Item leftSection={colorScheme === 'dark' ? <MoonStars size={14} /> : <Sun size={14} />} onClick={() => toggleColorScheme()}>
+								<Menu.Item leftSection={colorScheme === 'dark' ? <IconMoonStars size={14} /> : <IconSun size={14} />} onClick={() => toggleColorScheme()}>
 									{t(`user.theme.${colorScheme}`)}
+								</Menu.Item>
+								<Menu.Item leftSection={<IconSearch size={14} />} component={Link} href="/map?s=true">
+									Search on Map
 								</Menu.Item>
 								<Menu.Divider />
 								<Menu.Label>{t('staff')}</Menu.Label>
