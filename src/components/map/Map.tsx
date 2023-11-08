@@ -5,9 +5,9 @@ import * as React from 'react';
 
 import { LoadingOverlay, useMantineColorScheme, useMantineTheme } from '@mantine/core';
 import { MapboxStyleDefinition, MapboxStyleSwitcherControl } from 'mapbox-gl-style-switcher';
+import mapboxgl, { GeolocateControl } from 'mapbox-gl';
 
 import { IconCheck } from '@tabler/icons';
-import mapboxgl from 'mapbox-gl';
 import { showNotification } from '@mantine/notifications';
 import { useRouter } from 'next/router';
 
@@ -98,12 +98,15 @@ function Map({ initialOptions = {}, onMapLoaded, onMapRemoved, allowFullscreen, 
 			layerSetup && (await layerSetup(mapboxMap));
 
 			if (allowFullscreen) mapboxMap.addControl(new mapboxgl.FullscreenControl());
-			if (themeControls)
-				mapboxMap.addControl(
-					new MapboxStyleSwitcherControl(styles, {
-						defaultStyle: scheme.colorScheme == 'dark' ? 'Dark' : 'Light',
-					}),
-				);
+			// if (themeControls)
+			// 	mapboxMap.addControl(
+			// 		new MapboxStyleSwitcherControl(styles, {
+			// 			defaultStyle: scheme.colorScheme == 'dark' ? 'Dark' : 'Light',
+			// 		}),
+			// 	);
+
+			mapboxMap.addControl(new GeolocateControl({ positionOptions: { enableHighAccuracy: true }, showUserLocation: true }));
+			mapboxMap.addControl(new mapboxgl.NavigationControl());
 
 			mapboxMap.on('style.load', async () => {
 				src && mapLoadGeoJson(mapboxMap, src, 'claims', 'fill', 'claims-source', mapStatusColorPolygon, mapStatusColorLine, true);

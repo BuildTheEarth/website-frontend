@@ -7,6 +7,7 @@ import '@mantine/nprogress/styles.css';
 import '@mantine/tiptap/styles.css';
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import '@mantine/spotlight/styles.css';
 import '../styles/globals.css';
 
 import type { AppProps } from 'next/app';
