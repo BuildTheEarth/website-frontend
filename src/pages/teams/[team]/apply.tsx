@@ -123,12 +123,10 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 							)}
 							{pastApplications
 								.filter((a: any) => a.status == 'ACCEPTED')
-								.map((a: any) => (
-									<>
-										<Alert title={t('apply.duplicate.accepted.title')} color="green" icon={<IconAlertCircle size="1rem" />} mt="md">
-											{t('apply.duplicate.accepted.description', { date: new Date(pastApplications[0].createdAt).toLocaleDateString() })}
-										</Alert>
-									</>
+								.map((a: any, i: number) => (
+									<Alert title={t('apply.duplicate.accepted.title')} color="green" icon={<IconAlertCircle size="1rem" />} mt="md" key={i}>
+										{t('apply.duplicate.accepted.description', { date: new Date(pastApplications[0].createdAt).toLocaleDateString() })}
+									</Alert>
 								))}
 							<Button leftSection={<IconChevronLeft />} mt="md" onClick={() => router.back()}>
 								{t('common:button.back')}

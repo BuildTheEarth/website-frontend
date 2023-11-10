@@ -53,6 +53,12 @@ a {
 	color: light-dark(var(--mantine-color-gray-4), var(--mantine-color-dark-3));
 }
 
+.hover-border {
+	:hover {
+		border: solid 1px var(--mantine-color-primary);
+	}
+}
+
 /* Map Styles */
 
 .mapboxgl-popup-content {
@@ -72,17 +78,16 @@ a {
 	background: light-dark(var(--mantine-color-white), var(--mantine-color-dark-7)) !important;
 	border-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-7)) !important;
 	box-shadow: var(--mantine-shadow-md);
-	border-radius: none ;
+	border-radius: none;
 }
 .mapboxgl-ctrl-icon:hover {
 	background: light-dark(var(--mantine-color-white), var(--mantine-color-dark-6)) !important;
 }
 
 .mapboxgl-ctrl-group {
-	border-radius: var(--mantine-radius-md) ;
+	border-radius: var(--mantine-radius-md);
 	background: light-dark(var(--mantine-color-white), var(--mantine-color-dark-7)) !important;
 }
-.mapboxgl-ctrl-group button+button {
+.mapboxgl-ctrl-group button + button {
 	border-top: solid 1px light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4)) !important;
 }
-

@@ -1,5 +1,6 @@
-import { BackgroundImage, Badge, SimpleGrid, Title, useMantineTheme } from '@mantine/core';
+import { Avatar, BackgroundImage, Badge, Group, SimpleGrid, Title, useMantineTheme } from '@mantine/core';
 
+import Link from 'next/link';
 import React from 'react';
 import { useIsClient } from '../hooks/useIsClient';
 
@@ -8,8 +9,11 @@ interface GalleryGridProps {
 		name?: string;
 		date?: string;
 		src: string;
+		team?: { logo: string; name: string; slug: string };
+		href?: string;
 	}[];
 	style?: React.CSSProperties;
+	gap?: any;
 }
 
 function GalleryGrid(props: GalleryGridProps) {
@@ -17,7 +21,7 @@ function GalleryGrid(props: GalleryGridProps) {
 	const isClient = useIsClient();
 
 	return (
-		<SimpleGrid spacing="md" cols={2}>
+		<SimpleGrid spacing={props.gap || 'md'} cols={2} style={props.style}>
 			{props.images.map((i, index) => (
 				<BackgroundImage
 					src={i.src}
@@ -25,7 +29,10 @@ function GalleryGrid(props: GalleryGridProps) {
 						width: '100%',
 						aspectRatio: '16/9',
 					}}
-					key={index}
+					key={index} // @ts-ignore
+					component={i.href && Link}
+					href={i.href}
+					className={i.href && 'hover-border'}
 				>
 					<div
 						style={{
@@ -55,11 +62,18 @@ function GalleryGrid(props: GalleryGridProps) {
 							>
 								{i.name}
 							</Title>
-							{i.date && (
-								<Badge variant="gradient" style={{ userSelect: 'none' }} size="sm">
-									{isClient ? new Date(i.date).toLocaleDateString() : ''}
-								</Badge>
-							)}
+							<Group>
+								{i.team && (
+									<Avatar src={i.team.logo} size={18}>
+										{i.team.name}
+									</Avatar>
+								)}
+								{i.date && (
+									<Badge variant="gradient" style={{ userSelect: 'none' }} size="sm">
+										{isClient ? new Date(i.date).toLocaleDateString() : ''}
+									</Badge>
+								)}
+							</Group>
 						</div>
 					</div>
 				</BackgroundImage>
