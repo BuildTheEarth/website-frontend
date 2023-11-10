@@ -24,7 +24,7 @@ const Settings: NextPage = ({ type }: any) => {
 	const form = useForm({});
 
 	useEffect(() => {
-		if (!isLoading) form.setValues({ username: data.username, email: data.email, avatar: data.avatar, firstName: data.firstName, lastName: data.lastName, name: data.name });
+		if (!isLoading && data) form.setValues({ username: data.username, email: data.email, avatar: data.avatar, firstName: data.firstName, lastName: data.lastName, name: data.name });
 	}, [isLoading]);
 
 	const handleSubmit = (e: any) => {
@@ -67,85 +67,87 @@ const Settings: NextPage = ({ type }: any) => {
 			requiredPermissions={['account.edit', 'account.info']}
 			loading={!data}
 		>
-			<Tabs value={type} onChange={(v) => router.push({ query: { type: v } })}>
-				<Tabs.List>
-					<Tabs.Tab value="general" leftSection={<IconSettings style={{ width: rem(14), height: rem(14) }} />}>
-						Profile Information
-					</Tabs.Tab>
-					<Tabs.Tab value="security" leftSection={<IconKey style={{ width: rem(14), height: rem(14) }} />}>
-						Security Details
-					</Tabs.Tab>
-					<Tabs.Tab value="accounts" leftSection={<IconLink style={{ width: rem(14), height: rem(14) }} />}>
-						Linked Accounts
-					</Tabs.Tab>
-					<Tabs.Tab value="session" leftSection={<IconBroadcast style={{ width: rem(14), height: rem(14) }} />}>
-						Active Sessions
-					</Tabs.Tab>
-				</Tabs.List>
+			{data && (
+				<Tabs value={type} onChange={(v) => router.push({ query: { type: v } })}>
+					<Tabs.List>
+						<Tabs.Tab value="general" leftSection={<IconSettings style={{ width: rem(14), height: rem(14) }} />}>
+							Profile Information
+						</Tabs.Tab>
+						<Tabs.Tab value="security" leftSection={<IconKey style={{ width: rem(14), height: rem(14) }} />}>
+							Security Details
+						</Tabs.Tab>
+						<Tabs.Tab value="accounts" leftSection={<IconLink style={{ width: rem(14), height: rem(14) }} />}>
+							Linked Accounts
+						</Tabs.Tab>
+						<Tabs.Tab value="session" leftSection={<IconBroadcast style={{ width: rem(14), height: rem(14) }} />}>
+							Active Sessions
+						</Tabs.Tab>
+					</Tabs.List>
 
-				<Tabs.Panel value="general" mt="md">
-					<form onSubmit={form.onSubmit(handleSubmit)}>
-						<TextInput label="Username" {...form.getInputProps('username')} required placeholder="johnDoe" />
-						<Group grow mt="md">
-							<TextInput label="First Name" {...form.getInputProps('firstName')} placeholder="John" />
-							<TextInput label="Last Name" {...form.getInputProps('lastName')} placeholder="Doe" />
-						</Group>
-						<TextInput label="Email" {...form.getInputProps('email')} required mt="md" placeholder="john.doe@mail.com" />
-						<TextInput label="Minecraft Username" {...form.getInputProps('name')} mt="md" placeholder="notch" />
-						<TextInput label="Avatar" {...form.getInputProps('avatar')} mt="md" placeholder="https://..." />
-						<Group mt="md">
-							<Button type="submit" leftSection={<IconDeviceFloppy />} loading={loading}>
-								{t('common:button.save')}
-							</Button>
-							<Button
-								variant="outline"
-								onClick={() => {
-									form.reset();
-									form.setValues({ username: data.username, email: data.email, avatar: data.avatar, firstName: data.firstName, lastName: data.lastName, name: data.name });
-								}}
-								leftSection={<IconReload />}
-								loading={loading}
-							>
-								{t('common:button.reset')}
-							</Button>
-						</Group>
-					</form>
-				</Tabs.Panel>
+					<Tabs.Panel value="general" mt="md">
+						<form onSubmit={form.onSubmit(handleSubmit)}>
+							<TextInput label="Username" {...form.getInputProps('username')} required placeholder="johnDoe" />
+							<Group grow mt="md">
+								<TextInput label="First Name" {...form.getInputProps('firstName')} placeholder="John" />
+								<TextInput label="Last Name" {...form.getInputProps('lastName')} placeholder="Doe" />
+							</Group>
+							<TextInput label="Email" {...form.getInputProps('email')} required mt="md" placeholder="john.doe@mail.com" />
+							<TextInput label="Minecraft Username" {...form.getInputProps('name')} mt="md" placeholder="notch" />
+							<TextInput label="Avatar" {...form.getInputProps('avatar')} mt="md" placeholder="https://..." />
+							<Group mt="md">
+								<Button type="submit" leftSection={<IconDeviceFloppy />} loading={loading}>
+									{t('common:button.save')}
+								</Button>
+								<Button
+									variant="outline"
+									onClick={() => {
+										form.reset();
+										form.setValues({ username: data.username, email: data.email, avatar: data.avatar, firstName: data.firstName, lastName: data.lastName, name: data.name });
+									}}
+									leftSection={<IconReload />}
+									loading={loading}
+								>
+									{t('common:button.reset')}
+								</Button>
+							</Group>
+						</form>
+					</Tabs.Panel>
 
-				<Tabs.Panel value="security" mt="md">
-					<Alert color="red" icon={<IconAlertCircle />} title={t('settings.security.alert')}>
-						{t('settions.security.description')}
-					</Alert>
-				</Tabs.Panel>
+					<Tabs.Panel value="security" mt="md">
+						<Alert color="red" icon={<IconAlertCircle />} title={t('settings.security.alert')}>
+							{t('settions.security.description')}
+						</Alert>
+					</Tabs.Panel>
 
-				<Tabs.Panel value="accounts" mt="md">
-					<DiscordLinkedAccount isLinked={data.federatedIdentities.filter((i: any) => i.identityProvider === 'discord').length > 0} data={data.federatedIdentities.filter((i: any) => i.identityProvider === 'discord')[0]} reload={() => mutate(`/users/${user?.user?.id}/kc`)} />
-				</Tabs.Panel>
-				<Tabs.Panel value="session" mt="md">
-					{data.sessions?.map((s: any, i: number) => (
-						<Card mb={'md'} withBorder key={i}>
-							<Flex align={'center'} gap={'md'}>
-								<IconBrowser />
-								<Flex gap={5} direction={'column'} style={{ flex: 1 }}>
-									<Flex align={'center'} gap={'xs'}>
-										<Text fw={'bold'}>{s.ipAddress}</Text>
-									</Flex>
-									<Text fw="bold" size="sm">
-										Start:{' '}
-										<Text c="dimmed" span>
-											{new Date(s.start).toLocaleDateString()}
-										</Text>{' '}
-										Last Seen:{' '}
-										<Text c="dimmed" span>
-											{new Date(s.lastAccess).toLocaleDateString()}
+					<Tabs.Panel value="accounts" mt="md">
+						{data && <DiscordLinkedAccount isLinked={data.federatedIdentities.filter((i: any) => i.identityProvider === 'discord').length > 0} data={data.federatedIdentities.filter((i: any) => i.identityProvider === 'discord')[0]} reload={() => mutate(`/users/${user?.user?.id}/kc`)} />}
+					</Tabs.Panel>
+					<Tabs.Panel value="session" mt="md">
+						{data.sessions?.map((s: any, i: number) => (
+							<Card mb={'md'} withBorder key={i}>
+								<Flex align={'center'} gap={'md'}>
+									<IconBrowser />
+									<Flex gap={5} direction={'column'} style={{ flex: 1 }}>
+										<Flex align={'center'} gap={'xs'}>
+											<Text fw={'bold'}>{s.ipAddress}</Text>
+										</Flex>
+										<Text fw="bold" size="sm">
+											Start:{' '}
+											<Text c="dimmed" span>
+												{new Date(s.start).toLocaleDateString()}
+											</Text>{' '}
+											Last Seen:{' '}
+											<Text c="dimmed" span>
+												{new Date(s.lastAccess).toLocaleDateString()}
+											</Text>
 										</Text>
-									</Text>
+									</Flex>
 								</Flex>
-							</Flex>
-						</Card>
-					))}
-				</Tabs.Panel>
-			</Tabs>
+							</Card>
+						))}
+					</Tabs.Panel>
+				</Tabs>
+			)}
 		</Page>
 	);
 };
