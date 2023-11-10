@@ -57,6 +57,7 @@ const Page = (props: PageProps) => {
 				<Header
 					links={[
 						{ link: '/faq', translation: 'faq' },
+						{ link: '/gallery', translation: 'gallery' },
 						{ link: '/map', translation: 'map' },
 						{ link: '/teams', translation: 'teams' },
 						{ link: '/contact', translation: 'contact' },
