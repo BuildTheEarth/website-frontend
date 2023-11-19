@@ -2,16 +2,16 @@ import { ActionIcon, Button, Center, Container, Grid, Group, Stack, Stepper, Tex
 import { IconBox, IconBuildingCommunity, IconChevronDown, IconChevronLeft, IconPrompt, IconSearch, IconServer } from '@tabler/icons';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-import Link from 'next/link';
 import { NextPage } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Page from '../../components/Page';
 import SearchInput from '../../components/SearchInput';
 import fetcher from '../../utils/Fetcher';
 import getCountryName from '../../utils/ISOCountries';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 const Visit: NextPage = ({ data }: any) => {
 	const { t } = useTranslation('getstarted');
@@ -52,7 +52,8 @@ const Visit: NextPage = ({ data }: any) => {
 		<Page fullWidth title="Visit" description="Visit Building the Earth">
 			<div
 				style={{
-					backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+					backgroundColor:
+						scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
 					background: `url("https://cdn.buildtheearth.net/static/getstarted/visit.webp") center center / cover`,
 					width: '100%',
 					height: '95vh',
@@ -66,7 +67,11 @@ const Visit: NextPage = ({ data }: any) => {
 						padding: 16,
 					}}
 				>
-					<Title style={{ color: '#ffffff', fontSize: 64, textShadow: '0px 0px 28px #000' }} ta="center" order={1}>
+					<Title
+						style={{ color: '#ffffff', fontSize: 64, textShadow: '0px 0px 28px #000' }}
+						ta="center"
+						order={1}
+					>
 						{t('visit.title')}
 					</Title>
 				</Center>
@@ -80,7 +85,13 @@ const Visit: NextPage = ({ data }: any) => {
 					}}
 				>
 					<motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-						<ActionIcon component={Link} styles={{ root: { height: 64, width: 64, textShadow: '0px 0px 28px #000' } }} radius="xs" variant="transparent" href="#more">
+						<ActionIcon
+							component={Link}
+							styles={{ root: { height: 64, width: 64, textShadow: '0px 0px 28px #000' } }}
+							radius="xs"
+							variant="transparent"
+							href="#more"
+						>
 							<IconChevronDown size={64} color="white" />
 						</ActionIcon>
 					</motion.div>
@@ -111,7 +122,9 @@ const Visit: NextPage = ({ data }: any) => {
 				<Grid mt="xl" pt="xl" gutter={{ base: '3%' }}>
 					{locations
 						?.filter((element: any) => !element.location.includes('Globe'))
-						?.filter((element: any) => element.location?.toLowerCase().includes(search?.toLowerCase() || ''))
+						?.filter((element: any) =>
+							element.location?.toLowerCase().includes(search?.toLowerCase() || ''),
+						)
 						.sort((a: any, b: any) => a.location.localeCompare(b.location))
 						.slice(0, 8)
 						.map((element: any, i: number) => (
@@ -119,7 +132,8 @@ const Visit: NextPage = ({ data }: any) => {
 								<Group
 									wrap="nowrap"
 									style={{
-										backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
+										backgroundColor:
+											scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 										borderRadius: 0,
 										cursor: 'pointer',
 										boxShadow: '10px 10px 0px 4px rgba(0,0,0,0.45)',
@@ -128,12 +142,16 @@ const Visit: NextPage = ({ data }: any) => {
 									onClick={() => {
 										setSelected({
 											...element,
-											type: element.ip && element.ip != 'buildtheearth.net' ? 'standalone' : 'network',
+											type:
+												element.ip && element.ip != 'buildtheearth.net' ? 'standalone' : 'network',
 										});
 										router.push('#country');
 									}}
 								>
-									<span className={`fi fi-${element.raw} fis`} style={{ height: 90, width: 90, borderRadius: '50%' }}></span>
+									<span
+										className={`fi fi-${element.raw} fis`}
+										style={{ height: 90, width: 90, borderRadius: '50%' }}
+									></span>
 									<div>
 										<Stack gap={'xs'}>
 											<Text fs="xl" fw="bold">
@@ -168,17 +186,41 @@ const Visit: NextPage = ({ data }: any) => {
 						{t('visit.country.title', { country: selected.location })}
 					</h1>
 					<Stepper active={1} orientation="vertical" my="xl">
-						<Stepper.Step label={t('visit.country.step0.title')} description={t('visit.country.step0.description')} icon={<IconSearch style={{ width: rem(18), height: rem(18) }} />} />
-						<Stepper.Step label={t('visit.country.step1.title')} description={t('visit.country.step1.description')} icon={<IconBox style={{ width: rem(18), height: rem(18) }} />} />
+						<Stepper.Step
+							label={t('visit.country.step0.title')}
+							description={t('visit.country.step0.description')}
+							icon={<IconSearch style={{ width: rem(18), height: rem(18) }} />}
+						/>
+						<Stepper.Step
+							label={t('visit.country.step1.title')}
+							description={t('visit.country.step1.description')}
+							icon={<IconBox style={{ width: rem(18), height: rem(18) }} />}
+						/>
 						{selected.type == 'standalone' ? (
-							<Stepper.Step label={t('visit.country.step2.title', { ip: selected?.ip })} description={t('visit.country.step2.description', { ip: selected?.ip })} icon={<IconServer style={{ width: rem(18), height: rem(18) }} />} />
+							<Stepper.Step
+								label={t('visit.country.step2.title', { ip: selected?.ip })}
+								description={t('visit.country.step2.description', { ip: selected?.ip })}
+								icon={<IconServer style={{ width: rem(18), height: rem(18) }} />}
+							/>
 						) : (
 							<>
-								<Stepper.Step label={t('visit.country.step2.title', { ip: 'buildtheearth.net' })} description={t('visit.country.step2.description', { ip: 'buildtheearth.net' })} icon={<IconServer style={{ width: rem(18), height: rem(18) }} />} />
-								<Stepper.Step label={t('visit.country.step3.title', { slug: selected?.slug })} description={t('visit.country.step3.description', { slug: selected?.slug })} icon={<IconPrompt style={{ width: rem(18), height: rem(18) }} />} />
+								<Stepper.Step
+									label={t('visit.country.step2.title', { ip: 'buildtheearth.net' })}
+									description={t('visit.country.step2.description', { ip: 'buildtheearth.net' })}
+									icon={<IconServer style={{ width: rem(18), height: rem(18) }} />}
+								/>
+								<Stepper.Step
+									label={t('visit.country.step3.title', { slug: selected?.slug })}
+									description={t('visit.country.step3.description', { slug: selected?.slug })}
+									icon={<IconPrompt style={{ width: rem(18), height: rem(18) }} />}
+								/>
 							</>
 						)}
-						<Stepper.Step label={t('visit.country.step3.title', { slug: selected?.location })} description={t('visit.country.step3.description', { slug: selected?.location })} icon={<IconBuildingCommunity style={{ width: rem(18), height: rem(18) }} />} />
+						<Stepper.Step
+							label={t('visit.country.step4.title', { country: selected?.location })}
+							description={t('visit.country.step4.description', { country: selected?.location })}
+							icon={<IconBuildingCommunity style={{ width: rem(18), height: rem(18) }} />}
+						/>
 					</Stepper>
 					<Button mt="xl" component={Link} href="/join#more" leftSection={<IconChevronLeft />}>
 						{' '}
