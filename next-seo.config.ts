@@ -14,7 +14,7 @@ const defaultSeo: DefaultSeoProps = {
 		siteName: 'BuildTheEarth',
 		images: [
 			{
-				url: 'https://cdn.buildtheearth.net/static/placeholder.webp',
+				url: 'https://cdn.buildtheearth.net/static/preview.webp',
 				width: 1920,
 				height: 1080,
 				alt: 'New York City',

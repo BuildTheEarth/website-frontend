@@ -1,7 +1,26 @@
 /* eslint-disable no-undef */
 
-import { Button, Divider, Grid, Group, Text, ThemeIcon, Title, useMantineColorScheme, useMantineTheme } from '@mantine/core';
-import { Discord, Facebook, Instagram, Snapchat, Tiktok, Twitch, Twitter, Youtube } from '@icons-pack/react-simple-icons';
+import {
+	Button,
+	Divider,
+	Grid,
+	Group,
+	Text,
+	ThemeIcon,
+	Title,
+	useMantineColorScheme,
+	useMantineTheme,
+} from '@mantine/core';
+import {
+	Discord,
+	Facebook,
+	Instagram,
+	Snapchat,
+	Tiktok,
+	Twitch,
+	Twitter,
+	Youtube,
+} from '@icons-pack/react-simple-icons';
 
 import { At } from 'tabler-icons-react';
 import { IconMail } from '@tabler/icons-react';
@@ -26,72 +45,43 @@ const Contact: NextPage = ({ data }: any) => {
 		>
 			<Title order={2}>Administration</Title>
 			<Grid mt="md" maw={'100%'} w={'75%'}>
-				{data?.map((contact: any) => (
-					<Grid.Col key={contact.id} span={{ sm: 6 }}>
-						<Text size="xs" style={{ textTransform: 'uppercase' }} fw={700} c="dimmed">
-							{contact.role}
-						</Text>
-						<Text size="lg" fw={500}>
-							{contact.name}
-						</Text>
-
-						<Group wrap="nowrap" gap={10} mt={3} justify="flex-start">
-							<Discord width={18} size={16} />
-							<Text size="xs" c="dimmed">
-								{contact.discord}
+				{data
+					?.sort((a: any, b: any) => a.email.localeCompare(b.email))
+					.map((contact: any) => (
+						<Grid.Col key={contact.id} span={{ sm: 6 }}>
+							<Text size="xs" style={{ textTransform: 'uppercase' }} fw={700} c="dimmed">
+								{contact.role}
 							</Text>
-						</Group>
-
-						<Group wrap="nowrap" gap={10} mt={5} justify="flex-start">
-							<At size={16} />
-							<Text size="xs" c="blue.4" style={{ cursor: 'pointer' }} onClick={() => window.open(`mailto:${contact.mail}`, '_blank')}>
-								{contact.email}
+							<Text size="lg" fw={500}>
+								{contact.name}
 							</Text>
-						</Group>
-						<Divider mt="md" />
-					</Grid.Col>
-				))}
+
+							<Group wrap="nowrap" gap={10} mt={3} justify="flex-start">
+								<Discord width={18} size={16} />
+								<Text size="xs" c="dimmed">
+									{contact.discord}
+								</Text>
+							</Group>
+
+							<Group wrap="nowrap" gap={10} mt={5} justify="flex-start">
+								<At size={16} />
+								<Text
+									size="xs"
+									c="blue.4"
+									style={{ cursor: 'pointer' }}
+									onClick={() => window.open(`mailto:${contact.mail}`, '_blank')}
+								>
+									{contact.email}
+								</Text>
+							</Group>
+							<Divider mt="md" />
+						</Grid.Col>
+					))}
 			</Grid>
 			<Title order={2} mt="md">
 				Social Media
 			</Title>
 			<Group mt="lg">
-				<ThemeIcon
-					variant="outline"
-					radius="xl"
-					size="xl"
-					onClick={() => window.open('https://www.facebook.com/BuildTheEarth/', '_blank')}
-					style={{
-						cursor: 'pointer',
-					}}
-				>
-					<Facebook />
-				</ThemeIcon>
-
-				<ThemeIcon
-					variant="outline"
-					radius="xl"
-					size="xl"
-					onClick={() => window.open('https://www.instagram.com/buildtheearth_', '_blank')}
-					style={{
-						cursor: 'pointer',
-					}}
-				>
-					<Instagram />
-				</ThemeIcon>
-
-				<ThemeIcon
-					variant="outline"
-					radius="xl"
-					size="xl"
-					onClick={() => window.open('https://www.tiktok.com/@buildtheearth', '_blank')}
-					style={{
-						cursor: 'pointer',
-					}}
-				>
-					<Tiktok />
-				</ThemeIcon>
-
 				<ThemeIcon
 					variant="outline"
 					radius="xl"
@@ -108,18 +98,6 @@ const Contact: NextPage = ({ data }: any) => {
 					variant="outline"
 					radius="xl"
 					size="xl"
-					onClick={() => window.open('https://www.snapchat.com/add/buildtheearth', '_blank')}
-					style={{
-						cursor: 'pointer',
-					}}
-				>
-					<Snapchat />
-				</ThemeIcon>
-
-				<ThemeIcon
-					variant="outline"
-					radius="xl"
-					size="xl"
 					onClick={() => window.open('https://www.youtube.com/c/BuildTheEarth', '_blank')}
 					style={{
 						cursor: 'pointer',
@@ -127,7 +105,28 @@ const Contact: NextPage = ({ data }: any) => {
 				>
 					<Youtube />
 				</ThemeIcon>
-
+				<ThemeIcon
+					variant="outline"
+					radius="xl"
+					size="xl"
+					onClick={() => window.open('https://www.instagram.com/buildtheearth_', '_blank')}
+					style={{
+						cursor: 'pointer',
+					}}
+				>
+					<Instagram />
+				</ThemeIcon>
+				<ThemeIcon
+					variant="outline"
+					radius="xl"
+					size="xl"
+					onClick={() => window.open('https://www.tiktok.com/@buildtheearth', '_blank')}
+					style={{
+						cursor: 'pointer',
+					}}
+				>
+					<Tiktok />
+				</ThemeIcon>
 				<ThemeIcon
 					variant="outline"
 					radius="xl"
@@ -151,13 +150,35 @@ const Contact: NextPage = ({ data }: any) => {
 				>
 					<Twitch />
 				</ThemeIcon>
+				<ThemeIcon
+					variant="outline"
+					radius="xl"
+					size="xl"
+					onClick={() => window.open('https://www.facebook.com/BuildTheEarth/', '_blank')}
+					style={{
+						cursor: 'pointer',
+					}}
+				>
+					<Facebook />
+				</ThemeIcon>
 			</Group>
 			<Title order={2} mt="lg">
 				Ban Appeals
 			</Title>
-			<p>If you wish to appeal your ban on the Discord server, please send an email to appeals@buildtheearth.net.</p>
-			<p>In order to submit a ban appeal, you must include your Discord tag and user ID, screenshot of your ban message and your reason for appealing. Illegitimate appeals will be ignored.</p>
-			<Button component="a" variant="outline" leftSection={<IconMail />} href="mailto:appeals@buildtheearth.net">
+			<p>
+				If you wish to appeal your ban on the Discord server, please send an email to
+				appeals@buildtheearth.net.
+			</p>
+			<p>
+				In order to submit a ban appeal, you must include your Discord tag and user ID, screenshot
+				of your ban message and your reason for appealing. Illegitimate appeals will be ignored.
+			</p>
+			<Button
+				component="a"
+				variant="outline"
+				leftSection={<IconMail />}
+				href="mailto:appeals@buildtheearth.net"
+			>
 				Send an Email
 			</Button>
 		</Page>

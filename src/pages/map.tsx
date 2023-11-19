@@ -1,19 +1,19 @@
 import { Button, Loader, rem } from '@mantine/core';
-import { IconDashboard, IconFileText, IconHome, IconSearch } from '@tabler/icons-react';
-import Map, { mapClickEvent, mapCopyCoordinates, mapCursorHover } from '../components/map/Map';
-import { Spotlight, SpotlightActionData, spotlight } from '@mantine/spotlight';
 import { useClipboard, useDebouncedState } from '@mantine/hooks';
+import { Spotlight, SpotlightActionData, spotlight } from '@mantine/spotlight';
+import { IconDashboard, IconFileText, IconHome, IconSearch } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
+import Map, { mapClickEvent, mapCopyCoordinates, mapCursorHover } from '../components/map/Map';
 
-import { ClaimDrawer } from '../components/map/ClaimDrawer';
 import { IconPin } from '@tabler/icons';
-import { NextPage } from 'next';
-import Page from '../components/Page';
 import mapboxgl from 'mapbox-gl';
-import { searchInOSM } from '../utils/Fetcher';
+import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
+import Page from '../components/Page';
+import { ClaimDrawer } from '../components/map/ClaimDrawer';
+import { searchInOSM } from '../utils/Fetcher';
 
 const MapPage: NextPage = () => {
 	const clipboard = useClipboard();
@@ -75,14 +75,18 @@ const MapPage: NextPage = () => {
 	}, [query, map]);
 
 	return (
-		<Page fullWidth>
+		<Page fullWidth title="Map">
 			<ClaimDrawer open={opened} setOpen={setOpened} id={selected} map={map} t={t} />
 			<Spotlight
 				filter={(query, actions) => actions}
 				actions={searchActions}
 				nothingFound="..."
 				searchProps={{
-					leftSection: searchLoading ? <Loader size={'sm'} /> : <IconSearch style={{ width: rem(20), height: rem(20) }} stroke={1.5} />,
+					leftSection: searchLoading ? (
+						<Loader size={'sm'} />
+					) : (
+						<IconSearch style={{ width: rem(20), height: rem(20) }} stroke={1.5} />
+					),
 					placeholder: 'Search...',
 				}}
 				onQueryChange={(q) => {
