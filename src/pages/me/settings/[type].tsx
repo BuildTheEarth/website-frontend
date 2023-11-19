@@ -5,13 +5,13 @@ import { useEffect, useState } from 'react';
 import useSWR, { mutate } from 'swr';
 
 import { Discord } from '@icons-pack/react-simple-icons';
-import { NextPage } from 'next';
-import Page from '../../../components/Page';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { showNotification } from '@mantine/notifications';
 import { useForm } from '@mantine/form';
+import { showNotification } from '@mantine/notifications';
+import { NextPage } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
+import Page from '../../../components/Page';
 import { useUser } from '../../../hooks/useUser';
 
 const Settings: NextPage = ({ type }: any) => {
@@ -70,30 +70,71 @@ const Settings: NextPage = ({ type }: any) => {
 			{data && (
 				<Tabs value={type} onChange={(v) => router.push({ query: { type: v } })}>
 					<Tabs.List>
-						<Tabs.Tab value="general" leftSection={<IconSettings style={{ width: rem(14), height: rem(14) }} />}>
+						<Tabs.Tab
+							value="general"
+							leftSection={<IconSettings style={{ width: rem(14), height: rem(14) }} />}
+						>
 							Profile Information
 						</Tabs.Tab>
-						<Tabs.Tab value="security" leftSection={<IconKey style={{ width: rem(14), height: rem(14) }} />}>
+						<Tabs.Tab
+							value="security"
+							leftSection={<IconKey style={{ width: rem(14), height: rem(14) }} />}
+						>
 							Security Details
 						</Tabs.Tab>
-						<Tabs.Tab value="accounts" leftSection={<IconLink style={{ width: rem(14), height: rem(14) }} />}>
+						<Tabs.Tab
+							value="accounts"
+							leftSection={<IconLink style={{ width: rem(14), height: rem(14) }} />}
+						>
 							Linked Accounts
 						</Tabs.Tab>
-						<Tabs.Tab value="session" leftSection={<IconBroadcast style={{ width: rem(14), height: rem(14) }} />}>
+						<Tabs.Tab
+							value="session"
+							leftSection={<IconBroadcast style={{ width: rem(14), height: rem(14) }} />}
+						>
 							Active Sessions
 						</Tabs.Tab>
 					</Tabs.List>
 
 					<Tabs.Panel value="general" mt="md">
 						<form onSubmit={form.onSubmit(handleSubmit)}>
-							<TextInput label="Username" {...form.getInputProps('username')} required placeholder="johnDoe" />
+							<TextInput
+								label="Username"
+								{...form.getInputProps('username')}
+								required
+								placeholder="johnDoe"
+							/>
 							<Group grow mt="md">
-								<TextInput label="First Name" {...form.getInputProps('firstName')} placeholder="John" />
-								<TextInput label="Last Name" {...form.getInputProps('lastName')} placeholder="Doe" />
+								<TextInput
+									label="First Name"
+									{...form.getInputProps('firstName')}
+									placeholder="John"
+								/>
+								<TextInput
+									label="Last Name"
+									{...form.getInputProps('lastName')}
+									placeholder="Doe"
+								/>
 							</Group>
-							<TextInput label="Email" {...form.getInputProps('email')} required mt="md" placeholder="john.doe@mail.com" />
-							<TextInput label="Minecraft Username" {...form.getInputProps('name')} mt="md" placeholder="notch" />
-							<TextInput label="Avatar" {...form.getInputProps('avatar')} mt="md" placeholder="https://..." />
+							<TextInput
+								label="Email"
+								{...form.getInputProps('email')}
+								required
+								mt="md"
+								placeholder="john.doe@mail.com"
+							/>
+							<TextInput
+								label="Minecraft Username"
+								{...form.getInputProps('name')}
+								mt="md"
+								placeholder="notch"
+							/>
+							<TextInput
+								label="Avatar"
+								{...form.getInputProps('avatar')}
+								mt="md"
+								placeholder="https://..."
+							/>
 							<Group mt="md">
 								<Button type="submit" leftSection={<IconDeviceFloppy />} loading={loading}>
 									{t('common:button.save')}
@@ -102,7 +143,14 @@ const Settings: NextPage = ({ type }: any) => {
 									variant="outline"
 									onClick={() => {
 										form.reset();
-										form.setValues({ username: data.username, email: data.email, avatar: data.avatar, firstName: data.firstName, lastName: data.lastName, name: data.name });
+										form.setValues({
+											username: data.username,
+											email: data.email,
+											avatar: data.avatar,
+											firstName: data.firstName,
+											lastName: data.lastName,
+											name: data.name,
+										});
 									}}
 									leftSection={<IconReload />}
 									loading={loading}
@@ -115,12 +163,23 @@ const Settings: NextPage = ({ type }: any) => {
 
 					<Tabs.Panel value="security" mt="md">
 						<Alert color="red" icon={<IconAlertCircle />} title={t('settings.security.alert')}>
-							{t('settions.security.description')}
+							{t('settings.security.description')}
 						</Alert>
 					</Tabs.Panel>
 
 					<Tabs.Panel value="accounts" mt="md">
-						{data && <DiscordLinkedAccount isLinked={data.federatedIdentities.filter((i: any) => i.identityProvider === 'discord').length > 0} data={data.federatedIdentities.filter((i: any) => i.identityProvider === 'discord')[0]} reload={() => mutate(`/users/${user?.user?.id}/kc`)} />}
+						{data && (
+							<DiscordLinkedAccount
+								isLinked={
+									data.federatedIdentities.filter((i: any) => i.identityProvider === 'discord')
+										.length > 0
+								}
+								data={
+									data.federatedIdentities.filter((i: any) => i.identityProvider === 'discord')[0]
+								}
+								reload={() => mutate(`/users/${user?.user?.id}/kc`)}
+							/>
+						)}
 					</Tabs.Panel>
 					<Tabs.Panel value="session" mt="md">
 						{data.sessions?.map((s: any, i: number) => (
