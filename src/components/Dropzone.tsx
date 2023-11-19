@@ -1,5 +1,5 @@
-import { DropzoneProps, IMAGE_MIME_TYPE, Dropzone as MDropzone } from '@mantine/dropzone';
 import { Group, Image, Text, rem } from '@mantine/core';
+import { DropzoneProps, IMAGE_MIME_TYPE, Dropzone as MDropzone } from '@mantine/dropzone';
 import { IconPhoto, IconUpload, IconX } from '@tabler/icons-react';
 
 interface ExtendDropzone extends DropzoneProps {}
@@ -7,15 +7,43 @@ interface ExtendDropzone extends DropzoneProps {}
 export function Dropzone(props: ExtendDropzone) {
 	return (
 		<MDropzone maxSize={3 * 1024 ** 2} accept={IMAGE_MIME_TYPE} {...props}>
-			<Group justify="center" gap="xl" mih={220} style={{ pointerEvents: 'none' }}>
+			<Group
+				justify="center"
+				gap="xl"
+				mih={220}
+				style={{
+					pointerEvents: 'none',
+				}}
+			>
 				<MDropzone.Accept>
-					<IconUpload style={{ width: rem(52), height: rem(52), color: 'var(--mantine-color-blue-6)' }} stroke={1.5} />
+					<IconUpload
+						style={{
+							width: rem(52),
+							height: rem(52),
+							color: 'var(--mantine-color-blue-6)',
+						}}
+						stroke={1.5}
+					/>
 				</MDropzone.Accept>
 				<MDropzone.Reject>
-					<IconX style={{ width: rem(52), height: rem(52), color: 'var(--mantine-color-red-6)' }} stroke={1.5} />
+					<IconX
+						style={{
+							width: rem(52),
+							height: rem(52),
+							color: 'var(--mantine-color-red-6)',
+						}}
+						stroke={1.5}
+					/>
 				</MDropzone.Reject>
 				<MDropzone.Idle>
-					<IconPhoto style={{ width: rem(52), height: rem(52), color: 'var(--mantine-color-dimmed)' }} stroke={1.5} />
+					<IconPhoto
+						style={{
+							width: rem(52),
+							height: rem(52),
+							color: 'var(--mantine-color-dimmed)',
+						}}
+						stroke={1.5}
+					/>
 				</MDropzone.Idle>
 
 				<div>
