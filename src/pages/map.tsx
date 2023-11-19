@@ -1,4 +1,4 @@
-import { Button, Loader, rem } from '@mantine/core';
+import { Alert, Button, Loader, rem } from '@mantine/core';
 import { useClipboard, useDebouncedState } from '@mantine/hooks';
 import { Spotlight, SpotlightActionData, spotlight } from '@mantine/spotlight';
 import { IconDashboard, IconFileText, IconHome, IconSearch } from '@tabler/icons-react';
@@ -27,12 +27,15 @@ const MapPage: NextPage = () => {
 	const router = useRouter();
 
 	useEffect(() => {
-		if (/^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi.test(router.query.claim as string)) {
+		if (
+			/^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi.test(
+				router.query.claim as string,
+			)
+		) {
 			setSelected(router.query.claim as string);
 			setOpened(true);
 		}
 	}, [router.query.claim]);
-
 
 	useEffect(() => {
 		if (router.query.s) {
@@ -46,7 +49,8 @@ const MapPage: NextPage = () => {
 			setSearchActions([]);
 		}
 
-		const regexForCoords = /^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/;
+		const regexForCoords =
+			/^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$/;
 		if (regexForCoords.test(query)) {
 			let coords = query
 				.replace(' ', '')
@@ -99,7 +103,17 @@ const MapPage: NextPage = () => {
 					}
 				}}
 			/>
-			<div style={{ height: '96vh', width: '100%' }}>
+			<div style={{ height: '96vh', width: '100%', position: 'relative' }}>
+				<Alert
+					// w="10%"
+					style={{ position: 'absolute', zIndex: 999 }}
+					variant="filled"
+					color="orange"
+					m="md"
+					title="Information"
+				>
+					Not all claims are migrated to this map yet. They will be added soon.
+				</Alert>
 				<Map
 					src={`${process.env.NEXT_PUBLIC_API_URL}/claims/geojson`}
 					onMapLoaded={(map) => {
