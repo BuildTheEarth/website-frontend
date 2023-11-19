@@ -1,15 +1,25 @@
-import { ActionIcon, Box, Button, Center, Grid, Stack, Title, useMantineColorScheme, useMantineTheme } from '@mantine/core';
-import { ChevronDown, ChevronRight } from 'tabler-icons-react';
+import {
+	ActionIcon,
+	Box,
+	Button,
+	Center,
+	Grid,
+	Stack,
+	Title,
+	useMantineColorScheme,
+	useMantineTheme,
+} from '@mantine/core';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { ChevronDown, ChevronRight } from 'tabler-icons-react';
 
-import Gallery from '../components/Gallery';
-import Link from 'next/link';
 import { NextPage } from 'next';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import Gallery from '../components/Gallery';
 import Page from '../components/Page';
 import fetcher from '../utils/Fetcher';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useRouter } from 'next/router';
-import { useTranslation } from 'next-i18next';
 
 const Home: NextPage = ({ data }: any) => {
 	const theme = useMantineTheme();
@@ -25,7 +35,8 @@ const Home: NextPage = ({ data }: any) => {
 		<Page fullWidth title="Home">
 			<motion.div
 				style={{
-					backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+					backgroundColor:
+						scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
 					background: `url("https://cdn.buildtheearth.net/static/home/head.webp") center center / cover`,
 					backgroundPositionY: headBgPosY,
 					width: '100%',
@@ -41,14 +52,18 @@ const Home: NextPage = ({ data }: any) => {
 					}}
 				>
 					<Stack>
-						<Title style={{ color: '#ffffff', fontSize: 64, textShadow: '0px 0px 28px #000' }} ta="center" order={1}>
+						<Title
+							style={{ color: '#ffffff', fontSize: 64, textShadow: '0px 0px 28px #000' }}
+							ta="center"
+							order={1}
+						>
 							{t('head.title')}
 						</Title>
 						<Button
 							component={Link}
 							size="xl"
 							variant="outline"
-							color="gray"
+							color="white"
 							mt="md"
 							style={{
 								width: 'fit-content',
@@ -72,7 +87,14 @@ const Home: NextPage = ({ data }: any) => {
 					}}
 				>
 					<motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-						<ActionIcon component={Link} styles={{ root: { height: 64, width: 64, textShadow: '0px 0px 28px #000' } }} radius="xs" variant="transparent" href="#more" aria-label="View more">
+						<ActionIcon
+							component={Link}
+							styles={{ root: { height: 64, width: 64, textShadow: '0px 0px 28px #000' } }}
+							radius="xs"
+							variant="transparent"
+							href="#more"
+							aria-label="View more"
+						>
 							<ChevronDown size={64} color="white" />
 						</ActionIcon>
 					</motion.div>
@@ -85,7 +107,10 @@ const Home: NextPage = ({ data }: any) => {
 				}}
 			>
 				<Grid>
-					<Grid.Col span={{ lg: 5 }} style={{ marginTop: 150, marginBottom: 50, minHeight: '30vh' }}>
+					<Grid.Col
+						span={{ lg: 5 }}
+						style={{ marginTop: 150, marginBottom: 50, minHeight: '30vh' }}
+					>
 						<Center style={{ width: '100%', height: '100%' }}>
 							<div style={{ padding: '0px 10%' }}>
 								<h1 id="more" style={{ scrollMarginTop: 70 }}>
@@ -93,12 +118,20 @@ const Home: NextPage = ({ data }: any) => {
 								</h1>
 								<div
 									style={{
-										background: `linear-gradient(90deg, rgba(${scheme.colorScheme === 'dark' ? '193, 194, 197' : '0, 0, 0'},1) 20%, rgba(0,0,0,0) 20%)`,
+										background: `linear-gradient(90deg, rgba(${
+											scheme.colorScheme === 'dark' ? '193, 194, 197' : '0, 0, 0'
+										},1) 20%, rgba(0,0,0,0) 20%)`,
 										height: 2,
 									}}
 								/>
 								<p>{t('mission.content')}</p>
-								<Button px={'var(--mantine-spacing-xl)'} component={Link} href="/about" mt="md" rightSection={<ChevronRight />}>
+								<Button
+									px={'var(--mantine-spacing-xl)'}
+									component={Link}
+									href="/about"
+									mt="md"
+									rightSection={<ChevronRight />}
+								>
 									{t('mission.action')}
 								</Button>
 							</div>
@@ -107,7 +140,8 @@ const Home: NextPage = ({ data }: any) => {
 					<Grid.Col span={{ lg: 7 }} style={{ minHeight: '30vh', position: 'relative' }}>
 						<motion.div
 							style={{
-								backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+								backgroundColor:
+									scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
 								background: `url("https://cdn.buildtheearth.net/static/home/mission.webp") center center / cover`,
 								y: missionY,
 								marginLeft: '10%',
@@ -117,7 +151,10 @@ const Home: NextPage = ({ data }: any) => {
 							}}
 						/>
 					</Grid.Col>
-					<Grid.Col span={{ sm: 12 }} style={{ marginTop: 5, marginBottom: 25, display: 'flex', justifyContent: 'center' }}>
+					<Grid.Col
+						span={{ sm: 12 }}
+						style={{ marginTop: 5, marginBottom: 25, display: 'flex', justifyContent: 'center' }}
+					>
 						<motion.div
 							style={{
 								height: '70vh',
@@ -145,10 +182,14 @@ const Home: NextPage = ({ data }: any) => {
 							/>
 						</motion.div>
 					</Grid.Col>
-					<Grid.Col span={{ lg: 6 }} style={{ minHeight: '30vh', position: 'relative', marginTop: 150 }}>
+					<Grid.Col
+						span={{ lg: 6 }}
+						style={{ minHeight: '30vh', position: 'relative', marginTop: 150 }}
+					>
 						<motion.div
 							style={{
-								backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+								backgroundColor:
+									scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
 								background: `url("https://cdn.buildtheearth.net/static/home/getstarted.webp") center center / cover`,
 								y: getstartedY,
 								marginLeft: '25%',
@@ -158,7 +199,10 @@ const Home: NextPage = ({ data }: any) => {
 							}}
 						/>
 					</Grid.Col>
-					<Grid.Col span={{ lg: 5 }} style={{ marginTop: 150, marginBottom: 50, minHeight: '30vh' }}>
+					<Grid.Col
+						span={{ lg: 5 }}
+						style={{ marginTop: 150, marginBottom: 50, minHeight: '30vh' }}
+					>
 						<Center style={{ width: '100%', height: '100%' }}>
 							<div style={{ padding: '0px 10%' }}>
 								<h1 id="more" style={{ scrollMarginTop: 70 }}>
@@ -166,12 +210,20 @@ const Home: NextPage = ({ data }: any) => {
 								</h1>
 								<div
 									style={{
-										background: `linear-gradient(90deg, rgba(${scheme.colorScheme === 'dark' ? '193, 194, 197' : '0, 0, 0'},1) 20%, rgba(0,0,0,0) 20%)`,
+										background: `linear-gradient(90deg, rgba(${
+											scheme.colorScheme === 'dark' ? '193, 194, 197' : '0, 0, 0'
+										},1) 20%, rgba(0,0,0,0) 20%)`,
 										height: 2,
 									}}
 								/>
 								<p>{t('join.content')}</p>
-								<Button px={'var(--mantine-spacing-xl)'} component={Link} href="/join" mt="md" rightSection={<ChevronRight />}>
+								<Button
+									px={'var(--mantine-spacing-xl)'}
+									component={Link}
+									href="/join"
+									mt="md"
+									rightSection={<ChevronRight />}
+								>
 									{t('join.action')}
 								</Button>
 							</div>
