@@ -60,7 +60,7 @@
 		"mapbox-gl-style-switcher": "^1.0.11",
 		"minimatch": "^8.0.2",
 		"next": "^13.5.2",
-		"next-auth": "^4.18.8",
+		"next-auth": "^4.24.5",
 		"next-i18next": "^13.0.3",
 		"next-seo": "^6.1.0",
 		"oauth-pkce": "^0.0.6",
