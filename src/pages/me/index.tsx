@@ -1,5 +1,24 @@
-import { Avatar, Badge, Button, Code, Grid, Group, Stack, Text, rem, useMantineColorScheme, useMantineTheme } from '@mantine/core';
-import { IconConfetti, IconCrane, IconExternalLink, IconLogout, IconPencil, IconPin } from '@tabler/icons-react';
+import {
+	Avatar,
+	Badge,
+	Button,
+	Code,
+	Grid,
+	Group,
+	Stack,
+	Text,
+	rem,
+	useMantineColorScheme,
+	useMantineTheme,
+} from '@mantine/core';
+import {
+	IconConfetti,
+	IconCrane,
+	IconExternalLink,
+	IconLogout,
+	IconPencil,
+	IconPin,
+} from '@tabler/icons-react';
 
 import { NextPage } from 'next';
 import { signOut } from 'next-auth/react';
@@ -59,42 +78,46 @@ const MePage: NextPage = () => {
 					<p>{t('teams.description')}</p>
 					<Grid mb="md">
 						{data.joinedBuildTeams.length > 0 ? (
-							data.joinedBuildTeams?.map((element: any, i: number) => (
-								<Grid.Col key={i} span={{ sm: 6 }}>
-									<Group
-										wrap="nowrap"
-										style={{
-											backgroundColor:
-												scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
-											borderRadius: theme.radius.xs,
-											cursor: 'pointer',
-										}}
-										p="md"
-										onClick={() => router.push(`/teams/${element.slug}`)}
-									>
-										<Avatar src={element.icon} size={94} radius="md" />
-										<div>
-											<Group justify="space-between">
-												<Text size="lg" fw={500}>
-													{element.name}
-												</Text>
-											</Group>
-											<Badge variant="gradient">{t('common:builder')}</Badge>
+							data.joinedBuildTeams
+								?.filter((e: any) => !data.createdBuildTeams.some((b: any) => b.id == e.id))
+								.map((element: any, i: number) => (
+									<Grid.Col key={i} span={{ sm: 6 }}>
+										<Group
+											wrap="nowrap"
+											style={{
+												backgroundColor:
+													scheme.colorScheme === 'dark'
+														? theme.colors.dark[6]
+														: theme.colors.gray[1],
+												borderRadius: theme.radius.xs,
+												cursor: 'pointer',
+											}}
+											p="md"
+											onClick={() => router.push(`/teams/${element.slug}`)}
+										>
+											<Avatar src={element.icon} size={94} radius="md" />
+											<div>
+												<Group justify="space-between">
+													<Text size="lg" fw={500}>
+														{element.name}
+													</Text>
+												</Group>
+												<Badge variant="gradient">{t('common:builder')}</Badge>
 
-											<Group wrap="nowrap" gap={10} mt={8}>
-												<Pin size={16} />
-												<Text size="xs" c="dimmed">
-													{element.location
-														.split(', ')
-														.slice(0, 3)
-														.map((e: string) => getCountryName(e))
-														.join(', ')}
-												</Text>
-											</Group>
-										</div>
-									</Group>
-								</Grid.Col>
-							))
+												<Group wrap="nowrap" gap={10} mt={8}>
+													<Pin size={16} />
+													<Text size="xs" c="dimmed">
+														{element.location
+															.split(', ')
+															.slice(0, 3)
+															.map((e: string) => getCountryName(e))
+															.join(', ')}
+													</Text>
+												</Group>
+											</div>
+										</Group>
+									</Grid.Col>
+								))
 						) : (
 							<Grid.Col
 								span={12}
@@ -141,7 +164,7 @@ const MePage: NextPage = () => {
 												cursor: 'pointer',
 											}}
 											p="md"
-											onClick={() => router.push(`/teams/${element.id}`)}
+											onClick={() => router.push(`/teams/${element.slug}`)}
 										>
 											<Avatar src={element.icon} size={94} radius="md" />
 											<div>
@@ -152,14 +175,19 @@ const MePage: NextPage = () => {
 												</Group>
 
 												<Group wrap="nowrap" gap={10} mt={3}>
-													<Pin size={16} />
-													<Text size="xs" c="dimmed">
-														{element.location
-															.split(', ')
-															.slice(0, 3)
-															.map((e: string) => getCountryName(e))
-															.join(', ')}
-													</Text>
+													{element.creatorId == user.user.id ? (
+														<Badge variant="gradient" gradient={{ from: 'red', to: 'orange' }}>
+															{t('common:owner')}
+														</Badge>
+													) : (
+														<Badge variant="gradient" gradient={{ from: 'grape.6', to: 'grape' }}>
+															{t('common:manager')}
+														</Badge>
+													)}
+													{data.joinedBuildTeams.length > 0 &&
+														data.joinedBuildTeams.some((b: any) => b.id == element.id) && (
+															<Badge variant="gradient">{t('common:builder')}</Badge>
+														)}
 												</Group>
 												<Button
 													mt="xs"
@@ -167,7 +195,7 @@ const MePage: NextPage = () => {
 													size="xs"
 													leftSection={<IconPencil />}
 													component={Link}
-													href={`/teams/${element.id}/settings`}
+													href={`/teams/${element.slug}/manage/settings`}
 												>
 													{t('owned.action')}
 												</Button>

@@ -4,6 +4,8 @@
 	"buildtheearth": "BuildTheEarth",
 	"staff": "Staff",
 	"builder": "Builder",
+	"manager": "Manager",
+	"owner": "Owner",
 	"trial": "Trial",
 	"search": "Search…",
 	"auth": {

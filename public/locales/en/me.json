@@ -15,7 +15,7 @@
 	},
 	"owned": {
 		"title": "Owned BuildTeams",
-		"description": "The BuildTeams listed below are all owned by you.",
+		"description": "The BuildTeams listed below are all owned by you or you have management permission on them.",
 		"action": "Edit Settings"
 	},
 	"claims": {
