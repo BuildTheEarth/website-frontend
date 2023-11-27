@@ -89,7 +89,7 @@ export async function getStaticPaths() {
 	return {
 		paths: res.map((team: any) => ({
 			params: {
-				team: team.id,
+				team: team.slug,
 			},
 		})),
 		fallback: true,

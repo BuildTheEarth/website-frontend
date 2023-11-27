@@ -1,12 +1,12 @@
 import { ActionIcon, Badge, Group, Table, Tooltip } from '@mantine/core';
 
 import { IconChevronRight } from '@tabler/icons-react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
+import useSWR from 'swr';
 import Page from '../../../../../components/Page';
 import SettingsTabs from '../../../../../components/SettingsTabs';
 import fetcher from '../../../../../utils/Fetcher';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import useSWR from 'swr';
 
 var vagueTime = require('vague-time');
 const Review = ({ team }: any) => {
@@ -19,7 +19,13 @@ const Review = ({ team }: any) => {
 				image: 'https://cdn.buildtheearth.net/static/thumbnails/teams.png',
 			}}
 			seo={{ nofollow: true, noindex: true }}
-			requiredPermissions={['team.settings.edit', 'team.socials.edit', 'team.application.edit', 'team.application.list', 'team.application.review']}
+			requiredPermissions={[
+				'team.settings.edit',
+				'team.socials.edit',
+				'team.application.edit',
+				'team.application.list',
+				'team.application.review',
+			]}
 			loading={!data}
 		>
 			<SettingsTabs team={team} loading={!data}>
@@ -56,13 +62,21 @@ const Review = ({ team }: any) => {
 										</Table.Td>
 										<Table.Td>{a.trial ? 'Yes' : 'No'}</Table.Td>
 										<Table.Td>
-											<Tooltip withinPortal label={a.createdAt ? vagueTime.get({ to: new Date(a.createdAt) }) : ''} position="top-start">
+											<Tooltip
+												withinPortal
+												label={a.createdAt ? vagueTime.get({ to: new Date(a.createdAt) }) : ''}
+												position="top-start"
+											>
 												<p>{new Date(a.createdAt).toLocaleDateString()} </p>
 											</Tooltip>
 										</Table.Td>
 										<Table.Td>
 											<Group gap={0} justify="flex-end">
-												<ActionIcon variant="subtle" component={Link} href={`/teams/${team}/manage/review/${a.id}`}>
+												<ActionIcon
+													variant="subtle"
+													component={Link}
+													href={`/teams/${team}/manage/review/${a.id}`}
+												>
 													<IconChevronRight />
 												</ActionIcon>
 											</Group>
@@ -112,7 +126,7 @@ export async function getStaticPaths() {
 	return {
 		paths: res.map((team: any) => ({
 			params: {
-				team: team.id,
+				team: team.slug,
 			},
 		})),
 		fallback: true,

@@ -15,25 +15,25 @@ import {
 	Title,
 	useMantineTheme,
 } from '@mantine/core';
-import { IconCheck, IconChevronDown, IconChevronUp, IconLetterT, IconPlus } from '@tabler/icons';
-import Question, { EditQuestion } from '../../../../components/application/questions/Question';
 import {
 	ApplicationQuestions,
 	toReadable,
 } from '../../../../utils/application/ApplicationQuestions';
+import { IconCheck, IconChevronDown, IconChevronUp, IconLetterT, IconPlus } from '@tabler/icons';
+import Question, { EditQuestion } from '../../../../components/application/questions/Question';
 
-import { showNotification } from '@mantine/notifications';
-import { NextPage } from 'next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import Icon from '../../../../components/Icon';
+import Link from 'next/link';
+import { NextPage } from 'next';
 import Page from '../../../../components/Page';
 import SettingsTabs from '../../../../components/SettingsTabs';
-import { useUser } from '../../../../hooks/useUser';
 import fetcher from '../../../../utils/Fetcher';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { showNotification } from '@mantine/notifications';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { useUser } from '../../../../hooks/useUser';
+import { v4 as uuidv4 } from 'uuid';
 
 // const tempData = [
 // 	{
@@ -390,7 +390,7 @@ export async function getStaticPaths() {
 	return {
 		paths: res.map((team: any) => ({
 			params: {
-				team: team.id,
+				team: team.slug,
 			},
 		})),
 		fallback: true,
