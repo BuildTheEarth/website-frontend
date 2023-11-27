@@ -1,20 +1,39 @@
-import { ActionIcon, Anchor, Button, Card, Divider, Group, Menu, Modal, SegmentedControl, Stack, Switch, Text, TextInput, Title, useMantineTheme } from '@mantine/core';
-import { ApplicationQuestions, toReadable } from '../../../../utils/application/ApplicationQuestions';
+import {
+	ActionIcon,
+	Anchor,
+	Button,
+	Card,
+	Divider,
+	Group,
+	Menu,
+	Modal,
+	SegmentedControl,
+	Stack,
+	Switch,
+	Text,
+	TextInput,
+	Title,
+	useMantineTheme,
+} from '@mantine/core';
 import { IconCheck, IconChevronDown, IconChevronUp, IconLetterT, IconPlus } from '@tabler/icons';
 import Question, { EditQuestion } from '../../../../components/application/questions/Question';
+import {
+	ApplicationQuestions,
+	toReadable,
+} from '../../../../utils/application/ApplicationQuestions';
 
-import Icon from '../../../../components/Icon';
-import Link from 'next/link';
-import { NextPage } from 'next';
-import Page from '../../../../components/Page';
-import SettingsTabs from '../../../../components/SettingsTabs';
-import fetcher from '../../../../utils/Fetcher';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { showNotification } from '@mantine/notifications';
+import { NextPage } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { useUser } from '../../../../hooks/useUser';
 import { v4 as uuidv4 } from 'uuid';
+import Icon from '../../../../components/Icon';
+import Page from '../../../../components/Page';
+import SettingsTabs from '../../../../components/SettingsTabs';
+import { useUser } from '../../../../hooks/useUser';
+import fetcher from '../../../../utils/Fetcher';
 
 // const tempData = [
 // 	{
@@ -85,7 +104,10 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 	};
 	const handleUpdateEditingQuestion = (question: any, additional?: boolean) => {
 		if (additional) {
-			setEditingQuestion({ ...editingQuestion, additionalData: { ...editingQuestion.additionalData, ...question } });
+			setEditingQuestion({
+				...editingQuestion,
+				additionalData: { ...editingQuestion.additionalData, ...question },
+			});
 		} else {
 			setEditingQuestion({ ...editingQuestion, ...question });
 		}
@@ -108,7 +130,7 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 			return;
 		}
 
-		fetch(process.env.NEXT_PUBLIC_API_URL + `/buildteams/${team}/application/questions`, {
+		fetch(process.env.NEXT_PUBLIC_API_URL + `/buildteams/${team}/application/questions?slug=true`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -146,21 +168,70 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 				image: 'https://cdn.buildtheearth.net/static/thumbnails/teams.png',
 			}}
 			seo={{ nofollow: true, noindex: true }}
-			requiredPermissions={['team.settings.edit', 'team.socials.edit', 'team.application.edit', 'team.application.list', 'team.application.review']}
+			requiredPermissions={[
+				'team.settings.edit',
+				'team.socials.edit',
+				'team.application.edit',
+				'team.application.list',
+				'team.application.review',
+			]}
 			loading={!data}
 		>
 			<SettingsTabs team={team} loading={!data}>
-				<Modal zIndex={9999} opened={editingQuestion != null} onClose={() => setEditingQuestion(null)} title="Edit Question" centered size="lg">
-					<TextInput required defaultValue={editingQuestion?.title} label="Title" description="The question title" mb="md" onChange={(e) => handleUpdateEditingQuestion({ title: e.target.value })} />
+				<Modal
+					zIndex={9999}
+					opened={editingQuestion != null}
+					onClose={() => setEditingQuestion(null)}
+					title="Edit Question"
+					centered
+					size="lg"
+				>
+					<TextInput
+						required
+						defaultValue={editingQuestion?.title}
+						label="Title"
+						description="The question title"
+						mb="md"
+						onChange={(e) => handleUpdateEditingQuestion({ title: e.target.value })}
+					/>
 					<Group grow>
-						<TextInput defaultValue={editingQuestion?.subtitle} label="Subtitle" description="The question subtitle" mb="md" onChange={(e) => handleUpdateEditingQuestion({ subtitle: e.target.value })} />
-						<TextInput defaultValue={editingQuestion?.placeholder} label="Placeholder" description="The question placeholder" mb="md" onChange={(e) => handleUpdateEditingQuestion({ placeholder: e.target.value })} />
+						<TextInput
+							defaultValue={editingQuestion?.subtitle}
+							label="Subtitle"
+							description="The question subtitle"
+							mb="md"
+							onChange={(e) => handleUpdateEditingQuestion({ subtitle: e.target.value })}
+						/>
+						<TextInput
+							defaultValue={editingQuestion?.placeholder}
+							label="Placeholder"
+							description="The question placeholder"
+							mb="md"
+							onChange={(e) => handleUpdateEditingQuestion({ placeholder: e.target.value })}
+						/>
 					</Group>
 					<Group grow>
-						<Switch defaultChecked={editingQuestion?.required} label="Required Question" description="If this question has to be answered" onChange={(e) => handleUpdateEditingQuestion({ required: e.target.checked })} />
-						<TextInput defaultValue={editingQuestion?.icon} label="Icon" description="The question icon" mb="md" onChange={(e) => handleUpdateEditingQuestion({ icon: e.target.value })} />
+						<Switch
+							defaultChecked={editingQuestion?.required}
+							label="Required Question"
+							description="If this question has to be answered"
+							onChange={(e) => handleUpdateEditingQuestion({ required: e.target.checked })}
+						/>
+						<TextInput
+							defaultValue={editingQuestion?.icon}
+							label="Icon"
+							description="The question icon"
+							mb="md"
+							onChange={(e) => handleUpdateEditingQuestion({ icon: e.target.value })}
+						/>
 					</Group>
-					{editingQuestion?.type && <EditQuestion type={editingQuestion?.type} editingQuestion={editingQuestion} handleUpdateEditingQuestion={handleUpdateEditingQuestion} />}
+					{editingQuestion?.type && (
+						<EditQuestion
+							type={editingQuestion?.type}
+							editingQuestion={editingQuestion}
+							handleUpdateEditingQuestion={handleUpdateEditingQuestion}
+						/>
+					)}
 					<Text c="dimmed" size="sm" mt="md">
 						A list of all Supported Icons can be found at{' '}
 						<Anchor component={Link} href="https://tabler-icons.io/" target="_blank">
@@ -235,7 +306,10 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 													icon: 'question-mark',
 													additionalData: Question.mockdata,
 													buildTeamId: router.query.id,
-													sort: data?.filter((d: any) => d.trial == trial).length > 1 ? data?.filter((d: any) => d.trial == trial)?.slice(-1)[0]?.sort + 1 : 1,
+													sort:
+														data?.filter((d: any) => d.trial == trial).length > 1
+															? data?.filter((d: any) => d.trial == trial)?.slice(-1)[0]?.sort + 1
+															: 1,
 													trial,
 												};
 												handleAddQuestion(newQuestion);
@@ -268,7 +342,11 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 										<IconChevronUp />
 									</ActionIcon>
 									<ActionIcon
-										variant={i == data.filter((d: any) => d.trial == trial).length - 1 ? 'transparent' : undefined}
+										variant={
+											i == data.filter((d: any) => d.trial == trial).length - 1
+												? 'transparent'
+												: undefined
+										}
 										disabled={i == data.filter((d: any) => d.trial == trial).length - 1}
 										onClick={() => {
 											handleUpdateQuestion(d.id, { sort: d.sort + 1 });
@@ -278,7 +356,11 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 									</ActionIcon>
 								</Stack>
 								<Divider orientation="vertical" />
-								<Stack gap={0} style={{ cursor: 'pointer', flexGrow: 1 }} onClick={() => setEditingQuestion(d)}>
+								<Stack
+									gap={0}
+									style={{ cursor: 'pointer', flexGrow: 1 }}
+									onClick={() => setEditingQuestion(d)}
+								>
 									<Title order={4} style={{ display: 'flex', alignItems: 'center' }}>
 										<Icon name={d.icon} style={{ height: 20, marginRight: 4 }} /> {d.title}
 									</Title>

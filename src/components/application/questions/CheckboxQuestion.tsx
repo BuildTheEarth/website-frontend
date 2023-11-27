@@ -1,7 +1,7 @@
+import { Switch } from '@mantine/core';
+import { IconCheckbox } from '@tabler/icons';
 import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
 import Icon from '../../Icon';
-import { IconCheckbox } from '@tabler/icons';
-import { Switch } from '@mantine/core';
 
 export interface CheckboxQuestionProps extends ApplicationQuestion {
 	additionalData: {};
@@ -15,7 +15,19 @@ function validation(props: CheckboxQuestionProps): (value: string) => void {
 
 const CheckboxQuestion = (props: CheckboxQuestionProps) => {
 	return (
-		<Switch onLabel={<Icon name={props.icon} />} offLabel={<Icon name={props.icon} />} required={props.required} description={props.subtitle} label={props.title} style={props.style} onChange={(e) => props.onChange && props.onChange(e.target.checked)} error={props.error} disabled={props.disabled} readOnly={props.readonly} value={props.value} />
+		<Switch
+			onLabel={<Icon name={props.icon} />}
+			offLabel={<Icon name={props.icon} />}
+			required={props.required}
+			description={props.subtitle}
+			label={props.title}
+			style={props.style}
+			onChange={(e) => props.onChange && props.onChange(e.target.checked)}
+			error={props.error}
+			disabled={props.disabled}
+			readOnly={props.readonly}
+			checked={props.value}
+		/>
 	);
 };
 

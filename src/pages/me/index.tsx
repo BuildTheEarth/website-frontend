@@ -1,17 +1,17 @@
 import { Avatar, Badge, Button, Code, Grid, Group, Stack, Text, rem, useMantineColorScheme, useMantineTheme } from '@mantine/core';
 import { IconConfetti, IconCrane, IconExternalLink, IconLogout, IconPencil, IconPin } from '@tabler/icons-react';
 
-import Link from 'next/link';
 import { NextPage } from 'next';
-import Page from '../../components/Page';
-import { Pin } from 'tabler-icons-react';
-import getCountryName from '../../utils/ISOCountries';
-import router from 'next/router';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { signOut } from 'next-auth/react';
-import useSWR from 'swr';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Link from 'next/link';
+import router from 'next/router';
 import { useTranslation } from 'react-i18next';
+import useSWR from 'swr';
+import { Pin } from 'tabler-icons-react';
+import Page from '../../components/Page';
 import { useUser } from '../../hooks/useUser';
+import getCountryName from '../../utils/ISOCountries';
 
 const MePage: NextPage = () => {
 	const user = useUser();
@@ -37,11 +37,21 @@ const MePage: NextPage = () => {
 						{t('account.minecraft')} <Code>{data.name}</Code>
 					</Text>
 					<Group>
-						<Button leftSection={<IconPencil />} component={Link} href={`/me/settings/general`} mt="md">
+						<Button
+							leftSection={<IconPencil />}
+							component={Link}
+							href={`/me/settings/general`}
+							mt="md"
+						>
 							{t('account.settings')}
 						</Button>
 
-						<Button leftSection={<IconLogout />} mt="md" onClick={() => signOut({ callbackUrl: '/' })} variant="outline">
+						<Button
+							leftSection={<IconLogout />}
+							mt="md"
+							onClick={() => signOut({ callbackUrl: '/' })}
+							variant="outline"
+						>
 							{t('common:auth.signout')}
 						</Button>
 					</Group>
@@ -54,12 +64,13 @@ const MePage: NextPage = () => {
 									<Group
 										wrap="nowrap"
 										style={{
-											backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
+											backgroundColor:
+												scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 											borderRadius: theme.radius.xs,
 											cursor: 'pointer',
 										}}
 										p="md"
-										onClick={() => router.push(`/teams/${element.id}`)}
+										onClick={() => router.push(`/teams/${element.slug}`)}
 									>
 										<Avatar src={element.icon} size={94} radius="md" />
 										<div>
@@ -88,7 +99,8 @@ const MePage: NextPage = () => {
 							<Grid.Col
 								span={12}
 								style={{
-									backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
+									backgroundColor:
+										scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 									borderRadius: theme.radius.xs,
 									cursor: 'pointer',
 									minHeight: '10vh',
@@ -99,7 +111,12 @@ const MePage: NextPage = () => {
 									<Text fw="bold" size="lg">
 										{t('teams.empty.description')}
 									</Text>
-									<Button leftSection={<IconExternalLink />} variant="gradient" component={Link} href="/teams">
+									<Button
+										leftSection={<IconExternalLink />}
+										variant="gradient"
+										component={Link}
+										href="/teams"
+									>
 										{t('teams.empty.action')}
 									</Button>
 								</Stack>
@@ -116,7 +133,10 @@ const MePage: NextPage = () => {
 										<Group
 											wrap="nowrap"
 											style={{
-												backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
+												backgroundColor:
+													scheme.colorScheme === 'dark'
+														? theme.colors.dark[6]
+														: theme.colors.gray[1],
 												borderRadius: theme.radius.xs,
 												cursor: 'pointer',
 											}}
@@ -141,7 +161,14 @@ const MePage: NextPage = () => {
 															.join(', ')}
 													</Text>
 												</Group>
-												<Button mt="xs" variant="gradient" size="xs" leftSection={<IconPencil />} component={Link} href={`/teams/${element.id}/settings`}>
+												<Button
+													mt="xs"
+													variant="gradient"
+													size="xs"
+													leftSection={<IconPencil />}
+													component={Link}
+													href={`/teams/${element.id}/settings`}
+												>
 													{t('owned.action')}
 												</Button>
 											</div>
@@ -161,7 +188,10 @@ const MePage: NextPage = () => {
 										<Group
 											wrap="nowrap"
 											style={{
-												backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
+												backgroundColor:
+													scheme.colorScheme === 'dark'
+														? theme.colors.dark[6]
+														: theme.colors.gray[1],
 												borderRadius: theme.radius.xs,
 												cursor: 'pointer',
 											}}
@@ -177,16 +207,33 @@ const MePage: NextPage = () => {
 													</Text>
 												</Group>
 												{element.finished ? (
-													<Badge variant="gradient" gradient={{ from: 'green', to: 'lime' }} leftSection={<IconConfetti style={{ width: rem(16), height: rem(16) }} />}>
+													<Badge
+														variant="gradient"
+														gradient={{ from: 'green', to: 'lime' }}
+														leftSection={
+															<IconConfetti style={{ width: rem(16), height: rem(16) }} />
+														}
+													>
 														{t('claims.status.finished')}
 													</Badge>
 												) : (
-													<Badge variant="gradient" gradient={{ from: 'orange', to: 'yellow' }} leftSection={<IconCrane style={{ width: rem(12), height: rem(12) }} />}>
+													<Badge
+														variant="gradient"
+														gradient={{ from: 'orange', to: 'yellow' }}
+														leftSection={<IconCrane style={{ width: rem(12), height: rem(12) }} />}
+													>
 														{t('claims.status.building')}
 													</Badge>
 												)}
 												<Group justify="space-between">
-													<Button mt="xs" variant="gradient" size="xs" leftSection={<IconPencil />} component={Link} href={`/me/claims/${element.id}`}>
+													<Button
+														mt="xs"
+														variant="gradient"
+														size="xs"
+														leftSection={<IconPencil />}
+														component={Link}
+														href={`/me/claims/${element.id}`}
+													>
 														{t('claims.action')}
 													</Button>
 												</Group>

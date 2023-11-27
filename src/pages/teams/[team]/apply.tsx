@@ -21,7 +21,9 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 	const team = router.query.team;
 	const theme = useMantineTheme();
 	const user = useUser();
-	const { data: pastApplications } = useSWR(`/buildteams/${buildteam?.id}/applications/user/${user.user?.id}`);
+	const { data: pastApplications } = useSWR(
+		`/buildteams/${buildteam?.id}/applications/user/${user.user?.id}`,
+	);
 	const { t } = useTranslation('teams');
 	const [loading, setLoading] = useState(false);
 	const [trial, setTrial] = useState(false);
@@ -33,7 +35,7 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 		setLoading(true);
 		fetch(
 			process.env.NEXT_PUBLIC_API_URL +
-				`/buildteams/${team}/apply${trial ? '?trial=true&slug=true' : ''}`,
+				`/buildteams/${team}/apply${trial ? '?trial=true&slug=true' : '?slug=true'}`,
 			{
 				method: 'POST',
 				headers: {
@@ -81,11 +83,17 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 			) : (
 				<form onSubmit={form.onSubmit(handleSubmit)}>
 					<div dangerouslySetInnerHTML={{ __html: sanitize(buildteam?.about) }} />
-					{!pastApplications?.some((a: any) => a.status == 'SEND' || a.status == 'REVIEWING' || a.status == 'ACCEPTED') ? (
+					{!pastApplications?.some(
+						(a: any) => a.status == 'SEND' || a.status == 'REVIEWING' || a.status == 'ACCEPTED',
+					) ? (
 						<>
 							{buildteam?.allowTrial && (
 								<>
-									<Alert mb="md" icon={<IconAlertCircle size="1rem" />} title={t('apply.trial.title')}>
+									<Alert
+										mb="md"
+										icon={<IconAlertCircle size="1rem" />}
+										title={t('apply.trial.title')}
+									>
 										{t('apply.trial.description')}
 									</Alert>
 									<SegmentedControl
@@ -107,12 +115,28 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 								?.filter((d: any) => d.trial == trial)
 								.map((d: any, i: number) => {
 									const Question = ApplicationQuestions[d.type];
-									return <Question key={d.id} {...d} style={{ marginTop: i > 0 && theme.spacing.md, maxWidth: '55%' }} onChange={(v: any) => form.setFieldValue(d.id, v)} error={form.errors[d.id]} disabled={loading} />;
+									return (
+										<Question
+											key={d.id}
+											{...d}
+											style={{ marginTop: i > 0 && theme.spacing.md, maxWidth: '55%' }}
+											onChange={(v: any) => form.setFieldValue(d.id, v)}
+											error={form.errors[d.id]}
+											disabled={loading}
+										/>
+									);
 								})}
 							<Button type="submit" variant="filled" color="blue" mt="md" loading={loading}>
 								{t('common:button.apply')}
 							</Button>
-							<Button variant="outline" color="blue" ml="md" mt="md" onClick={() => router.back()} disabled={loading}>
+							<Button
+								variant="outline"
+								color="blue"
+								ml="md"
+								mt="md"
+								onClick={() => router.back()}
+								disabled={loading}
+							>
 								{t('common:button.cancel')}
 							</Button>
 						</>
@@ -120,16 +144,31 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 						<>
 							{pastApplications.some((a: any) => a.status == 'SEND' || a.status == 'REVIEWING') && (
 								<>
-									<Alert title={t('apply.duplicate.pending.title')} color="yellow" icon={<IconAlertCircle size="1rem" />} mt="md">
-										{t('apply.duplicate.pending.description', { date: new Date(pastApplications[0].createdAt).toLocaleDateString() })}
+									<Alert
+										title={t('apply.duplicate.pending.title')}
+										color="yellow"
+										icon={<IconAlertCircle size="1rem" />}
+										mt="md"
+									>
+										{t('apply.duplicate.pending.description', {
+											date: new Date(pastApplications[0].createdAt).toLocaleDateString(),
+										})}
 									</Alert>
 								</>
 							)}
 							{pastApplications
 								.filter((a: any) => a.status == 'ACCEPTED')
 								.map((a: any, i: number) => (
-									<Alert title={t('apply.duplicate.accepted.title')} color="green" icon={<IconAlertCircle size="1rem" />} mt="md" key={i}>
-										{t('apply.duplicate.accepted.description', { date: new Date(pastApplications[0].createdAt).toLocaleDateString() })}
+									<Alert
+										title={t('apply.duplicate.accepted.title')}
+										color="green"
+										icon={<IconAlertCircle size="1rem" />}
+										mt="md"
+										key={i}
+									>
+										{t('apply.duplicate.accepted.description', {
+											date: new Date(pastApplications[0].createdAt).toLocaleDateString(),
+										})}
 									</Alert>
 								))}
 							<Button leftSection={<IconChevronLeft />} mt="md" onClick={() => router.back()}>
@@ -145,6 +184,7 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 export default Apply;
 export async function getStaticProps({ locale, params }: any) {
 	const res = await fetcher(`/buildteams/${params.team}/application/questions?slug=true`);
+	console.log(res);
 	const res2 = await fetcher(`/buildteams/${params.team}?slug=true`);
 	return {
 		props: {

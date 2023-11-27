@@ -2,20 +2,20 @@ import { Alert, Badge, Button, Divider, Grid, Group, Stack, Text, Textarea, useM
 import { IconCheck, IconX } from '@tabler/icons-react';
 import useSWR, { mutate } from 'swr';
 
-import { ApplicationQuestions } from '../../../../../utils/application/ApplicationQuestions';
+import { modals } from '@mantine/modals';
+import { showNotification } from '@mantine/notifications';
 import { NextPage } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Page from '../../../../../components/Page';
 import SettingsTabs from '../../../../../components/SettingsTabs';
-import fetcher from '../../../../../utils/Fetcher';
-import { modals } from '@mantine/modals';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { showNotification } from '@mantine/notifications';
 import { useUser } from '../../../../../hooks/useUser';
+import fetcher from '../../../../../utils/Fetcher';
+import { ApplicationQuestions } from '../../../../../utils/application/ApplicationQuestions';
 
 const Apply: NextPage = ({ team, id }: any) => {
 	const theme = useMantineTheme();
 	const user = useUser();
-	const { data } = useSWR(`/buildteams/${team}/applications/${id}?includeAnswers=true?slug=true`);
+	const { data } = useSWR(`/buildteams/${team}/applications/${id}?includeAnswers=true&slug=true`);
 
 	const handleSubmit = (accept: boolean) => {
 		const body = { reason: '', status: accept ? (data.trial ? 'TRIAL' : 'ACCEPTED') : 'DECLINED' };
@@ -55,7 +55,13 @@ const Apply: NextPage = ({ team, id }: any) => {
 				children: (
 					<>
 						<Text size="sm">Please enter Feedback below.</Text>
-						<Textarea placeholder="Feedback" autosize minRows={3} mt="md" onChange={(e) => (body.reason = e.target.value)} />
+						<Textarea
+							placeholder="Feedback"
+							autosize
+							minRows={3}
+							mt="md"
+							onChange={(e) => (body.reason = e.target.value)}
+						/>
 					</>
 				),
 				labels: { confirm: 'Confirm', cancel: 'Cancel' },
@@ -87,7 +93,15 @@ const Apply: NextPage = ({ team, id }: any) => {
 							{data?.ApplicationAnswer?.map((a: any, i: number) => {
 								const d = a.question;
 								const Question = ApplicationQuestions[d.type];
-								return <Question key={d.id} {...d} style={{ marginTop: i > 0 && theme.spacing.md }} readonly={true} value={a.answer} />;
+								return (
+									<Question
+										key={d.id}
+										{...d}
+										style={{ marginTop: i > 0 && theme.spacing.md }}
+										readonly={true}
+										value={a.answer}
+									/>
+								);
 							})}
 						</Grid.Col>
 						<Grid.Col span={{ md: 6 }} pl="lg">
@@ -126,7 +140,11 @@ const Apply: NextPage = ({ team, id }: any) => {
 							<h2>Actions</h2>
 							{data.status == 'SEND' ? (
 								<Group>
-									<Button leftSection={<IconCheck />} onClick={() => handleSubmit(true)} color="green">
+									<Button
+										leftSection={<IconCheck />}
+										onClick={() => handleSubmit(true)}
+										color="green"
+									>
 										Accept
 									</Button>
 									<Button leftSection={<IconX />} onClick={() => handleSubmit(false)} color="red">

@@ -1,5 +1,5 @@
-import { SWRConfig } from 'swr';
 import { useSession } from 'next-auth/react';
+import { SWRConfig } from 'swr';
 
 export default function SWRSetup({ content }: any) {
 	const session = useSession();
@@ -12,6 +12,7 @@ export default function SWRSetup({ content }: any) {
 				refreshInterval: 0,
 				fetcher: (resource: any, init: any) => {
 					if (!resource.includes('/undefined')) {
+						console.log(session?.data?.accessToken);
 						return fetch(process.env.NEXT_PUBLIC_API_URL + resource, {
 							headers: {
 								'Access-Control-Allow-Origin': '*',
