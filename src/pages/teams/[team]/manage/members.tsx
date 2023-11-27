@@ -85,7 +85,7 @@ const Settings = () => {
 	const handleEditManager = (member: any) => {
 		modals.open({
 			title: `Manage ${capitalize(member.username)}´s permission`,
-			onClose: () => (hasUpdated ? mutate(`/buildteams/${router.query.team}/managers`) : null),
+			onClose: () => mutate(`/buildteams/${router.query.team}/managers`),
 			children: (
 				<ScrollAreaAutosize mah={'80vh'}>
 					<Text fw="bold" mb="md">
@@ -98,7 +98,9 @@ const Settings = () => {
 						{permissions?.map((permission: any) => {
 							if (permission.global) return;
 
-							let memberHasPermission = member.permissions?.some((p: any) => p.permissionId == permission.id);
+							let memberHasPermission = member.permissions?.some(
+								(p: any) => p.permissionId == permission.id,
+							);
 							return (
 								<Checkbox
 									label={permission.description}

@@ -17,7 +17,14 @@ export const useUser = () => {
 		hasPermissions: (ps: string[], buildteam?: string) => {
 			const permissions = data?.permissions;
 			if (!permissions) return false;
-			if (permissions.filter((p: any) => (buildteam ? p.buildTeamId === buildteam : true)).find((p: any) => ps.includes(p.permission))) return true;
+			if (
+				permissions
+					.filter((p: any) =>
+						buildteam ? p.buildTeamId === buildteam || p.buildTeamSlug === buildteam : true,
+					)
+					.find((p: any) => ps.includes(p.permission))
+			)
+				return true;
 			return false;
 		},
 	};
