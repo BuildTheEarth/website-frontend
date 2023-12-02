@@ -2,14 +2,14 @@ import { Avatar, Badge, Grid, Group, Pagination, Text, useMantineColorScheme, us
 import { Pin, Users } from 'tabler-icons-react';
 
 import { NextPage } from 'next';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 import Page from '../../components/Page';
 import SearchInput from '../../components/SearchInput';
 import fetcher from '../../utils/Fetcher';
 import getCountryName from '../../utils/ISOCountries';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { useTranslation } from 'next-i18next';
 
 const Teams: NextPage = ({ data }: any) => {
 	const router = useRouter();
