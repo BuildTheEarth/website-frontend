@@ -3,15 +3,15 @@ import { IconPlus, IconTrash } from '@tabler/icons';
 import useSWR, { mutate } from 'swr';
 
 import { DateInput } from '@mantine/dates';
-import Page from '../../../../components/Page';
-import SettingsTabs from '../../../../components/SettingsTabs';
-import fetcher from '../../../../utils/Fetcher';
 import { modals } from '@mantine/modals';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { showNotification } from '@mantine/notifications';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import Page from '../../../../components/Page';
+import SettingsTabs from '../../../../components/SettingsTabs';
 import { useUser } from '../../../../hooks/useUser';
+import fetcher from '../../../../utils/Fetcher';
 
 var vagueTime = require('vague-time');
 
@@ -27,7 +27,8 @@ const Settings = () => {
 			centered: true,
 			children: (
 				<Text>
-					Are you sure you want to delete the showcase image of <b>{image.title}</b> from the team? This action cannot be undone.
+					Are you sure you want to delete the showcase image of <b>{image.title}</b> from the team?
+					This action cannot be undone.
 				</Text>
 			),
 			labels: { confirm: 'Delete Image', cancel: 'Cancel' },
@@ -39,32 +40,36 @@ const Settings = () => {
 					color: 'yellow',
 				}),
 			onConfirm: () => {
-							setLoading(true);
-							fetch(process.env.NEXT_PUBLIC_API_URL + `/buildteams/${router.query.team}/showcases/${image.id}`, {
-								method: 'DELETE',
-								headers: {
-									'Content-Type': 'application/json',
-									Authorization: 'Bearer ' + user.token,
-								},
-							})
-								.then((res) => res.json())
-								.then((res) => {
-									setLoading(false);
-									if (res.errors) {
-										showNotification({
-											title: 'Update failed',
-											message: res.error,
-											color: 'red',
-										});
-									} else {
-										showNotification({
-											title: 'Showcase Image removed',
-											message: 'All Data has been saved',
-											color: 'green',
-										});
-										mutate(`/buildteams/${router.query.team}/showcases`);
-									}
-								});
+				setLoading(true);
+				fetch(
+					process.env.NEXT_PUBLIC_API_URL +
+						`/buildteams/${router.query.team}/showcases/${image.id}`,
+					{
+						method: 'DELETE',
+						headers: {
+							'Content-Type': 'application/json',
+							Authorization: 'Bearer ' + user.token,
+						},
+					},
+				)
+					.then((res) => res.json())
+					.then((res) => {
+						setLoading(false);
+						if (res.errors) {
+							showNotification({
+								title: 'Update failed',
+								message: res.error,
+								color: 'red',
+							});
+						} else {
+							showNotification({
+								title: 'Showcase Image removed',
+								message: 'All Data has been saved',
+								color: 'green',
+							});
+							mutate(`/buildteams/${router.query.team}/showcases`);
+						}
+					});
 			},
 		});
 	};
@@ -77,8 +82,21 @@ const Settings = () => {
 			title: 'Add a new Showcase Image',
 			children: (
 				<>
-					<TextInput label="Name" description="The Name of the Showcase" required onChange={(e) => (name = e.target.value)} />
-					<FileInput label="Image" placeholder="Select an image..." mt="md" required onChange={(e) => (image = e)} accept="image/*" />
+					<TextInput
+						label="Name"
+						description="The Name of the Showcase"
+						required
+						onChange={(e) => (name = e.target.value)}
+					/>
+					<FileInput
+						label="Image"
+						placeholder="Select an image..."
+						description="Images will be resized to fit 1920x1080px ratio"
+						mt="md"
+						required
+						onChange={(e) => (image = e)}
+						accept="image/*"
+					/>
 					<DateInput defaultValue={new Date()} onChange={(e) => (date = e)} label="Date" mt="md" />
 					<Button
 						mt="md"
@@ -102,14 +120,17 @@ const Settings = () => {
 			date && formdata.append('date', date.toISOString());
 
 			modals.closeAll();
-			fetch(process.env.NEXT_PUBLIC_API_URL + `/buildteams/${router.query.team}/showcases`, {
-				method: 'POST',
-				headers: {
-					// 'Content-Type': 'multipart/form-data',
-					Authorization: 'Bearer ' + user.token,
+			fetch(
+				process.env.NEXT_PUBLIC_API_URL + `/buildteams/${router.query.team}/showcases?slug=true`,
+				{
+					method: 'POST',
+					headers: {
+						// 'Content-Type': 'multipart/form-data',
+						Authorization: 'Bearer ' + user.token,
+					},
+					body: formdata,
 				},
-				body: formdata,
-			})
+			)
 				.then((res) => res.json())
 				.then((res) => {
 					if (res.errors) {
@@ -125,7 +146,7 @@ const Settings = () => {
 							message: 'All Data has been saved',
 							color: 'green',
 						});
-						mutate(`/buildteams/${router.query.team}/showcases`);
+						mutate(`/buildteams/${router.query.team}/showcases?slug=true`);
 						setLoading(false);
 					}
 				});
@@ -140,12 +161,23 @@ const Settings = () => {
 				image: 'https://cdn.buildtheearth.net/static/thumbnails/teams.png',
 			}}
 			seo={{ nofollow: true, noindex: true }}
-			requiredPermissions={['team.settings.edit', 'team.socials.edit', 'team.application.edit', 'team.application.list', 'team.application.review']}
+			requiredPermissions={[
+				'team.settings.edit',
+				'team.socials.edit',
+				'team.application.edit',
+				'team.application.list',
+				'team.application.review',
+			]}
 			loading={!data}
 		>
 			<SettingsTabs team={router.query.team?.toString() || ''} loading={!data || loading}>
 				<Table.ScrollContainer minWidth={800}>
-					<Button leftSection={<IconPlus />} onClick={() => handleAddImage()} mb="md" loading={loading}>
+					<Button
+						leftSection={<IconPlus />}
+						onClick={() => handleAddImage()}
+						mb="md"
+						loading={loading}
+					>
 						Add Showcase Image
 					</Button>
 					<Table verticalSpacing="sm">
@@ -163,11 +195,18 @@ const Settings = () => {
 									<Table.Td>{s.title}</Table.Td>
 									<Table.Td>
 										<AspectRatio ratio={16 / 9}>
-											<img src={`https://cdn.buildtheearth.net/upload/${s.image.name}`} alt={s.title} />
+											<img
+												src={`https://cdn.buildtheearth.net/upload/${s.image.name}`}
+												alt={s.title}
+											/>
 										</AspectRatio>
 									</Table.Td>
 									<Table.Td>
-										<Tooltip withinPortal label={s.createdAt ? vagueTime.get({ to: new Date(s.createdAt) }) : ''} position="top-start">
+										<Tooltip
+											withinPortal
+											label={s.createdAt ? vagueTime.get({ to: new Date(s.createdAt) }) : ''}
+											position="top-start"
+										>
 											<p>{new Date(s.createdAt).toLocaleDateString()} </p>
 										</Tooltip>
 									</Table.Td>
