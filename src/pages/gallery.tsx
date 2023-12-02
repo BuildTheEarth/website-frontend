@@ -16,10 +16,10 @@ const MePage: NextPage = ({ data }: any) => {
 			loading={!data}
 			fullWidth
 		>
-			<Box my="xl">
-				<Container my="xl" size={'xl'}>
+			<Box m="xl">
+				<Container size="xl">
 					<GalleryGrid
-						gap={'xl'}
+						gap={0}
 						images={
 							data?.slice(0, 10).map((d: any) => ({
 								name: d?.title,
@@ -29,6 +29,7 @@ const MePage: NextPage = ({ data }: any) => {
 								href: `/teams/${d?.buildTeam.slug}`,
 							})) || [{}]
 						}
+						showTooltipOnHover={true}
 					/>
 				</Container>
 			</Box>
