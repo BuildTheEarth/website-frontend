@@ -200,7 +200,14 @@ const Faq: NextPage = () => {
 						<h2>{action} FAQ Question</h2>
 					</Group>
 					<form onSubmit={form.onSubmit(handleSubmit)}>
-						<TextInput mt="md" placeholder="How can i ... ?" label="Question" description="Question to display on top" required {...form.getInputProps('question')} />
+						<TextInput
+							mt="md"
+							placeholder="How can i ... ?"
+							label="Question"
+							description="Question to display on top"
+							required
+							{...form.getInputProps('question')}
+						/>
 						<Input.Wrapper label="Answer" mt="md" required description="Answer to the question">
 							<RTE style={{ marginTop: '5px' }} {...form.getInputProps('answer')} />
 						</Input.Wrapper>

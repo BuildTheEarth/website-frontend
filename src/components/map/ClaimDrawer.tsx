@@ -1,5 +1,27 @@
-import { Alert, Avatar, Button, Center, Drawer, Flex, Group, Loader, ScrollArea, Text } from '@mantine/core';
-import { IconCheck, IconCopy, IconCrane, IconLink, IconPencil, IconPin, IconRuler2, IconUser, IconUsersGroup, IconZoomIn } from '@tabler/icons-react';
+import {
+	Alert,
+	Avatar,
+	Button,
+	Center,
+	Drawer,
+	Flex,
+	Group,
+	Loader,
+	ScrollArea,
+	Text,
+} from '@mantine/core';
+import {
+	IconCheck,
+	IconCopy,
+	IconCrane,
+	IconLink,
+	IconPencil,
+	IconPin,
+	IconRuler2,
+	IconUser,
+	IconUsersGroup,
+	IconZoomIn,
+} from '@tabler/icons-react';
 
 import { StatsGrid } from '../Stats';
 import { getAreaOfPolygon } from 'geolib';
@@ -26,7 +48,15 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 	if (props.id == null) return <></>;
 
 	return (
-		<Drawer opened={props.open} onClose={() => props.setOpen(false)} title={t('claim.details.title')} size="md" overlayProps={{ blur: 3 }} lockScroll scrollAreaComponent={ScrollArea.Autosize}>
+		<Drawer
+			opened={props.open}
+			onClose={() => props.setOpen(false)}
+			title={t('claim.details.title')}
+			size="md"
+			overlayProps={{ blur: 3 }}
+			lockScroll
+			scrollAreaComponent={ScrollArea.Autosize}
+		>
 			{isLoading || !data ? (
 				<Center h="100%" w="100%">
 					<Loader mt={'xl'} />
@@ -37,13 +67,28 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 						{data.name}
 					</StatsGrid>
 					{!data.finished && (
-						<Alert color="red" mb="md" radius="md" title={t('claim.details.status.title')} icon={<IconCrane />}>
+						<Alert
+							color="red"
+							mb="md"
+							radius="md"
+							title={t('claim.details.status.title')}
+							icon={<IconCrane />}
+						>
 							{t('claim.details.status.description')}
 						</Alert>
 					)}
-					<StatsGrid title={t('claim.details.team')} icon={IconUsersGroup} paperProps={{ mb: 'md' }}>
+					<StatsGrid
+						title={t('claim.details.team')}
+						icon={IconUsersGroup}
+						paperProps={{ mb: 'md' }}
+					>
 						<Flex justify="flex-start" align="center" direction="row" wrap="wrap" gap="md">
-							<Avatar src={data.buildTeam.icon} size={60} component="a" href={`/teams/${data.buildTeam.id}`} />
+							<Avatar
+								src={data.buildTeam.icon}
+								size={60}
+								component="a"
+								href={`/teams/${data.buildTeam.id}`}
+							/>
 							<Text size="xl" fw={700}>
 								{data.buildTeam.name}
 							</Text>
@@ -58,7 +103,11 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 						</Flex>
 					</StatsGrid>
 					{data.builders && (
-						<StatsGrid title={t('claim.details.builders')} icon={IconUsersGroup} paperProps={{ mb: 'md' }}>
+						<StatsGrid
+							title={t('claim.details.builders')}
+							icon={IconUsersGroup}
+							paperProps={{ mb: 'md' }}
+						>
 							<Avatar.Group>
 								{data.builders.slice(0, 4).map((b: any) => (
 									<Avatar key={b.id}>{b?.name?.at(0)}</Avatar>
@@ -67,8 +116,16 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 							</Avatar.Group>
 						</StatsGrid>
 					)}
-					<StatsGrid title={t('claim.details.area')} icon={IconRuler2} paperProps={{ mb: 'md' }} isText>
-						{Math.round(getAreaOfPolygon(data.area.map((p: string) => p.split(', ').map(Number)))).toLocaleString()} m²
+					<StatsGrid
+						title={t('claim.details.area')}
+						icon={IconRuler2}
+						paperProps={{ mb: 'md' }}
+						isText
+					>
+						{Math.round(
+							getAreaOfPolygon(data.area.map((p: string) => p.split(', ').map(Number))),
+						).toLocaleString()}{' '}
+						m²
 					</StatsGrid>
 					<Group grow>
 						<Button
@@ -114,7 +171,12 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 							{t('claim.details.actions.link')}
 						</Button>
 						{data.owner?.id == user?.id && (
-							<Button component="a" variant="outline" leftSection={<IconPencil />} href={`/me/claims/${props.id}`}>
+							<Button
+								component="a"
+								variant="outline"
+								leftSection={<IconPencil />}
+								href={`/me/claims/${props.id}`}
+							>
 								{t('claim.details.actions.edit')}
 							</Button>
 						)}

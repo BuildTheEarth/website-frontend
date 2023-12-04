@@ -34,7 +34,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 			<MantineProvider
 				defaultColorScheme="dark"
 				theme={{
-					fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
+					fontFamily:
+						'"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
 					breakpoints: {
 						xs: '36em',
 						sm: '48em',

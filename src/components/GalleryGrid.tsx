@@ -1,4 +1,12 @@
-import { Avatar, BackgroundImage, Badge, Group, SimpleGrid, Title, useMantineTheme } from '@mantine/core';
+import {
+	Avatar,
+	BackgroundImage,
+	Badge,
+	Group,
+	SimpleGrid,
+	Title,
+	useMantineTheme,
+} from '@mantine/core';
 
 import Link from 'next/link';
 import React from 'react';

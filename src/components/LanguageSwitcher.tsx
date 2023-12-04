@@ -22,7 +22,9 @@ export function LanguageSwitcher() {
 	const { t } = useTranslation();
 	const router = useRouter();
 
-	const [selected, setSelected] = useState(languages.find((l: any) => l.code == (router.locale || 'en')));
+	const [selected, setSelected] = useState(
+		languages.find((l: any) => l.code == (router.locale || 'en')),
+	);
 	const changeLanguage = (lang: { label: string; code: string; flag: string }) => {
 		setSelected(lang);
 		const { pathname, asPath, query } = router;
@@ -30,17 +32,34 @@ export function LanguageSwitcher() {
 	};
 
 	const items = languages.map((item) => (
-		<Menu.Item leftSection={<span className={`fi fi-${item.flag} fis`} style={{ height: 18, width: 18, borderRadius: '50%' }}></span>} onClick={() => changeLanguage(item)} key={item.label}>
+		<Menu.Item
+			leftSection={
+				<span
+					className={`fi fi-${item.flag} fis`}
+					style={{ height: 18, width: 18, borderRadius: '50%' }}
+				></span>
+			}
+			onClick={() => changeLanguage(item)}
+			key={item.label}
+		>
 			{item.label}
 		</Menu.Item>
 	));
 
 	return (
-		<Menu onOpen={() => setOpened(true)} onClose={() => setOpened(false)} radius="sm" width="target">
+		<Menu
+			onOpen={() => setOpened(true)}
+			onClose={() => setOpened(false)}
+			radius="sm"
+			width="target"
+		>
 			<Menu.Target>
 				<UnstyledButton className={classes.control} data-opened={opened}>
 					<Group gap="xs">
-						<span className={`fi fi-${selected && selected.flag} fis`} style={{ height: 22, width: 22, borderRadius: '50%' }}></span>
+						<span
+							className={`fi fi-${selected && selected.flag} fis`}
+							style={{ height: 22, width: 22, borderRadius: '50%' }}
+						></span>
 						<span className={classes.label}>{selected && selected.label}</span>
 					</Group>
 					<ChevronDown size={16} className={classes.icon} data-opened={opened} />

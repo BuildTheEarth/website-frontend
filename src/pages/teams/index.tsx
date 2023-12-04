@@ -1,4 +1,13 @@
-import { Avatar, Badge, Grid, Group, Pagination, Text, useMantineColorScheme, useMantineTheme } from '@mantine/core';
+import {
+	Avatar,
+	Badge,
+	Grid,
+	Group,
+	Pagination,
+	Text,
+	useMantineColorScheme,
+	useMantineTheme,
+} from '@mantine/core';
 import { Pin, Users } from 'tabler-icons-react';
 
 import { NextPage } from 'next';
@@ -35,14 +44,17 @@ const Teams: NextPage = ({ data }: any) => {
 			<SearchInput onSearch={(search) => setSearch(search)} />
 			<Grid gutter="xl" style={{ marginTop: theme.spacing.xl }}>
 				{data
-					?.filter((element: any) => element.name.toLowerCase().includes(search?.toLowerCase() || ''))
+					?.filter((element: any) =>
+						element.name.toLowerCase().includes(search?.toLowerCase() || ''),
+					)
 					.slice(activePage * 8 - 8, activePage * 8)
 					.map((element: any, i: number) => (
 						<Grid.Col key={i} span={{ sm: 6 }}>
 							<Group
 								wrap="nowrap"
 								style={{
-									backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
+									backgroundColor:
+										scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 									borderRadius: theme.radius.xs,
 									cursor: 'pointer',
 								}}
@@ -56,7 +68,9 @@ const Teams: NextPage = ({ data }: any) => {
 											{element.name}
 										</Text>
 
-										{element?.members?.length >= 1 ? <Badge color="green">{t('common:builder')}</Badge> : null}
+										{element?.members?.length >= 1 ? (
+											<Badge color="green">{t('common:builder')}</Badge>
+										) : null}
 									</Group>
 
 									<Group wrap="nowrap" gap={10} mt={3}>
@@ -82,7 +96,17 @@ const Teams: NextPage = ({ data }: any) => {
 					))}
 			</Grid>
 			<Group justify="center" pt="md">
-				<Pagination total={Math.ceil(data?.filter((element: any) => element.name.toLowerCase().includes(search?.toLowerCase() || '')).length / 8)} radius="xs" value={activePage} onChange={setPage} siblings={1} />
+				<Pagination
+					total={Math.ceil(
+						data?.filter((element: any) =>
+							element.name.toLowerCase().includes(search?.toLowerCase() || ''),
+						).length / 8,
+					)}
+					radius="xs"
+					value={activePage}
+					onChange={setPage}
+					siblings={1}
+				/>
 			</Group>
 		</Page>
 	);

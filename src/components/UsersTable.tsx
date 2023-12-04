@@ -11,7 +11,13 @@ interface UsersTableProps {
 	actions?: (data: any) => any;
 }
 
-export function UsersTable({ data, actions, extraHead, extraContent, loading = false }: UsersTableProps) {
+export function UsersTable({
+	data,
+	actions,
+	extraHead,
+	extraContent,
+	loading = false,
+}: UsersTableProps) {
 	const rows = !loading ? (
 		data.map((user) => (
 			<Table.Tr key={user.id}>
@@ -32,8 +38,14 @@ export function UsersTable({ data, actions, extraHead, extraContent, loading = f
 				</Table.Td>
 				{extraContent ? extraContent(user) : null}
 				<Table.Td>
-					<Tooltip withinPortal label={new Date(user.createdTimestamp).toLocaleDateString()} position="top-start">
-						<p>{user.createdTimestamp ? vagueTime.get({ to: new Date(user.createdTimestamp) }) : ''}</p>
+					<Tooltip
+						withinPortal
+						label={new Date(user.createdTimestamp).toLocaleDateString()}
+						position="top-start"
+					>
+						<p>
+							{user.createdTimestamp ? vagueTime.get({ to: new Date(user.createdTimestamp) }) : ''}
+						</p>
 					</Tooltip>
 				</Table.Td>
 				<Table.Td>

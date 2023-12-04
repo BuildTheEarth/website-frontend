@@ -1,4 +1,11 @@
-import { Center, Container, Paper, Text, useMantineColorScheme, useMantineTheme } from '@mantine/core';
+import {
+	Center,
+	Container,
+	Paper,
+	Text,
+	useMantineColorScheme,
+	useMantineTheme,
+} from '@mantine/core';
 import Header, { LogoHeader } from './Header';
 import { NextSeo, NextSeoProps } from 'next-seo';
 import React, { useEffect } from 'react';
@@ -52,7 +59,12 @@ const Page = (props: PageProps) => {
 		<ErrorPage code={'403'} />
 	) : (
 		<>
-			<NextSeo title={props.title || props.head?.title} canonical={'https://beta.buildtheearth.net' + router.pathname} description={props.description} {...props.seo} />
+			<NextSeo
+				title={props.title || props.head?.title}
+				canonical={'https://beta.buildtheearth.net' + router.pathname}
+				description={props.description}
+				{...props.seo}
+			/>
 			{!props.disabled?.header && (
 				<Header
 					links={[
@@ -74,7 +86,8 @@ const Page = (props: PageProps) => {
 				{props.head && (
 					<motion.div
 						style={{
-							backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+							backgroundColor:
+								scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
 							background: `url("${props.head?.image || ''}") center center / cover`,
 							backgroundPositionY: bgPosY,
 							width: '100%',
@@ -103,7 +116,9 @@ const Page = (props: PageProps) => {
 								{props.head?.title}
 								{props.head?.subtitle && (
 									<>
-										<Text style={{ fontWeight: 'normal', fontSize: theme.fontSizes.lg }}>{props.head?.subtitle}</Text>
+										<Text style={{ fontWeight: 'normal', fontSize: theme.fontSizes.lg }}>
+											{props.head?.subtitle}
+										</Text>
 									</>
 								)}
 							</h1>
@@ -136,7 +151,11 @@ const Page = (props: PageProps) => {
 export const LogoPage = (props: PageProps & { headData: any; team: string }) => {
 	return (
 		<Page {...props} fullWidth>
-			<LogoHeader {...props.headData} applyHref={`${props.team}/apply`} settingsHref={`${props.team}/manage/settings`} />
+			<LogoHeader
+				{...props.headData}
+				applyHref={`${props.team}/apply`}
+				settingsHref={`${props.team}/manage/settings`}
+			/>
 			<ContentContainer style={props.style} smallPadding={props.smallPadding}>
 				{props.children}
 			</ContentContainer>
@@ -145,9 +164,18 @@ export const LogoPage = (props: PageProps & { headData: any; team: string }) => 
 };
 export default Page;
 
-const ContentContainer = (props: { children: any; smallPadding?: boolean; style?: React.CSSProperties }) => {
+const ContentContainer = (props: {
+	children: any;
+	smallPadding?: boolean;
+	style?: React.CSSProperties;
+}) => {
 	return (
-		<Container className={classes.container} size="lg" style={props.style} data-smallpadding={props.smallPadding}>
+		<Container
+			className={classes.container}
+			size="lg"
+			style={props.style}
+			data-smallpadding={props.smallPadding}
+		>
 			{props.children}
 		</Container>
 	);

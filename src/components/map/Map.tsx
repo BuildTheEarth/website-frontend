@@ -37,7 +37,17 @@ const styles: MapboxStyleDefinition[] = [
 	{ title: 'Streets', uri: 'mapbox://styles/mapbox/streets-v12' },
 ];
 
-function Map({ initialOptions = {}, onMapLoaded, onMapRemoved, allowFullscreen, savePos = true, themeControls = true, layerSetup, src, initialStyle }: IMap) {
+function Map({
+	initialOptions = {},
+	onMapLoaded,
+	onMapRemoved,
+	allowFullscreen,
+	savePos = true,
+	themeControls = true,
+	layerSetup,
+	src,
+	initialStyle,
+}: IMap) {
 	// Mapbox map
 	const [map, setMap] = React.useState<mapboxgl.Map>();
 	// Next Router
@@ -93,7 +103,16 @@ function Map({ initialOptions = {}, onMapLoaded, onMapRemoved, allowFullscreen, 
 			onMapLoaded && (await onMapLoaded(mapboxMap));
 			setLoading(false);
 
-			src && mapLoadGeoJson(mapboxMap, src, 'claims', 'fill', 'claims-source', mapStatusColorPolygon, mapStatusColorLine);
+			src &&
+				mapLoadGeoJson(
+					mapboxMap,
+					src,
+					'claims',
+					'fill',
+					'claims-source',
+					mapStatusColorPolygon,
+					mapStatusColorLine,
+				);
 
 			layerSetup && (await layerSetup(mapboxMap));
 
@@ -105,11 +124,26 @@ function Map({ initialOptions = {}, onMapLoaded, onMapRemoved, allowFullscreen, 
 			// 		}),
 			// 	);
 
-			mapboxMap.addControl(new GeolocateControl({ positionOptions: { enableHighAccuracy: true }, showUserLocation: true }));
+			mapboxMap.addControl(
+				new GeolocateControl({
+					positionOptions: { enableHighAccuracy: true },
+					showUserLocation: true,
+				}),
+			);
 			mapboxMap.addControl(new mapboxgl.NavigationControl());
 
 			mapboxMap.on('style.load', async () => {
-				src && mapLoadGeoJson(mapboxMap, src, 'claims', 'fill', 'claims-source', mapStatusColorPolygon, mapStatusColorLine, true);
+				src &&
+					mapLoadGeoJson(
+						mapboxMap,
+						src,
+						'claims',
+						'fill',
+						'claims-source',
+						mapStatusColorPolygon,
+						mapStatusColorLine,
+						true,
+					);
 				layerSetup && (await layerSetup(mapboxMap));
 			});
 		});
@@ -182,7 +216,16 @@ export function mapCopyCoordinates(map: any, clipboard: any) {
 }
 // Map Load Helper Functions
 
-export async function mapLoadGeoJson(map: mapboxgl.Map, url: string, layer: string, layerType: any, source: string, paint: any, outline?: boolean | any, noSource?: boolean) {
+export async function mapLoadGeoJson(
+	map: mapboxgl.Map,
+	url: string,
+	layer: string,
+	layerType: any,
+	source: string,
+	paint: any,
+	outline?: boolean | any,
+	noSource?: boolean,
+) {
 	if (!noSource && !map.getSource(source)) {
 		map.addSource(source, {
 			type: 'geojson',
@@ -196,7 +239,16 @@ export async function mapLoadGeoJson(map: mapboxgl.Map, url: string, layer: stri
 		source: source,
 		paint: paint,
 	});
-	if (outline) mapLoadGeoJson(map, url, layer + '-outline', 'line', source, typeof outline == 'boolean' ? paint : outline, false);
+	if (outline)
+		mapLoadGeoJson(
+			map,
+			url,
+			layer + '-outline',
+			'line',
+			source,
+			typeof outline == 'boolean' ? paint : outline,
+			false,
+		);
 }
 
 // Map Color Helper Functions

@@ -31,7 +31,9 @@ const Faq: NextPage = ({ data }: any) => {
 		>
 			<Flex justify="flex-end" align="center" direction="row" mb="md">
 				<SearchInput onSearch={(search) => setSearch(search)} />
-				{(user.hasPermission('faq.add') || user.hasPermission('faq.edit') || user.hasPermission('faq.remove')) && (
+				{(user.hasPermission('faq.add') ||
+					user.hasPermission('faq.edit') ||
+					user.hasPermission('faq.remove')) && (
 					<Button leftSection={<IconEdit />} onClick={() => router.push('faq/manage')} ml="md">
 						{t('edit')}
 					</Button>
@@ -44,7 +46,9 @@ const Faq: NextPage = ({ data }: any) => {
 						<Accordion.Item value={element.id} key={element.id}>
 							<Accordion.Control>{element.question}</Accordion.Control>
 							<Accordion.Panel>
-								<div dangerouslySetInnerHTML={{ __html: isClient ? sanitizeHtml(element.answer) : '' }} />
+								<div
+									dangerouslySetInnerHTML={{ __html: isClient ? sanitizeHtml(element.answer) : '' }}
+								/>
 							</Accordion.Panel>
 						</Accordion.Item>
 					))}

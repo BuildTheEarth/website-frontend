@@ -1,6 +1,29 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Alert, Badge, Button, Card, Flex, Group, Tabs, Text, TextInput, Title, rem } from '@mantine/core';
-import { IconAlertCircle, IconBroadcast, IconBrowser, IconCheck, IconDeviceFloppy, IconKey, IconLink, IconReload, IconSettings } from '@tabler/icons-react';
+import {
+	Alert,
+	Badge,
+	Button,
+	Card,
+	Flex,
+	Group,
+	Tabs,
+	Text,
+	TextInput,
+	Title,
+	rem,
+} from '@mantine/core';
+import {
+	IconAlertCircle,
+	IconBroadcast,
+	IconBrowser,
+	IconCheck,
+	IconDeviceFloppy,
+	IconKey,
+	IconLink,
+	IconReload,
+	IconSettings,
+	IconUnlink,
+} from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 import useSWR, { mutate } from 'swr';
 
@@ -8,6 +31,7 @@ import { Discord } from '@icons-pack/react-simple-icons';
 import { useForm } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
 import { NextPage } from 'next';
+import { useSession } from 'next-auth/react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
@@ -24,7 +48,15 @@ const Settings: NextPage = ({ type }: any) => {
 	const form = useForm({});
 
 	useEffect(() => {
-		if (!isLoading && data) form.setValues({ username: data.username, email: data.email, avatar: data.avatar, firstName: data.firstName, lastName: data.lastName, name: data.name });
+		if (!isLoading && data)
+			form.setValues({
+				username: data.username,
+				email: data.email,
+				avatar: data.avatar,
+				firstName: data.firstName,
+				lastName: data.lastName,
+				name: data.name,
+			});
 	}, [isLoading]);
 
 	const handleSubmit = (e: any) => {
@@ -177,10 +209,11 @@ const Settings: NextPage = ({ type }: any) => {
 								data={
 									data.federatedIdentities.filter((i: any) => i.identityProvider === 'discord')[0]
 								}
-								reload={() => mutate(`/users/${user?.user?.id}/kc`)}
+								reload={() => router.reload()}
 							/>
 						)}
 					</Tabs.Panel>
+
 					<Tabs.Panel value="session" mt="md">
 						{data.sessions?.map((s: any, i: number) => (
 							<Card mb={'md'} withBorder key={i}>
@@ -222,43 +255,81 @@ export async function getServerSideProps({ locale, params }: any) {
 	};
 }
 
-const DiscordLinkedAccount = ({ isLinked, data, sessionData, reload }: any) => {
-	// const [discordLinkUrl, setDiscordLinkUrl] = useState('');
-	// const { data: session } = useSession();
-	// const [unlinkLoading, setUnlinkLoading] = useState(false);
+const DiscordLinkedAccount = ({ isLinked, data, reload }: any) => {
+	const [discordLinkUrl, setDiscordLinkUrl] = useState(
+		`https://auth.buildtheearth.net/realms/website/account/linked-accounts/discord?providerId=discord&redirect_uri=${encodeURIComponent(
+			window.location.href,
+		)}`,
+	);
+	const { data: session } = useSession();
+	const user = useUser();
+	const [unlinkLoading, setUnlinkLoading] = useState(false);
 
-	// async function hash(string: string) {
-	// 	const utf8 = new TextEncoder().encode(string);
-	// 	const hashBuffer = await crypto.subtle.digest('SHA-256', utf8);
-	// 	const base64Hash = Buffer.from(hashBuffer).toString('base64');
-	// 	return base64Hash.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-	// }
+	async function hash(string: string) {
+		const utf8 = new TextEncoder().encode(string);
+		const hashBuffer = await crypto.subtle.digest('SHA-256', utf8);
+		const base64Hash = Buffer.from(hashBuffer).toString('base64');
+		return base64Hash.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+	}
 
-	// const generateDiscordLinkURL = async () => {
-	// 	const nonce = crypto.randomUUID();
-	// 	const input = nonce + session?.user.session_state + session?.user.azp + 'discord';
-	// 	console.log('input', input);
-	// 	const digest = await hash(input);
-	// 	const link = `https://auth.buildtheearth.net/realms/website/broker/discord/link?client_id=frontend&redirect_uri=${encodeURIComponent(window.location.href)}&nonce=${nonce}&hash=${digest}`;
-	// 	setDiscordLinkUrl(link);
-	// 	console.log(discordLinkUrl, link);
-	// };
+	const generateDiscordLinkURL = async () => {
+		const nonce = crypto.randomUUID();
+		const input = nonce + session?.user.session_state + session?.user.azp + 'discord';
+		console.log('input', input);
+		const digest = await hash(input);
+		const link = `https://auth.buildtheearth.net/realms/website/broker/discord/link?client_id=frontend&redirect_uri=${encodeURIComponent(
+			window.location.href,
+		)}&nonce=${nonce}&hash=${digest}`;
+		setDiscordLinkUrl(link);
+		console.log(discordLinkUrl, link);
+	};
 
-	// const unlink = async () => {
-	// 	setUnlinkLoading(true);
-	// 	await axios.delete(`https://auth.buildtheearth.net/realms/website/account/linked-accounts/discord`, { headers: { authorization: 'Bearer ' + sessionData.accessToken } });
-	// 	await reload();
-	// 	setUnlinkLoading(false);
-	// };
+	const unlink = async () => {
+		setUnlinkLoading(true);
+		fetch(process.env.NEXT_PUBLIC_API_URL + `/users/${user?.user?.id}/socials/discord`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + user.token,
+			},
+		}).then((res) => {
+			if (!res.ok) {
+				showNotification({
+					title: 'Unlink failed',
+					message: 'Please try again later',
+					color: 'red',
+				});
+				reload();
+				setUnlinkLoading(false);
+			} else {
+				showNotification({
+					title: 'Account unlinked',
+					message: 'All Data has been saved',
+					color: 'green',
+					icon: <IconCheck />,
+				});
+				setUnlinkLoading(false);
+			}
+		});
+	};
+	const link = () => {
+		fetch(discordLinkUrl, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + session?.accessToken,
+			},
+		});
+	};
 
-	// useEffect(() => {
-	// 	generateDiscordLinkURL();
-	// }, []);
+	useEffect(() => {
+		generateDiscordLinkURL();
+	}, []);
 
 	return (
 		<Card mb={'md'} withBorder>
 			<Flex align={'center'} gap={'md'}>
-				<Discord />
+				<Discord size={'3rem'} />
 				<Flex gap={5} direction={'column'} style={{ flex: 1 }}>
 					<Flex align={'center'} gap={'xs'}>
 						<Text fw={'bold'}>Discord</Text>
@@ -268,18 +339,31 @@ const DiscordLinkedAccount = ({ isLinked, data, sessionData, reload }: any) => {
 							</Badge>
 						)}
 					</Flex>
-					{isLinked && <Text>{data.userName}</Text>}
+					{isLinked && <Text>{data.userName.replace('#0', '')}</Text>}
 				</Flex>
-				{/* {isLinked ? (
-					<Button onClick={unlink} loading={unlinkLoading} leftSection={<IconUnlink size={18} />}>
+				{isLinked ? (
+					<Button
+						onClick={unlink}
+						loading={unlinkLoading}
+						leftSection={<IconUnlink size={18} />}
+						variant="gradient"
+						gradient={{ from: 'red', to: 'orange' }}
+					>
 						Unlink
 					</Button>
 				) : (
-					<Button component={'a'} href={discordLinkUrl} disabled={!discordLinkUrl} leftSection={<IconLink size={18} />}>
+					<Button
+						component={'a'}
+						// onClick={link}
+						href={discordLinkUrl}
+						disabled={!discordLinkUrl}
+						leftSection={<IconLink size={18} />}
+						variant="gradient"
+					>
 						Link
 					</Button>
-				)} */}
-				<Button leftSection={<IconLink size={18} />}>Link</Button>
+				)}
+				{/* <Button leftSection={<IconLink size={18} />}>Link</Button> */}
 			</Flex>
 		</Card>
 	);

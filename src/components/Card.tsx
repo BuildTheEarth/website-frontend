@@ -12,9 +12,23 @@ interface ArticleCardImageProps {
 	onClick?: () => void;
 }
 
-export function BackgroundCard({ image, title, category, style, showButton, buttonText, onClick }: ArticleCardImageProps) {
+export function BackgroundCard({
+	image,
+	title,
+	category,
+	style,
+	showButton,
+	buttonText,
+	onClick,
+}: ArticleCardImageProps) {
 	return (
-		<Paper shadow="md" p="xl" radius="md" style={{ backgroundImage: `url(${image})`, position: 'relative', ...style }} className={classes.card}>
+		<Paper
+			shadow="md"
+			p="xl"
+			radius="md"
+			style={{ backgroundImage: `url(${image})`, position: 'relative', ...style }}
+			className={classes.card}
+		>
 			<div style={{ zIndex: 8 }}>
 				<Text className={classes.category} size="xs">
 					{category}
@@ -35,7 +49,12 @@ export function BackgroundCard({ image, title, category, style, showButton, butt
 					left: 0,
 				}}
 			>
-				<img src="/galleryoverlay.svg" alt="" width={'100%'} style={{ rotate: '180deg', borderRadius: '8px' }} />
+				<img
+					src="/galleryoverlay.svg"
+					alt=""
+					width={'100%'}
+					style={{ rotate: '180deg', borderRadius: '8px' }}
+				/>
 			</div>
 		</Paper>
 	);

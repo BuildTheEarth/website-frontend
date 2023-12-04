@@ -1,8 +1,32 @@
-import { IconAerialLift, IconBuilding, IconBuildingBridge, IconFiretruck, IconPin, IconPlaneTilt, IconRoad, IconShip, IconTank, IconTractor, IconTrain } from '@tabler/icons';
+import {
+	IconAerialLift,
+	IconBuilding,
+	IconBuildingBridge,
+	IconFiretruck,
+	IconPin,
+	IconPlaneTilt,
+	IconRoad,
+	IconShip,
+	IconTank,
+	IconTractor,
+	IconTrain,
+} from '@tabler/icons';
 import { IconLineDashed, IconTree } from '@tabler/icons-react';
 
-export function osmTypeToReadable(feature: any): { description: string; name: string; zoom: number; icon: any; color: string } {
-	return { description: typeToDescription(feature), name: typeToName(feature), zoom: typeToZoom(feature.properties.osm_key), icon: typeToIcon(feature.properties.osm_key), color: typeToColor(feature.properties.osm_key) };
+export function osmTypeToReadable(feature: any): {
+	description: string;
+	name: string;
+	zoom: number;
+	icon: any;
+	color: string;
+} {
+	return {
+		description: typeToDescription(feature),
+		name: typeToName(feature),
+		zoom: typeToZoom(feature.properties.osm_key),
+		icon: typeToIcon(feature.properties.osm_key),
+		color: typeToColor(feature.properties.osm_key),
+	};
 }
 
 function typeToName(feature: any): string {

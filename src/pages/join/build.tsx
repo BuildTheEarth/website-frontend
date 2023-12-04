@@ -1,4 +1,17 @@
-import { ActionIcon, Avatar, Button, Center, Container, Grid, Group, Stack, Text, Title, useMantineColorScheme, useMantineTheme } from '@mantine/core';
+import {
+	ActionIcon,
+	Avatar,
+	Button,
+	Center,
+	Container,
+	Grid,
+	Group,
+	Stack,
+	Text,
+	Title,
+	useMantineColorScheme,
+	useMantineTheme,
+} from '@mantine/core';
 import { IconChevronDown, IconChevronLeft } from '@tabler/icons';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
@@ -27,7 +40,8 @@ const Build: NextPage = ({ data }: any) => {
 		<Page fullWidth title="Visit" description="Visit Building the Earth">
 			<div
 				style={{
-					backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+					backgroundColor:
+						scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
 					background: `url("https://cdn.buildtheearth.net/static/getstarted/build.webp") center center / cover`,
 					width: '100%',
 					height: '95vh',
@@ -41,7 +55,11 @@ const Build: NextPage = ({ data }: any) => {
 						padding: 16,
 					}}
 				>
-					<Title style={{ color: '#ffffff', fontSize: 64, textShadow: '0px 0px 28px #000' }} ta="center" order={1}>
+					<Title
+						style={{ color: '#ffffff', fontSize: 64, textShadow: '0px 0px 28px #000' }}
+						ta="center"
+						order={1}
+					>
 						{t('build.title')}
 					</Title>
 				</Center>
@@ -55,7 +73,13 @@ const Build: NextPage = ({ data }: any) => {
 					}}
 				>
 					<motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-						<ActionIcon component={Link} styles={{ root: { height: 64, width: 64, textShadow: '0px 0px 28px #000' } }} radius="xs" variant="transparent" href="#more">
+						<ActionIcon
+							component={Link}
+							styles={{ root: { height: 64, width: 64, textShadow: '0px 0px 28px #000' } }}
+							radius="xs"
+							variant="transparent"
+							href="#more"
+						>
 							<IconChevronDown size={64} color="white" />
 						</ActionIcon>
 					</motion.div>
@@ -85,7 +109,9 @@ const Build: NextPage = ({ data }: any) => {
 				<SearchInput onSearch={(search) => setSearch(search)} />
 				<Grid mt="xl" pt="xl" gutter={{ base: '3%' }}>
 					{data
-						?.filter((element: any) => element.name?.toLowerCase().includes(search?.toLowerCase() || ''))
+						?.filter((element: any) =>
+							element.name?.toLowerCase().includes(search?.toLowerCase() || ''),
+						)
 						.sort((a: any, b: any) => a.location.localeCompare(b.location))
 						.slice(0, 8)
 						.map((element: any, i: number) => (
@@ -93,7 +119,8 @@ const Build: NextPage = ({ data }: any) => {
 								<Group
 									wrap="nowrap"
 									style={{
-										backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
+										backgroundColor:
+											scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 										borderRadius: 0,
 										cursor: 'pointer',
 										boxShadow: '10px 10px 0px 4px rgba(0,0,0,0.45)',
@@ -156,5 +183,7 @@ export default Build;
 export async function getStaticProps({ locale }: any) {
 	const res = await fetcher('/buildteams');
 
-	return { props: { data: res, ...(await serverSideTranslations(locale, ['common', 'getstarted'])) } };
+	return {
+		props: { data: res, ...(await serverSideTranslations(locale, ['common', 'getstarted'])) },
+	};
 }

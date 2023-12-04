@@ -12,7 +12,9 @@ export interface LongTextQuestionProps extends ApplicationQuestion {
 
 function validation(props: LongTextQuestionProps): (value: string) => void {
 	return (value: string) => {
-		return value.split('').length > (props.additionalData.length || 200) ? `Text is too long, please reduce it to ${props.additionalData.length || 200} characters` : false;
+		return value.split('').length > (props.additionalData.length || 200)
+			? `Text is too long, please reduce it to ${props.additionalData.length || 200} characters`
+			: false;
 	};
 }
 
@@ -40,7 +42,13 @@ const LongTextQuestion = (props: LongTextQuestionProps) => {
 const EditQuestion = ({ editingQuestion, handleUpdateEditingQuestion }: any) => {
 	return (
 		<>
-			<NumberInput label="Maximum Length" max={200} description="How long can the text be?" defaultValue={editingQuestion?.additionalData.length} onChange={(e) => handleUpdateEditingQuestion({ length: e }, true)} />
+			<NumberInput
+				label="Maximum Length"
+				max={200}
+				description="How long can the text be?"
+				defaultValue={editingQuestion?.additionalData.length}
+				onChange={(e) => handleUpdateEditingQuestion({ length: e }, true)}
+			/>
 		</>
 	);
 };

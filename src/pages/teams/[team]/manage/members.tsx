@@ -1,4 +1,17 @@
-import { ActionIcon, Badge, Button, Checkbox, Group, ScrollAreaAutosize, Stack, Table, Text, TextInput, Title, rem } from '@mantine/core';
+import {
+	ActionIcon,
+	Badge,
+	Button,
+	Checkbox,
+	Group,
+	ScrollAreaAutosize,
+	Stack,
+	Table,
+	Text,
+	TextInput,
+	Title,
+	rem,
+} from '@mantine/core';
 import { IconPencil, IconPlus, IconTrash } from '@tabler/icons';
 import useSWR, { mutate } from 'swr';
 
@@ -20,14 +33,21 @@ const Settings = () => {
 	const [hasUpdated, setHasUpdated] = useState(false);
 	const [filter, setFilter] = useState('');
 	const { data: builders } = useSWR(`/buildteams/${router.query.team}/members?slug=true`);
-	const { data: managers, isLoading: loadingManagers } = useSWR(`/buildteams/${router.query.team}/managers?slug=true`);
+	const { data: managers, isLoading: loadingManagers } = useSWR(
+		`/buildteams/${router.query.team}/managers?slug=true`,
+	);
 	const { data: permissions } = useSWR(`/permissions`);
 
 	const handleRemoveBuilder = (member: any) => {
 		modals.openConfirmModal({
 			title: `Remove ${capitalize(member.username)}`,
 			centered: true,
-			children: <Text>Are you sure you want to remove {capitalize(member.username)} from the team? This action cannot be undone, the user needs to reapply.</Text>,
+			children: (
+				<Text>
+					Are you sure you want to remove {capitalize(member.username)} from the team? This action
+					cannot be undone, the user needs to reapply.
+				</Text>
+			),
 			labels: { confirm: 'Remove Builder', cancel: 'Cancel' },
 			confirmProps: { color: 'red' },
 			onCancel: () =>
@@ -73,7 +93,12 @@ const Settings = () => {
 			onClose: () => (hasUpdated ? mutate(`/buildteams/${router.query.team}/managers`) : null),
 			children: (
 				<>
-					<TextInput label="ID" description="The ID of the User" placeholder={user.user.id} onChange={(e) => (id = e.target.value)} />
+					<TextInput
+						label="ID"
+						description="The ID of the User"
+						placeholder={user.user.id}
+						onChange={(e) => (id = e.target.value)}
+					/>
 					<Button mt="md" onClick={() => handleEditManager({ id, username: id })}>
 						Next
 					</Button>
@@ -129,7 +154,12 @@ const Settings = () => {
 		modals.openConfirmModal({
 			title: `Remove ${capitalize(member.username)}´s Permissions`,
 			centered: true,
-			children: <Text>Are you sure you want to remove {capitalize(member.username)}´s Permissions? This action cannot be undone.</Text>,
+			children: (
+				<Text>
+					Are you sure you want to remove {capitalize(member.username)}´s Permissions? This action
+					cannot be undone.
+				</Text>
+			),
 			labels: { confirm: 'Remove Permissions', cancel: 'Cancel' },
 			confirmProps: { color: 'red' },
 			onCancel: () =>
@@ -139,14 +169,20 @@ const Settings = () => {
 					color: 'yellow',
 				}),
 			onConfirm: () => {
-				fetch(process.env.NEXT_PUBLIC_API_URL + `/users/${member.id}/permissions?buildteam=${router.query.team}`, {
-					method: 'DELETE',
-					headers: {
-						'Content-Type': 'application/json',
-						Authorization: 'Bearer ' + user.token,
+				fetch(
+					process.env.NEXT_PUBLIC_API_URL +
+						`/users/${member.id}/permissions?buildteam=${router.query.team}`,
+					{
+						method: 'DELETE',
+						headers: {
+							'Content-Type': 'application/json',
+							Authorization: 'Bearer ' + user.token,
+						},
+						body: JSON.stringify({
+							permissions: member.permissions.map((p: any) => p.permissionId),
+						}),
 					},
-					body: JSON.stringify({ permissions: member.permissions.map((p: any) => p.permissionId) }),
-				})
+				)
 					.then((res) => res.json())
 					.then((res) => {
 						setHasUpdated(true);
@@ -169,14 +205,18 @@ const Settings = () => {
 		});
 	};
 	const editPermission = (permission: string, add: boolean, member: any) => {
-		fetch(process.env.NEXT_PUBLIC_API_URL + `/users/${member.id}/permissions?buildteam=${router.query.team}`, {
-			method: add ? 'POST' : 'DELETE',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: 'Bearer ' + user.token,
+		fetch(
+			process.env.NEXT_PUBLIC_API_URL +
+				`/users/${member.id}/permissions?buildteam=${router.query.team}`,
+			{
+				method: add ? 'POST' : 'DELETE',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: 'Bearer ' + user.token,
+				},
+				body: JSON.stringify({ permission }),
 			},
-			body: JSON.stringify({ permission }),
-		})
+		)
 			.then((res) => res.json())
 			.then((res) => {
 				setHasUpdated(true);
@@ -204,7 +244,13 @@ const Settings = () => {
 				image: 'https://cdn.buildtheearth.net/static/thumbnails/teams.png',
 			}}
 			seo={{ nofollow: true, noindex: true }}
-			requiredPermissions={['team.settings.edit', 'team.socials.edit', 'team.application.edit', 'team.application.list', 'team.application.review']}
+			requiredPermissions={[
+				'team.settings.edit',
+				'team.socials.edit',
+				'team.application.edit',
+				'team.application.list',
+				'team.application.review',
+			]}
 			loading={!(builders && managers)}
 		>
 			<SettingsTabs team={router.query.team?.toString() || ''} loading={!(builders && managers)}>
@@ -214,10 +260,19 @@ const Settings = () => {
 				</Title>
 				<UsersTable
 					loading={!builders}
-					data={builders ? builders.filter((b: any) => b.username.toLowerCase().includes(filter.toLowerCase())) : []}
+					data={
+						builders
+							? builders.filter((b: any) => b.username.toLowerCase().includes(filter.toLowerCase()))
+							: []
+					}
 					actions={(data) => (
 						<Group gap={0} justify="flex-end">
-							<ActionIcon variant="subtle" color="red" onClick={() => handleRemoveBuilder(data)} loading={loadingManagers}>
+							<ActionIcon
+								variant="subtle"
+								color="red"
+								onClick={() => handleRemoveBuilder(data)}
+								loading={loadingManagers}
+							>
 								<IconTrash style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
 							</ActionIcon>
 						</Group>
@@ -238,13 +293,27 @@ const Settings = () => {
 				</Group>
 				<UsersTable
 					loading={!managers}
-					data={managers ? managers.filter((b: any) => b.username.toLowerCase().includes(filter.toLowerCase())) : []}
+					data={
+						managers
+							? managers.filter((b: any) => b.username.toLowerCase().includes(filter.toLowerCase()))
+							: []
+					}
 					actions={(data) => (
 						<Group gap={0} justify="flex-end">
-							<ActionIcon variant="subtle" color="gray" onClick={() => handleEditManager(data)} loading={loadingManagers}>
+							<ActionIcon
+								variant="subtle"
+								color="gray"
+								onClick={() => handleEditManager(data)}
+								loading={loadingManagers}
+							>
 								<IconPencil style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
 							</ActionIcon>
-							<ActionIcon variant="subtle" color="red" onClick={() => handleRemoveManager(data)} loading={loadingManagers}>
+							<ActionIcon
+								variant="subtle"
+								color="red"
+								onClick={() => handleRemoveManager(data)}
+								loading={loadingManagers}
+							>
 								<IconTrash style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
 							</ActionIcon>
 						</Group>
@@ -252,7 +321,12 @@ const Settings = () => {
 					extraHead={<Table.Th>Permissions</Table.Th>}
 					extraContent={(data) => (
 						<Table.Td>
-							<Badge color="yellow" variant="light" style={{ cursor: 'pointer' }} onClick={() => handleEditManager(data)}>
+							<Badge
+								color="yellow"
+								variant="light"
+								style={{ cursor: 'pointer' }}
+								onClick={() => handleEditManager(data)}
+							>
 								{data.permissions.length}
 							</Badge>
 						</Table.Td>

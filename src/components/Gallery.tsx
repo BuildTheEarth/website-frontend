@@ -98,7 +98,12 @@ export function GalleryImage(i: GalleryImageProps) {
 						{i.name}
 					</Title>
 					{i.buildTeam && (
-						<Badge component={Link} href={`/teams/${i.buildTeamId}`} variant="gradient" style={{ cursor: 'pointer' }}>
+						<Badge
+							component={Link}
+							href={`/teams/${i.buildTeamId}`}
+							variant="gradient"
+							style={{ cursor: 'pointer' }}
+						>
 							{i.buildTeam}
 						</Badge>
 					)}

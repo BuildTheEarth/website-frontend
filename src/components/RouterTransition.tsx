@@ -1,4 +1,8 @@
-import { NavigationProgress, resetNavigationProgress, startNavigationProgress } from '@mantine/nprogress';
+import {
+	NavigationProgress,
+	resetNavigationProgress,
+	startNavigationProgress,
+} from '@mantine/nprogress';
 
 import { useEffect } from 'react';
 /* eslint-disable react-hooks/exhaustive-deps */

@@ -205,7 +205,12 @@ function generateValidation(data: any[]) {
 	let val: any = {};
 	data?.forEach((d) => {
 		if (d.type.toLowerCase() != 'text') {
-			val[d.id] = (v: any) => (v != null && v != undefined ? ApplicationQuestions[d.type].validation(d)(v) : d.required ? 'Required' : undefined);
+			val[d.id] = (v: any) =>
+				v != null && v != undefined
+					? ApplicationQuestions[d.type].validation(d)(v)
+					: d.required
+					? 'Required'
+					: undefined;
 		}
 	});
 	return val;

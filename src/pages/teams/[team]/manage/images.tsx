@@ -1,4 +1,15 @@
-import { ActionIcon, AspectRatio, Button, FileInput, Group, Table, Text, TextInput, Tooltip, rem } from '@mantine/core';
+import {
+	ActionIcon,
+	AspectRatio,
+	Button,
+	FileInput,
+	Group,
+	Table,
+	Text,
+	TextInput,
+	Tooltip,
+	rem,
+} from '@mantine/core';
 import { IconPlus, IconTrash } from '@tabler/icons';
 import useSWR, { mutate } from 'swr';
 

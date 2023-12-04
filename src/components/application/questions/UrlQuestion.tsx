@@ -12,7 +12,11 @@ export interface UrlQuestionProps extends ApplicationQuestion {
 
 function validation(props: UrlQuestionProps): (value: string) => void {
 	return (value: string) => {
-		return /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/.test(value) ? false : 'Not a valid URL';
+		return /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/.test(
+			value,
+		)
+			? false
+			: 'Not a valid URL';
 	};
 }
 

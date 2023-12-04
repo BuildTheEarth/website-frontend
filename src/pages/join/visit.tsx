@@ -1,5 +1,27 @@
-import { ActionIcon, Button, Center, Container, Grid, Group, Stack, Stepper, Text, Title, rem, useMantineColorScheme, useMantineTheme } from '@mantine/core';
-import { IconBox, IconBuildingCommunity, IconChevronDown, IconChevronLeft, IconPrompt, IconSearch, IconServer } from '@tabler/icons';
+import {
+	ActionIcon,
+	Button,
+	Center,
+	Container,
+	Grid,
+	Group,
+	Stack,
+	Stepper,
+	Text,
+	Title,
+	rem,
+	useMantineColorScheme,
+	useMantineTheme,
+} from '@mantine/core';
+import {
+	IconBox,
+	IconBuildingCommunity,
+	IconChevronDown,
+	IconChevronLeft,
+	IconPrompt,
+	IconSearch,
+	IconServer,
+} from '@tabler/icons';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 import { NextPage } from 'next';
@@ -237,5 +259,7 @@ export default Visit;
 export async function getStaticProps({ locale }: any) {
 	const res = await fetcher('/buildteams');
 
-	return { props: { data: res, ...(await serverSideTranslations(locale, ['common', 'getstarted'])) } };
+	return {
+		props: { data: res, ...(await serverSideTranslations(locale, ['common', 'getstarted'])) },
+	};
 }

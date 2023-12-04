@@ -1,4 +1,14 @@
-import { Blockquote, Button, Center, Container, Grid, Text, Title, useMantineColorScheme, useMantineTheme } from '@mantine/core';
+import {
+	Blockquote,
+	Button,
+	Center,
+	Container,
+	Grid,
+	Text,
+	Title,
+	useMantineColorScheme,
+	useMantineTheme,
+} from '@mantine/core';
 
 import { ChevronRight } from 'tabler-icons-react';
 import Link from 'next/link';
@@ -17,7 +27,8 @@ const Home: NextPage = () => {
 		<Page fullWidth title={t('head.title')}>
 			<motion.div
 				style={{
-					backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+					backgroundColor:
+						scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
 					background: `url("https://cdn.buildtheearth.net/static/thumbnails/about.webp") center center / cover`,
 					width: '100%',
 					height: '50vh',
@@ -31,7 +42,11 @@ const Home: NextPage = () => {
 						padding: 16,
 					}}
 				>
-					<Title style={{ color: '#ffffff', fontSize: 64, textShadow: '0px 0px 28px #000' }} ta="center" order={1}>
+					<Title
+						style={{ color: '#ffffff', fontSize: 64, textShadow: '0px 0px 28px #000' }}
+						ta="center"
+						order={1}
+					>
 						{t('head.title')}
 					</Title>
 				</Center>
@@ -43,7 +58,14 @@ const Home: NextPage = () => {
 						<Text>{t('mission.content.1')}</Text>
 					</Grid.Col>
 					<Grid.Col span={{ md: 5 }}>
-						<Blockquote m="md" cite="– @miallv14" color="red" icon={<Youtube />} mt="lg" iconSize={40}>
+						<Blockquote
+							m="md"
+							cite="– @miallv14"
+							color="red"
+							icon={<Youtube />}
+							mt="lg"
+							iconSize={40}
+						>
 							This was every Minecraft player’s dream since the dawn of Minecraft
 						</Blockquote>
 					</Grid.Col>
@@ -57,13 +79,27 @@ const Home: NextPage = () => {
 						<Text>{t('history.content.1')}</Text>
 					</Grid.Col>
 					<Grid.Col span={{ md: 5 }}>
-						<Blockquote m="md" cite="– @lukastrommer" color="red" icon={<Youtube />} mt="lg" iconSize={40}>
+						<Blockquote
+							m="md"
+							cite="– @lukastrommer"
+							color="red"
+							icon={<Youtube />}
+							mt="lg"
+							iconSize={40}
+						>
 							Imagine you could just go everywhere in your whole life just in minecraft.
 						</Blockquote>
 					</Grid.Col>
 				</Grid>
 				<Text>{t('history.content.1')}</Text>
-				<Button px={'xl'} mb="xl" component={Link} href="/join" mt="md" rightSection={<ChevronRight />}>
+				<Button
+					px={'xl'}
+					mb="xl"
+					component={Link}
+					href="/join"
+					mt="md"
+					rightSection={<ChevronRight />}
+				>
 					{t('history.action')}
 				</Button>
 			</Container>

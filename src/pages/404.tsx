@@ -20,7 +20,8 @@ function ErrorPage() {
 			>
 				<div
 					style={{
-						backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+						backgroundColor:
+							scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
 						background: `url("https://cdn.buildtheearth.net/static/thumbnails/error.png")`,
 						filter: 'brightness(0.5)',
 						width: '100%',
@@ -37,7 +38,11 @@ function ErrorPage() {
 					}}
 				>
 					<div>
-						<Title style={{ color: '#ffffff', fontSize: 220, userSelect: 'none' }} ta="center" order={1}>
+						<Title
+							style={{ color: '#ffffff', fontSize: 220, userSelect: 'none' }}
+							ta="center"
+							order={1}
+						>
 							404
 						</Title>
 						<Title style={{ color: '#ffffff' }} ta="center" order={1}>

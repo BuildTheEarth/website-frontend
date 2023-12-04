@@ -1,4 +1,15 @@
-import { Alert, Badge, Button, Divider, Grid, Group, Stack, Text, Textarea, useMantineTheme } from '@mantine/core';
+import {
+	Alert,
+	Badge,
+	Button,
+	Divider,
+	Grid,
+	Group,
+	Stack,
+	Text,
+	Textarea,
+	useMantineTheme,
+} from '@mantine/core';
 import { IconCheck, IconX } from '@tabler/icons-react';
 import useSWR, { mutate } from 'swr';
 

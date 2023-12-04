@@ -39,8 +39,19 @@ const DropdownQuestion = (props: DropdownQuestionProps) => {
 const EditQuestion = ({ editingQuestion, handleUpdateEditingQuestion }: any) => {
 	return (
 		<>
-			<NumberInput label="Maximum Selections" description="How many options can be selected at once" defaultValue={editingQuestion?.additionalData.maxSelect} onChange={(e) => handleUpdateEditingQuestion({ maxSelect: e }, true)} />
-			<TagsInput mt="md" label="Options" description="Press enter to add new option" defaultValue={editingQuestion?.additionalData.options} onChange={(e) => handleUpdateEditingQuestion({ options: e }, true)} />
+			<NumberInput
+				label="Maximum Selections"
+				description="How many options can be selected at once"
+				defaultValue={editingQuestion?.additionalData.maxSelect}
+				onChange={(e) => handleUpdateEditingQuestion({ maxSelect: e }, true)}
+			/>
+			<TagsInput
+				mt="md"
+				label="Options"
+				description="Press enter to add new option"
+				defaultValue={editingQuestion?.additionalData.options}
+				onChange={(e) => handleUpdateEditingQuestion({ options: e }, true)}
+			/>
 		</>
 	);
 };

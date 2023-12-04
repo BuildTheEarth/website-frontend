@@ -1,6 +1,33 @@
-import { ActionIcon, Anchor, Avatar, Badge, Box, Burger, Button, Container, Divider, Group, Indicator, Menu, Paper, Text, Tooltip, Transition, UnstyledButton, useMantineColorScheme, useMantineTheme } from '@mantine/core';
+import {
+	ActionIcon,
+	Anchor,
+	Avatar,
+	Badge,
+	Box,
+	Burger,
+	Button,
+	Container,
+	Divider,
+	Group,
+	Indicator,
+	Menu,
+	Paper,
+	Text,
+	Tooltip,
+	Transition,
+	UnstyledButton,
+	useMantineColorScheme,
+	useMantineTheme,
+} from '@mantine/core';
 import { ChevronDown, FileSearch, Logout, MoonStars, Sun, World } from 'tabler-icons-react';
-import { Discord, Instagram, Tiktok, Twitch, Twitter, Youtube } from '@icons-pack/react-simple-icons';
+import {
+	Discord,
+	Instagram,
+	Tiktok,
+	Twitch,
+	Twitter,
+	Youtube,
+} from '@icons-pack/react-simple-icons';
 import { IconMoonStars, IconUser } from '@tabler/icons-react';
 import { IconSearch, IconSettings, IconSun } from '@tabler/icons';
 import React, { CSSProperties, useState } from 'react';
@@ -54,7 +81,13 @@ const Header = ({ links, style }: HeaderProps) => {
 				</Group>
 				<Group gap={5} className={classes.links}>
 					{items}
-					<ActionIcon variant="subtle" color="gray" aria-label="Search on map" component={Link} href="/map?s=true">
+					<ActionIcon
+						variant="subtle"
+						color="gray"
+						aria-label="Search on map"
+						component={Link}
+						href="/map?s=true"
+					>
 						<IconSearch stroke={1.5} style={{ width: '70%', height: '70%' }} />
 					</ActionIcon>
 				</Group>
@@ -70,7 +103,12 @@ const Header = ({ links, style }: HeaderProps) => {
 								<UnstyledButton className={classes.user} data-useractive={userMenuOpened}>
 									<Group gap={7}>
 										<Indicator color="red" inline size={8} disabled={session.user.email_verified}>
-											<Avatar alt={session.user.username || session.user.email || 'User Avatar'} radius="xl" size={'sm'} color="blue">
+											<Avatar
+												alt={session.user.username || session.user.email || 'User Avatar'}
+												radius="xl"
+												size={'sm'}
+												color="blue"
+											>
 												{(session.user.username || session.user.email).charAt(0)}
 											</Avatar>
 										</Indicator>
@@ -85,15 +123,28 @@ const Header = ({ links, style }: HeaderProps) => {
 								<Menu.Item component={Link} href="/me" leftSection={<IconUser size={14} />}>
 									{t('user.profile')}
 								</Menu.Item>
-								<Menu.Item leftSection={<IconSettings size={14} />} component={Link} href="/me/settings/general">
+								<Menu.Item
+									leftSection={<IconSettings size={14} />}
+									component={Link}
+									href="/me/settings/general"
+								>
 									{t('user.settings')}
 								</Menu.Item>
 								<Menu.Divider />
 								<Menu.Label>{t('user.quickActions')}</Menu.Label>
-								<Menu.Item leftSection={colorScheme === 'dark' ? <IconMoonStars size={14} /> : <IconSun size={14} />} onClick={() => toggleColorScheme()}>
+								<Menu.Item
+									leftSection={
+										colorScheme === 'dark' ? <IconMoonStars size={14} /> : <IconSun size={14} />
+									}
+									onClick={() => toggleColorScheme()}
+								>
 									{t(`user.theme.${colorScheme}`)}
 								</Menu.Item>
-								<Menu.Item leftSection={<IconSearch size={14} />} component={Link} href="/map?s=true">
+								<Menu.Item
+									leftSection={<IconSearch size={14} />}
+									component={Link}
+									href="/map?s=true"
+								>
 									Search on Map
 								</Menu.Item>
 								<Menu.Divider />
@@ -115,7 +166,15 @@ const Header = ({ links, style }: HeaderProps) => {
 							>
 								{t('auth.signin')}
 							</Anchor>
-							<Button style={{ fontWeight: '500', paddingLeft: '12px', paddingRight: '12px', height: '32px' }} onClick={() => router.push('/join')}>
+							<Button
+								style={{
+									fontWeight: '500',
+									paddingLeft: '12px',
+									paddingRight: '12px',
+									height: '32px',
+								}}
+								onClick={() => router.push('/join')}
+							>
 								{t('auth.signup')}
 							</Button>
 						</>
@@ -133,10 +192,19 @@ const Header = ({ links, style }: HeaderProps) => {
 							{session != null && session?.user ? (
 								<>
 									<Divider />
-									<UnstyledButton className={classes.user} onClick={() => router.push('/profile')} data-useractive={userMenuOpened}>
+									<UnstyledButton
+										className={classes.user}
+										onClick={() => router.push('/profile')}
+										data-useractive={userMenuOpened}
+									>
 										<Group gap={7}>
 											<Indicator color="red" inline size={8} disabled={session.user.email_verified}>
-												<Avatar alt={session.user.username || session.user.email || 'User Avatar'} radius="xl" size={'sm'} color="blue">
+												<Avatar
+													alt={session.user.username || session.user.email || 'User Avatar'}
+													radius="xl"
+													size={'sm'}
+													color="blue"
+												>
 													{(session.user.username || session.user.email).charAt(0)}
 												</Avatar>
 											</Indicator>
@@ -186,12 +254,15 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 	const { scrollY, scrollYProgress } = useScroll();
 	const user = useUser();
 	const bgPosY = useTransform(scrollYProgress, (latest) => `${latest * 20 + 50}%`);
-	const userStatus = props?.members?.find((m: any) => m.id == user.user?.id) ? 'Joined' : 'Not Joined';
+	const userStatus = props?.members?.find((m: any) => m.id == user.user?.id)
+		? 'Joined'
+		: 'Not Joined';
 	return (
 		<>
 			<motion.div
 				style={{
-					backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+					backgroundColor:
+						scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
 					background: `url("${props.backgroundImage}") center center / cover`,
 					backgroundPositionY: bgPosY,
 					width: '100%',
@@ -203,7 +274,9 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 				style={{
 					width: '100%',
 					backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[7] : '#fff',
-					borderBottom: `1px solid ${scheme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1]}`,
+					borderBottom: `1px solid ${
+						scheme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1]
+					}`,
 				}}
 			>
 				<Group
@@ -265,13 +338,27 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 									icon = <Icon icon={social.icon} />;
 							}
 							return (
-								<ActionIcon component={Link} href={social.url} target="_blank" variant="transparent" color="gray" key={social.name}>
+								<ActionIcon
+									component={Link}
+									href={social.url}
+									target="_blank"
+									variant="transparent"
+									color="gray"
+									key={social.name}
+								>
 									{icon}
 								</ActionIcon>
 							);
 						})}
 						{props.invite && (
-							<ActionIcon component={Link} href={props.invite} target="_blank" variant="transparent" color="gray" key={'discord-inv'}>
+							<ActionIcon
+								component={Link}
+								href={props.invite}
+								target="_blank"
+								variant="transparent"
+								color="gray"
+								key={'discord-inv'}
+							>
 								<Discord />
 							</ActionIcon>
 						)}
@@ -286,7 +373,16 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 								Apply
 							</Button>
 						)}
-						{user.hasPermissions(['team.settings.edit', 'team.socials.edit', 'team.application.edit', 'team.application.list', 'team.application.review'], props.id) && (
+						{user.hasPermissions(
+							[
+								'team.settings.edit',
+								'team.socials.edit',
+								'team.application.edit',
+								'team.application.list',
+								'team.application.review',
+							],
+							props.id,
+						) && (
 							<Button component={Link} href={props.settingsHref || ''} variant="outline">
 								Settings
 							</Button>

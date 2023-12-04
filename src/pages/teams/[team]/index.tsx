@@ -18,7 +18,13 @@ const Team: NextPage = ({ data, data2 }: any) => {
 	const team = router.query.team;
 
 	return (
-		<LogoPage fullWidth title={data?.name} description={data?.about} headData={data} team={team?.toString() || ''}>
+		<LogoPage
+			fullWidth
+			title={data?.name}
+			description={data?.about}
+			headData={data}
+			team={team?.toString() || ''}
+		>
 			<Grid>
 				<Grid.Col span={8}>
 					<h2>{t('team.overview')}</h2>

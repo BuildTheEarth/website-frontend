@@ -21,10 +21,14 @@ const SignIn: NextPage = () => {
 		>
 			<h2>Sign in to BuildTheEarth</h2>
 			<p>
-				On your My BuildTheEarth page, you can apply to join a Build Team or request to be verified as solo builder and work on projects yourself. <br />
-				It is also the place where you can upload your world when you have finished. To access your page, you need to Sign in. <br />
+				On your My BuildTheEarth page, you can apply to join a Build Team or request to be verified
+				as solo builder and work on projects yourself. <br />
+				It is also the place where you can upload your world when you have finished. To access your
+				page, you need to Sign in. <br />
 			</p>
-			{router.query.error && <p style={{ color: theme.colors.red[6] }}>An error occurred, please try again later.</p>}
+			{router.query.error && (
+				<p style={{ color: theme.colors.red[6] }}>An error occurred, please try again later.</p>
+			)}
 			<Button onClick={() => signIn('keycloak')}>Sign in</Button>
 		</Page>
 	);

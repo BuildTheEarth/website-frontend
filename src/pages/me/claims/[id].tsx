@@ -1,5 +1,11 @@
 import { Alert, Anchor, Button, Grid, Group, Switch, TextInput } from '@mantine/core';
-import { IconAlertCircle, IconCheck, IconChevronLeft, IconDeviceFloppy, IconQuestionMark } from '@tabler/icons-react';
+import {
+	IconAlertCircle,
+	IconCheck,
+	IconChevronLeft,
+	IconDeviceFloppy,
+	IconQuestionMark,
+} from '@tabler/icons-react';
 
 import Map from '../../../components/map/Map';
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
@@ -87,25 +93,70 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 			) : (
 				<Grid>
 					<Grid.Col span={{ md: 6 }}>
-						<TextInput label={t('edit.name')} required defaultValue={additionalData.name} onChange={(e) => editData('name', e.target.value)} mb="md" />
-						<Switch defaultChecked={additionalData.finished} label={t('edit.finished')} onChange={(e) => editData('finished', e.target.checked)} mb="md" />
-						<Switch defaultChecked={additionalData.active} label={t('edit.active')} onChange={(e) => editData('active', e.target.checked)} mb="md" />
+						<TextInput
+							label={t('edit.name')}
+							required
+							defaultValue={additionalData.name}
+							onChange={(e) => editData('name', e.target.value)}
+							mb="md"
+						/>
+						<Switch
+							defaultChecked={additionalData.finished}
+							label={t('edit.finished')}
+							onChange={(e) => editData('finished', e.target.checked)}
+							mb="md"
+						/>
+						<Switch
+							defaultChecked={additionalData.active}
+							label={t('edit.active')}
+							onChange={(e) => editData('active', e.target.checked)}
+							mb="md"
+						/>
 						<h3>{t('edit.builders.title')}</h3>
-						<Alert variant="light" color="yellow" mb="xl" icon={<IconAlertCircle />} title={t('edit.builders.alert')}>
+						<Alert
+							variant="light"
+							color="yellow"
+							mb="xl"
+							icon={<IconAlertCircle />}
+							title={t('edit.builders.alert')}
+						>
 							{t('edit.builders.description')}
 						</Alert>
 						<Group>
-							<Button variant="outline" component="a" href={router.query.z && router.query.lat && router.query.lng ? `/map?z=${router.query.z}&lat=${router.query.lat}&lng=${router.query.lng}` : '/map'} leftSection={<IconChevronLeft />}>
+							<Button
+								variant="outline"
+								component="a"
+								href={
+									router.query.z && router.query.lat && router.query.lng
+										? `/map?z=${router.query.z}&lat=${router.query.lat}&lng=${router.query.lng}`
+										: '/map'
+								}
+								leftSection={<IconChevronLeft />}
+							>
 								{t('common:button.back')}
 							</Button>
-							<Button onClick={handleSubmit} disabled={!user?.token} loading={loading} leftSection={<IconDeviceFloppy />}>
+							<Button
+								onClick={handleSubmit}
+								disabled={!user?.token}
+								loading={loading}
+								leftSection={<IconDeviceFloppy />}
+							>
 								{t('common:button.save')}
 							</Button>
 						</Group>
-						<Alert variant="light" color="blue" mt="xl" icon={<IconQuestionMark />} title={t('edit.help.title')}>
+						<Alert
+							variant="light"
+							color="blue"
+							mt="xl"
+							icon={<IconQuestionMark />}
+							title={t('edit.help.title')}
+						>
 							{t('edit.help.description')}
 							<br />
-							<Anchor href="https://docs.buildtheearth.net/docs/building/guidebook/" target="_blank">
+							<Anchor
+								href="https://docs.buildtheearth.net/docs/building/guidebook/"
+								target="_blank"
+							>
 								https://docs.buildtheearth.net
 							</Anchor>
 						</Alert>

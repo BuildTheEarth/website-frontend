@@ -20,7 +20,9 @@ const Newsletter: NextPage = () => {
 				image: data?.links[0] || 'https://cdn.buildtheearth.net/static/thumbnails/newsletter.png',
 				subtitle: `Issue ${data?.issue}, ${new Date(data?.published_date).toLocaleDateString()}`,
 			}}
-			description={`BuildTheEarth Newsletter Issue ${data?.issue}, ${new Date(data?.published_date).toLocaleDateString()}`}
+			description={`BuildTheEarth Newsletter Issue ${data?.issue}, ${new Date(
+				data?.published_date,
+			).toLocaleDateString()}`}
 		>
 			<Group style={{ width: '100%' }}>
 				{data?.links.slice(1).map((link: any) => (
