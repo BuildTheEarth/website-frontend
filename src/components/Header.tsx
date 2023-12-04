@@ -1,4 +1,12 @@
 import {
+	Discord,
+	Instagram,
+	Tiktok,
+	Twitch,
+	Twitter,
+	Youtube,
+} from '@icons-pack/react-simple-icons';
+import {
 	ActionIcon,
 	Anchor,
 	Avatar,
@@ -19,28 +27,20 @@ import {
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
-import { ChevronDown, FileSearch, Logout, MoonStars, Sun, World } from 'tabler-icons-react';
-import {
-	Discord,
-	Instagram,
-	Tiktok,
-	Twitch,
-	Twitter,
-	Youtube,
-} from '@icons-pack/react-simple-icons';
-import { IconMoonStars, IconUser } from '@tabler/icons-react';
+import { useClickOutside, useDisclosure } from '@mantine/hooks';
 import { IconSearch, IconSettings, IconSun } from '@tabler/icons';
-import React, { CSSProperties, useState } from 'react';
+import { IconMoonStars, IconUser } from '@tabler/icons-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { signIn, signOut, useSession } from 'next-auth/react';
-import { useClickOutside, useDisclosure } from '@mantine/hooks';
+import React, { CSSProperties, useState } from 'react';
+import { ChevronDown, FileSearch, Logout, MoonStars, Sun, World } from 'tabler-icons-react';
 
-import Icon from './Icon';
 import Link from 'next/link';
-import classes from '../styles/components/Header.module.css';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import { useUser } from '../hooks/useUser';
+import classes from '../styles/components/Header.module.css';
+import Icon from './Icon';
 
 interface HeaderProps {
 	links: {
@@ -59,6 +59,7 @@ const Header = ({ links, style }: HeaderProps) => {
 	const theme = useMantineTheme();
 	const mobilePaperRef = useClickOutside(() => handler.close());
 	const { data: session, status } = useSession();
+	const user = useUser();
 	const items = links.map((link) => (
 		<Anchor
 			component={Link}
@@ -108,6 +109,7 @@ const Header = ({ links, style }: HeaderProps) => {
 												radius="xl"
 												size={'sm'}
 												color="blue"
+												src={user.user?.avatar}
 											>
 												{(session.user.username || session.user.email).charAt(0)}
 											</Avatar>
