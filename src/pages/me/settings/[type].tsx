@@ -1,17 +1,6 @@
+import { Alert, Badge, Button, Card, Flex, Group, Tabs, Text, TextInput, rem } from '@mantine/core';
 /* eslint-disable react-hooks/exhaustive-deps */
-import {
-	Alert,
-	Badge,
-	Button,
-	Card,
-	Flex,
-	Group,
-	Tabs,
-	Text,
-	TextInput,
-	Title,
-	rem,
-} from '@mantine/core';
+import { Discord, Github } from '@icons-pack/react-simple-icons';
 import {
 	IconAlertCircle,
 	IconBroadcast,
@@ -23,11 +12,10 @@ import {
 	IconReload,
 	IconSettings,
 	IconUnlink,
+	IconWorld,
 } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
-import useSWR, { mutate } from 'swr';
 
-import { Discord } from '@icons-pack/react-simple-icons';
 import { useForm } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
 import { NextPage } from 'next';
@@ -35,6 +23,7 @@ import { useSession } from 'next-auth/react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
+import useSWR from 'swr';
 import Page from '../../../components/Page';
 import { useUser } from '../../../hooks/useUser';
 
@@ -201,16 +190,10 @@ const Settings: NextPage = ({ type }: any) => {
 
 					<Tabs.Panel value="accounts" mt="md">
 						{data && (
-							<DiscordLinkedAccount
-								isLinked={
-									data.federatedIdentities.filter((i: any) => i.identityProvider === 'discord')
-										.length > 0
-								}
-								data={
-									data.federatedIdentities.filter((i: any) => i.identityProvider === 'discord')[0]
-								}
-								reload={() => router.reload()}
-							/>
+							<>
+								<SocialAccount socialName="discord" identities={data.federatedIdentities} />
+								<SocialAccount socialName="github" identities={data.federatedIdentities} />
+							</>
 						)}
 					</Tabs.Panel>
 
@@ -218,7 +201,7 @@ const Settings: NextPage = ({ type }: any) => {
 						{data.sessions?.map((s: any, i: number) => (
 							<Card mb={'md'} withBorder key={i}>
 								<Flex align={'center'} gap={'md'}>
-									<IconBrowser />
+									<IconBrowser size={'3rem'} />
 									<Flex gap={5} direction={'column'} style={{ flex: 1 }}>
 										<Flex align={'center'} gap={'xs'}>
 											<Text fw={'bold'}>{s.ipAddress}</Text>
@@ -255,116 +238,38 @@ export async function getServerSideProps({ locale, params }: any) {
 	};
 }
 
-const DiscordLinkedAccount = ({ isLinked, data, reload }: any) => {
-	const [discordLinkUrl, setDiscordLinkUrl] = useState(
-		`https://auth.buildtheearth.net/realms/website/account/linked-accounts/discord?providerId=discord&redirect_uri=${encodeURIComponent(
-			window.location.href,
-		)}`,
-	);
+const SocialAccount = ({ identities, socialName }: any) => {
 	const { data: session } = useSession();
 	const user = useUser();
-	const [unlinkLoading, setUnlinkLoading] = useState(false);
-
-	async function hash(string: string) {
-		const utf8 = new TextEncoder().encode(string);
-		const hashBuffer = await crypto.subtle.digest('SHA-256', utf8);
-		const base64Hash = Buffer.from(hashBuffer).toString('base64');
-		return base64Hash.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-	}
-
-	const generateDiscordLinkURL = async () => {
-		const nonce = crypto.randomUUID();
-		const input = nonce + session?.user.session_state + session?.user.azp + 'discord';
-		console.log('input', input);
-		const digest = await hash(input);
-		const link = `https://auth.buildtheearth.net/realms/website/broker/discord/link?client_id=frontend&redirect_uri=${encodeURIComponent(
-			window.location.href,
-		)}&nonce=${nonce}&hash=${digest}`;
-		setDiscordLinkUrl(link);
-		console.log(discordLinkUrl, link);
-	};
-
-	const unlink = async () => {
-		setUnlinkLoading(true);
-		fetch(process.env.NEXT_PUBLIC_API_URL + `/users/${user?.user?.id}/socials/discord`, {
-			method: 'DELETE',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: 'Bearer ' + user.token,
-			},
-		}).then((res) => {
-			if (!res.ok) {
-				showNotification({
-					title: 'Unlink failed',
-					message: 'Please try again later',
-					color: 'red',
-				});
-				reload();
-				setUnlinkLoading(false);
-			} else {
-				showNotification({
-					title: 'Account unlinked',
-					message: 'All Data has been saved',
-					color: 'green',
-					icon: <IconCheck />,
-				});
-				setUnlinkLoading(false);
-			}
-		});
-	};
-	const link = () => {
-		fetch(discordLinkUrl, {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: 'Bearer ' + session?.accessToken,
-			},
-		});
-	};
-
-	useEffect(() => {
-		generateDiscordLinkURL();
-	}, []);
+	const identity = identities.filter((i: any) => i.identityProvider === socialName)[0];
+	const isLinked = identity != null;
 
 	return (
 		<Card mb={'md'} withBorder>
 			<Flex align={'center'} gap={'md'}>
-				<Discord size={'3rem'} />
+				{socialName === 'discord' ? (
+					<Discord size={'3rem'} />
+				) : socialName == 'github' ? (
+					<Github size={'3rem'} />
+				) : (
+					<IconWorld size={'3rem'} />
+				)}
 				<Flex gap={5} direction={'column'} style={{ flex: 1 }}>
 					<Flex align={'center'} gap={'xs'}>
-						<Text fw={'bold'}>Discord</Text>
-						{!isLinked && (
-							<Badge gradient={{ from: 'orange', to: 'yellow' }} variant="gradient">
-								Not Linked
-							</Badge>
-						)}
+						<Text fw={'bold'}>{capitalize(socialName)}</Text>
 					</Flex>
-					{isLinked && <Text>{data.userName.replace('#0', '')}</Text>}
+					{!isLinked ? (
+						<Badge gradient={{ from: 'orange', to: 'yellow' }} variant="gradient" size="sm">
+							Not Linked
+						</Badge>
+					) : (
+						<Text size="sm">{identity.userName.replace('#0', '')}</Text>
+					)}
 				</Flex>
-				{isLinked ? (
-					<Button
-						onClick={unlink}
-						loading={unlinkLoading}
-						leftSection={<IconUnlink size={18} />}
-						variant="gradient"
-						gradient={{ from: 'red', to: 'orange' }}
-					>
-						Unlink
-					</Button>
-				) : (
-					<Button
-						component={'a'}
-						// onClick={link}
-						href={discordLinkUrl}
-						disabled={!discordLinkUrl}
-						leftSection={<IconLink size={18} />}
-						variant="gradient"
-					>
-						Link
-					</Button>
-				)}
-				{/* <Button leftSection={<IconLink size={18} />}>Link</Button> */}
 			</Flex>
 		</Card>
 	);
 };
+function capitalize(string: string) {
+	return string.charAt(0).toUpperCase() + string.slice(1);
+}
