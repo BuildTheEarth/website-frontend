@@ -11,14 +11,14 @@ import {
 import { Pin, Users } from 'tabler-icons-react';
 
 import { NextPage } from 'next';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
 import Page from '../../components/Page';
 import SearchInput from '../../components/SearchInput';
 import fetcher from '../../utils/Fetcher';
 import getCountryName from '../../utils/ISOCountries';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { useTranslation } from 'next-i18next';
 
 const Teams: NextPage = ({ data }: any) => {
 	const router = useRouter();
@@ -44,7 +44,8 @@ const Teams: NextPage = ({ data }: any) => {
 			<SearchInput onSearch={(search) => setSearch(search)} />
 			<Grid gutter="xl" style={{ marginTop: theme.spacing.xl }}>
 				{data
-					?.filter((element: any) =>
+					?.sort((a: any, b: any) => b._count.members - a._count.members)
+					.filter((element: any) =>
 						element.name.toLowerCase().includes(search?.toLowerCase() || ''),
 					)
 					.slice(activePage * 8 - 8, activePage * 8)
