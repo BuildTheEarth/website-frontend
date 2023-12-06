@@ -26,7 +26,9 @@ import { ApplicationQuestions } from '../../../../../utils/application/Applicati
 const Apply: NextPage = ({ team, id }: any) => {
 	const theme = useMantineTheme();
 	const user = useUser();
-	const { data } = useSWR(`/buildteams/${team}/applications/${id}?includeAnswers=true&slug=true`);
+	const { data } = useSWR(
+		`/buildteams/${team}/applications/${id}?includeAnswers=true&includeUser=true&slug=true`,
+	);
 
 	const handleSubmit = (accept: boolean) => {
 		const body = { reason: '', status: accept ? (data.trial ? 'TRIAL' : 'ACCEPTED') : 'DECLINED' };
@@ -55,7 +57,10 @@ const Apply: NextPage = ({ team, id }: any) => {
 							color: 'green',
 							icon: <IconCheck />,
 						});
-						mutate(`/buildteams/${team}/applications/${id}?includeAnswers=true`, res);
+						mutate(
+							`/buildteams/${team}/applications/${id}?includeAnswers=true&includeUser=true&slug=true`,
+							res,
+						);
 					}
 				});
 		};
@@ -139,31 +144,50 @@ const Apply: NextPage = ({ team, id }: any) => {
 								)}
 								<Divider style={{ margin: '0' }} my="sm" />
 								<Group justify="space-between">
+									<Text>Discord Id</Text>
+									<Text>{data?.user?.discordId} </Text>
+								</Group>
+								<Divider style={{ margin: '0' }} my="sm" />
+								<Group justify="space-between">
+									<Text>Minecraft Name</Text>
+									<Text>{data?.user?.name} </Text>
+								</Group>
+								<Divider style={{ margin: '0' }} my="sm" />
+								<Group justify="space-between">
 									<Text>Trial</Text>
 									<Text>{data.trial ? 'Yes' : 'No'} </Text>
 								</Group>
 								<Divider style={{ margin: '0' }} my="sm" />
 								<Group justify="space-between">
 									<Text>Status</Text>
-									<Badge variant="gradient">{statusToString(data.status)}</Badge>
+									<Badge variant="gradient" gradient={statusToGradient(data.status)}>
+										{statusToString(data.status)}
+									</Badge>
 								</Group>
 							</Stack>
+							{data.status != 'SEND' && (
+								<Alert title="Reviewer Feedback" mt="md">
+									{data.reason || '-- None provided --'}
+								</Alert>
+							)}
 							<h2>Actions</h2>
-							{data.status == 'SEND' ? (
-								<Group>
-									<Button
-										leftSection={<IconCheck />}
-										onClick={() => handleSubmit(true)}
-										color="green"
-									>
-										Accept
-									</Button>
-									<Button leftSection={<IconX />} onClick={() => handleSubmit(false)} color="red">
-										Decline
-									</Button>
-								</Group>
-							) : (
-								<Alert title="Reviewer Feedback">{data.reason || '-- None provided --'}</Alert>
+							<Group>
+								<Button
+									leftSection={<IconCheck />}
+									onClick={() => handleSubmit(true)}
+									color="green"
+								>
+									Accept
+								</Button>
+								<Button leftSection={<IconX />} onClick={() => handleSubmit(false)} color="red">
+									Decline
+								</Button>
+							</Group>
+							{data.status != 'SEND' && (
+								<Alert title="Warning" mt="md" color="orange">
+									This Application was already reviewed, changing its Status may revoke permissions
+									from the User.
+								</Alert>
 							)}
 						</Grid.Col>
 					</Grid>
@@ -205,5 +229,21 @@ function statusToString(status: string) {
 			return 'Trial Accepted';
 		default:
 			return 'Unknown';
+	}
+}
+function statusToGradient(status: string) {
+	switch (status) {
+		case 'SEND':
+			return undefined;
+		case 'REVIEWING':
+			return { from: 'orange', to: 'yellow' };
+		case 'ACCEPTED':
+			return { from: 'green', to: 'lime' };
+		case 'DECLINED':
+			return { from: 'red', to: 'orange' };
+		case 'TRIAL':
+			return { from: 'green', to: 'lime' };
+		default:
+			return undefined;
 	}
 }
