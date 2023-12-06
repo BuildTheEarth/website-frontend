@@ -1,8 +1,21 @@
-import { ActionIcon, Badge, Group, Table, Tooltip } from '@mantine/core';
+import {
+	ActionIcon,
+	Badge,
+	Group,
+	Pagination,
+	SimpleGrid,
+	Table,
+	Text,
+	Tooltip,
+	useMantineTheme,
+} from '@mantine/core';
+import { IconCheck, IconClock, IconQuestionMark, IconX } from '@tabler/icons';
+import { StatsGrid, StatsRing } from '../../../../../components/Stats';
 
 import { IconChevronRight } from '@tabler/icons-react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
+import { useState } from 'react';
 import useSWR from 'swr';
 import Page from '../../../../../components/Page';
 import SettingsTabs from '../../../../../components/SettingsTabs';
@@ -10,7 +23,10 @@ import fetcher from '../../../../../utils/Fetcher';
 
 var vagueTime = require('vague-time');
 const Review = ({ team }: any) => {
-	const { data } = useSWR(`/buildteams/${team}/applications?review=true&slug=true`);
+	const { data } = useSWR(`/buildteams/${team}/applications?slug=true`);
+	const [activePage, setPage] = useState(1);
+	const [filter, setFilter] = useState<string | undefined>();
+	const theme = useMantineTheme();
 	return (
 		<Page
 			smallPadding
@@ -29,6 +45,50 @@ const Review = ({ team }: any) => {
 			loading={!data}
 		>
 			<SettingsTabs team={team} loading={!data}>
+				<h2>Statistics</h2>
+				<SimpleGrid cols={2} mb="md">
+					<StatsRing
+						label="Pending Applications"
+						stats={data?.filter((d: any) => d.status == 'SEND').length}
+						progress={(data?.filter((d: any) => d.status == 'SEND').length / data?.length) * 100}
+						color="orange"
+						icon={IconQuestionMark}
+						onClick={() => setFilter('SEND')}
+						style={{ cursor: 'pointer' }}
+					/>
+					<StatsRing
+						label="Trial Applications"
+						stats={data?.filter((d: any) => d.status == 'TRIAL').length}
+						progress={(data?.filter((d: any) => d.status == 'TRIAL').length / data?.length) * 100}
+						color="teal"
+						icon={IconClock}
+						onClick={() => setFilter('TRIAL')}
+						style={{ cursor: 'pointer' }}
+					/>
+					<StatsRing
+						label="Accepted Applications"
+						stats={data?.filter((d: any) => d.status == 'ACCEPTED').length}
+						progress={
+							(data?.filter((d: any) => d.status == 'ACCEPTED').length / data?.length) * 100
+						}
+						color="green"
+						icon={IconCheck}
+						onClick={() => setFilter('ACCEPTED')}
+						style={{ cursor: 'pointer' }}
+					/>
+					<StatsRing
+						label="Rejected Applications"
+						stats={data?.filter((d: any) => d.status == 'DECLINED').length}
+						progress={
+							(data?.filter((d: any) => d.status == 'DECLINED').length / data?.length) * 100
+						}
+						color="red"
+						icon={IconX}
+						onClick={() => setFilter('DECLINED')}
+						style={{ cursor: 'pointer' }}
+					/>
+				</SimpleGrid>
+				<h2>Applications</h2>
 				<Table.ScrollContainer minWidth={800}>
 					<Table verticalSpacing="sm">
 						<Table.Thead>
@@ -41,8 +101,14 @@ const Review = ({ team }: any) => {
 							</Table.Tr>
 						</Table.Thead>
 						<Table.Tbody>
-							{data?.length > 0 ? (
-								data?.map((a: any) => (
+							{data
+								?.sort(
+									(a: any, b: any) =>
+										new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+								)
+								.filter((d: any) => d.status == filter || !filter)
+								.slice(activePage * 20 - 20, activePage * 20)
+								.map((a: any) => (
 									<Table.Tr key={a.id}>
 										<Table.Td>
 											<Tooltip label={a.id}>
@@ -82,31 +148,20 @@ const Review = ({ team }: any) => {
 											</Group>
 										</Table.Td>
 									</Table.Tr>
-								))
-							) : (
-								<Table.Tr>
-									<Table.Td>
-										<p>--------</p>
-									</Table.Td>
-									<Table.Td>
-										<Badge color="gray">None</Badge>
-									</Table.Td>
-									<Table.Td>--</Table.Td>
-									<Table.Td>
-										<p>--</p>
-									</Table.Td>
-									<Table.Td>
-										<Group gap={0} justify="flex-end">
-											<ActionIcon variant="subtle" disabled>
-												<IconChevronRight />
-											</ActionIcon>
-										</Group>
-									</Table.Td>
-								</Table.Tr>
-							)}
+								))}
 						</Table.Tbody>
 					</Table>
 				</Table.ScrollContainer>
+				<Group justify="center" pt="md">
+					<Pagination
+						my="md"
+						total={data?.length >= 1 ? Math.floor(data?.length / 20) : 1}
+						radius="xs"
+						value={activePage}
+						onChange={setPage}
+						siblings={1}
+					/>
+				</Group>
 			</SettingsTabs>
 		</Page>
 	);
