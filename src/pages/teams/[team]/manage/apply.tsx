@@ -15,25 +15,25 @@ import {
 	Title,
 	useMantineTheme,
 } from '@mantine/core';
+import { IconCheck, IconChevronDown, IconChevronUp, IconLetterT, IconPlus } from '@tabler/icons';
+import Question, { EditQuestion } from '../../../../components/application/questions/Question';
 import {
 	ApplicationQuestions,
 	toReadable,
 } from '../../../../utils/application/ApplicationQuestions';
-import { IconCheck, IconChevronDown, IconChevronUp, IconLetterT, IconPlus } from '@tabler/icons';
-import Question, { EditQuestion } from '../../../../components/application/questions/Question';
 
-import Icon from '../../../../components/Icon';
-import Link from 'next/link';
-import { NextPage } from 'next';
-import Page from '../../../../components/Page';
-import SettingsTabs from '../../../../components/SettingsTabs';
-import fetcher from '../../../../utils/Fetcher';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { showNotification } from '@mantine/notifications';
+import { NextPage } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { useUser } from '../../../../hooks/useUser';
 import { v4 as uuidv4 } from 'uuid';
+import Icon from '../../../../components/Icon';
+import Page from '../../../../components/Page';
+import SettingsTabs from '../../../../components/SettingsTabs';
+import { useUser } from '../../../../hooks/useUser';
+import fetcher from '../../../../utils/Fetcher';
 
 // const tempData = [
 // 	{
@@ -333,7 +333,7 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 							<Group style={{ display: 'flex' }}>
 								<Stack gap={0}>
 									<ActionIcon
-										variant={i == 0 ? 'transparent' : undefined}
+										variant={i == 0 ? 'transparent' : 'subtle'}
 										disabled={i == 0}
 										onClick={() => {
 											handleUpdateQuestion(d.id, { sort: d.sort - 1 });
@@ -345,7 +345,7 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 										variant={
 											i == data.filter((d: any) => d.trial == trial).length - 1
 												? 'transparent'
-												: undefined
+												: 'subtle'
 										}
 										disabled={i == data.filter((d: any) => d.trial == trial).length - 1}
 										onClick={() => {
