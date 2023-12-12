@@ -9,20 +9,21 @@ import {
 	Switch,
 	TextInput,
 	Textarea,
+	Tooltip,
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
 import { IconAlertCircle, IconCheck, IconPlus, IconTrash } from '@tabler/icons';
 import { useEffect, useState } from 'react';
 
+import { showNotification } from '@mantine/notifications';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { v4 as uuidv4 } from 'uuid';
 import Page from '../../../../components/Page';
 import RTE from '../../../../components/RTE';
 import SettingsTabs from '../../../../components/SettingsTabs';
-import fetcher from '../../../../utils/Fetcher';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { showNotification } from '@mantine/notifications';
 import { useUser } from '../../../../hooks/useUser';
-import { v4 as uuidv4 } from 'uuid';
+import fetcher from '../../../../utils/Fetcher';
 
 const Settings = ({ data: tempData }: any) => {
 	const theme = useMantineTheme();
@@ -89,6 +90,32 @@ const Settings = ({ data: tempData }: any) => {
 		updatedData.socials[i][id] = d;
 
 		setData(updatedData);
+	};
+	const handleGenerateToken = () => {
+		fetch(process.env.NEXT_PUBLIC_API_URL + `/buildteams/${data.slug}/token?slug=true`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + user.token,
+			},
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				if (res.code) {
+					showNotification({
+						title: 'Update failed',
+						message: res.message,
+						color: 'red',
+					});
+				} else {
+					showNotification({
+						title: 'Settings updated',
+						message: res.message,
+						color: 'green',
+						icon: <IconCheck />,
+					});
+				}
+			});
 	};
 
 	return (
@@ -245,6 +272,11 @@ const Settings = ({ data: tempData }: any) => {
 							<Button type="submit" disabled={!allowSettings}>
 								Save
 							</Button>
+							<Tooltip label="Generating a new API Token will invalidate the current active token!">
+								<Button onClick={handleGenerateToken} variant="outline" ml="md">
+									Generate API Token
+								</Button>
+							</Tooltip>
 						</form>
 						<Divider mt="md" />
 						<h3>Socials</h3>
