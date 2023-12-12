@@ -233,6 +233,22 @@ const Settings = ({ data: tempData }: any) => {
 										disabled={!allowSettings}
 										onChange={(e) => handleUpdate('allowTrial', e.target.checked)}
 									/>
+									<Switch
+										label="Builder Claims"
+										description="If Builder schould be able to create Claims on the Map by themselves. If this option is disabled you can only create claims with the API."
+										defaultChecked={data.allowBuilderClaim}
+										mt="md"
+										disabled={!allowSettings}
+										onChange={(e) => handleUpdate('allowBuilderClaim', e.target.checked)}
+									/>
+									<Switch
+										label="Instant accept Applications"
+										description="If new Applications should directly be accepted without the need to review them."
+										defaultChecked={data.instantAccept}
+										mt="md"
+										disabled={!allowSettings}
+										onChange={(e) => handleUpdate('instantAccept', e.target.checked)}
+									/>
 								</Grid.Col>
 							</Grid>
 							<h4>Messages</h4>

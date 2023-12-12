@@ -23,13 +23,13 @@ import {
 	IconZoomIn,
 } from '@tabler/icons-react';
 
-import { StatsGrid } from '../Stats';
+import { useClipboard } from '@mantine/hooks';
+import { showNotification } from '@mantine/notifications';
 import { getAreaOfPolygon } from 'geolib';
 import mapboxgl from 'mapbox-gl';
-import { showNotification } from '@mantine/notifications';
-import { useClipboard } from '@mantine/hooks';
 import useSWR from 'swr';
 import { useUser } from '../../hooks/useUser';
+import { StatsGrid } from '../Stats';
 
 interface ClaimDrawerProps {
 	setOpen: (bool: boolean) => void;
@@ -176,6 +176,7 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 								variant="outline"
 								leftSection={<IconPencil />}
 								href={`/me/claims/${props.id}`}
+								disabled={!data?.buildTeam?.allowBuilderClaim}
 							>
 								{t('claim.details.actions.edit')}
 							</Button>
