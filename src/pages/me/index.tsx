@@ -53,7 +53,12 @@ const MePage: NextPage = () => {
 					<p>{t('description')}</p>
 					<h2>{t('account.title')}</h2>
 					<Text>
-						{t('account.minecraft')} <Code>{data.name}</Code>
+						{t('account.minecraft') + ' '}
+						<Code>{data.name}</Code>
+					</Text>
+					<Text>
+						{t('account.id') + ' '}
+						<Code>{data.id}</Code>
 					</Text>
 					<Group>
 						<Button
