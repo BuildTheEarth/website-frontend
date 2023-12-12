@@ -7,6 +7,7 @@ import {
 	Input,
 	Select,
 	Switch,
+	Text,
 	TextInput,
 	Textarea,
 	Tooltip,
@@ -251,7 +252,16 @@ const Settings = ({ data: tempData }: any) => {
 									/>
 								</Grid.Col>
 							</Grid>
-							<h4>Messages</h4>
+							<h3>Messages</h3>
+							<Text size="sm" mb="md">
+								All Messages support full Discord Markdown syntax. Additionally you can use these
+								dynamic values in the Messages:{' '}
+								<Text c="teal" span>
+									{'{user}'} {'{team}'} {'{url}'} {'{reason}'} {'{reviewedAt}'} {'{createdAt}'}{' '}
+									{'{id}'}
+								</Text>
+								. Leaving the Textfield empty will not send any Message to the User.
+							</Text>
 							<Grid grow mb="md">
 								<Grid.Col span={{ md: 6 }}>
 									<Textarea
