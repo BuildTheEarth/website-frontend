@@ -1,5 +1,6 @@
 import { Alert, Button, SegmentedControl, Skeleton, useMantineTheme } from '@mantine/core';
 import { IconAlertCircle, IconCheck } from '@tabler/icons';
+import { signIn, useSession } from 'next-auth/react';
 import useSWR, { mutate } from 'swr';
 
 import { useForm } from '@mantine/form';
@@ -21,6 +22,7 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 	const team = router.query.team;
 	const theme = useMantineTheme();
 	const user = useUser();
+	const session = useSession();
 	const { data: pastApplications } = useSWR(
 		`/buildteams/${buildteam?.id}/applications/user/${user.user?.id}`,
 	);
@@ -67,6 +69,10 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 			});
 	};
 
+	if (session.status == 'unauthenticated') {
+		signIn('keycloak');
+	}
+
 	return (
 		<Page
 			head={{
@@ -76,13 +82,16 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 			title={buildteam?.name}
 			description={buildteam?.about}
 		>
-			{!(data && buildteam && pastApplications) ? (
-				new Array(6).fill(0).map((_, idx) => {
-					return <Skeleton height={50} my={'md'} key={idx} />;
-				})
+			<div dangerouslySetInnerHTML={{ __html: sanitize(buildteam?.about) }} />
+			{!pastApplications || typeof pastApplications == 'string' ? (
+				<>
+					<Skeleton height={50} my={'md'} />
+					<Button leftSection={<IconChevronLeft />} mt="md" onClick={() => router.back()}>
+						{t('common:button.back')}
+					</Button>
+				</>
 			) : (
 				<form onSubmit={form.onSubmit(handleSubmit)}>
-					<div dangerouslySetInnerHTML={{ __html: sanitize(buildteam?.about) }} />
 					{!pastApplications?.some(
 						(a: any) => a.status == 'SEND' || a.status == 'REVIEWING' || a.status == 'ACCEPTED',
 					) ? (
@@ -181,6 +190,7 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 		</Page>
 	);
 };
+
 export default Apply;
 export async function getStaticProps({ locale, params }: any) {
 	const res = await fetcher(`/buildteams/${params.team}/application/questions?slug=true`);
