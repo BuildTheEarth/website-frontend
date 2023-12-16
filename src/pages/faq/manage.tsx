@@ -2,16 +2,16 @@ import { ActionIcon, Button, Group, Input, SimpleGrid, TextInput } from '@mantin
 import { IconCheck, IconChevronLeft, IconPlus, IconQuestionMark } from '@tabler/icons';
 import useSWR, { mutate } from 'swr';
 
-import { GridButton } from '../../components/GridButton';
+import { useForm } from '@mantine/form';
+import { showNotification } from '@mantine/notifications';
 import { NextPage } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { GridButton } from '../../components/GridButton';
 import Page from '../../components/Page';
 import RTE from '../../components/RTE';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { showNotification } from '@mantine/notifications';
-import { useForm } from '@mantine/form';
-import { useState } from 'react';
 import { useUser } from '../../hooks/useUser';
-import { v4 as uuidv4 } from 'uuid';
 
 const Faq: NextPage = () => {
 	const { data } = useSWR(`/faq`);

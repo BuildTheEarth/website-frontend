@@ -1,15 +1,15 @@
 import { Divider, Grid, Group, Stack } from '@mantine/core';
 
-import GalleryGrid from '../../../components/GalleryGrid';
-import { LogoPage } from '../../../components/Page';
 import { NextPage } from 'next';
-import fetcher from '../../../utils/Fetcher';
-import getCountryName from '../../../utils/ISOCountries';
-import sanitizeHtml from 'sanitize-html';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useIsClient } from '../../../hooks/useIsClient';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
+import sanitizeHtml from 'sanitize-html';
+import GalleryGrid from '../../../components/GalleryGrid';
+import { LogoPage } from '../../../components/Page';
+import { useIsClient } from '../../../hooks/useIsClient';
+import fetcher from '../../../utils/Fetcher';
+import getCountryName from '../../../utils/ISOCountries';
 
 const Team: NextPage = ({ data, data2 }: any) => {
 	const router = useRouter();

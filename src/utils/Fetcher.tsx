@@ -1,4 +1,3 @@
-import { IconPin } from '@tabler/icons';
 import mapboxgl from 'mapbox-gl';
 import { osmTypeToReadable } from './OSM';
 

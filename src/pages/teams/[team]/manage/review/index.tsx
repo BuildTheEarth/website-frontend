@@ -5,12 +5,10 @@ import {
 	Pagination,
 	SimpleGrid,
 	Table,
-	Text,
 	Tooltip,
 	useMantineTheme,
 } from '@mantine/core';
 import { IconCheck, IconClock, IconQuestionMark, IconX } from '@tabler/icons';
-import { StatsGrid, StatsRing } from '../../../../../components/Stats';
 
 import { IconChevronRight } from '@tabler/icons-react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -19,6 +17,7 @@ import { useState } from 'react';
 import useSWR from 'swr';
 import Page from '../../../../../components/Page';
 import SettingsTabs from '../../../../../components/SettingsTabs';
+import { StatsRing } from '../../../../../components/Stats';
 import fetcher from '../../../../../utils/Fetcher';
 
 var vagueTime = require('vague-time');

@@ -1,6 +1,15 @@
 /* eslint-disable no-undef */
 
 import {
+	Discord,
+	Facebook,
+	Instagram,
+	Tiktok,
+	Twitch,
+	Twitter,
+	Youtube,
+} from '@icons-pack/react-simple-icons';
+import {
 	Button,
 	Divider,
 	Grid,
@@ -11,24 +20,14 @@ import {
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
-import {
-	Discord,
-	Facebook,
-	Instagram,
-	Snapchat,
-	Tiktok,
-	Twitch,
-	Twitter,
-	Youtube,
-} from '@icons-pack/react-simple-icons';
 
-import { At } from 'tabler-icons-react';
 import { IconMail } from '@tabler/icons-react';
 import { NextPage } from 'next';
-import Page from '../components/Page';
-import fetcher from '../utils/Fetcher';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
+import { At } from 'tabler-icons-react';
+import Page from '../components/Page';
+import fetcher from '../utils/Fetcher';
 
 const Contact: NextPage = ({ data }: any) => {
 	const router = useRouter();

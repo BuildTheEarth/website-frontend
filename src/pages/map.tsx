@@ -1,11 +1,11 @@
-import { Alert, Button, Loader, rem } from '@mantine/core';
+import { Alert, Loader, rem } from '@mantine/core';
 import { useClipboard, useDebouncedState } from '@mantine/hooks';
-import { Spotlight, SpotlightActionData, spotlight } from '@mantine/spotlight';
-import { IconDashboard, IconFileText, IconHome, IconSearch } from '@tabler/icons-react';
+import { Spotlight, spotlight } from '@mantine/spotlight';
 import { useEffect, useState } from 'react';
 import Map, { mapClickEvent, mapCopyCoordinates, mapCursorHover } from '../components/map/Map';
 
 import { IconPin } from '@tabler/icons';
+import { IconSearch } from '@tabler/icons-react';
 import mapboxgl from 'mapbox-gl';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';

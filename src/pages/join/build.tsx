@@ -15,16 +15,16 @@ import {
 import { IconChevronDown, IconChevronLeft } from '@tabler/icons';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-import Link from 'next/link';
 import { NextPage } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Page from '../../components/Page';
 import SearchInput from '../../components/SearchInput';
 import fetcher from '../../utils/Fetcher';
 import getCountryName from '../../utils/ISOCountries';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 const Build: NextPage = ({ data }: any) => {
 	const { t } = useTranslation('getstarted');

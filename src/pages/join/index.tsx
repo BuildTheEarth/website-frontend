@@ -11,14 +11,14 @@ import {
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
-import { ChevronDown, ChevronRight } from 'tabler-icons-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { ChevronDown, ChevronRight } from 'tabler-icons-react';
 
-import Link from 'next/link';
 import { NextPage } from 'next';
-import Page from '../../components/Page';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
+import Page from '../../components/Page';
 
 const GetStarted: NextPage = () => {
 	const { t } = useTranslation('getstarted');

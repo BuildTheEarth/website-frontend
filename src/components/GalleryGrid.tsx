@@ -1,16 +1,8 @@
-import {
-	Avatar,
-	BackgroundImage,
-	Badge,
-	Group,
-	SimpleGrid,
-	Title,
-	useMantineTheme,
-} from '@mantine/core';
+import { BackgroundImage, Badge, Group, SimpleGrid, Title, useMantineTheme } from '@mantine/core';
 
+import { useHover } from '@mantine/hooks';
 import Link from 'next/link';
 import React from 'react';
-import { useHover } from '@mantine/hooks';
 import { useIsClient } from '../hooks/useIsClient';
 
 interface GalleryGridProps {

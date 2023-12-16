@@ -10,14 +10,14 @@ import {
 	useMantineTheme,
 } from '@mantine/core';
 
-import { ChevronRight } from 'tabler-icons-react';
-import Link from 'next/link';
-import { NextPage } from 'next';
-import Page from '../../components/Page';
 import { Youtube } from '@icons-pack/react-simple-icons';
 import { motion } from 'framer-motion';
+import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
+import { ChevronRight } from 'tabler-icons-react';
+import Page from '../../components/Page';
 
 const Home: NextPage = () => {
 	const theme = useMantineTheme();

@@ -1,9 +1,9 @@
 import { Button, useMantineTheme } from '@mantine/core';
 
 import { NextPage } from 'next';
-import Page from '../../components/Page';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
+import Page from '../../components/Page';
 
 const SignIn: NextPage = () => {
 	const router = useRouter();

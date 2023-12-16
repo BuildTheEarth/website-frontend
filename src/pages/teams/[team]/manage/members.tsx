@@ -15,17 +15,17 @@ import {
 import { IconPencil, IconPlus, IconTrash } from '@tabler/icons';
 import useSWR, { mutate } from 'swr';
 
+import { modals } from '@mantine/modals';
+import { showNotification } from '@mantine/notifications';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 import Page from '../../../../components/Page';
 import SearchInput from '../../../../components/SearchInput';
 import SettingsTabs from '../../../../components/SettingsTabs';
 import { UsersTable } from '../../../../components/UsersTable';
-import fetcher from '../../../../utils/Fetcher';
-import { modals } from '@mantine/modals';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { showNotification } from '@mantine/notifications';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
 import { useUser } from '../../../../hooks/useUser';
+import fetcher from '../../../../utils/Fetcher';
 
 const Settings = () => {
 	const user = useUser();

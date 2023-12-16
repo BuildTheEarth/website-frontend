@@ -9,8 +9,8 @@ import {
 import { IconDashboard, IconSearch, IconSend, IconSettings, IconUsers } from '@tabler/icons';
 
 import { useMediaQuery } from '@mantine/hooks';
-import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import { useUser } from '../hooks/useUser';
 
 const SettingsTabs = ({

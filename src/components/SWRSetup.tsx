@@ -1,5 +1,5 @@
-import { SWRConfig } from 'swr';
 import { useSession } from 'next-auth/react';
+import { SWRConfig } from 'swr';
 
 export default function SWRSetup({ content }: any) {
 	const session = useSession();

@@ -3,10 +3,10 @@
 import { Group, Image } from '@mantine/core';
 
 import { NextPage } from 'next';
-import Page from '../../../components/Page';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
+import Page from '../../../components/Page';
 
 const Newsletter: NextPage = () => {
 	const router = useRouter();

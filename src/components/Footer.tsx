@@ -1,10 +1,10 @@
 import { Anchor, Container, Group } from '@mantine/core';
 
-import { LanguageSwitcher } from './LanguageSwitcher';
 import Link from 'next/link';
 import React from 'react';
-import classes from '../styles/components/Footer.module.css';
 import { useTranslation } from 'react-i18next';
+import classes from '../styles/components/Footer.module.css';
+import { LanguageSwitcher } from './LanguageSwitcher';
 
 interface FooterSimpleProps {
 	links: { link: string; translation: string }[];

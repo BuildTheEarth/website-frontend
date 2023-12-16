@@ -4,23 +4,23 @@ import '@mantine/dates/styles.css';
 import '@mantine/dropzone/styles.css';
 import '@mantine/notifications/styles.css';
 import '@mantine/nprogress/styles.css';
+import '@mantine/spotlight/styles.css';
 import '@mantine/tiptap/styles.css';
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import '@mantine/spotlight/styles.css';
 import '../styles/globals.css';
 
-import type { AppProps } from 'next/app';
-import { DefaultSeo } from 'next-seo';
 import { MantineProvider } from '@mantine/core';
+import { useLocalStorage } from '@mantine/hooks';
 import { ModalsProvider } from '@mantine/modals';
 import { Notifications } from '@mantine/notifications';
-import { RouterTransition } from '../components/RouterTransition';
-import SWRSetup from '../components/SWRSetup';
 import { SessionProvider } from 'next-auth/react';
 import { appWithTranslation } from 'next-i18next';
+import { DefaultSeo } from 'next-seo';
+import type { AppProps } from 'next/app';
 import defaultSeo from '../../next-seo.config';
-import { useLocalStorage } from '@mantine/hooks';
+import { RouterTransition } from '../components/RouterTransition';
+import SWRSetup from '../components/SWRSetup';
 
 function MyApp({ Component, pageProps }: AppProps) {
 	const [accessToken, setAccessToken] = useLocalStorage<string>({

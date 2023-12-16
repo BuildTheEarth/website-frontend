@@ -33,7 +33,7 @@ import { IconMoonStars, IconUser } from '@tabler/icons-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import React, { CSSProperties, useState } from 'react';
-import { ChevronDown, FileSearch, Logout, MoonStars, Sun, World } from 'tabler-icons-react';
+import { ChevronDown, FileSearch, Logout, World } from 'tabler-icons-react';
 
 import Link from 'next/link';
 import { useRouter } from 'next/router';

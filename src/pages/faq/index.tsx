@@ -2,16 +2,16 @@ import { Accordion, Button, Flex } from '@mantine/core';
 
 import { IconEdit } from '@tabler/icons';
 import { NextPage } from 'next';
-import Page from '../../components/Page';
-import SearchInput from '../../components/SearchInput';
-import fetcher from '../../utils/Fetcher';
-import sanitizeHtml from 'sanitize-html';
+import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useIsClient } from '../../hooks/useIsClient';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { useTranslation } from 'next-i18next';
+import sanitizeHtml from 'sanitize-html';
+import Page from '../../components/Page';
+import SearchInput from '../../components/SearchInput';
+import { useIsClient } from '../../hooks/useIsClient';
 import { useUser } from '../../hooks/useUser';
+import fetcher from '../../utils/Fetcher';
 
 const Faq: NextPage = ({ data }: any) => {
 	const router = useRouter();

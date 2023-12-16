@@ -11,7 +11,6 @@ import {
 	IconLink,
 	IconReload,
 	IconSettings,
-	IconUnlink,
 	IconWorld,
 } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';

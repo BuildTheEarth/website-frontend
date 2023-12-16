@@ -11,12 +11,12 @@ import {
 import { Calendar, Number } from 'tabler-icons-react';
 
 import { NextPage } from 'next';
-import Page from '../../components/Page';
+import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
-import useSWR from 'swr';
 import { useState } from 'react';
-import { useTranslation } from 'next-i18next';
+import useSWR from 'swr';
+import Page from '../../components/Page';
 
 const NewsletterList: NextPage = () => {
 	const router = useRouter();
