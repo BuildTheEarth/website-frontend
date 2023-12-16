@@ -11,6 +11,7 @@ import { showNotification } from '@mantine/notifications';
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -125,7 +126,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 						<Group>
 							<Button
 								variant="outline"
-								component="a"
+								component={Link}
 								href={
 									router.query.z && router.query.lat && router.query.lng
 										? `/map?z=${router.query.z}&lat=${router.query.lat}&lng=${router.query.lng}`

@@ -27,6 +27,7 @@ import { useClipboard } from '@mantine/hooks';
 import { showNotification } from '@mantine/notifications';
 import { getAreaOfPolygon } from 'geolib';
 import mapboxgl from 'mapbox-gl';
+import Link from 'next/link';
 import useSWR from 'swr';
 import { useUser } from '../../hooks/useUser';
 import { StatsGrid } from '../Stats';
@@ -86,7 +87,7 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 							<Avatar
 								src={data.buildTeam.icon}
 								size={60}
-								component="a"
+								component={Link}
 								href={`/teams/${data.buildTeam.id}`}
 							/>
 							<Text size="xl" fw={700}>
@@ -172,7 +173,7 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 						</Button>
 						{data.owner?.id == user?.id && (
 							<Button
-								component="a"
+								component={Link}
 								variant="outline"
 								leftSection={<IconPencil />}
 								href={`/me/claims/${props.id}`}

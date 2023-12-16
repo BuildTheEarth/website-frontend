@@ -24,6 +24,7 @@ import {
 import { IconMail } from '@tabler/icons-react';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { At } from 'tabler-icons-react';
 import Page from '../components/Page';
@@ -173,7 +174,7 @@ const Contact: NextPage = ({ data }: any) => {
 				of your ban message and your reason for appealing. Illegitimate appeals will be ignored.
 			</p>
 			<Button
-				component="a"
+				component={Link}
 				variant="outline"
 				leftSection={<IconMail />}
 				href="mailto:appeals@buildtheearth.net"
