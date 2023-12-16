@@ -4,11 +4,11 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import * as React from 'react';
 
 import { LoadingOverlay, useMantineColorScheme, useMantineTheme } from '@mantine/core';
-import { MapboxStyleDefinition, MapboxStyleSwitcherControl } from 'mapbox-gl-style-switcher';
 import mapboxgl, { GeolocateControl } from 'mapbox-gl';
+import { MapboxStyleDefinition, MapboxStyleSwitcherControl } from 'mapbox-gl-style-switcher';
 
-import { IconCheck } from '@tabler/icons';
 import { showNotification } from '@mantine/notifications';
+import { IconCheck } from '@tabler/icons-react';
 import { useRouter } from 'next/router';
 
 interface IMap {

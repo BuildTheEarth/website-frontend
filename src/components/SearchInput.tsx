@@ -2,7 +2,7 @@ import { TextInput, TextInputProps, useMantineTheme } from '@mantine/core';
 import { useEffect, useState } from 'react';
 
 import { useDebouncedValue } from '@mantine/hooks';
-import { IconSearch } from '@tabler/icons';
+import { IconSearch } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
 
 interface SearchInputProps {

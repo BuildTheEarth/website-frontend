@@ -12,7 +12,7 @@ import {
 	Title,
 	rem,
 } from '@mantine/core';
-import { IconPencil, IconPlus, IconTrash } from '@tabler/icons';
+import { IconPencil, IconPlus, IconTrash } from '@tabler/icons-react';
 import useSWR, { mutate } from 'swr';
 
 import { modals } from '@mantine/modals';

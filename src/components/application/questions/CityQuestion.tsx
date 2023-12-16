@@ -1,7 +1,7 @@
+import { TextInput } from '@mantine/core';
+import { IconBuildingSkyscraper } from '@tabler/icons-react';
 import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
 import Icon from '../../Icon';
-import { IconBuildingSkyscraper } from '@tabler/icons';
-import { TextInput } from '@mantine/core';
 
 export interface CityQuestionProps extends ApplicationQuestion {
 	additionalData: {

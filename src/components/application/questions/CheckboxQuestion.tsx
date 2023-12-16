@@ -1,5 +1,5 @@
 import { Switch } from '@mantine/core';
-import { IconCheckbox } from '@tabler/icons';
+import { IconCheckbox } from '@tabler/icons-react';
 import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
 import Icon from '../../Icon';
 

@@ -10,7 +10,7 @@ import {
 	Tooltip,
 	rem,
 } from '@mantine/core';
-import { IconPlus, IconTrash } from '@tabler/icons';
+import { IconPlus, IconTrash } from '@tabler/icons-react';
 import useSWR, { mutate } from 'swr';
 
 import { DateInput } from '@mantine/dates';

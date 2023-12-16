@@ -28,8 +28,7 @@ import {
 	useMantineTheme,
 } from '@mantine/core';
 import { useClickOutside, useDisclosure } from '@mantine/hooks';
-import { IconSearch, IconSettings, IconSun } from '@tabler/icons';
-import { IconMoonStars, IconUser } from '@tabler/icons-react';
+import { IconMoonStars, IconSearch, IconSettings, IconSun, IconUser } from '@tabler/icons-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import React, { CSSProperties, useState } from 'react';

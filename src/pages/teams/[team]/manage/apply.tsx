@@ -15,7 +15,13 @@ import {
 	Title,
 	useMantineTheme,
 } from '@mantine/core';
-import { IconCheck, IconChevronDown, IconChevronUp, IconLetterT, IconPlus } from '@tabler/icons';
+import {
+	IconCheck,
+	IconChevronDown,
+	IconChevronUp,
+	IconLetterT,
+	IconPlus,
+} from '@tabler/icons-react';
 import Question, { EditQuestion } from '../../../../components/application/questions/Question';
 import {
 	ApplicationQuestions,

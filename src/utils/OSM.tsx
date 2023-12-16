@@ -3,6 +3,7 @@ import {
 	IconBuilding,
 	IconBuildingBridge,
 	IconFiretruck,
+	IconLineDashed,
 	IconPin,
 	IconPlaneTilt,
 	IconRoad,
@@ -10,8 +11,8 @@ import {
 	IconTank,
 	IconTractor,
 	IconTrain,
-} from '@tabler/icons';
-import { IconLineDashed, IconTree } from '@tabler/icons-react';
+	IconTree,
+} from '@tabler/icons-react';
 
 export function osmTypeToReadable(feature: any): {
 	description: string;

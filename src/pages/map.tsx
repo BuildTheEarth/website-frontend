@@ -4,8 +4,7 @@ import { Spotlight, spotlight } from '@mantine/spotlight';
 import { useEffect, useState } from 'react';
 import Map, { mapClickEvent, mapCopyCoordinates, mapCursorHover } from '../components/map/Map';
 
-import { IconPin } from '@tabler/icons';
-import { IconSearch } from '@tabler/icons-react';
+import { IconPin, IconSearch } from '@tabler/icons-react';
 import mapboxgl from 'mapbox-gl';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';

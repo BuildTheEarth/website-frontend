@@ -6,7 +6,7 @@ import {
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
-import { IconDashboard, IconSearch, IconSend, IconSettings, IconUsers } from '@tabler/icons';
+import { IconDashboard, IconSearch, IconSend, IconSettings, IconUsers } from '@tabler/icons-react';
 
 import { useMediaQuery } from '@mantine/hooks';
 import { useSession } from 'next-auth/react';

@@ -21,7 +21,7 @@ import {
 	IconPrompt,
 	IconSearch,
 	IconServer,
-} from '@tabler/icons';
+} from '@tabler/icons-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 import { NextPage } from 'next';

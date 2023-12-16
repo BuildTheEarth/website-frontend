@@ -14,7 +14,7 @@ import {
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
-import { IconAlertCircle, IconCheck, IconPlus, IconTrash } from '@tabler/icons';
+import { IconAlertCircle, IconCheck, IconPlus, IconTrash } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 
 import { showNotification } from '@mantine/notifications';

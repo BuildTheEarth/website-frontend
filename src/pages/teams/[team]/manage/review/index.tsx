@@ -8,7 +8,7 @@ import {
 	Tooltip,
 	useMantineTheme,
 } from '@mantine/core';
-import { IconCheck, IconClock, IconQuestionMark, IconX } from '@tabler/icons';
+import { IconCheck, IconClock, IconQuestionMark, IconX } from '@tabler/icons-react';
 
 import { IconChevronRight } from '@tabler/icons-react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';

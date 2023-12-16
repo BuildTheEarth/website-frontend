@@ -1,21 +1,21 @@
 import { Alert, Button, SegmentedControl, Skeleton, useMantineTheme } from '@mantine/core';
-import { IconAlertCircle, IconCheck } from '@tabler/icons';
+import { IconAlertCircle, IconCheck } from '@tabler/icons-react';
 import { signIn, useSession } from 'next-auth/react';
 import useSWR, { mutate } from 'swr';
 
-import { useForm } from '@mantine/form';
-import { showNotification } from '@mantine/notifications';
+import { ApplicationQuestions } from '../../../utils/application/ApplicationQuestions';
 import { IconChevronLeft } from '@tabler/icons-react';
 import { NextPage } from 'next';
+import Page from '../../../components/Page';
+import fetcher from '../../../utils/Fetcher';
+import sanitize from 'sanitize-html';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { showNotification } from '@mantine/notifications';
+import { useForm } from '@mantine/form';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import sanitize from 'sanitize-html';
-import Page from '../../../components/Page';
 import { useUser } from '../../../hooks/useUser';
-import fetcher from '../../../utils/Fetcher';
-import { ApplicationQuestions } from '../../../utils/application/ApplicationQuestions';
 
 const Apply: NextPage = ({ data, buildteam }: any) => {
 	const router = useRouter();

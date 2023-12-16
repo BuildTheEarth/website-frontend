@@ -1,8 +1,8 @@
 import { NumberInput, Textarea } from '@mantine/core';
 
+import { IconTextSize } from '@tabler/icons-react';
 import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
 import Icon from '../../Icon';
-import { IconTextSize } from '@tabler/icons';
 
 export interface LongTextQuestionProps extends ApplicationQuestion {
 	additionalData: {

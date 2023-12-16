@@ -1,8 +1,8 @@
 import { MultiSelect, NumberInput, TagsInput } from '@mantine/core';
 
+import { IconSelect } from '@tabler/icons-react';
 import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
 import Icon from '../../Icon';
-import { IconSelect } from '@tabler/icons';
 
 export interface DropdownQuestionProps extends ApplicationQuestion {
 	additionalData: {

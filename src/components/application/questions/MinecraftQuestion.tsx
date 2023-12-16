@@ -1,7 +1,7 @@
+import { TextInput } from '@mantine/core';
+import { IconDeviceGamepad } from '@tabler/icons-react';
 import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
 import Icon from '../../Icon';
-import { IconDeviceGamepad } from '@tabler/icons';
-import { TextInput } from '@mantine/core';
 
 export interface MinecraftQuestionProps extends ApplicationQuestion {
 	additionalData: {};

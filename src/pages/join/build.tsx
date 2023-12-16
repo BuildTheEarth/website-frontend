@@ -12,7 +12,7 @@ import {
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
-import { IconChevronDown, IconChevronLeft } from '@tabler/icons';
+import { IconChevronDown, IconChevronLeft } from '@tabler/icons-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 import { NextPage } from 'next';

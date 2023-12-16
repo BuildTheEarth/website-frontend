@@ -1,5 +1,5 @@
 import { Group, Input, NumberInput, Slider, Stack, TextInput } from '@mantine/core';
-import { IconAdjustments, IconTextSize } from '@tabler/icons';
+import { IconAdjustments, IconTextSize } from '@tabler/icons-react';
 
 import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
 import Icon from '../../Icon';

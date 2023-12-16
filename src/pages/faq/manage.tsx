@@ -1,5 +1,5 @@
 import { ActionIcon, Button, Group, Input, SimpleGrid, TextInput } from '@mantine/core';
-import { IconCheck, IconChevronLeft, IconPlus, IconQuestionMark } from '@tabler/icons';
+import { IconCheck, IconChevronLeft, IconPlus, IconQuestionMark } from '@tabler/icons-react';
 import useSWR, { mutate } from 'swr';
 
 import { useForm } from '@mantine/form';

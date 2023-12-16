@@ -1,6 +1,6 @@
 import { Accordion, Button, Flex } from '@mantine/core';
 
-import { IconEdit } from '@tabler/icons';
+import { IconEdit } from '@tabler/icons-react';
 import { NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
