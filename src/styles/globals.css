@@ -38,6 +38,10 @@ body,
 	height: 100%;
 }
 
+iframe {
+	border:none
+}
+
 a {
 	color: inherit;
 	text-decoration: none;

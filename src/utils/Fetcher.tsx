@@ -5,6 +5,10 @@ export default async function fetcher(route: string, ...props: any) {
 	const res = await fetch(process.env.NEXT_PUBLIC_API_URL + route, ...props);
 	return res.json();
 }
+export async function globalFetcher(route: string, ...props: any) {
+	const res = await fetch(route, ...props);
+	return res.json();
+}
 export const searchInOSM = async (query: string, map?: mapboxgl.Map) => {
 	const result: any[] = [];
 	const res = await fetch(`https://photon.komoot.io/api/?q=${query}`);

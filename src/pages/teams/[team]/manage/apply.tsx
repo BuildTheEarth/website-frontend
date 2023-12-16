@@ -16,6 +16,10 @@ import {
 	useMantineTheme,
 } from '@mantine/core';
 import {
+	ApplicationQuestions,
+	toReadable,
+} from '../../../../utils/application/ApplicationQuestions';
+import {
 	IconCheck,
 	IconChevronDown,
 	IconChevronUp,
@@ -23,65 +27,19 @@ import {
 	IconPlus,
 } from '@tabler/icons-react';
 import Question, { EditQuestion } from '../../../../components/application/questions/Question';
-import {
-	ApplicationQuestions,
-	toReadable,
-} from '../../../../utils/application/ApplicationQuestions';
 
-import { showNotification } from '@mantine/notifications';
-import { NextPage } from 'next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import Icon from '../../../../components/Icon';
+import Link from 'next/link';
+import { NextPage } from 'next';
 import Page from '../../../../components/Page';
 import SettingsTabs from '../../../../components/SettingsTabs';
-import { useUser } from '../../../../hooks/useUser';
 import fetcher from '../../../../utils/Fetcher';
-
-// const tempData = [
-// 	{
-// 		id: 'c52c53a9-5334-4055-a75f-53fa5b5d6abc',
-// 		title: 'How are you?',
-// 		subtitle: 'Honestly',
-// 		placeholder: 'Great',
-// 		required: true,
-// 		type: 'SHORT_INPUT',
-// 		icon: 'question-mark',
-// 		additionalData: {},
-// 		buildTeamId: '03c6ff11-0d72-4ed7-9c5d-f75abe03c4d3',
-// 		sort: 0,
-// 		trial: false,
-// 	},
-// 	{
-// 		id: 'cdw5g9-5334-4055-a75f-53fa5b5d6abc',
-// 		title: 'Sorted 1 at beginning',
-// 		subtitle: 'Honestly',
-// 		placeholder: 'Great',
-// 		required: true,
-// 		type: 'SHORT_INPUT',
-// 		icon: 'question-mark',
-// 		additionalData: {},
-// 		buildTeamId: '03c6ff11-0d72-4ed7-9c5d-f75abe03c4d3',
-// 		sort: 1,
-// 		trial: false,
-// 	},
-// 	{
-// 		id: '03bf2fad-c2f6-4044-a8a9-589b76dfbd00',
-// 		title: 'Question two',
-// 		subtitle: 'Answer this',
-// 		placeholder: '',
-// 		required: false,
-// 		type: 'CHECKBOX',
-// 		icon: 'question-mark',
-// 		additionalData: {},
-// 		buildTeamId: '03c6ff11-0d72-4ed7-9c5d-f75abe03c4d3',
-// 		sort: 0,
-// 		trial: true,
-// 	},
-// ];
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { showNotification } from '@mantine/notifications';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { useUser } from '../../../../hooks/useUser';
+import { v4 as uuidv4 } from 'uuid';
 
 const Apply: NextPage = ({ data: tempData, team }: any) => {
 	const [trial, setTrial] = useState(false);
