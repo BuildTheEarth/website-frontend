@@ -1,23 +1,60 @@
-import { Box, Container, Group, Pagination } from '@mantine/core';
+import { Box, Container, Group, Image, Modal, Pagination } from '@mantine/core';
+import GalleryGrid, { GalleryGridImage } from '../components/GalleryGrid';
 
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
-import GalleryGrid from '../components/GalleryGrid';
+import { GalleryImage } from '../components/Gallery';
 import Page from '../components/Page';
 import fetcher from '../utils/Fetcher';
 
 const MePage: NextPage = ({ data }: any) => {
 	const [activePage, setPage] = useState(1);
+	const [focus, setFocus] = useState<null | string>(null);
+	const router = useRouter();
+
+	const FocusImage = ({ id }: { id: string }) => {
+		const img = data?.find((d: any) => d.image.name == id);
+		console.log(img);
+		return (
+			<Modal
+				opened={img != null}
+				onClose={() => setFocus(null)}
+				withCloseButton={false}
+				styles={{
+					body: { padding: 0, overflow: 'hidden', aspectRatio: '16:9', background: 'none' },
+				}}
+				centered
+				size="75vw"
+				transitionProps={{ transition: 'fade', duration: 600, timingFunction: 'linear' }}
+			>
+				<GalleryGridImage
+					src={`https://cdn.buildtheearth.net/upload/${id}`}
+					showTooltipOnHover={false}
+					name={img?.title}
+					team={{
+						name: img?.buildTeam.name,
+						slug: img?.buildTeam.slug,
+						logo: img?.buildTeam.icon,
+					}}
+					date={img?.createdAt}
+					noAnimation
+				/>
+			</Modal>
+		);
+	};
+
 	return (
 		<Page
 			head={{
 				title: 'Gallery',
-				image: `https://cdn.buildtheearth.net/upload/${data[0].image?.name}`,
+				image: `https://cdn.buildtheearth.net/upload/${data[5].image?.name}`,
 			}}
 			loading={!data}
 			fullWidth
 		>
+			{focus && <FocusImage id={focus} />}
 			<Box m="xl">
 				<Container size="xl">
 					<GalleryGrid
@@ -25,7 +62,7 @@ const MePage: NextPage = ({ data }: any) => {
 						images={
 							data
 								?.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime())
-								.slice(activePage * 4 - 4, activePage * 4)
+								.slice(activePage * 100 - 100, activePage * 100)
 								.map((d: any) => ({
 									name: d?.title,
 									src: `https://cdn.buildtheearth.net/upload/${d?.image?.name}`,
@@ -35,7 +72,7 @@ const MePage: NextPage = ({ data }: any) => {
 										slug: d?.buildTeam.slug,
 										logo: d?.buildTeam.icon,
 									},
-									href: `/teams/${d?.buildTeam.slug}`,
+									onClick: () => setFocus(d?.image?.name),
 								})) || [{}]
 						}
 						showTooltipOnHover={true}
@@ -44,7 +81,7 @@ const MePage: NextPage = ({ data }: any) => {
 				<Group justify="center" pt="md">
 					<Pagination
 						my="md"
-						total={Math.floor(data.length / 4)}
+						total={Math.floor(data.length / 100)}
 						radius="xs"
 						value={activePage}
 						onChange={setPage}

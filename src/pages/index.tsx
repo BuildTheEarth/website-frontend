@@ -86,7 +86,13 @@ const Home: NextPage = ({ data }: any) => {
 						left: 0,
 					}}
 				>
-					<motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+					<motion.div
+						whileHover={{ scale: 1.1 }}
+						whileTap={{ scale: 0.9 }}
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						transition={{ delay: 0.5, duration: 1 }}
+					>
 						<ActionIcon
 							component={Link}
 							styles={{ root: { height: 64, width: 64, textShadow: '0px 0px 28px #000' } }}
