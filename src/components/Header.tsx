@@ -87,6 +87,7 @@ const Header = ({ links, style }: HeaderProps) => {
 						aria-label="Search on map"
 						component={Link}
 						href="/map?s=true"
+						title="Search on map"
 					>
 						<IconSearch stroke={1.5} style={{ width: '70%', height: '70%' }} />
 					</ActionIcon>

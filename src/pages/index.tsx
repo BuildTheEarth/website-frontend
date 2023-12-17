@@ -9,17 +9,17 @@ import {
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import { ChevronDown, ChevronRight } from 'tabler-icons-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
-import { NextPage } from 'next';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
 import Gallery from '../components/Gallery';
+import Link from 'next/link';
+import { NextPage } from 'next';
 import Page from '../components/Page';
 import fetcher from '../utils/Fetcher';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
 const Home: NextPage = ({ data }: any) => {
 	const theme = useMantineTheme();
@@ -32,7 +32,11 @@ const Home: NextPage = ({ data }: any) => {
 	const galleryY = useTransform(scrollYProgress, [0, 1], ['45%', '0%']);
 	const getstartedY = useTransform(scrollYProgress, [0, 1], ['45%', '0%']);
 	return (
-		<Page fullWidth title="Home">
+		<Page
+			fullWidth
+			title="The Earth in Minecraft"
+			description="Our mission is to fully recreate the entire Earth in Minecraft at a 1:1 scale. Anyone is able to join us and contribute!"
+		>
 			<motion.div
 				style={{
 					backgroundColor:
@@ -119,9 +123,9 @@ const Home: NextPage = ({ data }: any) => {
 					>
 						<Center style={{ width: '100%', height: '100%' }}>
 							<div style={{ padding: '0px 10%' }}>
-								<h1 id="more" style={{ scrollMarginTop: 70 }}>
+								<h2 id="more" style={{ scrollMarginTop: 70 }}>
 									{t('mission.title')}
-								</h1>
+								</h2>
 								<div
 									style={{
 										background: `linear-gradient(90deg, rgba(${
@@ -211,9 +215,9 @@ const Home: NextPage = ({ data }: any) => {
 					>
 						<Center style={{ width: '100%', height: '100%' }}>
 							<div style={{ padding: '0px 10%' }}>
-								<h1 id="more" style={{ scrollMarginTop: 70 }}>
+								<h2 id="more" style={{ scrollMarginTop: 70 }}>
 									{t('join.title')}
-								</h1>
+								</h2>
 								<div
 									style={{
 										background: `linear-gradient(90deg, rgba(${

@@ -91,7 +91,9 @@ export function GalleryImage(i: GalleryImageProps) {
 							alignItems: 'center',
 							color: 'var(--mantine-color-white)',
 							textShadow: '0px 0px 28px #000',
+							fontSize: 34,
 						}}
+						order={3}
 					>
 						<Avatar src={i.icon} radius="xl" mx="md" alt={i.name + ' Logo'} />
 
