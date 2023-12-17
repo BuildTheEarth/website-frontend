@@ -1,0 +1,7 @@
+.container {
+    position: fixed;
+    z-index: 888;
+    bottom: var(--mantine-spacing-lg);
+    right: var(--mantine-spacing-lg);
+    width: 30%;
+}

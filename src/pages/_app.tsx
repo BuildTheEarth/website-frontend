@@ -19,6 +19,7 @@ import { appWithTranslation } from 'next-i18next';
 import { DefaultSeo } from 'next-seo';
 import type { AppProps } from 'next/app';
 import defaultSeo from '../../next-seo.config';
+import CookieBanner from '../components/CookieBanner';
 import { RouterTransition } from '../components/RouterTransition';
 import SWRSetup from '../components/SWRSetup';
 
@@ -47,6 +48,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 			>
 				<ModalsProvider>
 					<Notifications />
+					<CookieBanner />
 					<SWRSetup
 						content={
 							<>
