@@ -150,9 +150,15 @@ const Header = ({ links, style }: HeaderProps) => {
 								</Menu.Item>
 								<Menu.Divider />
 								<Menu.Label>{t('staff')}</Menu.Label>
-								<Menu.Item leftSection={<FileSearch size={14} />}>{t('user.review')}</Menu.Item>
+								<Menu.Item
+									leftSection={<FileSearch size={14} />}
+									component={Link}
+									href="/me/review"
+								>
+									{t('user.review')}
+								</Menu.Item>
 								<Menu.Divider />
-								<Menu.Item leftSection={<Logout size={14} />} onClick={() => signOut()}>
+								<Menu.Item leftSection={<Logout size={14} />} color="red" onClick={() => signOut()}>
 									{t('auth.signout')}
 								</Menu.Item>
 							</Menu.Dropdown>
