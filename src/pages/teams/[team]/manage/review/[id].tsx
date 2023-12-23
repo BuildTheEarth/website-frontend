@@ -20,8 +20,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Page from '../../../../../components/Page';
 import SettingsTabs from '../../../../../components/SettingsTabs';
 import { useUser } from '../../../../../hooks/useUser';
-import fetcher from '../../../../../utils/Fetcher';
 import { ApplicationQuestions } from '../../../../../utils/application/ApplicationQuestions';
+import fetcher from '../../../../../utils/Fetcher';
 
 const Apply: NextPage = ({ team, id }: any) => {
 	const theme = useMantineTheme();
@@ -224,7 +224,7 @@ function statusToString(status: string) {
 		case 'ACCEPTED':
 			return 'Accepted';
 		case 'DECLINED':
-			return 'Declined';
+			return 'Rejected';
 		case 'TRIAL':
 			return 'Trial Accepted';
 		default:

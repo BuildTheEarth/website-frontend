@@ -119,9 +119,17 @@ const Review = ({ team }: any) => {
 												<Badge variant="gradient" gradient={{ from: 'orange', to: 'yellow' }}>
 													Needs Review
 												</Badge>
-											) : (
+											) : a.status == 'ACCEPTED' ? (
 												<Badge variant="gradient" gradient={{ from: 'green', to: 'lime' }}>
 													Accepted
+												</Badge>
+											) : a.status == 'TRIAL' ? (
+												<Badge variant="gradient" gradient={{ from: 'green', to: 'lime' }}>
+													Trial
+												</Badge>
+											) : (
+												<Badge variant="gradient" gradient={{ from: 'red', to: 'orange' }}>
+													Rejected
 												</Badge>
 											)}
 										</Table.Td>
