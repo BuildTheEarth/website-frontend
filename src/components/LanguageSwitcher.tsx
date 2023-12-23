@@ -2,11 +2,11 @@ import '/node_modules/flag-icons/css/flag-icons.min.css';
 
 import { Group, Menu, UnstyledButton } from '@mantine/core';
 
-import { ChevronDown } from 'tabler-icons-react';
-import classes from '../styles/components/LanguageSwitcher.module.css';
+import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { useTranslation } from 'next-i18next';
+import { ChevronDown } from 'tabler-icons-react';
+import classes from '../styles/components/LanguageSwitcher.module.css';
 
 export const languages = [
 	{ label: 'English', code: 'en', flag: 'gb' },

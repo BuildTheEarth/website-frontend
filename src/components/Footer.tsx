@@ -1,5 +1,6 @@
-import { Anchor, Container, Group } from '@mantine/core';
+import { ActionIcon, Anchor, Button, Container, Group } from '@mantine/core';
 
+import { Discord } from '@icons-pack/react-simple-icons';
 import Link from 'next/link';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -27,6 +28,15 @@ export default function Footer({ links, style }: FooterSimpleProps) {
 				</Anchor>
 				<Group className={classes.links}>
 					{items}
+					<ActionIcon
+						component={Link}
+						href="https://discord.gg/buildtheearth"
+						variant="transparent"
+						aria-label="Discord"
+						target="_blank"
+					>
+						<Discord />
+					</ActionIcon>
 					<LanguageSwitcher />
 				</Group>
 			</Container>
