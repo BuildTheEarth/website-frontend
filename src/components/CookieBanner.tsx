@@ -13,11 +13,11 @@ export default function CookieBanner() {
 	}, []);
 
 	const handleAcceptAll = () => {
-		setCookie('bte_cookie_consent', 'all');
+		setCookie('bte_cookie_consent', 'all', { maxAge: 60 * 60 * 24 * 120 });
 		setShowing(false);
 	};
 	const handleAcceptEssential = () => {
-		setCookie('bte_cookie_consent', 'ess');
+		setCookie('bte_cookie_consent', 'ess', { maxAge: 60 * 60 * 24 * 120 });
 		setShowing(false);
 	};
 
@@ -47,7 +47,7 @@ export default function CookieBanner() {
 							<Button variant="outline" size="sm" onClick={handleAcceptEssential}>
 								Accept essential
 							</Button>
-							<Button size="sm" onClick={handleAcceptAll}>
+							<Button variant="outline" size="sm" onClick={handleAcceptAll}>
 								Accept all
 							</Button>
 						</Group>
