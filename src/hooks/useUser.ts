@@ -20,7 +20,11 @@ export const useUser = () => {
 			if (
 				permissions
 					.filter((p: any) =>
-						buildteam ? p.buildTeamId === buildteam || p.buildTeamSlug === buildteam : true,
+						buildteam
+							? p.buildTeamId === buildteam ||
+							  p.buildTeamSlug === buildteam ||
+							  p.buildTeamId == null
+							: true,
 					)
 					.find((p: any) => ps.includes(p.permission))
 			)
