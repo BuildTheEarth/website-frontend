@@ -3,14 +3,12 @@ import {
 	Badge,
 	Button,
 	Checkbox,
-	Group,
-	ScrollAreaAutosize,
+	Group, rem, ScrollAreaAutosize,
 	Stack,
 	Table,
 	Text,
 	TextInput,
-	Title,
-	rem,
+	Title
 } from '@mantine/core';
 import { IconPencil, IconPlus, IconTrash } from '@tabler/icons-react';
 import useSWR, { mutate } from 'swr';
@@ -262,7 +260,9 @@ const Settings = () => {
 					loading={!builders}
 					data={
 						builders
-							? builders.filter((b: any) => b.username.toLowerCase().includes(filter.toLowerCase()))
+							? builders.filter((b: any) =>
+									b.username? b.username?.toLowerCase().includes(filter.toLowerCase()):true,
+							  )
 							: []
 					}
 					actions={(data) => (

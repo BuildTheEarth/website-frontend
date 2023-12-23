@@ -24,7 +24,7 @@ export function UsersTable({
 				<Table.Td>
 					<Group gap="sm">
 						<Avatar size={40} radius={40} color={user.enabled ? 'green' : 'red'}>
-							{user.username.charAt(0).toUpperCase()}
+							{user?.username?.charAt(0).toUpperCase()}
 						</Avatar>
 						<div>
 							<Text fz="sm" fw={500}>
@@ -105,5 +105,5 @@ export function UsersTable({
 }
 
 function capitalize(string: string) {
-	return string.charAt(0).toUpperCase() + string.slice(1);
+	return string?.charAt(0).toUpperCase() + string?.slice(1);
 }
