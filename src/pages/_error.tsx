@@ -60,10 +60,10 @@ function ErrorPage(props: any) {
 							</Title>
 						)}
 						<Title style={{ color: '#ffffff' }} ta="center" order={1}>
-							{errors[code].title}
+							{errors[code]?.title || errors[500].title}
 						</Title>
 						<Title style={{ color: theme.colors.gray[4] }} ta="center" order={3}>
-							{errors[code].message}
+							{errors[code]?.message || errors[500].message}
 							<br />
 							{code != 1 && (
 								<Button

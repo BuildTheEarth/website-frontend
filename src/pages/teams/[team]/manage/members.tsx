@@ -253,31 +253,6 @@ const Settings = () => {
 		>
 			<SettingsTabs team={router.query.team?.toString() || ''} loading={!(builders && managers)}>
 				<SearchInput onSearch={setFilter} inputProps={{ placeholder: 'Filter...' }} />
-				<Title order={3} mt="md">
-					Builders
-				</Title>
-				<UsersTable
-					loading={!builders}
-					data={
-						builders
-							? builders.filter((b: any) =>
-									b.username? b.username?.toLowerCase().includes(filter.toLowerCase()):true,
-							  )
-							: []
-					}
-					actions={(data) => (
-						<Group gap={0} justify="flex-end">
-							<ActionIcon
-								variant="subtle"
-								color="red"
-								onClick={() => handleRemoveBuilder(data)}
-								loading={loadingManagers}
-							>
-								<IconTrash style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
-							</ActionIcon>
-						</Group>
-					)}
-				/>
 				<Group justify={'space-between'}>
 					<Stack gap={0}>
 						<Title order={3} mt="md">
@@ -295,7 +270,9 @@ const Settings = () => {
 					loading={!managers}
 					data={
 						managers
-							? managers.filter((b: any) => b.username.toLowerCase().includes(filter.toLowerCase()))
+							? managers.filter((b: any) =>
+									b.username?.toLowerCase().includes(filter.toLowerCase()),
+							  )
 							: []
 					}
 					actions={(data) => (
@@ -330,6 +307,31 @@ const Settings = () => {
 								{data.permissions.length}
 							</Badge>
 						</Table.Td>
+					)}
+				/>
+				<Title order={3} mt="md">
+					Builders
+				</Title>
+				<UsersTable
+					loading={!builders}
+					data={
+						builders
+							? builders.filter((b: any) =>
+									b.username ? b.username?.toLowerCase().includes(filter.toLowerCase()) : true,
+							  )
+							: []
+					}
+					actions={(data) => (
+						<Group gap={0} justify="flex-end">
+							<ActionIcon
+								variant="subtle"
+								color="red"
+								onClick={() => handleRemoveBuilder(data)}
+								loading={loadingManagers}
+							>
+								<IconTrash style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
+							</ActionIcon>
+						</Group>
 					)}
 				/>
 			</SettingsTabs>
