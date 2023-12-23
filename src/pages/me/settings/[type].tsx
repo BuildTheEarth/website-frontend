@@ -1,4 +1,4 @@
-import { Alert, Badge, Button, Card, Flex, Group, Tabs, Text, TextInput, rem } from '@mantine/core';
+import { Alert, Badge, Button, Card, Flex, Group, rem, Tabs, Text, TextInput } from '@mantine/core';
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Discord, Github } from '@icons-pack/react-simple-icons';
 import {
@@ -49,13 +49,21 @@ const Settings: NextPage = ({ type }: any) => {
 
 	const handleSubmit = (e: any) => {
 		setLoading(true);
+		const body = {
+			username: e.username || undefined,
+			email: e.email || undefined,
+			avatar: e.avatar || undefined,
+			firstName: e.firstName || undefined,
+			lastName: e.lastName || undefined,
+			name: e.name || undefined,
+		};
 		fetch(process.env.NEXT_PUBLIC_API_URL + `/users/${user?.user?.id}`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 				Authorization: 'Bearer ' + user.token,
 			},
-			body: JSON.stringify(e),
+			body: JSON.stringify(body),
 		})
 			.then((res) => res.json())
 			.then((res) => {
