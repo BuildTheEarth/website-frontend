@@ -67,11 +67,6 @@ const Team: NextPage = ({ data, data2 }: any) => {
 							<p>{data?._count?.members}</p>
 						</Group>
 						<Divider style={{ margin: '0' }} my="sm" />
-
-						<Group justify="space-between">
-							<p>{t('team.builds')}</p>
-							<p>{data?._count?.builds}</p>
-						</Group>
 					</Stack>
 				</Grid.Col>
 			</Grid>
@@ -92,7 +87,7 @@ const Team: NextPage = ({ data, data2 }: any) => {
 export default Team;
 
 export async function getStaticProps({ locale, params }: any) {
-	const res = await fetcher(`/buildteams/${params.team}?builds=true&members=true&slug=true`);
+	const res = await fetcher(`/buildteams/${params.team}?slug=true`);
 	const res2 = await fetcher(`/buildteams/${params.team}/showcases?slug=true`);
 	return {
 		props: {
