@@ -1,13 +1,13 @@
 import { Box, Container, Group, Image, Modal, Pagination } from '@mantine/core';
 import GalleryGrid, { GalleryGridImage } from '../components/GalleryGrid';
 
-import { GalleryImage } from '../components/Gallery';
 import { NextPage } from 'next';
-import Page from '../components/Page';
-import fetcher from '../utils/Fetcher';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { GalleryImage } from '../components/Gallery';
+import Page from '../components/Page';
+import fetcher from '../utils/Fetcher';
 
 const MePage: NextPage = ({ data }: any) => {
 	const [activePage, setPage] = useState(1);
@@ -102,5 +102,6 @@ export async function getStaticProps({ locale }: any) {
 			data: res,
 			...(await serverSideTranslations(locale, ['common'])),
 		},
+		revalidate: 60 * 60 * 12, // Every 12 hours
 	};
 }

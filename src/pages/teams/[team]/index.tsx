@@ -88,6 +88,7 @@ export async function getStaticProps({ locale, params }: any) {
 			data: res,
 			data2: res2,
 		},
+		revalidate: 60 * 60 * 2, // Every 2 hours,
 	};
 }
 export async function getStaticPaths() {

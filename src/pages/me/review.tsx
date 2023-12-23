@@ -15,7 +15,6 @@ const ReviewPage: NextPage = () => {
 	const { t } = useTranslation('me');
 	const user = useUser();
 	const { data } = useSWR(`/users/${user?.user?.id}/review`);
-	console.log(data);
 
 	return (
 		<Page

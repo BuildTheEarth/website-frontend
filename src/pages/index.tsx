@@ -9,17 +9,17 @@ import {
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
-import { ChevronDown, ChevronRight } from 'tabler-icons-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { ChevronDown, ChevronRight } from 'tabler-icons-react';
 
-import Gallery from '../components/Gallery';
-import Link from 'next/link';
 import { NextPage } from 'next';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import Gallery from '../components/Gallery';
 import Page from '../components/Page';
 import fetcher from '../utils/Fetcher';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useRouter } from 'next/router';
-import { useTranslation } from 'next-i18next';
 
 const Home: NextPage = ({ data }: any) => {
 	const theme = useMantineTheme();
@@ -251,5 +251,6 @@ export async function getStaticProps({ locale }: any) {
 	const res = await fetcher('/showcases/random?limit=6');
 	return {
 		props: { data: res, ...(await serverSideTranslations(locale, ['common', 'home'])) },
+		revalidate: 60 * 60, // Every hour
 	};
 }

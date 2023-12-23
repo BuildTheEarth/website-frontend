@@ -185,5 +185,6 @@ export async function getStaticProps({ locale }: any) {
 
 	return {
 		props: { data: res, ...(await serverSideTranslations(locale, ['common', 'getstarted'])) },
+		revalidate: 60 * 60 * 24, // Every day
 	};
 }

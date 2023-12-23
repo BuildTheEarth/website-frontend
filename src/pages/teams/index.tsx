@@ -118,5 +118,8 @@ export default Teams;
 export async function getStaticProps({ locale }: any) {
 	const res = await fetcher('/buildteams');
 
-	return { props: { data: res, ...(await serverSideTranslations(locale, ['common', 'teams'])) } };
+	return {
+		props: { data: res, ...(await serverSideTranslations(locale, ['common', 'teams'])) },
+		revalidate: 60 * 60, // Every hour
+	};
 }
