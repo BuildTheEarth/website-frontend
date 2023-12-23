@@ -6,7 +6,14 @@ import {
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
-import { IconDashboard, IconSearch, IconSend, IconSettings, IconUsers } from '@tabler/icons-react';
+import {
+	IconDashboard,
+	IconPhoto,
+	IconSearch,
+	IconSend,
+	IconSettings,
+	IconUsers,
+} from '@tabler/icons-react';
 
 import { useMediaQuery } from '@mantine/hooks';
 import { useSession } from 'next-auth/react';
@@ -81,7 +88,7 @@ const SettingsTabs = ({
 						</Tabs.Tab>
 						<Tabs.Tab
 							value="images"
-							leftSection={<IconUsers size="0.8rem" />}
+							leftSection={<IconPhoto size="0.8rem" />}
 							disabled={!user.hasPermission('team.showcases.edit', team)}
 						>
 							Showcase Images

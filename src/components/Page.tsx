@@ -6,20 +6,20 @@ import {
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
-import Header, { LogoHeader } from './Header';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { NextSeo, NextSeoProps } from 'next-seo';
 import React, { useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import Header, { LogoHeader } from './Header';
 
-import Error from 'next/error';
-import ErrorPage from '../pages/_error';
-import Footer from './Footer';
-import { NextResponse } from 'next/server';
-import classes from '../styles/components/Page.module.css';
 import { useMediaQuery } from '@mantine/hooks';
-import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
+import Error from 'next/error';
+import { useRouter } from 'next/router';
+import { NextResponse } from 'next/server';
 import { useUser } from '../hooks/useUser';
+import ErrorPage from '../pages/_error';
+import classes from '../styles/components/Page.module.css';
+import Footer from './Footer';
 
 interface PageProps {
 	children: React.ReactNode;
@@ -154,7 +154,7 @@ export const LogoPage = (props: PageProps & { headData: any; team: string }) => 
 			<LogoHeader
 				{...props.headData}
 				applyHref={`${props.team}/apply`}
-				settingsHref={`${props.team}/manage/settings`}
+				settingsHref={`${props.team}/manage`}
 			/>
 			<ContentContainer style={props.style} smallPadding={props.smallPadding}>
 				{props.children}

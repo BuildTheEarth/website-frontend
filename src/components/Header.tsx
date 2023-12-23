@@ -14,12 +14,15 @@ import {
 	Box,
 	Burger,
 	Button,
+	ButtonGroup,
 	Container,
 	Divider,
 	Group,
 	Indicator,
 	Menu,
+	MenuItem,
 	Paper,
+	rem,
 	Text,
 	Tooltip,
 	Transition,
@@ -28,7 +31,17 @@ import {
 	useMantineTheme,
 } from '@mantine/core';
 import { useClickOutside, useDisclosure } from '@mantine/hooks';
-import { IconMoonStars, IconSearch, IconSettings, IconSun, IconUser } from '@tabler/icons-react';
+import {
+	IconDots,
+	IconMoonStars,
+	IconPhoto,
+	IconSearch,
+	IconSend,
+	IconSettings,
+	IconSun,
+	IconUser,
+	IconUsers,
+} from '@tabler/icons-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import React, { CSSProperties, useState } from 'react';
@@ -388,12 +401,84 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 								'team.application.edit',
 								'team.application.list',
 								'team.application.review',
+								'team.showcases.edit',
+								'permission.add',
+								'permission.remove',
 							],
 							props.id,
 						) && (
-							<Button component={Link} href={props.settingsHref || ''} variant="outline">
-								Settings
-							</Button>
+							<Group wrap="nowrap" gap={0}>
+								<Button
+									style={{ borderTopRightRadius: 0, borderBottomRightRadius: 0 }}
+									variant="default"
+									component={Link}
+									href={props.settingsHref + '/settings' || ''}
+								>
+									Manage
+								</Button>
+								<Menu transitionProps={{ transition: 'pop' }} position="bottom-end" withinPortal>
+									<Menu.Target>
+										<ActionIcon
+											variant="default"
+											size={36}
+											style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
+										>
+											<IconDots style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
+										</ActionIcon>
+									</Menu.Target>
+									<Menu.Dropdown>
+										<MenuItem
+											leftSection={<IconSettings style={{ width: rem(14), height: rem(14) }} />}
+											component={Link}
+											href={props.settingsHref + '/settings' || ''}
+											disabled={
+												!user.hasPermissions(['team.settings.edit', 'team.socials.edit'], props.id)
+											}
+										>
+											Settings
+										</MenuItem>
+										<MenuItem
+											leftSection={<IconSend style={{ width: rem(14), height: rem(14) }} />}
+											component={Link}
+											href={props.settingsHref + '/apply' || ''}
+											disabled={!user.hasPermissions(['team.application.edit'], props.id)}
+										>
+											Application Questions
+										</MenuItem>
+										<MenuItem
+											leftSection={<IconUsers style={{ width: rem(14), height: rem(14) }} />}
+											component={Link}
+											href={props.settingsHref + '/members' || ''}
+											disabled={
+												!user.hasPermissions(['permission.add', 'permission.remove'], props.id)
+											}
+										>
+											Members
+										</MenuItem>
+										<MenuItem
+											leftSection={<IconPhoto style={{ width: rem(14), height: rem(14) }} />}
+											component={Link}
+											href={props.settingsHref + '/images' || ''}
+											disabled={!user.hasPermissions(['team.showcases.edit'], props.id)}
+										>
+											Showcase Images
+										</MenuItem>
+										<MenuItem
+											leftSection={<IconSearch style={{ width: rem(14), height: rem(14) }} />}
+											component={Link}
+											href={props.settingsHref + '/review' || ''}
+											disabled={
+												!user.hasPermissions(
+													['team.application.review', 'team.application.list'],
+													props.id,
+												)
+											}
+										>
+											Review
+										</MenuItem>
+									</Menu.Dropdown>
+								</Menu>
+							</Group>
 						)}
 					</Group>
 				</Group>
