@@ -3,19 +3,19 @@ import { IconAlertCircle, IconCheck } from '@tabler/icons-react';
 import { signIn, useSession } from 'next-auth/react';
 import useSWR, { mutate } from 'swr';
 
-import { ApplicationQuestions } from '../../../utils/application/ApplicationQuestions';
+import { useForm } from '@mantine/form';
+import { showNotification } from '@mantine/notifications';
 import { IconChevronLeft } from '@tabler/icons-react';
 import { NextPage } from 'next';
-import Page from '../../../components/Page';
-import fetcher from '../../../utils/Fetcher';
-import sanitize from 'sanitize-html';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { showNotification } from '@mantine/notifications';
-import { useForm } from '@mantine/form';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import sanitize from 'sanitize-html';
+import Page from '../../../components/Page';
 import { useUser } from '../../../hooks/useUser';
+import { ApplicationQuestions } from '../../../utils/application/ApplicationQuestions';
+import fetcher from '../../../utils/Fetcher';
 
 const Apply: NextPage = ({ data, buildteam }: any) => {
 	const router = useRouter();
@@ -77,10 +77,22 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 		<Page
 			head={{
 				title: t('apply.title', { team: buildteam?.name || 'BTE' }),
-				image: 'https://cdn.buildtheearth.net/static/thumbnails/apply.png',
+				image: buildteam?.backgroundImage,
 			}}
 			title={buildteam?.name}
 			description={buildteam?.about}
+			seo={{
+				openGraph: {
+					images: [
+						{
+							url: data?.backgroundImage,
+							width: 1920,
+							height: 1080,
+							alt: data?.team,
+						},
+					],
+				},
+			}}
 		>
 			<div dangerouslySetInnerHTML={{ __html: sanitize(buildteam?.about) }} />
 			{!pastApplications || typeof pastApplications == 'string' ? (

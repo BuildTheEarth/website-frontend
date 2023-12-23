@@ -17,7 +17,7 @@ const defaultSeo: DefaultSeoProps = {
 				url: 'https://cdn.buildtheearth.net/static/preview.webp',
 				width: 1920,
 				height: 1080,
-				alt: 'New York City',
+				alt: 'BuildTheEarth - Building the Earth in Minecraft',
 			},
 		],
 	},

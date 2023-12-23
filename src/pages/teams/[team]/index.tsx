@@ -24,6 +24,18 @@ const Team: NextPage = ({ data, data2 }: any) => {
 			description={data?.about}
 			headData={data}
 			team={team?.toString() || ''}
+			seo={{
+				openGraph: {
+					images: [
+						{
+							url: data?.backgroundImage,
+							width: 1920,
+							height: 1080,
+							alt: data?.team,
+						},
+					],
+				},
+			}}
 		>
 			<Grid>
 				<Grid.Col span={8}>
