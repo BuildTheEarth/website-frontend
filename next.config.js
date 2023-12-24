@@ -13,7 +13,7 @@ const nextConfig = {
 	// },
 	i18n: {
 		defaultLocale: 'en',
-		locales: ['en', 'de', 'es', 'fr', 'ru', 'nl'],
+		locales: ['en', 'de', 'es', 'fr', 'ru', 'nl', 'zh'],
 	},
 	output: 'standalone',
 };

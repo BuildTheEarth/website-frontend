@@ -10,11 +10,12 @@ import classes from '../styles/components/LanguageSwitcher.module.css';
 
 export const languages = [
 	{ label: 'English', code: 'en', flag: 'gb' },
-	{ label: 'German', code: 'de', flag: 'de' },
-	{ label: 'Dutch', code: 'nl', flag: 'nl' },
-	{ label: 'French', code: 'fr', flag: 'fr' },
-	{ label: 'Spanish', code: 'es', flag: 'es' },
-	{ label: 'Russian', code: 'ru', flag: 'ru' },
+	{ label: 'Deutsch', code: 'de', flag: 'de' },
+	{ label: 'Nederlands', code: 'nl', flag: 'nl' },
+	{ label: 'Français', code: 'fr', flag: 'fr' },
+	{ label: 'Español', code: 'es', flag: 'es' },
+	{ label: 'русский', code: 'ru', flag: 'ru' },
+	{ label: '中文', code: 'zh', flag: 'cn' },
 ];
 
 export function LanguageSwitcher() {

@@ -1,0 +1,37 @@
+{
+	"claim": {
+		"details": {
+			"title": "領地詳情",
+			"name": "名稱",
+			"status": {
+				"title": "領地狀態",
+				"description": "這個領地仍在建設中，尚未完成。"
+			},
+			"team": "團隊",
+			"owner": "擁有者",
+			"builders": "建築師",
+			"area": "地區",
+			"actions": {
+				"coordinates": "複製座標",
+				"zoom": "縮放",
+				"link": "連結",
+				"edit": "編輯領地"
+			}
+		}
+	},
+	"edit": {
+		"title": "編輯領地",
+		"name": "領地名稱",
+		"finished": "領地已完成",
+		"active": "在地圖上展示",
+		"builders": {
+			"title": "建築師",
+			"aler": "目前無法編輯建築師",
+			"description": "如果此領地中列出了任何不正確的建築師，請聯絡我們。"
+		},
+		"help": {
+			"title": "如何編輯領地多邊形",
+			"description": "您可以在此處找到如何使用右側地圖的教學："
+		}
+	}
+}
