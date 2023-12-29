@@ -251,6 +251,6 @@ export async function getStaticProps({ locale }: any) {
 	const res = await fetcher('/showcases/random?limit=6');
 	return {
 		props: { data: res, ...(await serverSideTranslations(locale, ['common', 'home'])) },
-		revalidate: 60 * 60, // Every hour
+		revalidate: 60 * 2, // Every two minutes
 	};
 }
