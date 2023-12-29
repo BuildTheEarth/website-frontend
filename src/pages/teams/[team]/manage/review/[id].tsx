@@ -106,7 +106,9 @@ const Apply: NextPage = ({ team, id }: any) => {
 					<Grid>
 						<Grid.Col span={{ md: 6 }} pr="lg">
 							<h2>Answers</h2>
-							{data?.ApplicationAnswer?.map((a: any, i: number) => {
+							{data?.ApplicationAnswer?.sort(
+								(a: any, b: any) => a.question.sort - b.question.sort,
+							).map((a: any, i: number) => {
 								const d = a.question;
 								const Question = ApplicationQuestions[d.type];
 								return (

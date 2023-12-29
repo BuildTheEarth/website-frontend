@@ -94,7 +94,10 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 				},
 			}}
 		>
-			<div dangerouslySetInnerHTML={{ __html: sanitize(buildteam?.about) }} />
+			<div
+				dangerouslySetInnerHTML={{ __html: sanitize(buildteam?.about) }}
+				style={{ marginBottom: 'var(--mantine-spacing-md)' }}
+			/>
 			{!pastApplications || typeof pastApplications == 'string' ? (
 				<>
 					<Skeleton height={50} my={'md'} />
@@ -134,6 +137,7 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 							)}
 							{data
 								?.filter((d: any) => d.trial == trial)
+								.sort((a: any, b: any) => a.sort - b.sort)
 								.map((d: any, i: number) => {
 									const Question = ApplicationQuestions[d.type];
 									return (
