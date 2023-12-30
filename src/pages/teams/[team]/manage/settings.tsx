@@ -8,8 +8,8 @@ import {
 	Select,
 	Switch,
 	Text,
-	TextInput,
 	Textarea,
+	TextInput,
 	Tooltip,
 	useMantineColorScheme,
 	useMantineTheme,
@@ -68,6 +68,35 @@ const Settings = ({ data: tempData }: any) => {
 						icon: <IconCheck />,
 					});
 					setData({ ...data, ...res });
+				}
+			});
+	};
+	const handleSaveSocials = (e: any) => {
+		e.preventDefault();
+		fetch(process.env.NEXT_PUBLIC_API_URL + `/buildteams/${data.id}/socials`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + user.token,
+			},
+			body: JSON.stringify({ socials: data.socials }),
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				if (res.errors) {
+					showNotification({
+						title: 'Update failed',
+						message: res.error,
+						color: 'red',
+					});
+				} else {
+					showNotification({
+						title: 'Socials updated',
+						message: 'All Data has been saved',
+						color: 'green',
+						icon: <IconCheck />,
+					});
+					// setData({ ...data, ...res });
 				}
 			});
 	};
@@ -305,17 +334,8 @@ const Settings = ({ data: tempData }: any) => {
 							</Tooltip>
 						</form>
 						<Divider mt="md" />
-						<h3>Socials</h3>
-						<form onSubmit={handleSave}>
-							<Alert
-								variant="light"
-								color="yellow"
-								mb="md"
-								icon={<IconAlertCircle />}
-								title="Editing Social Links currently does not work"
-							>
-								If there are any bugged social links on the build team page right now, message us.
-							</Alert>
+						<Group justify={'space-between'}>
+							<h3>Socials</h3>
 							<Button
 								leftSection={<IconPlus />}
 								mb="md"
@@ -324,6 +344,8 @@ const Settings = ({ data: tempData }: any) => {
 							>
 								Add Social Link
 							</Button>
+						</Group>
+						<form onSubmit={handleSave}>
 							{data.socials.map((social: any, i: number) => (
 								<Group
 									grow
@@ -348,14 +370,10 @@ const Settings = ({ data: tempData }: any) => {
 										]}
 										defaultValue={social.icon}
 										disabled={!allowSocial}
-										onChange={(e) => handleUpdateSocial(i, 'icon', e)}
-									/>
-									<TextInput
-										required
-										label="Social Name"
-										defaultValue={social.name}
-										disabled={!allowSocial}
-										onChange={(e) => handleUpdateSocial(i, 'name', e.target.value)}
+										onChange={(e) => {
+											handleUpdateSocial(i, 'icon', e);
+											handleUpdateSocial(i, 'name', e);
+										}}
 									/>
 									<TextInput
 										required
@@ -364,7 +382,7 @@ const Settings = ({ data: tempData }: any) => {
 										disabled={!allowSocial}
 										onChange={(e) => handleUpdateSocial(i, 'url', e.target.value)}
 									/>
-									<Button
+									{/* <Button
 										variant="outline"
 										style={{ width: '80%' }}
 										leftSection={<IconTrash />}
@@ -372,11 +390,11 @@ const Settings = ({ data: tempData }: any) => {
 										onClick={() => handleDeleteSocial(social.id)}
 									>
 										Delete
-									</Button>
+									</Button> */}
 								</Group>
 							))}
 							<br />
-							<Button type="submit" disabled={!allowSocial}>
+							<Button type="submit" disabled={!allowSocial} onClick={handleSaveSocials}>
 								Save
 							</Button>
 						</form>
