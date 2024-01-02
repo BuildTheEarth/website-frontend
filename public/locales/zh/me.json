@@ -29,7 +29,16 @@
 			"finished": "已完成",
 			"building": "建設中"
 		},
-		"action": "編輯領地"
+		"action": "編輯領地",
+		"create": {
+			"description": "創建領地以追踪建築進度",
+			"action": "創建領地",
+			"modal": {
+				"title": "創建領地",
+				"description": "創建一個新的領地以追踪您的進度。",
+				"input": "選擇建築團隊"
+			}
+		}
 	},
 	"settings": {
 		"general": {
