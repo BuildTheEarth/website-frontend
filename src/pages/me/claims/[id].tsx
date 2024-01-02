@@ -15,8 +15,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Page from '../../../components/Page';
 import Map from '../../../components/map/Map';
+import Page from '../../../components/Page';
 import { useUser } from '../../../hooks/useUser';
 import fetcher from '../../../utils/Fetcher';
 
@@ -165,14 +165,32 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 					<Grid.Col span={{ md: 6 }}>
 						<div style={{ height: '100%', width: '100%', minHeight: '50vh' }}>
 							<Map
-								initialOptions={{ center: data?.center.split(', ').map(Number), zoom: 12 }}
+								initialOptions={{
+									center: data?.center ? data?.center.split(', ').map(Number) : undefined,
+									zoom: data?.center ? 12 : 1,
+								}}
 								layerSetup={(map) => {
 									map.addControl(draw, 'top-right');
-									draw.add(polygon);
-									draw.changeMode('direct_select', { featureId: polygon.id });
+									if (data?.area.length > 0) {
+										draw.add(polygon);
+										draw.changeMode('direct_select', { featureId: polygon.id });
+									} else {
+										draw.changeMode('draw_polygon');
+									}
 								}}
 								onMapLoaded={(map) => {
 									map.on('draw.update', (e) => setPolygon(e.features[0]));
+									map.on('draw.create', (e) =>
+										setPolygon({
+											type: 'Feature',
+											id: data?.id,
+											properties: {},
+											geometry: {
+												type: 'Polygon',
+												coordinates: e.features[0].geometry.coordinates,
+											},
+										}),
+									);
 								}}
 							/>
 						</div>

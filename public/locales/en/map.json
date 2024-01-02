@@ -26,7 +26,7 @@
 		"active": "Show on map",
 		"builders": {
 			"title": "Builders",
-			"aler": "Editing Builders currently does not work",
+			"alert": "Editing Builders currently does not work",
 			"description": "If there are any incorrect Builders listed for this claim, message us."
 		},
 		"help": {

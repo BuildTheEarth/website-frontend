@@ -29,7 +29,16 @@
 			"finished": "Finished",
 			"building": "Under Construction"
 		},
-		"action": "Edit Claim"
+		"action": "Edit Claim",
+		"create": {
+			"description": "Create Claims to track Building Progress",
+			"action": "Create Claim",
+			"modal": {
+				"title": "Create Claim",
+				"description": "Create a new Claim to track your progress.",
+				"input": "Select a BuildTeam"
+			}
+		}
 	},
 	"settings": {
 		"general": {
