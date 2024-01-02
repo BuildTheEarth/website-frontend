@@ -91,7 +91,6 @@ const Home: NextPage = () => {
 						</Blockquote>
 					</Grid.Col>
 				</Grid>
-				<Text>{t('history.content.1')}</Text>
 				<Button
 					px={'xl'}
 					mb="xl"
