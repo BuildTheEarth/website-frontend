@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { ContextMenu, ContextMenuProps } from '../ContextMenu';
+import { MenuDivider, MenuItem, MenuLabel, rem } from '@mantine/core';
 import {
 	IconBrandBing,
 	IconBrandGoogleMaps,
@@ -12,12 +12,12 @@ import {
 	IconSquare,
 	IconWorld,
 } from '@tabler/icons-react';
-import { MenuDivider, MenuItem, MenuLabel, rem } from '@mantine/core';
 import { useEffect, useState } from 'react';
+import { ContextMenu, ContextMenuProps } from '../ContextMenu';
 
-import Link from 'next/link';
 import { fromGeoObject } from '@bte-germany/terraconvert';
 import { useClipboard } from '@mantine/hooks';
+import Link from 'next/link';
 
 interface MapContextMenuProps extends ContextMenuProps {
 	oLat?: number | null;
@@ -32,9 +32,7 @@ export function MapContextMenu({
 }: MapContextMenuProps) {
 	const clipboard = useClipboard();
 	const [{ lat, lng }, setCoords] = useState({ lat: oLat, lng: oLng });
-	const [data, setData] = useState({
-		mc: fromGeoObject(oLat, oLng),
-	});
+	const [data, setData] = useState<any>();
 
 	useEffect(() => {
 		setCoords({ lat: oLat, lng: oLng });
