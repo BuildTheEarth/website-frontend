@@ -21,6 +21,7 @@ interface IMap {
 	src?: string;
 	initialStyle?: number;
 	layerSetup?(map: mapboxgl.Map): void;
+	onContextMenu?(event: any): void;
 }
 
 const styles: MapboxStyleDefinition[] = [
@@ -47,6 +48,7 @@ function Map({
 	layerSetup,
 	src,
 	initialStyle,
+	onContextMenu,
 }: IMap) {
 	// Mapbox map
 	const [map, setMap] = React.useState<mapboxgl.Map>();
@@ -175,6 +177,7 @@ function Map({
 			<LoadingOverlay visible={loading} />
 			<div
 				ref={mapNode}
+				onContextMenu={onContextMenu}
 				style={{
 					width: '100%',
 					height: '100%',

@@ -1,22 +1,29 @@
-import { Alert, Loader, rem } from '@mantine/core';
+import { Alert, Loader, MenuItem, MenuLabel, rem } from '@mantine/core';
 import { useClipboard, useDebouncedState } from '@mantine/hooks';
 import { Spotlight, spotlight } from '@mantine/spotlight';
+import { IconPin, IconSearch } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
+import { ContextMenu, useContextMenu } from '../components/ContextMenu';
 import Map, { mapClickEvent, mapCopyCoordinates, mapCursorHover } from '../components/map/Map';
 
-import { IconPin, IconSearch } from '@tabler/icons-react';
 import mapboxgl from 'mapbox-gl';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
-import Page from '../components/Page';
 import { ClaimDrawer } from '../components/map/ClaimDrawer';
+import { MapContextMenu } from '../components/map/MapContextMenu';
+import Page from '../components/Page';
 import { searchInOSM } from '../utils/Fetcher';
 
 const MapPage: NextPage = () => {
 	const clipboard = useClipboard();
 	const [opened, setOpened] = useState(false);
+	const [state, setState, contextHandler] = useContextMenu({ disableEventPosition: false });
+	const [clientPos, setClientPos] = useState<{ lat: number | null; lng: number | null }>({
+		lat: null,
+		lng: null,
+	});
 	const [query, setQuery] = useDebouncedState('', 200);
 	const [searchActions, setSearchActions] = useState<any[]>([]);
 	const [searchLoading, setSearchLoading] = useState(false);
@@ -102,10 +109,16 @@ const MapPage: NextPage = () => {
 					}
 				}}
 			/>
+			<MapContextMenu
+				contextMenuInfo={state}
+				setContextMenuInfo={setState}
+				oLat={clientPos.lat}
+				oLng={clientPos.lng}
+			/>
 			<div style={{ height: '96vh', width: '100%', position: 'relative' }}>
 				<Alert
 					// w="10%"
-					style={{ position: 'absolute', zIndex: 999 }}
+					style={{ position: 'absolute', zIndex: 999, right: 'var(--mantine-spacing-xl)' }}
 					variant="filled"
 					color="orange"
 					m="md"
@@ -115,9 +128,16 @@ const MapPage: NextPage = () => {
 				</Alert>
 				<Map
 					src={`${process.env.NEXT_PUBLIC_API_URL}/claims/geojson`}
+					onContextMenu={contextHandler}
 					onMapLoaded={(map) => {
 						setMap(map);
-						mapCopyCoordinates(map, clipboard);
+						// mapCopyCoordinates(map, clipboard);
+
+						map.on('mousemove', (e) => {
+							// setState({ x: e.point.x, y: e.point.y, opened: state.opened });
+							setClientPos({ lat: e.lngLat.lat, lng: e.lngLat.lng });
+						});
+
 						mapCursorHover(map, 'claims');
 						mapClickEvent(map, 'claims', (f) => {
 							setSelected(f.properties.id);
