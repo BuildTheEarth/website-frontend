@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import { MenuDivider, MenuItem, MenuLabel, rem } from '@mantine/core';
+import { ContextMenu, ContextMenuProps } from '../ContextMenu';
 import {
 	IconBrandBing,
 	IconBrandGoogleMaps,
@@ -12,12 +12,12 @@ import {
 	IconSquare,
 	IconWorld,
 } from '@tabler/icons-react';
+import { MenuDivider, MenuItem, MenuLabel, rem } from '@mantine/core';
 import { useEffect, useState } from 'react';
-import { ContextMenu, ContextMenuProps } from '../ContextMenu';
 
-import { useClipboard } from '@mantine/hooks';
-import { BTE_PROJECTION } from 'bte-projection';
 import Link from 'next/link';
+import { fromGeoObject } from '@bte-germany/terraconvert';
+import { useClipboard } from '@mantine/hooks';
 
 interface MapContextMenuProps extends ContextMenuProps {
 	oLat?: number | null;
@@ -32,14 +32,15 @@ export function MapContextMenu({
 }: MapContextMenuProps) {
 	const clipboard = useClipboard();
 	const [{ lat, lng }, setCoords] = useState({ lat: oLat, lng: oLng });
-	const [data, setData] = useState<any>();
+	const [data, setData] = useState({
+		mc: fromGeoObject(oLat, oLng),
+	});
 
 	useEffect(() => {
 		setCoords({ lat: oLat, lng: oLng });
 		if (oLat && oLng) {
 			setData({
-				mc: BTE_PROJECTION.fromGeo({ lat: oLat, lon: oLng }),
-				dist: BTE_PROJECTION.getDistortion({ lat: oLat, lon: oLng }),
+				mc: fromGeoObject(oLat, oLng),
 			});
 		}
 	}, [contextMenuInfo]);
@@ -58,7 +59,7 @@ export function MapContextMenu({
 						Coordinates
 					</MenuItem>
 					<MenuItem
-						onClick={() => clipboard.copy(`${data.mc?.x.toFixed(0)} ${data.mc?.y.toFixed(0)}`)}
+						onClick={() => clipboard.copy(`${data.mc?.x.toFixed(0)} ${data.mc?.z.toFixed(0)}`)}
 						disabled={!data.mc}
 						leftSection={<IconBrandMinecraft style={{ width: rem(14), height: rem(14) }} />}
 					>
@@ -66,7 +67,7 @@ export function MapContextMenu({
 					</MenuItem>
 					<MenuItem
 						onClick={() =>
-							clipboard.copy(`${Math.floor(data.mc?.x / 16)} ${Math.floor(data.mc?.y / 16)}`)
+							clipboard.copy(`${Math.floor(data.mc?.x / 16)} ${Math.floor(data.mc?.z / 16)}`)
 						}
 						disabled={!data.mc}
 						leftSection={<IconSquare style={{ width: rem(14), height: rem(14) }} />}
@@ -76,7 +77,7 @@ export function MapContextMenu({
 					<MenuItem
 						onClick={() =>
 							clipboard.copy(
-								`r.${Math.floor(data.mc?.x / 16) >> 5}.${Math.floor(data.mc?.y / 16) >> 5}.mca`,
+								`r.${Math.floor(data.mc?.x / 16) >> 5}.${Math.floor(data.mc?.z / 16) >> 5}.mca`,
 							)
 						}
 						disabled={!data.mc}
@@ -121,15 +122,6 @@ export function MapContextMenu({
 						leftSection={<IconWorld style={{ width: rem(14), height: rem(14) }} />}
 					>
 						Google Earth Web
-					</MenuItem>
-					<MenuDivider />
-					<MenuLabel>Projection</MenuLabel>
-					<MenuItem
-						onClick={() => clipboard.copy(`${data?.dist.value}`)}
-						disabled={!data.dist}
-						leftSection={<IconCrop style={{ width: rem(14), height: rem(14) }} />}
-					>
-						Distortion
 					</MenuItem>
 				</>
 			)}
