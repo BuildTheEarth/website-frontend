@@ -8,8 +8,8 @@ import {
 	Select,
 	Switch,
 	Text,
-	Textarea,
 	TextInput,
+	Textarea,
 	Tooltip,
 	useMantineColorScheme,
 	useMantineTheme,
@@ -17,14 +17,14 @@ import {
 import { IconAlertCircle, IconCheck, IconPlus, IconTrash } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 
-import { showNotification } from '@mantine/notifications';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { v4 as uuidv4 } from 'uuid';
 import Page from '../../../../components/Page';
 import RTE from '../../../../components/RTE';
 import SettingsTabs from '../../../../components/SettingsTabs';
-import { useUser } from '../../../../hooks/useUser';
 import fetcher from '../../../../utils/Fetcher';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { showNotification } from '@mantine/notifications';
+import { useUser } from '../../../../hooks/useUser';
+import { v4 as uuidv4 } from 'uuid';
 
 const Settings = ({ data: tempData }: any) => {
 	const theme = useMantineTheme();
@@ -365,7 +365,7 @@ const Settings = ({ data: tempData }: any) => {
 										searchable
 										nothingFoundMessage="No Types Found"
 										data={[
-											{ value: 'discord', label: 'Discord' },
+											{ value: 'reddit', label: 'Reddit' },
 											{ value: 'twitter', label: 'Twitter' },
 											{ value: 'instagram', label: 'Instagram' },
 											{ value: 'youtube', label: 'Youtube' },

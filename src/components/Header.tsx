@@ -1,6 +1,7 @@
 import {
 	Discord,
 	Instagram,
+	Reddit,
 	Tiktok,
 	Twitch,
 	Twitter,
@@ -14,7 +15,6 @@ import {
 	Box,
 	Burger,
 	Button,
-	ButtonGroup,
 	Container,
 	Divider,
 	Group,
@@ -22,11 +22,11 @@ import {
 	Menu,
 	MenuItem,
 	Paper,
-	rem,
 	Text,
 	Tooltip,
 	Transition,
 	UnstyledButton,
+	rem,
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
@@ -339,8 +339,8 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 									icon = <Twitter />;
 									break;
 								}
-								case 'discord': {
-									icon = <Discord />;
+								case 'reddit': {
+									icon = <Reddit />;
 									break;
 								}
 								case 'twitch': {
