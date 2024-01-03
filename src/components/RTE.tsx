@@ -51,8 +51,13 @@ export default function RTE({
 					<RichTextEditor.Underline />
 					<RichTextEditor.Strikethrough />
 					<RichTextEditor.ClearFormatting />
-					<RichTextEditor.Highlight />
+					{/* <RichTextEditor.Highlight /> */}
 					<RichTextEditor.Code />
+				</RichTextEditor.ControlsGroup>
+
+				<RichTextEditor.ControlsGroup>
+					<RichTextEditor.Link />
+					<RichTextEditor.Unlink />
 				</RichTextEditor.ControlsGroup>
 
 				<RichTextEditor.ControlsGroup>
@@ -67,8 +72,8 @@ export default function RTE({
 					<RichTextEditor.Hr />
 					<RichTextEditor.BulletList />
 					<RichTextEditor.OrderedList />
-					<RichTextEditor.Subscript />
-					<RichTextEditor.Superscript />
+					{/* <RichTextEditor.Subscript />
+					<RichTextEditor.Superscript /> */}
 				</RichTextEditor.ControlsGroup>
 			</RichTextEditor.Toolbar>
 

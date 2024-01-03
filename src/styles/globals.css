@@ -43,7 +43,7 @@ iframe {
 }
 
 a {
-	color: inherit;
+	color: var(--mantine-color-anchor);
 	text-decoration: none;
 }
 
