@@ -1,23 +1,25 @@
 import { Button, CloseButton, Group, Paper, Text } from '@mantine/core';
-import { hasCookie, setCookie } from 'cookies-next';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
+import { hasCookie } from 'cookies-next';
 import classes from '../styles/components/CookieBanner.module.css';
 
 export default function CookieBanner() {
 	const [showing, setShowing] = useState(false);
 
 	useEffect(() => {
-		setShowing(!hasCookie('bte_cookie_consent'));
+		setShowing(!hasCookie('mtm_cookie_consent'));
 	}, []);
 
 	const handleAcceptAll = () => {
-		setCookie('bte_cookie_consent', 'all', { maxAge: 60 * 60 * 24 * 120 });
+		//@ts-ignore
+		window._paq = window._paq || [];
+		//@ts-ignore
+		window._paq.push(['rememberCookieConsentGiven']);
 		setShowing(false);
 	};
 	const handleAcceptEssential = () => {
-		setCookie('bte_cookie_consent', 'ess', { maxAge: 60 * 60 * 24 * 120 });
 		setShowing(false);
 	};
 

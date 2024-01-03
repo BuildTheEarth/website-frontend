@@ -18,6 +18,7 @@ import { SessionProvider } from 'next-auth/react';
 import { appWithTranslation } from 'next-i18next';
 import { DefaultSeo } from 'next-seo';
 import type { AppProps } from 'next/app';
+import { useEffect } from 'react';
 import defaultSeo from '../../next-seo.config';
 import CookieBanner from '../components/CookieBanner';
 import { RouterTransition } from '../components/RouterTransition';
@@ -27,6 +28,20 @@ function MyApp({ Component, pageProps }: AppProps) {
 	const [accessToken, setAccessToken] = useLocalStorage<string>({
 		key: 'accessToken',
 		defaultValue: '',
+	});
+
+	useEffect(() => {
+		//@ts-ignore
+		var _mtm = (window._mtm = window._mtm || []);
+		_mtm.push({ 'mtm.startTime': new Date().getTime(), event: 'mtm.Start' });
+		(function () {
+			var d = document,
+				g = d.createElement('script'),
+				s = d.getElementsByTagName('script')[0];
+			g.async = true;
+			g.src = 'https://analytics.buildtheearth.net/js/container_PcCg1Bla.js';
+			s.parentNode?.insertBefore(g, s);
+		})();
 	});
 
 	return (
