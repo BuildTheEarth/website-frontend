@@ -44,7 +44,7 @@ export default function RTE({
 
 	return (
 		<RichTextEditor editor={editor} styles={style}>
-			<RichTextEditor.Toolbar sticky stickyOffset={60}>
+			<RichTextEditor.Toolbar>
 				<RichTextEditor.ControlsGroup>
 					<RichTextEditor.Bold />
 					<RichTextEditor.Italic />

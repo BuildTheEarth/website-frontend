@@ -169,13 +169,13 @@ const Settings = ({ data: tempData }: any) => {
 				{data && (
 					<>
 						<form onSubmit={handleSave}>
-							<h3>General Settings</h3>
+							<h3>Branding</h3>
 							<Grid grow>
 								<Grid.Col span={{ md: 6 }}>
 									<TextInput
 										required
 										label="BuildTeam Name"
-										description="The name that should be displayed on the Build Team List."
+										description="The name that should be displayed on the Build Team List. Use the short form `BTE` if possible."
 										mb="md"
 										defaultValue={data.name}
 										disabled={!allowSettings}
@@ -192,15 +192,6 @@ const Settings = ({ data: tempData }: any) => {
 									/>
 									<TextInput
 										required
-										label="Background Image URL"
-										description="The background image that should be displayed on the Build Team Page."
-										mb="md"
-										defaultValue={data.backgroundImage}
-										disabled={!allowSettings}
-										onChange={(e) => handleUpdate('backgroundImage', e.target.value)}
-									/>
-									<TextInput
-										required
 										label="Locations"
 										description="A comma seperated list of 2-letter-ISO-codes that the Build Team is building in. If its a global Build Team this should be set to `glb`"
 										mb="md"
@@ -208,14 +199,26 @@ const Settings = ({ data: tempData }: any) => {
 										disabled={!allowSettings}
 										onChange={(e) => handleUpdate('location', e.target.value)}
 									/>
+								</Grid.Col>
+								<Grid.Col span={{ md: 6 }}>
 									<TextInput
 										required
 										label="Build Team Slug"
-										description="A short form of the Build Team name that can be used in the URL. Has to be unique, coordinate with BTE Staff. Use the countrie´s two-letter code if possible."
+										description="A short form of the Build Team name that can be used in the URL. Use the countrie´s two-letter code if possible."
 										defaultValue={data.slug}
 										disabled={!allowSettings}
 										onChange={(e) => handleUpdate('slug', e.target.value)}
 									/>
+									<TextInput
+										required
+										label="Background Image URL"
+										description="The background image that should be displayed on the Build Team Page."
+										mt="md"
+										defaultValue={data.backgroundImage}
+										disabled={!allowSettings}
+										onChange={(e) => handleUpdate('backgroundImage', e.target.value)}
+									/>
+
 									<TextInput
 										required
 										label="Minecraft IP"
@@ -226,61 +229,64 @@ const Settings = ({ data: tempData }: any) => {
 										onChange={(e) => handleUpdate('ip', e.target.value)}
 									/>
 								</Grid.Col>
-								<Grid.Col span={{ md: 6 }}>
-									<Input.Wrapper
-										label="About"
-										mt="md"
-										description="The about section on the Build Team Page."
-										mb="md"
-									>
-										<RTE
-											style={{
-												root: {
-													marginTop: '5px',
-												},
-												content: {
-													backgroundColor:
-														scheme.colorScheme === 'dark'
-															? theme.colors.dark[6]
-															: theme.colors.gray[0],
-												},
-												toolbar: {
-													backgroundColor:
-														scheme.colorScheme === 'dark'
-															? theme.colors.dark[6]
-															: theme.colors.gray[0],
-												},
-											}}
-											value={data.about}
-											onChange={(e) => allowSettings && handleUpdate('about', e)}
-										/>
-									</Input.Wrapper>
-									<Switch
-										label="Trial Applications"
-										description="If new Users should be able to apply as Trial to the Build Team and then build their builder application builds on the Build Team´s server."
-										defaultChecked={data.allowTrial}
-										mt="md"
-										disabled={!allowSettings}
-										onChange={(e) => handleUpdate('allowTrial', e.target.checked)}
-									/>
-									<Switch
-										label="Builder Claims"
-										description="If Builder schould be able to create Claims on the Map by themselves. If this option is disabled you can only create claims with the API."
-										defaultChecked={data.allowBuilderClaim}
-										mt="md"
-										disabled={!allowSettings}
-										onChange={(e) => handleUpdate('allowBuilderClaim', e.target.checked)}
-									/>
-									<Switch
-										label="Instant accept Applications"
-										description="If new Applications should directly be accepted without the need to review them."
-										defaultChecked={data.instantAccept}
-										mt="md"
-										disabled={!allowSettings}
-										onChange={(e) => handleUpdate('instantAccept', e.target.checked)}
-									/>
-								</Grid.Col>
 							</Grid>
+							<Input.Wrapper
+								label="About"
+								description="The about section on the Build Team Page."
+								mb="md"
+							>
+								<RTE
+									style={{
+										root: {
+											marginTop: '5px',
+										},
+										content: {
+											backgroundColor:
+												scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+										},
+										toolbar: {
+											backgroundColor:
+												scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+										},
+									}}
+									value={data.about}
+									onChange={(e) => allowSettings && handleUpdate('about', e)}
+								/>
+							</Input.Wrapper>
+							<TextInput
+								required
+								label="Discord Invite"
+								description="A discord.gg link of your discord server. This link is displayed as a social link."
+								defaultValue={data.invite}
+								disabled={!allowSettings}
+								onChange={(e) => handleUpdate('invite', e.target.value)}
+								mb="xl"
+							/>
+							<h3>Applications and Claims</h3>
+							<Switch
+								label="Trial Applications"
+								description="If new Users should be able to apply as Trial to the Build Team and then build their builder application builds on the Build Team´s server."
+								defaultChecked={data.allowTrial}
+								disabled={!allowSettings}
+								onChange={(e) => handleUpdate('allowTrial', e.target.checked)}
+							/>
+							<Switch
+								label="Builder Claims"
+								description="If Builder schould be able to create Claims on the Map by themselves. If this option is disabled you can only create claims with the API."
+								defaultChecked={data.allowBuilderClaim}
+								mt="md"
+								disabled={!allowSettings}
+								onChange={(e) => handleUpdate('allowBuilderClaim', e.target.checked)}
+							/>
+							<Switch
+								label="Instant accept Applications"
+								description="If new Applications should directly be accepted without the need to review them."
+								defaultChecked={data.instantAccept}
+								mt="md"
+								mb="xl"
+								disabled={!allowSettings}
+								onChange={(e) => handleUpdate('instantAccept', e.target.checked)}
+							/>
 							<h3>Messages</h3>
 							<Text size="sm" mb="md">
 								All Messages support full Discord Markdown syntax. Additionally you can use these
@@ -333,8 +339,7 @@ const Settings = ({ data: tempData }: any) => {
 								</Button>
 							</Tooltip>
 						</form>
-						<Divider mt="md" />
-						<Group justify={'space-between'}>
+						<Group justify={'space-between'} mt="xl">
 							<h3>Socials</h3>
 							<Button
 								leftSection={<IconPlus />}
