@@ -291,6 +291,14 @@ const Settings = ({ data: tempData }: any) => {
 							/>
 							<h3>Applications and Claims</h3>
 							<Switch
+								label="Allow Applications"
+								description="Allow users to apply to this team."
+								defaultChecked={data.allowApplications}
+								disabled={!allowSettings}
+								mb="md"
+								onChange={(e) => handleUpdate('allowApplications', e.target.checked)}
+							/>
+							<Switch
 								label="Trial Applications"
 								description="If new Users should be able to apply as Trial to the Build Team and then build their builder application builds on the Build Team´s server."
 								defaultChecked={data.allowTrial}
@@ -314,7 +322,6 @@ const Settings = ({ data: tempData }: any) => {
 								onChange={(e) => handleUpdate('instantAccept', e.target.checked)}
 							/>
 							<TextInput
-								required
 								label="API Webhook"
 								description="A Endpoint at your custom api that the BTE API can hit when an application is rejected or accepted."
 								defaultValue={data.webhook}

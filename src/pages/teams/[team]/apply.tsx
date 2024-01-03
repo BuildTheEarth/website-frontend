@@ -3,19 +3,19 @@ import { IconAlertCircle, IconCheck } from '@tabler/icons-react';
 import { signIn, useSession } from 'next-auth/react';
 import useSWR, { mutate } from 'swr';
 
-import { useForm } from '@mantine/form';
-import { showNotification } from '@mantine/notifications';
+import { ApplicationQuestions } from '../../../utils/application/ApplicationQuestions';
 import { IconChevronLeft } from '@tabler/icons-react';
 import { NextPage } from 'next';
+import Page from '../../../components/Page';
+import fetcher from '../../../utils/Fetcher';
+import sanitize from 'sanitize-html';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { showNotification } from '@mantine/notifications';
+import { useForm } from '@mantine/form';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import sanitize from 'sanitize-html';
-import Page from '../../../components/Page';
 import { useUser } from '../../../hooks/useUser';
-import fetcher from '../../../utils/Fetcher';
-import { ApplicationQuestions } from '../../../utils/application/ApplicationQuestions';
 
 const Apply: NextPage = ({ data, buildteam }: any) => {
 	const router = useRouter();
@@ -101,7 +101,7 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 			/>
 			{!pastApplications || typeof pastApplications == 'string' ? (
 				<>
-					<Skeleton height={50} my={'md'} />
+					<Skeleton height={300} my={'md'} />
 					<Button leftSection={<IconChevronLeft />} mt="md" onClick={() => router.back()}>
 						{t('common:button.back')}
 					</Button>
@@ -133,13 +133,24 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 										color="blue"
 										mb="md"
 										styles={{ label: { minWidth: 100 } }}
-										disabled={loading}
+										disabled={loading || !buildteam?.allowApplications}
 										data={[
 											{ label: t('builder', { ns: 'common' }), value: '0' },
 											{ label: t('trial', { ns: 'common' }), value: '1' },
 										]}
 									/>
 								</>
+							)}
+							{!buildteam?.allowApplications && (
+								<Alert
+									mb="md"
+									icon={<IconAlertCircle size="1rem" />}
+									title={'Disabled Applications'}
+									color="red"
+								>
+									This BuildTeam has disabled applications. Please message the BuildTeam if you
+									think this is an error.
+								</Alert>
 							)}
 							{data
 								?.filter((d: any) => d.trial == trial && d.sort >= 0)
@@ -153,11 +164,18 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 											style={{ marginTop: i > 0 && theme.spacing.md, maxWidth: '55%' }}
 											onChange={(v: any) => form.setFieldValue(d.id, v)}
 											error={form.errors[d.id]}
-											disabled={loading}
+											disabled={loading || !buildteam?.allowApplications}
 										/>
 									);
 								})}
-							<Button type="submit" variant="filled" color="blue" mt="md" loading={loading}>
+							<Button
+								type="submit"
+								variant="filled"
+								color="blue"
+								mt="md"
+								loading={loading}
+								disabled={!buildteam?.allowApplications}
+							>
 								{t('common:button.apply')}
 							</Button>
 							<Button
