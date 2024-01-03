@@ -95,15 +95,17 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 							</Text>
 						</Flex>
 					</StatsGrid>
-					<StatsGrid title={t('claim.details.owner')} icon={IconUser} paperProps={{ mb: 'md' }}>
-						<Flex justify="flex-start" align="center" direction="row" wrap="wrap" gap="md">
-							<Avatar size={60}>{data.owner.name?.at(0)}</Avatar>
-							<Text size="xl" fw={700}>
-								{data.owner.name}
-							</Text>
-						</Flex>
-					</StatsGrid>
-					{data.builders && (
+					{data.owner && (
+						<StatsGrid title={t('claim.details.owner')} icon={IconUser} paperProps={{ mb: 'md' }}>
+							<Flex justify="flex-start" align="center" direction="row" wrap="wrap" gap="md">
+								<Avatar size={60}>{data.owner.name?.at(0)}</Avatar>
+								<Text size="xl" fw={700}>
+									{data.owner.name}
+								</Text>
+							</Flex>
+						</StatsGrid>
+					)}
+					{data.builders.length > 0 && (
 						<StatsGrid
 							title={t('claim.details.builders')}
 							icon={IconUsersGroup}
