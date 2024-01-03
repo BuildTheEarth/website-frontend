@@ -298,7 +298,7 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 								<Stack gap={0}>
 									<ActionIcon
 										variant={i == 0 ? 'transparent' : 'subtle'}
-										disabled={i == 0}
+										disabled={i == 0 || d.sort <= 0}
 										onClick={() => {
 											handleUpdateQuestion(d.id, { sort: d.sort > 0 ? d.sort - 1 : d.sort });
 										}}
