@@ -14,8 +14,8 @@ import { useTranslation } from 'react-i18next';
 import sanitize from 'sanitize-html';
 import Page from '../../../components/Page';
 import { useUser } from '../../../hooks/useUser';
-import { ApplicationQuestions } from '../../../utils/application/ApplicationQuestions';
 import fetcher from '../../../utils/Fetcher';
+import { ApplicationQuestions } from '../../../utils/application/ApplicationQuestions';
 
 const Apply: NextPage = ({ data, buildteam }: any) => {
 	const router = useRouter();
@@ -30,10 +30,11 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 	const [loading, setLoading] = useState(false);
 	const [trial, setTrial] = useState(false);
 	const form = useForm({
-		validate: generateValidation(data?.filter((d: any) => d.trial == trial)),
+		validate: generateValidation(data?.filter((d: any) => d.trial == trial && d.sort >= 0)),
 	});
 
 	const handleSubmit = (e: any) => {
+		console.log('hwdaw');
 		setLoading(true);
 		fetch(
 			process.env.NEXT_PUBLIC_API_URL +
@@ -106,7 +107,12 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 					</Button>
 				</>
 			) : (
-				<form onSubmit={form.onSubmit(handleSubmit)}>
+				<form
+					onSubmit={form.onSubmit((e) => {
+						console.log('hidwidwd');
+						return handleSubmit(e);
+					})}
+				>
 					{!pastApplications?.some(
 						(a: any) => a.status == 'SEND' || a.status == 'REVIEWING' || a.status == 'ACCEPTED',
 					) ? (
