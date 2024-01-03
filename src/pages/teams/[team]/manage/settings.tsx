@@ -17,14 +17,14 @@ import {
 import { IconAlertCircle, IconCheck, IconPlus, IconTrash } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 
+import { showNotification } from '@mantine/notifications';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { v4 as uuidv4 } from 'uuid';
 import Page from '../../../../components/Page';
 import RTE from '../../../../components/RTE';
 import SettingsTabs from '../../../../components/SettingsTabs';
-import fetcher from '../../../../utils/Fetcher';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { showNotification } from '@mantine/notifications';
 import { useUser } from '../../../../hooks/useUser';
-import { v4 as uuidv4 } from 'uuid';
+import fetcher from '../../../../utils/Fetcher';
 
 const Settings = ({ data: tempData }: any) => {
 	const theme = useMantineTheme();
@@ -210,6 +210,7 @@ const Settings = ({ data: tempData }: any) => {
 										label="Logo URL"
 										description="The logo that should be displayed on the Build Team List."
 										mb="md"
+										placeholder="https://"
 										defaultValue={data.icon}
 										disabled={!allowSettings}
 										onChange={(e) => handleUpdate('icon', e.target.value)}
@@ -238,6 +239,7 @@ const Settings = ({ data: tempData }: any) => {
 										label="Background Image URL"
 										description="The background image that should be displayed on the Build Team Page."
 										mt="md"
+										placeholder="https://"
 										defaultValue={data.backgroundImage}
 										disabled={!allowSettings}
 										onChange={(e) => handleUpdate('backgroundImage', e.target.value)}
@@ -283,6 +285,7 @@ const Settings = ({ data: tempData }: any) => {
 								description="A discord.gg link of your discord server. This link is displayed as a social link."
 								defaultValue={data.invite}
 								disabled={!allowSettings}
+								placeholder="https://discord.gg/"
 								onChange={(e) => handleUpdate('invite', e.target.value)}
 								mb="xl"
 							/>
@@ -307,9 +310,19 @@ const Settings = ({ data: tempData }: any) => {
 								description="If new Applications should directly be accepted without the need to review them."
 								defaultChecked={data.instantAccept}
 								mt="md"
-								mb="xl"
 								disabled={!allowSettings}
 								onChange={(e) => handleUpdate('instantAccept', e.target.checked)}
+							/>
+							<TextInput
+								required
+								label="API Webhook"
+								description="A Endpoint at your custom api that the BTE API can hit when an application is rejected or accepted."
+								defaultValue={data.webhook}
+								placeholder="https://"
+								disabled={!allowSettings}
+								onChange={(e) => handleUpdate('webhook', e.target.value)}
+								mt="md"
+								mb="xl"
 							/>
 							<h3>Messages</h3>
 							<Text size="sm" mb="md">
