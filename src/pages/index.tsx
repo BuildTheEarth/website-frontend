@@ -250,7 +250,10 @@ export default Home;
 export async function getStaticProps({ locale }: any) {
 	const res = await fetcher('/showcases/random?limit=6');
 	return {
-		props: { data: res, ...(await serverSideTranslations(locale, ['common', 'home'])) },
+		props: {
+			data: res.sort((a: any, b: any) => 0.5 - Math.random()),
+			...(await serverSideTranslations(locale, ['common', 'home'])),
+		},
 		revalidate: 60 * 2, // Every two minutes
 	};
 }
