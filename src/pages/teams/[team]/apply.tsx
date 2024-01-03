@@ -136,7 +136,7 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 								</>
 							)}
 							{data
-								?.filter((d: any) => d.trial == trial)
+								?.filter((d: any) => d.trial == trial && d.sort >= 0)
 								.sort((a: any, b: any) => a.sort - b.sort)
 								.map((d: any, i: number) => {
 									const Question = ApplicationQuestions[d.type];
