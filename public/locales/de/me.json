@@ -17,10 +17,10 @@
     },
     "description": "Willkommen in deinem eigenen Bereich von BuildTheEarth. Hier kannst du deinen Fortschritt, beigetretene Teams und andere nützliche Informationen sehen.",
     "owned": {
-        "title": "Eigene Teams",
-        "description": "Die unten aufgelisteten BuildTeams gehören dir.",
-        "action": "Einstellungen öffnen"
-    },
+			"title": "Eigene Teams",
+			"description": "Die unten aufgelisteten Build Teams gehören dir.",
+			"action": "Einstellungen öffnen"
+		},
     "claims": {
         "title": "Claims",
         "description": "Claims sind Gebäude oder Bereiche, an denen du arbeitest oder die du fertiggestellt hast. Sie helfen uns, den Überblick darüber zu behalten, was bereits gebaut wurde.",

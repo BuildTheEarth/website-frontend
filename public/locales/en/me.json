@@ -2,7 +2,7 @@
 	"head": {
 		"title": "My BuildTheEarth"
 	},
-	"description": "Welcome to your own section of BuildTheEarth. Here you can see your own progress, joined BuildTeams and other usefull information.",
+	"description": "Welcome to your own section of BuildTheEarth. Here you can see your own progress, joined Build Teams and other usefull information.",
 	"account": {
 		"title": "Account Information",
 		"minecraft": "Linked Minecraft Username:",
@@ -10,7 +10,7 @@
 		"settings": "Open Settings"
 	},
 	"teams": {
-		"title": "Joined BuildTeams",
+		"title": "Joined Build Teams",
 		"description": "Build teams are the easiest way to join Build The Earth. These groups work together on a multiplayer server to build cities, regions and sometimes even entire countries.",
 		"empty": {
 			"description": "You have not joined any Team yet",
@@ -18,8 +18,8 @@
 		}
 	},
 	"owned": {
-		"title": "Owned BuildTeams",
-		"description": "The BuildTeams listed below are all owned by you or you have management permission on them.",
+		"title": "Owned Build Teams",
+		"description": "The Build Teams listed below are all owned by you or you have management permission on them.",
 		"action": "Edit Settings"
 	},
 	"claims": {
