@@ -13,33 +13,33 @@ import {
 	Text,
 	TextInput,
 	Title,
-	useMantineTheme,
+	useMantineTheme
 } from '@mantine/core';
-import {
-	ApplicationQuestions,
-	toReadable,
-} from '../../../../utils/application/ApplicationQuestions';
 import {
 	IconCheck,
 	IconChevronDown,
 	IconChevronUp,
 	IconLetterT,
-	IconPlus,
+	IconPlus
 } from '@tabler/icons-react';
 import Question, { EditQuestion } from '../../../../components/application/questions/Question';
+import {
+	ApplicationQuestions,
+	toReadable
+} from '../../../../utils/application/ApplicationQuestions';
 
-import Icon from '../../../../components/Icon';
-import Link from 'next/link';
-import { NextPage } from 'next';
-import Page from '../../../../components/Page';
-import SettingsTabs from '../../../../components/SettingsTabs';
-import fetcher from '../../../../utils/Fetcher';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { showNotification } from '@mantine/notifications';
+import { NextPage } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { useUser } from '../../../../hooks/useUser';
 import { v4 as uuidv4 } from 'uuid';
+import Icon from '../../../../components/Icon';
+import Page from '../../../../components/Page';
+import SettingsTabs from '../../../../components/SettingsTabs';
+import { useUser } from '../../../../hooks/useUser';
+import fetcher from '../../../../utils/Fetcher';
 
 const Apply: NextPage = ({ data: tempData, team }: any) => {
 	const [trial, setTrial] = useState(false);
@@ -300,7 +300,7 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 										variant={i == 0 ? 'transparent' : 'subtle'}
 										disabled={i == 0}
 										onClick={() => {
-											handleUpdateQuestion(d.id, { sort: d.sort - 1 });
+											handleUpdateQuestion(d.id, { sort: d.sort > 0 ? d.sort - 1 : d.sort });
 										}}
 									>
 										<IconChevronUp />
