@@ -245,6 +245,8 @@ const isoCountries: { [key: string]: string } = {
 	ZM: 'Zambia',
 	ZW: 'Zimbabwe',
 	GLB: 'Globe', // Not a country, but i need this!!!
+	OST: 'Overseas Territories', // !!
+	CDP: 'Crown Dependencies', // !!
 };
 
 export default function getCountryName(countryCode: string): string {
