@@ -113,7 +113,31 @@ const Settings = ({ data: tempData }: any) => {
 	};
 	const handleDeleteSocial = (id: string) => {
 		const updatedSocial = data.socials.filter((d: any) => d.id !== id);
-		setData({ ...data, socials: updatedSocial });
+		fetch(process.env.NEXT_PUBLIC_API_URL + `/buildteams/${data.id}/socials/${id}`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + user.token,
+			},
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				if (res.code) {
+					showNotification({
+						title: 'Update failed',
+						message: res.message,
+						color: 'red',
+					});
+				} else {
+					showNotification({
+						title: 'Socials updated',
+						message: 'All Data has been saved',
+						color: 'green',
+						icon: <IconCheck />,
+					});
+					setData({ ...data, socials: updatedSocial });
+				}
+			});
 	};
 	const handleUpdateSocial = (i: number, id: string, d: any) => {
 		const updatedData = { ...data };
@@ -387,15 +411,16 @@ const Settings = ({ data: tempData }: any) => {
 										disabled={!allowSocial}
 										onChange={(e) => handleUpdateSocial(i, 'url', e.target.value)}
 									/>
-									{/* <Button
+									<Button
 										variant="outline"
 										style={{ width: '80%' }}
 										leftSection={<IconTrash />}
 										disabled={!allowSocial}
+										maw={'20%'}
 										onClick={() => handleDeleteSocial(social.id)}
 									>
 										Delete
-									</Button> */}
+									</Button>
 								</Group>
 							))}
 							<br />
