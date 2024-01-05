@@ -13,19 +13,19 @@ import {
 	Text,
 	TextInput,
 	Title,
-	useMantineTheme
+	useMantineTheme,
 } from '@mantine/core';
 import {
 	IconCheck,
 	IconChevronDown,
 	IconChevronUp,
 	IconLetterT,
-	IconPlus
+	IconPlus,
 } from '@tabler/icons-react';
 import Question, { EditQuestion } from '../../../../components/application/questions/Question';
 import {
 	ApplicationQuestions,
-	toReadable
+	toReadable,
 } from '../../../../utils/application/ApplicationQuestions';
 
 import { showNotification } from '@mantine/notifications';
@@ -50,22 +50,50 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 	const [editingQuestion, setEditingQuestion] = useState<any>(null);
 	const [saveLoading, setSaveLoading] = useState(false);
 
-	const handleUpdateQuestion = (id: string, question: any) => {
+	const handleUpdateQuestion = (id: string, question: any, skipCalc?: boolean) => {
 		const updatedData = data.map((d: any) => {
 			if (d.id === id) {
 				return { ...d, ...question };
 			}
 			return d;
 		});
-		setData(updatedData);
+		if (skipCalc) {
+			setData(updatedData);
+			console.log(updatedData);
+		} else {
+			recalculate(updatedData);
+			console.log(updatedData);
+		}
 	};
+
+	const handleMoveUp = (i: number) => {
+		if (i > 0 && i < data.length) {
+			let updatedData = [...data];
+			let temp = updatedData[i];
+			updatedData.splice(i, 1);
+			updatedData.splice(i - 1, 0, temp);
+			recalculate(updatedData.map((d: any, i: number) => ({ ...d, sort: i })));
+		}
+	};
+	const handleMoveDown = (i: number) => {
+		if (i >= 0 && i < data.length) {
+			let updatedData = [...data];
+			let temp = updatedData[i];
+			updatedData.splice(i, 1);
+			updatedData.splice(i + 1, 0, temp);
+			recalculate(updatedData.map((d: any, i: number) => ({ ...d, sort: i })));
+		}
+	};
+
 	const handleAddQuestion = (question: any) => {
 		const updatedData = [...data, { ...question }];
 		setData(updatedData);
 	};
+
 	const handleDeleteQuestion = (id: string) => {
 		handleUpdateQuestion(id, { sort: -1 });
 	};
+
 	const handleUpdateEditingQuestion = (question: any, additional?: boolean) => {
 		if (additional) {
 			setEditingQuestion({
@@ -77,10 +105,14 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 		}
 	};
 
+	const recalculate = (d?: any) => {
+		setData(reduceSortValues(d || data));
+	};
+
 	const handleSubmit = async () => {
 		setSaveLoading(true);
 
-		setData(reduceSortValues(data));
+		recalculate();
 
 		if (data.length < 1) {
 			showNotification({
@@ -300,7 +332,12 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 										variant={i == 0 ? 'transparent' : 'subtle'}
 										disabled={i == 0 || d.sort <= 0}
 										onClick={() => {
-											handleUpdateQuestion(d.id, { sort: d.sort > 0 ? d.sort - 1 : d.sort });
+											// handleUpdateQuestion(d.id, { sort: i - 1 }, true);
+											// console.log(d.title, { sort: i - 1 });
+											// handleUpdateQuestion(data[i - 1].id, { sort: i + 1 }, true);
+											// console.log(data[i - 1].title, { sort: i + 1 });
+											// recalculate();
+											handleMoveUp(i);
 										}}
 									>
 										<IconChevronUp />
@@ -313,7 +350,8 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 										}
 										disabled={i == data.filter((d: any) => d.trial == trial).length - 1}
 										onClick={() => {
-											handleUpdateQuestion(d.id, { sort: d.sort + 1 });
+											// handleUpdateQuestion(d.id, { sort: d.sort + 1 });
+											handleMoveDown(i);
 										}}
 									>
 										<IconChevronDown />
@@ -326,7 +364,8 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 									onClick={() => setEditingQuestion(d)}
 								>
 									<Title order={4} style={{ display: 'flex', alignItems: 'center' }}>
-										<Icon name={d.icon} style={{ height: 20, marginRight: 4 }} /> {d.title}
+										<Icon name={d.icon} style={{ height: 20, marginRight: 4 }} />
+										{d.sort + 1}. {d.title}
 									</Title>
 									<Text c="dimmed">{toReadable(ApplicationQuestions[d.type])}</Text>
 								</Stack>
