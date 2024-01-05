@@ -40,19 +40,19 @@ const Settings = () => {
 
 	const handleRemoveBuilder = (member: any) => {
 		modals.openConfirmModal({
-			title: `Remove ${capitalize(member.username)}`,
+			title: `Remove ${member.username}`,
 			centered: true,
 			children: (
 				<Text>
-					Are you sure you want to remove {capitalize(member.username)} from the team? This action
-					cannot be undone, the user needs to reapply.
+					Are you sure you want to remove {member.username} from the team? This action cannot be
+					undone, the user needs to reapply.
 				</Text>
 			),
 			labels: { confirm: 'Remove Builder', cancel: 'Cancel' },
 			confirmProps: { color: 'red' },
 			onCancel: () =>
 				showNotification({
-					message: `${capitalize(member.username)} was not removed from the team.`,
+					message: `${member.username} was not removed from the team.`,
 					title: 'Cancelled Builder removal',
 					color: 'yellow',
 				}),
@@ -109,7 +109,7 @@ const Settings = () => {
 	};
 	const handleEditManager = (member: any) => {
 		modals.open({
-			title: `Manage ${capitalize(member.username)}´s permission`,
+			title: `Manage ${member.username}´s permission`,
 			onClose: () => mutate(`/buildteams/${router.query.team}/managers`),
 			children: (
 				<ScrollAreaAutosize mah={'80vh'}>
@@ -152,19 +152,19 @@ const Settings = () => {
 	};
 	const handleRemoveManager = (member: any) => {
 		modals.openConfirmModal({
-			title: `Remove ${capitalize(member.username)}´s Permissions`,
+			title: `Remove ${member.username}´s Permissions`,
 			centered: true,
 			children: (
 				<Text>
-					Are you sure you want to remove {capitalize(member.username)}´s Permissions? This action
-					cannot be undone.
+					Are you sure you want to remove {member.username}´s Permissions? This action cannot be
+					undone.
 				</Text>
 			),
 			labels: { confirm: 'Remove Permissions', cancel: 'Cancel' },
 			confirmProps: { color: 'red' },
 			onCancel: () =>
 				showNotification({
-					message: `${capitalize(member.username)} was not removed from the team.`,
+					message: `${member.username} was not removed from the team.`,
 					title: 'Cancelled Member removal',
 					color: 'yellow',
 				}),
@@ -370,8 +370,4 @@ export async function getStaticPaths() {
 		})),
 		fallback: true,
 	};
-}
-
-function capitalize(string: string) {
-	return string?.charAt(0).toUpperCase() + string?.slice(1);
 }

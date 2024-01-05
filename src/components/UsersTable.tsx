@@ -28,7 +28,7 @@ export function UsersTable({
 						</Avatar>
 						<div>
 							<Text fz="sm" fw={500}>
-								{capitalize(user.username)}
+								{user.username}
 							</Text>
 							<Text fz="xs" c="dimmed">
 								{user.id}
@@ -102,8 +102,4 @@ export function UsersTable({
 			</Table>
 		</Table.ScrollContainer>
 	);
-}
-
-function capitalize(string: string) {
-	return string?.charAt(0).toUpperCase() + string?.slice(1);
 }

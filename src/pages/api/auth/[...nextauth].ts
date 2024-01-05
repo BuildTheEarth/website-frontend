@@ -54,7 +54,7 @@ export const nextAuthConfig: NextAuthOptions = {
 			profile: (profile) => {
 				return {
 					...profile,
-					username: capitalize(profile.preferred_username),
+					username: profile.preferred_username,
 					id: profile.sub,
 				};
 			},
@@ -101,7 +101,3 @@ export const nextAuthConfig: NextAuthOptions = {
 };
 
 export default NextAuth(nextAuthConfig);
-
-function capitalize(string: string) {
-	return string.charAt(0).toUpperCase() + string.slice(1);
-}

@@ -116,17 +116,15 @@ const Header = ({ links, style }: HeaderProps) => {
 							<Menu.Target>
 								<UnstyledButton className={classes.user} data-useractive={userMenuOpened}>
 									<Group gap={7}>
-										<Indicator color="red" inline size={8} disabled={session.user.email_verified}>
-											<Avatar
-												alt={session.user.username || session.user.email || 'User Avatar'}
-												radius="xl"
-												size={'sm'}
-												color="blue"
-												src={user.user?.avatar}
-											>
-												{(session.user.username || session.user.email).charAt(0)}
-											</Avatar>
-										</Indicator>
+										<Avatar
+											alt={session.user.username || session.user.email || 'User Avatar'}
+											radius="xl"
+											size={'sm'}
+											color="blue"
+											src={user.user?.avatar}
+										>
+											{(session.user.username || session.user.email).charAt(0)}
+										</Avatar>
 										<Text fw={500} fs="sm" style={{ lineHeight: 1 }} mr={3}>
 											{session.user.username || session.user.email}
 										</Text>
