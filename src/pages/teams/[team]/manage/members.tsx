@@ -3,12 +3,14 @@ import {
 	Badge,
 	Button,
 	Checkbox,
-	Group, rem, ScrollAreaAutosize,
+	Group,
+	ScrollAreaAutosize,
 	Stack,
 	Table,
 	Text,
 	TextInput,
-	Title
+	Title,
+	rem,
 } from '@mantine/core';
 import { IconPencil, IconPlus, IconTrash } from '@tabler/icons-react';
 import useSWR, { mutate } from 'swr';
@@ -317,12 +319,22 @@ const Settings = () => {
 					data={
 						builders
 							? builders.filter((b: any) =>
-									b.username ? b.username?.toLowerCase().includes(filter.toLowerCase()) : true,
+									b.username
+										? b.username?.toLowerCase().includes(filter.toLowerCase())
+										: b.id?.includes(filter.toLowerCase()),
 							  )
 							: []
 					}
 					actions={(data) => (
 						<Group gap={0} justify="flex-end">
+							<ActionIcon
+								variant="subtle"
+								color="gray"
+								onClick={() => handleEditManager(data)}
+								loading={loadingManagers}
+							>
+								<IconPlus style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
+							</ActionIcon>
 							<ActionIcon
 								variant="subtle"
 								color="red"
@@ -361,5 +373,5 @@ export async function getStaticPaths() {
 }
 
 function capitalize(string: string) {
-	return string.charAt(0).toUpperCase() + string.slice(1);
+	return string?.charAt(0).toUpperCase() + string?.slice(1);
 }
