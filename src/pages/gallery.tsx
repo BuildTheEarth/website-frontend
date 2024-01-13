@@ -16,7 +16,6 @@ const MePage: NextPage = ({ data }: any) => {
 
 	const FocusImage = ({ id }: { id: string }) => {
 		const img = data?.find((d: any) => d.image.name == id);
-		console.log(img);
 		return (
 			<Modal
 				opened={img != null}

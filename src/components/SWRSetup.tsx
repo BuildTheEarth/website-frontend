@@ -12,7 +12,6 @@ export default function SWRSetup({ children }: any) {
 			value={{
 				// refreshInterval: 0,
 				fetcher: async (resource: any, init: any) => {
-					console.log(`Fetching ${resource}`);
 					if (!resource.includes('/undefined')) {
 						const res = await fetch(process.env.NEXT_PUBLIC_API_URL + resource, {
 							headers: {

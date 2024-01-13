@@ -34,7 +34,6 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 	});
 
 	const handleSubmit = (e: any) => {
-		console.log('hwdaw');
 		setLoading(true);
 		fetch(
 			process.env.NEXT_PUBLIC_API_URL +
@@ -109,7 +108,6 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 			) : (
 				<form
 					onSubmit={form.onSubmit((e) => {
-						console.log('hidwidwd');
 						return handleSubmit(e);
 					})}
 				>

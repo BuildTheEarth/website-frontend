@@ -59,10 +59,8 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 		});
 		if (skipCalc) {
 			setData(updatedData);
-			console.log(updatedData);
 		} else {
 			recalculate(updatedData);
-			console.log(updatedData);
 		}
 	};
 
@@ -332,11 +330,6 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 										variant={i == 0 ? 'transparent' : 'subtle'}
 										disabled={i == 0 || d.sort <= 0}
 										onClick={() => {
-											// handleUpdateQuestion(d.id, { sort: i - 1 }, true);
-											// console.log(d.title, { sort: i - 1 });
-											// handleUpdateQuestion(data[i - 1].id, { sort: i + 1 }, true);
-											// console.log(data[i - 1].title, { sort: i + 1 });
-											// recalculate();
 											handleMoveUp(i);
 										}}
 									>
@@ -350,7 +343,6 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 										}
 										disabled={i == data.filter((d: any) => d.trial == trial).length - 1}
 										onClick={() => {
-											// handleUpdateQuestion(d.id, { sort: d.sort + 1 });
 											handleMoveDown(i);
 										}}
 									>

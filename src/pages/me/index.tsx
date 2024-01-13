@@ -22,7 +22,6 @@ import {
 	IconPin,
 	IconPlus,
 } from '@tabler/icons-react';
-import useSWR, { useSWRConfig } from 'swr';
 
 import { modals } from '@mantine/modals';
 import { showNotification } from '@mantine/notifications';
@@ -32,6 +31,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
+import useSWR from 'swr';
 import { Pin } from 'tabler-icons-react';
 import Page from '../../components/Page';
 import { useUser } from '../../hooks/useUser';
@@ -43,10 +43,7 @@ const MePage: NextPage = () => {
 	const { t } = useTranslation('me');
 	const scheme = useMantineColorScheme();
 	const theme = useMantineTheme();
-	const test = useSWRConfig();
 	const router = useRouter();
-
-	console.log(test);
 	const handleCreateClaim = () => {
 		const handleSubmit = (v: string) => {
 			fetch(process.env.NEXT_PUBLIC_API_URL + `/claims?slug=true`, {
