@@ -64,14 +64,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 				<ModalsProvider>
 					<Notifications />
 					<CookieBanner />
-					<SWRSetup
-						content={
-							<>
-								<RouterTransition />
-								<Component {...pageProps} />
-							</>
-						}
-					/>
+					<SWRSetup>
+						<RouterTransition />
+						<Component {...pageProps} />
+					</SWRSetup>
 				</ModalsProvider>
 			</MantineProvider>
 		</SessionProvider>

@@ -1,7 +1,8 @@
+import { showNotification } from '@mantine/notifications';
 import { useSession } from 'next-auth/react';
 import { SWRConfig } from 'swr';
 
-export default function SWRSetup({ content }: any) {
+export default function SWRSetup({ children }: any) {
 	const session = useSession();
 	// if (session.status == 'loading') {
 	// 	return <LoadingOverlay visible />;
@@ -9,30 +10,49 @@ export default function SWRSetup({ content }: any) {
 	return (
 		<SWRConfig
 			value={{
-				refreshInterval: 0,
-				fetcher: (resource: any, init: any) => {
+				// refreshInterval: 0,
+				fetcher: async (resource: any, init: any) => {
+					console.log(`Fetching ${resource}`);
 					if (!resource.includes('/undefined')) {
-						return fetch(process.env.NEXT_PUBLIC_API_URL + resource, {
+						const res = await fetch(process.env.NEXT_PUBLIC_API_URL + resource, {
 							headers: {
 								'Access-Control-Allow-Origin': '*',
-								Authorization: 'Bearer ' + session.data?.accessToken,
+								Authorization: session.data?.accessToken
+									? 'Bearer ' + session.data?.accessToken
+									: undefined,
 								...init?.headers,
 							},
 							...init,
-						})
-							.then((res) => res.json())
-							.then((d) => d);
+						});
+
+						const json = await res.json();
+
+						if (!res.ok || json.error) {
+							throw new Error(json.message, { cause: res.status });
+						}
+
+						return json;
 					}
 				},
 				shouldRetryOnError: true,
-				errorRetryInterval: 2,
+				errorRetryInterval: 1000,
 				errorRetryCount: 2,
 				revalidateIfStale: false,
 				revalidateOnFocus: false,
 				revalidateOnReconnect: false,
+				onError: (err, key) => {
+					console.error(`'${err}' on request to ${key} (${err.cause})`);
+					if (err.cause != 401) {
+						showNotification({
+							title: 'Error during request',
+							message: err.message.replace('Error: ', ''),
+							color: 'red',
+						});
+					}
+				},
 			}}
 		>
-			{content}
+			{children}
 		</SWRConfig>
 	);
 }
