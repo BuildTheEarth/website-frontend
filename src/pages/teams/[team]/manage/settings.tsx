@@ -229,7 +229,7 @@ const Settings = ({ data: tempData }: any) => {
 									<TextInput
 										required
 										label="Build Team Slug"
-										description="A short form of the Build Team name that can be used in the URL. Use the countrie´s two-letter code if possible."
+										description="A short form of the Build Team name that can be used in the URL. Use the country's two-letter code if possible."
 										defaultValue={data.slug}
 										disabled={!allowSettings}
 										onChange={(e) => handleUpdate('slug', e.target.value)}
