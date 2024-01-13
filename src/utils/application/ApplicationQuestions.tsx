@@ -7,11 +7,12 @@ import ImageUploadQuestion from '../../components/application/questions/ImageUpl
 import LongTextQuestion from '../../components/application/questions/LongTextQuestion';
 import MinecraftQuestion from '../../components/application/questions/MinecraftQuestion';
 import SliderQuestion from '../../components/application/questions/SliderQuestion';
+import TextDisplay from '../../components/application/questions/TextDisplay';
 import TextQuestion from '../../components/application/questions/TextQuestion';
 import UrlQuestion from '../../components/application/questions/UrlQuestion';
 
 export const ApplicationQuestions: { [key: string]: any } = {
-	TEXT: Text,
+	TEXT: TextDisplay,
 	SHORT_INPUT: TextQuestion,
 	LONG_INPUT: LongTextQuestion,
 	DROPDOWN: DropdownQuestion,
