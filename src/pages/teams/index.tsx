@@ -5,20 +5,21 @@ import {
 	Group,
 	Pagination,
 	Text,
+	Tooltip,
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
 import { Pin, Users } from 'tabler-icons-react';
 
 import { NextPage } from 'next';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
 import Page from '../../components/Page';
 import SearchInput from '../../components/SearchInput';
 import fetcher from '../../utils/Fetcher';
 import getCountryName from '../../utils/ISOCountries';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { useTranslation } from 'next-i18next';
 
 const Teams: NextPage = ({ data }: any) => {
 	const router = useRouter();
@@ -45,12 +46,21 @@ const Teams: NextPage = ({ data }: any) => {
 			<Grid gutter="xl" style={{ marginTop: theme.spacing.xl }}>
 				{data
 					?.sort((a: any, b: any) => b._count.members - a._count.members)
-					.filter((element: any) =>
-						element.name.toLowerCase().includes(search?.toLowerCase() || ''),
+					.map((element: any) => ({
+						...element,
+						location: element.location
+							.split(', ')
+							.map((e: string) => getCountryName(e))
+							.join(', '),
+					}))
+					.filter(
+						(element: any) =>
+							element.name.toLowerCase().includes(search?.toLowerCase() || '') ||
+							element.location.toLowerCase().includes(search?.toLowerCase() || ''),
 					)
 					.slice(activePage * 8 - 8, activePage * 8)
 					.map((element: any, i: number) => (
-						<Grid.Col key={i} span={{ sm: 6 }}>
+						<Grid.Col key={`${i}_${element.slug}_bt_list`} span={{ sm: 6 }}>
 							<Group
 								wrap="nowrap"
 								style={{
@@ -76,13 +86,18 @@ const Teams: NextPage = ({ data }: any) => {
 
 									<Group wrap="nowrap" gap={10} mt={3}>
 										<Pin size={16} />
-										<Text size="xs" c="dimmed">
-											{element.location
-												.split(', ')
-												.slice(0, 3)
-												.map((e: string) => getCountryName(e))
-												.join(', ')}
-										</Text>
+										{element.location.split(', ').length > 2 ? (
+											<Tooltip label={element.location.split(', ').slice(2).join(', ')}>
+												<Text size="xs" c="dimmed">
+													{element.location.split(', ').slice(0, 2).join(', ')} +
+													{element.location.split(', ').length - 2}
+												</Text>
+											</Tooltip>
+										) : (
+											<Text size="xs" c="dimmed">
+												{element.location}
+											</Text>
+										)}
 									</Group>
 
 									<Group wrap="nowrap" gap={10} mt={5}>
