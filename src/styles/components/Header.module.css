@@ -67,7 +67,7 @@
 	text-decoration: none;
 	color: light-dark(#666, var(--mantine-color-dark-0));
 	font-size: var(--mantine-font-size-sm);
-		transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-in-out;
 
 	@media (min-width: $mantine-breakpoint-sm) {
 		border-radius: var(--mantine-radius-sm);
