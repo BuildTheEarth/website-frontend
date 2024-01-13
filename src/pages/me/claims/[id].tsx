@@ -15,8 +15,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Map from '../../../components/map/Map';
 import Page from '../../../components/Page';
+import Map from '../../../components/map/Map';
 import { useUser } from '../../../hooks/useUser';
 import fetcher from '../../../utils/Fetcher';
 
@@ -145,7 +145,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 								{t('common:button.save')}
 							</Button>
 						</Group>
-						<Alert
+						{/* <Alert
 							variant="light"
 							color="blue"
 							mt="xl"
@@ -160,7 +160,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 							>
 								https://docs.buildtheearth.net
 							</Anchor>
-						</Alert>
+						</Alert> */}
 					</Grid.Col>
 					<Grid.Col span={{ md: 6 }}>
 						<div style={{ height: '100%', width: '100%', minHeight: '50vh' }}>
