@@ -19,22 +19,23 @@ import {
 	IconBuildingCommunity,
 	IconChevronDown,
 	IconChevronLeft,
+	IconExternalLink,
 	IconPrompt,
 	IconSearch,
 	IconServer,
 } from '@tabler/icons-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-import { NextPage } from 'next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { NextPage } from 'next';
 import Page from '../../components/Page';
 import SearchInput from '../../components/SearchInput';
 import fetcher from '../../utils/Fetcher';
 import getCountryName from '../../utils/ISOCountries';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Visit: NextPage = ({ data }: any) => {
 	const { t } = useTranslation('getstarted');
@@ -259,10 +260,21 @@ const Visit: NextPage = ({ data }: any) => {
 							icon={<IconBuildingCommunity style={{ width: rem(18), height: rem(18) }} />}
 						/>
 					</Stepper>
-					<Button mt="xl" component={Link} href="/join#more" leftSection={<IconChevronLeft />}>
-						{' '}
-						{t('visit.back')}
-					</Button>
+					<Group>
+						<Button mt="xl" component={Link} href="/join#more" leftSection={<IconChevronLeft />}>
+							{' '}
+							{t('visit.back')}
+						</Button>
+						<Button
+							mt="xl"
+							component={Link}
+							href={`/teams/${selected?.slug}`}
+							leftSection={<IconExternalLink />}
+						>
+							{' '}
+							{t('visit.open')}
+						</Button>
+					</Group>
 				</Container>
 			)}
 		</Page>

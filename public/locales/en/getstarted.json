@@ -38,7 +38,8 @@
 				"description": "{{country}}"
 			}
 		},
-		"back": "Back"
+		"back": "Back",
+		"open": "Open Build Team Page"
 	},
 	"build": {
 		"title": "Build in BuildTheEarth",
