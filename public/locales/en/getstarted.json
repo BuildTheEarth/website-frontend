@@ -26,7 +26,7 @@
 				"description": "using the Launcher"
 			},
 			"step2": {
-				"title": "Use the Ip {{ip}}",
+				"title": "Use the IP <b>{{ip}}</b>",
 				"description": "to connect to the server"
 			},
 			"step3": {

@@ -2,14 +2,15 @@ import {
 	ActionIcon,
 	Button,
 	Center,
+	Code,
 	Container,
 	Grid,
 	Group,
-	rem,
 	Stack,
 	Stepper,
 	Text,
 	Title,
+	rem,
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
@@ -207,7 +208,7 @@ const Visit: NextPage = ({ data }: any) => {
 					>
 						{t('visit.country.title', { country: selected.location })}
 					</h1>
-					<Stepper active={1} orientation="vertical" my="xl">
+					<Stepper active={1} orientation="vertical" my="xl" size="lg">
 						<Stepper.Step
 							label={t('visit.country.step0.title')}
 							description={t('visit.country.step0.description')}
@@ -220,14 +221,28 @@ const Visit: NextPage = ({ data }: any) => {
 						/>
 						{selected.type == 'standalone' ? (
 							<Stepper.Step
-								label={t('visit.country.step2.title', { ip: selected?.ip })}
+								label={
+									<div
+										dangerouslySetInnerHTML={{
+											__html: t('visit.country.step2.title', {
+												ip: selected?.ip,
+											}),
+										}}
+									/>
+								}
 								description={t('visit.country.step2.description', { ip: selected?.ip })}
 								icon={<IconServer style={{ width: rem(18), height: rem(18) }} />}
 							/>
 						) : (
 							<>
 								<Stepper.Step
-									label={t('visit.country.step2.title', { ip: 'buildtheearth.net' })}
+									label={
+										<div
+											dangerouslySetInnerHTML={{
+												__html: t('visit.country.step2.title', { ip: 'buildtheearth.net' }),
+											}}
+										/>
+									}
 									description={t('visit.country.step2.description', { ip: 'buildtheearth.net' })}
 									icon={<IconServer style={{ width: rem(18), height: rem(18) }} />}
 								/>
