@@ -9,6 +9,7 @@ import {
 	Stack,
 	Text,
 	Title,
+	Tooltip,
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
@@ -109,11 +110,20 @@ const Build: NextPage = ({ data }: any) => {
 				<SearchInput onSearch={(search) => setSearch(search)} />
 				<Grid mt="xl" pt="xl" gutter={{ base: '3%' }}>
 					{data
-						?.filter((element: any) =>
-							element.name?.toLowerCase().includes(search?.toLowerCase() || ''),
+						?.sort((a: any, b: any) => b._count.members - a._count.members)
+						.map((element: any) => ({
+							...element,
+							location: element.location
+								.split(', ')
+								.map((e: string) => getCountryName(e))
+								.join(', '),
+						}))
+						.filter(
+							(element: any) =>
+								element.name.toLowerCase().includes(search?.toLowerCase() || '') ||
+								element.location.toLowerCase().includes(search?.toLowerCase() || ''),
 						)
-						.sort((a: any, b: any) => a.location.localeCompare(b.location))
-						.slice(0, 8)
+						// .slice(0, 8)
 						.map((element: any, i: number) => (
 							<Grid.Col key={i} span={{ sm: 5.75 }} mb="md" mr="md">
 								<Group
@@ -126,7 +136,7 @@ const Build: NextPage = ({ data }: any) => {
 										boxShadow: '10px 10px 0px 4px rgba(0,0,0,0.45)',
 									}}
 									p="md"
-									onClick={() => router.push(`/teams/${element.id}/apply`)}
+									onClick={() => router.push(`/teams/${element.slug}/apply`)}
 								>
 									<Avatar src={element.icon} size={94} radius="md" />
 									<div>
@@ -134,13 +144,18 @@ const Build: NextPage = ({ data }: any) => {
 											<Text fs="xl" fw="bold">
 												{element.name}
 											</Text>
-											<Text size="md">
-												{element.location
-													.split(', ')
-													.slice(0, 3)
-													.map((e: string) => getCountryName(e))
-													.join(', ')}
-											</Text>
+											{element.location.split(', ').length > 2 ? (
+												<Tooltip label={element.location.split(', ').slice(2).join(', ')}>
+													<Text size="md" c="dimmed">
+														{element.location.split(', ').slice(0, 2).join(', ')} +
+														{element.location.split(', ').length - 2}
+													</Text>
+												</Tooltip>
+											) : (
+												<Text size="md" c="dimmed">
+													{element.location}
+												</Text>
+											)}
 										</Stack>
 									</div>
 								</Group>
