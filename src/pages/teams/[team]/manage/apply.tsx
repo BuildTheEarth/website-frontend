@@ -91,7 +91,8 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 
 	const handleDeleteQuestion = (id: string) => {
 		setData(data?.filter((d: any) => d.id !== id));
-		setDeletedData([...deletedData, data.find((d: any) => d.id === id)]);
+		const d = data.find((d: any) => d.id === id);
+		setDeletedData([...deletedData, { ...d, sort: -1 }]);
 	};
 
 	const handleUpdateEditingQuestion = (question: any, additional?: boolean) => {
@@ -154,7 +155,8 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 						color: 'green',
 						icon: <IconCheck />,
 					});
-					setData(res);
+					setData(res?.filter((d: any) => d.sort >= 0));
+					setDeletedData(res?.filter((d: any) => d.sort < 0));
 					setSaveLoading(false);
 				}
 			});
