@@ -61,7 +61,7 @@ const Page = (props: PageProps) => {
 		<>
 			<NextSeo
 				title={props.title || props.head?.title}
-				canonical={'https://beta.buildtheearth.net' + router.pathname}
+				canonical={'https://buildtheearth.net' + router.pathname}
 				description={props.description}
 				{...props.seo}
 			/>

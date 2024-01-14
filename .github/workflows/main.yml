@@ -19,7 +19,7 @@ jobs:
           echo KEYCLOAK_URL="https://auth.buildtheearth.net/realms/website" >> build.env.local
           echo KEYCLOAK_ID="frontend" >> build.env.local
           echo KEYCLOAK_SECRET="${{ secrets.KEYCLOAK_SECRET }}" >> build.env.local
-          echo NEXTAUTH_URL="https://beta.buildtheearth.net" >> build.env.local
+          echo NEXTAUTH_URL="https://buildtheearth.net" >> build.env.local
           echo NEXTAUTH_SECRET="${{ secrets.NEXTAUTH_SECRET }}" >> build.env.local
           echo NEXT_PUBLIC_API_URL="https://api.buildtheearth.net/api/v1" >> build.env.local
           echo NEXT_PUBLIC_MAPBOX_TOKEN="${{ secrets.MAPBOX_TOKEN }}" >> build.env.local

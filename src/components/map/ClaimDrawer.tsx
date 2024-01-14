@@ -162,7 +162,7 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 							leftSection={<IconLink />}
 							variant="outline"
 							onClick={() => {
-								clipboard.copy('https://beta.buildtheearth.net/map?claim=' + data.id);
+								clipboard.copy('https://buildtheearth.net/map?claim=' + data.id);
 								showNotification({
 									title: 'Link copied',
 									message: 'Share it anywhere.',

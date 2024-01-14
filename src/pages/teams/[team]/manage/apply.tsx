@@ -46,8 +46,8 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 	const theme = useMantineTheme();
 	const router = useRouter();
 	const user = useUser();
-	const [data, setData] = useState(tempData.filter((d: any) => d.sort >= 0));
-	const [deletedData, setDeletedData] = useState(tempData.filter((d: any) => d.sort < 0));
+	const [data, setData] = useState(tempData?.filter((d: any) => d?.sort >= 0));
+	const [deletedData, setDeletedData] = useState(tempData?.filter((d: any) => d.sort < 0));
 	const [editingQuestion, setEditingQuestion] = useState<any>(null);
 	const [saveLoading, setSaveLoading] = useState(false);
 
@@ -90,7 +90,7 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 	};
 
 	const handleDeleteQuestion = (id: string) => {
-		setData(data.filter((d: any) => d.id !== id));
+		setData(data?.filter((d: any) => d.id !== id));
 		setDeletedData([...deletedData, data.find((d: any) => d.id === id)]);
 	};
 
@@ -106,7 +106,7 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 	};
 
 	const recalculate = (d?: any) => {
-		if (d) setDeletedData([...deletedData, ...d.filter((d: any) => d.sort < 0)]);
+		if (d) setDeletedData([...deletedData, ...d?.filter((d: any) => d.sort < 0)]);
 
 		setData(reduceSortValues(d ? d?.filter((d: any) => d.sort >= 0) : data));
 	};
@@ -400,11 +400,11 @@ export async function getStaticPaths() {
 
 function reduceSortValues(data: any[]) {
 	const dataTrial = data
-		.filter((d) => d.trial == true && d.sort >= 0)
+		?.filter((d) => d.trial == true && d.sort >= 0)
 		.sort((a, b) => a.sort - b.sort)
 		.map((d, i) => ({ ...d, sort: i }));
 	const dataBuilder = data
-		.filter((d) => d.trial == false && d.sort >= 0)
+		?.filter((d) => d.trial == false && d.sort >= 0)
 		.sort((a, b) => a.sort - b.sort)
 		.map((d, i) => ({ ...d, sort: i }));
 	return [...dataBuilder, ...dataTrial];
