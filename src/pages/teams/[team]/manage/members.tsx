@@ -1,9 +1,11 @@
 import {
 	ActionIcon,
+	ActionIconGroup,
 	Badge,
 	Button,
 	Checkbox,
 	Group,
+	Pagination,
 	ScrollAreaAutosize,
 	Stack,
 	Table,
@@ -12,14 +14,20 @@ import {
 	Title,
 	rem,
 } from '@mantine/core';
-import { IconPencil, IconPlus, IconTrash } from '@tabler/icons-react';
+import {
+	IconChevronLeft,
+	IconChevronRight,
+	IconPencil,
+	IconPlus,
+	IconTrash,
+} from '@tabler/icons-react';
+import { useEffect, useState } from 'react';
 import useSWR, { mutate } from 'swr';
 
 import { modals } from '@mantine/modals';
 import { showNotification } from '@mantine/notifications';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 import Page from '../../../../components/Page';
 import SearchInput from '../../../../components/SearchInput';
 import SettingsTabs from '../../../../components/SettingsTabs';
@@ -30,9 +38,12 @@ import fetcher from '../../../../utils/Fetcher';
 const Settings = () => {
 	const user = useUser();
 	const router = useRouter();
+	const [page, setPage] = useState(1);
 	const [hasUpdated, setHasUpdated] = useState(false);
 	const [filter, setFilter] = useState('');
-	const { data: builders } = useSWR(`/buildteams/${router.query.team}/members?slug=true`);
+	const { data: builders } = useSWR(
+		`/buildteams/${router.query.team}/members?slug=true&page=${page - 1}`,
+	);
 	const { data: managers, isLoading: loadingManagers } = useSWR(
 		`/buildteams/${router.query.team}/managers?slug=true`,
 	);
@@ -251,7 +262,7 @@ const Settings = () => {
 				'team.application.list',
 				'team.application.review',
 			]}
-			loading={!(builders && managers)}
+			loading={!managers}
 		>
 			<SettingsTabs team={router.query.team?.toString() || ''} loading={!(builders && managers)}>
 				<SearchInput onSearch={setFilter} inputProps={{ placeholder: 'Filter...' }} />
@@ -314,11 +325,20 @@ const Settings = () => {
 				<Title order={3} mt="md">
 					Builders
 				</Title>
+				<Group justify="center" pt="md">
+					<Pagination
+						total={builders?.pages}
+						radius="xs"
+						value={page}
+						onChange={setPage}
+						siblings={1}
+					/>
+				</Group>
 				<UsersTable
 					loading={!builders}
 					data={
 						builders
-							? builders.filter((b: any) =>
+							? builders.data.filter((b: any) =>
 									b.username
 										? b.username?.toLowerCase().includes(filter.toLowerCase())
 										: b.id?.includes(filter.toLowerCase()),
