@@ -1,11 +1,12 @@
-import { Divider, Grid, Group, Stack } from '@mantine/core';
+import { Divider, Grid, Group, Modal, Stack } from '@mantine/core';
+import GalleryGrid, { GalleryGridImage } from '../../../components/GalleryGrid';
 
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import sanitizeHtml from 'sanitize-html';
-import GalleryGrid from '../../../components/GalleryGrid';
 import { LogoPage } from '../../../components/Page';
 import { useIsClient } from '../../../hooks/useIsClient';
 import fetcher from '../../../utils/Fetcher';
@@ -13,9 +14,40 @@ import getCountryName from '../../../utils/ISOCountries';
 
 const Team: NextPage = ({ data, data2 }: any) => {
 	const router = useRouter();
+	const [focus, setFocus] = useState<null | string>(null);
 	const { t } = useTranslation('teams');
 	const isClient = useIsClient();
 	const team = router.query.team;
+
+	const FocusImage = ({ id }: { id: string }) => {
+		const img = data2?.find((d: any) => d.image.name == id);
+		return (
+			<Modal
+				opened={img != null}
+				onClose={() => setFocus(null)}
+				withCloseButton={false}
+				styles={{
+					body: { padding: 0, overflow: 'hidden', aspectRatio: '16:9', background: 'none' },
+				}}
+				centered
+				size="75vw"
+				transitionProps={{ transition: 'fade', duration: 600, timingFunction: 'linear' }}
+			>
+				<GalleryGridImage
+					src={`https://cdn.buildtheearth.net/upload/${id}`}
+					showTooltipOnHover={false}
+					name={img?.title}
+					// team={{
+					// 	name: img?.buildTeam.name,
+					// 	slug: img?.buildTeam.slug,
+					// 	logo: img?.buildTeam.icon,
+					// }}
+					date={img?.createdAt}
+					noAnimation
+				/>
+			</Modal>
+		);
+	};
 
 	return (
 		<LogoPage
@@ -71,12 +103,15 @@ const Team: NextPage = ({ data, data2 }: any) => {
 				</Grid.Col>
 			</Grid>
 			<h2>{t('team.images')}</h2>
+
+			{focus && <FocusImage id={focus} />}
 			<GalleryGrid
 				images={
 					data2?.slice(0, 10).map((d: any) => ({
 						name: d?.title,
 						src: `https://cdn.buildtheearth.net/upload/${d?.image?.name}`,
 						date: d?.createdAt,
+						onClick: () => setFocus(d?.image?.name),
 					})) || [{}]
 				}
 			/>

@@ -313,14 +313,14 @@ const Settings = ({ data: tempData }: any) => {
 								disabled={!allowSettings}
 								onChange={(e) => handleUpdate('allowBuilderClaim', e.target.checked)}
 							/>
-							<Switch
+							{/* '<Switch
 								label="Instant accept Applications"
 								description="If new Applications should directly be accepted without the need to review them."
 								defaultChecked={data.instantAccept}
 								mt="md"
-								disabled={!allowSettings}
+								disabled={true}
 								onChange={(e) => handleUpdate('instantAccept', e.target.checked)}
-							/>
+							/>' */}
 							<TextInput
 								label="API Webhook"
 								description="A Endpoint at your custom api that the BTE API can hit when an application is rejected or accepted."
