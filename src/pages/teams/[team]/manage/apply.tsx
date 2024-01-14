@@ -67,20 +67,27 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 
 	const handleMoveUp = (i: number) => {
 		if (i > 0 && i < data.length) {
-			let updatedData = [...data];
+			let updatedData = [...data.filter((d: any) => d.trial == trial)];
+			console.log(updatedData);
 			let temp = updatedData[i];
 			updatedData.splice(i, 1);
 			updatedData.splice(i - 1, 0, temp);
-			recalculate(updatedData.map((d: any, i: number) => ({ ...d, sort: i })));
+			recalculate([
+				...updatedData.map((d: any, i: number) => ({ ...d, sort: i })),
+				...data.filter((d: any) => d.trial != trial),
+			]);
 		}
 	};
 	const handleMoveDown = (i: number) => {
 		if (i >= 0 && i < data.length) {
-			let updatedData = [...data];
+			let updatedData = [...data.filter((d: any) => d.trial == trial)];
 			let temp = updatedData[i];
 			updatedData.splice(i, 1);
 			updatedData.splice(i + 1, 0, temp);
-			recalculate(updatedData.map((d: any, i: number) => ({ ...d, sort: i })));
+			recalculate([
+				...updatedData.map((d: any, i: number) => ({ ...d, sort: i })),
+				...data.filter((d: any) => d.trial != trial),
+			]);
 		}
 	};
 
