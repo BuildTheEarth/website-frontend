@@ -46,7 +46,8 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 	const theme = useMantineTheme();
 	const router = useRouter();
 	const user = useUser();
-	const [data, setData] = useState(tempData);
+	const [data, setData] = useState(tempData.filter((d: any) => d.sort >= 0));
+	const [deletedData, setDeletedData] = useState(tempData.filter((d: any) => d.sort < 0));
 	const [editingQuestion, setEditingQuestion] = useState<any>(null);
 	const [saveLoading, setSaveLoading] = useState(false);
 
@@ -89,7 +90,8 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 	};
 
 	const handleDeleteQuestion = (id: string) => {
-		handleUpdateQuestion(id, { sort: -1 });
+		setData(data.filter((d: any) => d.id !== id));
+		setDeletedData([...deletedData, data.find((d: any) => d.id === id)]);
 	};
 
 	const handleUpdateEditingQuestion = (question: any, additional?: boolean) => {
@@ -104,13 +106,17 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 	};
 
 	const recalculate = (d?: any) => {
-		setData(reduceSortValues(d || data));
+		if (d) setDeletedData([...deletedData, ...d.filter((d: any) => d.sort < 0)]);
+
+		setData(reduceSortValues(d ? d?.filter((d: any) => d.sort >= 0) : data));
 	};
 
 	const handleSubmit = async () => {
 		setSaveLoading(true);
 
 		recalculate();
+
+		console.log(deletedData);
 
 		if (data.length < 1) {
 			showNotification({
@@ -130,7 +136,7 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 				'Content-Type': 'application/json',
 				Authorization: 'Bearer ' + user.token,
 			},
-			body: JSON.stringify(data),
+			body: JSON.stringify([...data, ...deletedData]),
 		})
 			.then((res) => res.json())
 			.then((res) => {
@@ -393,7 +399,6 @@ export async function getStaticPaths() {
 }
 
 function reduceSortValues(data: any[]) {
-
 	const dataTrial = data
 		.filter((d) => d.trial == true && d.sort >= 0)
 		.sort((a, b) => a.sort - b.sort)
@@ -402,5 +407,5 @@ function reduceSortValues(data: any[]) {
 		.filter((d) => d.trial == false && d.sort >= 0)
 		.sort((a, b) => a.sort - b.sort)
 		.map((d, i) => ({ ...d, sort: i }));
-	return [...dataBuilder, ...dataTrial, ...data.filter((d) => d.sort < 0)];
+	return [...dataBuilder, ...dataTrial];
 }
