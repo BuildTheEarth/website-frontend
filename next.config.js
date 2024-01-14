@@ -38,6 +38,32 @@ const nextConfig = {
 				destination: 'https://discord.gg/buildtheearth',
 				permanent: true,
 			},
+			{
+				source: '/docs',
+				destination: 'https://docs.buildtheearth.net',
+				permanent: true,
+			},
+
+			{
+				source: '/visit',
+				destination: '/join/visit',
+				permanent: true,
+			},
+			{
+				source: '/build',
+				destination: '/join/build',
+				permanent: true,
+			},
+			{
+				source: '/getstarted',
+				destination: '/join',
+				permanent: true,
+			},
+			{
+				source: '/getstarted/:id*',
+				destination: '/join/:id*',
+				permanent: true,
+			},
 		];
 	},
 };
