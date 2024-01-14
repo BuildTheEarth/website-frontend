@@ -16,6 +16,30 @@ const nextConfig = {
 		locales: ['en', 'zh'], // 'de', 'es', 'fr', 'ru', 'nl',
 	},
 	output: 'standalone',
+	async redirects() {
+		return [
+			{
+				source: '/sitemap',
+				destination: '/sitemap.xml',
+				permanent: false,
+			},
+			{
+				source: '/buildteams/:id*',
+				destination: '/teams/:id*',
+				permanent: true,
+			},
+			{
+				source: '/buildteams',
+				destination: '/teams',
+				permanent: true,
+			},
+			{
+				source: '/discord',
+				destination: 'https://discord.gg/buildtheearth',
+				permanent: true,
+			},
+		];
+	},
 };
 
 module.exports = withBundleAnalyzer(nextConfig);
