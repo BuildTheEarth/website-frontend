@@ -107,7 +107,7 @@ const Page = (props: PageProps) => {
 								style={{
 									color: '#ffffff',
 									fontSize: 'calc(var(--mantine-font-size-xl) * 2)',
-									zIndex: '99',
+									zIndex: '22',
 									marginTop: '60px',
 									marginRight: theme.spacing.md,
 									marginLeft: theme.spacing.md,
