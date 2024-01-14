@@ -347,7 +347,8 @@ const Settings = ({ data: tempData }: any) => {
 										label="Acception Message"
 										description="The Message the Discord Bot should send Users if they get accepted as Builders."
 										defaultValue={data.acceptionMessage}
-										minRows={9}
+										minRows={2}
+										autosize
 										disabled={!allowSettings}
 										onChange={(e) => handleUpdate('acceptionMessage', e.target.value)}
 									/>
@@ -357,7 +358,8 @@ const Settings = ({ data: tempData }: any) => {
 										label="Rejection Message"
 										description="The Message the Discord Bot should send Users if they get Rejected."
 										defaultValue={data.rejectionMessage}
-										minRows={9}
+										minRows={2}
+										autosize
 										disabled={!allowSettings}
 										onChange={(e) => handleUpdate('rejectionMessage', e.target.value)}
 									/>
@@ -370,7 +372,8 @@ const Settings = ({ data: tempData }: any) => {
 								description="The Message the Discord Bot should send Users if they get accepted as Trials."
 								defaultValue={data.trialMessage}
 								placeholder={!data.allowTrial ? 'Trial Applications disabled' : undefined}
-								minRows={9}
+								minRows={2}
+								autosize
 								style={{ maxWidth: '49.5%' }}
 								onChange={(e) => handleUpdate('trialMessage', e.target.value)}
 							/>
