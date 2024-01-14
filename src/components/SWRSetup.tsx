@@ -12,7 +12,7 @@ export default function SWRSetup({ children }: any) {
 			value={{
 				// refreshInterval: 0,
 				fetcher: async (resource: any, init: any) => {
-					if (!resource.includes('/undefined')) {
+					if (!resource.includes('/undefined') && !resource.includes('/null')) {
 						const res = await fetch(process.env.NEXT_PUBLIC_API_URL + resource, {
 							headers: {
 								'Access-Control-Allow-Origin': '*',
