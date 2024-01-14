@@ -23,22 +23,37 @@ export default function Footer({ links, style }: FooterSimpleProps) {
 	return (
 		<div className={classes.footer} style={style}>
 			<Container className={classes.inner} size="xl">
-				<Anchor<'a'> style={{ fontSize: '14px' }} c="dimmed" variant="text">
+				<Anchor<'a'>
+					style={{ fontSize: '14px' }}
+					c="dimmed"
+					variant="text"
+					className={classes.copyright1}
+				>
 					{t('copyright', { year: new Date().getFullYear() })}
 				</Anchor>
 				<Group className={classes.links}>
-					{items}
-					<ActionIcon
-						component={Link}
-						href="https://discord.gg/buildtheearth"
-						variant="transparent"
-						aria-label="Discord"
-						target="_blank"
-					>
-						<Discord />
-					</ActionIcon>
-					<LanguageSwitcher />
+					<Group justify="center" className={classes.links}>
+						{items}
+						<ActionIcon
+							component={Link}
+							href="https://discord.gg/buildtheearth"
+							variant="transparent"
+							aria-label="Discord"
+							target="_blank"
+						>
+							<Discord />
+						</ActionIcon>
+					</Group>
+					<LanguageSwitcher className={classes.language} />
 				</Group>
+				<Anchor<'a'>
+					style={{ fontSize: '14px' }}
+					c="dimmed"
+					variant="text"
+					className={classes.copyright2}
+				>
+					{t('copyright', { year: new Date().getFullYear() })}
+				</Anchor>
 			</Container>
 		</div>
 	);

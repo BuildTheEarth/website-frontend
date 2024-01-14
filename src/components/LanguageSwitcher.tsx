@@ -18,7 +18,7 @@ export const languages = [
 	{ label: '中文', code: 'zh', flag: 'cn' },
 ];
 
-export function LanguageSwitcher() {
+export function LanguageSwitcher({ className }: { className?: string }) {
 	const [opened, setOpened] = useState(false);
 	const { t } = useTranslation();
 	const router = useRouter();
@@ -55,7 +55,7 @@ export function LanguageSwitcher() {
 			width="target"
 		>
 			<Menu.Target>
-				<UnstyledButton className={classes.control} data-opened={opened}>
+				<UnstyledButton className={`${classes.control} ${className}`} data-opened={opened}>
 					<Group gap="xs">
 						<span
 							className={`fi fi-${selected && selected.flag} fis`}

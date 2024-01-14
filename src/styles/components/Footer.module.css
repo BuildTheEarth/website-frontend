@@ -10,7 +10,7 @@
 	padding-top: var(--mantine-spacing-sm);
 	padding-bottom: var(--mantine-spacing-sm);
 
-	@media (max-width: $mantine-breakpoint-xs) {
+	@media (max-width: $mantine-breakpoint-md) {
 		flex-direction: column;
 	}
 }
@@ -18,7 +18,31 @@
 .links {
 	width: fit-content;
 
-	@media (max-width: $mantine-breakpoint-xs) {
-		margin-top: var(--mantine-spacing-md);
+	@media (max-width: $mantine-breakpoint-md) {
+    margin: 0 auto;
+		width:100%
+		
+	}
+}
+
+.language {
+	@media (max-width: $mantine-breakpoint-md) {
+		width:100%
+	}
+}
+
+.copyright1 {
+	@media (max-width: $mantine-breakpoint-md) {
+		display: none;
+	}
+}
+.copyright2 {
+	display: none;
+	@media (max-width: $mantine-breakpoint-md) {
+		display: inherit;
+		margin-top: var(--mantine-spacing-sm);
+		width:100%;
+		text-align:center;
+		font-size: x-small !important;
 	}
 }
