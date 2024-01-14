@@ -393,6 +393,7 @@ export async function getStaticPaths() {
 }
 
 function reduceSortValues(data: any[]) {
+
 	const dataTrial = data
 		.filter((d) => d.trial == true && d.sort >= 0)
 		.sort((a, b) => a.sort - b.sort)
@@ -401,5 +402,5 @@ function reduceSortValues(data: any[]) {
 		.filter((d) => d.trial == false && d.sort >= 0)
 		.sort((a, b) => a.sort - b.sort)
 		.map((d, i) => ({ ...d, sort: i }));
-	return [...dataBuilder, ...dataTrial];
+	return [...dataBuilder, ...dataTrial, ...data.filter((d) => d.sort < 0)];
 }
