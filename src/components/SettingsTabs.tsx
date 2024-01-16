@@ -9,6 +9,7 @@ import {
 import {
 	IconDashboard,
 	IconPhoto,
+	IconPolygon,
 	IconSearch,
 	IconSend,
 	IconSettings,
@@ -85,6 +86,13 @@ const SettingsTabs = ({
 							disabled={!user.hasPermissions(['permission.add', 'permission.remove'], team)}
 						>
 							Members
+						</Tabs.Tab>
+						<Tabs.Tab
+							value="claims"
+							leftSection={<IconPolygon size="0.8rem" />}
+							disabled={!user.hasPermissions(['team.claim.list'], team)}
+						>
+							Claims
 						</Tabs.Tab>
 						<Tabs.Tab
 							value="images"

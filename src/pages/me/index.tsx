@@ -23,19 +23,19 @@ import {
 	IconPlus,
 } from '@tabler/icons-react';
 
-import Link from 'next/link';
-import { NextPage } from 'next';
-import Page from '../../components/Page';
-import { Pin } from 'tabler-icons-react';
-import getCountryName from '../../utils/ISOCountries';
 import { modals } from '@mantine/modals';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { showNotification } from '@mantine/notifications';
+import { NextPage } from 'next';
 import { signOut } from 'next-auth/react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
-import useSWR from 'swr';
 import { useTranslation } from 'react-i18next';
+import useSWR from 'swr';
+import { Pin } from 'tabler-icons-react';
+import Page from '../../components/Page';
 import { useUser } from '../../hooks/useUser';
+import getCountryName from '../../utils/ISOCountries';
 
 const MePage: NextPage = () => {
 	const user = useUser();

@@ -8,18 +8,18 @@ import {
 	IconTrash,
 } from '@tabler/icons-react';
 
-import Link from 'next/link';
-import Map from '../../../components/map/Map';
+import { showNotification } from '@mantine/notifications';
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
 import { NextPage } from 'next';
-import Page from '../../../components/Page';
-import fetcher from '../../../utils/Fetcher';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { showNotification } from '@mantine/notifications';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import Page from '../../../components/Page';
+import Map from '../../../components/map/Map';
 import { useUser } from '../../../hooks/useUser';
+import fetcher from '../../../utils/Fetcher';
 
 const ClaimPage: NextPage = ({ claimId, data }: any) => {
 	const [polygon, setPolygon] = useState<any>({
@@ -86,6 +86,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + user.token,
 			},
 		})
 			.then((res) => res.json())

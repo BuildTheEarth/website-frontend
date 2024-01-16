@@ -1,4 +1,13 @@
 import {
+	Discord,
+	Instagram,
+	Reddit,
+	Tiktok,
+	Twitch,
+	Twitter,
+	Youtube,
+} from '@icons-pack/react-simple-icons';
+import {
 	ActionIcon,
 	Anchor,
 	Avatar,
@@ -21,20 +30,12 @@ import {
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
-import { ChevronDown, FileSearch, Logout, World } from 'tabler-icons-react';
-import {
-	Discord,
-	Instagram,
-	Reddit,
-	Tiktok,
-	Twitch,
-	Twitter,
-	Youtube,
-} from '@icons-pack/react-simple-icons';
+import { useClickOutside, useDisclosure } from '@mantine/hooks';
 import {
 	IconDots,
 	IconMoonStars,
 	IconPhoto,
+	IconPolygon,
 	IconSearch,
 	IconSend,
 	IconSettings,
@@ -42,17 +43,17 @@ import {
 	IconUser,
 	IconUsers,
 } from '@tabler/icons-react';
-import React, { CSSProperties, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { signIn, signOut, useSession } from 'next-auth/react';
-import { useClickOutside, useDisclosure } from '@mantine/hooks';
+import React, { CSSProperties, useState } from 'react';
+import { ChevronDown, FileSearch, Logout, World } from 'tabler-icons-react';
 
-import Icon from './Icon';
 import Link from 'next/link';
-import classes from '../styles/components/Header.module.css';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import { useUser } from '../hooks/useUser';
+import classes from '../styles/components/Header.module.css';
+import Icon from './Icon';
 
 interface HeaderProps {
 	links: {
@@ -402,6 +403,7 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 								'team.showcases.edit',
 								'permission.add',
 								'permission.remove',
+								'team.claim.list',
 							],
 							props.id,
 						) && (
@@ -452,6 +454,14 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 											}
 										>
 											Members
+										</MenuItem>
+										<MenuItem
+											leftSection={<IconPolygon style={{ width: rem(14), height: rem(14) }} />}
+											component={Link}
+											href={props.settingsHref + '/claims' || ''}
+											disabled={!user.hasPermissions(['team.claim.list'], props.id)}
+										>
+											Claims
 										</MenuItem>
 										<MenuItem
 											leftSection={<IconPhoto style={{ width: rem(14), height: rem(14) }} />}
