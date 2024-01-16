@@ -85,7 +85,11 @@ const MapPage: NextPage = () => {
 	}, [query, map]);
 
 	return (
-		<Page fullWidth title="Map">
+		<Page
+			fullWidth
+			title="Map"
+			description="Explore the progress that has been made in the BuildTheEarth Project."
+		>
 			<ClaimDrawer open={opened} setOpen={setOpened} id={selected} map={map} t={t} />
 			<Spotlight
 				filter={(query, actions) => actions}

@@ -42,7 +42,7 @@ const MapPage: NextPage = ({ data }: any) => {
 	);
 
 	return (
-		<Page fullWidth title="Map">
+		<Page fullWidth title="Map" description="Find the Buildteam building a specific country here.">
 			<ClaimDrawer open={opened} setOpen={setOpened} id={selected} map={map} t={t} />
 
 			<MapContextMenu

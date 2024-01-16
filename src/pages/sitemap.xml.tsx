@@ -23,6 +23,12 @@ export async function getServerSideProps({ res }: any) {
 			priority: 0.9,
 		},
 		{
+			loc: '/map/teams',
+			lastModified: new Date(),
+			changeFrequency: 'monthly',
+			priority: 0.9,
+		},
+		{
 			loc: '/gallery',
 			lastModified: new Date(),
 			changeFrequency: 'weekly',
