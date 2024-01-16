@@ -1,24 +1,25 @@
-import { Alert, Anchor, Button, Grid, Group, Switch, TextInput } from '@mantine/core';
+import { ActionIcon, Alert, Anchor, Button, Grid, Group, Switch, TextInput } from '@mantine/core';
 import {
 	IconAlertCircle,
 	IconCheck,
 	IconChevronLeft,
 	IconDeviceFloppy,
 	IconQuestionMark,
+	IconTrash,
 } from '@tabler/icons-react';
 
-import { showNotification } from '@mantine/notifications';
+import Link from 'next/link';
+import Map from '../../../components/map/Map';
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
 import { NextPage } from 'next';
+import Page from '../../../components/Page';
+import fetcher from '../../../utils/Fetcher';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Link from 'next/link';
+import { showNotification } from '@mantine/notifications';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Page from '../../../components/Page';
-import Map from '../../../components/map/Map';
 import { useUser } from '../../../hooks/useUser';
-import fetcher from '../../../utils/Fetcher';
 
 const ClaimPage: NextPage = ({ claimId, data }: any) => {
 	const [polygon, setPolygon] = useState<any>({
@@ -79,6 +80,37 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 			});
 	};
 
+	const handleDelete = () => {
+		setLoading(true);
+		fetch(process.env.NEXT_PUBLIC_API_URL + `/claims/${additionalData.id}`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				if (res.errors) {
+					showNotification({
+						title: 'Deletion failed',
+						message: res.error,
+						color: 'red',
+					});
+					setLoading(false);
+				} else {
+					showNotification({
+						title: 'Claim deleted',
+						message: 'All Data has been saved',
+						color: 'green',
+						icon: <IconCheck />,
+					});
+					setAdditionalData({ ...data, ...res });
+					setLoading(false);
+					router.push('/me');
+				}
+			});
+	};
+
 	return (
 		<Page
 			head={{
@@ -124,7 +156,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 							{t('edit.builders.description')}
 						</Alert>
 						<Group>
-							<Button
+							<ActionIcon
 								variant="outline"
 								component={Link}
 								href={
@@ -132,10 +164,11 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 										? `/map?z=${router.query.z}&lat=${router.query.lat}&lng=${router.query.lng}`
 										: '/map'
 								}
-								leftSection={<IconChevronLeft />}
+								aria-label={t('common:button.back')}
+								size={'lg'}
 							>
-								{t('common:button.back')}
-							</Button>
+								<IconChevronLeft />
+							</ActionIcon>
 							<Button
 								onClick={handleSubmit}
 								disabled={!user?.token}
@@ -144,23 +177,16 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 							>
 								{t('common:button.save')}
 							</Button>
-						</Group>
-						{/* <Alert
-							variant="light"
-							color="blue"
-							mt="xl"
-							icon={<IconQuestionMark />}
-							title={t('edit.help.title')}
-						>
-							{t('edit.help.description')}
-							<br />
-							<Anchor
-								href="https://docs.buildtheearth.net/docs/building/guidebook/"
-								target="_blank"
+							<Button
+								onClick={handleDelete}
+								disabled={!user?.token}
+								loading={loading}
+								variant="outline"
+								leftSection={<IconTrash />}
 							>
-								https://docs.buildtheearth.net
-							</Anchor>
-						</Alert> */}
+								{t('common:button.delete')}
+							</Button>
+						</Group>
 					</Grid.Col>
 					<Grid.Col span={{ md: 6 }}>
 						<div style={{ height: '100%', width: '100%', minHeight: '50vh' }}>
