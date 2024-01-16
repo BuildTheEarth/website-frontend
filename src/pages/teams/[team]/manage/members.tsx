@@ -325,15 +325,6 @@ const Settings = () => {
 				<Title order={3} mt="md">
 					Builders
 				</Title>
-				<Group justify="center" pt="md">
-					<Pagination
-						total={builders?.pages}
-						radius="xs"
-						value={page}
-						onChange={setPage}
-						siblings={1}
-					/>
-				</Group>
 				<UsersTable
 					loading={!builders}
 					data={
@@ -352,6 +343,7 @@ const Settings = () => {
 								color="gray"
 								onClick={() => handleEditManager(data)}
 								loading={loadingManagers}
+								disabled={managers.some((m: any) => m.id == data.id)}
 							>
 								<IconPlus style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
 							</ActionIcon>
@@ -366,6 +358,15 @@ const Settings = () => {
 						</Group>
 					)}
 				/>
+				<Group justify="center" pt="md">
+					<Pagination
+						total={builders?.pages}
+						radius="xs"
+						value={page}
+						onChange={setPage}
+						siblings={1}
+					/>
+				</Group>
 			</SettingsTabs>
 		</Page>
 	);

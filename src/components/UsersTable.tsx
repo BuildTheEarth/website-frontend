@@ -1,4 +1,5 @@
 import { Avatar, Badge, Group, Skeleton, Table, Text, Tooltip } from '@mantine/core';
+import { IconFaceIdError, IconUserQuestion } from '@tabler/icons-react';
 
 var vagueTime = require('vague-time');
 const rolesData = ['Manager', 'Collaborator', 'Contractor'];
@@ -24,11 +25,11 @@ export function UsersTable({
 				<Table.Td>
 					<Group gap="sm">
 						<Avatar size={40} radius={40} color={user.enabled ? 'green' : 'red'}>
-							{user?.username?.charAt(0).toUpperCase()}
+							{user.username ? user?.username?.charAt(0).toUpperCase() : <IconUserQuestion />}
 						</Avatar>
 						<div>
 							<Text fz="sm" fw={500}>
-								{user.username}
+								{user.username || 'No username provided'}
 							</Text>
 							<Text fz="xs" c="dimmed">
 								{user.id}
@@ -40,24 +41,19 @@ export function UsersTable({
 				<Table.Td>
 					<Tooltip
 						withinPortal
-						label={new Date(user.createdTimestamp).toLocaleDateString()}
+						label={
+							user.createdTimestamp
+								? new Date(user.createdTimestamp).toLocaleDateString()
+								: 'The user did not sign in to the new website yet.'
+						}
 						position="top-start"
 					>
 						<p>
-							{user.createdTimestamp ? vagueTime.get({ to: new Date(user.createdTimestamp) }) : ''}
+							{user.createdTimestamp
+								? vagueTime.get({ to: new Date(user.createdTimestamp) })
+								: 'Not yet'}
 						</p>
 					</Tooltip>
-				</Table.Td>
-				<Table.Td>
-					{user.emailVerified ? (
-						<Badge color="green" variant="light">
-							Verified
-						</Badge>
-					) : (
-						<Badge color="red" variant="light">
-							Unverified
-						</Badge>
-					)}
 				</Table.Td>
 
 				<Table.Td>{actions && actions(user)}</Table.Td>
@@ -77,13 +73,6 @@ export function UsersTable({
 			<Table.Td>
 				<Skeleton height={12} radius="xl" width={'50%'} />
 			</Table.Td>
-			<Table.Td>
-				<Skeleton visible width={'fit-content'} radius="xl">
-					<Badge color="green" variant="light">
-						Verified
-					</Badge>
-				</Skeleton>
-			</Table.Td>
 		</Table.Tr>
 	);
 
@@ -95,7 +84,6 @@ export function UsersTable({
 						<Table.Th>Member</Table.Th>
 						{extraHead}
 						<Table.Th>Registered</Table.Th>
-						<Table.Th>Status</Table.Th>
 					</Table.Tr>
 				</Table.Thead>
 				<Table.Tbody>{rows}</Table.Tbody>
