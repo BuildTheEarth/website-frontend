@@ -1,7 +1,7 @@
 import {
 	Alert,
 	Button,
-	Divider,
+	ColorInput,
 	Grid,
 	Group,
 	Input,
@@ -223,6 +223,15 @@ const Settings = ({ data: tempData }: any) => {
 										defaultValue={data.location}
 										disabled={!allowSettings}
 										onChange={(e) => handleUpdate('location', e.target.value)}
+									/>
+									<ColorInput
+										label="BuildTeam Color"
+										description="This color is used on the team map to color your team's area"
+										placeholder="#1098AD"
+										mb="md"
+										defaultValue={data.color}
+										disabled={!allowSettings}
+										onChange={(e) => handleUpdate('color', e)}
 									/>
 								</Grid.Col>
 								<Grid.Col span={{ md: 6 }}>
