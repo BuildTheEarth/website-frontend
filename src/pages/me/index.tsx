@@ -69,6 +69,7 @@ const MePage: NextPage = () => {
 							color: 'green',
 							icon: <IconCheck />,
 						});
+						modals.closeAll();
 						router.push(`/me/claims/${res.id}`);
 					}
 				});
