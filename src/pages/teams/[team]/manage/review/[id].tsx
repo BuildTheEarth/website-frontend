@@ -1,18 +1,22 @@
 import {
+	ActionIcon,
 	Alert,
 	Badge,
 	Button,
+	Code,
 	Divider,
 	Grid,
 	Group,
 	Stack,
 	Text,
 	Textarea,
+	Tooltip,
 	useMantineTheme,
 } from '@mantine/core';
-import { IconCheck, IconX } from '@tabler/icons-react';
+import { IconCheck, IconCopy, IconX } from '@tabler/icons-react';
 import useSWR, { mutate } from 'swr';
 
+import { useClipboard } from '@mantine/hooks';
 import { modals } from '@mantine/modals';
 import { showNotification } from '@mantine/notifications';
 import { NextPage } from 'next';
@@ -20,12 +24,13 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Page from '../../../../../components/Page';
 import SettingsTabs from '../../../../../components/SettingsTabs';
 import { useUser } from '../../../../../hooks/useUser';
-import { ApplicationQuestions } from '../../../../../utils/application/ApplicationQuestions';
 import fetcher from '../../../../../utils/Fetcher';
+import { ApplicationQuestions } from '../../../../../utils/application/ApplicationQuestions';
 
 const Apply: NextPage = ({ team, id }: any) => {
 	const theme = useMantineTheme();
 	const user = useUser();
+	const clipboard = useClipboard();
 	const { data } = useSWR(
 		`/buildteams/${team}/applications/${id}?includeAnswers=true&includeUser=true&slug=true`,
 	);
@@ -127,37 +132,55 @@ const Apply: NextPage = ({ team, id }: any) => {
 							<Stack gap={0}>
 								<Divider style={{ margin: '0' }} my="sm" />
 								<Group justify="space-between">
-									<Text>Id</Text>
+									<Text>ID</Text>
 									<Text>{data.id} </Text>
 								</Group>
 								<Divider style={{ margin: '0' }} my="sm" />
 								<Group justify="space-between">
 									<Text>Created At</Text>
-									<Text>{new Date(data.createdAt).toLocaleString()} </Text>
+									<Code>{new Date(data.createdAt).toLocaleString()} </Code>
 								</Group>
 								{data.reviewedAt && (
 									<>
 										<Divider style={{ margin: '0' }} my="sm" />
 										<Group justify="space-between">
 											<Text>Reviewed At</Text>
-											<Text>{new Date(data.reviewedAt).toLocaleString()} </Text>
+											<Code>{new Date(data.reviewedAt).toLocaleString()} </Code>
 										</Group>
 									</>
 								)}
 								<Divider style={{ margin: '0' }} my="sm" />
 								<Group justify="space-between">
-									<Text>Discord Id</Text>
-									<Text>{data?.user?.discordId} </Text>
+									<Text>Discord Name</Text>
+									<Tooltip label={'Click to copy ID'}>
+										<Group>
+											<Text>{data?.user?.discordName} </Text>
+											<ActionIcon
+												variant="light"
+												color="gray"
+												onClick={() => clipboard.copy(data?.user?.discordId)}
+											>
+												<IconCopy />
+											</ActionIcon>
+										</Group>
+									</Tooltip>
 								</Group>
 								<Divider style={{ margin: '0' }} my="sm" />
 								<Group justify="space-between">
 									<Text>Minecraft Name</Text>
-									<Text>{data?.user?.name} </Text>
+									<Text>{data?.user?.name || '--'} </Text>
 								</Group>
 								<Divider style={{ margin: '0' }} my="sm" />
 								<Group justify="space-between">
 									<Text>Trial</Text>
-									<Text>{data.trial ? 'Yes' : 'No'} </Text>
+									<Badge
+										variant="gradient"
+										gradient={
+											data.trial ? { from: 'green', to: 'lime' } : { from: 'red', to: 'orange' }
+										}
+									>
+										{data.trial ? 'Yes' : 'No'}{' '}
+									</Badge>
 								</Group>
 								<Divider style={{ margin: '0' }} my="sm" />
 								<Group justify="space-between">
@@ -166,6 +189,15 @@ const Apply: NextPage = ({ team, id }: any) => {
 										{statusToString(data.status)}
 									</Badge>
 								</Group>
+								{data.status != 'SEND' && (
+									<>
+										<Divider style={{ margin: '0' }} my="sm" />
+										<Group justify="space-between">
+											<Text>Reviewer</Text>
+											<Text>{data?.reviewer?.discordName} </Text>
+										</Group>
+									</>
+								)}
 							</Stack>
 							{data.status != 'SEND' && (
 								<Alert title="Reviewer Feedback" mt="md">

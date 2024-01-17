@@ -1,4 +1,4 @@
-import { NumberInput, TextInput } from '@mantine/core';
+import { NumberInput, Textarea } from '@mantine/core';
 
 import { IconTextSize } from '@tabler/icons-react';
 import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
@@ -20,7 +20,7 @@ function validation(props: TextQuestionProps): (value: string) => void {
 
 const TextQuestion = (props: TextQuestionProps) => {
 	return (
-		<TextInput
+		<Textarea
 			leftSection={<Icon name={props.icon} />}
 			required={props.required}
 			description={props.subtitle}
@@ -29,6 +29,9 @@ const TextQuestion = (props: TextQuestionProps) => {
 			style={props.style}
 			onChange={(e) => props.onChange && props.onChange(e.target.value)}
 			error={props.error}
+			autosize
+			minRows={1}
+			maxRows={3}
 			disabled={props.disabled}
 			readOnly={props.readonly}
 			value={props.value}
