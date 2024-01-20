@@ -1,12 +1,13 @@
 import { Anchor, Container } from '@mantine/core';
 
-import Link from 'next/link';
-import Page from '../components/Page';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Link from 'next/link';
+import thumbnail from '../../public/images/thumbnails/contact.png';
+import Page from '../components/Page';
 
 const Credits = () => {
 	return (
-		<Page fullWidth head={{ title: 'Credits' }}>
+		<Page fullWidth head={{ title: 'Credits', image: thumbnail }}>
 			<Container w="80vw" style={{ listStyleType: 'none' }}>
 				<h1>BuildTheEarth Website</h1>
 
