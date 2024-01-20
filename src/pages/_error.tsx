@@ -7,10 +7,10 @@ import {
 	useMantineTheme,
 } from '@mantine/core';
 
-import { useTranslation } from 'next-i18next';
+import Page from '../components/Page';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
-import Page from '../components/Page';
+import { useTranslation } from 'next-i18next';
 
 function ErrorPage(props: any) {
 	const theme = useMantineTheme();
