@@ -4,6 +4,7 @@ import { NextPage } from 'next';
 import { signIn } from 'next-auth/react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
+import thumbnail from '../../../public/images/placeholder.webp';
 import Page from '../../components/Page';
 
 const SignIn: NextPage = () => {
@@ -16,7 +17,7 @@ const SignIn: NextPage = () => {
 		<Page
 			head={{
 				title: 'Sign in',
-				image: 'https://cdn.buildtheearth.net/static/placeholder.webp',
+				image: thumbnail,
 			}}
 			seo={{ nofollow: true, noindex: true }}
 		>

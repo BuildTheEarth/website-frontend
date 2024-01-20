@@ -1,6 +1,7 @@
 import { Anchor } from '@mantine/core';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import thumbnail from '../../../public/images/thumbnails/legal.png';
 import Page from '../../components/Page';
 
 const Team: NextPage = () => {
@@ -9,7 +10,7 @@ const Team: NextPage = () => {
 		<Page
 			head={{
 				title: 'Terms of Service',
-				image: 'https://cdn.buildtheearth.net/static/thumbnails/legal.png',
+				image: thumbnail,
 			}}
 			seo={{ nofollow: true, noindex: true }}
 		>

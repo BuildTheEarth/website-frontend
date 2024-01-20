@@ -18,7 +18,6 @@ import {
 	Container,
 	Divider,
 	Group,
-	Indicator,
 	Menu,
 	MenuItem,
 	Paper,
@@ -30,7 +29,6 @@ import {
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
-import { useClickOutside, useDisclosure } from '@mantine/hooks';
 import {
 	IconDots,
 	IconMoonStars,
@@ -48,11 +46,15 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 import React, { CSSProperties, useState } from 'react';
 import { ChevronDown, FileSearch, Logout, World } from 'tabler-icons-react';
 
+import { useDisclosure } from '@mantine/hooks';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
+import logo from '../../public/logo.gif';
 import { useUser } from '../hooks/useUser';
 import classes from '../styles/components/Header.module.css';
+import { hexToDataURL } from '../utils/Color';
 import Icon from './Icon';
 
 interface HeaderProps {
@@ -89,7 +91,14 @@ const Header = ({ links, style }: HeaderProps) => {
 		<Box className={classes.root} style={{ ...style, height: 60 }}>
 			<Container className={classes.header} size={'xl'}>
 				<Group gap={5} className={classes.logo} onClick={() => router.push('/')}>
-					<img src="/logo.gif" alt="Logo" height="40" style={{ marginRight: '4px' }} />
+					<Image
+						src={logo}
+						alt="Logo"
+						height={40}
+						placeholder="blur"
+						blurDataURL="data:image/webp;base64,UklGRt4CAABXRUJQVlA4WAoAAAAgAAAAtQAAtQAASUNDUMgBAAAAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADZWUDgg8AAAAJAMAJ0BKrYAtgA+0WiwUyglpKKgSAEAGglpbt1euxvgCe16u6KuEQlQ/Dt6SncZxhF9Xdf0XOtOENaLR1am3TMoBTJgEGx6qLl0eH/XBH0rZF1YalUAqH/IrEns4tSusYi4fehRMKrMaSJCcAAA/us4+eTagZfrjdPBw+fyLyVUMvYN3Izb1pMDJuaEGFQPTdGRywaPa+yLLljmCotB18gzp9xPrQVo7uq7PIL4V8ac7spU+bRX4yOanYMBT9MJbnFmmP4CCFunzH6FY1zP8+SNs4iIt1JI8066DjXBRMd1iSHmp0Ud0vPut0H8wAAAAA=="
+						style={{ marginRight: '4px' }}
+					/>
 					{t('buildtheearth')}
 				</Group>
 				<Group gap={5} className={classes.links}>
@@ -266,6 +275,7 @@ interface LogoHeaderProps {
 	settingsHref?: string;
 	invite?: string;
 	id: string;
+	color?: string;
 }
 
 export const LogoHeader = (props: LogoHeaderProps) => {
@@ -279,15 +289,20 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 		: 'Not Joined';
 	return (
 		<>
-			<motion.div
+			<Image
+				src={props.backgroundImage}
+				alt={props.name}
+				// fill
+				width={1920}
+				height={1080}
 				style={{
-					backgroundColor:
-						scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-					background: `url("${props.backgroundImage}") center center / cover`,
-					backgroundPositionY: bgPosY,
 					width: '100%',
 					height: '50vh',
+					objectFit: 'cover',
 				}}
+				placeholder="blur"
+				blurDataURL={hexToDataURL(props?.color || '#ffffff')}
+				priority
 			/>
 			<Group
 				justify="center"

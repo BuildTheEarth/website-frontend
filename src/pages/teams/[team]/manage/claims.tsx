@@ -18,6 +18,7 @@ import { getAreaOfPolygon } from 'geolib';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import thumbnail from '../../../../../public/images/thumbnails/teams.png';
 import Page from '../../../../components/Page';
 import SettingsTabs from '../../../../components/SettingsTabs';
 import { useUser } from '../../../../hooks/useUser';
@@ -64,7 +65,7 @@ const Settings = () => {
 			smallPadding
 			head={{
 				title: 'Claims',
-				image: 'https://cdn.buildtheearth.net/static/thumbnails/teams.png',
+				image: thumbnail,
 			}}
 			seo={{ nofollow: true, noindex: true }}
 			requiredPermissions={[

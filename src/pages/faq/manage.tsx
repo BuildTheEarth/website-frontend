@@ -8,6 +8,7 @@ import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import thumbnail from '../../../public/images/thumbnails/faq.png';
 import { GridButton } from '../../components/GridButton';
 import Page from '../../components/Page';
 import RTE from '../../components/RTE';
@@ -145,7 +146,7 @@ const Faq: NextPage = () => {
 		<Page
 			head={{
 				title: 'Edit FAQ',
-				image: 'https://cdn.buildtheearth.net/static/thumbnails/faq.png',
+				image: thumbnail,
 			}}
 			seo={{ nofollow: true, noindex: true }}
 			requiredPermissions={['faq.edit', 'faq.remove', 'faq.add']}

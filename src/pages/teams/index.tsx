@@ -12,14 +12,15 @@ import {
 import { Pin, Users } from 'tabler-icons-react';
 
 import { NextPage } from 'next';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import thumbnail from '../../../public/images/thumbnails/teams.png';
 import Page from '../../components/Page';
 import SearchInput from '../../components/SearchInput';
 import fetcher from '../../utils/Fetcher';
 import getCountryName from '../../utils/ISOCountries';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { useTranslation } from 'next-i18next';
 
 const Teams: NextPage = ({ data }: any) => {
 	const router = useRouter();
@@ -32,7 +33,7 @@ const Teams: NextPage = ({ data }: any) => {
 		<Page
 			head={{
 				title: t('head.title'),
-				image: 'https://cdn.buildtheearth.net/static/thumbnails/teams.png',
+				image: thumbnail,
 			}}
 			description="Build Teams work together on a multiplayer server to build cities, regions and sometimes even entire countries for the BuildTheEarth Project"
 		>

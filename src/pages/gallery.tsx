@@ -39,6 +39,10 @@ const MePage: NextPage = ({ data }: any) => {
 					}}
 					date={img?.createdAt}
 					noAnimation
+					hash={
+						img?.hash ||
+						"'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdj0NE3+g8AAqUBjTCztj4AAAAASUVORK5CYII='"
+					}
 				/>
 			</Modal>
 		);
@@ -74,6 +78,9 @@ const MePage: NextPage = ({ data }: any) => {
 										slug: d?.buildTeam.slug,
 										logo: d?.buildTeam.icon,
 									},
+									hash:
+										d?.hash ||
+										'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdj0NE3+g8AAqUBjTCztj4AAAAASUVORK5CYII=',
 									onClick: () => setFocus(d?.image?.name),
 								})) || [{}]
 						}

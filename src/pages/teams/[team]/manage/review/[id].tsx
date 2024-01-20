@@ -21,6 +21,7 @@ import { modals } from '@mantine/modals';
 import { showNotification } from '@mantine/notifications';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import thumbnail from '../../../../../../public/images/thumbnails/apply.png';
 import Page from '../../../../../components/Page';
 import SettingsTabs from '../../../../../components/SettingsTabs';
 import { useUser } from '../../../../../hooks/useUser';
@@ -101,7 +102,7 @@ const Apply: NextPage = ({ team, id }: any) => {
 		<Page
 			head={{
 				title: 'Review Application',
-				image: 'https://cdn.buildtheearth.net/static/thumbnails/apply.png',
+				image: thumbnail,
 			}}
 			requiredPermissions={['team.application.review']}
 			loading={!data}

@@ -20,6 +20,7 @@ import { useEffect, useState } from 'react';
 import { showNotification } from '@mantine/notifications';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { v4 as uuidv4 } from 'uuid';
+import thumbnail from '../../../../../public/images/thumbnails/teams.png';
 import Page from '../../../../components/Page';
 import RTE from '../../../../components/RTE';
 import SettingsTabs from '../../../../components/SettingsTabs';
@@ -177,7 +178,7 @@ const Settings = ({ data: tempData }: any) => {
 			smallPadding
 			head={{
 				title: 'Settings',
-				image: 'https://cdn.buildtheearth.net/static/thumbnails/teams.png',
+				image: thumbnail,
 			}}
 			seo={{ nofollow: true, noindex: true }}
 			requiredPermissions={[

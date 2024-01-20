@@ -1,4 +1,4 @@
-import { Alert, Badge, Button, Card, Flex, Group, rem, Tabs, Text, TextInput } from '@mantine/core';
+import { Alert, Badge, Button, Card, Flex, Group, Tabs, Text, TextInput, rem } from '@mantine/core';
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Discord, Github } from '@icons-pack/react-simple-icons';
 import {
@@ -23,6 +23,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
+import thumbnail from '../../../../public/images/thumbnails/me.png';
 import Page from '../../../components/Page';
 import { useUser } from '../../../hooks/useUser';
 
@@ -90,7 +91,7 @@ const Settings: NextPage = ({ type }: any) => {
 		<Page
 			head={{
 				title: 'Account Settings',
-				image: 'https://cdn.buildtheearth.net/static/thumbnails/me.png',
+				image: thumbnail,
 			}}
 			requiredPermissions={['account.edit', 'account.info']}
 			loading={!data}

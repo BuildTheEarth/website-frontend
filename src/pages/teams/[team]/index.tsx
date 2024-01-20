@@ -37,11 +37,6 @@ const Team: NextPage = ({ data, data2 }: any) => {
 					src={`https://cdn.buildtheearth.net/upload/${id}`}
 					showTooltipOnHover={false}
 					name={img?.title}
-					// team={{
-					// 	name: img?.buildTeam.name,
-					// 	slug: img?.buildTeam.slug,
-					// 	logo: img?.buildTeam.icon,
-					// }}
 					date={img?.createdAt}
 					noAnimation
 				/>

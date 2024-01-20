@@ -23,19 +23,20 @@ import {
 	IconPlus,
 } from '@tabler/icons-react';
 
-import { modals } from '@mantine/modals';
-import { showNotification } from '@mantine/notifications';
-import { NextPage } from 'next';
-import { signOut } from 'next-auth/react';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useTranslation } from 'react-i18next';
-import useSWR from 'swr';
-import { Pin } from 'tabler-icons-react';
+import { NextPage } from 'next';
 import Page from '../../components/Page';
-import { useUser } from '../../hooks/useUser';
+import { Pin } from 'tabler-icons-react';
 import getCountryName from '../../utils/ISOCountries';
+import { modals } from '@mantine/modals';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { showNotification } from '@mantine/notifications';
+import { signOut } from 'next-auth/react';
+import thumbnail from '../../../public/images/thumbnails/me.png';
+import { useRouter } from 'next/router';
+import useSWR from 'swr';
+import { useTranslation } from 'react-i18next';
+import { useUser } from '../../hooks/useUser';
 
 const MePage: NextPage = () => {
 	const user = useUser();
@@ -99,7 +100,7 @@ const MePage: NextPage = () => {
 		<Page
 			head={{
 				title: t('head.title'),
-				image: 'https://cdn.buildtheearth.net/static/thumbnails/me.png',
+				image: thumbnail,
 			}}
 			requiredPermissions={['account.info']}
 			loading={!data}

@@ -7,6 +7,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import sanitizeHtml from 'sanitize-html';
+import thumbnail from '../../../public/images/thumbnails/faq.png';
 import Page from '../../components/Page';
 import SearchInput from '../../components/SearchInput';
 import { useIsClient } from '../../hooks/useIsClient';
@@ -24,7 +25,7 @@ const Faq: NextPage = ({ data }: any) => {
 		<Page
 			head={{
 				title: t('head.title'),
-				image: 'https://cdn.buildtheearth.net/static/thumbnails/faq.png',
+				image: thumbnail,
 			}}
 			title="FAQ"
 			description="Answers to all frrequently asked Questions about the BuildTheEarth Project"

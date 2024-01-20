@@ -1,12 +1,13 @@
 import { Avatar, Badge, Button, Group, Table, Tooltip } from '@mantine/core';
 
 import { IconFileSearch } from '@tabler/icons-react';
-import Link from 'next/link';
 import { NextPage } from 'next';
-import Page from '../../components/Page';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import useSWR from 'swr';
+import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
+import useSWR from 'swr';
+import thumbnail from '../../../public/images/thumbnails/me.png';
+import Page from '../../components/Page';
 import { useUser } from '../../hooks/useUser';
 
 var vagueTime = require('vague-time');
@@ -20,7 +21,7 @@ const ReviewPage: NextPage = () => {
 		<Page
 			head={{
 				title: 'Review Applications',
-				image: 'https://cdn.buildtheearth.net/static/thumbnails/me.png',
+				image: thumbnail,
 			}}
 			requiredPermissions={['account.info']}
 			loading={!data}

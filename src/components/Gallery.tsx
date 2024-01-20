@@ -1,9 +1,10 @@
-import { Avatar, BackgroundImage, Badge, Box, Title, useMantineTheme } from '@mantine/core';
+import { Avatar, Badge, Box, Title, useMantineTheme } from '@mantine/core';
 import React, { useState } from 'react';
 
 import { Carousel } from '@mantine/carousel';
 import Link from 'next/link';
 import classes from '../styles/components/Gallery.module.css';
+import BackgroundImage from './BackgroundImage';
 
 interface GalleryImageProps {
 	name?: string;
@@ -62,10 +63,15 @@ export function GalleryImage(i: GalleryImageProps) {
 	return (
 		<BackgroundImage
 			src={i.src}
-			style={{
+			rootStyle={{
 				width: '100%',
 				height: '100%',
 			}}
+			blurDataURL={
+				i.hash ||
+				'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdj0NE3+g8AAqUBjTCztj4AAAAASUVORK5CYII='
+			}
+			quality={90}
 		>
 			<div
 				style={{

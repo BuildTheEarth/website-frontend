@@ -1,18 +1,11 @@
-import {
-	Avatar,
-	BackgroundImage,
-	Badge,
-	Group,
-	SimpleGrid,
-	Title,
-	useMantineTheme,
-} from '@mantine/core';
+import { Avatar, Badge, Group, SimpleGrid, Title, useMantineTheme } from '@mantine/core';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { useHover } from '@mantine/hooks';
 import Link from 'next/link';
 import React from 'react';
 import { useIsClient } from '../hooks/useIsClient';
+import BackgroundImage from './BackgroundImage';
 
 interface GalleryGridProps {
 	images: GalleryGridImageProps[];
@@ -24,6 +17,7 @@ interface GalleryGridImageProps {
 	name?: string;
 	date?: string;
 	src: string;
+	hash?: string;
 	team?: { logo: string; name: string; slug: string };
 	href?: string;
 	onClick?: () => void;
@@ -57,15 +51,14 @@ export function GalleryGridImage(i: GalleryGridImageProps) {
 			>
 				<BackgroundImage
 					src={i.src}
-					style={{
+					rootStyle={{
 						width: '100%',
 						aspectRatio: '16/9',
-					}} // @ts-ignore
-					component={i.href && Link}
-					href={i.href}
+					}}
 					onClick={i.onClick}
 					className={i.href && 'hover-border'}
 					ref={ref}
+					blurDataURL={i.hash}
 				>
 					<div
 						style={{

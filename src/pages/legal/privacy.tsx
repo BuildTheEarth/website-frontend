@@ -2,8 +2,9 @@
 
 import { Anchor } from '@mantine/core';
 import { NextPage } from 'next';
-import Page from '../../components/Page';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import thumbnail from '../../../public/images/thumbnails/legal.png';
+import Page from '../../components/Page';
 
 const Team: NextPage = () => {
 	//TODO: This privacy has to be reworked
@@ -11,7 +12,7 @@ const Team: NextPage = () => {
 		<Page
 			head={{
 				title: 'Privacy',
-				image: 'https://cdn.buildtheearth.net/static/thumbnails/legal.png',
+				image: thumbnail,
 			}}
 			seo={{ nofollow: true, noindex: true }}
 		>

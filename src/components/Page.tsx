@@ -13,12 +13,14 @@ import Header, { LogoHeader } from './Header';
 
 import { useMediaQuery } from '@mantine/hooks';
 import { useSession } from 'next-auth/react';
+import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import Error from 'next/error';
 import { useRouter } from 'next/router';
 import { NextResponse } from 'next/server';
 import { useUser } from '../hooks/useUser';
 import ErrorPage from '../pages/_error';
 import classes from '../styles/components/Page.module.css';
+import BackgroundImage from './BackgroundImage';
 import Footer from './Footer';
 
 interface PageProps {
@@ -32,7 +34,7 @@ interface PageProps {
 	head?: {
 		title: string;
 		subtitle?: string;
-		image?: string;
+		image: string | StaticImport;
 		filter?: string;
 	};
 	title?: string;
@@ -84,13 +86,9 @@ const Page = (props: PageProps) => {
 
 			<Paper className={classes.root} style={props.fullWidth ? props.style : undefined}>
 				{props.head && (
-					<motion.div
-						style={{
-							backgroundColor:
-								scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-							background: `url("${props.head?.image || ''}") center center / cover`,
-							backgroundPositionY: bgPosY,
-							width: '100%',
+					<BackgroundImage
+						src={props.head.image}
+						rootStyle={{
 							minHeight: '25vh',
 						}}
 					>
@@ -101,6 +99,8 @@ const Page = (props: PageProps) => {
 								textAlign: 'center',
 								height: '100%',
 								minHeight: '25vh',
+								zIndex: 10,
+								position: 'relative',
 							}}
 						>
 							<h1
@@ -123,7 +123,7 @@ const Page = (props: PageProps) => {
 								)}
 							</h1>
 						</Center>
-					</motion.div>
+					</BackgroundImage>
 				)}
 
 				{props.fullWidth ? (
@@ -148,7 +148,7 @@ const Page = (props: PageProps) => {
 	);
 };
 
-export const LogoPage = (props: PageProps & { headData: any; team: string }) => {
+export const LogoPage = (props: PageProps & { headData: any; team: string; color?: string }) => {
 	return (
 		<Page {...props} fullWidth>
 			<LogoHeader

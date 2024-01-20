@@ -16,6 +16,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import thumbnail from '../../../../public/images/thumbnails/me.png';
 import Page from '../../../components/Page';
 import Map from '../../../components/map/Map';
 import { useUser } from '../../../hooks/useUser';
@@ -116,7 +117,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 		<Page
 			head={{
 				title: t('edit.title'),
-				image: 'https://cdn.buildtheearth.net/static/thumbnails/me.png',
+				image: thumbnail,
 			}}
 			smallPadding
 			requiredPermissions={['account.edit', 'account.info']}

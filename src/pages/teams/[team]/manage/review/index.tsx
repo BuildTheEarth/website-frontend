@@ -15,6 +15,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
 import { useState } from 'react';
 import useSWR from 'swr';
+import thumbnail from '../../../../../../public/images/thumbnails/teams.png';
 import Page from '../../../../../components/Page';
 import SettingsTabs from '../../../../../components/SettingsTabs';
 import { StatsRing } from '../../../../../components/Stats';
@@ -31,7 +32,7 @@ const Review = ({ team }: any) => {
 			smallPadding
 			head={{
 				title: 'Pending Applications',
-				image: 'https://cdn.buildtheearth.net/static/thumbnails/teams.png',
+				image: thumbnail,
 			}}
 			seo={{ nofollow: true, noindex: true }}
 			requiredPermissions={[

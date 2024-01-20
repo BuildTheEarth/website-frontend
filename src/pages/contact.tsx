@@ -27,6 +27,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { At } from 'tabler-icons-react';
+import thumbnail from '../../public/images/thumbnails/contact.png';
 import Page from '../components/Page';
 import fetcher from '../utils/Fetcher';
 
@@ -39,7 +40,7 @@ const Contact: NextPage = ({ data }: any) => {
 		<Page
 			head={{
 				title: 'Contact',
-				image: 'https://cdn.buildtheearth.net/static/thumbnails/contact.png',
+				image: thumbnail,
 			}}
 			description="Get in touch with BuildTheEarth Staff Members"
 		>

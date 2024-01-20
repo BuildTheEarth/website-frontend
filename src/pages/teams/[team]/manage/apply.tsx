@@ -35,6 +35,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import thumbnail from '../../../../../public/images/thumbnails/teams.png';
 import Icon from '../../../../components/Icon';
 import Page from '../../../../components/Page';
 import SettingsTabs from '../../../../components/SettingsTabs';
@@ -174,7 +175,7 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 			smallPadding
 			head={{
 				title: 'Edit Application Questions',
-				image: 'https://cdn.buildtheearth.net/static/thumbnails/teams.png',
+				image: thumbnail,
 			}}
 			seo={{ nofollow: true, noindex: true }}
 			requiredPermissions={[
