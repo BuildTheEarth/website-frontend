@@ -40,7 +40,7 @@ const nextConfig = {
 			},
 			{
 				source: '/discord',
-				destination: 'https://discord.gg/buildtheearth',
+				destination: 'https://discord.gg/buildtheearth-net-690908396404080650',
 				permanent: true,
 			},
 			{
