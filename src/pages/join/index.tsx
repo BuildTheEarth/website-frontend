@@ -10,19 +10,19 @@ import {
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import { ChevronDown, ChevronRight } from 'tabler-icons-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
-import { NextPage } from 'next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import BackgroundImage from '../../components/BackgroundImage';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useTranslation } from 'react-i18next';
-import buildImg from '../../../public/images/join/build.webp';
-import visitImg from '../../../public/images/join/visit.webp';
-import thumbnail from '../../../public/images/thumbnails/getstarted.png';
-import BackgroundImage from '../../components/BackgroundImage';
+import { NextPage } from 'next';
 import Page from '../../components/Page';
+import buildImg from '../../../public/images/join/build.webp';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import thumbnail from '../../../public/images/thumbnails/getstarted.png';
+import { useTranslation } from 'react-i18next';
+import visitImg from '../../../public/images/join/visit.webp';
 
 const GetStarted: NextPage = () => {
 	const { t } = useTranslation('getstarted');
@@ -34,9 +34,6 @@ const GetStarted: NextPage = () => {
 		<Page fullWidth title="Participate" description="Participate in Building the Earth">
 			<BackgroundImage
 				rootStyle={{
-					// backgroundColor:
-					// 	scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-					// background: `url("https://cdn.buildtheearth.net/static/thumbnails/getstarted.png") center center / cover`,
 					width: '100%',
 					height: '95vh',
 				}}

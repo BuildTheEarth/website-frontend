@@ -17,6 +17,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { ChevronRight } from 'tabler-icons-react';
+import thumbnail from '../../../public/images/thumbnails/about.webp';
+import BackgroundImage from '../../components/BackgroundImage';
 import Page from '../../components/Page';
 
 const Home: NextPage = () => {
@@ -25,14 +27,13 @@ const Home: NextPage = () => {
 	const { t } = useTranslation('about');
 	return (
 		<Page fullWidth title={t('head.title')}>
-			<motion.div
-				style={{
-					backgroundColor:
-						scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-					background: `url("https://cdn.buildtheearth.net/static/thumbnails/about.webp") center center / cover`,
+			<BackgroundImage
+				rootStyle={{
 					width: '100%',
 					height: '50vh',
 				}}
+				src={thumbnail}
+				sizes="100vw"
 			>
 				<Center
 					style={{
@@ -40,6 +41,9 @@ const Home: NextPage = () => {
 						height: '100%',
 						backgroundColor: '#00000044',
 						padding: 16,
+						position: 'absolute',
+						top: 0,
+						right: 0,
 					}}
 				>
 					<Title
@@ -50,7 +54,7 @@ const Home: NextPage = () => {
 						{t('head.title')}
 					</Title>
 				</Center>
-			</motion.div>
+			</BackgroundImage>
 			<Container my="xl" size={'md'}>
 				<h1>{t('mission.title')}</h1>
 				<Grid>

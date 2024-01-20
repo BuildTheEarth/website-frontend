@@ -15,8 +15,13 @@ import { ChevronDown, ChevronRight } from 'tabler-icons-react';
 import { NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import getstartedImg from '../../public/images/home/getstarted.webp';
+import thumbnail from '../../public/images/home/head.webp';
+import missionImg from '../../public/images/home/mission.webp';
+import BackgroundImage from '../components/BackgroundImage';
 import Gallery from '../components/Gallery';
 import Page from '../components/Page';
 import fetcher from '../utils/Fetcher';
@@ -37,15 +42,14 @@ const Home: NextPage = ({ data }: any) => {
 			title="The Earth in Minecraft"
 			description="Our mission is to fully recreate the entire Earth in Minecraft at a 1:1 scale. Anyone is able to join us and contribute!"
 		>
-			<motion.div
-				style={{
-					backgroundColor:
-						scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-					background: `url("https://cdn.buildtheearth.net/static/home/head.webp") center center / cover`,
-					backgroundPositionY: headBgPosY,
+			<BackgroundImage
+				rootStyle={{
 					width: '100%',
-					height: '100vh',
+					height: '95vh',
 				}}
+				src={thumbnail}
+				sizes="100vw"
+				priority
 			>
 				<Center
 					style={{
@@ -53,6 +57,9 @@ const Home: NextPage = ({ data }: any) => {
 						height: '100%',
 						backgroundColor: '#00000044',
 						padding: 16,
+						position: 'absolute',
+						top: 0,
+						right: 0,
 					}}
 				>
 					<Stack>
@@ -109,7 +116,7 @@ const Home: NextPage = ({ data }: any) => {
 						</ActionIcon>
 					</motion.div>
 				</Center>
-			</motion.div>
+			</BackgroundImage>
 			<Box
 				style={{
 					background: scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
@@ -152,14 +159,19 @@ const Home: NextPage = ({ data }: any) => {
 							style={{
 								backgroundColor:
 									scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-								background: `url("https://cdn.buildtheearth.net/static/home/mission.webp") center center / cover`,
 								y: missionY,
 								marginLeft: '10%',
 								width: '70%',
 								height: '80%',
 								boxShadow: '10px 10px 0px 4px rgba(0,0,0,0.45)',
 							}}
-						/>
+						>
+							<Image
+								alt="Our Mission"
+								src={missionImg}
+								style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+							/>
+						</motion.div>
 					</Grid.Col>
 					<Grid.Col
 						span={{ sm: 12 }}
@@ -200,14 +212,19 @@ const Home: NextPage = ({ data }: any) => {
 							style={{
 								backgroundColor:
 									scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-								background: `url("https://cdn.buildtheearth.net/static/home/getstarted.webp") center center / cover`,
 								y: getstartedY,
 								marginLeft: '25%',
 								width: '65%',
 								height: '75%',
 								boxShadow: '10px 10px 0px 4px rgba(0,0,0,0.45)',
 							}}
-						/>
+						>
+							<Image
+								alt="Get Started"
+								src={getstartedImg}
+								style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+							/>
+						</motion.div>
 					</Grid.Col>
 					<Grid.Col
 						span={{ lg: 5 }}

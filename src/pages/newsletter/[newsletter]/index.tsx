@@ -6,6 +6,7 @@ import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
+import thumbnail from '../../../../public/images/thumbnails/newsletter.png';
 import Page from '../../../components/Page';
 
 const Newsletter: NextPage = () => {
@@ -17,7 +18,7 @@ const Newsletter: NextPage = () => {
 		<Page
 			head={{
 				title: data?.title,
-				image: data?.links[0] || 'https://cdn.buildtheearth.net/static/thumbnails/newsletter.png',
+				image: data?.links[0] || thumbnail,
 				subtitle: `Issue ${data?.issue}, ${new Date(data?.published_date).toLocaleDateString()}`,
 			}}
 			description={`BuildTheEarth Newsletter Issue ${data?.issue}, ${new Date(

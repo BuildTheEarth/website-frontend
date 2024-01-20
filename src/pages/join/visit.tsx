@@ -26,6 +26,7 @@ import {
 } from '@tabler/icons-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
+import BackgroundImage from '../../components/BackgroundImage';
 import Link from 'next/link';
 import { NextPage } from 'next';
 import Page from '../../components/Page';
@@ -33,6 +34,7 @@ import SearchInput from '../../components/SearchInput';
 import fetcher from '../../utils/Fetcher';
 import getCountryName from '../../utils/ISOCountries';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import thumbnail from '../../../public/images/join/visit.webp';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -74,53 +76,62 @@ const Visit: NextPage = ({ data }: any) => {
 
 	return (
 		<Page fullWidth title="Visit" description="Visit Building the Earth">
-			<div
-				style={{
-					backgroundColor:
-						scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-					background: `url("https://cdn.buildtheearth.net/static/getstarted/visit.webp") center center / cover`,
+			<BackgroundImage
+				rootStyle={{
 					width: '100%',
 					height: '95vh',
 				}}
+				src={thumbnail}
+				sizes="100vw"
 			>
-				<Center
+				<div
 					style={{
-						width: '100%',
 						height: '100%',
-						backgroundColor: '#00000077',
-						padding: 16,
-					}}
-				>
-					<Title
-						style={{ color: '#ffffff', fontSize: 64, textShadow: '0px 0px 28px #000' }}
-						ta="center"
-						order={1}
-					>
-						{t('visit.title')}
-					</Title>
-				</Center>
-				<Center
-					style={{
-						width: '100%',
-						height: '0%',
 						position: 'absolute',
-						bottom: '5%',
-						left: 0,
+						top: 0,
+						right: 0,
+						width: '100%',
 					}}
 				>
-					<motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-						<ActionIcon
-							component={Link}
-							styles={{ root: { height: 64, width: 64, textShadow: '0px 0px 28px #000' } }}
-							radius="xs"
-							variant="transparent"
-							href="#more"
+					<Center
+						style={{
+							width: '100%',
+							height: '100%',
+							backgroundColor: '#00000077',
+							padding: 16,
+						}}
+					>
+						<Title
+							style={{ color: '#ffffff', fontSize: 64, textShadow: '0px 0px 28px #000' }}
+							ta="center"
+							order={1}
 						>
-							<IconChevronDown size={64} color="white" />
-						</ActionIcon>
-					</motion.div>
-				</Center>
-			</div>
+							{t('visit.title')}
+						</Title>
+					</Center>
+					<Center
+						style={{
+							width: '100%',
+							height: '0%',
+							position: 'absolute',
+							bottom: '5%',
+							left: 0,
+						}}
+					>
+						<motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+							<ActionIcon
+								component={Link}
+								styles={{ root: { height: 64, width: 64, textShadow: '0px 0px 28px #000' } }}
+								radius="xs"
+								variant="transparent"
+								href="#more"
+							>
+								<IconChevronDown size={64} color="white" />
+							</ActionIcon>
+						</motion.div>
+					</Center>
+				</div>
+			</BackgroundImage>
 			<Container
 				style={{
 					background: scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],

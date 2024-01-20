@@ -2,7 +2,9 @@ import { Button, Center, Title, useMantineColorScheme, useMantineTheme } from '@
 
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
+import thumbnail from '../../public/images/thumbnails/error.png';
 import Page from '../components/Page';
 
 function ErrorPage() {
@@ -18,16 +20,16 @@ function ErrorPage() {
 					position: 'relative',
 				}}
 			>
-				<div
+				<Image
+					src={thumbnail}
+					alt="Error Image"
 					style={{
-						backgroundColor:
-							scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
-						background: `url("https://cdn.buildtheearth.net/static/thumbnails/error.png")`,
 						filter: 'brightness(0.5)',
 						width: '100%',
 						height: 'calc(100vh - 60px)',
+						objectFit: 'cover',
 					}}
-				></div>
+				/>
 				<Center
 					style={{
 						width: '100%',

@@ -91,6 +91,7 @@ const Page = (props: PageProps) => {
 						rootStyle={{
 							minHeight: '25vh',
 						}}
+						priority
 					>
 						<Center
 							style={{
