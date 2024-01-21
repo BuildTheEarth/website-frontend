@@ -13,16 +13,17 @@ import { GridButton } from '../../components/GridButton';
 import Page from '../../components/Page';
 import RTE from '../../components/RTE';
 import { useUser } from '../../hooks/useUser';
+import { handleFetch } from '../../utils/Fetcher';
 
 const Faq: NextPage = () => {
 	const { data } = useSWR(`/faq`);
-	const [loading, setLoading] = useState({ loading: false, error: null });
+	const [loading, setLoading] = useState({ loading: false, error: '' });
 	const [action, setAction] = useState('Select');
 	const user = useUser();
 	const form = useForm({ initialValues: { id: '', question: '', answer: '', links: [] } });
 
 	const handleSubmit = (e: any) => {
-		setLoading({ loading: true, error: null });
+		setLoading({ loading: true, error: '' });
 		switch (action) {
 			case 'Edit':
 				handleEdit(e);
@@ -36,111 +37,62 @@ const Faq: NextPage = () => {
 		}
 	};
 
-	const handleEdit = (e: any) => {
-		fetch(process.env.NEXT_PUBLIC_API_URL + `/faq/${form.values.id}`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: 'Bearer ' + user.token,
-			},
-			body: JSON.stringify({
-				question: form.values.question,
-				answer: form.values.answer,
-				links: form.values.links,
-			}),
-		})
-			.then((res) => res.json())
-			.then((res) => {
-				if (res.error) {
-					showNotification({
-						title: 'Update failed',
-						message: res.error,
-						color: 'red',
-					});
-					setLoading({ loading: false, error: res.error });
-				} else {
-					mutate('/faq');
-					showNotification({
-						title: 'Question updated',
-						message: 'All Data has been saved',
-						color: 'green',
-						icon: <IconCheck />,
-					});
-					setLoading({ loading: false, error: null });
-					form.reset();
-					setAction('Select');
-				}
-			});
-	};
+	const handleEdit = handleFetch(`/faq/${form.values.id}`, {
+		method: 'POST',
+		bodyParser: () => ({
+			question: form.values.question,
+			answer: form.values.answer,
+			links: form.values.links,
+		}),
+		headers: {
+			Authorization: 'Bearer ' + user.token,
+		},
+		successNotification: { title: 'Question updated' },
+		onError: (res) => {
+			setLoading({ loading: false, error: res.message });
+		},
+		onSuccess: () => {
+			setLoading({ loading: false, error: '' });
+			form.reset();
+			setAction('Select');
+		},
+	});
 
-	const handleDelete = (e: any) => {
-		fetch(process.env.NEXT_PUBLIC_API_URL + `/faq/${form.values.id}`, {
-			method: 'DELETE',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: 'Bearer ' + user.token,
-			},
-		})
-			.then((res) => res.json())
-			.then((res) => {
-				if (res.error) {
-					showNotification({
-						title: 'Delete failed',
-						message: res.error,
-						color: 'red',
-					});
-					setLoading({ loading: false, error: res.error });
-				} else {
-					mutate('/faq');
-					showNotification({
-						title: 'Delete updated',
-						message: 'All Data has been saved',
-						color: 'green',
-						icon: <IconCheck />,
-					});
-					setLoading({ loading: false, error: null });
-					form.reset();
-					setAction('Select');
-				}
-			});
-	};
-
-	const handleAdd = (e: any) => {
-		fetch(process.env.NEXT_PUBLIC_API_URL + `/faq`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: 'Bearer ' + user.token,
-			},
-			body: JSON.stringify({
-				question: form.values.question,
-				answer: form.values.answer,
-				links: form.values.links,
-			}),
-		})
-			.then((res) => res.json())
-			.then((res) => {
-				if (res.error) {
-					showNotification({
-						title: 'Adding failed',
-						message: res.error,
-						color: 'red',
-					});
-					setLoading({ loading: false, error: res.error });
-				} else {
-					mutate('/faq');
-					showNotification({
-						title: 'Question added',
-						message: 'All Data has been saved',
-						color: 'green',
-						icon: <IconCheck />,
-					});
-					setLoading({ loading: false, error: null });
-					form.reset();
-					setAction('Select');
-				}
-			});
-	};
+	const handleDelete = handleFetch(`/faq/${form.values.id}`, {
+		method: 'DELETE',
+		headers: {
+			Authorization: 'Bearer ' + user.token,
+		},
+		successNotification: { title: 'Question deleted' },
+		onError: (res) => {
+			setLoading({ loading: false, error: res.message });
+		},
+		onSuccess: () => {
+			setLoading({ loading: false, error: '' });
+			form.reset();
+			setAction('Select');
+		},
+	});
+	const handleAdd = handleFetch(`/faq`, {
+		method: 'POST',
+		bodyParser: () => ({
+			question: form.values.question,
+			answer: form.values.answer,
+			links: form.values.links,
+		}),
+		headers: {
+			Authorization: 'Bearer ' + user.token,
+		},
+		successNotification: { title: 'Question added' },
+		onError: (res) => {
+			setLoading({ loading: false, error: res.message });
+		},
+		onSuccess: () => {
+			setLoading({ loading: false, error: '' });
+			form.reset();
+			setAction('Select');
+		},
+	});
 
 	return (
 		<Page

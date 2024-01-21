@@ -1,3 +1,5 @@
+import { showNotification } from '@mantine/notifications';
+import { IconCheck } from '@tabler/icons-react';
 import mapboxgl from 'mapbox-gl';
 import { osmTypeToReadable } from './OSM';
 
@@ -42,3 +44,66 @@ export const searchInOSM = async (query: string, map?: mapboxgl.Map) => {
 
 	return result;
 };
+interface FetchOptions {
+	method?: string;
+	headers?: any;
+	body?: any;
+	bodyParser?: (values: any) => any;
+	onError?: (error: { message: string; error: true; errors: any[] }) => void;
+	onSuccess?: (data: any) => void;
+	errorNotification?: {
+		title?: string;
+	};
+	successNotification?: {
+		title: string;
+		message?: string;
+		color?: string;
+		icon?: any;
+	};
+}
+
+export function handleFetch(
+	route: string,
+	{
+		method,
+		headers,
+		body: body2,
+		onError,
+		onSuccess,
+		errorNotification,
+		successNotification,
+		bodyParser,
+	}: FetchOptions,
+) {
+	return async (values: any) => {
+		const body = bodyParser ? bodyParser(values) : values;
+		const res = await fetch(process.env.NEXT_PUBLIC_API_URL + route, {
+			method: method || 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				...headers,
+			},
+			body: JSON.stringify({ ...body2, ...body }),
+		});
+
+		const json = await res.json();
+
+		if (!res.ok || json.error) {
+			showNotification({
+				title: errorNotification?.title || 'Update failed',
+				message: json.message,
+				color: 'red',
+			});
+			onError && onError(json);
+		} else {
+			successNotification &&
+				showNotification({
+					title: successNotification.title,
+					message: successNotification.message || 'All Data has been saved',
+					color: successNotification.color || 'green',
+					icon: successNotification.icon || <IconCheck />,
+				});
+			onSuccess && onSuccess(json);
+		}
+	};
+}
