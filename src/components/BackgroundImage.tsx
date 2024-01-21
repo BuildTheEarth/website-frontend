@@ -17,8 +17,8 @@ export default function Background({
 				onClick={props.onClick}
 			>
 				<Image
-					{...props} //@ts-ignore
-					rootStyle={undefined}
+					// {...props} //@ts-ignore
+					// rootStyle={undefined}
 					alt="Mountains"
 					src={src}
 					placeholder={typeof src != 'string' || !!props.blurDataURL ? 'blur' : undefined}
@@ -31,6 +31,7 @@ export default function Background({
 						height: '100%',
 						...props.style,
 					}}
+					blurDataURL={props.blurDataURL}
 				/>
 				{children}
 			</div>
