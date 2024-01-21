@@ -4,6 +4,11 @@ import { Spotlight, spotlight } from '@mantine/spotlight';
 import { IconPin, IconSearch } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 import { ContextMenu, useContextMenu } from '../../components/ContextMenu';
+import {
+	DynamicClaimDrawer,
+	DynamicMap,
+	DynamicMapContextMenu,
+} from '../../components/dynamic/Map';
 import Map, { mapClickEvent, mapCopyCoordinates, mapCursorHover } from '../../components/map/Map';
 
 import mapboxgl from 'mapbox-gl';
@@ -90,7 +95,7 @@ const MapPage: NextPage = () => {
 			title="Map"
 			description="Explore the progress that has been made in the BuildTheEarth Project."
 		>
-			<ClaimDrawer open={opened} setOpen={setOpened} id={selected} map={map} t={t} />
+			<DynamicClaimDrawer open={opened} setOpen={setOpened} id={selected} map={map} t={t} />
 			<Spotlight
 				filter={(query, actions) => actions}
 				actions={searchActions}
@@ -113,14 +118,14 @@ const MapPage: NextPage = () => {
 					}
 				}}
 			/>
-			<MapContextMenu
+			<DynamicMapContextMenu
 				contextMenuInfo={state}
 				setContextMenuInfo={setState}
 				oLat={clientPos.lat}
 				oLng={clientPos.lng}
 			/>
 			<div style={{ height: '96vh', width: '100%', position: 'relative' }}>
-				<Map
+				<DynamicMap
 					src={`${process.env.NEXT_PUBLIC_API_URL}/claims/geojson?active=true`}
 					onContextMenu={contextHandler}
 					onMapLoaded={(map) => {
