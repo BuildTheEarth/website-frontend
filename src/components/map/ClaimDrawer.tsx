@@ -89,6 +89,7 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 								size={60}
 								component={Link}
 								href={`/teams/${data.buildTeam.id}`}
+								alt={data.buildTeam.name + ' Logo'}
 							/>
 							<Text size="xl" fw={700}>
 								{data.buildTeam.name}
@@ -98,7 +99,9 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 					{data.owner && (
 						<StatsGrid title={t('claim.details.owner')} icon={IconUser} paperProps={{ mb: 'md' }}>
 							<Flex justify="flex-start" align="center" direction="row" wrap="wrap" gap="md">
-								<Avatar size={60}>{data.owner.name?.at(0)}</Avatar>
+								<Avatar size={60} alt={data.owner.name + ' Avatar'}>
+									{data.owner.name?.at(0)}
+								</Avatar>
 								<Text size="xl" fw={700}>
 									{data.owner.name}
 								</Text>
@@ -113,7 +116,9 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 						>
 							<Avatar.Group>
 								{data.builders.slice(0, 4).map((b: any) => (
-									<Avatar key={b.id}>{b?.name?.at(0)}</Avatar>
+									<Avatar key={b.id} alt={b?.name + ' Avatar'}>
+										{b?.name?.at(0)}
+									</Avatar>
 								))}
 								{data.builders.length > 4 && <Avatar>+{data.builders.length - 4}</Avatar>}
 							</Avatar.Group>

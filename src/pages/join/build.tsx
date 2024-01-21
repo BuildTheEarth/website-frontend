@@ -16,18 +16,18 @@ import {
 import { IconChevronDown, IconChevronLeft } from '@tabler/icons-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-import BackgroundImage from '../../components/BackgroundImage';
-import Link from 'next/link';
 import { NextPage } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import thumbnail from '../../../public/images/join/build.webp';
+import BackgroundImage from '../../components/BackgroundImage';
 import Page from '../../components/Page';
 import SearchInput from '../../components/SearchInput';
 import fetcher from '../../utils/Fetcher';
 import getCountryName from '../../utils/ISOCountries';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import thumbnail from '../../../public/images/join/build.webp';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 const Build: NextPage = ({ data }: any) => {
 	const { t } = useTranslation('getstarted');
@@ -149,7 +149,7 @@ const Build: NextPage = ({ data }: any) => {
 									p="md"
 									onClick={() => router.push(`/teams/${element.slug}/apply`)}
 								>
-									<Avatar src={element.icon} size={94} radius="md" />
+									<Avatar src={element.icon} size={94} radius="md" alt={element.name + ' Logo'} />
 									<div>
 										<Stack gap={'xs'}>
 											<Text fs="xl" fw="bold">

@@ -57,6 +57,7 @@ const ReviewPage: NextPage = () => {
 												src={a.buildteam.icon}
 												component={Link}
 												href={`/teams/${a.buildteam.slug}/manage/review`}
+												alt={a.buildteam.name + ' Logo'}
 											/>
 										</Tooltip>
 									</Table.Td>

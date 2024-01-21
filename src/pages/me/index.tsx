@@ -23,20 +23,20 @@ import {
 	IconPlus,
 } from '@tabler/icons-react';
 
-import Link from 'next/link';
-import { NextPage } from 'next';
-import Page from '../../components/Page';
-import { Pin } from 'tabler-icons-react';
-import getCountryName from '../../utils/ISOCountries';
 import { modals } from '@mantine/modals';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { showNotification } from '@mantine/notifications';
+import { NextPage } from 'next';
 import { signOut } from 'next-auth/react';
-import thumbnail from '../../../public/images/thumbnails/me.png';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
-import useSWR from 'swr';
 import { useTranslation } from 'react-i18next';
+import useSWR from 'swr';
+import { Pin } from 'tabler-icons-react';
+import thumbnail from '../../../public/images/thumbnails/me.png';
+import Page from '../../components/Page';
 import { useUser } from '../../hooks/useUser';
+import getCountryName from '../../utils/ISOCountries';
 
 const MePage: NextPage = () => {
 	const user = useUser();
@@ -157,7 +157,12 @@ const MePage: NextPage = () => {
 											p="md"
 											onClick={() => router.push(`/teams/${element.slug}`)}
 										>
-											<Avatar src={element.icon} size={94} radius="md" />
+											<Avatar
+												src={element.icon}
+												size={94}
+												radius="md"
+												alt={element.name + ' Logo'}
+											/>
 											<div>
 												<Group justify="space-between">
 													<Text size="lg" fw={500}>
@@ -226,7 +231,12 @@ const MePage: NextPage = () => {
 											}}
 											p="md"
 										>
-											<Avatar src={element.icon} size={94} radius="md" />
+											<Avatar
+												src={element.icon}
+												size={94}
+												radius="md"
+												alt={element.name + ' Logo'}
+											/>
 											<div>
 												<Group justify="space-between">
 													<Text size="lg" fw={500}>
@@ -281,7 +291,12 @@ const MePage: NextPage = () => {
 									}}
 									p="md"
 								>
-									<Avatar size={96} radius="md" color={element.finished ? 'green' : 'orange'}>
+									<Avatar
+										size={96}
+										radius="md"
+										color={element.finished ? 'green' : 'orange'}
+										alt={element.name + ' Icon'}
+									>
 										<IconPin size="2rem" />
 									</Avatar>
 									<div>

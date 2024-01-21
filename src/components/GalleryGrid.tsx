@@ -97,7 +97,7 @@ export function GalleryGridImage(i: GalleryGridImageProps) {
 									</Badge>
 								)}
 								{i.team && (
-									<Avatar src={i.team.logo} size={18}>
+									<Avatar src={i.team.logo} size={18} alt={i.team.name + ' Logo'}>
 										{i.team.name}
 									</Avatar>
 								)}

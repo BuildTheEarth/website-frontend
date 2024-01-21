@@ -73,7 +73,7 @@ const Teams: NextPage = ({ data }: any) => {
 								p="md"
 								onClick={() => router.push(`/teams/${element.slug}`)}
 							>
-								<Avatar src={element.icon} size={94} radius="md" />
+								<Avatar src={element.icon} size={94} radius="md" alt={element.name + ' Logo'} />
 								<div>
 									<Group justify="space-between">
 										<Text size="lg" fw={500}>

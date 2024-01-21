@@ -1,27 +1,15 @@
-import {
-	Center,
-	Container,
-	Paper,
-	Text,
-	useMantineColorScheme,
-	useMantineTheme,
-} from '@mantine/core';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { NextSeo, NextSeoProps } from 'next-seo';
-import React, { useEffect } from 'react';
+import { Center, Container, Paper, Text, useMantineTheme } from '@mantine/core';
 import Header, { LogoHeader } from './Header';
+import { NextSeo, NextSeoProps } from 'next-seo';
 
-import { useMediaQuery } from '@mantine/hooks';
-import { useSession } from 'next-auth/react';
-import { StaticImport } from 'next/dist/shared/lib/get-img-props';
-import Error from 'next/error';
-import { useRouter } from 'next/router';
-import { NextResponse } from 'next/server';
-import { useUser } from '../hooks/useUser';
-import ErrorPage from '../pages/_error';
-import classes from '../styles/components/Page.module.css';
 import BackgroundImage from './BackgroundImage';
+import ErrorPage from '../pages/_error';
 import Footer from './Footer';
+import React from 'react';
+import { StaticImport } from 'next/dist/shared/lib/get-img-props';
+import classes from '../styles/components/Page.module.css';
+import { useRouter } from 'next/router';
+import { useUser } from '../hooks/useUser';
 
 interface PageProps {
 	children: React.ReactNode;
@@ -47,13 +35,9 @@ interface PageProps {
 }
 
 const Page = (props: PageProps) => {
-	const matches = useMediaQuery('(min-width: 900px)');
 	const router = useRouter();
 	const user = useUser();
 	const theme = useMantineTheme();
-	const scheme = useMantineColorScheme();
-	const { scrollY, scrollYProgress } = useScroll();
-	const bgPosY = useTransform(scrollYProgress, (latest) => `${latest * 5 + 50}%`);
 
 	return props.loading ? (
 		<ErrorPage code={'1'} />
@@ -77,7 +61,6 @@ const Page = (props: PageProps) => {
 						{ link: '/contact', translation: 'contact' },
 					]}
 					style={{
-						// opacity: props.hideHeaderOnInitialScroll && scrollY <= 20 ? 0 : 1,
 						transition: 'opacity 0.2s linear',
 						zIndex: 9999,
 					}}
@@ -177,7 +160,7 @@ const ContentContainer = (props: {
 			style={props.style}
 			data-smallpadding={props.smallPadding}
 		>
-			{props.children}
+			<main>{props.children}</main>
 		</Container>
 	);
 };

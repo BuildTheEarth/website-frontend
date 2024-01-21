@@ -24,7 +24,12 @@ export function UsersTable({
 			<Table.Tr key={user.id}>
 				<Table.Td>
 					<Group gap="sm">
-						<Avatar size={40} radius={40} color={user.enabled ? 'green' : 'red'}>
+						<Avatar
+							size={40}
+							radius={40}
+							color={user.enabled ? 'green' : 'red'}
+							alt={user?.username + ' Avatar'}
+						>
 							{user.username ? user?.username?.charAt(0).toUpperCase() : <IconUserQuestion />}
 						</Avatar>
 						<div>

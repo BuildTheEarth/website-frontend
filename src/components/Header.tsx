@@ -127,7 +127,11 @@ const Header = ({ links, style }: HeaderProps) => {
 								<UnstyledButton className={classes.user} data-useractive={userMenuOpened}>
 									<Group gap={7}>
 										<Avatar
-											alt={session.user.username || session.user.email || 'User Avatar'}
+											alt={
+												session.user.username + ' Logo' ||
+												session.user.email + ' Logo' ||
+												'User Avatar'
+											}
 											radius="xl"
 											size={'sm'}
 											color="blue"
@@ -230,7 +234,11 @@ const Header = ({ links, style }: HeaderProps) => {
 									<UnstyledButton className={classes.user} onClick={() => router.push('/me')}>
 										<Group gap={7}>
 											<Avatar
-												alt={session.user.username || session.user.email || 'User Avatar'}
+												alt={
+													session.user.username + ' Logo' ||
+													session.user.email + ' Logo' ||
+													'User Avatar'
+												}
 												radius="xl"
 												size={'sm'}
 												color="blue"
@@ -333,7 +341,7 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 								borderRadius: '50%',
 								padding: 16,
 							}}
-							alt={'Logo'}
+							alt={props.name + ' Logo'}
 						></Avatar>
 						<h1 style={{ lineHeight: 1, margin: 0 }}>{props.name}</h1>
 					</Group>

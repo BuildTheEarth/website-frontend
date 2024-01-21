@@ -40,7 +40,9 @@ export default function SWRSetup({ children }: any) {
 				revalidateOnFocus: false,
 				revalidateOnReconnect: false,
 				onError: (err, key) => {
-					console.error(`'${err}' on request to ${key} (${err.cause})`);
+					if (process.env.NODE_ENV == 'development') {
+						console.error(`'${err}' on request to ${key} (${err.cause})`);
+					}
 					if (err.cause != 401) {
 						showNotification({
 							title: 'Error during request',
