@@ -209,7 +209,7 @@ const Settings = () => {
 									<Table.Td>
 										<AspectRatio ratio={16 / 9}>
 											<Image
-												src={`https://cdn.buildtheearth.net/upload/${s.image.name}`}
+												src={`https://cdn.buildtheearth.net/uploads/${s.image.name}`}
 												fill
 												alt={s.title}
 											/>

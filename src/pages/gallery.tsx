@@ -29,7 +29,7 @@ const MePage: NextPage = ({ data }: any) => {
 				transitionProps={{ transition: 'fade', duration: 600, timingFunction: 'linear' }}
 			>
 				<GalleryGridImage
-					src={`https://cdn.buildtheearth.net/upload/${id}`}
+					src={`https://cdn.buildtheearth.net/uploads/${id}`}
 					showTooltipOnHover={false}
 					name={img?.title}
 					team={{
@@ -52,7 +52,7 @@ const MePage: NextPage = ({ data }: any) => {
 		<Page
 			head={{
 				title: 'Gallery',
-				image: `https://cdn.buildtheearth.net/upload/${data[0].image?.name}`,
+				image: `https://cdn.buildtheearth.net/uploads/${data[0].image?.name}`,
 			}}
 			loading={!data}
 			fullWidth
@@ -71,7 +71,7 @@ const MePage: NextPage = ({ data }: any) => {
 								.slice(activePage * 100 - 100, activePage * 100)
 								.map((d: any) => ({
 									name: d?.title,
-									src: `https://cdn.buildtheearth.net/upload/${d?.image?.name}`,
+									src: `https://cdn.buildtheearth.net/uploads/${d?.image?.name}`,
 									date: d?.createdAt,
 									team: {
 										name: d?.buildTeam.name,

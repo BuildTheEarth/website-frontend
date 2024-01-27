@@ -104,7 +104,7 @@ const Team: NextPage = ({ data, data2 }: any) => {
 				images={
 					data2?.slice(0, 10).map((d: any) => ({
 						name: d?.title,
-						src: `https://cdn.buildtheearth.net/upload/${d?.image?.name}`,
+						src: `https://cdn.buildtheearth.net/uploads/${d?.image?.name}`,
 						date: d?.createdAt,
 						onClick: () => setFocus(d?.image?.name),
 					})) || [{}]

@@ -195,7 +195,7 @@ const Home: NextPage = ({ data }: any) => {
 									buildTeam: d.buildTeam.name,
 									buildTeamId: d.buildTeam.id,
 									name: d.title,
-									src: `https://cdn.buildtheearth.net/upload/${d.image.name}`,
+									src: `https://cdn.buildtheearth.net/uploads/${d.image.name}`,
 									icon: d.buildTeam.icon,
 									height: d.image.height,
 									width: d.image.width,

@@ -17,6 +17,7 @@ export default function Background({
 				onClick={props.onClick}
 			>
 				<Image
+				loading="eager"
 					// {...props} //@ts-ignore
 					// rootStyle={undefined}
 					alt="Mountains"
