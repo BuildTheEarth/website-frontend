@@ -8,19 +8,19 @@ import {
 	IconTrash,
 } from '@tabler/icons-react';
 
-import { showNotification } from '@mantine/notifications';
+import Link from 'next/link';
+import Map from '../../../components/map/Map';
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
 import { NextPage } from 'next';
+import Page from '../../../components/Page';
+import fetcher from '../../../utils/Fetcher';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Link from 'next/link';
+import { showNotification } from '@mantine/notifications';
+import thumbnail from '../../../../public/images/thumbnails/me.png';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import thumbnail from '../../../../public/images/thumbnails/me.png';
-import Page from '../../../components/Page';
-import Map from '../../../components/map/Map';
 import { useUser } from '../../../hooks/useUser';
-import fetcher from '../../../utils/Fetcher';
 
 const ClaimPage: NextPage = ({ claimId, data }: any) => {
 	const [polygon, setPolygon] = useState<any>({
@@ -51,7 +51,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 
 	const handleSubmit = () => {
 		setLoading(true);
-		fetch(process.env.NEXT_PUBLIC_API_URL + `/claims/${additionalData.id}`, {
+		fetch(process.env.NEXT_PUBLIC_API_URL + `/claims/${additionalData.id}?coordType=numberarray`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
