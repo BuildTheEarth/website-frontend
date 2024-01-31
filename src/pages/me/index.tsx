@@ -8,6 +8,7 @@ import {
 	Select,
 	Stack,
 	Text,
+	Tooltip,
 	rem,
 	useMantineColorScheme,
 	useMantineTheme,
@@ -279,65 +280,81 @@ const MePage: NextPage = () => {
 					<h2>{t('claims.title')}</h2>
 					<p>{t('claims.description')}</p>
 					<Grid mb="md" mih="10vh" grow>
-						{data.claims?.concat(data.claimsBuilder).map((element: any, i: number) => (
-							<Grid.Col key={i} span={{ sm: 6 }}>
-								<Group
-									wrap="nowrap"
-									style={{
-										backgroundColor:
-											scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
-										borderRadius: theme.radius.xs,
-										cursor: 'pointer',
-									}}
-									p="md"
-								>
-									<Avatar
-										size={96}
-										radius="md"
-										color={element.finished ? 'green' : 'orange'}
-										alt={element.name + ' Icon'}
+						{data.claims
+							?.concat(data.claimsBuilder?.map((b: any) => ({ ...b, builder: true })))
+							.map((element: any, i: number) => (
+								<Grid.Col key={i} span={{ sm: 6 }}>
+									<Group
+										wrap="nowrap"
+										style={{
+											backgroundColor:
+												scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
+											borderRadius: theme.radius.xs,
+											cursor: 'pointer',
+										}}
+										p="md"
 									>
-										<IconPin size="2rem" />
-									</Avatar>
-									<div>
-										<Group justify="space-between">
-											<Text size="lg" fw={500} style={{ wordWrap: 'break-word' }}>
-												{element.name}
-											</Text>
-										</Group>
-										{element.finished ? (
-											<Badge
-												variant="gradient"
-												gradient={{ from: 'green', to: 'lime' }}
-												leftSection={<IconConfetti style={{ width: rem(16), height: rem(16) }} />}
-											>
-												{t('claims.status.finished')}
-											</Badge>
-										) : (
-											<Badge
-												variant="gradient"
-												gradient={{ from: 'orange', to: 'yellow' }}
-												leftSection={<IconCrane style={{ width: rem(12), height: rem(12) }} />}
-											>
-												{t('claims.status.building')}
-											</Badge>
-										)}
-										<Group justify="space-between">
-											<Button
-												mt="xs"
-												variant="gradient"
-												size="xs"
-												leftSection={<IconPencil />}
-												component={Link}
-												href={`/me/claims/${element.id}`}
-											>
-												{t('claims.action')}
-											</Button>
-										</Group>
-									</div>
-								</Group>
-							</Grid.Col>
-						))}
+										<Avatar
+											size={96}
+											radius="md"
+											color={element.finished ? 'green' : 'orange'}
+											alt={element.name + ' Icon'}
+										>
+											<IconPin size="2rem" />
+										</Avatar>
+										<div>
+											<Group justify="space-between">
+												<Tooltip label={element.name}>
+													<Text size="lg" fw={500} style={{ wordWrap: 'break-word' }}>
+														{element.name.slice(0, 30) + (element.name.length > 30 ? '...' : '')}
+													</Text>
+												</Tooltip>
+											</Group>
+											<Group wrap="nowrap" gap={10} mt={3}>
+												{element.finished ? (
+													<Badge
+														variant="gradient"
+														gradient={{ from: 'green', to: 'lime' }}
+														leftSection={
+															<IconConfetti style={{ width: rem(16), height: rem(16) }} />
+														}
+													>
+														{t('claims.status.finished')}
+													</Badge>
+												) : (
+													<Badge
+														variant="gradient"
+														gradient={{ from: 'orange', to: 'yellow' }}
+														leftSection={<IconCrane style={{ width: rem(12), height: rem(12) }} />}
+													>
+														{t('claims.status.building')}
+													</Badge>
+												)}
+												{element.builder ? (
+													<Badge variant="gradient">{t('common:builder')}</Badge>
+												) : (
+													<Badge variant="gradient" gradient={{ from: 'red', to: 'orange' }}>
+														{t('common:owner')}
+													</Badge>
+												)}
+											</Group>
+											<Group justify="space-between">
+												<Button
+													mt="xs"
+													variant="gradient"
+													size="xs"
+													leftSection={<IconPencil />}
+													component={Link}
+													disabled={element.builder}
+													href={`/me/claims/${element.id}`}
+												>
+													{t('claims.action')}
+												</Button>
+											</Group>
+										</div>
+									</Group>
+								</Grid.Col>
+							))}
 						<Grid.Col
 							span={{ sm: 6 }}
 							style={{
