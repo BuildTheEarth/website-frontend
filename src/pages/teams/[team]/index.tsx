@@ -34,7 +34,7 @@ const Team: NextPage = ({ data, data2 }: any) => {
 				transitionProps={{ transition: 'fade', duration: 600, timingFunction: 'linear' }}
 			>
 				<GalleryGridImage
-					src={`https://cdn.buildtheearth.net/upload/${id}`}
+					src={`https://cdn.buildtheearth.net/uploads/${id}`}
 					showTooltipOnHover={false}
 					name={img?.title}
 					date={img?.createdAt}
