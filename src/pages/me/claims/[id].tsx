@@ -1,26 +1,55 @@
-import { ActionIcon, Alert, Anchor, Button, Grid, Group, Switch, TextInput } from '@mantine/core';
+import { Discord, Minecraft } from '@icons-pack/react-simple-icons';
+import {
+	ActionIcon,
+	Alert,
+	Autocomplete,
+	Avatar,
+	Button,
+	Grid,
+	Group,
+	Indicator,
+	Loader,
+	Menu,
+	MenuDropdown,
+	MenuItem,
+	MenuTarget,
+	Select,
+	Switch,
+	Table,
+	Text,
+	TextInput,
+	Tooltip,
+	rem,
+} from '@mantine/core';
+import { useClipboard, useDebouncedState, useDebouncedValue } from '@mantine/hooks';
 import {
 	IconAlertCircle,
+	IconBrandMinecraft,
 	IconCheck,
 	IconChevronLeft,
 	IconDeviceFloppy,
-	IconQuestionMark,
+	IconDots,
+	IconId,
+	IconPencil,
+	IconPlus,
 	IconTrash,
+	IconX,
 } from '@tabler/icons-react';
+import { useEffect, useState } from 'react';
 
-import Link from 'next/link';
-import Map from '../../../components/map/Map';
+import { showNotification } from '@mantine/notifications';
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
 import { NextPage } from 'next';
-import Page from '../../../components/Page';
-import fetcher from '../../../utils/Fetcher';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { showNotification } from '@mantine/notifications';
-import thumbnail from '../../../../public/images/thumbnails/me.png';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { mutate } from 'swr';
+import thumbnail from '../../../../public/images/thumbnails/me.png';
+import Page from '../../../components/Page';
+import Map from '../../../components/map/Map';
 import { useUser } from '../../../hooks/useUser';
+import fetcher from '../../../utils/Fetcher';
 
 const ClaimPage: NextPage = ({ claimId, data }: any) => {
 	const [polygon, setPolygon] = useState<any>({
@@ -33,9 +62,13 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 		},
 	});
 	const [draw, setDraw] = useState(new MapboxDraw({ displayControlsDefault: false }));
+	const [builderSearch, setBuilderSearch] = useDebouncedState('', 1500);
+	const [builderSearchLoading, setBuilderSearchLoading] = useState(false);
+	const [builderSearchResults, setBuilderSearchResults] = useState<any[]>([]);
 	const { t } = useTranslation('map');
 	const user = useUser();
 	const router = useRouter();
+	const clipboard = useClipboard();
 	const [loading, setLoading] = useState(false);
 
 	const [additionalData, setAdditionalData] = useState({
@@ -43,6 +76,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 		id: data.id,
 		finished: data.finished,
 		active: data.active,
+		builders: data.builders,
 	});
 
 	const editData = (property: string, value: any) => {
@@ -57,7 +91,10 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 				'Content-Type': 'application/json',
 				Authorization: 'Bearer ' + user.token,
 			},
-			body: JSON.stringify({ ...additionalData, area: polygon.geometry.coordinates[0] }),
+			body: JSON.stringify({
+				...additionalData,
+				area: polygon.geometry.coordinates[0],
+			}),
 		})
 			.then((res) => res.json())
 			.then((res) => {
@@ -68,6 +105,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 						color: 'red',
 					});
 					setLoading(false);
+					setAdditionalData({ ...data, ...res });
 				} else {
 					showNotification({
 						title: 'Claim updated',
@@ -113,6 +151,36 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 			});
 	};
 
+	useEffect(() => {
+		if (builderSearch.length > 0) {
+			fetch(
+				process.env.NEXT_PUBLIC_API_URL +
+					`/builders/search?search=${builderSearch}&take=5&exact=false`,
+				{
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: 'Bearer ' + user.token,
+					},
+				},
+			)
+				.then((res) => res.json())
+				.then((res) => {
+					if (res.errors) {
+						showNotification({
+							title: 'Search failed',
+							message: res.message,
+							color: 'red',
+						});
+						setBuilderSearchLoading(false);
+					} else {
+						setBuilderSearchResults(res);
+						setBuilderSearchLoading(false);
+					}
+				});
+		}
+	}, [builderSearch]);
+
 	return (
 		<Page
 			head={{
@@ -148,15 +216,138 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 							mb="md"
 						/>
 						<h3>{t('edit.builders.title')}</h3>
-						<Alert
-							variant="light"
-							color="yellow"
-							mb="xl"
-							icon={<IconAlertCircle />}
-							title={t('edit.builders.alert')}
-						>
-							{t('edit.builders.description')}
-						</Alert>
+						<Table verticalSpacing="md" mb="md">
+							<Table.Tbody>
+								<Table.Tr>
+									<Table.Td>
+										<Group gap="sm">
+											<Avatar size={40} src={user?.user?.avatar} radius={40} />
+											<div>
+												<Text fz="sm" fw={500}>
+													{user?.user?.username}
+												</Text>
+												<Text c="dimmed" fz="xs">
+													Owner - You
+												</Text>
+											</div>
+										</Group>
+									</Table.Td>
+									<Table.Td>
+										<Group gap={0} justify="flex-end">
+											<ActionIcon variant="subtle" color="red" disabled>
+												<IconTrash style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
+											</ActionIcon>
+											<ActionIcon variant="subtle" color="gray" disabled>
+												<IconDots style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
+											</ActionIcon>
+										</Group>
+									</Table.Td>
+								</Table.Tr>
+								{additionalData?.builders?.map((builder: any) => (
+									<Table.Tr key={builder.ssoId + '-builder'}>
+										<Table.Td>
+											<Group gap="sm">
+												<Indicator disabled={!builder?.new} processing={loading}>
+													<Avatar size={40} src={builder.avatar} radius={40} color="blue">
+														{builder?.username[0]?.toUpperCase()}
+													</Avatar>
+												</Indicator>
+												<div>
+													<Text fz="sm" fw={500}>
+														{builder?.username || 'Unknown User'}
+													</Text>
+													<Text c="dimmed" fz="xs">
+														Builder
+													</Text>
+												</div>
+											</Group>
+										</Table.Td>
+										<Table.Td>
+											<Group gap={0} justify="flex-end">
+												<Tooltip label="Remove Builder">
+													<ActionIcon
+														variant="subtle"
+														color="red"
+														onClick={() =>
+															editData(
+																'builders',
+																additionalData.builders.filter((b: any) => b.id != builder.id),
+															)
+														}
+													>
+														<IconTrash style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
+													</ActionIcon>
+												</Tooltip>
+												<Menu>
+													<MenuTarget>
+														<ActionIcon variant="subtle" color="gray">
+															<IconDots style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
+														</ActionIcon>
+													</MenuTarget>
+													<MenuDropdown>
+														<MenuItem
+															leftSection={<Discord />}
+															onClick={() => clipboard.copy(builder.discordId)}
+														>
+															Copy Discord Id
+														</MenuItem>
+														<MenuItem
+															leftSection={<IconBrandMinecraft />}
+															disabled={!builder.name}
+															onClick={() => clipboard.copy(builder.name)}
+														>
+															Copy Minecraft Name
+														</MenuItem>
+														<MenuItem
+															leftSection={<IconId />}
+															onClick={() => clipboard.copy(builder.id)}
+														>
+															Copy Id
+														</MenuItem>
+													</MenuDropdown>
+												</Menu>
+											</Group>
+										</Table.Td>
+									</Table.Tr>
+								))}
+								<Table.Tr style={{ cursor: 'pointer' }}>
+									<Table.Td>
+										<Group gap="sm">
+											<Avatar size={40} radius={40} color="orange">
+												{builderSearchLoading ? <Loader size="sm" color="orange" /> : <IconPlus />}
+											</Avatar>
+											<Select
+												searchable
+												placeholder="Add Builder..."
+												onChange={(v) => {
+													editData('builders', [
+														...(additionalData.builders || []),
+														{ ...builderSearchResults.find((b: any) => b.id == v), new: true },
+													]);
+													setBuilderSearch('');
+													setBuilderSearchResults([]);
+													setBuilderSearchLoading(false);
+												}}
+												onSearchChange={(v) => {
+													if (v != builderSearch) {
+														setBuilderSearch(v);
+														if (v.length > 0) {
+															setBuilderSearchLoading(true);
+														}
+													}
+												}}
+												data={
+													builderSearchResults?.map((b: any) => ({
+														value: b?.id,
+														label: b?.username || 'Unknown Usernae',
+													})) || []
+												}
+											/>
+										</Group>
+									</Table.Td>
+								</Table.Tr>
+							</Table.Tbody>
+						</Table>
 						<Group>
 							<ActionIcon
 								variant="outline"
@@ -232,7 +423,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 export default ClaimPage;
 
 export async function getServerSideProps(context: any) {
-	const res = await fetcher('/claims/' + context.query.id);
+	const res = await fetcher('/claims/' + context.query.id + '?builders=true');
 	return {
 		props: {
 			claimId: context.query.id,
