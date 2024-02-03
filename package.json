@@ -76,6 +76,7 @@
 		"tabler-icons-react": "^1.48.0",
 		"three": "^0.149.0",
 		"uuid": "^9.0.0",
+		"sharp": "^0.33.2",
 		"vague-time": "^2.4.2"
 	},
 	"devDependencies": {
@@ -101,7 +102,6 @@
 		"postcss-preset-mantine": "^1.7.0",
 		"postcss-simple-vars": "^7.0.1",
 		"prettier": "^2.6.2",
-		"sharp": "^0.33.2",
 		"typescript": "^4.7.2",
 		"webpack-bundle-analyzer": "^4.5.0"
 	}
