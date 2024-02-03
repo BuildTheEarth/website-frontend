@@ -7,7 +7,9 @@ import {
 	useMantineTheme,
 } from '@mantine/core';
 import {
+	IconClock,
 	IconDashboard,
+	IconHome,
 	IconPhoto,
 	IconPolygon,
 	IconSearch,
@@ -131,5 +133,77 @@ const SettingsTabs = ({
 		</>
 	);
 };
+
+export const AdminSettingsTabs = ({
+	children,
+	loading = false,
+}: {
+	children: any;
+	loading?: boolean;
+}) => {
+	const theme = useMantineTheme();
+	const scheme = useMantineColorScheme();
+	const user = useUser();
+	const session = useSession();
+	const router = useRouter();
+	const mobileLayout = useMediaQuery('(max-width: 1600px)');
+	return (
+		<>
+			<Paper
+				p="lg"
+				radius={0}
+				style={
+					!mobileLayout
+						? {
+								position: 'absolute',
+								left: -110,
+								top: 'var(--mantine-spacing-xl)',
+								maxWidth: '300px',
+								overflow: 'hidden',
+						  }
+						: {}
+				}
+			>
+				<Tabs
+					defaultValue="cron"
+					variant="pills"
+					orientation={!mobileLayout ? 'vertical' : 'horizontal'}
+					value={router.pathname.split('admin/')[1]}
+					onChange={(value) =>
+						value == 'quit' ? router.push(`/`) : router.push(`/admin/${value}`)
+					}
+					style={{ width: '100%' }}
+				>
+					<Tabs.List>
+						<Tabs.Tab
+							value="cron"
+							leftSection={<IconClock size="0.8rem" />}
+							disabled={!user.hasPermissions(['admin.admin'])}
+						>
+							Cron
+						</Tabs.Tab>
+
+						<Tabs.Tab value="quit" leftSection={<IconHome size="0.8rem" />}>
+							Quit
+						</Tabs.Tab>
+					</Tabs.List>
+				</Tabs>
+			</Paper>
+			<Box
+				style={(theme) => ({
+					// backgroundColor: scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+					padding: 'calc(var(--mantine-spacing-xs) * 3)',
+					paddingTop: theme.spacing.md,
+					height: '100%',
+					position: 'relative',
+				})}
+			>
+				<LoadingOverlay visible={user.isLoading && loading} overlayProps={{ blur: 4 }} />
+				{children}
+			</Box>
+		</>
+	);
+};
+
 
 export default SettingsTabs;

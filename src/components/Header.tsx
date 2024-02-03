@@ -30,6 +30,7 @@ import {
 	useMantineTheme,
 } from '@mantine/core';
 import {
+	IconDashboard,
 	IconDots,
 	IconMoonStars,
 	IconPhoto,
@@ -183,6 +184,15 @@ const Header = ({ links, style }: HeaderProps) => {
 								>
 									{t('user.review')}
 								</Menu.Item>
+								{user.hasPermission('admin.admin') && (
+									<Menu.Item
+										leftSection={<IconDashboard size={14} />}
+										component={Link}
+										href="/admin/cron"
+									>
+										Administration
+									</Menu.Item>
+								)}
 								<Menu.Divider />
 								<Menu.Item leftSection={<Logout size={14} />} color="red" onClick={() => signOut()}>
 									{t('auth.signout')}
