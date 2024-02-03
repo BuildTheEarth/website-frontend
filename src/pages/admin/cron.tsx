@@ -41,7 +41,7 @@ const Settings = ({ data: tempData }: any) => {
 						<Table.Th>Cron String</Table.Th>
 					</Table.Thead>
 					<Table.Tbody>
-						{data.map((job: any) => (
+						{data?.map((job: any) => (
 							<Table.Tr key={job.id}>
 								<Table.Td>{job.id}</Table.Td>
 								<Table.Td>
