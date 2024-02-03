@@ -57,17 +57,20 @@ export function GalleryGridImage(i: GalleryGridImageProps) {
 					}}
 					onClick={i.onClick}
 					className={i.href && 'hover-border'}
-					ref={ref}
 					blurDataURL={i.hash}
 				>
 					<div
+						ref={ref}
 						style={{
 							height: '100%',
-							position: 'relative',
+							// position: 'relative',
 							width: '100%',
 							background: 'linear-gradient(160deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0,0.8))',
 							opacity: i.showTooltipOnHover && !hovered ? 0 : 100,
 							transition: 'opacity 0.3s ease-in-out',
+							position: 'absolute',
+							top: 0,
+							right: 0,
 						}}
 					>
 						<div
