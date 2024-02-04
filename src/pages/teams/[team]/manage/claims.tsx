@@ -31,13 +31,16 @@ const Settings = () => {
 	const clipboard = useClipboard();
 
 	const handleDelete = (id: string) => {
-		fetch(process.env.NEXT_PUBLIC_API_URL + `/claims/${id}`, {
-			method: 'DELETE',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: 'Bearer ' + user.token,
+		fetch(
+			process.env.NEXT_PUBLIC_API_URL + `/buildteams/${router.query.team}/claims/${id}?slug=true`,
+			{
+				method: 'DELETE',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: 'Bearer ' + user.token,
+				},
 			},
-		})
+		)
 			.then((res) => res.json())
 			.then((res) => {
 				if (res.errors) {
