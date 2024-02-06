@@ -47,7 +47,7 @@ const MePage: NextPage = () => {
 	const theme = useMantineTheme();
 	const router = useRouter();
 	const handleCreateClaim = () => {
-		const handleSubmit = (v: string) => {
+		const handleSubmit = (v: any) => {
 			fetch(process.env.NEXT_PUBLIC_API_URL + `/claims?slug=true`, {
 				method: 'POST',
 				headers: {
@@ -358,8 +358,6 @@ const MePage: NextPage = () => {
 						<Grid.Col
 							span={{ sm: 6 }}
 							style={{
-								backgroundColor:
-									scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 								borderRadius: theme.radius.xs,
 								cursor: 'pointer',
 								minHeight: '10vh',
