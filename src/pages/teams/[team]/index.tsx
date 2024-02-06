@@ -117,6 +117,19 @@ const Team: NextPage = ({ data, data2 }: any) => {
 export default Team;
 
 export async function getStaticProps({ locale, params }: any) {
+	
+	if (
+		!isNaN(params.team as any) ||
+		/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(params.team)
+	) {
+		return {
+			redirect: {
+				destination: '/teams',
+				permanent: true,
+			},
+		};
+	}
+
 	const res = await fetcher(`/buildteams/${params.team}?slug=true`);
 	const res2 = await fetcher(`/buildteams/${params.team}/showcases?slug=true`);
 	return {

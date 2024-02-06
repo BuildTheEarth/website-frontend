@@ -13,6 +13,5 @@ export function hexToDataURL(hexColor: string) {
 	// Convert the buffer to a base64-encoded data URL
 	const imageDataUrl = 'data:image/png;base64,' + imageBuffer.toString('base64');
 
-	console.log(imageDataUrl);
 	return imageDataUrl;
 }

@@ -17,12 +17,12 @@ export default function Background({
 				onClick={props.onClick}
 			>
 				<Image
-				loading="eager"
+					loading="eager"
 					// {...props} //@ts-ignore
 					// rootStyle={undefined}
 					alt="Mountains"
 					src={src}
-					placeholder={typeof src != 'string' || !!props.blurDataURL ? 'blur' : undefined}
+					placeholder={typeof src != 'string' || props.blurDataURL ? 'blur' : undefined}
 					// fill={typeof src == 'string'}
 					fill
 					sizes="100vw"
