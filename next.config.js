@@ -6,7 +6,32 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const nextConfig = {
 	reactStrictMode: true,
 	images: {
-		domains: ['cdn.discordapp.com', 'i.imgur.com', 'cdn.buildtheearth.net'],
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: 'cdn.buildtheearth.net',
+				port: '',
+				pathname: '/**',
+			},
+			{
+				protocol: 'https',
+				hostname: '**.discordapp.com',
+				port: '',
+				pathname: '/**',
+			},
+			{
+				protocol: 'https',
+				hostname: '**.discord.com',
+				port: '',
+				pathname: '/**',
+			},
+			{
+				protocol: 'https',
+				hostname: 'i.imgur.com',
+				port: '',
+				pathname: '/**',
+			},
+		],
 	},
 	// compiler: {
 	// 	styledComponents: true,
@@ -16,6 +41,7 @@ const nextConfig = {
 		locales: ['en', 'zh'], // 'de', 'es', 'fr', 'ru', 'nl',
 	},
 	output: 'standalone',
+	poweredByHeader: false,
 	async redirects() {
 		return [
 			{
