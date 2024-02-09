@@ -137,6 +137,69 @@ const MePage: NextPage = () => {
 							{t('common:auth.signout')}
 						</Button>
 					</Group>
+					{data.createdBuildTeams.length > 0 && (
+						<>
+							<h2>{t('owned.title')}</h2>
+							<p>{t('owned.description')}</p>
+							<Grid mb="md">
+								{data.createdBuildTeams?.map((element: any, i: number) => (
+									<Grid.Col key={i} span={{ sm: 6 }}>
+										<Group
+											wrap="nowrap"
+											style={{
+												backgroundColor:
+													scheme.colorScheme === 'dark'
+														? theme.colors.dark[6]
+														: theme.colors.gray[1],
+												borderRadius: theme.radius.xs,
+											}}
+											p="md"
+										>
+											<Avatar
+												src={element.icon}
+												size={94}
+												radius="md"
+												alt={element.name + ' Logo'}
+											/>
+											<div>
+												<Group justify="space-between">
+													<Text size="lg" fw={500}>
+														{element.name}
+													</Text>
+												</Group>
+
+												<Group wrap="nowrap" gap={10} mt={3}>
+													{element.creatorId == user.user.id ? (
+														<Badge variant="gradient" gradient={{ from: 'red', to: 'orange' }}>
+															{t('common:owner')}
+														</Badge>
+													) : (
+														<Badge variant="gradient" gradient={{ from: 'grape.6', to: 'grape' }}>
+															{t('common:manager')}
+														</Badge>
+													)}
+													{data.joinedBuildTeams.length > 0 &&
+														data.joinedBuildTeams.some((b: any) => b.id == element.id) && (
+															<Badge variant="gradient">{t('common:builder')}</Badge>
+														)}
+												</Group>
+												<Button
+													mt="xs"
+													variant="gradient"
+													size="xs"
+													leftSection={<IconPencil />}
+													component={Link}
+													href={`/teams/${element.slug}/manage/settings`}
+												>
+													{t('owned.action')}
+												</Button>
+											</div>
+										</Group>
+									</Grid.Col>
+								))}
+							</Grid>
+						</>
+					)}
 					<h2>{t('teams.title')}</h2>
 					<p>{t('teams.description')}</p>
 					<Grid mb="md">
@@ -214,69 +277,7 @@ const MePage: NextPage = () => {
 							</Grid.Col>
 						)}
 					</Grid>
-					{data.createdBuildTeams.length > 0 && (
-						<>
-							<h2>{t('owned.title')}</h2>
-							<p>{t('owned.description')}</p>
-							<Grid mb="md">
-								{data.createdBuildTeams?.map((element: any, i: number) => (
-									<Grid.Col key={i} span={{ sm: 6 }}>
-										<Group
-											wrap="nowrap"
-											style={{
-												backgroundColor:
-													scheme.colorScheme === 'dark'
-														? theme.colors.dark[6]
-														: theme.colors.gray[1],
-												borderRadius: theme.radius.xs,
-											}}
-											p="md"
-										>
-											<Avatar
-												src={element.icon}
-												size={94}
-												radius="md"
-												alt={element.name + ' Logo'}
-											/>
-											<div>
-												<Group justify="space-between">
-													<Text size="lg" fw={500}>
-														{element.name}
-													</Text>
-												</Group>
 
-												<Group wrap="nowrap" gap={10} mt={3}>
-													{element.creatorId == user.user.id ? (
-														<Badge variant="gradient" gradient={{ from: 'red', to: 'orange' }}>
-															{t('common:owner')}
-														</Badge>
-													) : (
-														<Badge variant="gradient" gradient={{ from: 'grape.6', to: 'grape' }}>
-															{t('common:manager')}
-														</Badge>
-													)}
-													{data.joinedBuildTeams.length > 0 &&
-														data.joinedBuildTeams.some((b: any) => b.id == element.id) && (
-															<Badge variant="gradient">{t('common:builder')}</Badge>
-														)}
-												</Group>
-												<Button
-													mt="xs"
-													variant="gradient"
-													size="xs"
-													leftSection={<IconPencil />}
-													component={Link}
-													href={`/teams/${element.slug}/manage/settings`}
-												>
-													{t('owned.action')}
-												</Button>
-											</div>
-										</Group>
-									</Grid.Col>
-								))}
-							</Grid>
-						</>
-					)}
 					<h2>{t('claims.title')}</h2>
 					<p>{t('claims.description')}</p>
 					<Grid mb="md" mih="10vh" grow>
