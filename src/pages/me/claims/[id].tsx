@@ -18,6 +18,7 @@ import {
 	Table,
 	Text,
 	TextInput,
+	Textarea,
 	Tooltip,
 	rem,
 } from '@mantine/core';
@@ -73,6 +74,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 
 	const [additionalData, setAdditionalData] = useState({
 		name: data.name,
+		description: data.description,
 		id: data.id,
 		finished: data.finished,
 		active: data.active,
@@ -213,6 +215,16 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 							defaultChecked={additionalData.active}
 							label={t('edit.active')}
 							onChange={(e) => editData('active', e.target.checked)}
+							mb="md"
+						/>
+						<Textarea
+							label="Description"
+							defaultValue={additionalData.description}
+							onChange={(e) => editData('description', e.target.value)}
+							maxRows={5}
+							minRows={3}
+							autosize
+							placeholder="Describe your claim..."
 							mb="md"
 						/>
 						<h3>{t('edit.builders.title')}</h3>

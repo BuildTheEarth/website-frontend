@@ -9,12 +9,14 @@ import {
 	Loader,
 	ScrollArea,
 	Text,
+	Title,
 	Tooltip,
 } from '@mantine/core';
 import {
 	IconCheck,
 	IconCopy,
 	IconCrane,
+	IconInfoCircle,
 	IconLink,
 	IconPencil,
 	IconPin,
@@ -31,7 +33,6 @@ import mapboxgl from 'mapbox-gl';
 import Link from 'next/link';
 import useSWR from 'swr';
 import { useUser } from '../../hooks/useUser';
-import { getRandomColor } from '../../utils/Color';
 import { StatsGrid } from '../Stats';
 
 interface ClaimDrawerProps {
@@ -67,7 +68,9 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 			) : (
 				<>
 					<StatsGrid title={t('claim.details.name')} icon={IconPin} paperProps={{ mb: 'md' }}>
-						{data.name}
+						<Title order={3} lineClamp={2}>
+							{data.name}
+						</Title>
 					</StatsGrid>
 					{!data.finished && (
 						<Alert
@@ -97,6 +100,9 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 								{data.buildTeam.name}
 							</Text>
 						</Flex>
+					</StatsGrid>
+					<StatsGrid title="Description" icon={IconInfoCircle} paperProps={{ mb: 'md' }}>
+						<Text lineClamp={10}>{data.description}</Text>
 					</StatsGrid>
 					{data.owner && (
 						<StatsGrid title={t('claim.details.owner')} icon={IconUser} paperProps={{ mb: 'md' }}>
