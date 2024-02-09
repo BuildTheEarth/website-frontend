@@ -161,7 +161,7 @@ const Review = ({ team }: any) => {
 				<Group justify="center" pt="md">
 					<Pagination
 						my="md"
-						total={data?.length >= 1 ? Math.floor(data?.length / 20) : 1}
+						total={data?.length >= 1 ? Math.ceil(data?.length / 20) : 1}
 						radius="xs"
 						value={activePage}
 						onChange={setPage}
