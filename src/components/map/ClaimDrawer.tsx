@@ -9,6 +9,7 @@ import {
 	Loader,
 	ScrollArea,
 	Text,
+	Tooltip,
 } from '@mantine/core';
 import {
 	IconCheck,
@@ -30,6 +31,7 @@ import mapboxgl from 'mapbox-gl';
 import Link from 'next/link';
 import useSWR from 'swr';
 import { useUser } from '../../hooks/useUser';
+import { getRandomColor } from '../../utils/Color';
 import { StatsGrid } from '../Stats';
 
 interface ClaimDrawerProps {
@@ -99,11 +101,12 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 					{data.owner && (
 						<StatsGrid title={t('claim.details.owner')} icon={IconUser} paperProps={{ mb: 'md' }}>
 							<Flex justify="flex-start" align="center" direction="row" wrap="wrap" gap="md">
-								<Avatar size={60} alt={data.owner.name + ' Avatar'}>
-									{data.owner.name?.at(0)}
+								<Avatar size={60} alt={data.owner.username + 's Avatar'} color="teal">
+									{' '}
+									{data.owner.username?.at(0).toUpperCase()}
 								</Avatar>
 								<Text size="xl" fw={700}>
-									{data.owner.name}
+									{data.owner.username}
 								</Text>
 							</Flex>
 						</StatsGrid>
@@ -115,12 +118,18 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 							paperProps={{ mb: 'md' }}
 						>
 							<Avatar.Group>
-								{data.builders.slice(0, 4).map((b: any) => (
-									<Avatar key={b.id} alt={b?.name + ' Avatar'}>
-										{b?.name?.at(0)}
-									</Avatar>
+								{data.builders.map((b: any) => (
+									<Tooltip label={b?.username || 'Username is not defined'} key={b.id}>
+										<Avatar
+											alt={b?.username + 's Avatar'}
+											color="grape"
+											aria-label={b?.username || 'Username is not defined'}
+										>
+											{b?.username?.at(0).toUpperCase()}
+										</Avatar>
+									</Tooltip>
 								))}
-								{data.builders.length > 4 && <Avatar>+{data.builders.length - 4}</Avatar>}
+								{data._count?.builders > 10 && <Avatar>+{data._count.builders - 10}</Avatar>}
 							</Avatar.Group>
 						</StatsGrid>
 					)}

@@ -1,3 +1,5 @@
+import { MantineColor } from '@mantine/core';
+
 export function hexToDataURL(hexColor: string) {
 	// Remove the '#' if it's present
 	hexColor = hexColor.replace(/^#/, '');
@@ -14,4 +16,24 @@ export function hexToDataURL(hexColor: string) {
 	const imageDataUrl = 'data:image/png;base64,' + imageBuffer.toString('base64');
 
 	return imageDataUrl;
+}
+
+export function getRandomColor(): MantineColor {
+	const colors = [
+		// 'dark',
+		// 'gray',
+		'red',
+		'pink',
+		'grape',
+		'violet',
+		'indigo',
+		'blue',
+		'cyan',
+		'green',
+		'lime',
+		'yellow',
+		'orange',
+		'teal',
+	];
+	return colors[Math.floor(Math.random() * colors.length)];
 }
