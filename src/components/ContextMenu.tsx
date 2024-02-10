@@ -63,6 +63,7 @@ export function ContextMenu({
 				<Menu.Target>
 					<Button
 						unstyled
+						loading={false}
 						style={{
 							position: 'absolute',
 							width: 0,
@@ -71,6 +72,7 @@ export function ContextMenu({
 							border: 0,
 							left: contextMenuInfo.x,
 							top: contextMenuInfo.y,
+							visibility: 'hidden',
 						}}
 					/>
 				</Menu.Target>
