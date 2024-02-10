@@ -84,30 +84,32 @@ const Settings = ({ data: tempData }: any) => {
 			requiredPermissions={['admin.admin']}
 		>
 			<AdminSettingsTabs>
-				<Paper withBorder radius={'md'} p={'xl'}>
-					<Group>
-						<Title order={2}>Buildings</Title>
-					</Group>
+				{progress?.buildings && (
+					<Paper withBorder radius={'md'} p={'xl'}>
+						<Group>
+							<Title order={2}>Buildings</Title>
+						</Group>
 
-					<Button mt="md" loading={progress > 0} onClick={handleCalculateBuildings}>
-						Calculate Building Counts
-					</Button>
-					<Checkbox
-						label={'Skip already indexed claims (building count > 0)'}
-						mt={'md'}
-						checked={skipExistingBuildings}
-						onChange={(v) => setSkipExistingBuildings(v.target.checked)}
-					/>
-					<Tooltip label={progress.buildings.done + '/' + progress.buildings.total}>
-						<Progress
-							value={(progress.buildings.done / progress.buildings.total) * 100}
-							mt="md"
-							animated
-							radius="xl"
-							size="xl"
+						<Button mt="md" loading={progress > 0} onClick={handleCalculateBuildings}>
+							Calculate Building Counts
+						</Button>
+						<Checkbox
+							label={'Skip already indexed claims (building count > 0)'}
+							mt={'md'}
+							checked={skipExistingBuildings}
+							onChange={(v) => setSkipExistingBuildings(v.target.checked)}
 						/>
-					</Tooltip>
-				</Paper>
+						<Tooltip label={progress.buildings.done + '/' + progress.buildings.total}>
+							<Progress
+								value={(progress.buildings.done / progress.buildings.total) * 100}
+								mt="md"
+								animated
+								radius="xl"
+								size="xl"
+							/>
+						</Tooltip>
+					</Paper>
+				)}
 			</AdminSettingsTabs>
 		</Page>
 	);
