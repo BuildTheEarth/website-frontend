@@ -1,4 +1,5 @@
 import { showNotification } from '@mantine/notifications';
+import { Session } from 'next-auth';
 import { useSession } from 'next-auth/react';
 import { SWRConfig } from 'swr';
 
@@ -11,28 +12,7 @@ export default function SWRSetup({ children }: any) {
 		<SWRConfig
 			value={{
 				// refreshInterval: 0,
-				fetcher: async (resource: any, init: any) => {
-					if (!resource.includes('/undefined') && !resource.includes('/null')) {
-						const res = await fetch(process.env.NEXT_PUBLIC_API_URL + resource, {
-							headers: {
-								'Access-Control-Allow-Origin': '*',
-								Authorization: session.data?.accessToken
-									? 'Bearer ' + session.data?.accessToken
-									: undefined,
-								...init?.headers,
-							},
-							...init,
-						});
-
-						const json = await res.json();
-
-						if (!res.ok || json.error) {
-							throw new Error(json.message, { cause: res.status });
-						}
-
-						return json;
-					}
-				},
+				fetcher: swrFetcher(session),
 				shouldRetryOnError: true,
 				errorRetryInterval: 1000,
 				errorRetryCount: 2,
@@ -57,3 +37,28 @@ export default function SWRSetup({ children }: any) {
 		</SWRConfig>
 	);
 }
+
+export const swrFetcher = (session?: { data: Session | null }) => {
+	return async (resource: any, init: any) => {
+		if (!resource.includes('/undefined') && !resource.includes('/null')) {
+			const res = await fetch(process.env.NEXT_PUBLIC_API_URL + resource, {
+				headers: {
+					'Access-Control-Allow-Origin': '*',
+					Authorization: session?.data?.accessToken
+						? 'Bearer ' + session?.data?.accessToken
+						: undefined,
+					...init?.headers,
+				},
+				...init,
+			});
+
+			const json = await res.json();
+
+			if (!res.ok || json.error) {
+				throw new Error(json.message, { cause: res.status });
+			}
+
+			return json;
+		}
+	};
+};

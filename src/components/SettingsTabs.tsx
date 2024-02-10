@@ -182,6 +182,13 @@ export const AdminSettingsTabs = ({
 						>
 							Cron
 						</Tabs.Tab>
+						<Tabs.Tab
+							value="claims"
+							leftSection={<IconPolygon size="0.8rem" />}
+							disabled={!user.hasPermissions(['admin.admin'])}
+						>
+							Claims
+						</Tabs.Tab>
 
 						<Tabs.Tab value="quit" leftSection={<IconHome size="0.8rem" />}>
 							Quit

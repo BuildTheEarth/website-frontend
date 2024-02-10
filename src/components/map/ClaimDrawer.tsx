@@ -13,6 +13,7 @@ import {
 	Tooltip,
 } from '@mantine/core';
 import {
+	IconBuilding,
 	IconCheck,
 	IconCopy,
 	IconCrane,
@@ -141,6 +142,9 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 							</Avatar.Group>
 						</StatsGrid>
 					)}
+					<StatsGrid title="Buildings" icon={IconBuilding} paperProps={{ mb: 'md' }} isText>
+						{data.buildings}
+					</StatsGrid>
 					<StatsGrid
 						title={t('claim.details.area')}
 						icon={IconRuler2}
