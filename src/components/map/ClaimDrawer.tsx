@@ -101,10 +101,12 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 							</Text>
 						</Flex>
 					</StatsGrid>
-					<StatsGrid title="Description" icon={IconInfoCircle} paperProps={{ mb: 'md' }}>
-						<Text lineClamp={10}>{data.description}</Text>
-					</StatsGrid>
-					{data.owner && (
+					{data.description && (
+						<StatsGrid title="Description" icon={IconInfoCircle} paperProps={{ mb: 'md' }}>
+							<Text lineClamp={10}>{data.description}</Text>
+						</StatsGrid>
+					)}
+					{data.owner?.id && (
 						<StatsGrid title={t('claim.details.owner')} icon={IconUser} paperProps={{ mb: 'md' }}>
 							<Flex justify="flex-start" align="center" direction="row" wrap="wrap" gap="md">
 								<Avatar size={60} alt={data.owner.username + 's Avatar'} color="teal">
