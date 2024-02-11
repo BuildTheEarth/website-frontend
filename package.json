@@ -72,7 +72,7 @@
 		"react-i18next": "^11.18.6",
 		"react-map-gl": "^7.0.16",
 		"sanitize-html": "^2.10.0",
-		"sharp": "^0.33.2",
+		"sharp": "0.32.6",
 		"swr": "^2.2.4",
 		"tabler-icons-react": "^1.48.0",
 		"three": "^0.149.0",
