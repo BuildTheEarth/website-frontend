@@ -13,6 +13,7 @@ import {
 	MenuDropdown,
 	MenuItem,
 	MenuTarget,
+	NumberInput,
 	Select,
 	Switch,
 	Table,
@@ -79,6 +80,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 		finished: data.finished,
 		active: data.active,
 		builders: data.builders,
+		buildings: data.buildings,
 	});
 
 	const editData = (property: string, value: any) => {
@@ -227,6 +229,14 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 							placeholder="Describe your claim..."
 							mb="md"
 						/>
+						<Tooltip label="You cannot edit this field, it will get automatically calculated.">
+							<NumberInput
+								readOnly
+								value={additionalData.buildings}
+								label="Building Count"
+								disabled
+							/>
+						</Tooltip>
 						<h3>{t('edit.builders.title')}</h3>
 						<Table verticalSpacing="md" mb="md">
 							<Table.Tbody>
