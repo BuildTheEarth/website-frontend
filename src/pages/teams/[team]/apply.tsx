@@ -1,21 +1,30 @@
-import { Alert, Button, SegmentedControl, Skeleton, useMantineTheme } from '@mantine/core';
+import {
+	Alert,
+	Anchor,
+	Button,
+	SegmentedControl,
+	Skeleton,
+	Text,
+	useMantineTheme,
+} from '@mantine/core';
 import { IconAlertCircle, IconCheck } from '@tabler/icons-react';
 import { signIn, useSession } from 'next-auth/react';
 import useSWR, { mutate } from 'swr';
 
-import { ApplicationQuestions } from '../../../utils/application/ApplicationQuestions';
+import { Discord } from '@icons-pack/react-simple-icons';
+import { useForm } from '@mantine/form';
+import { showNotification } from '@mantine/notifications';
 import { IconChevronLeft } from '@tabler/icons-react';
 import { NextPage } from 'next';
-import Page from '../../../components/Page';
-import fetcher from '../../../utils/Fetcher';
-import sanitize from 'sanitize-html';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { showNotification } from '@mantine/notifications';
-import { useForm } from '@mantine/form';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import sanitize from 'sanitize-html';
+import Page from '../../../components/Page';
 import { useUser } from '../../../hooks/useUser';
+import fetcher from '../../../utils/Fetcher';
+import { ApplicationQuestions } from '../../../utils/application/ApplicationQuestions';
 
 const Apply: NextPage = ({ data, buildteam }: any) => {
 	const router = useRouter();
@@ -32,6 +41,7 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 	const form = useForm({
 		validate: generateValidation(data?.filter((d: any) => d.trial == trial && d.sort >= 0)),
 	});
+	const [uiError, setUiError] = useState<{ title?: String; content?: any }>({});
 
 	const handleSubmit = (e: any) => {
 		setLoading(true);
@@ -56,6 +66,21 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 						color: 'red',
 					});
 					setLoading(false);
+
+					if (res.code == 428) {
+						setUiError({
+							title: 'Discord Server',
+							content: (
+								<Text>
+									You are not on the BuildTheEarth.net Discord Server, please join it{' '}
+									<Anchor href="https://buildtheearth.net/discord" target="_blank">
+										here
+									</Anchor>{' '}
+									and apply again.
+								</Text>
+							),
+						});
+					}
 				} else {
 					showNotification({
 						title: t('apply.messages.success.title'),
@@ -98,6 +123,11 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 				dangerouslySetInnerHTML={{ __html: sanitize(buildteam?.about) }}
 				style={{ marginBottom: 'var(--mantine-spacing-md)' }}
 			/>
+			{uiError?.title && (
+				<Alert title={uiError.title} mb="md" color="red" icon={<Discord />}>
+					{uiError?.content}
+				</Alert>
+			)}
 			{!pastApplications || typeof pastApplications == 'string' ? (
 				<>
 					<Skeleton height={300} my={'md'} />
