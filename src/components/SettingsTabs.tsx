@@ -212,5 +212,4 @@ export const AdminSettingsTabs = ({
 	);
 };
 
-
 export default SettingsTabs;

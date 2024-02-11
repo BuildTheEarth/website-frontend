@@ -8,7 +8,7 @@
 	left: 0;
 	right: 0;
 	z-index: 88;
-	border:none;
+	border: none;
 	border-radius: 0;
 	overflow: hidden;
 	box-shadow: var(--mantine-shadow-md);
