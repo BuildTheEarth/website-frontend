@@ -31,7 +31,9 @@ import {
 	IconChevronLeft,
 	IconDeviceFloppy,
 	IconDots,
+	IconHome,
 	IconId,
+	IconMap,
 	IconPencil,
 	IconPlus,
 	IconTrash,
@@ -383,24 +385,25 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 							<ActionIcon
 								variant="outline"
 								component={Link}
-								href={
-									router.query.z && router.query.lat && router.query.lng
-										? `/map?z=${router.query.z}&lat=${router.query.lat}&lng=${router.query.lng}`
-										: '/map'
-								}
+								href={'/me'}
 								aria-label={t('common:button.back')}
 								size={'lg'}
 							>
-								<IconChevronLeft />
+								<IconHome />
 							</ActionIcon>
-							<Button
-								onClick={handleSubmit}
-								disabled={!user?.token}
-								loading={loading}
-								leftSection={<IconDeviceFloppy />}
+							<ActionIcon
+								variant="outline"
+								component={Link}
+								href={
+									router.query.z && router.query.lat && router.query.lng
+										? `/map?z=${router.query.z}&lat=${router.query.lat}&lng=${router.query.lng}&claim=${data.id}`
+										: `/map?claim=${data.id}`
+								}
+								aria-label={'Open on Map'}
+								size={'lg'}
 							>
-								{t('common:button.save')}
-							</Button>
+								<IconMap />
+							</ActionIcon>
 							<Button
 								onClick={handleDelete}
 								disabled={!user?.token}
@@ -409,6 +412,14 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 								leftSection={<IconTrash />}
 							>
 								{t('common:button.delete')}
+							</Button>
+							<Button
+								onClick={handleSubmit}
+								disabled={!user?.token}
+								loading={loading}
+								leftSection={<IconDeviceFloppy />}
+							>
+								{t('common:button.save')}
 							</Button>
 						</Group>
 					</Grid.Col>
