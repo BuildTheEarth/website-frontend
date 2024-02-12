@@ -23,7 +23,7 @@ import {
 	Tooltip,
 	rem,
 } from '@mantine/core';
-import { useClipboard, useDebouncedState, useDebouncedValue } from '@mantine/hooks';
+import { useClipboard, useDebouncedState, useDebouncedValue, useSetState } from '@mantine/hooks';
 import {
 	IconAlertCircle,
 	IconBrandMinecraft,
@@ -49,6 +49,7 @@ import { useTranslation } from 'react-i18next';
 import { mutate } from 'swr';
 import thumbnail from '../../../../public/images/thumbnails/me.png';
 import Page from '../../../components/Page';
+import { ClaimDrawerImages } from '../../../components/map/ClaimDrawerImages';
 import Map from '../../../components/map/Map';
 import { useUser } from '../../../hooks/useUser';
 import fetcher from '../../../utils/Fetcher';
@@ -72,6 +73,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 	const router = useRouter();
 	const clipboard = useClipboard();
 	const [loading, setLoading] = useState(false);
+	const [images, setImages] = useState(data.images);
 
 	const [additionalData, setAdditionalData] = useState({
 		name: data.name,
@@ -207,6 +209,23 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 							onChange={(e) => editData('name', e.target.value)}
 							mb="md"
 						/>
+						<ClaimDrawerImages
+							id={data.id}
+							images={images}
+							editable
+							onAdd={(img) => setImages([...images, img])}
+							onRemove={(img) => setImages(images.filter((i: any) => i.id != img))}
+						/>
+						<Textarea
+							label="Description"
+							defaultValue={additionalData.description}
+							onChange={(e) => editData('description', e.target.value)}
+							maxRows={5}
+							minRows={3}
+							autosize
+							placeholder="Describe your claim..."
+							mb="md"
+						/>
 						<Switch
 							defaultChecked={additionalData.finished}
 							label={t('edit.finished')}
@@ -217,16 +236,6 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 							defaultChecked={additionalData.active}
 							label={t('edit.active')}
 							onChange={(e) => editData('active', e.target.checked)}
-							mb="md"
-						/>
-						<Textarea
-							label="Description"
-							defaultValue={additionalData.description}
-							onChange={(e) => editData('description', e.target.value)}
-							maxRows={5}
-							minRows={3}
-							autosize
-							placeholder="Describe your claim..."
 							mb="md"
 						/>
 						<Tooltip label="You cannot edit this field, it will get automatically calculated.">

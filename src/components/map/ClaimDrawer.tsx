@@ -35,6 +35,7 @@ import Link from 'next/link';
 import useSWR from 'swr';
 import { useUser } from '../../hooks/useUser';
 import { StatsGrid } from '../Stats';
+import { ClaimDrawerImages } from './ClaimDrawerImages';
 
 interface ClaimDrawerProps {
 	setOpen: (bool: boolean) => void;
@@ -73,6 +74,13 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 							{data.name}
 						</Title>
 					</StatsGrid>
+					{data.images && (
+						<ClaimDrawerImages
+							id={props.id}
+							images={data.images}
+							editable={data?.owner?.id == user?.id}
+						/>
+					)}
 					{!data.finished && (
 						<Alert
 							color="red"

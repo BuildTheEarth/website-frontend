@@ -1,6 +1,6 @@
 .control {
-	background-color: transparent;
-	color: var(--mantine-color-white);
+	background-color: transparent !important;
+	color: var(--mantine-color-white) !important;
 	opacity: 1;
 }
 
@@ -9,7 +9,7 @@
 	width: rem(1.5vw);
 	height: rem(4px);
 	transition: all 150ms ease;
-	background: var(--mantine-color-white);
+	background: var(--mantine-color-white) !important;
 
 	&[data-active] {
 		width: rem(4vw);
