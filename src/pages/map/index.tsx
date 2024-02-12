@@ -1,4 +1,4 @@
-import { Alert, Loader, MenuItem, MenuLabel, rem } from '@mantine/core';
+import { Alert, Button, Group, Loader, MenuItem, MenuLabel, rem } from '@mantine/core';
 import { useClipboard, useDebouncedState } from '@mantine/hooks';
 import { Spotlight, spotlight } from '@mantine/spotlight';
 import { IconPin, IconSearch } from '@tabler/icons-react';
@@ -11,6 +11,7 @@ import {
 } from '../../components/dynamic/Map';
 import Map, { mapClickEvent, mapCopyCoordinates, mapCursorHover } from '../../components/map/Map';
 
+import { modals } from '@mantine/modals';
 import mapboxgl from 'mapbox-gl';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -135,8 +136,33 @@ const MapPage: NextPage = () => {
 						});
 						mapCursorHover(map, 'claims');
 						mapClickEvent(map, 'claims', (f) => {
-							setSelected(f.properties.id);
-							setOpened(true);
+							if (f.length == 1) {
+								setSelected(f[0].properties.id);
+								setOpened(true);
+								return;
+							}
+							console.log(f);
+							modals.open({
+								title: 'Choose Claim to select',
+								centered: true,
+								children: (
+									<Group justify="center">
+										{f.map((c) => (
+											<Button
+												key={c.properties.id}
+												onClick={() => {
+													setSelected(c.properties.id);
+													setOpened(true);
+													modals.closeAll();
+												}}
+												color={c.properties.finished ? 'green' : 'red'}
+											>
+												{c.properties.id.split('-')[0]}
+											</Button>
+										))}
+									</Group>
+								),
+							});
 						});
 					}}
 					initialStyle={Number.parseInt(router.query.style as string)}

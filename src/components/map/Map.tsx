@@ -198,10 +198,10 @@ export function mapCursorHover(map: any, layer: string) {
 	});
 }
 
-export function mapClickEvent(map: any, layer: string, callback: (feature: any) => void) {
+export function mapClickEvent(map: any, layer: string, callback: (features: any[]) => void) {
 	map.on('click', layer, (e: any) => {
 		if (e.features.length > 0) {
-			callback(e.features[0]);
+			callback(e.features);
 		}
 	});
 }

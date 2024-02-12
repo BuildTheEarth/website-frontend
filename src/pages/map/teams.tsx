@@ -113,7 +113,7 @@ const MapPage: NextPage = ({ data }: any) => {
 						});
 
 						mapClickEvent(map, 'countries-fill', (f) => {
-							router.push(`/teams/${locations[f.properties.iso_3166_1]?.slug}`);
+							router.push(`/teams/${locations[f[0].properties.iso_3166_1]?.slug}`);
 						});
 					}}
 					initialStyle={Number.parseInt(router.query.style as string)}
