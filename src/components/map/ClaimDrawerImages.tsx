@@ -85,7 +85,7 @@ export function ClaimDrawerImages(props: ClaimDrawerImagesProps) {
 								message: 'All Data has been saved',
 								color: 'green',
 							});
-							mutate(`/claims/` + props.id);
+							mutate(`/claims/` + props.id + '?builders=true');
 							props.onRemove && props.onRemove(image);
 						}
 					});
@@ -221,7 +221,7 @@ function ClaimDropzone({ id, onAdd }: { id: string; onAdd?: (image: any) => void
 						message: 'All Data has been saved',
 						color: 'green',
 					});
-					mutate('/claims/' + id);
+					mutate('/claims/' + id + '?builders=true');
 					onAdd && onAdd(res);
 					setUploading(false);
 				}

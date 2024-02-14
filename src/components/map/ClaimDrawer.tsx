@@ -27,15 +27,15 @@ import {
 	IconZoomIn,
 } from '@tabler/icons-react';
 
-import { useClipboard } from '@mantine/hooks';
-import { showNotification } from '@mantine/notifications';
+import { ClaimDrawerImages } from './ClaimDrawerImages';
+import Link from 'next/link';
+import { StatsGrid } from '../Stats';
 import { getAreaOfPolygon } from 'geolib';
 import mapboxgl from 'mapbox-gl';
-import Link from 'next/link';
+import { showNotification } from '@mantine/notifications';
+import { useClipboard } from '@mantine/hooks';
 import useSWR from 'swr';
 import { useUser } from '../../hooks/useUser';
-import { StatsGrid } from '../Stats';
-import { ClaimDrawerImages } from './ClaimDrawerImages';
 
 interface ClaimDrawerProps {
 	setOpen: (bool: boolean) => void;
@@ -46,7 +46,7 @@ interface ClaimDrawerProps {
 }
 
 export function ClaimDrawer(props: ClaimDrawerProps) {
-	const { data, isLoading } = useSWR('/claims/' + props.id);
+	const { data, isLoading } = useSWR('/claims/' + props.id + '?builders=true');
 	const { user } = useUser();
 	const t = props.t;
 	const clipboard = useClipboard();
