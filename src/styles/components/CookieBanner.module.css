@@ -3,5 +3,20 @@
 	z-index: 888;
 	bottom: var(--mantine-spacing-lg);
 	right: var(--mantine-spacing-lg);
-	width: 30%;
+	margin-left: var(--mantine-spacing-lg);
+
+	width: 30vw;
+	
+	@media (max-width: $mantine-breakpoint-lg) {
+		width: 40vw;
+	}
+	@media (max-width: $mantine-breakpoint-md) {
+		width: 50vw;
+	}
+	@media (max-width: $mantine-breakpoint-sm) {
+		width: 75vw;
+	}
+	@media (max-width: $mantine-breakpoint-xs) {
+		width: fit-content;
+	}
 }
