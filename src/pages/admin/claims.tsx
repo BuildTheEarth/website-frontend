@@ -40,11 +40,43 @@ const Settings = ({ data: tempData }: any) => {
 		refreshWhenOffline: false,
 	});
 	const [skipExistingBuildings, setSkipExistingBuildings] = useState(false);
+	const [skipExistingAddresses, setSkipExistingAddresses] = useState(false);
 
 	const handleCalculateBuildings = () => {
 		fetch(
 			process.env.NEXT_PUBLIC_API_URL +
 				`/admin/claims/buildings?skipExisting=${skipExistingBuildings}`,
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: 'Bearer ' + user.token,
+				},
+			},
+		)
+			.then((res) => res.json())
+			.then((res) => {
+				if (res.errors) {
+					showNotification({
+						title: 'Starting failed',
+						message: res.error,
+						color: 'red',
+					});
+				} else {
+					showNotification({
+						title: 'Started',
+						message: `Indexing ${res.count} claims`,
+						color: 'green',
+						icon: <IconCheck />,
+					});
+					mutate('/admin/progress');
+				}
+			});
+	};
+	const handleCalculateAddresses = () => {
+		fetch(
+			process.env.NEXT_PUBLIC_API_URL +
+				`/admin/claims/addresses?skipExisting=${skipExistingAddresses}`,
 			{
 				method: 'POST',
 				headers: {
@@ -91,7 +123,7 @@ const Settings = ({ data: tempData }: any) => {
 						</Group>
 
 						<Button mt="md" loading={progress > 0} onClick={handleCalculateBuildings}>
-							Calculate Building Counts
+							Update Building Index
 						</Button>
 						<Checkbox
 							label={'Skip already indexed claims (building count > 0)'}
@@ -102,6 +134,32 @@ const Settings = ({ data: tempData }: any) => {
 						<Tooltip label={progress.buildings.done + '/' + progress.buildings.total}>
 							<Progress
 								value={(progress.buildings.done / progress.buildings.total) * 100}
+								mt="md"
+								animated
+								radius="xl"
+								size="xl"
+							/>
+						</Tooltip>
+					</Paper>
+				)}
+				{progress?.addresses && (
+					<Paper withBorder radius={'md'} p={'xl'} mt="md">
+						<Group>
+							<Title order={2}>Adresses (OSM)</Title>
+						</Group>
+
+						<Button mt="md" loading={progress > 0} onClick={handleCalculateAddresses}>
+							Update OSM Index
+						</Button>
+						<Checkbox
+							label={'Skip already indexed claims (osmName != " ")'}
+							mt={'md'}
+							checked={skipExistingAddresses}
+							onChange={(v) => setSkipExistingAddresses(v.target.checked)}
+						/>
+						<Tooltip label={progress.addresses.done + '/' + progress.addresses.total}>
+							<Progress
+								value={(progress.addresses.done / progress.addresses.total) * 100}
 								mt="md"
 								animated
 								radius="xl"

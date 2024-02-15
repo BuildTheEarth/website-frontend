@@ -1,4 +1,5 @@
 import {
+	ActionIcon,
 	Alert,
 	Avatar,
 	Button,
@@ -13,7 +14,9 @@ import {
 	Tooltip,
 } from '@mantine/core';
 import {
+	IconAddressBook,
 	IconBuilding,
+	IconBuildingCommunity,
 	IconCheck,
 	IconCopy,
 	IconCrane,
@@ -27,15 +30,15 @@ import {
 	IconZoomIn,
 } from '@tabler/icons-react';
 
-import { ClaimDrawerImages } from './ClaimDrawerImages';
-import Link from 'next/link';
-import { StatsGrid } from '../Stats';
+import { useClipboard } from '@mantine/hooks';
+import { showNotification } from '@mantine/notifications';
 import { getAreaOfPolygon } from 'geolib';
 import mapboxgl from 'mapbox-gl';
-import { showNotification } from '@mantine/notifications';
-import { useClipboard } from '@mantine/hooks';
+import Link from 'next/link';
 import useSWR from 'swr';
 import { useUser } from '../../hooks/useUser';
+import { StatsGrid } from '../Stats';
+import { ClaimDrawerImages } from './ClaimDrawerImages';
 
 interface ClaimDrawerProps {
 	setOpen: (bool: boolean) => void;
@@ -69,11 +72,6 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 				</Center>
 			) : (
 				<>
-					<StatsGrid title={t('claim.details.name')} icon={IconPin} paperProps={{ mb: 'md' }}>
-						<Title order={3} lineClamp={2}>
-							{data.name}
-						</Title>
-					</StatsGrid>
 					{data.images && (
 						<ClaimDrawerImages
 							id={props.id}
@@ -88,9 +86,22 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 							radius="md"
 							title={t('claim.details.status.title')}
 							icon={<IconCrane />}
+							variant="outline"
 						>
 							{t('claim.details.status.description')}
 						</Alert>
+					)}
+					{data.city != data.name && (
+						<StatsGrid title={t('claim.details.name')} icon={IconPin} paperProps={{ mb: 'md' }}>
+							<Title order={3} lineClamp={2}>
+								{data.name}
+							</Title>
+						</StatsGrid>
+					)}
+					{data.city && (
+						<StatsGrid title={'City'} icon={IconBuildingCommunity} paperProps={{ mb: 'md' }} isText>
+							{data.city}
+						</StatsGrid>
 					)}
 					<StatsGrid
 						title={t('claim.details.team')}
@@ -110,11 +121,6 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 							</Text>
 						</Flex>
 					</StatsGrid>
-					{data.description && (
-						<StatsGrid title="Description" icon={IconInfoCircle} paperProps={{ mb: 'md' }}>
-							<Text lineClamp={10}>{data.description}</Text>
-						</StatsGrid>
-					)}
 					{data.owner?.id && (
 						<StatsGrid title={t('claim.details.owner')} icon={IconUser} paperProps={{ mb: 'md' }}>
 							<Flex justify="flex-start" align="center" direction="row" wrap="wrap" gap="md">
@@ -126,6 +132,13 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 									{data.owner.username}
 								</Text>
 							</Flex>
+						</StatsGrid>
+					)}
+					{data.description && (
+						<StatsGrid title="Description" icon={IconInfoCircle} paperProps={{ mb: 'md' }}>
+							<Text lineClamp={10} fz="sm">
+								{data.description}
+							</Text>
 						</StatsGrid>
 					)}
 					{data.builders.length > 0 && (
@@ -163,6 +176,11 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 							getAreaOfPolygon(data.area.map((p: string) => p.split(', ').map(Number))),
 						).toLocaleString()}{' '}
 						m²
+					</StatsGrid>
+					<StatsGrid title="Address" icon={IconAddressBook} paperProps={{ mb: 'md' }}>
+						<Text lineClamp={10} fz="sm">
+							{data.osmName}
+						</Text>
 					</StatsGrid>
 					<Group grow>
 						<Button
