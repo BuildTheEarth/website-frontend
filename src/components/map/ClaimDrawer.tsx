@@ -172,9 +172,7 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 						paperProps={{ mb: 'md' }}
 						isText
 					>
-						{Math.round(
-							getAreaOfPolygon(data.area.map((p: string) => p.split(', ').map(Number))),
-						).toLocaleString()}{' '}
+						{data.size?.toLocaleString()}
 						m²
 					</StatsGrid>
 					<StatsGrid title="Address" icon={IconAddressBook} paperProps={{ mb: 'md' }}>

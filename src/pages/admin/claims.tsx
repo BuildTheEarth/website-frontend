@@ -104,12 +104,39 @@ const Settings = ({ data: tempData }: any) => {
 				}
 			});
 	};
+	const handleCalculateSizes = () => {
+		fetch(process.env.NEXT_PUBLIC_API_URL + `/admin/claims/sizes`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + user.token,
+			},
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				if (res.errors) {
+					showNotification({
+						title: 'Starting failed',
+						message: res.error,
+						color: 'red',
+					});
+				} else {
+					showNotification({
+						title: 'Started',
+						message: `Indexing ${res.count} claims`,
+						color: 'green',
+						icon: <IconCheck />,
+					});
+					mutate('/admin/progress');
+				}
+			});
+	};
 
 	return (
 		<Page
 			smallPadding
 			head={{
-				title: 'Cron Jobs',
+				title: 'Claims',
 				image: thumbnail,
 			}}
 			seo={{ nofollow: true, noindex: true }}
@@ -160,6 +187,26 @@ const Settings = ({ data: tempData }: any) => {
 						<Tooltip label={progress.addresses.done + '/' + progress.addresses.total}>
 							<Progress
 								value={(progress.addresses.done / progress.addresses.total) * 100}
+								mt="md"
+								animated
+								radius="xl"
+								size="xl"
+							/>
+						</Tooltip>
+					</Paper>
+				)}
+				{progress?.sizes && (
+					<Paper withBorder radius={'md'} p={'xl'} mt="md">
+						<Group>
+							<Title order={2}>Sizes</Title>
+						</Group>
+
+						<Button mt="md" loading={progress > 0} onClick={handleCalculateSizes}>
+							Update Sizes
+						</Button>
+						<Tooltip label={progress.sizes.done + '/' + progress.sizes.total}>
+							<Progress
+								value={(progress.sizes.done / progress.sizes.total) * 100}
 								mt="md"
 								animated
 								radius="xl"
