@@ -113,7 +113,7 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 								src={data.buildTeam.icon}
 								size={60}
 								component={Link}
-								href={`/teams/${data.buildTeam.id}`}
+								href={`/teams/${data.buildTeam.slug}`}
 								alt={data.buildTeam.name + ' Logo'}
 							/>
 							<Text size="xl" fw={700}>
