@@ -1,4 +1,4 @@
-import { Divider, Grid, Group, Modal, Stack } from '@mantine/core';
+import { Divider, Grid, Group, Modal, Pagination, Stack } from '@mantine/core';
 import GalleryGrid, { GalleryGridImage } from '../../../components/GalleryGrid';
 
 import { NextPage } from 'next';
@@ -15,6 +15,7 @@ import getCountryName from '../../../utils/ISOCountries';
 const Team: NextPage = ({ data, data2 }: any) => {
 	const router = useRouter();
 	const [focus, setFocus] = useState<null | string>(null);
+	const [showcasePage, setShowcasePage] = useState(0);
 	const { t } = useTranslation('teams');
 	const isClient = useIsClient();
 	const team = router.query.team;
@@ -102,7 +103,7 @@ const Team: NextPage = ({ data, data2 }: any) => {
 			{focus && <FocusImage id={focus} />}
 			<GalleryGrid
 				images={
-					data2?.slice(0, 10).map((d: any) => ({
+					data2?.slice(showcasePage * 10 - 10, showcasePage * 10).map((d: any) => ({
 						name: d?.title,
 						src: `https://cdn.buildtheearth.net/uploads/${d?.image?.name}`,
 						date: d?.createdAt,
@@ -110,6 +111,13 @@ const Team: NextPage = ({ data, data2 }: any) => {
 					})) || [{}]
 				}
 			/>
+			<Group justify="center" w="100%" mt="md">
+				<Pagination
+					total={Math.ceil(data2?.length / 10)}
+					value={showcasePage}
+					onChange={setShowcasePage}
+				/>
+			</Group>
 		</LogoPage>
 	);
 };
