@@ -1,13 +1,13 @@
 import { Box, Container, Group, Image, Modal, Pagination } from '@mantine/core';
 import GalleryGrid, { GalleryGridImage } from '../components/GalleryGrid';
 
-import { GalleryImage } from '../components/Gallery';
 import { NextPage } from 'next';
-import Page from '../components/Page';
-import fetcher from '../utils/Fetcher';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { GalleryImage } from '../components/Gallery';
+import Page from '../components/Page';
+import fetcher from '../utils/Fetcher';
 
 const MePage: NextPage = ({ data }: any) => {
 	const [activePage, setPage] = useState(1);
@@ -68,7 +68,7 @@ const MePage: NextPage = ({ data }: any) => {
 									(a: any, b: any) =>
 										new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
 								)
-								.slice(activePage * 100 - 100, activePage * 100)
+								.slice(activePage * 20 - 20, activePage * 20)
 								.map((d: any) => ({
 									name: d?.title,
 									src: `https://cdn.buildtheearth.net/uploads/${d?.image?.name}`,
@@ -79,7 +79,7 @@ const MePage: NextPage = ({ data }: any) => {
 										logo: d?.buildTeam.icon,
 									},
 									hash:
-										d?.hash ||
+										d?.image?.hash ||
 										'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdj0NE3+g8AAqUBjTCztj4AAAAASUVORK5CYII=',
 									onClick: () => setFocus(d?.image?.name),
 								})) || [{}]
@@ -90,7 +90,7 @@ const MePage: NextPage = ({ data }: any) => {
 				<Group justify="center" pt="md">
 					<Pagination
 						my="md"
-						total={Math.floor(data.length / 100)}
+						total={Math.ceil(data.length / 20)}
 						radius="xs"
 						value={activePage}
 						onChange={setPage}

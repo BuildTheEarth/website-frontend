@@ -1,11 +1,20 @@
-import { Avatar, Badge, Group, SimpleGrid, Title, useMantineTheme } from '@mantine/core';
 import { AnimatePresence, motion } from 'framer-motion';
+import {
+	Avatar,
+	Badge,
+	Grid,
+	GridCol,
+	Group,
+	SimpleGrid,
+	Title,
+	useMantineTheme,
+} from '@mantine/core';
 
-import { useHover } from '@mantine/hooks';
+import BackgroundImage from './BackgroundImage';
 import Link from 'next/link';
 import React from 'react';
+import { useHover } from '@mantine/hooks';
 import { useIsClient } from '../hooks/useIsClient';
-import BackgroundImage from './BackgroundImage';
 
 interface GalleryGridProps {
 	images: GalleryGridImageProps[];
@@ -27,11 +36,13 @@ interface GalleryGridImageProps {
 
 function GalleryGrid(props: GalleryGridProps) {
 	return (
-		<SimpleGrid spacing={props.gap || 'md'} cols={2} style={props.style}>
+		<Grid gutter={props.gap || 'md'} style={props.style}>
 			{props.images.map((i, index) => (
-				<GalleryGridImage {...i} key={index} showTooltipOnHover={props.showTooltipOnHover} />
+				<GridCol span={6} key={`g_i_${i}_${i.name?.slice(0, 10) || 'none'}`}>
+					<GalleryGridImage {...i} showTooltipOnHover={props.showTooltipOnHover} />
+				</GridCol>
 			))}
-		</SimpleGrid>
+		</Grid>
 	);
 }
 
@@ -58,6 +69,7 @@ export function GalleryGridImage(i: GalleryGridImageProps) {
 					onClick={i.onClick}
 					className={i.href && 'hover-border'}
 					blurDataURL={i.hash}
+					priority={false}
 				>
 					<div
 						ref={ref}

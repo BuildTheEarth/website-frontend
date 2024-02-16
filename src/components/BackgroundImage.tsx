@@ -4,9 +4,13 @@ import Image from 'next/image';
 export default function Background({
 	src,
 	children,
+	loading,
+	priority = false,
 	...props
 }: {
 	src: string | StaticImport;
+	loading?: 'eager' | 'lazy' | undefined;
+	priority?: boolean;
 	children?: any;
 	[k: string]: any;
 }) {
@@ -17,7 +21,8 @@ export default function Background({
 				onClick={props.onClick}
 			>
 				<Image
-					loading="eager"
+					loading={loading}
+					priority={priority}
 					// {...props} //@ts-ignore
 					// rootStyle={undefined}
 					alt="Mountains"
