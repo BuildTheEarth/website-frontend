@@ -1,5 +1,7 @@
 import { Center, Group, Paper, PaperProps, RingProgress, Text, rem } from '@mantine/core';
 
+import Link from 'next/link';
+
 interface StatsGridProps {
 	title: string;
 	icon?: any;
@@ -7,11 +9,19 @@ interface StatsGridProps {
 	subtitle?: string;
 	paperProps?: PaperProps;
 	isText?: boolean;
+	onClick?: () => void;
 }
 
 export function StatsGrid(data: StatsGridProps) {
 	return (
-		<Paper withBorder p="md" radius="md" key={data.title} {...data.paperProps}>
+		<Paper
+			withBorder
+			p="md"
+			radius="md"
+			key={data.title}
+			{...data.paperProps}
+			onClick={data.onClick}
+		>
 			<Group justify="space-between">
 				<Text size="xs" c="dimmed" fw={700} style={{ textTransform: 'uppercase' }}>
 					{data.title}

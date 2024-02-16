@@ -1,20 +1,21 @@
 import { Center, Container, Paper, Text, useMantineTheme } from '@mantine/core';
-import Header, { LogoHeader } from './Header';
 import { NextSeo, NextSeoProps } from 'next-seo';
+import Header, { LogoHeader } from './Header';
 
-import BackgroundImage from './BackgroundImage';
-import ErrorPage from '../pages/_error';
-import Footer from './Footer';
-import React from 'react';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
-import classes from '../styles/components/Page.module.css';
 import { useRouter } from 'next/router';
+import React from 'react';
 import { useUser } from '../hooks/useUser';
+import ErrorPage from '../pages/_error';
+import classes from '../styles/components/Page.module.css';
+import BackgroundImage from './BackgroundImage';
+import Footer from './Footer';
 
 interface PageProps {
 	children: React.ReactNode;
 	fullWidth?: boolean;
 	smallPadding?: boolean;
+	noBg?: boolean;
 	disabled?: {
 		header?: boolean;
 		footer?: boolean;
@@ -113,7 +114,7 @@ const Page = (props: PageProps) => {
 				{props.fullWidth ? (
 					props.children
 				) : (
-					<ContentContainer style={props.style} smallPadding={props.smallPadding}>
+					<ContentContainer style={props.style} smallPadding={props.smallPadding} noBg={props.noBg}>
 						{props.children}
 					</ContentContainer>
 				)}
@@ -148,9 +149,10 @@ export const LogoPage = (props: PageProps & { headData: any; team: string; color
 };
 export default Page;
 
-const ContentContainer = (props: {
+export const ContentContainer = (props: {
 	children: any;
 	smallPadding?: boolean;
+	noBg?: boolean;
 	style?: React.CSSProperties;
 }) => {
 	return (
@@ -159,6 +161,7 @@ const ContentContainer = (props: {
 			size="lg"
 			style={props.style}
 			data-smallpadding={props.smallPadding}
+			data-bg={!props.noBg}
 		>
 			<main>{props.children}</main>
 		</Container>
