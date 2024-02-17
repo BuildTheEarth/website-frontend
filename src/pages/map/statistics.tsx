@@ -9,15 +9,15 @@ import {
 	Text,
 } from '@mantine/core';
 
-import { NextPage } from 'next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useRouter } from 'next/router';
-import thumbnail from '../../../public/images/thumbnails/about.webp';
 import Counter from '../../components/Counter';
+import { NextPage } from 'next';
 import Page from '../../components/Page';
 import { StatsGrid } from '../../components/Stats';
 import { StatsGroup } from '../../components/stats/StatsGroup';
 import fetcher from '../../utils/Fetcher';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import thumbnail from '../../../public/images/thumbnails/about.webp';
+import { useRouter } from 'next/router';
 
 const EARTH_AREA = 510100000000000000;
 const EARTH_LAND_AREA = 149000000000000000;
@@ -35,16 +35,16 @@ const MapPage: NextPage = ({ data, areaPercentage, days }: any) => {
 			<StatsGroup
 				data={[
 					{
-						title: 'Building Count',
+						title: 'Finished Buildings',
 						value: <Counter value={data.total.buildings} direction="up" />,
 						description: '',
 					},
 					{
-						title: 'Total Area',
+						title: 'Total Area finished Area',
 						value: <Counter value={data.total.area} direction="up" suffix=" m²" />,
 					},
 					{
-						title: 'Claims',
+						title: 'Finished Claims',
 						value: <Counter value={data.total.claims} direction="up" />,
 						description: '',
 					},
@@ -53,7 +53,7 @@ const MapPage: NextPage = ({ data, areaPercentage, days }: any) => {
 			<Space h="xl" />
 			<Grid grow>
 				<GridCol span={6}>
-					<StatsGrid title="Average Building Count" isText>
+					<StatsGrid title="Average Building Count per Claim" isText>
 						<NumberFormatter
 							suffix=" Buildings"
 							value={data.average.buildings}
@@ -63,7 +63,7 @@ const MapPage: NextPage = ({ data, areaPercentage, days }: any) => {
 					</StatsGrid>
 				</GridCol>
 				<GridCol span={6}>
-					<StatsGrid title="Average Claim Area" isText>
+					<StatsGrid title="Average Area per Claim" isText>
 						<NumberFormatter
 							suffix=" m²"
 							value={data.average.area}
