@@ -10,7 +10,7 @@ import {
 	Tooltip,
 	rem,
 } from '@mantine/core';
-import { IconPlus, IconTrash } from '@tabler/icons-react';
+import { IconPencil, IconPlus, IconTrash } from '@tabler/icons-react';
 import useSWR, { mutate } from 'swr';
 
 import { DateInput } from '@mantine/dates';
@@ -182,6 +182,98 @@ const Settings = () => {
 				});
 		};
 	};
+	const handleEditImage = (image: any) => {
+		console.log(image);
+		let name = image.title;
+		let city = image.city;
+		let date: Date | null = new Date(image.createdAt);
+		modals.open({
+			id: 'edit-image',
+			title: 'Edit Showcase Image',
+			children: (
+				<>
+					<AspectRatio ratio={16 / 9} w="100%" mb="md">
+						<Image
+							alt={image.title}
+							src={`https://cdn.buildtheearth.net/uploads/${image.image?.name}`}
+							style={{ borderRadius: 'var(--mantine-radius-md)' }}
+							fill
+						/>
+					</AspectRatio>
+					<TextInput
+						label="Name"
+						description="The Name of the Showcase"
+						required
+						defaultValue={image.title}
+						placeholder={image.title}
+						onChange={(e) => (name = e.target.value)}
+					/>
+					<TextInput
+						label="City"
+						description="In which City is the Showcase located?"
+						mt="md"
+						defaultValue={image.city}
+						placeholder={image.city}
+						required
+						onChange={(e) => (city = e.target.value)}
+					/>
+					<DateInput
+						onChange={(e) => (date = e)}
+						value={date}
+						label="Date of Construction"
+						description="The Date of when the showcased Building was built"
+						mt="md"
+					/>
+					<Button
+						mt="md"
+						onClick={() => {
+							setLoading(true);
+							handleSubmit();
+						}}
+						loading={loading}
+					>
+						Save
+					</Button>
+				</>
+			),
+			centered: true,
+		});
+		const handleSubmit = () => {
+			setLoading(true);
+			modals.closeAll();
+			fetch(
+				process.env.NEXT_PUBLIC_API_URL +
+					`/buildteams/${router.query.team}/showcases/${image.id}?slug=true`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: 'Bearer ' + user.token,
+					},
+					body: JSON.stringify({ title: name, city, date }),
+				},
+			)
+				.then((res) => res.json())
+				.then((res) => {
+					if (res.errors) {
+						showNotification({
+							title: 'Edit failed',
+							message: res.error,
+							color: 'red',
+						});
+						setLoading(false);
+					} else {
+						showNotification({
+							title: 'Showcase Image edited',
+							message: 'All Data has been saved',
+							color: 'green',
+						});
+						mutate(`/buildteams/${router.query.team}/showcases?slug=true`);
+						setLoading(false);
+					}
+				});
+		};
+	};
 
 	return (
 		<Page
@@ -221,37 +313,53 @@ const Settings = () => {
 							</Table.Tr>
 						</Table.Thead>
 						<Table.Tbody>
-							{data?.map((s: any) => (
-								<Table.Tr key={s.id}>
-									<Table.Td>{s.title}</Table.Td>
-									<Table.Td>{s.city}</Table.Td>
-									<Table.Td>
-										<AspectRatio ratio={16 / 9}>
-											<Image
-												src={`https://cdn.buildtheearth.net/uploads/${s.image.name}`}
-												fill
-												alt={s.title}
-											/>
-										</AspectRatio>
-									</Table.Td>
-									<Table.Td>
-										<Tooltip
-											withinPortal
-											label={s.createdAt ? vagueTime.get({ to: new Date(s.createdAt) }) : ''}
-											position="top-start"
-										>
-											<p>{new Date(s.createdAt).toLocaleDateString()} </p>
-										</Tooltip>
-									</Table.Td>
-									<Table.Td>
-										<Group gap={0} justify="flex-end">
-											<ActionIcon variant="subtle" color="red" onClick={() => handleDeleteImage(s)}>
-												<IconTrash style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
-											</ActionIcon>
-										</Group>
-									</Table.Td>
-								</Table.Tr>
-							))}
+							{data
+								?.sort(
+									(a: any, b: any) =>
+										new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+								)
+								.map((s: any) => (
+									<Table.Tr key={s.id}>
+										<Table.Td>{s.title}</Table.Td>
+										<Table.Td>{s.city}</Table.Td>
+										<Table.Td>
+											<AspectRatio ratio={16 / 9}>
+												<Image
+													src={`https://cdn.buildtheearth.net/uploads/${s.image.name}`}
+													fill
+													alt={s.title}
+												/>
+											</AspectRatio>
+										</Table.Td>
+										<Table.Td>
+											<Tooltip
+												withinPortal
+												label={s.createdAt ? vagueTime.get({ to: new Date(s.createdAt) }) : ''}
+												position="top-start"
+											>
+												<p>{new Date(s.createdAt).toLocaleDateString()} </p>
+											</Tooltip>
+										</Table.Td>
+										<Table.Td>
+											<Group gap={0} justify="flex-end">
+												<ActionIcon
+													variant="subtle"
+													color="gray"
+													onClick={() => handleEditImage(s)}
+												>
+													<IconPencil style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
+												</ActionIcon>
+												<ActionIcon
+													variant="subtle"
+													color="red"
+													onClick={() => handleDeleteImage(s)}
+												>
+													<IconTrash style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
+												</ActionIcon>
+											</Group>
+										</Table.Td>
+									</Table.Tr>
+								))}
 						</Table.Tbody>
 					</Table>
 				</Table.ScrollContainer>
