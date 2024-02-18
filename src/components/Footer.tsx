@@ -36,7 +36,7 @@ export default function Footer({ links, style }: FooterSimpleProps) {
 						{items}
 						<ActionIcon
 							component={Link}
-							href="https://discord.gg/buildtheearth"
+							href="https://buildtheearth.net/discord"
 							variant="transparent"
 							aria-label="Discord"
 							target="_blank"
