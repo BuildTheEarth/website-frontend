@@ -19,14 +19,14 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import thumbnail from '../../../public/images/thumbnails/about.webp';
 import { useRouter } from 'next/router';
 
-const EARTH_AREA = 510100000000000000;
-const EARTH_LAND_AREA = 149000000000000000;
-const EARTH_WATER_AREA = 361000000000000000;
+const EARTH_AREA = 510_100_000_000_000_000;
+const EARTH_LAND_AREA = 149_000_000_000_000_000;
+const EARTH_WATER_AREA = 361_000_000_000_000_000;
 
-const EUROPE_AREA = 10530000000000;
-const NORTH_AMERICA_AREA = 24710000000000;
-const AFRICA_AREA = 30370000000000;
-const ASIA_AREA = 44580000000000;
+const EUROPE_AREA = 10_530_000_000_000;
+const NORTH_AMERICA_AREA = 24_710_000_000_000;
+const AFRICA_AREA = 30_370_000_000_000;
+const ASIA_AREA = 44_580_000_000_000;
 
 const MapPage: NextPage = ({ data, areaPercentage, days }: any) => {
 	const router = useRouter();
@@ -213,6 +213,7 @@ export async function getStaticProps({ locale }: any) {
 			days: datediff(),
 			...(await serverSideTranslations(locale, ['common', 'map'])),
 		},
+		revalidate: 60 * 60 * 24, // Every 24 hours,
 	};
 }
 
