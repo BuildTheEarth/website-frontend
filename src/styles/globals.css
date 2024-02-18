@@ -43,31 +43,58 @@ a {
 
 .mapboxgl-popup-content {
 	background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-7));
-	border-radius: var(--mantine-radius-md);
+	border-radius: var(--mantine-radius-xs);
 	box-shadow: var(--mantine-shadow-md);
 	text-align: center;
 	font-size: 14px;
 	font-family: 'Inter';
-	/* color:light-dark(var(--mantine-color-white), var(--mantine-color-dark-7)); */
 }
 .mapboxgl-popup-tip {
 	border-top-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-7));
 }
 
-.mapboxgl-ctrl-icon {
+.mapboxgl-ctrl-icon :not(.mapboxgl-style-switcher) {
 	background: light-dark(var(--mantine-color-white), var(--mantine-color-dark-7)) !important;
 	border-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-7)) !important;
 	box-shadow: var(--mantine-shadow-md);
-	border-radius: none;
-}
-.mapboxgl-ctrl-icon:hover {
-	background: light-dark(var(--mantine-color-white), var(--mantine-color-dark-6)) !important;
 }
 
 .mapboxgl-ctrl-group {
-	border-radius: var(--mantine-radius-md);
+	border-radius: var(--mantine-radius-xs);
 	background: light-dark(var(--mantine-color-white), var(--mantine-color-dark-7)) !important;
 }
+
+.mapboxgl-ctrl-icon {
+	filter: light-dark(invert(29%) sepia(2%) saturate(3411%) hue-rotate(170deg) brightness(88%) contrast(80%), invert(82%) sepia(8%) saturate(72%) hue-rotate(187deg) brightness(75%) contrast(91%)) !important;
+}
+
 .mapboxgl-ctrl-group button + button {
-	border-top: solid 1px light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4)) !important;
+	border-top: solid 1px light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-5)) !important;
+}
+
+.mapboxgl-style-list {
+	button {
+		color: var(--mantine-text-color) !important;
+	}
+	border-radius: var(--mantine-radius-xs);
+}
+.mapboxgl-style-switcher {
+	border-radius: var(--mantine-radius-xs) !important;
+	background-image: url('/icons/layers-subtract.svg') !important;
+}
+
+.mapboxgl-ctrl-geolocate span {
+	background-image: url('/icons/current-location.svg') !important;
+}
+
+.mapboxgl-ctrl-zoom-in span {
+	background-image: url('/icons/plus.svg') !important;
+}
+
+.mapboxgl-ctrl-zoom-out span {
+	background-image: url('/icons/minus.svg') !important;
+}
+.mapboxgl-ctrl-compass span {
+	cursor: pointer;
+	background-image: url('/icons/map-north.svg') !important;
 }
