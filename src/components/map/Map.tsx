@@ -29,13 +29,12 @@ const styles: MapboxStyleDefinition[] = [
 		title: 'Dark',
 		uri: 'mapbox://styles/mapbox/dark-v11',
 	},
-	{
-		title: 'Light',
-		uri: 'mapbox://styles/mapbox/light-v11',
-	},
-	{ title: 'Outdoors', uri: 'mapbox://styles/mapbox/outdoors-v12' },
-	{ title: 'Satellite', uri: 'mapbox://styles/mapbox/satellite-streets-v12' },
 	{ title: 'Streets', uri: 'mapbox://styles/mapbox/streets-v12' },
+	{ title: 'Satellite', uri: 'mapbox://styles/mapbox/satellite-v9' },
+	{
+		title: 'Navigation',
+		uri: 'mapbox://styles/mapbox/navigation-day-v1',
+	},
 ];
 
 function Map({
@@ -70,12 +69,16 @@ function Map({
 		const initialZoom = router.query.z?.toString();
 		const initialLat = router.query.lat?.toString();
 		const initialLng = router.query.lng?.toString();
+		const initialTheme = router.query.theme?.toString();
 		if (initialLat && initialLng && initialZoom) {
 			map?.flyTo({
 				center: [parseFloat(initialLng), parseFloat(initialLat)],
 				zoom: parseFloat(initialZoom),
 			});
 			setPosSet(true);
+		}
+		if (initialTheme && parseInt(initialTheme) < styles.length) {
+			map?.setStyle(styles[parseInt(initialTheme)].uri);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [router.query]);
@@ -119,12 +122,12 @@ function Map({
 			layerSetup && (await layerSetup(mapboxMap));
 
 			if (allowFullscreen) mapboxMap.addControl(new mapboxgl.FullscreenControl());
-			// if (themeControls)
-			// 	mapboxMap.addControl(
-			// 		new MapboxStyleSwitcherControl(styles, {
-			// 			defaultStyle: scheme.colorScheme == 'dark' ? 'Dark' : 'Light',
-			// 		}),
-			// 	);
+			if (themeControls)
+				mapboxMap.addControl(
+					new MapboxStyleSwitcherControl(styles, {
+						defaultStyle: scheme.colorScheme == 'dark' ? 'Dark' : 'Light',
+					}),
+				);
 
 			mapboxMap.addControl(
 				new GeolocateControl({
@@ -144,7 +147,6 @@ function Map({
 						'claims-source',
 						mapStatusColorPolygon,
 						mapStatusColorLine,
-						true,
 					);
 				layerSetup && (await layerSetup(mapboxMap));
 			});
@@ -159,9 +161,20 @@ function Map({
 		const triggerPosChange = () => {
 			const zoom = Math.round(mapboxMap.getZoom() * 10) / 10;
 			const pos = mapboxMap.getCenter();
-			router.push({ query: { ...router.query, z: zoom, lat: pos.lat, lng: pos.lng } }, undefined, {
-				shallow: true,
-			});
+			router.push(
+				{
+					query: {
+						...router.query,
+						z: zoom,
+						lat: pos.lat,
+						lng: pos.lng,
+					},
+				},
+				undefined,
+				{
+					shallow: true,
+				},
+			);
 		};
 
 		return () => {
@@ -227,9 +240,8 @@ export async function mapLoadGeoJson(
 	source: string,
 	paint: any,
 	outline?: boolean | any,
-	noSource?: boolean,
 ) {
-	if (!noSource && !map.getSource(source)) {
+	if (!map.getSource(source)) {
 		map.addSource(source, {
 			type: 'geojson',
 			data: url,
@@ -242,16 +254,14 @@ export async function mapLoadGeoJson(
 		source: source,
 		paint: paint,
 	});
-	if (outline)
-		mapLoadGeoJson(
-			map,
-			url,
-			layer + '-outline',
-			'line',
-			source,
-			typeof outline == 'boolean' ? paint : outline,
-			false,
-		);
+	if (outline) {
+		map.addLayer({
+			id: layer + '-outline',
+			type: 'line',
+			source: source,
+			paint: typeof outline == 'boolean' ? paint : outline,
+		});
+	}
 }
 
 // Map Color Helper Functions

@@ -165,7 +165,6 @@ const MapPage: NextPage = () => {
 							});
 						});
 					}}
-					initialStyle={Number.parseInt(router.query.style as string)}
 				/>
 			</div>
 		</Page>
