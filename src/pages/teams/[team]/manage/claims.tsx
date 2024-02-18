@@ -1,27 +1,49 @@
+import { Carousel, CarouselSlide } from '@mantine/carousel';
 import {
 	ActionIcon,
+	Button,
 	Checkbox,
 	Group,
+	InputLabel,
+	InputWrapper,
 	Menu,
+	MenuDivider,
 	MenuDropdown,
 	MenuItem,
+	MenuLabel,
 	MenuTarget,
 	Table,
+	Text,
+	TextInput,
+	ThemeIcon,
+	Tooltip,
 	rem,
 } from '@mantine/core';
-import { IconCheck, IconDots, IconMap, IconPin, IconTrash } from '@tabler/icons-react';
+import {
+	IconAlertTriangle,
+	IconCheck,
+	IconDots,
+	IconMap,
+	IconPhoto,
+	IconPin,
+	IconTrash,
+} from '@tabler/icons-react';
 import useSWR, { mutate } from 'swr';
 
+import { DateInput } from '@mantine/dates';
 import { useClipboard } from '@mantine/hooks';
+import { modals } from '@mantine/modals';
 import { showNotification } from '@mantine/notifications';
 import { getAreaOfPolygon } from 'geolib';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import thumbnail from '../../../../../public/images/thumbnails/teams.png';
 import Page from '../../../../components/Page';
 import SettingsTabs from '../../../../components/SettingsTabs';
 import { useUser } from '../../../../hooks/useUser';
+import classes from '../../../../styles/components/Gallery.module.css';
 import fetcher from '../../../../utils/Fetcher';
 
 const Settings = () => {
@@ -63,6 +85,119 @@ const Settings = () => {
 				}
 			});
 	};
+
+	const handleAddShowcase = (claim: any) => {
+		let image = claim.images[0].id;
+		let name = claim.name;
+		let city = claim.city;
+		let date: Date | null;
+		let loading = false;
+		modals.open({
+			title: 'Add as Showcase',
+			centered: true,
+			children: (
+				<>
+					<InputWrapper
+						label="Image"
+						description="This Image will get converted to be the showcase image"
+						required
+					>
+						<Carousel
+							mt={4}
+							style={{
+								borderRadius: 'var(--mantine-radius-md)',
+								aspectRatio: '16:9',
+							}}
+							styles={{
+								viewport: { height: '100%', width: '100%' },
+								container: { height: '100%', width: '100%' },
+							}}
+							withIndicators
+							withControls
+							classNames={classes}
+							loop
+							mb="md"
+							h={250}
+							onSlideChange={(i: number) => (image = claim.images[i].id)}
+						>
+							{claim.images?.map((i: any) => (
+								<CarouselSlide key={i.id} w="100%" h="100%">
+									<Image
+										src={`https://cdn.buildtheearth.net/uploads/${i.name}`}
+										style={{ borderRadius: 'var(--mantine-radius-md)' }}
+										fill
+										alt={`Claim Image ${i}`}
+									/>
+								</CarouselSlide>
+							))}
+						</Carousel>
+						<TextInput
+							label="Name"
+							description="The Name of the Showcase"
+							required
+							defaultValue={claim.name}
+							placeholder={claim.name}
+							onChange={(e) => (name = e.target.value)}
+						/>
+						<TextInput
+							label="City"
+							description="In which City is the Showcase located?"
+							mt="md"
+							placeholder={claim.city}
+							defaultValue={claim.city}
+							required
+							onChange={(e) => (city = e.target.value)}
+						/>
+						<DateInput
+							defaultValue={new Date()}
+							onChange={(e) => (date = e)}
+							label="Date of Construction"
+							description="The Date of when the showcased Building was built"
+							mt="md"
+						/>
+						<Button mt="md" onClick={() => submit()} loading={loading}>
+							Add
+						</Button>
+					</InputWrapper>
+				</>
+			),
+		});
+
+		const submit = () => {
+			loading = true;
+			fetch(
+				process.env.NEXT_PUBLIC_API_URL +
+					`/buildteams/${router.query.team}/showcases/link?slug=true`,
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						Authorization: 'Bearer ' + user.token,
+					},
+					body: JSON.stringify({ image, title: name, city, date }),
+				},
+			)
+				.then((res) => res.json())
+				.then((res) => {
+					loading = false;
+					if (res.errors) {
+						showNotification({
+							title: 'Update failed',
+							message: res.error,
+							color: 'red',
+						});
+					} else {
+						showNotification({
+							title: 'Showcase Image added',
+							message: 'All Data has been saved',
+							color: 'green',
+						});
+						mutate(`/buildteams/${router.query.team}/showcases`);
+					}
+				});
+		};
+	};
+
 	return (
 		<Page
 			smallPadding
@@ -87,8 +222,9 @@ const Settings = () => {
 							<Table.Tr>
 								<Table.Th>Name</Table.Th>
 								<Table.Th>Finished</Table.Th>
-								<Table.Th>Visible on Map</Table.Th>
+								<Table.Th>Images</Table.Th>
 								<Table.Th>Area</Table.Th>
+								<Table.Th>Created At</Table.Th>
 								<Table.Th></Table.Th>
 							</Table.Tr>
 						</Table.Thead>
@@ -105,12 +241,20 @@ const Settings = () => {
 									<Table.Tr key={s.id}>
 										<Table.Td>{s.name}</Table.Td>
 										<Table.Td>
-											<Checkbox color="green" checked={s.finished} />
+											<Group>
+												{!s.active && (
+													<Tooltip label="This Claim is not shown on the map">
+														<ThemeIcon size={'sm'} color="orange" variant="light">
+															<IconAlertTriangle style={{ width: '70%', height: '70%' }} />
+														</ThemeIcon>
+													</Tooltip>
+												)}
+												<Checkbox color="green" checked={s.finished} />
+											</Group>
 										</Table.Td>
-										<Table.Td>
-											<Checkbox color="green" checked={s.active} />
-										</Table.Td>
+										<Table.Td>{s._count?.images || 0}</Table.Td>
 										<Table.Td>{s.area.toLocaleString()} m²</Table.Td>
+										<Table.Td>{new Date(s.createdAt).toLocaleDateString()}</Table.Td>
 										<Table.Td>
 											<Group gap={0} justify="flex-end">
 												<Menu>
@@ -121,21 +265,48 @@ const Settings = () => {
 													</MenuTarget>
 													<MenuDropdown>
 														<MenuItem
-															leftSection={<IconPin />}
-															onClick={() =>
+															leftSection={
+																<IconPhoto style={{ width: rem(14), height: rem(14) }} />
+															}
+															onClick={() => handleAddShowcase(s)}
+															disabled={s.images.length == 0}
+														>
+															Add to Showcase
+														</MenuItem>
+														<MenuDivider />
+														<MenuItem
+															leftSection={<IconPin style={{ width: rem(14), height: rem(14) }} />}
+															onClick={() => {
 																clipboard.copy(
 																	`${s.center.split(', ')[1]}, ${s.center.split(', ')[0]}`,
-																)
-															}
+																);
+																showNotification({
+																	title: 'Coordinates copied',
+																	message: 'Paste them anywhere.',
+																	icon: <IconCheck size={18} />,
+																	color: 'teal',
+																});
+															}}
 														>
 															Copy Coordinates
 														</MenuItem>
 														<MenuItem
-															leftSection={<IconMap />}
+															leftSection={<IconMap style={{ width: rem(14), height: rem(14) }} />}
 															component={Link}
 															href={`/map?claim=${s.id}`}
+															target="_blank"
 														>
 															Open on Map
+														</MenuItem>
+														<MenuDivider />
+														<MenuItem
+															leftSection={
+																<IconTrash style={{ width: rem(14), height: rem(14) }} />
+															}
+															onClick={() => handleDelete(s.id)}
+															color="red"
+														>
+															Delete Claim
 														</MenuItem>
 													</MenuDropdown>
 												</Menu>

@@ -70,7 +70,7 @@ const MePage: NextPage = ({ data }: any) => {
 								)
 								.slice(activePage * 20 - 20, activePage * 20)
 								.map((d: any) => ({
-									name: d?.title,
+									name: d?.title + (d?.city ? ', ' + d.city : ''),
 									src: `https://cdn.buildtheearth.net/uploads/${d?.image?.name}`,
 									date: d?.createdAt,
 									team: {

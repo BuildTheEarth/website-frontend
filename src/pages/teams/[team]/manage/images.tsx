@@ -80,7 +80,7 @@ const Settings = () => {
 								message: 'All Data has been saved',
 								color: 'green',
 							});
-							mutate(`/buildteams/${router.query.team}/showcases`);
+							mutate(`/buildteams/${router.query.team}/showcases?slug=true`);
 						}
 					});
 			},
@@ -89,6 +89,7 @@ const Settings = () => {
 	const handleAddImage = () => {
 		let image: any;
 		let name = '';
+		let city = '';
 		let date: Date | null;
 		modals.open({
 			id: 'add-image',
@@ -99,18 +100,33 @@ const Settings = () => {
 						label="Name"
 						description="The Name of the Showcase"
 						required
+						placeholder="Washington Monument"
 						onChange={(e) => (name = e.target.value)}
+					/>
+					<TextInput
+						label="City"
+						description="In which City is the Showcase located?"
+						mt="md"
+						placeholder="Washington, D.C."
+						required
+						onChange={(e) => (city = e.target.value)}
 					/>
 					<FileInput
 						label="Image"
 						placeholder="Select an image..."
-						description="Images will be resized to fit 1920x1080px ratio"
+						description="Images not in 16:9 may get distorted"
 						mt="md"
 						required
 						onChange={(e) => (image = e)}
 						accept="image/*"
 					/>
-					<DateInput defaultValue={new Date()} onChange={(e) => (date = e)} label="Date" mt="md" />
+					<DateInput
+						defaultValue={new Date()}
+						onChange={(e) => (date = e)}
+						label="Date of Construction"
+						description="The Date of when the showcased Building was built"
+						mt="md"
+					/>
 					<Button
 						mt="md"
 						onClick={() => {
@@ -130,6 +146,7 @@ const Settings = () => {
 			const formdata = new FormData();
 			formdata.append('image', image);
 			formdata.append('title', name);
+			formdata.append('city', city);
 			date && formdata.append('date', date.toISOString());
 
 			modals.closeAll();
@@ -196,7 +213,8 @@ const Settings = () => {
 					<Table verticalSpacing="sm">
 						<Table.Thead>
 							<Table.Tr>
-								<Table.Th>Title</Table.Th>
+								<Table.Th>Name</Table.Th>
+								<Table.Th>City</Table.Th>
 								<Table.Th>Image</Table.Th>
 								<Table.Th>Date</Table.Th>
 								<Table.Th></Table.Th>
@@ -206,6 +224,7 @@ const Settings = () => {
 							{data?.map((s: any) => (
 								<Table.Tr key={s.id}>
 									<Table.Td>{s.title}</Table.Td>
+									<Table.Td>{s.city}</Table.Td>
 									<Table.Td>
 										<AspectRatio ratio={16 / 9}>
 											<Image
