@@ -1,0 +1,49 @@
+{
+	"language": "English",
+	"copyright": "Copyright © {{year}} BuildTheEarth. Not affiliated with Mojang or Minecraft",
+	"buildtheearth": "BuildTheEarth",
+	"staff": "Staff",
+	"builder": "Builder",
+	"manager": "Manager",
+	"owner": "Owner",
+	"trial": "Trial",
+	"search": "Search…",
+	"auth": {
+		"signin": "Sign In",
+		"signout": "Sign Out",
+		"signup": "Get Started"
+	},
+	"user": {
+		"quickActions": "Quick Actions",
+		"upload": "Upload World",
+		"theme": {
+			"dark": "Toggle light theme",
+			"light": "Toggle dark theme"
+		},
+		"review": "Review Applications",
+		"settings": "Settings",
+		"profile": "My BuildTheEarth"
+	},
+	"button": {
+		"save": "Save",
+		"delete": "Delete",
+		"copy": "Copy",
+		"back": "Back",
+		"submit": "Submit",
+		"apply": "Apply",
+		"cancel": "Cancel",
+		"reset": "Reset",
+		"link": "Link",
+		"unlink": "Unlink"
+	},
+	"links": {
+		"faq": "FAQ",
+		"map": "Map",
+		"teams": "Build Teams",
+		"contact": "Contact",
+		"aboutUs": "About us",
+		"newsletter": "Newsletter",
+		"gallery": "Gallery",
+		"status": "Status"
+	}
+}
