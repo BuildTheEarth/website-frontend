@@ -1,0 +1,49 @@
+{
+	"language": "Norsk (bokmål)",
+	"copyright": "Opphavsrett © {{year}} BuildTheEarth. Ikke tilknyttet Mojang eller Minecraft",
+	"buildtheearth": "BuildTheEarth",
+	"staff": "Personale",
+	"builder": "Bygger",
+	"manager": "Administrator",
+	"owner": "Eier",
+	"trial": "Prøve",
+	"search": "Søk…",
+	"auth": {
+		"signin": "Logg inn",
+		"signout": "Logg ut",
+		"signup": "Kom i gang"
+	},
+	"user": {
+		"quickActions": "Hurtighandlinger",
+		"upload": "Last opp verden",
+		"theme": {
+			"dark": "Bytt til mørkt tema",
+			"light": "Bytt til lyst tema"
+		},
+		"review": "Se gjennom claims",
+		"settings": "Innstillinger",
+		"profile": "Min BuildTheEarth"
+	},
+	"button": {
+		"save": "Lagre",
+		"delete": "Slett",
+		"copy": "Kopier",
+		"back": "Tilbake",
+		"submit": "Send Inn",
+		"apply": "Søk om stilling",
+		"cancel": "Avbryt",
+		"reset": "Tilbakestill",
+		"link": "Legg til lenke",
+		"unlink": "Fjern Lenke"
+	},
+	"links": {
+		"faq": "Ofte stilte spørsmål",
+		"map": "Kart",
+		"teams": "Byggelag",
+		"contact": "Kontakt",
+		"aboutUs": "Om oss",
+		"newsletter": "Nyhetsbrev",
+		"gallery": "Galleri",
+		"status": "Status"
+	}
+}
