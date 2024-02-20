@@ -1,0 +1,63 @@
+{
+	"fallback": {
+		"title": "Noe gikk galt ({{error}})",
+		"message": "Vennligst prøv igjen senere."
+	},
+	"301": {
+		"title": "Permanent flyttet",
+		"message": "Siden du ba om har blitt permanent flyttet til en annen URL. Vennligst prøv igjen med den nye URL-en."
+	},
+	"400": {
+		"title": "Feil forespørsel",
+		"message": "Vennligst last inn siden på nytt og sjekk at internettforbindelsen fungerer."
+	},
+	"401": {
+		"title": "Uautorisert",
+		"message": "Du har ikke tilgang til denne siden."
+	},
+	"403": {
+		"title": "Forbudt",
+		"message": "Du har ikke tilgang til denne siden."
+	},
+	"404": {
+		"title": "Mens vi travelt bygger jorden, har vi ennå ikke bygget denne siden.",
+		"message": "Vi finner ikke siden du leter etter. Vennligst sjekk URL-en og prøv igjen."
+	},
+	"405": {
+		"title": "Metoden tillatt",
+		"message": "Metoden som brukes for å få tilgang til denne siden er ikke tillatt. Prøv igjen med en GET-metode."
+	},
+	"408": {
+		"title": "Forespørselstid utløpt",
+		"message": "Siden du leter etter tar for lang tid å laste inn. Vennligst prøv igjen senere."
+	},
+	"418": {
+		"title": "🫖",
+		"message": "Bli komfortabel med teen og prøv igjen."
+	},
+	"429": {
+		"title": "For mange forespørsler",
+		"message": "Du prøver å få tilgang til denne siden for ofte. Prøv igjen senere."
+	},
+	"500": {
+		"code": "500",
+		"title": "Intern serverfeil",
+		"message": "Vi har noen problemer med serveren vår. Vennligst prøv igjen senere."
+	},
+	"501": {
+		"title": "Ikke implementert",
+		"message": "Nettleseren din støtter ikke funksjonene nettstedet vårt krever. Vennligst oppdater nettleseren din."
+	},
+	"502": {
+		"title": "Dårlig port",
+		"message": "Serverne våre er overbelastede for øyeblikket. Vennligst prøv igjen senere."
+	},
+	"503": {
+		"title": "Tjenesten er utilgjengelig",
+		"message": "Serverne våre er overbelastede for øyeblikket. Vennligst prøv igjen senere."
+	},
+	"508": {
+		"title": "Løk detektert",
+		"message": "Vi har oppdaget en løkke. Vennligst prøv igjen senere."
+	}
+}
