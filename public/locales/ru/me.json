@@ -1,13 +1,13 @@
 {
 	"head": {
-		"title": "My BuildTheEarth"
+		"title": "Мой BuildTheEarth"
 	},
 	"description": "Welcome to your own section of BuildTheEarth. Here you can see your own progress, joined Build Teams and other usefull information.",
 	"account": {
-		"title": "Account Information",
-		"minecraft": "Linked Minecraft Username:",
-		"id": "Account Id:",
-		"settings": "Open Settings"
+		"title": "Информация об аккаунте",
+		"minecraft": "Привязанный Minecraft никнейм:",
+		"id": "ID аккаунта:",
+		"settings": "Открыть настройки"
 	},
 	"teams": {
 		"title": "Joined Build Teams",
