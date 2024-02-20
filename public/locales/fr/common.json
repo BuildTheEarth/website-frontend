@@ -1,35 +1,35 @@
 {
-	"language": "Deutsch",
-	"copyright": "Copyright © {{year}} BuildTheEarth. Not affiliated with Mojang or Minecraft",
+	"language": "Français",
+	"copyright": "Copyright © {{year}} BuildTheEarth. Non-affilié avec Mojang ou Minecraft",
 	"buildtheearth": "BuildTheEarth",
-	"staff": "Staff",
+	"staff": "Équipe",
 	"builder": "Builder",
 	"manager": "Manager",
-	"owner": "Owner",
+	"owner": "Propriétaire",
 	"trial": "Trial",
-	"search": "Search…",
+	"search": "Rechercher…",
 	"auth": {
-		"signin": "Sign In",
-		"signout": "Sign Out",
-		"signup": "Get Started"
+		"signin": "Se connecter",
+		"signout": "Se déconnecter",
+		"signup": "Démarrer"
 	},
 	"user": {
-		"quickActions": "Quick Actions",
-		"upload": "Upload World",
+		"quickActions": "Actions rapides",
+		"upload": "Téléverser un monde",
 		"theme": {
-			"dark": "Toggle light theme",
-			"light": "Toggle dark theme"
+			"dark": "Activer le thème clair",
+			"light": "Activer le thème foncé"
 		},
 		"review": "Review Applications",
-		"settings": "Settings",
-		"profile": "My BuildTheEarth"
+		"settings": "Paramètres",
+		"profile": "Mon BuildTheEarth"
 	},
 	"button": {
-		"save": "Save",
-		"delete": "Delete",
-		"copy": "Copy",
-		"back": "Back",
-		"submit": "Submit",
+		"save": "Sauvegarder",
+		"delete": "Supprimer",
+		"copy": "Copier",
+		"back": "Retour",
+		"submit": "Envoyer",
 		"apply": "Apply",
 		"cancel": "Cancel",
 		"reset": "Reset",
