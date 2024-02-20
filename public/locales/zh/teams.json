@@ -1,36 +1,39 @@
 {
 	"head": {
-		"title": "建築團隊"
+		"title": "Build Teams"
 	},
-	"description": "加入建築團隊是參與Build The Earth最簡單的方式。這些團體在多人伺服器上合作建造城市、區域，有時甚至是整個國家。您只需要點擊「申請加入」，然後就可以立即展開協助！",
-	"joining": "要加入建築團隊，您需要購買Minecraft Java版或Minecraft 基岩版，具體取決於團隊。在大多數情況下，您還需要安裝Build The Earth模組包。",
-	"members": "{{num}} 名成員",
+	"description": "Build teams are the easiest way to join Build The Earth. These groups work together on a multiplayer server to build cities, regions and sometimes even entire countries. All you need to do is click 'Apply to join' and within no time you can start helping out!",
+	"joining": "To participate in a build team, you need to have purchased Minecraft Java Edition or Minecraft Bedrock Edition, depending on the team. In most cases, you will also be required to have the Build The Earth Modpack installed.",
+	"members": "{{num}} Members",
 	"team": {
-		"overview": "簡介",
-		"images": "圖片",
-		"details": "詳情",
-		"location": "地點",
-		"members": "成員",
-		"builds": "建築"
+		"overview": "Overview",
+		"images": "Images",
+		"details": "Details",
+		"location": "Countries",
+		"members": "Members",
+		"builds": "Builds"
 	},
 	"apply": {
-		"title": "加入 {{team}}",
+		"title": "Join {{team}}",
 		"trial": {
-			"title": "試用申請",
-			"description": "這個建築團隊支援試用申請。點選下方的按鈕即可申請試用。"
+			"title": "Trial Application",
+			"description": "This buildteam supports trial applications. You can apply as trial when selecting the button below."
 		},
 		"messages": {
-			"error": "申請失敗",
-			"success": { "title": "申請送出", "description": "您的申請將很快被審核" }
+			"error": "Application failed",
+			"success": {
+				"title": "Application sent",
+				"description": "Your Application will be reviewed shortly"
+			}
 		},
 		"duplicate": {
 			"pending": {
-				"title": "等待申請",
-				"description": "您在 {{date}} 已經申請加入這個建築團隊。請等待此申請被審核。"
+				"title": "Pending Application",
+				"description": "You have already applied to this buildteam on the {{date}}. Please wait for this application to be reviewed."
 			},
 			"accepted": {
-				"title": "通過申請",
-				"description": "您在 {{date}} 已經獲准加入這個建築團隊。"
+				"title": "Accepted Application",
+				"description": "You were already accepted to this buildteam on the {{date}}."
 			}
 		}
 	}
