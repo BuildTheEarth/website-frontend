@@ -5,7 +5,7 @@
 	"staff": "Staff",
 	"builder": "Builder",
 	"manager": "Manager",
-	"owner": "Owner",
+	"owner": "Besitzer",
 	"trial": "Trial",
 	"search": "Suchen…",
 	"auth": {
@@ -43,7 +43,7 @@
 		"contact": "Kontakt",
 		"aboutUs": "Über uns",
 		"newsletter": "Newsletter",
-		"gallery": "Gallery",
+		"gallery": "Galerie",
 		"status": "Status"
 	}
 }
