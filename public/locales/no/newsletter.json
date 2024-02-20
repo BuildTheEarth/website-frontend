@@ -1,0 +1,7 @@
+{
+	"head": {
+		"title": "Nyhetsbrev"
+	},
+	"description": "BuildTheEarth-nyhetsbrevet er en månedlig samling artikler som viser frem team, byggere og diverse emner gjennom prosjektet.",
+	"issue": "Utgave {{num}}"
+}
