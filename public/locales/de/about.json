@@ -1,0 +1,24 @@
+{
+	"head": {
+		"title": "Über uns"
+	},
+	"mission": {
+		"title": "Unsere Mission",
+		"content": {
+			"1": "Hier bei Build the Earth haben wir ein einfaches Ziel: Wir wollen die ganze Erde in Minecraft im Maßstab 1:1 nachbauen. Unser Projekt wurde von PippenFTS gestartet, der das YouTube-Video erstellt hat, mit dem alles begann. Mit Hilfe einiger Mods wurde die Höhenbegrenzung in Minecraft aufgehoben und eine Version der Welt mit Terrain erstellt.",
+			"2": "Unzählige Stunden wurden damit verbracht, darüber zu debattieren, welche Projektion verwendet werden sollte und ob sie überhaupt geändert werden sollte. Am Ende entschied das Team, eine modifizierte Version der Luft-Ozean-Projektion zu verwenden, die die Verzerrung gering hält und im Gegensatz zur vorher verwendeten gleichwinkligen Kartenprojektion den Maßstab beibehält. Bisher wurden große Fortschritte gemacht und wir hoffen, dass wir eines Tages in der Lage sein werden, den Großteil der Erde in Minecraft im Maßstab 1:1 nachzubilden."
+		}
+	},
+	"system": {
+		"title": "Wie funktioniert BuildTheEarth?",
+		"content": "Gibt es in Minecraft nicht eine Höhenbegrenzung? Bevor es die Cubic Chunks Mod gab, hätte ein Projekt wie unseres nicht existieren können. Dank der Veröffentlichung der Cubic Chunks Mod, die die Art und Weise ändert, wie Minecraft die Weltdaten speichert, sind wir nun in der Lage, eine theoretisch unendliche Bauhöhe zu haben, was die Replikation der Welt im Maßstab 1:1 ermöglicht. Darüber hinaus haben neuere Versionen von Minecraft eine größere Höhenbegrenzung eingeführt."
+	},
+	"history": {
+		"title": "Unsere Geschichte und Zukunft",
+		"content": {
+			"1": "Mit mehr als 15 Millionen Aufrufen können wir mit Sicherheit sagen, dass wir eine enorme Aufmerksamkeit für den Aufruf zum Handeln erhalten haben. Über Nacht wurde ein Team zusammengestellt, das zu den mehr als hundert Mitgliedern wuchs, die wir heute haben, jeder mit seiner speziellen Aufgabe und Rolle in dem Projekt. Mit über fünftausend Buildern und Bauteams aus allen Regionen der Erde sind wir auf dem besten Weg, die Erde zu bauen. Hier bei Build the Earth haben wir keine Fristen, wann wir wollen, dass bestimmte Orte gebaut werden, da wir darauf vertrauen, dass unsere Bauherren ihre Grundstücke fertigstellen, wann immer sie können.",
+			"2": "m Hinblick auf den Bau wurden bereits enorme Fortschritte erzielt. In großen Städten wie New York City, London, Paris und Los Angeles arbeiten Teams unermüdlich daran. Wenn du dich über unsere Fortschritte informieren möchtest, findest du Videos und Fotos auf unserem Discord-Server, Youtube und Instagram. Wir würden uns freuen, wenn noch mehr Leute bei BuildTheEarth mitmachen würden. Wenn du oder deine Freunde bauen können, melde dich in unserem Discord an und bewirb dich auf unserer Website als Baumeister."
+		},
+		"action": "Loslegen"
+	}
+}
