@@ -1,0 +1,59 @@
+{
+	"head": {
+		"title": "Min BuildTheEarth"
+	},
+	"description": "Velkommen til din egen del av BuildTheEarth. Her kan du se din egen fremgang, tilknyttede byggelag og annen nyttig informasjon.",
+	"account": {
+		"title": "Kontoinformasjon",
+		"minecraft": "Lenket Minecraft-brukernavn:",
+		"id": "Kontoid:",
+		"settings": "Åpne innstillinger"
+	},
+	"teams": {
+		"title": "Tilknyttede byggelag",
+		"description": "Byggelag er den enkleste måten å bli med i Build The Earth. Disse gruppene samarbeider på en flerspiller-server for å bygge byer, regioner og noen ganger til og med hele land.",
+		"empty": {
+			"description": "Du har ikke blitt med i noen lag enda",
+			"action": "Bla gjennom lag"
+		}
+	},
+	"owned": {
+		"title": "Eide byggelag",
+		"description": "Byggelagene som er oppført nedenfor eies av deg, eller du har administrasjonsrettigheter på dem.",
+		"action": "Rediger innstillinger"
+	},
+	"claims": {
+		"title": "Claim",
+		"description": "Claims er bygninger eller områder du jobber på eller har fullført. De hjelper oss med å holde oversikt over hva som allerede er bygget.",
+		"status": {
+			"finished": "Fullført",
+			"building": "Under konstruksjon"
+		},
+		"action": "Rediger claim",
+		"create": {
+			"description": "Create Claims to track Building Progress",
+			"action": "Create Claim",
+			"modal": {
+				"title": "Create Claim",
+				"description": "Create a new Claim to track your progress.",
+				"input": "Select a BuildTeam"
+			}
+		}
+	},
+	"settings": {
+		"general": {
+			"title": "Profilinformasjon"
+		},
+		"security": {
+			"title": "Sikkerhetsdetaljer",
+			"description": "For å tilbakestille ditt nåværende passord, vennligst logg ut og inn igjen og velg `Glemt passord`, en e-post med instruksjoner vil bli sendt til deg. Hvis du opplever problemer, send oss en melding.",
+			"alert": "Tilbakestill passord"
+		},
+		"accounts": {
+			"title": "Lenkede kontoer"
+		},
+		"session": {
+			"title": "Aktive økter"
+		}
+	}
+}

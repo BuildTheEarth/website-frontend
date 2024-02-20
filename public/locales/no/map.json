@@ -1,0 +1,37 @@
+{
+	"claim": {
+		"details": {
+			"title": "Claim-detaljer",
+			"name": "Navn",
+			"status": {
+				"title": "Claim-status",
+				"description": "Denne claim-en er fortsatt under konstruksjon og er ikke fullført ennå."
+			},
+			"team": "Lag",
+			"owner": "Eier",
+			"builders": "Byggere",
+			"area": "Område",
+			"actions": {
+				"coordinates": "Kopier koordinater",
+				"zoom": "Zoom",
+				"link": "Lenke",
+				"edit": "Rediger claim"
+			}
+		}
+	},
+	"edit": {
+		"title": "Rediger claim",
+		"name": "Claim-navn",
+		"finished": "Claim er ferdig",
+		"active": "Vis på kartet",
+		"builders": {
+			"title": "Byggere",
+			"alert": "Editing Builders currently does not work",
+			"description": "Hvis det er noen feil i listen over byggere for denne claim-en, send oss en melding."
+		},
+		"help": {
+			"title": "Hvordan redigere claim-polygoner",
+			"description": "Du kan finne en veiledning om hvordan du bruker kartet til høyre her:"
+		}
+	}
+}

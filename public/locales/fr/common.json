@@ -1,40 +1,49 @@
 {
-	"language": "Deutsch",
-	"copyright": "",
-	"buildtheearth": "",
-	"staff": "",
-	"builder": "",
-	"trial": "",
-	"search": "",
+	"language": "Français",
+	"copyright": "Copyright © {{year}} BuildTheEarth. Non-affilié avec Mojang ou Minecraft",
+	"buildtheearth": "BuildTheEarth",
+	"staff": "Équipe",
+	"builder": "Builder",
+	"manager": "Manager",
+	"owner": "Propriétaire",
+	"trial": "Trial",
+	"search": "Rechercher…",
 	"auth": {
-		"signin": "",
-		"signout": "",
-		"signup": ""
+		"signin": "Se connecter",
+		"signout": "Se déconnecter",
+		"signup": "Démarrer"
 	},
 	"user": {
-		"quickActions": "",
-		"upload": "",
+		"quickActions": "Actions rapides",
+		"upload": "Téléverser un monde",
 		"theme": {
-			"dark": "",
-			"light": ""
+			"dark": "Activer le thème clair",
+			"light": "Activer le thème foncé"
 		},
-		"review": ""
+		"review": "Review Applications",
+		"settings": "Paramètres",
+		"profile": "Mon BuildTheEarth"
 	},
 	"button": {
-		"save": "",
-		"delete": "",
-		"copy": "",
-		"back": "",
-		"submit": "",
-		"apply": "",
-		"cancel": ""
+		"save": "Sauvegarder",
+		"delete": "Supprimer",
+		"copy": "Copier",
+		"back": "Retour",
+		"submit": "Envoyer",
+		"apply": "Apply",
+		"cancel": "Cancel",
+		"reset": "Reset",
+		"link": "Link",
+		"unlink": "Unlink"
 	},
 	"links": {
-		"faq": "",
-		"map": "",
-		"teams": "",
-		"contact": "",
-		"aboutUs": "",
-		"newsletter": ""
+		"faq": "FAQ",
+		"map": "Map",
+		"teams": "Build Teams",
+		"contact": "Contact",
+		"aboutUs": "About us",
+		"newsletter": "Newsletter",
+		"gallery": "Gallery",
+		"status": "Status"
 	}
 }

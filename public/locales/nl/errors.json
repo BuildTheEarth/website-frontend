@@ -1,63 +1,63 @@
 {
 	"fallback": {
-		"title": "Er is iets misgegaan ({{error}})",
-		"message": "Probeer het later opnieuw."
+		"title": "Something went wrong ({{error}})",
+		"message": "Please try again later."
 	},
 	"301": {
-		"title": "Permanent verhuisd",
-		"message": "De pagina waar je om vroeg is permanent verhuisd naar een andere URL. Probeer het alsjeblieft opnieuw met de nieuwe URL."
+		"title": "Moved Permanently",
+		"message": "The page you requested has been permanently moved to a different URL. Please try again with the new URL."
 	},
 	"400": {
-		"title": "Slecht verzoek",
-		"message": "Herlaad alsjeblieft de pagina en check uw internetverbinding."
+		"title": "Bad Request",
+		"message": "Please reload the page and check for a working internet connection."
 	},
 	"401": {
-		"title": "Geen toegang",
-		"message": "U hebt geen toegang tot deze pagina."
+		"title": "Unauthorized",
+		"message": "You are not allowed to access this page."
 	},
 	"403": {
-		"title": "Verboden",
-		"message": "U hebt geen toegang tot deze pagina."
+		"title": "Forbidden",
+		"message": "You are not allowed to access this page."
 	},
 	"404": {
-		"title": "Terwijl we bezig zijn met het bouwen van de aarde, hebben we deze pagina nog niet gebouwd..",
-		"message": "We kunnen de pagina die je zoekt niet vinden. Kijk de URL na en probeer opnieuw."
+		"title": "While we are busy building the earth, we have not yet built this page.",
+		"message": "We can't find the page you're looking for. Please check the URL and try again."
 	},
 	"405": {
-		"title": "Methode niet toegestaan",
-		"message": "De gebruikte methode om toegang te kijken tot deze pagina is niet toegestaan. Probeer het alsjeblieft opnieuw met een GET methode."
+		"title": "Method Not Allowed",
+		"message": "The method used to access this page is not allowed. Please try again with a GET method."
 	},
 	"408": {
-		"title": "Verzoek Time-out",
-		"message": "De pagina die je zoekt duurt te lang om te laden. Probeer het alsjeblieft later opnieuw."
+		"title": "Request Timeout",
+		"message": "The page you are looking for is taking too long to load. Please try again later."
 	},
 	"418": {
 		"title": "🫖",
-		"message": "Wordt comfortabel met de thee en probeer het opnieuw."
+		"message": "Please get comfortable with the tea and try again."
 	},
 	"429": {
-		"title": "Te veel verzoeken",
-		"message": "Je probeert te vaak om toegang te krijgen tot deze pagina. Probeer het alsjeblieft later opnieuw."
+		"title": "Too Many Requests",
+		"message": "You are trying to access this page too often. Please try again later."
 	},
 	"500": {
 		"code": "500",
-		"title": "Interne Server Fout",
-		"message": "We ondervinden wat problemen met onze server, probeer het alsjeblieft later opnieuw."
+		"title": "Internal Server Error",
+		"message": "We're having some issues with our server, please try again later."
 	},
 	"501": {
-		"title": "Niet geïmplementeerd",
-		"message": "Uw browser ondersteund bepaalde functies niet die onze website nodig heeft. Update alsjeblieft uw browser."
+		"title": "Not Implemented",
+		"message": "Your browser does not support features our website requires. Please update your browser."
 	},
 	"502": {
-		"title": "Slechte Poort",
-		"message": "Onze servers zijn momenteel overbelast, probeer het alsjeblieft later opnieuw."
+		"title": "Bad Gateway",
+		"message": "Our servers are overloaded at the given time, please try again later."
 	},
 	"503": {
-		"title": "Dienst Niet Beschikbaar",
-		"message": "Onze servers zijn momenteel overbelast, probeer het alsjeblieft later opnieuw."
+		"title": "Service Unavailable",
+		"message": "Our servers are overloaded at the given time, please try again later."
 	},
 	"508": {
-		"title": "Lus Gedetecteerd",
-		"message": "We hebben een lus gedetecteerd. Probeer het alsjeblieft later opnieuw."
+		"title": "Loop Detected",
+		"message": "We detected a loop. Please try again later."
 	}
 }

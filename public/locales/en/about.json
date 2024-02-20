@@ -5,7 +5,7 @@
 	"mission": {
 		"title": "Our Mission",
 		"content": {
-			"1": "Here at Build the Earth, we have one simple goal, to recreate the whole Earth in Minecraft, 1:1 scale. Our project was started by PippenFTS, who created the YouTube video that started it all. With the help of a few mods, the height limit in Minecraft was removed and a version of the world with terrain was created.",
+			"1": "Here at BuildTheEarth, we have one simple goal, to recreate the whole Earth in Minecraft, 1:1 scale. Our project was started by PippenFTS, who created the YouTube video that started it all. With the help of a few mods, the height limit in Minecraft was removed and a version of the world with terrain was created.",
 			"2": "Countless hours were spent debating over which projection to use, and whether to change it at all. In the end, it was settled to use a modified version of the Air-ocean projection, which keeps distortion low and preserves scale unlike the equirectangular map projection used before. So far great progress has been made and we hope that one day we will be able to recreate the majority of the Earth in Minecraft, 1:1 scale."
 		}
 	},
@@ -13,7 +13,6 @@
 		"title": "How does BuildTheEarth work?",
 		"content": "Isn’t there a height limit in Minecraft? Prior to the existence of the Cubic Chunks Mod, a project like ours couldn’t have existed. Thanks to the release of the Cubic Chunks mod, which changes how Minecraft stores world data, we are now able to have a theoretically infinite build height, therefore allowing the replication of the world on a 1:1 scale. In addition, newer versions of Minecraft introduced a greater height limit."
 	},
-
 	"history": {
 		"title": "Our History and Future",
 		"content": {

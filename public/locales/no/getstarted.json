@@ -1,0 +1,53 @@
+{
+	"choose": {
+		"title": "Hvordan ønsker du å delta?",
+		"visit": {
+			"title": "Utforsk BuildTheEarth",
+			"subtitle": "Besøk land, byer og til og med landsbyer som vi allerede har bygget.",
+			"button": "Bli med på serveren"
+		},
+		"build": {
+			"title": "Start å bygge",
+			"subtitle": "Søk om å bli en bygger og hjelp oss med målet vårt om å bygge jorden i Minecraft.",
+			"button": "Søk"
+		}
+	},
+	"visit": {
+		"title": "Utforsk BuildTheEarth",
+		"description": "Søk etter et land nedenfor for å se detaljerte instruksjoner om hvordan du kan besøke dette landet.",
+		"country": {
+			"title": "Hvordan besøke {{country}}",
+			"step0": {
+				"title": "Søk etter landet",
+				"description": "i søkeboksen ovenfor"
+			},
+			"step1": {
+				"title": "Start Minecraft",
+				"description": "ved hjelp av launcher-en"
+			},
+			"step2": {
+				"title": "Bruk IP-en {{ip}}",
+				"description": "for å koble til serveren"
+			},
+			"step3": {
+				"title": "Kjør /bt {{slug}}",
+				"description": "for å koble til landet"
+			},
+			"step4": {
+				"title": "Begynn å utforske",
+				"description": "{{country}}"
+			}
+		},
+		"back": "Tilbake",
+		"open": "Open Build Team Page"
+	},
+	"build": {
+		"title": "Bygg i BuildTheEarth",
+		"description": "Søk etter et land eller et lag nedenfor for å søke om bygger-rollen der.",
+		"country": {
+			"title": "Hvordan besøke {{country}}"
+		},
+		"back": "Tilbake"
+	},
+	"more": "Les mer"
+}

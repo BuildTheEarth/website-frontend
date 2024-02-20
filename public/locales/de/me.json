@@ -1,49 +1,59 @@
 {
-    "head": {
-        "title": "Mein BuildTheEarth"
-    },
-    "account": {
-        "title": "Account Informationen",
-        "minecraft": "Verbundener Minecraft Benutzer:",
-        "settings": "Einstellungen öffnen"
-    },
-    "teams": {
-        "title": "Beigetretene Teams",
-        "description": "Bauteams sind der einfachste Weg, an Build The Earth teilzunehmen. Diese Gruppen arbeiten auf einem Multiplayer-Server zusammen, um Städte, Regionen und manchmal sogar ganze Länder zu bauen.",
-        "empty": {
-            "description": "Du bist noch keinem Team beigetreten",
-            "action": "Teams durchsuchen"
-        }
-    },
-    "description": "Willkommen in deinem eigenen Bereich von BuildTheEarth. Hier kannst du deinen Fortschritt, beigetretene Teams und andere nützliche Informationen sehen.",
-    "owned": {
-			"title": "Eigene Teams",
-			"description": "Die unten aufgelisteten Build Teams gehören dir.",
-			"action": "Einstellungen öffnen"
+	"head": {
+		"title": "Mein BuildTheEarth"
+	},
+	"description": "Willkommen in deinem eigenen Bereich von BuildTheEarth. Hier kannst du deinen Fortschritt, beigetretene Teams und andere nützliche Informationen sehen.",
+	"account": {
+		"title": "Account Informationen",
+		"minecraft": "Verbundener Minecraft Benutzer:",
+		"id": "Account ID:",
+		"settings": "Einstellungen öffnen"
+	},
+	"teams": {
+		"title": "Beigetretene Teams",
+		"description": "Bauteams sind der einfachste Weg, an Build The Earth teilzunehmen. Diese Gruppen arbeiten auf einem Multiplayer-Server zusammen, um Städte, Regionen und manchmal sogar ganze Länder zu bauen.",
+		"empty": {
+			"description": "Du bist noch keinem Team beigetreten",
+			"action": "Teams durchsuchen"
+		}
+	},
+	"owned": {
+		"title": "Eigene Teams",
+		"description": "Die unten aufgelisteten Build Teams gehören dir.",
+		"action": "Einstellungen öffnen"
+	},
+	"claims": {
+		"title": "Claims",
+		"description": "Claims sind Gebäude oder Bereiche, an denen du arbeitest oder die du fertiggestellt hast. Sie helfen uns, den Überblick darüber zu behalten, was bereits gebaut wurde.",
+		"status": {
+			"finished": "Fertig",
+			"building": "Im Bau"
 		},
-    "claims": {
-        "title": "Claims",
-        "description": "Claims sind Gebäude oder Bereiche, an denen du arbeitest oder die du fertiggestellt hast. Sie helfen uns, den Überblick darüber zu behalten, was bereits gebaut wurde.",
-        "status": {
-            "finished": "Fertig",
-            "building": "Im Bau"
-        },
-        "action": "Claim bearbeiten"
-    },
-    "settings": {
-        "general": {
-            "title": "Profilinformationen"
-        },
-        "security": {
-            "title": "Sicherheit",
-            "description": "Um dein aktuelles Passwort zurückzusetzen, logge dich bitte aus und wieder ein und wähle `Passwort vergessen`, eine E-Mail mit Anweisungen wird dir dann zugeschickt. Wenn du Probleme hast, schreib uns eine Nachricht.",
-            "alert": "Passwort zurücksetzen"
-        },
-        "accounts": {
-            "title": "Verbundene Accounts"
-        },
-        "session": {
-            "title": "Aktive Sitzungen"
-        }
-    }
+		"action": "Claim bearbeiten",
+		"create": {
+			"description": "Erstelle Regionen, um den Baufortschritt festzuhalten",
+			"action": "Region erstellen",
+			"modal": {
+				"title": "Region erstellen",
+				"description": "Erstelle eine neue Region, um den Baufortschritt festzuhalten.",
+				"input": "BuildTeam auswählen"
+			}
+		}
+	},
+	"settings": {
+		"general": {
+			"title": "Profilinformationen"
+		},
+		"security": {
+			"title": "Sicherheit",
+			"description": "Um dein aktuelles Passwort zurückzusetzen, logge dich bitte aus und wieder ein und wähle `Passwort vergessen`, eine E-Mail mit Anweisungen wird dir dann zugeschickt. Wenn du Probleme hast, schreib uns eine Nachricht.",
+			"alert": "Passwort zurücksetzen"
+		},
+		"accounts": {
+			"title": "Verbundene Accounts"
+		},
+		"session": {
+			"title": "Aktive Sitzungen"
+		}
+	}
 }

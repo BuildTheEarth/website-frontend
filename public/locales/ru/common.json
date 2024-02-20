@@ -1,40 +1,49 @@
 {
-	"language": "Deutsch",
-	"copyright": "",
-	"buildtheearth": "",
-	"staff": "",
-	"builder": "",
-	"trial": "",
-	"search": "",
+	"language": "Английский",
+	"copyright": "Copyright ©️ {{year}} BuildTheEarth. Не связан с Mojang или Minecraft",
+	"buildtheearth": "BuildTheEarth",
+	"staff": "Администрация",
+	"builder": "Билдер",
+	"manager": "Менеджер",
+	"owner": "Владелец",
+	"trial": "Пробный период",
+	"search": "Поиск…",
 	"auth": {
-		"signin": "",
-		"signout": "",
-		"signup": ""
+		"signin": "Войти",
+		"signout": "Выйти",
+		"signup": "Начать"
 	},
 	"user": {
-		"quickActions": "",
-		"upload": "",
+		"quickActions": "Быстрые действия",
+		"upload": "Загрузить мир",
 		"theme": {
-			"dark": "",
-			"light": ""
+			"dark": "Включить светлую тему",
+			"light": "Включить тëмную тему"
 		},
-		"review": ""
+		"review": "Просмотреть заявки",
+		"settings": "Настройки",
+		"profile": "Мой BuildTheEarth"
 	},
 	"button": {
-		"save": "",
-		"delete": "",
-		"copy": "",
-		"back": "",
-		"submit": "",
-		"apply": "",
-		"cancel": ""
+		"save": "Сохранить",
+		"delete": "Удалить",
+		"copy": "Копировать",
+		"back": "Назад",
+		"submit": "Отправить",
+		"apply": "Apply",
+		"cancel": "Отменить",
+		"reset": "Сбросить",
+		"link": "Прикрепить",
+		"unlink": "Открепить"
 	},
 	"links": {
-		"faq": "",
-		"map": "",
-		"teams": "",
-		"contact": "",
-		"aboutUs": "",
-		"newsletter": ""
+		"faq": "FAQ",
+		"map": "Карта",
+		"teams": "Команды строителей",
+		"contact": "Контакты",
+		"aboutUs": "О нас",
+		"newsletter": "Новости",
+		"gallery": "Галерея",
+		"status": "Статус"
 	}
 }

@@ -1,22 +1,40 @@
 {
 	"head": {
-		"title": ""
+		"title": "Команды строителей"
 	},
-	"description": "",
-	"members": "",
+	"description": "Build teams are the easiest way to join Build The Earth. These groups work together on a multiplayer server to build cities, regions and sometimes even entire countries. All you need to do is click 'Apply to join' and within no time you can start helping out!",
+	"joining": "To participate in a build team, you need to have purchased Minecraft Java Edition or Minecraft Bedrock Edition, depending on the team. In most cases, you will also be required to have the Build The Earth Modpack installed.",
+	"members": "{{num}} Участников",
 	"team": {
-		"overview": "",
-		"images": "",
-		"details": "",
-		"location": "",
-		"members": "",
-		"builds": ""
+		"overview": "Overview",
+		"images": "Изображения",
+		"details": "Подробности",
+		"location": "Страны",
+		"members": "Участники",
+		"builds": "Постройки"
 	},
 	"apply": {
-		"title": "",
+		"title": "Присоединиться к {{team}}",
 		"trial": {
-			"title": "",
-			"description": ""
+			"title": "Заявка на испытательный срок",
+			"description": "This buildteam supports trial applications. You can apply as trial when selecting the button below."
+		},
+		"messages": {
+			"error": "Application failed",
+			"success": {
+				"title": "Application sent",
+				"description": "Your Application will be reviewed shortly"
+			}
+		},
+		"duplicate": {
+			"pending": {
+				"title": "Pending Application",
+				"description": "You have already applied to this buildteam on the {{date}}. Please wait for this application to be reviewed."
+			},
+			"accepted": {
+				"title": "Accepted Application",
+				"description": "Вы уже присоединились к этой команде {{date}}."
+			}
 		}
 	}
 }

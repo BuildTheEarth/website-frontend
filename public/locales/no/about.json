@@ -1,0 +1,24 @@
+{
+	"head": {
+		"title": "Om oss"
+	},
+	"mission": {
+		"title": "Vårt mål",
+		"content": {
+			"1": "Her i Build The Earth, har vi ett enkelt mål, å bygge hele jorden i Minecraft i 1:1 skala. Våres prosjekt ble startet av PippenFTS, som lagde YouTube-videoen som startet alt. Med hjelpen av et par mods ble Minecraft sine høydebegrensning fjernet, og en versjon av verden med automatisk generert terreng ble skapt.",
+			"2": "Utallige timer ble brukt på å diskutere hvilken projeksjon som burde bli brukt, og om den burde bli endret i det hele tatt. Til slutt ble det valgt å bruke en modifisert versjon av Air-ocean-projeksjonen, som minsker forvrenging og beholder størrelsen, i motsetning til den ekvirektangulære projeksjonen som ble brukt før. Så langt har det vært god progresjon, og vi håper en dag at mesteparten av jorden er skapt i Minecraft i 1:1 skala."
+		}
+	},
+	"system": {
+		"title": "Hvordan fungerer Build The Earth?",
+		"content": "Er det ikke en høydebegrensning i Minecraft? Før Cubic Chunks Mod eksisterte, kunne et prosjekt som dette ikke ha eksistert. Takket være utgivelsen av Cubic Chunks-moden, som endrer hvordan Minecraft lagrer verdener, kan vi nå ha en teoretisk uendelig byggehøyde, og dermed muliggjøre replikering av verden i en skala av 1:1. I tillegg introduserte nyere versjoner av Minecraft en høyere høydebegrensning."
+	},
+	"history": {
+		"title": "Vår historie og fremtid",
+		"content": {
+			"1": "Med mer enn 15 millioner visninger er det trygt å si at vi har samlet en massiv respons på oppfordringen til handling. Over natten ble et stab-lag satt sammen, og det har vokst til den hundretallige staben vi har i dag, hver med sitt spesifikke formål og rolle i prosjektet. Med over fem tusen byggere og byggelag fra alle regioner på jorden, er vi godt på vei til å bygge jorden. Her hos Build the Earth har vi ingen frister for når vi ønsker at visse steder skal være bygget, da vi har tro på at våre byggere vil fullføre sine deler av verden når de kan.",
+			"2": "Det har allerede vært enorme fremskritt i byggingen. Store byer som New York City, London, Paris og Los Angeles har alle lag som arbeider uavbrutt på dem. Hvis du vil se fremgangen vår, er videoer og fotografier tilgjengelige på vår Discord-server, Youtube og Instagram. Vi vil gjerne ha flere folk med på å bygge jorden, så hvis du eller vennene dine kan bygge, bli med i vår Discord og søk om byggerstilling på nettsiden vår."
+		},
+		"action": "Bli med"
+	}
+}

@@ -1,40 +1,40 @@
 {
-    "head": {
-        "title": "Bau Teams"
-    },
-    "description": "Bauteams sind der einfachste Weg, an Build The Earth teilzunehmen. Diese Gruppen arbeiten auf einem Multiplayer-Server zusammen, um Städte, Regionen und manchmal sogar ganze Länder aufzubauen. Alles, was du tun musst, ist auf \"Bewerben\" zu klicken und schon kannst du mithelfen!",
-    "members": "{{num}} Mitglieder",
-    "team": {
-        "overview": "Übersicht",
-        "images": "Bilder",
-        "details": "Details",
-        "location": "Ort",
-        "members": "Mitglieder",
-        "builds": "Bauwerke"
-    },
-    "apply": {
-        "title": "Trete {{team}} bei",
-        "trial": {
-            "title": "Trial Bewerbung",
-            "description": "Dieses Buildteam unterstützt Trial Bewerbungen. Du kannst dich als Trial bewerben, indem du die Schaltfläche unten auswählst."
-        },
-        "messages": {
-            "success": {
-                "description": "Deine Bewerbung wird bald geprüft",
-                "title": "Bewerbung abgeschickt"
-            },
-            "error": "Bewerbung fehlgeschlagen"
-        },
-        "duplicate": {
-            "pending": {
-                "title": "Offene Bewerbungen",
-                "description": "Du hast dich bereits am {{date}} für dieses Buildteam beworben. Bitte warte, bis diese Bewerbung geprüft wurde."
-            },
-            "accepted": {
-                "title": "Angenommene Bewerbungen",
-                "description": "Du wurdest bereits am {{date}} in dieses Team aufgenommen."
-            }
-        }
-    },
-    "joining": "Um an einem Build-Team teilzunehmen, musst du je nach Team die Minecraft Java Edition oder die Minecraft Bedrock Edition besitzen. In den meisten Fällen musst du auch das Build The Earth Modpack installiert haben."
+	"head": {
+		"title": "Bau Teams"
+	},
+	"description": "Bauteams sind der einfachste Weg, an Build The Earth teilzunehmen. Diese Gruppen arbeiten auf einem Multiplayer-Server zusammen, um Städte, Regionen und manchmal sogar ganze Länder aufzubauen. Alles, was du tun musst, ist auf \"Bewerben\" zu klicken und schon kannst du mithelfen!",
+	"joining": "Um an einem Build-Team teilzunehmen, musst du je nach Team die Minecraft Java Edition oder die Minecraft Bedrock Edition besitzen. In den meisten Fällen musst du auch das Build The Earth Modpack installiert haben.",
+	"members": "{{num}} Mitglieder",
+	"team": {
+		"overview": "Übersicht",
+		"images": "Bilder",
+		"details": "Details",
+		"location": "Ort",
+		"members": "Mitglieder",
+		"builds": "Bauwerke"
+	},
+	"apply": {
+		"title": "Trete {{team}} bei",
+		"trial": {
+			"title": "Trial Bewerbung",
+			"description": "Dieses Buildteam unterstützt Trial Bewerbungen. Du kannst dich als Trial bewerben, indem du die Schaltfläche unten auswählst."
+		},
+		"messages": {
+			"error": "Bewerbung fehlgeschlagen",
+			"success": {
+				"title": "Bewerbung abgeschickt",
+				"description": "Deine Bewerbung wird bald geprüft"
+			}
+		},
+		"duplicate": {
+			"pending": {
+				"title": "Offene Bewerbungen",
+				"description": "Du hast dich bereits am {{date}} für dieses Buildteam beworben. Bitte warte, bis diese Bewerbung geprüft wurde."
+			},
+			"accepted": {
+				"title": "Angenommene Bewerbungen",
+				"description": "Du wurdest bereits am {{date}} in dieses Team aufgenommen."
+			}
+		}
+	}
 }

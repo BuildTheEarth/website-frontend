@@ -26,7 +26,7 @@
 		"active": "在地圖上展示",
 		"builders": {
 			"title": "建築師",
-			"aler": "目前無法編輯建築師",
+			"alert": "Editing Builders currently does not work",
 			"description": "如果此領地中列出了任何不正確的建築師，請聯絡我們。"
 		},
 		"help": {

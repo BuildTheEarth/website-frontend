@@ -38,7 +38,8 @@
 				"description": "{{country}}"
 			}
 		},
-		"back": "返回"
+		"back": "返回",
+		"open": "Open Build Team Page"
 	},
 	"build": {
 		"title": "在BuildTheEarth建造",

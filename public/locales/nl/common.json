@@ -1,40 +1,49 @@
 {
-	"language": "Deutsch",
-	"copyright": "",
-	"buildtheearth": "",
-	"staff": "",
-	"builder": "",
-	"trial": "",
-	"search": "",
+	"language": "Engels",
+	"copyright": "Auteursrecht © {{year}} BuildTheEarth. Niet geaffilieerd met Mojang of Minecraft",
+	"buildtheearth": "BuildTheEarth",
+	"staff": "Medewerker",
+	"builder": "Bouwer",
+	"manager": "Manager",
+	"owner": "Owner",
+	"trial": "Trial",
+	"search": "Search…",
 	"auth": {
-		"signin": "",
-		"signout": "",
-		"signup": ""
+		"signin": "Sign In",
+		"signout": "Sign Out",
+		"signup": "Get Started"
 	},
 	"user": {
-		"quickActions": "",
-		"upload": "",
+		"quickActions": "Quick Actions",
+		"upload": "Upload World",
 		"theme": {
-			"dark": "",
-			"light": ""
+			"dark": "Toggle light theme",
+			"light": "Toggle dark theme"
 		},
-		"review": ""
+		"review": "Review Applications",
+		"settings": "Settings",
+		"profile": "Mijn BuildTheEarth"
 	},
 	"button": {
-		"save": "",
-		"delete": "",
-		"copy": "",
-		"back": "",
-		"submit": "",
-		"apply": "",
-		"cancel": ""
+		"save": "Bewaar",
+		"delete": "Verwijder",
+		"copy": "Kopieer",
+		"back": "Terug",
+		"submit": "Indienen",
+		"apply": "Solliciteren",
+		"cancel": "Annuleren",
+		"reset": "Terugzetten",
+		"link": "Koppel",
+		"unlink": "Ontkoppel"
 	},
 	"links": {
-		"faq": "",
-		"map": "",
-		"teams": "",
-		"contact": "",
-		"aboutUs": "",
-		"newsletter": ""
+		"faq": "FAQ",
+		"map": "Kaart",
+		"teams": "Bouw Teams",
+		"contact": "Contact",
+		"aboutUs": "About us",
+		"newsletter": "Newsletter",
+		"gallery": "Gallery",
+		"status": "Status"
 	}
 }

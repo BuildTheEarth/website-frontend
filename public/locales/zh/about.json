@@ -13,7 +13,6 @@
 		"title": "BuildTheEarth是如何運作的？",
 		"content": "Minecraft不是有高度限制嗎？在Cubic Chunks模組出現前，像我們這樣的專案確實是無法存在的。得益於Cubic Chunks模組的發布，它改變了Minecraft儲存世界資料的方式，我們現在得以擁有理論上無限的建造高度，因此可以在1：1的比例下再製世界。此外，新版本的Minecraft也能採用更高的高度限制。"
 	},
-
 	"history": {
 		"title": "繼往開來",
 		"content": {

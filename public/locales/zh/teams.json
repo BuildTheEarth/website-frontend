@@ -21,7 +21,10 @@
 		},
 		"messages": {
 			"error": "申請失敗",
-			"success": { "title": "申請送出", "description": "您的申請將很快被審核" }
+			"success": {
+				"title": "申請送出",
+				"description": "您的申請將很快被審核"
+			}
 		},
 		"duplicate": {
 			"pending": {

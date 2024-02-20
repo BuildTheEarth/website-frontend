@@ -1,1 +1,37 @@
-{}
+{
+	"claim": {
+		"details": {
+			"title": "Claim Details",
+			"name": "Name",
+			"status": {
+				"title": "Claim Status",
+				"description": "This Claim is still under construction and not completed yet."
+			},
+			"team": "Team",
+			"owner": "Owner",
+			"builders": "Builders",
+			"area": "Area",
+			"actions": {
+				"coordinates": "Copy Coordinates",
+				"zoom": "Zoom",
+				"link": "Link",
+				"edit": "Edit Claim"
+			}
+		}
+	},
+	"edit": {
+		"title": "Edit Claim",
+		"name": "Claim Name",
+		"finished": "Claim is finished",
+		"active": "Show on map",
+		"builders": {
+			"title": "Builders",
+			"alert": "Editing Builders currently does not work",
+			"description": "If there are any incorrect Builders listed for this claim, message us."
+		},
+		"help": {
+			"title": "How to edit Claim Polygons",
+			"description": "You can find an tutorial how to use the map on the right side here:"
+		}
+	}
+}
