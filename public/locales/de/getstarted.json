@@ -1,61 +1,53 @@
 {
-    "head": {
-        "title": "Wie möchtest du mitmachen?"
-    },
-    "select": "",
-    "description": "Um den Aufbau der Erde zu erleichtern, haben wir die Arbeit in lokale Teams aufgeteilt, die sich auf die verschiedenen Länder konzentrieren. Diese Teams sind Gemeinschaften von Minecraft-Spielern aus dem jeweiligen Land, die zusammenarbeiten. Jeder ist in den Teams willkommen, auch wenn man nicht aus dem Land kommt.\nDarüber hinaus haben wir ein globales Netzwerk, in dem wir versuchen, die Anstrengungen aller Teams zu bündeln. Es ist der internationale Knotenpunkt, der uns alle zu einem einzigen Projekt verbindet.",
-    "compability": "Kompatibilität",
-    "visit": {
-        "title": "Erkunde BuildTheEarth",
-        "subtitle": "Besuchen",
-        "country": {
-            "title": "Wie du {{country}} besuchst",
-            "step0": {
-                "title": "Suche nach dem Land",
-                "description": "in der Suchleiste oben"
-            },
-            "step1": {
-                "title": "Starte Minecraft",
-                "description": "mit dem Launcher"
-            },
-            "step2": {
-                "description": "um den Server zu betreten",
-                "title": "Verwende die Ip {{ip}}"
-            },
-            "step3": {
-                "description": "um in das Land zu kommen",
-                "title": "Führe /bt {{slug}} aus"
-            },
-            "step4": {
-                "title": "Erkunde",
-                "description": "{{country}}"
-            }
-        },
-        "back": "Zurück",
-        "description": "Suche unten nach einem Land, um eine ausführliche Anleitungen zu erhalten, wie du dieses Land besuchen kannst."
-    },
-    "build": {
-        "title": "Fange an zu Bauen",
-        "subtitle": "Bauen",
-        "description": "Suche unten nach einem Land oder Team, um dich für es zu bewerben.",
-        "country": {
-            "title": "Wie du {{country}} besuchst"
-        },
-        "back": "Zurück"
-    },
-    "disclaimer": "Keine Kosten, kein Abonnement",
-    "choose": {
-        "visit": {
-            "title": "Erkunde BuildTheEarth",
-            "button": "Betrete den Server",
-            "subtitle": "Besuche Länder, Städte und sogar Dörfer, die wir bereits aufgebaut haben."
-        },
-        "build": {
-            "title": "Fange an zu Bauen",
-            "subtitle": "Bewirb dich als Builder und hilf uns bei unserem Ziel, die Erde in Minecraft aufzubauen.",
-            "button": "Bewerben"
-        },
-        "title": "Wie möchtest du mitmachen?"
-    },
-    "more": "Erfahre mehr"
+	"choose": {
+		"title": "Wie möchtest du mitmachen?",
+		"visit": {
+			"title": "Erkunde BuildTheEarth",
+			"subtitle": "Besuche Länder, Städte und sogar Dörfer, die wir bereits aufgebaut haben.",
+			"button": "Betrete den Server"
+		},
+		"build": {
+			"title": "Fange an zu Bauen",
+			"subtitle": "Bewirb dich als Builder und hilf uns bei unserem Ziel, die Erde in Minecraft aufzubauen.",
+			"button": "Bewerben"
+		}
+	},
+	"visit": {
+		"title": "Erkunde BuildTheEarth",
+		"description": "Suche unten nach einem Land, um eine ausführliche Anleitungen zu erhalten, wie du dieses Land besuchen kannst.",
+		"country": {
+			"title": "Wie du {{country}} besuchst",
+			"step0": {
+				"title": "Suche nach dem Land",
+				"description": "in der Suchleiste oben"
+			},
+			"step1": {
+				"title": "Starte Minecraft",
+				"description": "mit dem Launcher"
+			},
+			"step2": {
+				"title": "Verwende die Ip {{ip}}",
+				"description": "um den Server zu betreten"
+			},
+			"step3": {
+				"title": "Führe /bt {{slug}} aus",
+				"description": "um in das Land zu kommen"
+			},
+			"step4": {
+				"title": "Erkunde",
+				"description": "{{country}}"
+			}
+		},
+		"back": "Zurück",
+		"open": "Open Build Team Page"
+	},
+	"build": {
+		"title": "Fange an zu Bauen",
+		"description": "Suche unten nach einem Land oder Team, um dich für es zu bewerben.",
+		"country": {
+			"title": "Wie du {{country}} besuchst"
+		},
+		"back": "Zurück"
+	},
+	"more": "Erfahre mehr"
 }
