@@ -26,7 +26,7 @@
 		"active": "Auf der Karte anzeigen",
 		"builders": {
 			"title": "Helfer",
-			"alert": "Editing Builders currently does not work",
+			"alert": "Builder zu bearbeiten funktioniert momentan nicht",
 			"description": "Falls es falsch eingetragene Helfer gibt, schreibe uns eine Nachricht."
 		},
 		"help": {
