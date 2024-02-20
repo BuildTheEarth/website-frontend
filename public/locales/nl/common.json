@@ -1,0 +1,49 @@
+{
+	"language": "Engels",
+	"copyright": "Auteursrecht © {{year}} BuildTheEarth. Niet geaffilieerd met Mojang of Minecraft",
+	"buildtheearth": "BuildTheEarth",
+	"staff": "Medewerker",
+	"builder": "Bouwer",
+	"manager": "Manager",
+	"owner": "Owner",
+	"trial": "Trial",
+	"search": "Search…",
+	"auth": {
+		"signin": "Sign In",
+		"signout": "Sign Out",
+		"signup": "Get Started"
+	},
+	"user": {
+		"quickActions": "Quick Actions",
+		"upload": "Upload World",
+		"theme": {
+			"dark": "Toggle light theme",
+			"light": "Toggle dark theme"
+		},
+		"review": "Review Applications",
+		"settings": "Settings",
+		"profile": "Mijn BuildTheEarth"
+	},
+	"button": {
+		"save": "Bewaar",
+		"delete": "Verwijder",
+		"copy": "Kopieer",
+		"back": "Terug",
+		"submit": "Indienen",
+		"apply": "Solliciteren",
+		"cancel": "Annuleren",
+		"reset": "Terugzetten",
+		"link": "Koppel",
+		"unlink": "Ontkoppel"
+	},
+	"links": {
+		"faq": "FAQ",
+		"map": "Kaart",
+		"teams": "Bouw Teams",
+		"contact": "Contact",
+		"aboutUs": "About us",
+		"newsletter": "Newsletter",
+		"gallery": "Gallery",
+		"status": "Status"
+	}
+}
