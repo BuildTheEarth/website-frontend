@@ -1,63 +1,63 @@
 {
 	"fallback": {
-		"title": "Something went wrong ({{error}})",
-		"message": "Please try again later."
+		"title": "出了點問題 ({{error}})",
+		"message": "請稍後再試。"
 	},
 	"301": {
-		"title": "Moved Permanently",
-		"message": "The page you requested has been permanently moved to a different URL. Please try again with the new URL."
+		"title": "永久遷移",
+		"message": "您所請求的頁面已永久遷移不同的網址。請使用新的網址再次嘗試。"
 	},
 	"400": {
-		"title": "Bad Request",
-		"message": "Please reload the page and check for a working internet connection."
+		"title": "請求無效",
+		"message": "請重新載入頁面並檢查網路連線是否正常。"
 	},
 	"401": {
-		"title": "Unauthorized",
-		"message": "You are not allowed to access this page."
+		"title": "未經授權",
+		"message": "您無權存取此頁面。"
 	},
 	"403": {
-		"title": "Forbidden",
-		"message": "You are not allowed to access this page."
+		"title": "禁止存取",
+		"message": "您無權存取此頁面。"
 	},
 	"404": {
-		"title": "While we are busy building the earth, we have not yet built this page.",
-		"message": "We can't find the page you're looking for. Please check the URL and try again."
+		"title": "我們正忙著建造地球，還沒有建造此頁面。",
+		"message": "找不到您要查找的頁面。請檢查網址並再次嘗試。"
 	},
 	"405": {
-		"title": "Method Not Allowed",
-		"message": "The method used to access this page is not allowed. Please try again with a GET method."
+		"title": "方法不被允許",
+		"message": "不允許使用該方法存取此頁面。請使用GET方法再次嘗試。"
 	},
 	"408": {
-		"title": "Request Timeout",
-		"message": "The page you are looking for is taking too long to load. Please try again later."
+		"title": "請求逾時",
+		"message": "您要查找的頁面花了很長的時間載入。請稍後再試。"
 	},
 	"418": {
 		"title": "🫖",
-		"message": "Please get comfortable with the tea and try again."
+		"message": "請享用一杯茶並再次嘗試。"
 	},
 	"429": {
-		"title": "Too Many Requests",
-		"message": "You are trying to access this page too often. Please try again later."
+		"title": "請求過多",
+		"message": "您嘗試存取此頁面的次數過於頻繁。請稍後再試。"
 	},
 	"500": {
 		"code": "500",
-		"title": "Internal Server Error",
-		"message": "We're having some issues with our server, please try again later."
+		"title": "內部伺服器錯誤",
+		"message": "我們的伺服器出了點問題，請稍後再試。"
 	},
 	"501": {
-		"title": "Not Implemented",
-		"message": "Your browser does not support features our website requires. Please update your browser."
+		"title": "未實作",
+		"message": "您的瀏覽器不支援我們網站所需的功能。請更新您的瀏覽器。"
 	},
 	"502": {
-		"title": "Bad Gateway",
-		"message": "Our servers are overloaded at the given time, please try again later."
+		"title": "閘道錯誤",
+		"message": "我們的伺服器在給定時間超載，請稍後再試。"
 	},
 	"503": {
-		"title": "Service Unavailable",
-		"message": "Our servers are overloaded at the given time, please try again later."
+		"title": "服務無法使用",
+		"message": "我們的伺服器在給定時間超載，請稍後再試。"
 	},
 	"508": {
-		"title": "Loop Detected",
-		"message": "We detected a loop. Please try again later."
+		"title": "偵測到迴圈",
+		"message": "我們偵測到一個迴圈。請稍後再試。"
 	}
 }
