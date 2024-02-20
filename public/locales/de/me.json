@@ -6,7 +6,7 @@
 	"account": {
 		"title": "Account Informationen",
 		"minecraft": "Verbundener Minecraft Benutzer:",
-		"id": "Account Id:",
+		"id": "Account ID:",
 		"settings": "Einstellungen öffnen"
 	},
 	"teams": {
@@ -31,12 +31,12 @@
 		},
 		"action": "Claim bearbeiten",
 		"create": {
-			"description": "Create Claims to track Building Progress",
-			"action": "Create Claim",
+			"description": "Erstelle Regionen, um den Baufortschritt festzuhalten",
+			"action": "Region erstellen",
 			"modal": {
-				"title": "Create Claim",
-				"description": "Create a new Claim to track your progress.",
-				"input": "Select a BuildTeam"
+				"title": "Region erstellen",
+				"description": "Erstelle eine neue Region, um den Baufortschritt festzuhalten.",
+				"input": "BuildTeam auswählen"
 			}
 		}
 	},
