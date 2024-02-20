@@ -1,37 +1,37 @@
 {
 	"claim": {
 		"details": {
-			"title": "Claim Details",
-			"name": "Name",
+			"title": "領地詳情",
+			"name": "名稱",
 			"status": {
-				"title": "Claim Status",
-				"description": "This Claim is still under construction and not completed yet."
+				"title": "領地狀態",
+				"description": "這個領地仍在建設中，尚未完成。"
 			},
-			"team": "Team",
-			"owner": "Owner",
-			"builders": "Builders",
-			"area": "Area",
+			"team": "團隊",
+			"owner": "擁有者",
+			"builders": "建築師",
+			"area": "地區",
 			"actions": {
-				"coordinates": "Copy Coordinates",
-				"zoom": "Zoom",
-				"link": "Link",
-				"edit": "Edit Claim"
+				"coordinates": "複製座標",
+				"zoom": "縮放",
+				"link": "連結",
+				"edit": "編輯領地"
 			}
 		}
 	},
 	"edit": {
-		"title": "Edit Claim",
-		"name": "Claim Name",
-		"finished": "Claim is finished",
-		"active": "Show on map",
+		"title": "編輯領地",
+		"name": "領地名稱",
+		"finished": "領地已完成",
+		"active": "在地圖上展示",
 		"builders": {
-			"title": "Builders",
+			"title": "建築師",
 			"alert": "Editing Builders currently does not work",
-			"description": "If there are any incorrect Builders listed for this claim, message us."
+			"description": "如果此領地中列出了任何不正確的建築師，請聯絡我們。"
 		},
 		"help": {
-			"title": "How to edit Claim Polygons",
-			"description": "You can find an tutorial how to use the map on the right side here:"
+			"title": "如何編輯領地多邊形",
+			"description": "您可以在此處找到如何使用右側地圖的教學："
 		}
 	}
 }
