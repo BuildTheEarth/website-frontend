@@ -38,7 +38,7 @@ const nextConfig = {
 	// },
 	i18n: {
 		defaultLocale: 'en',
-		locales: ['en', 'zh'], // 'de', 'es', 'fr', 'ru', 'nl',
+		locales: ['en', 'de', 'fr', 'nl', 'no', 'ru', 'zh'],
 	},
 	output: 'standalone',
 	poweredByHeader: false,
@@ -67,6 +67,16 @@ const nextConfig = {
 			{
 				source: '/discord',
 				destination: 'https://discord.gg/buildtheearth-net-690908396404080650',
+				permanent: true,
+			},
+			{
+				source: '/status',
+				destination: 'https://status.buildtheearth.net',
+				permanent: true,
+			},
+			{
+				source: '/translate',
+				destination: 'https://crowdin.com/project/buildtheearth-website',
 				permanent: true,
 			},
 			{
