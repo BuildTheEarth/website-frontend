@@ -17,20 +17,20 @@
 				"link": "Ссылка",
 				"edit": "Редактировать"
 			},
-			"city": "City",
-			"description": "Description",
-			"buildings": "Buildings",
-			"address": "Address",
+			"city": "Город",
+			"description": "Описание",
+			"buildings": "Зданий",
+			"address": "Адрес",
 			"image": {
 				"delete": {
-					"title": "Delete Showcase Image",
-					"description": "Are you sure you want to delete the image from the claim? This action cannot be undone.",
-					"label": "Delete Image"
+					"title": "Удалить изображение",
+					"description": "Вы уверены, что хотите удалить изображение? Это действие нельзя отменить.",
+					"label": "Удалить изображение"
 				},
 				"create": {
-					"loading": "Uploading your images...",
-					"title": "Drag image here or click to select file",
-					"subtitle": "Attach one file, file size should not exceed 2mb"
+					"loading": "Загрузка изображений...",
+					"title": "Перетащите сюда изображение или нажмите для выбора файла",
+					"subtitle": "Прикрепить один файл, размер файла не должен превышать 2Мб"
 				}
 			}
 		}
@@ -42,37 +42,37 @@
 		"active": "Показать на карте",
 		"builders": {
 			"title": "Строители",
-			"alert": "Editing Builders currently does not work",
-			"description": "If there are any incorrect Builders listed for this claim, message us."
+			"alert": "Редактирование строителей в данный момент не работает",
+			"description": "Если для этого полигона есть некорректные строители, то напишите нам."
 		},
 		"help": {
-			"title": "How to edit Claim Polygons",
-			"description": "You can find an tutorial how to use the map on the right side here:"
+			"title": "Как редактировать полигоны",
+			"description": "Здесь вы можете найти руководство, как правильно использовать карту:"
 		},
-		"description": "Description",
+		"description": "Описание",
 		"buildings": {
-			"title": "Building Count",
-			"description": "You cannot edit this field, it will get automatically calculated."
+			"title": "Количество зданий",
+			"description": "Вы не можете изменить это поле, оно вычисляется автоматически."
 		}
 	},
 	"stats": {
-		"title": "Map Statistics",
+		"title": "Статистика",
 		"global": {
-			"buildings": "Finished Buildings",
-			"claims": "Finished Claims",
-			"area": "Total finished Area"
+			"buildings": "Построенных зданий",
+			"claims": "Готовых полигонов",
+			"area": "Общая готовая площадь"
 		},
 		"average": {
-			"buildings": "Average Buildings per Claim",
-			"area": "Average Area per Claim"
+			"buildings": "Среднее количество зданий в полигоне",
+			"area": "Средняя площадь полигонов"
 		},
-		"largestClaim": "Largest Claim",
-		"mostBuildings": "Most Buildings",
-		"mostBuildTeam": "Most Claims per BuildTeam",
-		"mostUser": "Most Claims per User",
+		"largestClaim": "Самый большой полигон",
+		"mostBuildings": "Больше всего зданий",
+		"mostBuildTeam": "Больше всего полигонов в команде",
+		"mostUser": "Больше всего полигонов у:",
 		"total": {
-			"title": "The Total Progress",
-			"description": "Using the total claimed area, we can calculate the following percentages:"
+			"title": "Общий прогресс",
+			"description": "С помощью общей площади полигонов можно рассчитать следующие проценты:"
 		}
 	}
 }
