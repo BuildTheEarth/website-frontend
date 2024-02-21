@@ -2,7 +2,7 @@
 	"language": "Engels",
 	"copyright": "Auteursrecht © {{year}} BuildTheEarth. Niet geaffilieerd met Mojang of Minecraft",
 	"buildtheearth": "BuildTheEarth",
-	"staff": "Medewerker",
+	"staff": "Staf",
 	"builder": "Bouwer",
 	"manager": "Manager",
 	"owner": "Owner",
@@ -33,7 +33,7 @@
 		"apply": "Solliciteren",
 		"cancel": "Annuleren",
 		"reset": "Terugzetten",
-		"link": "Koppel",
+		"link": "Link",
 		"unlink": "Ontkoppel"
 	},
 	"links": {
