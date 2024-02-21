@@ -8,6 +8,7 @@
 	"owner": "Propriétaire",
 	"trial": "Trial",
 	"search": "Rechercher…",
+	"you": "du",
 	"auth": {
 		"signin": "Se connecter",
 		"signout": "Se déconnecter",
