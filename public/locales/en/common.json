@@ -8,6 +8,7 @@
 	"owner": "Owner",
 	"trial": "Trial",
 	"search": "Search…",
+	"you": "du",
 	"auth": {
 		"signin": "Sign In",
 		"signout": "Sign Out",
