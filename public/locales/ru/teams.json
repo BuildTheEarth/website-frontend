@@ -2,7 +2,7 @@
 	"head": {
 		"title": "Команды строителей"
 	},
-	"description": "Build teams are the easiest way to join Build The Earth. These groups work together on a multiplayer server to build cities, regions and sometimes even entire countries. All you need to do is click 'Apply to join' and within no time you can start helping out!",
+	"description": "Команды строителей - лëгкий способ присоединиться к BuildTheEarth. Такие команды строят вместе на отдельном сервере свои страны и города. Всë что нужно - нажать на кнопку \"Присоединиться\" и немного подождать, после чего вы уже сможете помогать с воссозданием мира!",
 	"joining": "To participate in a build team, you need to have purchased Minecraft Java Edition or Minecraft Bedrock Edition, depending on the team. In most cases, you will also be required to have the Build The Earth Modpack installed.",
 	"members": "{{num}} Участников",
 	"team": {
