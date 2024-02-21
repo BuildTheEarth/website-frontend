@@ -10,7 +10,7 @@
 		}
 	},
 	"system": {
-		"title": "How does BuildTheEarth work?",
+		"title": "Как работает BuildTheEarth?",
 		"content": "Isn’t there a height limit in Minecraft? Prior to the existence of the Cubic Chunks Mod, a project like ours couldn’t have existed. Thanks to the release of the Cubic Chunks mod, which changes how Minecraft stores world data, we are now able to have a theoretically infinite build height, therefore allowing the replication of the world on a 1:1 scale. In addition, newer versions of Minecraft introduced a greater height limit."
 	},
 	"history": {
