@@ -6,7 +6,6 @@ import { createGetInitialProps } from '@mantine/next';
 export const getInitialProps = createGetInitialProps();
 
 export default function Document() {
-	// static getInitialProps = getInitialProps;
 	return (
 		<Html lang="en">
 			<Head>

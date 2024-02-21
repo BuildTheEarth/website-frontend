@@ -21,7 +21,14 @@
 		},
 		"messages": {
 			"error": "Application failed",
-			"success": { "title": "Application sent", "description": "Your Application will be reviewed shortly" }
+			"success": {
+				"title": "Application sent",
+				"description": "Your Application will be reviewed shortly"
+			},
+			"disabledApplications": {
+				"title": "Disabled Applications",
+				"description": "This BuildTeam has disabled applications. Please message the BuildTeam if you think this is an error."
+			}
 		},
 		"duplicate": {
 			"pending": {

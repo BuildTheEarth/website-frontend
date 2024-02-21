@@ -9,15 +9,16 @@ import {
 	Text,
 } from '@mantine/core';
 
-import Counter from '../../components/Counter';
 import { NextPage } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
+import thumbnail from '../../../public/images/thumbnails/about.webp';
+import Counter from '../../components/Counter';
 import Page from '../../components/Page';
 import { StatsGrid } from '../../components/Stats';
 import { StatsGroup } from '../../components/stats/StatsGroup';
 import fetcher from '../../utils/Fetcher';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import thumbnail from '../../../public/images/thumbnails/about.webp';
-import { useRouter } from 'next/router';
 
 const EARTH_AREA = 510_100_000_000_000_000;
 const EARTH_LAND_AREA = 149_000_000_000_000_000;
@@ -30,21 +31,22 @@ const ASIA_AREA = 44_580_000_000_000;
 
 const MapPage: NextPage = ({ data, areaPercentage, days }: any) => {
 	const router = useRouter();
+	const { t } = useTranslation('map');
 	return (
-		<Page head={{ title: 'Map Statistics', image: thumbnail }} smallPadding noBg>
+		<Page head={{ title: t('stats.title'), image: thumbnail }} smallPadding noBg>
 			<StatsGroup
 				data={[
 					{
-						title: 'Finished Buildings',
+						title: t('stats.global.buildings'),
 						value: <Counter value={data.total.buildings} direction="up" />,
 						description: '',
 					},
 					{
-						title: 'Total Area finished Area',
+						title: t('stats.global.area'),
 						value: <Counter value={data.total.area} direction="up" suffix=" m²" />,
 					},
 					{
-						title: 'Finished Claims',
+						title: t('stats.global.claims'),
 						value: <Counter value={data.total.claims} direction="up" />,
 						description: '',
 					},
@@ -53,7 +55,7 @@ const MapPage: NextPage = ({ data, areaPercentage, days }: any) => {
 			<Space h="xl" />
 			<Grid grow>
 				<GridCol span={6}>
-					<StatsGrid title="Average Building Count per Claim" isText>
+					<StatsGrid title={t('stats.average.buildings')} isText>
 						<NumberFormatter
 							suffix=" Buildings"
 							value={data.average.buildings}
@@ -63,7 +65,7 @@ const MapPage: NextPage = ({ data, areaPercentage, days }: any) => {
 					</StatsGrid>
 				</GridCol>
 				<GridCol span={6}>
-					<StatsGrid title="Average Area per Claim" isText>
+					<StatsGrid title={t('stats.average.area')} isText>
 						<NumberFormatter
 							suffix=" m²"
 							value={data.average.area}
@@ -73,7 +75,7 @@ const MapPage: NextPage = ({ data, areaPercentage, days }: any) => {
 					</StatsGrid>
 				</GridCol>
 				<GridCol span={12}>
-					<h2>Largest Claim</h2>
+					<h2>{t('stats.largestClaim')}</h2>
 				</GridCol>
 				{data.largest.area.map((claim: any, i: number) => (
 					<GridCol key={claim.id} span={4}>
@@ -88,7 +90,7 @@ const MapPage: NextPage = ({ data, areaPercentage, days }: any) => {
 					</GridCol>
 				))}
 				<GridCol span={12}>
-					<h2>Most Buildings</h2>
+					<h2>{t('stats.mostBuildings')}</h2>
 				</GridCol>
 				{data.largest.buildings.map((claim: any, i: number) => (
 					<GridCol key={claim.id} span={4}>
@@ -103,7 +105,7 @@ const MapPage: NextPage = ({ data, areaPercentage, days }: any) => {
 					</GridCol>
 				))}
 				<GridCol span={12}>
-					<h2>Most Claims per BuildTeam</h2>
+					<h2>{t('stats.mostBuildTeam')}</h2>
 				</GridCol>
 				{data.most.team.map((team: any, i: number) => (
 					<GridCol key={team.id} span={4}>
@@ -118,7 +120,7 @@ const MapPage: NextPage = ({ data, areaPercentage, days }: any) => {
 					</GridCol>
 				))}
 				<GridCol span={12}>
-					<h2>Most Claims per User</h2>
+					<h2>{t('stats.mostUser')}</h2>
 				</GridCol>
 				{data.most.user.map((user: any, i: number) => (
 					<GridCol key={user.id} span={4}>
@@ -132,8 +134,8 @@ const MapPage: NextPage = ({ data, areaPercentage, days }: any) => {
 					</GridCol>
 				))}
 				<GridCol span={12}>
-					<h2>The Total Progress</h2>
-					<Text>Using the total claimed area, we can calculate the following percentages:</Text>
+					<h2>{t('stats.total.title')}</h2>
+					<Text>{t('stats.total.description')}</Text>
 				</GridCol>
 				<GridCol span={4}>
 					<StatsGrid title="Earth - Total Area" isText paperProps={{ style: { height: '100%' } }}>

@@ -36,24 +36,21 @@ interface ClaimDrawerImagesProps {
 		hash: string;
 	}[];
 	editable?: boolean;
+	t: any;
 	onAdd?: (image: any) => void;
 	onRemove?: (image: string) => void;
 }
 
-export function ClaimDrawerImages(props: ClaimDrawerImagesProps) {
+export function ClaimDrawerImages({ t, ...props }: ClaimDrawerImagesProps) {
 	const [deleteLoading, setDeleteLoading] = useState(false);
 	const user = useUser();
 
 	const handleDeleteImage = (image: any) => {
 		modals.openConfirmModal({
-			title: `Delete Showcase Image`,
+			title: t('claim.details.image.delete.title'),
 			centered: true,
-			children: (
-				<Text>
-					Are you sure you want to delete the image from the claim? This action cannot be undone.
-				</Text>
-			),
-			labels: { confirm: 'Delete Image', cancel: 'Cancel' },
+			children: <Text>{t('claim.details.image.delete.description')}</Text>,
+			labels: { confirm: t('common:button.delete'), cancel: t('common:button.cancel') },
 			confirmProps: { color: 'red' },
 			onCancel: () =>
 				showNotification({
@@ -120,7 +117,7 @@ export function ClaimDrawerImages(props: ClaimDrawerImagesProps) {
 				return (
 					<CarouselSlide key={img.id} w="100%" h="100%">
 						{props.editable && (
-							<Tooltip label="Remove Image">
+							<Tooltip label={t('claim.details.image.delete.label')}>
 								<ActionIcon
 									style={{
 										position: 'absolute',
@@ -149,14 +146,14 @@ export function ClaimDrawerImages(props: ClaimDrawerImagesProps) {
 			})}
 			{props.editable && (
 				<CarouselSlide w="100%" h="100%">
-					<ClaimDropzone id={props.id} onAdd={props.onAdd} />
+					<ClaimDropzone id={props.id} onAdd={props.onAdd} t={t} />
 				</CarouselSlide>
 			)}
 		</Carousel>
 	);
 }
 
-function ClaimDropzone({ id, onAdd }: { id: string; onAdd?: (image: any) => void }) {
+function ClaimDropzone({ id, onAdd, t }: { id: string; onAdd?: (image: any) => void; t: any }) {
 	const [uploading, setUploading] = useState(false);
 	const [uploadingStatus, setUploadingStatus] = useState(0);
 
@@ -167,37 +164,6 @@ function ClaimDropzone({ id, onAdd }: { id: string; onAdd?: (image: any) => void
 		formData.append('image', images[0]);
 		setUploading(true);
 
-		// try {
-		// 	await axios.put(`api/v1/region/${regionId}/image/upload`, formData, {
-		// 		headers: {
-		// 			'Content-Type': 'multipart/form-data',
-		// 			Authorization: 'Bearer ' + keycloak.token,
-		// 		},
-		// 		onUploadProgress: (progressEvent) => onUploadProgress(progressEvent),
-		// 	});
-		// 	showNotification({
-		// 		title: 'Finished',
-		// 		message: 'Upload successful.',
-		// 		color: 'green',
-		// 	});
-		// 	setUploading(false);
-		// } catch (e) {
-		// 	if (e.response.status === 400) {
-		// 		showNotification({
-		// 			title: 'Error.',
-		// 			message: e.response.data,
-		// 			color: 'red',
-		// 		});
-		// 	} else {
-		// 		showNotification({
-		// 			title: 'Error.',
-		// 			message: e.message,
-		// 			color: 'red',
-		// 		});
-		// 	}
-
-		// 	setUploading(false);
-		// }
 		fetch(process.env.NEXT_PUBLIC_API_URL + `/upload?claim=` + id, {
 			method: 'POST',
 			headers: {
@@ -252,7 +218,7 @@ function ClaimDropzone({ id, onAdd }: { id: string; onAdd?: (image: any) => void
 					<>
 						<Stack align={'center'}>
 							<Progress value={uploadingStatus} w={'120%'} animated />
-							<Text>Uploading your images...</Text>
+							<Text>{t('claim.details.image.create.loading')}</Text>
 						</Stack>
 					</>
 				) : (
@@ -278,10 +244,10 @@ function ClaimDropzone({ id, onAdd }: { id: string; onAdd?: (image: any) => void
 
 						<div>
 							<Text size="xl" inline>
-								Drag image here or click to select file
+								{t('claim.details.image.create.title')}
 							</Text>
 							<Text size="sm" c="dimmed" inline mt={7}>
-								Attach one file, file size should not exceed 2mb
+								{t('claim.details.image.create.subtitle')}
 							</Text>
 						</div>
 					</Group>

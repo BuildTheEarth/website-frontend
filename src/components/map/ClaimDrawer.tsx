@@ -77,6 +77,7 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 							id={props.id}
 							images={data.images}
 							editable={data?.owner?.id == user?.id}
+							t={t}
 						/>
 					)}
 					{!data.finished && (
@@ -99,7 +100,12 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 						</StatsGrid>
 					)}
 					{data.city && (
-						<StatsGrid title={'City'} icon={IconBuildingCommunity} paperProps={{ mb: 'md' }} isText>
+						<StatsGrid
+							title={t('claim.details.city')}
+							icon={IconBuildingCommunity}
+							paperProps={{ mb: 'md' }}
+							isText
+						>
 							{data.city}
 						</StatsGrid>
 					)}
@@ -135,7 +141,11 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 						</StatsGrid>
 					)}
 					{data.description && (
-						<StatsGrid title="Description" icon={IconInfoCircle} paperProps={{ mb: 'md' }}>
+						<StatsGrid
+							title={t('claim.details.description')}
+							icon={IconInfoCircle}
+							paperProps={{ mb: 'md' }}
+						>
 							<Text lineClamp={10} fz="sm">
 								{data.description}
 							</Text>
@@ -163,7 +173,12 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 							</Avatar.Group>
 						</StatsGrid>
 					)}
-					<StatsGrid title="Buildings" icon={IconBuilding} paperProps={{ mb: 'md' }} isText>
+					<StatsGrid
+						title={t('claim.details.buildings')}
+						icon={IconBuilding}
+						paperProps={{ mb: 'md' }}
+						isText
+					>
 						{data.buildings}
 					</StatsGrid>
 					<StatsGrid
@@ -175,7 +190,11 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 						{data.size?.toLocaleString()}
 						m²
 					</StatsGrid>
-					<StatsGrid title="Address" icon={IconAddressBook} paperProps={{ mb: 'md' }}>
+					<StatsGrid
+						title={t('claim.details.address')}
+						icon={IconAddressBook}
+						paperProps={{ mb: 'md' }}
+					>
 						<Text lineClamp={10} fz="sm">
 							{data.osmName}
 						</Text>

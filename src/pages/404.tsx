@@ -8,7 +8,7 @@ import thumbnail from '../../public/images/thumbnails/error.png';
 import Page from '../components/Page';
 
 function ErrorPage() {
-	const { t } = useTranslation('errors');
+	const { t } = useTranslation('common');
 	const theme = useMantineTheme();
 	const scheme = useMantineColorScheme();
 	const router = useRouter();
@@ -48,10 +48,11 @@ function ErrorPage() {
 							404
 						</Title>
 						<Title style={{ color: '#ffffff' }} ta="center" order={1}>
-							{t([`404.title`, 'fallback.title'], { error: 404 })}
+							While we are busy building the earth, we have not yet built this page.
 						</Title>
 						<Title style={{ color: theme.colors.gray[4] }} ta="center" order={3}>
-							{t([`404.message`, 'fallback.message'], { error: 404 })}
+							We can&apos;t find the page you&apos;re looking for. Please check the URL and try
+							again.
 							<br />
 							<Button
 								variant="outline"
@@ -64,7 +65,7 @@ function ErrorPage() {
 								}}
 								onClick={() => router.back()}
 							>
-								{t('button.back', { ns: 'common' })}
+								{t('button.back')}
 							</Button>
 						</Title>
 					</div>
@@ -79,7 +80,7 @@ export default ErrorPage;
 export async function getStaticProps({ locale }: any) {
 	return {
 		props: {
-			...(await serverSideTranslations(locale, ['common', 'errors'])),
+			...(await serverSideTranslations(locale, ['common'])),
 		},
 	};
 }

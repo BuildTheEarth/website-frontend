@@ -1,4 +1,3 @@
-import { Discord, Minecraft } from '@icons-pack/react-simple-icons';
 import {
 	ActionIcon,
 	Alert,
@@ -23,6 +22,8 @@ import {
 	Tooltip,
 	rem,
 } from '@mantine/core';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Discord, Minecraft } from '@icons-pack/react-simple-icons';
 import { useClipboard, useDebouncedState, useDebouncedValue, useSetState } from '@mantine/hooks';
 import {
 	IconAlertCircle,
@@ -215,11 +216,12 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 							id={data.id}
 							images={images}
 							editable
+							t={t}
 							onAdd={(img) => setImages([...images, img])}
 							onRemove={(img) => setImages(images.filter((i: any) => i.id != img))}
 						/>
 						<Textarea
-							label="Description"
+							label={t('edit.description')}
 							defaultValue={additionalData.description}
 							onChange={(e) => editData('description', e.target.value)}
 							maxRows={5}
@@ -240,11 +242,11 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 							onChange={(e) => editData('active', e.target.checked)}
 							mb="md"
 						/>
-						<Tooltip label="You cannot edit this field, it will get automatically calculated.">
+						<Tooltip label={t('edit.buildings.description')}>
 							<NumberInput
 								readOnly
 								value={additionalData.buildings}
-								label="Building Count"
+								label={t('edit.buildings.title')}
 								disabled
 							/>
 						</Tooltip>
@@ -260,7 +262,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 													{user?.user?.username}
 												</Text>
 												<Text c="dimmed" fz="xs">
-													Owner - You
+													{t('common:owner')} - {t('common:you')}
 												</Text>
 											</div>
 										</Group>
@@ -290,7 +292,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 														{builder?.username || 'Unknown User'}
 													</Text>
 													<Text c="dimmed" fz="xs">
-														Builder
+														{t('common:builder')}
 													</Text>
 												</div>
 											</Group>

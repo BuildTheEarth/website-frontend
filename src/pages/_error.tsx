@@ -17,7 +17,7 @@ import Page from '../components/Page';
 function ErrorPage(props: any) {
 	const theme = useMantineTheme();
 	const scheme = useMantineColorScheme();
-	const { t } = useTranslation('errors');
+	const { t } = useTranslation('common');
 	const code = props.code || props.statuscode;
 	const router = useRouter();
 	return (
@@ -79,7 +79,7 @@ function ErrorPage(props: any) {
 									}}
 									onClick={() => router.back()}
 								>
-									{t('button.back', { ns: 'common' })}
+									{t('button.back')}
 								</Button>
 							)}
 						</Title>
@@ -93,7 +93,7 @@ function ErrorPage(props: any) {
 export async function getStaticProps({ locale }: any) {
 	return {
 		props: {
-			...(await serverSideTranslations(locale, ['common', 'errors'])),
+			...(await serverSideTranslations(locale, ['common'])),
 		},
 	};
 }

@@ -5,6 +5,7 @@ import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { GalleryImage } from '../components/Gallery';
 import Page from '../components/Page';
 import fetcher from '../utils/Fetcher';
@@ -13,6 +14,7 @@ const MePage: NextPage = ({ data }: any) => {
 	const [activePage, setPage] = useState(1);
 	const [focus, setFocus] = useState<null | string>(null);
 	const router = useRouter();
+	const { t } = useTranslation('common');
 
 	const FocusImage = ({ id }: { id: string }) => {
 		const img = data?.find((d: any) => d.image.name == id);
@@ -51,7 +53,7 @@ const MePage: NextPage = ({ data }: any) => {
 	return (
 		<Page
 			head={{
-				title: 'Gallery',
+				title: t('links.gallery'),
 				image: `https://cdn.buildtheearth.net/uploads/${data[0].image?.name}`,
 			}}
 			loading={!data}

@@ -173,11 +173,10 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 								<Alert
 									mb="md"
 									icon={<IconAlertCircle size="1rem" />}
-									title={'Disabled Applications'}
+									title={t('apply.messages.disabledApplications.title')}
 									color="red"
 								>
-									This BuildTeam has disabled applications. Please message the BuildTeam if you
-									think this is an error.
+									{t('apply.messages.disabledApplications.description')}
 								</Alert>
 							)}
 							{data

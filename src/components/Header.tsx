@@ -173,7 +173,7 @@ const Header = ({ links, style }: HeaderProps) => {
 									component={Link}
 									href="/map?s=true"
 								>
-									Search on Map
+									{t('search')}
 								</Menu.Item>
 								<Menu.Divider />
 								<Menu.Label>{t('staff')}</Menu.Label>

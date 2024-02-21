@@ -10,7 +10,7 @@ import Page from '../components/Page';
 function ErrorPage() {
 	const theme = useMantineTheme();
 	const scheme = useMantineColorScheme();
-	const { t } = useTranslation('errors');
+	const { t } = useTranslation('common');
 	const router = useRouter();
 	return (
 		<Page fullWidth seo={{ nofollow: true, noindex: true }}>
@@ -48,10 +48,10 @@ function ErrorPage() {
 							500
 						</Title>
 						<Title style={{ color: '#ffffff' }} ta="center" order={1}>
-							{t([`500.title`, 'fallback.title'], { error: 500 })}
+							Internal Server Error
 						</Title>
 						<Title style={{ color: theme.colors.gray[4] }} ta="center" order={3}>
-							{t([`500.message`, 'fallback.message'], { error: 500 })}
+							We&apos;re having some issues with our server, please try again later.
 							<br />
 							<Button
 								variant="outline"
@@ -64,7 +64,7 @@ function ErrorPage() {
 								}}
 								onClick={() => router.back()}
 							>
-								{t('button.back', { ns: 'common' })}
+								{t('button.back')}
 							</Button>
 						</Title>
 					</div>
@@ -79,7 +79,7 @@ export default ErrorPage;
 export async function getStaticProps({ locale }: any) {
 	return {
 		props: {
-			...(await serverSideTranslations(locale, ['common', 'errors'])),
+			...(await serverSideTranslations(locale, ['common'])),
 		},
 	};
 }
