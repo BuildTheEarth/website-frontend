@@ -9,16 +9,16 @@ import {
 	Text,
 } from '@mantine/core';
 
-import { NextPage } from 'next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useRouter } from 'next/router';
-import { useTranslation } from 'react-i18next';
-import thumbnail from '../../../public/images/thumbnails/about.webp';
 import Counter from '../../components/Counter';
+import { NextPage } from 'next';
 import Page from '../../components/Page';
 import { StatsGrid } from '../../components/Stats';
 import { StatsGroup } from '../../components/stats/StatsGroup';
 import fetcher from '../../utils/Fetcher';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import thumbnail from '../../../public/images/thumbnails/about.webp';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
 
 const EARTH_AREA = 510_100_000_000_000_000;
 const EARTH_LAND_AREA = 149_000_000_000_000_000;
@@ -417,7 +417,7 @@ const comparisons: (
 		span: 3,
 	},
 	{
-		name: 'Cricet Fields',
+		name: 'Cricket Fields',
 		area: 17_000,
 		asX: true,
 		span: 3,
@@ -435,7 +435,7 @@ const comparisons: (
 		span: 3,
 	},
 	{
-		name: 'Ice Hokey Fields',
+		name: 'Ice Hockey Fields',
 		area: 1_488,
 		asX: true,
 		span: 4,
