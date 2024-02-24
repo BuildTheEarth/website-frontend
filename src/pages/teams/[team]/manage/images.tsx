@@ -2,8 +2,11 @@ import {
 	ActionIcon,
 	AspectRatio,
 	Button,
+	Checkbox,
+	Divider,
 	FileInput,
 	Group,
+	Switch,
 	Table,
 	Text,
 	TextInput,
@@ -183,10 +186,10 @@ const Settings = () => {
 		};
 	};
 	const handleEditImage = (image: any) => {
-		console.log(image);
 		let name = image.title;
 		let city = image.city;
 		let date: Date | null = new Date(image.createdAt);
+		let approved = image.approved;
 		modals.open({
 			id: 'edit-image',
 			title: 'Edit Showcase Image',
@@ -224,6 +227,17 @@ const Settings = () => {
 						description="The Date of when the showcased Building was built"
 						mt="md"
 					/>
+					{user.hasPermission('admin.admin') && (
+						<Switch
+							label="For Showcase Approved"
+							description="If this is enabled, the image can be shown on all page heads and social media previews"
+							onChange={(e) => {
+								approved = e.currentTarget.checked;
+							}}
+							mt="md"
+							checked={approved}
+						/>
+					)}
 					<Button
 						mt="md"
 						onClick={() => {
@@ -250,7 +264,7 @@ const Settings = () => {
 						'Content-Type': 'application/json',
 						Authorization: 'Bearer ' + user.token,
 					},
-					body: JSON.stringify({ title: name, city, date }),
+					body: JSON.stringify({ title: name, city, date, approved }),
 				},
 			)
 				.then((res) => res.json())
@@ -303,15 +317,15 @@ const Settings = () => {
 						Add Showcase Image
 					</Button>
 					<Table verticalSpacing="sm">
-						<Table.Thead>
+						{/* <Table.Thead>
 							<Table.Tr>
+								<Table.Th>Image</Table.Th>
 								<Table.Th>Name</Table.Th>
 								<Table.Th>City</Table.Th>
-								<Table.Th>Image</Table.Th>
 								<Table.Th>Date</Table.Th>
 								<Table.Th></Table.Th>
 							</Table.Tr>
-						</Table.Thead>
+						</Table.Thead> */}
 						<Table.Tbody>
 							{data
 								?.sort(
@@ -320,10 +334,8 @@ const Settings = () => {
 								)
 								.map((s: any) => (
 									<Table.Tr key={s.id}>
-										<Table.Td>{s.title}</Table.Td>
-										<Table.Td>{s.city}</Table.Td>
 										<Table.Td>
-											<AspectRatio ratio={16 / 9}>
+											<AspectRatio ratio={16 / 9} w={'20vw'}>
 												<Image
 													src={`https://cdn.buildtheearth.net/uploads/${s.image.name}`}
 													fill
@@ -332,16 +344,19 @@ const Settings = () => {
 											</AspectRatio>
 										</Table.Td>
 										<Table.Td>
+											<Text fw="bold" fz="lg">
+												{s.title}, {s.city}
+											</Text>
 											<Tooltip
 												withinPortal
 												label={s.createdAt ? vagueTime.get({ to: new Date(s.createdAt) }) : ''}
 												position="top-start"
 											>
-												<p>{new Date(s.createdAt).toLocaleDateString()} </p>
+												<Text fz="sm" c="dimmed">
+													{new Date(s.createdAt).toLocaleDateString()}{' '}
+												</Text>
 											</Tooltip>
-										</Table.Td>
-										<Table.Td>
-											<Group gap={0} justify="flex-end">
+											<Group gap={4} mt="sm">
 												<ActionIcon
 													variant="subtle"
 													color="gray"

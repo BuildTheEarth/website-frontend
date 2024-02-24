@@ -15,7 +15,7 @@ import getCountryName from '../../../utils/ISOCountries';
 const Team: NextPage = ({ data, data2 }: any) => {
 	const router = useRouter();
 	const [focus, setFocus] = useState<null | string>(null);
-	const [showcasePage, setShowcasePage] = useState(0);
+	const [showcasePage, setShowcasePage] = useState(1);
 	const { t } = useTranslation('teams');
 	const isClient = useIsClient();
 	const team = router.query.team;
