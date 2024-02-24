@@ -1,19 +1,19 @@
 {
 	"choose": {
-		"title": "How would you like to participate?",
+		"title": "Hoe zou je bij willen dragen?",
 		"visit": {
-			"title": "Explore BuildTheEarth",
-			"subtitle": "Visit countries, cities and even villages, which we have already build.",
-			"button": "Join the server"
+			"title": "Ontdek BuildTheEarth",
+			"subtitle": "Bezoek dorpen, steden en zelfs landen die we al gebouwd hebben.",
+			"button": "Join de server"
 		},
 		"build": {
-			"title": "Start Building",
-			"subtitle": "Apply to become a Builder and help us with our goal to build the Earth in Minecraft.",
-			"button": "Apply"
+			"title": "Start met Bouwen",
+			"subtitle": "Meld je aan om een Bouwer te worden en help ons om de hele aarde in Minecraft na te bouwen.",
+			"button": "Solliciteren"
 		}
 	},
 	"visit": {
-		"title": "Explore BuildTheEarth",
+		"title": "Ontdek BuildTheEarth",
 		"description": "Search a country below to see detailed instructions on how to visit this country.",
 		"country": {
 			"title": "How to visit {{country}}",
