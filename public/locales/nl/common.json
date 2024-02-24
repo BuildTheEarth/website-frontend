@@ -5,24 +5,24 @@
 	"staff": "Staf",
 	"builder": "Bouwer",
 	"manager": "Manager",
-	"owner": "Owner",
-	"trial": "Trial",
-	"search": "Search…",
+	"owner": "Eigenaar",
+	"trial": "Proefperiode",
+	"search": "Zoek…",
 	"you": "du",
 	"auth": {
-		"signin": "Sign In",
-		"signout": "Sign Out",
-		"signup": "Get Started"
+		"signin": "Inloggen",
+		"signout": "Uitloggen",
+		"signup": "Aan de slag"
 	},
 	"user": {
-		"quickActions": "Quick Actions",
-		"upload": "Upload World",
+		"quickActions": "Snelle Acties",
+		"upload": "Wereld Uploaden",
 		"theme": {
-			"dark": "Toggle light theme",
-			"light": "Toggle dark theme"
+			"dark": "Lichtthema aan/uit",
+			"light": "Donker thema aan/uit"
 		},
-		"review": "Review Applications",
-		"settings": "Settings",
+		"review": "Sollicitaties Beoordelen",
+		"settings": "Instellingen",
 		"profile": "Mijn BuildTheEarth"
 	},
 	"button": {
@@ -42,9 +42,9 @@
 		"map": "Kaart",
 		"teams": "Bouw Teams",
 		"contact": "Contact",
-		"aboutUs": "About us",
-		"newsletter": "Newsletter",
-		"gallery": "Gallery",
+		"aboutUs": "Over ons",
+		"newsletter": "Nieuwsbrief",
+		"gallery": "Fotogalerij",
 		"status": "Status"
 	}
 }
