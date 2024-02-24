@@ -6,12 +6,14 @@ export default function Background({
 	children,
 	loading,
 	priority = false,
+	blurDataURL,
 	...props
 }: {
 	src: string | StaticImport;
 	loading?: 'eager' | 'lazy' | undefined;
 	priority?: boolean;
 	children?: any;
+	blurDataURL?: any;
 	[k: string]: any;
 }) {
 	return (
@@ -37,7 +39,7 @@ export default function Background({
 						height: '100%',
 						...props.style,
 					}}
-					blurDataURL={props.blurDataURL}
+					blurDataURL={blurDataURL}
 				/>
 				{children}
 			</div>

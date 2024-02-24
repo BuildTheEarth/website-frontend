@@ -4,29 +4,33 @@ import {
 	Button,
 	Center,
 	Grid,
+	Group,
 	Stack,
+	Text,
+	ThemeIcon,
 	Title,
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import { ChevronDown, ChevronRight } from 'tabler-icons-react';
+import { IconBuilding, IconInfoCircle, IconPhoto } from '@tabler/icons-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
-import { NextPage } from 'next';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import getstartedImg from '../../public/images/home/getstarted.webp';
-import thumbnail from '../../public/images/home/head.webp';
-import missionImg from '../../public/images/home/mission.webp';
 import BackgroundImage from '../components/BackgroundImage';
 import Gallery from '../components/Gallery';
+import Image from 'next/image';
+import Link from 'next/link';
+import { NextPage } from 'next';
 import Page from '../components/Page';
 import fetcher from '../utils/Fetcher';
+import getstartedImg from '../../public/images/home/getstarted.webp';
+import missionImg from '../../public/images/home/mission.webp';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import thumbnail from '../../public/images/home/head.webp';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
-const Home: NextPage = ({ data }: any) => {
+const Home: NextPage = ({ data, headData }: any) => {
 	const theme = useMantineTheme();
 	const scheme = useMantineColorScheme();
 	const { scrollYProgress } = useScroll();
@@ -47,7 +51,8 @@ const Home: NextPage = ({ data }: any) => {
 					width: '100%',
 					height: '95vh',
 				}}
-				src={thumbnail}
+				src={`https://cdn.buildtheearth.net/uploads/${headData[0].image.name}`}
+				blurDataURL={headData[0].image.hash}
 				sizes="100vw"
 				priority
 			>
@@ -55,7 +60,7 @@ const Home: NextPage = ({ data }: any) => {
 					style={{
 						width: '100%',
 						height: '100%',
-						backgroundColor: '#00000044',
+						backgroundColor: '#00000066',
 						padding: 16,
 						position: 'absolute',
 						top: 0,
@@ -117,6 +122,12 @@ const Home: NextPage = ({ data }: any) => {
 					</motion.div>
 				</Center>
 			</BackgroundImage>
+			<Group justify="end" mr="xl" mt="md" gap={4}>
+				<ThemeIcon variant="transparent" color="dimmed">
+					<IconPhoto style={{ width: '70%', height: '70%' }} />
+				</ThemeIcon>
+				<Text>{headData[0].title + (headData[0].city ? ', ' + headData[0].city : '')}</Text>
+			</Group>
 			<Box
 				style={{
 					background: scheme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
@@ -142,12 +153,21 @@ const Home: NextPage = ({ data }: any) => {
 									}}
 								/>
 								<p>{t('mission.content')}</p>
+								<Group mt="sm" gap={4}>
+									<ThemeIcon variant="transparent" color="dimmed" size={'sm'}>
+										<IconPhoto style={{ width: '70%', height: '70%' }} />
+									</ThemeIcon>
+									<Text c="dimmed" fz="sm">
+										{headData[1].title + (headData[1].city ? ', ' + headData[1].city : '')}
+									</Text>
+								</Group>
 								<Button
 									px={'var(--mantine-spacing-xl)'}
 									component={Link}
 									href="/about"
 									mt="md"
 									rightSection={<ChevronRight />}
+									w="40%"
 								>
 									{t('mission.action')}
 								</Button>
@@ -168,8 +188,13 @@ const Home: NextPage = ({ data }: any) => {
 						>
 							<Image
 								alt="Our Mission"
-								src={missionImg}
+								// src={missionImg}
+								src={`https://cdn.buildtheearth.net/uploads/${headData[1].image.name}`}
 								style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+								width={960}
+								height={540}
+								blurDataURL={headData[1].image.hash}
+								placeholder="blur"
 							/>
 						</motion.div>
 					</Grid.Col>
@@ -194,7 +219,7 @@ const Home: NextPage = ({ data }: any) => {
 								images={data.map((d: any) => ({
 									buildTeam: d.buildTeam.name,
 									buildTeamId: d.buildTeam.id,
-									name: d.title,
+									name: d.title + (d.city ? ', ' + d.city : ''),
 									src: `https://cdn.buildtheearth.net/uploads/${d.image.name}`,
 									icon: d.buildTeam.icon,
 									height: d.image.height,
@@ -221,8 +246,13 @@ const Home: NextPage = ({ data }: any) => {
 						>
 							<Image
 								alt="Get Started"
-								src={getstartedImg}
+								// src={getstartedImg}
+								src={`https://cdn.buildtheearth.net/uploads/${headData[2].image.name}`}
 								style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+								width={960}
+								height={540}
+								blurDataURL={headData[2].image.hash}
+								placeholder="blur"
 							/>
 						</motion.div>
 					</Grid.Col>
@@ -244,12 +274,21 @@ const Home: NextPage = ({ data }: any) => {
 									}}
 								/>
 								<p>{t('join.content')}</p>
+								<Group mt="sm" gap={4}>
+									<ThemeIcon variant="transparent" color="dimmed" size="sm">
+										<IconPhoto style={{ width: '70%', height: '70%' }} />
+									</ThemeIcon>
+									<Text c="dimmed" fz="sm">
+										{headData[2].title + (headData[2].city ? ', ' + headData[2].city : '')}
+									</Text>
+								</Group>
 								<Button
 									px={'var(--mantine-spacing-xl)'}
 									component={Link}
 									href="/join"
 									mt="md"
 									rightSection={<ChevronRight />}
+									w="40%"
 								>
 									{t('join.action')}
 								</Button>
@@ -266,9 +305,11 @@ export default Home;
 
 export async function getStaticProps({ locale }: any) {
 	const res = await fetcher('/showcases/random?limit=6');
+	const res2 = await fetcher('/showcases/random?limit=3&approved=true');
 	return {
 		props: {
 			data: res.sort((a: any, b: any) => 0.5 - Math.random()),
+			headData: res2.sort((a: any, b: any) => 0.5 - Math.random()),
 			...(await serverSideTranslations(locale, ['common', 'home'])),
 		},
 		revalidate: 60 * 2, // Every two minutes
