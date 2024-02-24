@@ -1,16 +1,16 @@
 {
 	"head": {
-		"title": "My BuildTheEarth"
+		"title": "Mijn BuildTheEarth"
 	},
-	"description": "Welcome to your own section of BuildTheEarth. Here you can see your own progress, joined Build Teams and other usefull information.",
+	"description": "Welkom bij jouw eigen pagina van BuildTheEarth. Hier kan je je eigen voortgang zien, de Build Teams waar je lid van bent en andere nuttige informatie.",
 	"account": {
-		"title": "Account Information",
-		"minecraft": "Linked Minecraft Username:",
+		"title": "Account Informatie",
+		"minecraft": "Gelinkte Minecraft Gebruikersnaam:",
 		"id": "Account Id:",
-		"settings": "Open Settings"
+		"settings": "Open Instellingen"
 	},
 	"teams": {
-		"title": "Joined Build Teams",
+		"title": "Build Teams waar jij lid van bent",
 		"description": "Build teams are the easiest way to join Build The Earth. These groups work together on a multiplayer server to build cities, regions and sometimes even entire countries.",
 		"empty": {
 			"description": "You have not joined any Team yet",
