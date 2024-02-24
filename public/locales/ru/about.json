@@ -6,12 +6,12 @@
 		"title": "Наша цель",
 		"content": {
 			"1": "У проекта BuildTheEarth одна цель - воссоздание всего мира в Minecraft в масштабе 1к1. Наш проект был запущен PippenFTS, который создал об этом видео на YouTube. С помощью парой модов, мы убрали ограничение по высоте в Minecraft и создали мир с настоящим рельефом.",
-			"2": "Countless hours were spent debating over which projection to use, and whether to change it at all. In the end, it was settled to use a modified version of the Air-ocean projection, which keeps distortion low and preserves scale unlike the equirectangular map projection used before. So far great progress has been made and we hope that one day we will be able to recreate the majority of the Earth in Minecraft, 1:1 scale."
+			"2": "Бесчисленное количество часов потрачено на обсуждение вопроса о том, какую проекцию использовать, и изменить её вообще. В конечном счете было решено использовать модифицированную версию проекции воздушного океана, которая сохраняет искажения и сохраняет масштаб в отличие от той же проекции, которая использовалась ранее. Уже достигнут значительный прогресс, и мы надеемся, что в один день мы сможем воссоздать большую часть Земли в Майнкрафте в масштабе 1 к 1."
 		}
 	},
 	"system": {
 		"title": "Как работает BuildTheEarth?",
-		"content": "Isn’t there a height limit in Minecraft? Prior to the existence of the Cubic Chunks Mod, a project like ours couldn’t have existed. Thanks to the release of the Cubic Chunks mod, which changes how Minecraft stores world data, we are now able to have a theoretically infinite build height, therefore allowing the replication of the world on a 1:1 scale. In addition, newer versions of Minecraft introduced a greater height limit."
+		"content": "Разве в Minecraft нет ограничения по высоте? До существования Cubic Chunks Mod, такого проекта не существовало. Благодаря выпуску мода Cubic Chunks, который изменяет порядок хранения данных Minecraft, теперь мы можем иметь теоретически бесконечную высоту мира, поэтому теперь можем воссоздаваьб мир в масштабе 1 к 1. Кроме того, новые версии Minecraft позволяют установить больший предел высоты."
 	},
 	"history": {
 		"title": "Наша история и планы",
