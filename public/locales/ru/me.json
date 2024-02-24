@@ -2,7 +2,7 @@
 	"head": {
 		"title": "Мой BuildTheEarth"
 	},
-	"description": "Welcome to your own section of BuildTheEarth. Here you can see your own progress, joined Build Teams and other usefull information.",
+	"description": "Добро пожаловать в ваш собственный раздел BuildTheEarth. Здесь вы можете увидеть свой собственный прогресс, присоединиться к командам и посмотреть другую полезную информацию.",
 	"account": {
 		"title": "Информация об аккаунте",
 		"minecraft": "Привязанный Minecraft никнейм:",
@@ -11,7 +11,7 @@
 	},
 	"teams": {
 		"title": "Присоединился к",
-		"description": "Build teams are the easiest way to join Build The Earth. These groups work together on a multiplayer server to build cities, regions and sometimes even entire countries.",
+		"description": "Команды строителей - лëгкий способ присоединиться к BuildTheEarth. Такие команды строят вместе на отдельном сервере свои страны и города. Всë что нужно - нажать на кнопку \"Присоединиться\" и немного подождать, после чего вы уже сможете помогать с воссозданием мира!",
 		"empty": {
 			"description": "Вы еще не вступили ни в одну команду",
 			"action": "Команды"
@@ -19,23 +19,23 @@
 	},
 	"owned": {
 		"title": "Управляю командами",
-		"description": "The Build Teams listed below are all owned by you or you have management permission on them.",
+		"description": "Все команды, перечисленные ниже, принадлежат вам или вы имеете разрешение на управление ими.",
 		"action": "Редактировать настройки"
 	},
 	"claims": {
 		"title": "Полигоны",
-		"description": "Claims are Buildings or Areas you are working on or have finished. They help us keep track of what is already build.",
+		"description": "Полигоны - это местность, где вы что-то полностью построил или ещё строите. Они нам помогают отслеживать прогресс в проекте.",
 		"status": {
 			"finished": "Завершено",
 			"building": "Строится"
 		},
 		"action": "Редактировать",
 		"create": {
-			"description": "Create Claims to track Building Progress",
+			"description": "Создайте полигон, чтобы отслеживать прогресс строительства",
 			"action": "Создать полигон",
 			"modal": {
 				"title": "Создать полигон",
-				"description": "Create a new Claim to track your progress.",
+				"description": "Создайте новый полигон, чтобы отслеживать ваш прогресс.",
 				"input": "Выбрать команду"
 			}
 		}
@@ -46,7 +46,7 @@
 		},
 		"security": {
 			"title": "Безопасность",
-			"description": "To reset your current password, please log out and back in and choose `Forgot Password`, an email with instructions will be sent to you. If you encounter any problems, message us.",
+			"description": "Чтобы сбросить текущий пароль, пожалуйста, выйдите из системы и выберите \"Забыли Пароль\", вам будет отправлено письмо с инструкцией. Если вы столкнетесь с какими-либо проблемами, напишите нам.",
 			"alert": "Сбросить пароль"
 		},
 		"accounts": {
