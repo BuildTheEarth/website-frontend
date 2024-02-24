@@ -2,42 +2,42 @@
 	"head": {
 		"title": "Build Teams"
 	},
-	"description": "Build teams are the easiest way to join Build The Earth. These groups work together on a multiplayer server to build cities, regions and sometimes even entire countries. All you need to do is click 'Apply to join' and within no time you can start helping out!",
-	"joining": "To participate in a build team, you need to have purchased Minecraft Java Edition or Minecraft Bedrock Edition, depending on the team. In most cases, you will also be required to have the Build The Earth Modpack installed.",
-	"members": "{{num}} Members",
+	"description": "Build Teams zijn de eenvoudigste manier om mee te doen aan Build The Earth. Deze groepen werken samen op een multiplayer server om steden, regio's en soms zelfs hele landen na te bouwen. Je hoeft alleen maar op 'Meld je aan om mee te doen' te klikken om in no time mee te kunnen helpen!",
+	"joining": "Om in een Build Team mee te kunnen bouwen moet je Minecraft Java editie of Minecraft Bedrock editie hebben gekocht, afhankelijk van het team. In de meeste gevallen moet je ook de Build The Earth Modpack geïnstalleerd hebben.",
+	"members": "{{num}} Leden",
 	"team": {
-		"overview": "Overview",
-		"images": "Images",
+		"overview": "Overzicht",
+		"images": "Afbeeldingen",
 		"details": "Details",
-		"location": "Countries",
-		"members": "Members",
-		"builds": "Builds"
+		"location": "Landen",
+		"members": "Leden",
+		"builds": "Bouwwerken"
 	},
 	"apply": {
-		"title": "Join {{team}}",
+		"title": "Word lid van {{team}}",
 		"trial": {
-			"title": "Trial Application",
-			"description": "This buildteam supports trial applications. You can apply as trial when selecting the button below."
+			"title": "Proefperiode Sollicitatie",
+			"description": "Dit Build Team ondersteunt proefperiode sollicitaties. Je kan voor de proefperiode solliciteren met de knop hieronder."
 		},
 		"messages": {
-			"error": "Application failed",
+			"error": "Sollicitatie mislukt",
 			"success": {
-				"title": "Application sent",
-				"description": "Your Application will be reviewed shortly"
+				"title": "Sollicitatie verzonden",
+				"description": "Je Sollicitatie wordt binnenkort beoordeeld"
 			},
 			"disabledApplications": {
-				"title": "Disabled Applications",
-				"description": "This BuildTeam has disabled applications. Please message the BuildTeam if you think this is an error."
+				"title": "Sollicitaties Uitgeschakeld",
+				"description": "Dit Build Team heeft sollicitaties uitgeschakeld. Stuur een bericht naar het Build Team als je denkt dat dit onjuist is."
 			}
 		},
 		"duplicate": {
 			"pending": {
-				"title": "Pending Application",
-				"description": "You have already applied to this buildteam on the {{date}}. Please wait for this application to be reviewed."
+				"title": "Openstaande Sollicitatie",
+				"description": "Je hebt al gesolliciteerd voor dit Build Team op {{date}}. Wacht alsjeblieft eerst op de beoordeling van deze sollicitatie."
 			},
 			"accepted": {
-				"title": "Accepted Application",
-				"description": "You were already accepted to this buildteam on the {{date}}."
+				"title": "Geaccepteerde Sollicitatie",
+				"description": "Je bent al geaccepteerd voor dit Build Team op {{date}}."
 			}
 		}
 	}
