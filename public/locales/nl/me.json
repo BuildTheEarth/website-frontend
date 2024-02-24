@@ -11,49 +11,49 @@
 	},
 	"teams": {
 		"title": "Build Teams waar jij lid van bent",
-		"description": "Build teams are the easiest way to join Build The Earth. These groups work together on a multiplayer server to build cities, regions and sometimes even entire countries.",
+		"description": "Build Teams zijn de eenvoudigste manier om mee te doen aan Build The Earth. Deze groepen werken samen op een multiplayer server om steden, regio's en soms zelfs hele landen na te bouwen.",
 		"empty": {
-			"description": "You have not joined any Team yet",
-			"action": "Browse Teams"
+			"description": "Je bent nog geen lid van een Team",
+			"action": "Teams bekijken"
 		}
 	},
 	"owned": {
-		"title": "Owned Build Teams",
-		"description": "The Build Teams listed below are all owned by you or you have management permission on them.",
-		"action": "Edit Settings"
+		"title": "Build Teams waar jij eigenaar van bent",
+		"description": "De Build Teams hieronder ben jij eigenaar van of je hebt er managementrechten voor.",
+		"action": "Bewerk Instellingen"
 	},
 	"claims": {
 		"title": "Claims",
-		"description": "Claims are Buildings or Areas you are working on or have finished. They help us keep track of what is already build.",
+		"description": "Claims zijn Gebouwen of Gebieden waar je aan werkt of die je hebt afgerond. Ze helpen ons om bij te houden wat er tot nu toe is gebouwd.",
 		"status": {
-			"finished": "Finished",
-			"building": "Under Construction"
+			"finished": "Afgerond",
+			"building": "In Aanbouw"
 		},
-		"action": "Edit Claim",
+		"action": "Bewerk Claim",
 		"create": {
-			"description": "Create Claims to track Building Progress",
-			"action": "Create Claim",
+			"description": "Maak Claims om Bouwvoortgang bij te houden",
+			"action": "Maak Claim",
 			"modal": {
-				"title": "Create Claim",
-				"description": "Create a new Claim to track your progress.",
-				"input": "Select a BuildTeam"
+				"title": "Maak Claim",
+				"description": "Maak een nieuwe Claim om je voortgang bij te houden.",
+				"input": "Selecteer een Build Team"
 			}
 		}
 	},
 	"settings": {
 		"general": {
-			"title": "Profile Information"
+			"title": "Profielinfomatie"
 		},
 		"security": {
-			"title": "Security Details",
-			"description": "To reset your current password, please log out and back in and choose `Forgot Password`, an email with instructions will be sent to you. If you encounter any problems, message us.",
-			"alert": "Reset Password"
+			"title": "Veiligheidsdetails",
+			"description": "Wil je je huidige wachtwoord te veranderen? Log dan uit en kies bij het inloggen 'Wachtwoord Vergeten', dan wordt een email met instructies naar je gestuurd. Loop je tegen problemen aan? Stuur ons dan een bericht.",
+			"alert": "Reset Wachtwoord"
 		},
 		"accounts": {
-			"title": "Linked Accounts"
+			"title": "Gelinkte Accounts"
 		},
 		"session": {
-			"title": "Active Sessions"
+			"title": "Actieve Sessies"
 		}
 	}
 }
