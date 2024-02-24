@@ -27,13 +27,13 @@
 			},
 			"disabledApplications": {
 				"title": "Disabled Applications",
-				"description": "This BuildTeam has disabled applications. Please message the BuildTeam if you think this is an error."
+				"description": "Эта команда отключила приём заявок. Пожалуйста, свяжитесь с этой командой, если думаете, что это ошибка."
 			}
 		},
 		"duplicate": {
 			"pending": {
-				"title": "Pending Application",
-				"description": "You have already applied to this buildteam on the {{date}}. Please wait for this application to be reviewed."
+				"title": "Заявка на рассмотрении",
+				"description": "Вы уже подали заявку в это команду {{date}}. Пожалуйста, дождитесь проверки вашей заявки."
 			},
 			"accepted": {
 				"title": "Accepted Application",
