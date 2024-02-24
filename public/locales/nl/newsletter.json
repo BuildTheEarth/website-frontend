@@ -1,7 +1,7 @@
 {
 	"head": {
-		"title": "Newsletter"
+		"title": "Nieuwsbrief"
 	},
-	"description": "The BuildTheEarth Newsletter is a monthly set of articles showcasing teams, builders, and miscellaneous topics throughout the project.",
-	"issue": "Issue {{num}}"
+	"description": "De BuildTheEarth Nieuwsbrief is een maandelijkse uitgave van artikelen die teams, bouwers en diverse onderwerpen binnen het project uitlicht.",
+	"issue": "Nummer {{num}}"
 }
