@@ -1,53 +1,53 @@
 {
 	"choose": {
-		"title": "How would you like to participate?",
+		"title": "Comment voulez-vous participer ?",
 		"visit": {
-			"title": "Explore BuildTheEarth",
-			"subtitle": "Visit countries, cities and even villages, which we have already build.",
-			"button": "Join the server"
+			"title": "Explorez BuildTheEarth",
+			"subtitle": "Visitez les pays, villes et même villages, que nous avons déjà construit.",
+			"button": "Rejoindre le serveur"
 		},
 		"build": {
-			"title": "Start Building",
-			"subtitle": "Apply to become a Builder and help us with our goal to build the Earth in Minecraft.",
-			"button": "Apply"
+			"title": "Commencer à construire",
+			"subtitle": "Postule afin de devenir un Builder et nous aider dans notre objectif de construire la Terre dans Minecraft.",
+			"button": "Postuler"
 		}
 	},
 	"visit": {
-		"title": "Explore BuildTheEarth",
-		"description": "Search a country below to see detailed instructions on how to visit this country.",
+		"title": "Explorer BuildTheEarth",
+		"description": "Recherchez un pays ci-dessous pour savoir précisément comment visiter ce pays.",
 		"country": {
-			"title": "How to visit {{country}}",
+			"title": "Comment visiter {{country}}",
 			"step0": {
-				"title": "Search for the Country",
-				"description": "in the search box above"
+				"title": "Rechercher le pays",
+				"description": "dans le champ de recherche ci-dessous"
 			},
 			"step1": {
-				"title": "Start Minecraft",
-				"description": "using the Launcher"
+				"title": "Démarrer Minecraft",
+				"description": "en utilisant le Launcher"
 			},
 			"step2": {
-				"title": "Use the IP <b>{{ip}}</b>",
-				"description": "to connect to the server"
+				"title": "Utilisez l'IP <b>{{ip}}</b>",
+				"description": "pour se connecter au serveur"
 			},
 			"step3": {
-				"title": "Run /bt {{slug}}",
-				"description": "to connect to the country"
+				"title": "Exécutez /bt {{slug}}",
+				"description": "pour se connecter au pays"
 			},
 			"step4": {
-				"title": "Start exploring",
+				"title": "Commencer à explorer",
 				"description": "{{country}}"
 			}
 		},
-		"back": "Back",
-		"open": "Open Build Team Page"
+		"back": "Retour",
+		"open": "Ouvrir la page de la Build Team"
 	},
 	"build": {
-		"title": "Build in BuildTheEarth",
-		"description": "Search a country or team below to apply for it.",
+		"title": "Construire sur BuildTheEarth",
+		"description": "Recherchez un pays ou une équipe ci-dessous pour postuler.",
 		"country": {
-			"title": "How to visit {{country}}"
+			"title": "Comment visiter {{country}}"
 		},
-		"back": "Back"
+		"back": "Retour"
 	},
-	"more": "Read more"
+	"more": "En savoir plus"
 }
