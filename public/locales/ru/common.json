@@ -12,7 +12,7 @@
 	"auth": {
 		"signin": "Войти",
 		"signout": "Выйти",
-		"signup": "Начать"
+		"signup": "Присоединиться"
 	},
 	"user": {
 		"quickActions": "Быстрые действия",
