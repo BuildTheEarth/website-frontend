@@ -3,10 +3,10 @@
 		"title": "Команды строителей"
 	},
 	"description": "Команды строителей - лëгкий способ присоединиться к BuildTheEarth. Такие команды строят вместе на отдельном сервере свои страны и города. Всë что нужно - нажать на кнопку \"Присоединиться\" и немного подождать, после чего вы уже сможете помогать с воссозданием мира!",
-	"joining": "To participate in a build team, you need to have purchased Minecraft Java Edition or Minecraft Bedrock Edition, depending on the team. In most cases, you will also be required to have the Build The Earth Modpack installed.",
+	"joining": "Чтобы участвовать в команде, у вас должна быть лицензия Minecraft Java Edition или Minecraft Bedrock Edition, в зависимости от команды. В большинстве случаев вам также потребуется установить модуль Build The Earth Modpack.",
 	"members": "{{num}} Участников",
 	"team": {
-		"overview": "Overview",
+		"overview": "Обзор",
 		"images": "Изображения",
 		"details": "Подробности",
 		"location": "Страны",
@@ -17,16 +17,16 @@
 		"title": "Присоединиться к {{team}}",
 		"trial": {
 			"title": "Заявка на испытательный срок",
-			"description": "This buildteam supports trial applications. You can apply as trial when selecting the button below."
+			"description": "Эта команда поддерживает заявки на испытательный срок. Вы можете подать такую заявку по кнопке ниже."
 		},
 		"messages": {
-			"error": "Application failed",
+			"error": "Не удалось отправить заявку",
 			"success": {
-				"title": "Application sent",
-				"description": "Your Application will be reviewed shortly"
+				"title": "Заявка отправлена",
+				"description": "Ваша заявка будет рассмотрена в ближайшее время"
 			},
 			"disabledApplications": {
-				"title": "Disabled Applications",
+				"title": "Заявки отключены",
 				"description": "Эта команда отключила приём заявок. Пожалуйста, свяжитесь с этой командой, если думаете, что это ошибка."
 			}
 		},
@@ -36,7 +36,7 @@
 				"description": "Вы уже подали заявку в это команду {{date}}. Пожалуйста, дождитесь проверки вашей заявки."
 			},
 			"accepted": {
-				"title": "Accepted Application",
+				"title": "Заявка принята",
 				"description": "Вы уже присоединились к этой команде {{date}}."
 			}
 		}
