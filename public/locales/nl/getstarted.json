@@ -14,40 +14,40 @@
 	},
 	"visit": {
 		"title": "Ontdek BuildTheEarth",
-		"description": "Search a country below to see detailed instructions on how to visit this country.",
+		"description": "Zoek hieronder een land om meer informatie te krijgen over hoe je dat land kan bezoeken.",
 		"country": {
-			"title": "How to visit {{country}}",
+			"title": "Hoe bezoek je {{country}}",
 			"step0": {
-				"title": "Search for the Country",
-				"description": "in the search box above"
+				"title": "Zoek naar het Land",
+				"description": "in bovenstaand zoekbalkje"
 			},
 			"step1": {
-				"title": "Start Minecraft",
-				"description": "using the Launcher"
+				"title": "Start Minecraft op",
+				"description": "met behulp van de Launcher"
 			},
 			"step2": {
-				"title": "Use the IP <b>{{ip}}</b>",
-				"description": "to connect to the server"
+				"title": "Gebruik het IP <b>{{ip}}</b>",
+				"description": "om de server te joinen"
 			},
 			"step3": {
-				"title": "Run /bt {{slug}}",
-				"description": "to connect to the country"
+				"title": "Typ /bt {{slug}}",
+				"description": "om het land te joinen"
 			},
 			"step4": {
-				"title": "Start exploring",
+				"title": "Begin te ontdekken",
 				"description": "{{country}}"
 			}
 		},
-		"back": "Back",
-		"open": "Open Build Team Page"
+		"back": "Vorige",
+		"open": "Open de Build Team pagina"
 	},
 	"build": {
-		"title": "Build in BuildTheEarth",
-		"description": "Search a country or team below to apply for it.",
+		"title": "Bouw in BuildTheEarth",
+		"description": "Zoek hieronder een land of team op om ervoor te solliciteren.",
 		"country": {
-			"title": "How to visit {{country}}"
+			"title": "Hoe bezoek je {{country}}"
 		},
-		"back": "Back"
+		"back": "Terug"
 	},
-	"more": "Read more"
+	"more": "Lees verder"
 }
