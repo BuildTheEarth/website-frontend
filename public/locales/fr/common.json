@@ -2,16 +2,17 @@
 	"language": "Français",
 	"copyright": "Copyright © {{year}} BuildTheEarth. Non-affilié avec Mojang ou Minecraft",
 	"buildtheearth": "BuildTheEarth",
-	"staff": "Équipe",
+	"staff": "Staff",
 	"builder": "Builder",
 	"manager": "Manager",
 	"owner": "Propriétaire",
-	"trial": "Trial",
+	"trial": "Essai",
 	"search": "Rechercher…",
+	"you": "du",
 	"auth": {
 		"signin": "Se connecter",
 		"signout": "Se déconnecter",
-		"signup": "Démarrer"
+		"signup": "Commencer"
 	},
 	"user": {
 		"quickActions": "Actions rapides",
@@ -20,7 +21,7 @@
 			"dark": "Activer le thème clair",
 			"light": "Activer le thème foncé"
 		},
-		"review": "Review Applications",
+		"review": "Examiner les candidatures",
 		"settings": "Paramètres",
 		"profile": "Mon BuildTheEarth"
 	},
@@ -30,20 +31,20 @@
 		"copy": "Copier",
 		"back": "Retour",
 		"submit": "Envoyer",
-		"apply": "Apply",
-		"cancel": "Cancel",
-		"reset": "Reset",
-		"link": "Link",
-		"unlink": "Unlink"
+		"apply": "Appliquer",
+		"cancel": "Annuler",
+		"reset": "Réinitialiser",
+		"link": "Lier",
+		"unlink": "Délier"
 	},
 	"links": {
 		"faq": "FAQ",
-		"map": "Map",
-		"teams": "Build Teams",
+		"map": "Carte",
+		"teams": "Équipes de construction",
 		"contact": "Contact",
-		"aboutUs": "About us",
+		"aboutUs": "À propos de nous",
 		"newsletter": "Newsletter",
-		"gallery": "Gallery",
-		"status": "Status"
+		"gallery": "Gallerie",
+		"status": "Statut"
 	}
 }

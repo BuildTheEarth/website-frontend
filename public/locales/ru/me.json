@@ -2,7 +2,7 @@
 	"head": {
 		"title": "Мой BuildTheEarth"
 	},
-	"description": "Welcome to your own section of BuildTheEarth. Here you can see your own progress, joined Build Teams and other usefull information.",
+	"description": "Добро пожаловать в ваш собственный раздел BuildTheEarth. Здесь вы можете увидеть свой собственный прогресс, присоединиться к командам и посмотреть другую полезную информацию.",
 	"account": {
 		"title": "Информация об аккаунте",
 		"minecraft": "Привязанный Minecraft никнейм:",
@@ -10,50 +10,50 @@
 		"settings": "Открыть настройки"
 	},
 	"teams": {
-		"title": "Joined Build Teams",
-		"description": "Build teams are the easiest way to join Build The Earth. These groups work together on a multiplayer server to build cities, regions and sometimes even entire countries.",
+		"title": "Присоединился к",
+		"description": "Команды строителей - лëгкий способ присоединиться к BuildTheEarth. Такие команды строят вместе на отдельном сервере свои страны и города. Всë что нужно - нажать на кнопку \"Присоединиться\" и немного подождать, после чего вы уже сможете помогать с воссозданием мира!",
 		"empty": {
-			"description": "You have not joined any Team yet",
-			"action": "Browse Teams"
+			"description": "Вы еще не вступили ни в одну команду",
+			"action": "Команды"
 		}
 	},
 	"owned": {
-		"title": "Owned Build Teams",
-		"description": "The Build Teams listed below are all owned by you or you have management permission on them.",
-		"action": "Edit Settings"
+		"title": "Управляю командами",
+		"description": "Все команды, перечисленные ниже, принадлежат вам или вы имеете разрешение на управление ими.",
+		"action": "Редактировать настройки"
 	},
 	"claims": {
-		"title": "Claims",
-		"description": "Claims are Buildings or Areas you are working on or have finished. They help us keep track of what is already build.",
+		"title": "Полигоны",
+		"description": "Полигоны - это местность, где вы что-то полностью построил или ещё строите. Они нам помогают отслеживать прогресс в проекте.",
 		"status": {
-			"finished": "Finished",
-			"building": "Under Construction"
+			"finished": "Завершено",
+			"building": "Строится"
 		},
-		"action": "Edit Claim",
+		"action": "Редактировать",
 		"create": {
-			"description": "Create Claims to track Building Progress",
-			"action": "Create Claim",
+			"description": "Создайте полигон, чтобы отслеживать прогресс строительства",
+			"action": "Создать полигон",
 			"modal": {
-				"title": "Create Claim",
-				"description": "Create a new Claim to track your progress.",
-				"input": "Select a BuildTeam"
+				"title": "Создать полигон",
+				"description": "Создайте новый полигон, чтобы отслеживать ваш прогресс.",
+				"input": "Выбрать команду"
 			}
 		}
 	},
 	"settings": {
 		"general": {
-			"title": "Profile Information"
+			"title": "Информация о профиле"
 		},
 		"security": {
-			"title": "Security Details",
-			"description": "To reset your current password, please log out and back in and choose `Forgot Password`, an email with instructions will be sent to you. If you encounter any problems, message us.",
-			"alert": "Reset Password"
+			"title": "Безопасность",
+			"description": "Чтобы сбросить текущий пароль, пожалуйста, выйдите из системы и выберите \"Забыли Пароль\", вам будет отправлено письмо с инструкцией. Если вы столкнетесь с какими-либо проблемами, напишите нам.",
+			"alert": "Сбросить пароль"
 		},
 		"accounts": {
-			"title": "Linked Accounts"
+			"title": "Привязанные аккаунты"
 		},
 		"session": {
-			"title": "Active Sessions"
+			"title": "Активные сессии"
 		}
 	}
 }

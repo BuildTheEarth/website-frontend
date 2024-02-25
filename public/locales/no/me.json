@@ -11,7 +11,7 @@
 	},
 	"teams": {
 		"title": "Tilknyttede byggelag",
-		"description": "Byggelag er den enkleste måten å bli med i Build The Earth. Disse gruppene samarbeider på en flerspiller-server for å bygge byer, regioner og noen ganger til og med hele land.",
+		"description": "Byggelag er den enkleste måten å bli med i BuildTheEarth. Disse gruppene samarbeider på en flerspiller-server for å bygge byer, regioner og noen ganger til og med hele land.",
 		"empty": {
 			"description": "Du har ikke blitt med i noen lag enda",
 			"action": "Bla gjennom lag"
@@ -31,12 +31,12 @@
 		},
 		"action": "Rediger claim",
 		"create": {
-			"description": "Create Claims to track Building Progress",
-			"action": "Create Claim",
+			"description": "Lag claims for å følge fremgangen av byggene dine",
+			"action": "Opprett claim",
 			"modal": {
-				"title": "Create Claim",
-				"description": "Create a new Claim to track your progress.",
-				"input": "Select a BuildTeam"
+				"title": "Opprett claim",
+				"description": "Lag en ny claim for å følge fremgangen din.",
+				"input": "Velg et byggelag"
 			}
 		}
 	},

@@ -24,6 +24,10 @@
 			"success": {
 				"title": "Bewerbung abgeschickt",
 				"description": "Deine Bewerbung wird bald geprüft"
+			},
+			"disabledApplications": {
+				"title": "Disabled Applications",
+				"description": "This BuildTeam has disabled applications. Please message the BuildTeam if you think this is an error."
 			}
 		},
 		"duplicate": {

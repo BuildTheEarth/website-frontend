@@ -2,8 +2,8 @@
 	"head": {
 		"title": "Byggelag"
 	},
-	"description": "Byggelag er den enkleste måten å bli med i Build The Earth. Disse gruppene samarbeider på en flerspiller-server for å bygge byer, regioner og noen ganger til og med hele land. Alt du trenger å gjøre er å klikke på 'Søk om å bli med', og innen kort tid kan du begynne å hjelpe til!",
-	"joining": "For å delta i et byggelag, må du ha kjøpt Minecraft Java Edition eller Minecraft Bedrock Edition, avhengig av laget. I de fleste tilfeller må du også ha Build The Earth Modpack installert.",
+	"description": "Byggelag er den enkleste måten å bli med i BuildTheEarth. Disse gruppene samarbeider på en flerspiller-server for å bygge byer, regioner og noen ganger til og med hele land. Alt du trenger å gjøre er å klikke på 'Søk om å bli med', og innen kort tid kan du begynne å hjelpe til!",
+	"joining": "For å delta i et byggelag, må du ha kjøpt Minecraft Java Edition eller Minecraft Bedrock Edition, avhengig av laget. I de fleste tilfeller må du også ha BuildTheEarth-Modpack installert.",
 	"members": "{{num}} Medlemmer",
 	"team": {
 		"overview": "Oversikt",
@@ -24,6 +24,10 @@
 			"success": {
 				"title": "Søknad sendt",
 				"description": "Søknaden din vil bli gjennomgått snart"
+			},
+			"disabledApplications": {
+				"title": "Disabled Applications",
+				"description": "This BuildTeam has disabled applications. Please message the BuildTeam if you think this is an error."
 			}
 		},
 		"duplicate": {

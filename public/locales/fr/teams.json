@@ -1,39 +1,43 @@
 {
 	"head": {
-		"title": "Build Teams"
+		"title": "Teams de build"
 	},
-	"description": "Build teams are the easiest way to join Build The Earth. These groups work together on a multiplayer server to build cities, regions and sometimes even entire countries. All you need to do is click 'Apply to join' and within no time you can start helping out!",
-	"joining": "To participate in a build team, you need to have purchased Minecraft Java Edition or Minecraft Bedrock Edition, depending on the team. In most cases, you will also be required to have the Build The Earth Modpack installed.",
-	"members": "{{num}} Members",
+	"description": "Les équipes de construction sont le moyen le plus simple de rejoindre BuildTheEarth. Ces groupes travaillent ensemble sur un serveur multijoueur pour construire des villes, des régions et parfois des pays entiers. Tout ce que vous avez à faire est de cliquer sur \"Postuler pour rejoindre\" et en un rien de temps vous pourrez commencer à nous aider !",
+	"joining": "Pour participer à une équipe de construction, vous devez avoir acheté Minecraft Java Edition ou Minecraft Bedrock Edition, selon l'équipe. Dans la plupart des cas, vous devrez également avoir le modpack BuildTheEarth installé.",
+	"members": "{{num}} Membres",
 	"team": {
-		"overview": "Overview",
+		"overview": "Aperçu",
 		"images": "Images",
-		"details": "Details",
-		"location": "Countries",
-		"members": "Members",
-		"builds": "Builds"
+		"details": "Détails",
+		"location": "Pays",
+		"members": "Membres",
+		"builds": "Constructions"
 	},
 	"apply": {
-		"title": "Join {{team}}",
+		"title": "Rejoindre {{team}}",
 		"trial": {
-			"title": "Trial Application",
-			"description": "This buildteam supports trial applications. You can apply as trial when selecting the button below."
+			"title": "Demande d'essai",
+			"description": "Cette équipe de construction prend en charge les demandes d'essai. Vous pouvez appliquer en tant qu'essai en cliquant sur le bouton ci-dessous."
 		},
 		"messages": {
-			"error": "Application failed",
+			"error": "Candidature échouée",
 			"success": {
-				"title": "Application sent",
-				"description": "Your Application will be reviewed shortly"
+				"title": "Candidature envoyée",
+				"description": "Votre candidature sera bientôt examinée"
+			},
+			"disabledApplications": {
+				"title": "Candidatures désactivées",
+				"description": "Cette équipe de construction a désactivé les applications. Veuillez envoyer un message à l'équipe de construction si vous pensez qu'il s'agit d'une erreur."
 			}
 		},
 		"duplicate": {
 			"pending": {
-				"title": "Pending Application",
-				"description": "You have already applied to this buildteam on the {{date}}. Please wait for this application to be reviewed."
+				"title": "Demande en attente",
+				"description": "Vous avez déjà postulé dans cette équipe de construction le {{date}}. Veuillez attendre que cette application soit examinée."
 			},
 			"accepted": {
-				"title": "Accepted Application",
-				"description": "You were already accepted to this buildteam on the {{date}}."
+				"title": "Demande acceptée",
+				"description": "Vous avez déjà été accepté par cette équipe de construction le {{date}}."
 			}
 		}
 	}
