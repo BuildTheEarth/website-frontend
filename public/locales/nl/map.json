@@ -2,7 +2,7 @@
 	"claim": {
 		"details": {
 			"title": "Claim Details",
-			"name": "Name",
+			"name": "Naam",
 			"status": {
 				"title": "Claim Status",
 				"description": "This Claim is still under construction and not completed yet."
