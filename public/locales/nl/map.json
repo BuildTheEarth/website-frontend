@@ -9,70 +9,70 @@
 			},
 			"team": "Team",
 			"owner": "Owner",
-			"builders": "Builders",
-			"area": "Area",
+			"builders": "Bouwers",
+			"area": "Oppervlak",
 			"actions": {
-				"coordinates": "Copy Coordinates",
+				"coordinates": "Kopieer Coördinaten",
 				"zoom": "Zoom",
 				"link": "Link",
-				"edit": "Edit Claim"
+				"edit": "Bewerk Claim"
 			},
-			"city": "City",
+			"city": "Plaats",
 			"description": "Description",
-			"buildings": "Buildings",
-			"address": "Address",
+			"buildings": "Gebouwen",
+			"address": "Adres",
 			"image": {
 				"delete": {
-					"title": "Delete Showcase Image",
-					"description": "Are you sure you want to delete the image from the claim? This action cannot be undone.",
-					"label": "Delete Image"
+					"title": "Verwijder Showcase Afbeelding",
+					"description": "Weet je zeker dat je de afbeelding wilt verwijderen van de claim? Dit kan niet ongedaan worden gemaakt.",
+					"label": "Verwijder Afbeelding"
 				},
 				"create": {
-					"loading": "Uploading your images...",
-					"title": "Drag image here or click to select file",
-					"subtitle": "Attach one file, file size should not exceed 2mb"
+					"loading": "Je afbeeldingen worden geupload...",
+					"title": "Sleep een afbeelding hierheen of klik om bestand te selecteren",
+					"subtitle": "Voeg een bestand toe, niet groter dan 2 MB"
 				}
 			}
 		}
 	},
 	"edit": {
-		"title": "Edit Claim",
-		"name": "Claim Name",
-		"finished": "Claim is finished",
-		"active": "Show on map",
+		"title": "Bewerk Claim",
+		"name": "Claimnaam",
+		"finished": "Claim is af",
+		"active": "Toon op kaart",
 		"builders": {
-			"title": "Builders",
-			"alert": "Editing Builders currently does not work",
-			"description": "If there are any incorrect Builders listed for this claim, message us."
+			"title": "Bouwers",
+			"alert": "Bouwers bewerken kan momenteel niet",
+			"description": "Als er verkeerde Bouwers bij deze claim staan, stuur ons dan een bericht."
 		},
 		"help": {
-			"title": "How to edit Claim Polygons",
-			"description": "You can find an tutorial how to use the map on the right side here:"
+			"title": "Hoe bewerk je Claim Polygons",
+			"description": "Je kan een uitleg vinden over hoe je de kaart gebruikt aan de rechterkant hier:"
 		},
-		"description": "Description",
+		"description": "Beschrijving",
 		"buildings": {
-			"title": "Building Count",
-			"description": "You cannot edit this field, it will get automatically calculated."
+			"title": "Aantal Gebouwen",
+			"description": "Je kan dit veld niet veranderen, hij wordt automatisch berekend."
 		}
 	},
 	"stats": {
-		"title": "Map Statistics",
+		"title": "Kaartstatistieken",
 		"global": {
-			"buildings": "Finished Buildings",
-			"claims": "Finished Claims",
-			"area": "Total finished Area"
+			"buildings": "Afgeronde gebouwen",
+			"claims": "Afgeronde Claims",
+			"area": "Totaal afgerond Oppervlak"
 		},
 		"average": {
-			"buildings": "Average Buildings per Claim",
-			"area": "Average Area per Claim"
+			"buildings": "Gemiddeld aantal Gebouwen per Claim",
+			"area": "Gemiddeld Oppervlak per Claim"
 		},
-		"largestClaim": "Largest Claim",
-		"mostBuildings": "Most Buildings",
-		"mostBuildTeam": "Most Claims per BuildTeam",
-		"mostUser": "Most Claims per User",
+		"largestClaim": "Grootste Claim",
+		"mostBuildings": "Meeste Gebouwen",
+		"mostBuildTeam": "Meeste Claims per BuildTeam",
+		"mostUser": "Meeste Claims per Gebruiker",
 		"total": {
-			"title": "The Total Progress",
-			"description": "Using the total claimed area, we can calculate the following percentages:"
+			"title": "De Totale Voortgang",
+			"description": "Met het totaal geclaimde oppervlak kunnen we de volgende percentages berekenen:"
 		}
 	}
 }
