@@ -13,7 +13,7 @@ export const languages = [
 	{ label: 'Deutsch', code: 'de', flag: 'de' },
 	{ label: 'Nederlands', code: 'nl', flag: 'nl' },
 	{ label: 'Français', code: 'fr', flag: 'fr' },
-	{ label: 'Norwegisch', code: 'no', flag: 'no' },
+	{ label: 'Norsk', code: 'no', flag: 'no' },
 	{ label: 'русский', code: 'ru', flag: 'ru' },
 	{ label: '中文', code: 'zh', flag: 'cn' },
 ];
