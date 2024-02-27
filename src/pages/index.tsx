@@ -12,23 +12,20 @@ import {
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
-import { ChevronDown, ChevronRight } from 'tabler-icons-react';
-import { IconBuilding, IconInfoCircle, IconPhoto } from '@tabler/icons-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { ChevronDown, ChevronRight } from 'tabler-icons-react';
 
-import BackgroundImage from '../components/BackgroundImage';
-import Gallery from '../components/Gallery';
+import { IconPhoto } from '@tabler/icons-react';
+import { NextPage } from 'next';
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import Link from 'next/link';
-import { NextPage } from 'next';
+import { useRouter } from 'next/router';
+import BackgroundImage from '../components/BackgroundImage';
+import Gallery from '../components/Gallery';
 import Page from '../components/Page';
 import fetcher from '../utils/Fetcher';
-import getstartedImg from '../../public/images/home/getstarted.webp';
-import missionImg from '../../public/images/home/mission.webp';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import thumbnail from '../../public/images/home/head.webp';
-import { useRouter } from 'next/router';
-import { useTranslation } from 'next-i18next';
 
 const Home: NextPage = ({ data, headData }: any) => {
 	const theme = useMantineTheme();
@@ -49,7 +46,7 @@ const Home: NextPage = ({ data, headData }: any) => {
 			<BackgroundImage
 				rootStyle={{
 					width: '100%',
-					height: '95vh',
+					height: '100vh',
 				}}
 				src={`https://cdn.buildtheearth.net/uploads/${headData[0].image.name}`}
 				blurDataURL={headData[0].image.hash}
@@ -141,7 +138,7 @@ const Home: NextPage = ({ data, headData }: any) => {
 					>
 						<Center style={{ width: '100%', height: '100%' }}>
 							<div style={{ padding: '0px 10%' }}>
-								<h2 id="more" style={{ scrollMarginTop: 70 }}>
+								<h2 id="more" style={{ scrollMarginTop: 150 }}>
 									{t('mission.title')}
 								</h2>
 								<div

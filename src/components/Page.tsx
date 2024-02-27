@@ -33,6 +33,7 @@ interface PageProps {
 	style?: React.CSSProperties;
 	requiredPermissions?: string[];
 	loading?: boolean;
+	solidHeader?: boolean;
 }
 
 const Page = (props: PageProps) => {
@@ -65,6 +66,7 @@ const Page = (props: PageProps) => {
 						transition: 'opacity 0.2s linear',
 						zIndex: 9999,
 					}}
+					solid={props.solidHeader}
 				/>
 			)}
 
@@ -73,7 +75,7 @@ const Page = (props: PageProps) => {
 					<BackgroundImage
 						src={props.head.image}
 						rootStyle={{
-							minHeight: '25vh',
+							minHeight: 'calc(60px + 25vh)',
 						}}
 						priority
 					>
@@ -83,7 +85,7 @@ const Page = (props: PageProps) => {
 								backgroundColor: '#00000077',
 								textAlign: 'center',
 								height: '100%',
-								minHeight: '25vh',
+								minHeight: 'calc(60px + 25vh)',
 								zIndex: 10,
 								position: 'relative',
 							}}

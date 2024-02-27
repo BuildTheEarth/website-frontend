@@ -42,7 +42,7 @@ import {
 	IconUser,
 	IconUsers,
 } from '@tabler/icons-react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useScroll, useTransform } from 'framer-motion';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import React, { CSSProperties, useState } from 'react';
 import { ChevronDown, FileSearch, Logout, World } from 'tabler-icons-react';
@@ -53,6 +53,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import logo from '../../public/logo.gif';
+import { useScrollPosition } from '../hooks/useScrollPosition';
 import { useUser } from '../hooks/useUser';
 import classes from '../styles/components/Header.module.css';
 import { hexToDataURL } from '../utils/Color';
@@ -64,17 +65,19 @@ interface HeaderProps {
 		translation: string;
 	}[];
 	style?: React.CSSProperties;
+	solid?: boolean;
 }
 
-const Header = ({ links, style }: HeaderProps) => {
+const Header = ({ links, style, solid }: HeaderProps) => {
 	const [opened, handler] = useDisclosure(false);
 	const [userMenuOpened, setUserMenuOpened] = useState(false);
 	const { t } = useTranslation();
 	const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 	const router = useRouter();
-	const theme = useMantineTheme();
 	const { data: session, status } = useSession();
+	const { scrollY } = useScrollPosition();
 	const user = useUser();
+
 	const items = links.map((link) => (
 		<Anchor
 			component={Link}
@@ -84,12 +87,20 @@ const Header = ({ links, style }: HeaderProps) => {
 				handler.close();
 			}}
 			href={link.link}
+			data-scroll-full={scrollY >= 100}
 		>
 			{t(`links.${link.translation}`)}
 		</Anchor>
 	));
+
 	return (
-		<Box className={classes.root} style={{ ...style, height: 60 }}>
+		<Box
+			className={classes.root}
+			style={{ ...style, height: 60 }}
+			data-transparent={!solid}
+			data-opened={opened}
+			data-scroll-full={scrollY >= 100}
+		>
 			<Container className={classes.header} size={'xl'}>
 				<Group gap={5} className={classes.logo} onClick={() => router.push('/')}>
 					<Image
@@ -109,6 +120,7 @@ const Header = ({ links, style }: HeaderProps) => {
 						color="gray"
 						aria-label="Search on map"
 						component={Link}
+						className={classes.linkIcon}
 						href="/map?s=true"
 						title="Search on map"
 					>

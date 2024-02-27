@@ -64,6 +64,11 @@ a {
 	background: light-dark(var(--mantine-color-white), var(--mantine-color-dark-7)) !important;
 }
 
+.mapboxgl-ctrl-top-right {
+	margin-top: 60px;
+
+}
+
 .mapboxgl-ctrl-icon {
 	filter: light-dark(invert(29%) sepia(2%) saturate(3411%) hue-rotate(170deg) brightness(88%) contrast(80%), invert(82%) sepia(8%) saturate(72%) hue-rotate(187deg) brightness(75%) contrast(91%)) !important;
 }

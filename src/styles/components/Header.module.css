@@ -1,5 +1,24 @@
 .root {
 	z-index: 99;
+		background: var(--mantine-color-body);
+	transition: all 0.2s linear !important;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+
+	&[data-transparent='true'] {
+		background: linear-gradient(360deg, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0.5) 100%);
+
+		@media (max-width: $mantine-breakpoint-md) {
+			background: var(--mantine-color-body);
+		}
+	}
+
+	&[data-scroll-full='true'] {
+		background: var(--mantine-color-body);
+		box-shadow: var(--mantine-shadow-md);
+	}
 }
 
 .dropdown {
@@ -59,7 +78,26 @@
 	}
 }
 
+.linkIcon {
+	transition: all 0.2s ease-in-out;
+	@media (min-width: $mantine-breakpoint-md) {
+		border-radius: var(--mantine-radius-sm);
+		&:hover {
+			background-color: rgba(0, 0, 0, 0.4);
+			color: light-dark(#000, var(--mantine-color-dark-0));
+		}
+	}
+
+	@media (max-width: $mantine-breakpoint-md) {
+		&:hover {
+			background-color: light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-5));
+			color: light-dark(#000, var(--mantine-color-dark-0));
+		}
+	}
+}
+
 .link {
+	font-weight: 400;
 	@media (min-width: $mantine-breakpoint-md) {
 		border-radius: var(--mantine-radius-sm);
 		display: block;
@@ -68,13 +106,19 @@
 		cursor: pointer;
 		text-decoration: none;
 		color: light-dark(#666, var(--mantine-color-dark-0));
-		font-size: var(--mantine-font-size-sm);
+
+		&[data-scroll-full='true'] {
+			font-size: var(--mantine-font-size-sm);
+		}
+
+		font-size: var(--mantine-font-size-md);
 		transition: all 0.2s ease-in-out;
 		&:hover {
-			background-color: light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-5));
+			background-color: rgba(0, 0, 0, 0.4);
 			color: light-dark(#000, var(--mantine-color-dark-0));
 		}
 	}
+
 	@media (max-width: $mantine-breakpoint-md) {
 		border-radius: 0;
 		display: block;
@@ -114,13 +158,22 @@
 	border-radius: var(--mantine-radius-sm);
 	margin-left: var(--mantine-spacing-xs);
 	transition: background-color 100ms ease;
-	@media (max-width: $mantine-breakpoint-sm) {
+
+	@media (min-width: $mantine-breakpoint-md) {
+		border-radius: var(--mantine-radius-sm);
+		&:hover {
+			background-color: rgba(0, 0, 0, 0.4);
+			color: light-dark(#000, var(--mantine-color-dark-0));
+		}
+	}
+	@media (max-width: $mantine-breakpoint-md) {
 		border-radius: 0;
 		padding: var(--mantine-spacing-md);
 		margin: 0;
 		width: 100%;
-	}
-	&:hover {
-		background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
+		&:hover {
+			background-color: light-dark(var(--mantine-color-gray-1), var(--mantine-color-dark-5));
+			color: light-dark(#000, var(--mantine-color-dark-0));
+		}
 	}
 }

@@ -93,6 +93,7 @@ function Map({
 			container: node,
 			accessToken: process.env.NEXT_PUBLIC_MAPBOX_TOKEN,
 			style: initialStyle || scheme.colorScheme == 'dark' ? styles[0].uri : styles[1].uri,
+			attributionControl: false,
 			zoom: 1,
 			antialias: true,
 			//@ts-ignore

@@ -95,6 +95,7 @@ const MapPage: NextPage = () => {
 			fullWidth
 			title="Map"
 			description="Explore the progress that has been made in the BuildTheEarth Project."
+			solidHeader
 		>
 			<DynamicClaimDrawer open={opened} setOpen={setOpened} id={selected} map={map} t={t} />
 			<Spotlight
@@ -125,7 +126,7 @@ const MapPage: NextPage = () => {
 				oLat={clientPos.lat}
 				oLng={clientPos.lng}
 			/>
-			<div style={{ height: '96vh', width: '100%', position: 'relative' }}>
+			<div style={{ height: '100vh', width: '100%', position: 'relative' }}>
 				<DynamicMap
 					src={`${process.env.NEXT_PUBLIC_API_URL}/claims/geojson?active=true`}
 					onContextMenu={contextHandler}
@@ -141,7 +142,6 @@ const MapPage: NextPage = () => {
 								setOpened(true);
 								return;
 							}
-							console.log(f);
 							modals.open({
 								title: 'Choose Claim to select',
 								centered: true,
