@@ -1,37 +1,78 @@
 {
 	"claim": {
 		"details": {
-			"title": "Claim Details",
-			"name": "Name",
+			"title": "Детали полигона",
+			"name": "Название",
 			"status": {
-				"title": "Claim Status",
-				"description": "This Claim is still under construction and not completed yet."
+				"title": "Статус полигона",
+				"description": "Эта местность еще строится и не завершена."
 			},
-			"team": "Team",
-			"owner": "Owner",
-			"builders": "Builders",
-			"area": "Area",
+			"team": "Команда",
+			"owner": "Владелец",
+			"builders": "Строители",
+			"area": "Площадь",
 			"actions": {
-				"coordinates": "Copy Coordinates",
-				"zoom": "Zoom",
-				"link": "Link",
-				"edit": "Edit Claim"
+				"coordinates": "Копировать координаты",
+				"zoom": "Увеличить",
+				"link": "Ссылка",
+				"edit": "Редактировать"
+			},
+			"city": "Город",
+			"description": "Описание",
+			"buildings": "Зданий",
+			"address": "Адрес",
+			"image": {
+				"delete": {
+					"title": "Удалить изображение",
+					"description": "Вы уверены, что хотите удалить изображение? Это действие нельзя отменить.",
+					"label": "Удалить изображение"
+				},
+				"create": {
+					"loading": "Загрузка изображений...",
+					"title": "Перетащите сюда изображение или нажмите для выбора файла",
+					"subtitle": "Прикрепить один файл, размер файла не должен превышать 2Мб"
+				}
 			}
 		}
 	},
 	"edit": {
-		"title": "Edit Claim",
-		"name": "Claim Name",
-		"finished": "Claim is finished",
-		"active": "Show on map",
+		"title": "Редактировать",
+		"name": "Название полигона",
+		"finished": "Местность полностью готова",
+		"active": "Показать на карте",
 		"builders": {
-			"title": "Builders",
-			"alert": "Editing Builders currently does not work",
-			"description": "If there are any incorrect Builders listed for this claim, message us."
+			"title": "Строители",
+			"alert": "Редактирование строителей в данный момент не работает",
+			"description": "Если для этого полигона есть некорректные строители, то напишите нам."
 		},
 		"help": {
-			"title": "How to edit Claim Polygons",
-			"description": "You can find an tutorial how to use the map on the right side here:"
+			"title": "Как редактировать полигоны",
+			"description": "Здесь вы можете найти руководство, как правильно использовать карту:"
+		},
+		"description": "Описание",
+		"buildings": {
+			"title": "Количество зданий",
+			"description": "Вы не можете изменить это поле, оно вычисляется автоматически."
+		}
+	},
+	"stats": {
+		"title": "Статистика",
+		"global": {
+			"buildings": "Построенных зданий",
+			"claims": "Готовых полигонов",
+			"area": "Общая готовая площадь"
+		},
+		"average": {
+			"buildings": "Среднее количество зданий в полигоне",
+			"area": "Средняя площадь полигонов"
+		},
+		"largestClaim": "Самый большой полигон",
+		"mostBuildings": "Больше всего зданий",
+		"mostBuildTeam": "Больше всего полигонов в команде",
+		"mostUser": "Больше всего полигонов у:",
+		"total": {
+			"title": "Общий прогресс",
+			"description": "С помощью общей площади полигонов можно рассчитать следующие проценты:"
 		}
 	}
 }

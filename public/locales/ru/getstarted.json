@@ -1,53 +1,53 @@
 {
 	"choose": {
-		"title": "How would you like to participate?",
+		"title": "Как бы вы хотели присоединиться?",
 		"visit": {
-			"title": "Explore BuildTheEarth",
-			"subtitle": "Visit countries, cities and even villages, which we have already build.",
-			"button": "Join the server"
+			"title": "Путешествие по BuildTheEarth",
+			"subtitle": "Посетите страны, города и даже деревни, которые мы уже построили.",
+			"button": "Подключиться к серверу"
 		},
 		"build": {
-			"title": "Start Building",
-			"subtitle": "Apply to become a Builder and help us with our goal to build the Earth in Minecraft.",
-			"button": "Apply"
+			"title": "Начать строить",
+			"subtitle": "Присоединяйтесь, чтобы стать строителем и помогайте нам с нашей целью - построить Землю в Minecraft.",
+			"button": "Подать заявку"
 		}
 	},
 	"visit": {
-		"title": "Explore BuildTheEarth",
-		"description": "Search a country below to see detailed instructions on how to visit this country.",
+		"title": "Путешествие по BuildTheEarth",
+		"description": "Выберите страну, чтобы получить инструкцию как к ней подключиться.",
 		"country": {
-			"title": "How to visit {{country}}",
+			"title": "Как посетить {{country}}",
 			"step0": {
-				"title": "Search for the Country",
-				"description": "in the search box above"
+				"title": "Поиск страны",
+				"description": "в поле поиска выше"
 			},
 			"step1": {
-				"title": "Start Minecraft",
-				"description": "using the Launcher"
+				"title": "Запустите Minecraft",
+				"description": "используя лаунчер"
 			},
 			"step2": {
-				"title": "Use the IP <b>{{ip}}</b>",
-				"description": "to connect to the server"
+				"title": "Используйте IP <b>{{ip}}</b>",
+				"description": "подключаться к серверу"
 			},
 			"step3": {
-				"title": "Run /bt {{slug}}",
-				"description": "to connect to the country"
+				"title": "Напишите команду /bt {{slug}}",
+				"description": "подключиться к стране"
 			},
 			"step4": {
-				"title": "Start exploring",
+				"title": "Исследуйте",
 				"description": "{{country}}"
 			}
 		},
-		"back": "Back",
-		"open": "Open Build Team Page"
+		"back": "Назад",
+		"open": "Открыть страницу команды"
 	},
 	"build": {
-		"title": "Build in BuildTheEarth",
-		"description": "Search a country or team below to apply for it.",
+		"title": "Стройте в BuildTheEarth",
+		"description": "Найдите страну или команду ниже, чтобы подать заявку.",
 		"country": {
-			"title": "How to visit {{country}}"
+			"title": "Как посетить {{country}}"
 		},
-		"back": "Back"
+		"back": "Назад"
 	},
-	"more": "Read more"
+	"more": "Читать больше"
 }

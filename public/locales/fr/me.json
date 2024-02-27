@@ -1,59 +1,59 @@
 {
 	"head": {
-		"title": "My BuildTheEarth"
+		"title": "Mon BuildTheEarth"
 	},
-	"description": "Welcome to your own section of BuildTheEarth. Here you can see your own progress, joined Build Teams and other usefull information.",
+	"description": "Bienvenue dans votre propre section de BuildTheEarth. Ici vous pouvez voir vos propres progrès, rejoindre des équipes de construction et d'autres informations utiles.",
 	"account": {
-		"title": "Account Information",
-		"minecraft": "Linked Minecraft Username:",
-		"id": "Account Id:",
-		"settings": "Open Settings"
+		"title": "Informations sur le compte",
+		"minecraft": "Nom d'utilisateur Minecraft lié :",
+		"id": "ID du compte :",
+		"settings": "Ouvrir les paramètres"
 	},
 	"teams": {
-		"title": "Joined Build Teams",
-		"description": "Build teams are the easiest way to join Build The Earth. These groups work together on a multiplayer server to build cities, regions and sometimes even entire countries.",
+		"title": "Équipes de construction rejointes",
+		"description": "Les équipes de construction sont le moyen le plus simple de rejoindre Build The Earth. Ces groupes travaillent ensemble sur un serveur multijoueur pour construire des villes, des régions et parfois des pays entiers.",
 		"empty": {
-			"description": "You have not joined any Team yet",
-			"action": "Browse Teams"
+			"description": "Vous n'avez pas encore rejoint d'équipe",
+			"action": "Parcourir les équipes"
 		}
 	},
 	"owned": {
-		"title": "Owned Build Teams",
-		"description": "The Build Teams listed below are all owned by you or you have management permission on them.",
-		"action": "Edit Settings"
+		"title": "Équipes de construction possédées",
+		"description": "Les équipes de construction listées ci-dessous sont toutes détenues par vous ou vous avez une autorisation de gestion sur elles.",
+		"action": "Modifier les paramètres"
 	},
 	"claims": {
-		"title": "Claims",
-		"description": "Claims are Buildings or Areas you are working on or have finished. They help us keep track of what is already build.",
+		"title": "Terrains",
+		"description": "Les terrains sont des bâtiments ou des zones sur lesquelles vous travaillez ou qui sont terminées. Elles nous aident à garder une trace de ce qui est déjà construit.",
 		"status": {
-			"finished": "Finished",
-			"building": "Under Construction"
+			"finished": "Terminé",
+			"building": "En construction"
 		},
-		"action": "Edit Claim",
+		"action": "Modifier le terrain",
 		"create": {
-			"description": "Create Claims to track Building Progress",
-			"action": "Create Claim",
+			"description": "Créer des terrains pour suivre le progrès de la construction",
+			"action": "Créer un terrain",
 			"modal": {
-				"title": "Create Claim",
-				"description": "Create a new Claim to track your progress.",
-				"input": "Select a BuildTeam"
+				"title": "Créer un terrain",
+				"description": "Créez un nouveau terrain pour suivre votre progression.",
+				"input": "Sélectionner une équipe de construction"
 			}
 		}
 	},
 	"settings": {
 		"general": {
-			"title": "Profile Information"
+			"title": "Informations sur le profil"
 		},
 		"security": {
-			"title": "Security Details",
-			"description": "To reset your current password, please log out and back in and choose `Forgot Password`, an email with instructions will be sent to you. If you encounter any problems, message us.",
-			"alert": "Reset Password"
+			"title": "Informations de sécurité",
+			"description": "Pour réinitialiser votre mot de passe actuel, veuillez vous déconnecter et revenir et choisir `Mot de passe oublié`, un email contenant les instructions vous sera envoyé. Si vous rencontrez des problèmes, envoyez-nous un message.",
+			"alert": "Réinitialiser le mot de passe"
 		},
 		"accounts": {
-			"title": "Linked Accounts"
+			"title": "Comptes associés"
 		},
 		"session": {
-			"title": "Active Sessions"
+			"title": "Sessions actives"
 		}
 	}
 }

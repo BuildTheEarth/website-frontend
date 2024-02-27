@@ -1,37 +1,78 @@
 {
 	"claim": {
 		"details": {
-			"title": "Claim Details",
-			"name": "Name",
+			"title": "Détails du terrain",
+			"name": "Nom",
 			"status": {
-				"title": "Claim Status",
-				"description": "This Claim is still under construction and not completed yet."
+				"title": "Statut du terrain",
+				"description": "Ce terrain est toujours en construction et n'est pas encore terminé."
 			},
-			"team": "Team",
-			"owner": "Owner",
+			"team": "Équipe",
+			"owner": "Propriétaire",
 			"builders": "Builders",
-			"area": "Area",
+			"area": "Surface",
 			"actions": {
-				"coordinates": "Copy Coordinates",
-				"zoom": "Zoom",
-				"link": "Link",
-				"edit": "Edit Claim"
+				"coordinates": "Copier les coordonnées",
+				"zoom": "Zoomer",
+				"link": "Lien",
+				"edit": "Modifier le terrain"
+			},
+			"city": "Ville",
+			"description": "Description",
+			"buildings": "Bâtiments",
+			"address": "Adresse",
+			"image": {
+				"delete": {
+					"title": "Supprimer l'image de présentation",
+					"description": "Êtes-vous sûr(e) de supprimer cette image du terrain? Cette action est irréversible.",
+					"label": "Supprimer l'image"
+				},
+				"create": {
+					"loading": "Téléchargement de vos images...",
+					"title": "Glissez l'image ici ou cliquez pour sélectionner un fichier",
+					"subtitle": "Joindre un fichier, la taille du fichier ne doit pas dépasser 2Mo"
+				}
 			}
 		}
 	},
 	"edit": {
-		"title": "Edit Claim",
-		"name": "Claim Name",
-		"finished": "Claim is finished",
-		"active": "Show on map",
+		"title": "Modifier le terrain",
+		"name": "Nom du terrain",
+		"finished": "Le terrain est terminé",
+		"active": "Montrer sur la carte",
 		"builders": {
 			"title": "Builders",
-			"alert": "Editing Builders currently does not work",
-			"description": "If there are any incorrect Builders listed for this claim, message us."
+			"alert": "La modification des Builders ne fonctionne pas actuellement",
+			"description": "S'il y a des Builders incorrects listés pour ce terrain, envoyez-nous un message."
 		},
 		"help": {
-			"title": "How to edit Claim Polygons",
-			"description": "You can find an tutorial how to use the map on the right side here:"
+			"title": "Comment modifier les terrains polygonaux",
+			"description": "Vous pouvez trouver un tutoriel sur l'utilisation de la carte sur le côté droit ici :"
+		},
+		"description": "Description",
+		"buildings": {
+			"title": "Nombre de bâtiments",
+			"description": "Vous ne pouvez pas modifier ce champ, il sera automatiquement calculé."
+		}
+	},
+	"stats": {
+		"title": "Statistiques de la carte",
+		"global": {
+			"buildings": "Bâtiments terminés",
+			"claims": "Terrains terminés",
+			"area": "Superficie totale terminée"
+		},
+		"average": {
+			"buildings": "Moyenne des bâtiments par terrain",
+			"area": "Superficie moyenne par terrain"
+		},
+		"largestClaim": "Plus grand terrain",
+		"mostBuildings": "Plus de bâtiments",
+		"mostBuildTeam": "Plus de terrains par équipe de construction",
+		"mostUser": "Plus de terrains par utilisateur",
+		"total": {
+			"title": "La progression totale",
+			"description": "En utilisant la superficie totale revendiquée, nous pouvons calculer les pourcentages suivants :"
 		}
 	}
 }

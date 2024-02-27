@@ -16,6 +16,22 @@
 				"zoom": "Zoom",
 				"link": "Lenke",
 				"edit": "Rediger claim"
+			},
+			"city": "City",
+			"description": "Description",
+			"buildings": "Buildings",
+			"address": "Address",
+			"image": {
+				"delete": {
+					"title": "Delete Showcase Image",
+					"description": "Are you sure you want to delete the image from the claim? This action cannot be undone.",
+					"label": "Delete Image"
+				},
+				"create": {
+					"loading": "Uploading your images...",
+					"title": "Drag image here or click to select file",
+					"subtitle": "Attach one file, file size should not exceed 2mb"
+				}
 			}
 		}
 	},
@@ -26,12 +42,37 @@
 		"active": "Vis på kartet",
 		"builders": {
 			"title": "Byggere",
-			"alert": "Editing Builders currently does not work",
+			"alert": "Redigering av byggere fungerer foreløpig ikke",
 			"description": "Hvis det er noen feil i listen over byggere for denne claim-en, send oss en melding."
 		},
 		"help": {
 			"title": "Hvordan redigere claim-polygoner",
 			"description": "Du kan finne en veiledning om hvordan du bruker kartet til høyre her:"
+		},
+		"description": "Description",
+		"buildings": {
+			"title": "Building Count",
+			"description": "You cannot edit this field, it will get automatically calculated."
+		}
+	},
+	"stats": {
+		"title": "Map Statistics",
+		"global": {
+			"buildings": "Finished Buildings",
+			"claims": "Finished Claims",
+			"area": "Total finished Area"
+		},
+		"average": {
+			"buildings": "Average Buildings per Claim",
+			"area": "Average Area per Claim"
+		},
+		"largestClaim": "Largest Claim",
+		"mostBuildings": "Most Buildings",
+		"mostBuildTeam": "Most Claims per BuildTeam",
+		"mostUser": "Most Claims per User",
+		"total": {
+			"title": "The Total Progress",
+			"description": "Using the total claimed area, we can calculate the following percentages:"
 		}
 	}
 }

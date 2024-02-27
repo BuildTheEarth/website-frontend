@@ -24,6 +24,10 @@
 			"success": {
 				"title": "申請送出",
 				"description": "您的申請將很快被審核"
+			},
+			"disabledApplications": {
+				"title": "Disabled Applications",
+				"description": "This BuildTeam has disabled applications. Please message the BuildTeam if you think this is an error."
 			}
 		},
 		"duplicate": {

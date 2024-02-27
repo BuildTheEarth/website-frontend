@@ -1,5 +1,5 @@
 {
-	"language": "Английский",
+	"language": "Русский",
 	"copyright": "Copyright ©️ {{year}} BuildTheEarth. Не связан с Mojang или Minecraft",
 	"buildtheearth": "BuildTheEarth",
 	"staff": "Администрация",
@@ -8,10 +8,11 @@
 	"owner": "Владелец",
 	"trial": "Пробный период",
 	"search": "Поиск…",
+	"you": "вы",
 	"auth": {
 		"signin": "Войти",
 		"signout": "Выйти",
-		"signup": "Начать"
+		"signup": "Присоединиться"
 	},
 	"user": {
 		"quickActions": "Быстрые действия",
@@ -30,7 +31,7 @@
 		"copy": "Копировать",
 		"back": "Назад",
 		"submit": "Отправить",
-		"apply": "Apply",
+		"apply": "Подать заявку",
 		"cancel": "Отменить",
 		"reset": "Сбросить",
 		"link": "Прикрепить",
