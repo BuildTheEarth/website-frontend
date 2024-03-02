@@ -34,7 +34,7 @@ function ErrorPage(props: any) {
 					style={{
 						filter: 'brightness(0.5)',
 						width: '100%',
-						height: 'calc(100vh - 60px)',
+						height: '100vh',
 						objectFit: 'cover',
 					}}
 				/>
