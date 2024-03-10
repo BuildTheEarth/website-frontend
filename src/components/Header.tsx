@@ -21,15 +21,16 @@ import {
 	Menu,
 	MenuItem,
 	Paper,
+	rem,
 	Text,
 	Tooltip,
 	Transition,
 	UnstyledButton,
-	rem,
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
 import {
+	IconCalendar,
 	IconDashboard,
 	IconDots,
 	IconMoonStars,
@@ -203,6 +204,15 @@ const Header = ({ links, style, solid }: HeaderProps) => {
 										href="/admin/cron"
 									>
 										Administration
+									</Menu.Item>
+								)}
+								{user.hasPermission('calendar.manage') && (
+									<Menu.Item
+										leftSection={<IconCalendar size={14} />}
+										component={Link}
+										href="/calendar"
+									>
+										Event Calendar
 									</Menu.Item>
 								)}
 								<Menu.Divider />

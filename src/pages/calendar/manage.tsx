@@ -77,7 +77,7 @@ const Calendar: NextPage = () => {
 				image: thumbnail,
 			}}
 			seo={{ nofollow: true, noindex: true }}
-			requiredPermissions={['faq.edit', 'faq.remove', 'faq.add']}
+			requiredPermissions={['calendar.manage']}
 		>
 			<form onSubmit={form.onSubmit(handleAdd)}>
 				<h2>Add Calendar Event</h2>

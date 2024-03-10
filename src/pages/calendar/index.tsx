@@ -74,9 +74,7 @@ const Calendar: NextPage = ({ data }: any) => {
 					</GridCol>
 				))}
 			</Grid>
-			{(user.hasPermission('faq.add') ||
-				user.hasPermission('faq.edit') ||
-				user.hasPermission('faq.remove')) && (
+			{user.hasPermission('calendar.manage') && (
 				<Button
 					leftSection={<IconPlus />}
 					onClick={() => router.push('calendar/manage')}
