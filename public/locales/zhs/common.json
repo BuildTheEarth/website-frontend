@@ -1,0 +1,50 @@
+{
+	"language": "中文",
+	"copyright": "版權所有© {{year}} BuildTheEarth。不隸屬於Mojang或Minecraft",
+	"buildtheearth": "BuildTheEarth",
+	"staff": "工作人員",
+	"builder": "建築師",
+	"manager": "管理員",
+	"owner": "擁有者",
+	"trial": "試用",
+	"search": "搜尋…",
+	"you": "du",
+	"auth": {
+		"signin": "登入",
+		"signout": "登出",
+		"signup": "開始使用"
+	},
+	"user": {
+		"quickActions": "快速行動",
+		"upload": "上傳世界",
+		"theme": {
+			"dark": "切換明亮主題",
+			"light": "切換暗黑主題"
+		},
+		"review": "審核認領",
+		"settings": "設定",
+		"profile": "我的BuildTheEarth"
+	},
+	"button": {
+		"save": "儲存",
+		"delete": "刪除",
+		"copy": "複製",
+		"back": "返回",
+		"submit": "提交",
+		"apply": "申請",
+		"cancel": "取消",
+		"reset": "重設",
+		"link": "連結",
+		"unlink": "解除連結"
+	},
+	"links": {
+		"faq": "常見問題",
+		"map": "地圖",
+		"teams": "建築團隊",
+		"contact": "聯絡",
+		"aboutUs": "關於我們",
+		"newsletter": "新聞通訊",
+		"gallery": "畫廊",
+		"status": "狀態"
+	}
+}
