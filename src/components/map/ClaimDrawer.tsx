@@ -61,6 +61,7 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 			opened={props.open}
 			onClose={() => props.setOpen(false)}
 			title={t('claim.details.title')}
+			zIndex={9999}
 			size="md"
 			overlayProps={{ opacity: 0.5 }}
 			scrollAreaComponent={ScrollArea.Autosize}
