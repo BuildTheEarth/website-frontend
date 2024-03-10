@@ -1,19 +1,24 @@
 import {
 	ActionIcon,
 	Alert,
+	AspectRatio,
 	Badge,
 	Button,
+	Card,
 	Code,
 	Divider,
 	Grid,
 	Group,
+	Image,
+	Paper,
+	SimpleGrid,
 	Stack,
 	Text,
 	Textarea,
 	Tooltip,
 	useMantineTheme,
 } from '@mantine/core';
-import { IconCheck, IconCopy, IconX } from '@tabler/icons-react';
+import { IconCheck, IconChevronDown, IconCopy, IconX } from '@tabler/icons-react';
 import useSWR, { mutate } from 'swr';
 
 import { useClipboard } from '@mantine/hooks';
@@ -25,8 +30,8 @@ import thumbnail from '../../../../../../public/images/thumbnails/apply.png';
 import Page from '../../../../../components/Page';
 import SettingsTabs from '../../../../../components/SettingsTabs';
 import { useUser } from '../../../../../hooks/useUser';
-import fetcher from '../../../../../utils/Fetcher';
 import { ApplicationQuestions } from '../../../../../utils/application/ApplicationQuestions';
+import fetcher from '../../../../../utils/Fetcher';
 
 const Apply: NextPage = ({ team, id }: any) => {
 	const theme = useMantineTheme();
@@ -116,7 +121,9 @@ const Apply: NextPage = ({ team, id }: any) => {
 								(a: any, b: any) => a.question.sort - b.question.sort,
 							).map((a: any, i: number) => {
 								const d = a.question;
+
 								const Question = ApplicationQuestions[d.type];
+
 								return (
 									<Question
 										key={d.id}
