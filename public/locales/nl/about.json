@@ -5,13 +5,13 @@
 	"mission": {
 		"title": "Onze Missie",
 		"content": {
-			"1": "Hier bij BuildTheEarth, hebben we één simpel doel, om de hele aarde in Minecraft te recreëren op een 1:1 schaal. Ons project is gestart door PippenFTS, die de YouTube video gemaakt heeft waarmee het allemaal begon. Met de hulp van een paar moderators verwijderden we de hoogte limiet in Minecraft en maakten we een versie van de wereld met terrein.",
+			"1": "Bij BuildTheEarth, hebben we één simpel doel: De hele aarde in Minecraft recreëren op een 1:1 schaal. Ons project is gestart door PippenFTS, die de YouTube video gemaakt heeft waarmee het allemaal begon. Met de hulp van een paar mods verwijderden we de hoogte limiet in Minecraft en maakten we een versie van de wereld met terrein.",
 			"2": "Ontelbare uren zijn besteed aan het debatteren over welke projectie we zouden moeten gebruiken, en of we deze überhaupt wilden veranderen. Uiteindelijk is er besloten een aangepaste versie van de Air-ocean projectie te gebruiken, die vervorming minimaliseert en schaal behoudt in tegenstelling tot de equirectangulaire projectie die we eerder gebruikten. Tot nu toe is er al veel voortgang gemaakt en we hopen dat op een dag we de meerderheid van de aarde in Minecraft kunnen recreëren, op een 1:1 schaal."
 		}
 	},
 	"system": {
 		"title": "Hoe werkt BuildTheEarth?",
-		"content": "Is er geen hoogte limiet in Minecraft? Voor het bestaan van de Cubic Chunks Mod, had een project zoals dat van ons niet kunnen bestaan. Dankzij deze mod, die veranderd hoe Minecraft wereld gegevens opslaat, kunnen we nu een theoretisch gezien oneindige bouwhoogte hebben, wat ons toelaat de wereld te repliceren op een 1:1 schaal. Als een toevoeging hierop, hebben nieuwere versies van Minecraft een grotere hoogte limiet geïntroduceerd."
+		"content": "Er is toch een hoogte limiet in Minecraft? Voor het bestaan van de Cubic Chunks Mod had een project zoals dat van ons niet kunnen bestaan. Dankzij deze mod, die verandert hoe Minecraft de wereld gegevens opslaat, kunnen we nu een theoretisch gezien oneindige bouwhoogte hebben, zodat we nu de wereld kunnen repliceren op een 1:1 schaal. Als een toevoeging hierop hebben nieuwere versies van Minecraft een grotere hoogte limiet geïntroduceerd."
 	},
 	"history": {
 		"title": "Onze Geschiedenis en Toekomst",
