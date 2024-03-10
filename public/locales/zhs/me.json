@@ -1,0 +1,59 @@
+{
+	"head": {
+		"title": "我的BuildTheEarth"
+	},
+	"description": "歡迎來到您在BuildTheEarth的個人頁面。在這裡您可以看到自己的進度、加入的建築團隊以及其他實用的資訊。",
+	"account": {
+		"title": "帳戶資訊",
+		"minecraft": "連結的Minecraft使用者名稱：",
+		"id": "帳戶Id：",
+		"settings": "開啟設定"
+	},
+	"teams": {
+		"title": "加入的建築團隊",
+		"description": "加入建築團隊是參與Build The Earth最簡單的方式。這些團體在多人伺服器上合作建造城市、區域，有時甚至是整個國家。",
+		"empty": {
+			"description": "你還沒加入任何團隊",
+			"action": "瀏覽團隊"
+		}
+	},
+	"owned": {
+		"title": "擁有的建築團隊",
+		"description": "下方羅列的建築團隊均歸您所有，或您擁有對它們的管理權限。",
+		"action": "編輯設定"
+	},
+	"claims": {
+		"title": "領地",
+		"description": "領地是您正在施工或已完成的建築物或地區。用以幫助我們追蹤已經建造的項目。",
+		"status": {
+			"finished": "已完成",
+			"building": "建設中"
+		},
+		"action": "編輯領地",
+		"create": {
+			"description": "創建領地以追踪建築進度",
+			"action": "創建領地",
+			"modal": {
+				"title": "創建領地",
+				"description": "創建一個新的領地以追踪您的進度。",
+				"input": "選擇建築團隊"
+			}
+		}
+	},
+	"settings": {
+		"general": {
+			"title": "個人資訊"
+		},
+		"security": {
+			"title": "安全詳情",
+			"description": "若要重設您目前的密碼，請登出並選擇「忘記密碼」，我們將發送一封包含說明的電子郵件給您。如果您遇到任何問題，請聯絡我們。",
+			"alert": "重設密碼"
+		},
+		"accounts": {
+			"title": "連結帳戶"
+		},
+		"session": {
+			"title": "活動記錄"
+		}
+	}
+}
