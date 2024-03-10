@@ -1,50 +1,50 @@
 {
-	"language": "中文",
-	"copyright": "版權所有© {{year}} BuildTheEarth。不隸屬於Mojang或Minecraft",
+	"language": "English",
+	"copyright": "Copyright © {{year}} BuildTheEarth. Not affiliated with Mojang or Minecraft",
 	"buildtheearth": "BuildTheEarth",
-	"staff": "工作人員",
-	"builder": "建築師",
-	"manager": "管理員",
-	"owner": "擁有者",
-	"trial": "試用",
-	"search": "搜尋…",
+	"staff": "Staff",
+	"builder": "Builder",
+	"manager": "Manager",
+	"owner": "Owner",
+	"trial": "Trial",
+	"search": "Search…",
 	"you": "du",
 	"auth": {
-		"signin": "登入",
-		"signout": "登出",
-		"signup": "開始使用"
+		"signin": "Sign In",
+		"signout": "Sign Out",
+		"signup": "Get Started"
 	},
 	"user": {
-		"quickActions": "快速行動",
-		"upload": "上傳世界",
+		"quickActions": "Quick Actions",
+		"upload": "Upload World",
 		"theme": {
-			"dark": "切換明亮主題",
-			"light": "切換暗黑主題"
+			"dark": "Toggle light theme",
+			"light": "Toggle dark theme"
 		},
-		"review": "審核認領",
-		"settings": "設定",
-		"profile": "我的BuildTheEarth"
+		"review": "Review Applications",
+		"settings": "Settings",
+		"profile": "My BuildTheEarth"
 	},
 	"button": {
-		"save": "儲存",
-		"delete": "刪除",
-		"copy": "複製",
-		"back": "返回",
-		"submit": "提交",
-		"apply": "申請",
-		"cancel": "取消",
-		"reset": "重設",
-		"link": "連結",
-		"unlink": "解除連結"
+		"save": "Save",
+		"delete": "Delete",
+		"copy": "Copy",
+		"back": "Back",
+		"submit": "Submit",
+		"apply": "Apply",
+		"cancel": "Cancel",
+		"reset": "Reset",
+		"link": "Link",
+		"unlink": "Unlink"
 	},
 	"links": {
-		"faq": "常見問題",
-		"map": "地圖",
-		"teams": "建築團隊",
-		"contact": "聯絡",
-		"aboutUs": "關於我們",
-		"newsletter": "新聞通訊",
-		"gallery": "畫廊",
-		"status": "狀態"
+		"faq": "FAQ",
+		"map": "Map",
+		"teams": "Build Teams",
+		"contact": "Contact",
+		"aboutUs": "About us",
+		"newsletter": "Newsletter",
+		"gallery": "Gallery",
+		"status": "Status"
 	}
 }
