@@ -1,0 +1,44 @@
+{
+	"head": {
+		"title": "建築團隊"
+	},
+	"description": "加入建築團隊是參與Build The Earth最簡單的方式。這些團體在多人伺服器上合作建造城市、區域，有時甚至是整個國家。您只需要點擊「申請加入」，然後就可以立即展開協助！",
+	"joining": "要加入建築團隊，您需要購買Minecraft Java版或Minecraft 基岩版，具體取決於團隊。在大多數情況下，您還需要安裝Build The Earth模組包。",
+	"members": "{{num}} 名成員",
+	"team": {
+		"overview": "簡介",
+		"images": "圖片",
+		"details": "詳情",
+		"location": "地點",
+		"members": "成員",
+		"builds": "建築"
+	},
+	"apply": {
+		"title": "加入 {{team}}",
+		"trial": {
+			"title": "試用申請",
+			"description": "這個建築團隊支援試用申請。點選下方的按鈕即可申請試用。"
+		},
+		"messages": {
+			"error": "申請失敗",
+			"success": {
+				"title": "申請送出",
+				"description": "您的申請將很快被審核"
+			},
+			"disabledApplications": {
+				"title": "Disabled Applications",
+				"description": "This BuildTeam has disabled applications. Please message the BuildTeam if you think this is an error."
+			}
+		},
+		"duplicate": {
+			"pending": {
+				"title": "等待申請",
+				"description": "您在 {{date}} 已經申請加入這個建築團隊。請等待此申請被審核。"
+			},
+			"accepted": {
+				"title": "通過申請",
+				"description": "您在 {{date}} 已經獲准加入這個建築團隊。"
+			}
+		}
+	}
+}
