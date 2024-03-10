@@ -180,7 +180,7 @@ const Home: NextPage = ({ data, headData }: any) => {
 								marginLeft: '10%',
 								width: '70%',
 								height: '80%',
-								boxShadow: '10px 10px 0px 4px rgba(0,0,0,0.45)',
+								boxShadow: 'var(--mantine-shadow-block)',
 							}}
 						>
 							<Image
@@ -203,7 +203,7 @@ const Home: NextPage = ({ data, headData }: any) => {
 							style={{
 								height: '70vh',
 								width: '80%',
-								boxShadow: '10px 10px 0px 4px rgba(0,0,0,0.45)',
+								boxShadow: 'var(--mantine-shadow-block)',
 								y: galleryY,
 								overflowY: 'hidden',
 							}}
@@ -238,7 +238,7 @@ const Home: NextPage = ({ data, headData }: any) => {
 								marginLeft: '25%',
 								width: '65%',
 								height: '75%',
-								boxShadow: '10px 10px 0px 4px rgba(0,0,0,0.45)',
+								boxShadow: 'var(--mantine-shadow-block)',
 							}}
 						>
 							<Image

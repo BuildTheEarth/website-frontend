@@ -7,6 +7,7 @@ import {
 	GridCol,
 	Group,
 	Text,
+	Title,
 	Tooltip,
 } from '@mantine/core';
 
@@ -49,25 +50,36 @@ const Calendar: NextPage = ({ data }: any) => {
 				image: thumbnail,
 			}}
 			title="Calendar"
+			noBg
 		>
-			<h2>Ongoing Events</h2>
-			<Grid>
+			<Title order={2} mb="lg" mt="xl">
+				Ongoing Events
+			</Title>
+			<Grid gutter={'xl'}>
 				{ongoingEvents.map((e: any) => (
 					<GridCol key={e.id} span={4}>
 						<EventList {...e} ongoing />
 					</GridCol>
 				))}
 			</Grid>
-			<h2>Upcoming Events</h2>
-			<Grid>
-				{upcomingEvents.slice(0, 6).map((e: any) => (
-					<GridCol key={e.id} span={4}>
-						<EventList {...e} upcoming />
-					</GridCol>
-				))}
-			</Grid>
-			<h2>Past Events</h2>
-			<Grid>
+			{upcomingEvents.length > 0 && (
+				<>
+					<Title order={2} my="xl">
+						Upcoming Events
+					</Title>
+					<Grid gutter={'xl'}>
+						{upcomingEvents.slice(0, 6).map((e: any) => (
+							<GridCol key={e.id} span={4}>
+								<EventList {...e} upcoming />
+							</GridCol>
+						))}
+					</Grid>
+				</>
+			)}
+			<Title order={2} mb="lg" mt="xl">
+				Past Events
+			</Title>
+			<Grid gutter={'xl'}>
 				{pastEvents.slice(0, 3).map((e: any) => (
 					<GridCol key={e.id} span={4}>
 						<EventList {...e} past />
@@ -78,7 +90,7 @@ const Calendar: NextPage = ({ data }: any) => {
 				<Button
 					leftSection={<IconPlus />}
 					onClick={() => router.push('calendar/manage')}
-					mt="md"
+					mt="xl"
 					w="20%"
 				>
 					Add Event
@@ -90,7 +102,7 @@ const Calendar: NextPage = ({ data }: any) => {
 
 export default Calendar;
 
-function EventList(props: any) {
+export function EventList(props: any) {
 	const today = new Date();
 	const start = new Date(props.start);
 	const end = new Date(props.end);
@@ -104,7 +116,13 @@ function EventList(props: any) {
 		: (daysToEnd + 1) * -1 + ' days ago';
 
 	return (
-		<Card withBorder padding="lg" radius="md" w="100%" h="100%">
+		<Card
+			padding="lg"
+			radius={0}
+			w="100%"
+			h="100%"
+			style={{ boxShadow: 'var(--mantine-shadow-block)' }}
+		>
 			<Group justify="space-between">
 				<Tooltip label={props.buildTeam.name}>
 					<Image
@@ -123,10 +141,10 @@ function EventList(props: any) {
 			<Text fz="lg" fw={500} mt="md">
 				{props.name}
 			</Text>
-			<Text fz="sm" c="dimmed" mt={5} lineClamp={4}>
+			<Text fz="sm" c="dimmed" mt={5} lineClamp={3}>
 				{props.description}
 			</Text>
-			<CardSection withBorder inheritPadding py="xs" mt="xs">
+			<CardSection withBorder inheritPadding py="md" mt="xs">
 				{(props.city || props.country) && (
 					<Text c="dimmed" fz="sm">
 						Location:{' '}
@@ -154,7 +172,7 @@ function EventList(props: any) {
 				)}
 			</CardSection>
 			{props.discordLink && (
-				<CardSection withBorder inheritPadding pb="xs" mt="xs">
+				<CardSection withBorder inheritPadding pb="md" pt="xs" mt="xs">
 					<Button component={Link} href={props.discordLink} target="_blank" fullWidth>
 						Read more
 					</Button>

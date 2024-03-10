@@ -10,19 +10,19 @@ import {
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
-import { ChevronDown, ChevronRight } from 'tabler-icons-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { ChevronDown, ChevronRight } from 'tabler-icons-react';
 
-import BackgroundImage from '../../components/BackgroundImage';
+import { NextPage } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import Link from 'next/link';
-import { NextPage } from 'next';
-import Page from '../../components/Page';
-import buildImg from '../../../public/images/join/build.webp';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import thumbnail from '../../../public/images/thumbnails/getstarted.png';
 import { useTranslation } from 'react-i18next';
+import buildImg from '../../../public/images/join/build.webp';
 import visitImg from '../../../public/images/join/visit.webp';
+import thumbnail from '../../../public/images/thumbnails/getstarted.png';
+import BackgroundImage from '../../components/BackgroundImage';
+import Page from '../../components/Page';
 
 const GetStarted: NextPage = () => {
 	const { t } = useTranslation('getstarted');
@@ -116,7 +116,7 @@ const GetStarted: NextPage = () => {
 							style={{
 								width: '100%',
 								height: '100%',
-								boxShadow: '10px 10px 0px 4px rgba(0,0,0,0.45)',
+								boxShadow: 'var(--mantine-shadow-block)',
 							}}
 						>
 							<Card.Section>
@@ -153,7 +153,7 @@ const GetStarted: NextPage = () => {
 							style={{
 								width: '100%',
 								height: '100%',
-								boxShadow: '10px 10px 0px 4px rgba(0,0,0,0.45)',
+								boxShadow: 'var(--mantine-shadow-block)',
 							}}
 						>
 							<Card.Section>

@@ -144,7 +144,7 @@ const Build: NextPage = ({ data }: any) => {
 											scheme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[1],
 										borderRadius: 0,
 										cursor: 'pointer',
-										boxShadow: '10px 10px 0px 4px rgba(0,0,0,0.45)',
+										boxShadow: 'var(--mantine-shadow-block)',
 									}}
 									p="md"
 									onClick={() => router.push(`/teams/${element.slug}/apply`)}
