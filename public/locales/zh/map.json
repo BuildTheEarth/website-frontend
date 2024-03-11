@@ -17,20 +17,20 @@
 				"link": "連結",
 				"edit": "編輯領地"
 			},
-			"city": "City",
-			"description": "Description",
-			"buildings": "Buildings",
-			"address": "Address",
+			"city": "城市",
+			"description": "描述",
+			"buildings": "建築物",
+			"address": "地址",
 			"image": {
 				"delete": {
-					"title": "Delete Showcase Image",
-					"description": "Are you sure you want to delete the image from the claim? This action cannot be undone.",
-					"label": "Delete Image"
+					"title": "刪除展示圖片",
+					"description": "確定要刪除該領地的圖片嗎？此操作無法復原。",
+					"label": "刪除圖片"
 				},
 				"create": {
-					"loading": "Uploading your images...",
-					"title": "Drag image here or click to select file",
-					"subtitle": "Attach one file, file size should not exceed 2mb"
+					"loading": "正在上傳您的圖片...",
+					"title": "拖曳圖片至此或點擊選擇檔案",
+					"subtitle": "附加一個檔案，檔案大小不得超過2mb"
 				}
 			}
 		}
@@ -42,37 +42,37 @@
 		"active": "在地圖上展示",
 		"builders": {
 			"title": "建築師",
-			"alert": "Editing Builders currently does not work",
+			"alert": "目前無法編輯建築師",
 			"description": "如果此領地中列出了任何不正確的建築師，請聯絡我們。"
 		},
 		"help": {
 			"title": "如何編輯領地多邊形",
 			"description": "您可以在此處找到如何使用右側地圖的教學："
 		},
-		"description": "Description",
+		"description": "描述",
 		"buildings": {
-			"title": "Building Count",
-			"description": "You cannot edit this field, it will get automatically calculated."
+			"title": "建築數量",
+			"description": "您無法編輯此欄，它將自動計算。"
 		}
 	},
 	"stats": {
-		"title": "Map Statistics",
+		"title": "地圖統計",
 		"global": {
-			"buildings": "Finished Buildings",
-			"claims": "Finished Claims",
-			"area": "Total finished Area"
+			"buildings": "完成建築數",
+			"claims": "完成領地數",
+			"area": "總完成面積"
 		},
 		"average": {
-			"buildings": "Average Buildings per Claim",
-			"area": "Average Area per Claim"
+			"buildings": "平均每個領地的建築數",
+			"area": "平均每個領地的面積"
 		},
-		"largestClaim": "Largest Claim",
-		"mostBuildings": "Most Buildings",
-		"mostBuildTeam": "Most Claims per BuildTeam",
-		"mostUser": "Most Claims per User",
+		"largestClaim": "最大的領地",
+		"mostBuildings": "最多的建築",
+		"mostBuildTeam": "最多領地的建築團隊",
+		"mostUser": "最多領地的使用者",
 		"total": {
-			"title": "The Total Progress",
-			"description": "Using the total claimed area, we can calculate the following percentages:"
+			"title": "總進度",
+			"description": "利用總認領面積，我們可以計算出以下的百分比："
 		}
 	}
 }
