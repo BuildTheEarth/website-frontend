@@ -26,8 +26,8 @@
 				"description": "您的申請將很快被審核"
 			},
 			"disabledApplications": {
-				"title": "Disabled Applications",
-				"description": "This BuildTeam has disabled applications. Please message the BuildTeam if you think this is an error."
+				"title": "停止申請",
+				"description": "此建築團隊已停止申請。如果您認為這是一個錯誤，請聯絡該建築團隊。"
 			}
 		},
 		"duplicate": {

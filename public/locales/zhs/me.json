@@ -1,0 +1,59 @@
+{
+	"head": {
+		"title": "我的BuildTheEarth"
+	},
+	"description": "欢迎来到您自己的BuildTheEarth部分。在这里您可以看到您自己的进度，加入的建筑团队和其他实用信息。",
+	"account": {
+		"title": "账户信息",
+		"minecraft": "链接的Minecraft用户名：",
+		"id": "账户ID",
+		"settings": "打开设置"
+	},
+	"teams": {
+		"title": "加入的建筑团队",
+		"description": "构建团队是加入构建地球的最简单途径。 这些小组在多人游戏服务器上合作，建设城市、地区，有时甚至整个国家。",
+		"empty": {
+			"description": "您还没有加入任何团队",
+			"action": "浏览团队"
+		}
+	},
+	"owned": {
+		"title": "拥有的建筑团队",
+		"description": "下面列出的建筑团队都由您所有，或您拥有管理权限。",
+		"action": "编辑设置"
+	},
+	"claims": {
+		"title": "领地",
+		"description": "领地是你正在施工或已经完成的建筑物或区域。它们帮助我们追踪已经在建造的建筑物。",
+		"status": {
+			"finished": "已完成",
+			"building": "建设中"
+		},
+		"action": "编辑领地",
+		"create": {
+			"description": "创建领地以追查建筑进度",
+			"action": "创建领地",
+			"modal": {
+				"title": "创建领地",
+				"description": "创建一个新的领地以跟踪您的进度。",
+				"input": "选择一个建筑团队"
+			}
+		}
+	},
+	"settings": {
+		"general": {
+			"title": "个人资料信息"
+		},
+		"security": {
+			"title": "安全性详情",
+			"description": "若要重置您当前的密码，请登出并返回并选择「忘记密码」，一封包含说明的电子邮件将发送给您。 如果你遇到任何问题，请告诉我们。",
+			"alert": "重设密码"
+		},
+		"accounts": {
+			"title": "链接的账户"
+		},
+		"session": {
+			"title": "活动会话"
+		}
+	}
+}

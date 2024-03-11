@@ -1,0 +1,50 @@
+{
+	"language": "简体中文",
+	"copyright": "版权所有© {{year}} BuildTheEarth。不隶属于Mojang或Minecraft",
+	"buildtheearth": "BuildTheEarth",
+	"staff": "工作人员",
+	"builder": "建筑师",
+	"manager": "经理",
+	"owner": "拥有者",
+	"trial": "试用",
+	"search": "搜索…",
+	"you": "du",
+	"auth": {
+		"signin": "登入",
+		"signout": "登出",
+		"signup": "开始"
+	},
+	"user": {
+		"quickActions": "快捷动作",
+		"upload": "上传世界",
+		"theme": {
+			"dark": "切换亮色主题",
+			"light": "切换暗色主题"
+		},
+		"review": "审核申请",
+		"settings": "设置",
+		"profile": "我的BuildTheEarth"
+	},
+	"button": {
+		"save": "保存​​",
+		"delete": "删除",
+		"copy": "复制",
+		"back": "后退",
+		"submit": "发送",
+		"apply": "申请",
+		"cancel": "取消",
+		"reset": "重置",
+		"link": "链接",
+		"unlink": "取消链接"
+	},
+	"links": {
+		"faq": "常见问题",
+		"map": "地图",
+		"teams": "建筑团队",
+		"contact": "联络",
+		"aboutUs": "关于我们",
+		"newsletter": "新闻通讯",
+		"gallery": "图库",
+		"status": "状态"
+	}
+}

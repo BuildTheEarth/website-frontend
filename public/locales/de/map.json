@@ -17,20 +17,20 @@
 				"link": "Link",
 				"edit": "Claim bearbeiten"
 			},
-			"city": "City",
-			"description": "Description",
-			"buildings": "Buildings",
-			"address": "Address",
+			"city": "Stadt",
+			"description": "Beschreibung",
+			"buildings": "Gebäude",
+			"address": "Adresse",
 			"image": {
 				"delete": {
-					"title": "Delete Showcase Image",
-					"description": "Are you sure you want to delete the image from the claim? This action cannot be undone.",
-					"label": "Delete Image"
+					"title": "Showcase-Bild löschen",
+					"description": "Möchtest du das Bild wirklich löschen? Dieser Vorgang kann nicht rückgängig gemacht werden.",
+					"label": "Bild löschen"
 				},
 				"create": {
-					"loading": "Uploading your images...",
-					"title": "Drag image here or click to select file",
-					"subtitle": "Attach one file, file size should not exceed 2mb"
+					"loading": "Bild wird hochgeladen...",
+					"title": "Bild hierherziehen oder klicken, um ein Bild auszuwählen",
+					"subtitle": "Eine Datei anhängen, sollte die Dateigröße 2 mb nicht überschreiten"
 				}
 			}
 		}
@@ -49,14 +49,14 @@
 			"title": "Claim Polygone bearbeiten",
 			"description": "Eine Anleitung zur Verwendung der Karte auf der rechten Seite findest du hier:"
 		},
-		"description": "Description",
+		"description": "Beschreibung",
 		"buildings": {
-			"title": "Building Count",
-			"description": "You cannot edit this field, it will get automatically calculated."
+			"title": "Gebäudeanzahl",
+			"description": "Dieses Feld kann nicht bearbeitet werden, es wird automatisch berechnet."
 		}
 	},
 	"stats": {
-		"title": "Map Statistics",
+		"title": "Statistiken",
 		"global": {
 			"buildings": "Finished Buildings",
 			"claims": "Finished Claims",

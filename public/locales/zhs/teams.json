@@ -1,0 +1,44 @@
+{
+	"head": {
+		"title": "建筑团队"
+	},
+	"description": "建筑团队是加入构建地球的最简单方式。 这些小组在多人游戏服务器上合作，建设城市、区域，有时甚至整个国家。 您需要做的只是单击「申请加入」并在任何时间内开始给予帮助！",
+	"joining": "要参与建筑团队，您需要购买我的世界Java版或我的世界基岩版, 视团队而定。 在大多数情况下，您还需要安装Build The Earth模组包。",
+	"members": "{{num}} 个成员",
+	"team": {
+		"overview": "总览",
+		"images": "图像",
+		"details": "详情",
+		"location": "国家",
+		"members": "成员",
+		"builds": "建筑"
+	},
+	"apply": {
+		"title": "加入 {{team}}",
+		"trial": {
+			"title": "试用申请",
+			"description": "此构建团队支持试用申请。您可以在选择下面的按钮申请试用。"
+		},
+		"messages": {
+			"error": "申请失败",
+			"success": {
+				"title": "已发送申请",
+				"description": "您的申请将很快被审核"
+			},
+			"disabledApplications": {
+				"title": "停止申请",
+				"description": "此建筑团队已停止申请。如果您认为这是一个错误，请通知建筑团队信息。"
+			}
+		},
+		"duplicate": {
+			"pending": {
+				"title": "待处理申请",
+				"description": "您已于 {{date}} 申请加入此建筑团队。请等待此申请被审核。"
+			},
+			"accepted": {
+				"title": "已接受的申请",
+				"description": "您已于 {{date}} 获准加入此建筑团队。"
+			}
+		}
+	}
+}

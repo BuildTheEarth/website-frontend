@@ -1,0 +1,78 @@
+{
+	"claim": {
+		"details": {
+			"title": "领地详情",
+			"name": "名称",
+			"status": {
+				"title": "领地状态",
+				"description": "这个领地仍在建造之中，尚未完成。"
+			},
+			"team": "团队",
+			"owner": "拥有者",
+			"builders": "建筑师",
+			"area": "面积",
+			"actions": {
+				"coordinates": "复制坐标",
+				"zoom": "缩放",
+				"link": "链接",
+				"edit": "编辑领地"
+			},
+			"city": "城市",
+			"description": "介绍",
+			"buildings": "建筑物",
+			"address": "地址",
+			"image": {
+				"delete": {
+					"title": "删除展示图像",
+					"description": "您确定删除选定的图像吗？此操作无法撤消。",
+					"label": "删除图像"
+				},
+				"create": {
+					"loading": "正在上传您的图像...",
+					"title": "拖动图像到此处，或点击选择文件",
+					"subtitle": "附加一个文件，文件大小不应超过2mb"
+				}
+			}
+		}
+	},
+	"edit": {
+		"title": "编辑领地",
+		"name": "领地名称",
+		"finished": "领地已完成",
+		"active": "在地图上显示",
+		"builders": {
+			"title": "建筑师",
+			"alert": "目前无法编辑建筑师",
+			"description": "如果有任何错误的建筑师列在这个领地中，给我们信息。"
+		},
+		"help": {
+			"title": "如何编辑领地多边形",
+			"description": "你可以在这里找到一个教程来使用右侧的地图："
+		},
+		"description": "介绍",
+		"buildings": {
+			"title": "建筑数量",
+			"description": "您不能编辑此栏，它将自动计算。"
+		}
+	},
+	"stats": {
+		"title": "地图统计",
+		"global": {
+			"buildings": "完成的建筑",
+			"claims": "完成的领地",
+			"area": "合计完成面积"
+		},
+		"average": {
+			"buildings": "每个领地的平均建筑数",
+			"area": "每件领地的平均面积"
+		},
+		"largestClaim": "最大的领地",
+		"mostBuildings": "最多的建筑数",
+		"mostBuildTeam": "最多领地的建筑团队",
+		"mostUser": "最多领地的用户",
+		"total": {
+			"title": "总进度",
+			"description": "利用总认领面积，我们可以计算以下百分比："
+		}
+	}
+}

@@ -1,0 +1,53 @@
+{
+	"choose": {
+		"title": "您想如何参与？",
+		"visit": {
+			"title": "探索BuildTheEarth",
+			"subtitle": "访问我们已经建造的国家、城市甚至村庄。",
+			"button": "加入服务器"
+		},
+		"build": {
+			"title": "进行建造",
+			"subtitle": "申请成为建筑师并帮助我们实现在Minecraft中建造地球的目标。",
+			"button": "申请"
+		}
+	},
+	"visit": {
+		"title": "探索BuildTheEarth",
+		"description": "在下方搜索一个国家以查看如何访问此国家的详细说明。",
+		"country": {
+			"title": "如何访问 {{country}}",
+			"step0": {
+				"title": "搜索国家",
+				"description": "在上面的搜索框中"
+			},
+			"step1": {
+				"title": "启动我的世界",
+				"description": "使用启动器"
+			},
+			"step2": {
+				"title": "使用IP <b>{{ip}}</b>",
+				"description": "连接到服务器"
+			},
+			"step3": {
+				"title": "执行 /bt {{slug}}",
+				"description": "连接到国家"
+			},
+			"step4": {
+				"title": "开始探索",
+				"description": "{{country}}"
+			}
+		},
+		"back": "后退",
+		"open": "打开建筑团队页面"
+	},
+	"build": {
+		"title": "在BuildTheEarth建筑",
+		"description": "搜索下面的国家或团队来申请。",
+		"country": {
+			"title": "如何访问 {{country}}"
+		},
+		"back": "后退"
+	},
+	"more": "阅读更多"
+}
