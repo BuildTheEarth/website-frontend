@@ -1,43 +1,43 @@
 {
 	"head": {
-		"title": "Build Teams"
+		"title": "建筑团队"
 	},
-	"description": "Build teams are the easiest way to join Build The Earth. These groups work together on a multiplayer server to build cities, regions and sometimes even entire countries. All you need to do is click 'Apply to join' and within no time you can start helping out!",
-	"joining": "To participate in a build team, you need to have purchased Minecraft Java Edition or Minecraft Bedrock Edition, depending on the team. In most cases, you will also be required to have the Build The Earth Modpack installed.",
-	"members": "{{num}} Members",
+	"description": "建筑团队是加入构建地球的最简单方式。 这些小组在多人游戏服务器上合作，建设城市、区域，有时甚至整个国家。 您需要做的只是单击「申请加入」并在任何时间内开始给予帮助！",
+	"joining": "要参与建筑团队，您需要购买我的世界Java版或我的世界基岩版, 视团队而定。 在大多数情况下，您还需要安装Build The Earth模组包。",
+	"members": "{{num}} 个成员",
 	"team": {
-		"overview": "Overview",
-		"images": "Images",
-		"details": "Details",
-		"location": "Countries",
-		"members": "Members",
-		"builds": "Builds"
+		"overview": "总览",
+		"images": "图像",
+		"details": "详情",
+		"location": "国家",
+		"members": "成员",
+		"builds": "建筑"
 	},
 	"apply": {
-		"title": "Join {{team}}",
+		"title": "加入 {{team}}",
 		"trial": {
-			"title": "Trial Application",
-			"description": "This buildteam supports trial applications. You can apply as trial when selecting the button below."
+			"title": "试用申请",
+			"description": "此构建团队支持试用申请。您可以在选择下面的按钮申请试用。"
 		},
 		"messages": {
-			"error": "Application failed",
+			"error": "申请失败",
 			"success": {
-				"title": "Application sent",
-				"description": "Your Application will be reviewed shortly"
+				"title": "已发送申请",
+				"description": "您的申请将很快被审核"
 			},
 			"disabledApplications": {
-				"title": "Disabled Applications",
-				"description": "This BuildTeam has disabled applications. Please message the BuildTeam if you think this is an error."
+				"title": "停止申请",
+				"description": "此建筑团队已停止申请。如果您认为这是一个错误，请通知建筑团队信息。"
 			}
 		},
 		"duplicate": {
 			"pending": {
-				"title": "Pending Application",
-				"description": "You have already applied to this buildteam on the {{date}}. Please wait for this application to be reviewed."
+				"title": "待处理申请",
+				"description": "您已于 {{date}} 申请加入此建筑团队。请等待此申请被审核。"
 			},
 			"accepted": {
-				"title": "Accepted Application",
-				"description": "You were already accepted to this buildteam on the {{date}}."
+				"title": "已接受的申请",
+				"description": "您已于 {{date}} 获准加入此建筑团队。"
 			}
 		}
 	}
