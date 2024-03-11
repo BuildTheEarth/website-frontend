@@ -1,24 +1,24 @@
 {
 	"claim": {
 		"details": {
-			"title": "Claim Details",
-			"name": "Name",
+			"title": "领地详情",
+			"name": "名称",
 			"status": {
-				"title": "Claim Status",
-				"description": "This Claim is still under construction and not completed yet."
+				"title": "领地状态",
+				"description": "这个领地仍在建造之中，尚未完成。"
 			},
-			"team": "Team",
-			"owner": "Owner",
-			"builders": "Builders",
-			"area": "Area",
+			"team": "团队",
+			"owner": "拥有者",
+			"builders": "建筑师",
+			"area": "面积",
 			"actions": {
-				"coordinates": "Copy Coordinates",
-				"zoom": "Zoom",
-				"link": "Link",
-				"edit": "Edit Claim"
+				"coordinates": "复制坐标",
+				"zoom": "缩放",
+				"link": "链接",
+				"edit": "编辑领地"
 			},
-			"city": "City",
-			"description": "Description",
+			"city": "城市",
+			"description": "介绍",
 			"buildings": "建筑物",
 			"address": "地址",
 			"image": {
@@ -47,32 +47,32 @@
 		},
 		"help": {
 			"title": "如何编辑领地多边形",
-			"description": "You can find an tutorial how to use the map on the right side here:"
+			"description": "你可以在这里找到一个教程来使用右侧的地图："
 		},
-		"description": "Description",
+		"description": "介绍",
 		"buildings": {
-			"title": "Building Count",
-			"description": "You cannot edit this field, it will get automatically calculated."
+			"title": "建筑数量",
+			"description": "您不能编辑此栏，它将自动计算。"
 		}
 	},
 	"stats": {
-		"title": "Map Statistics",
+		"title": "地图统计",
 		"global": {
-			"buildings": "Finished Buildings",
-			"claims": "Finished Claims",
-			"area": "Total finished Area"
+			"buildings": "完成的建筑",
+			"claims": "完成的领地",
+			"area": "合计完成面积"
 		},
 		"average": {
-			"buildings": "Average Buildings per Claim",
-			"area": "Average Area per Claim"
+			"buildings": "每个领地的平均建筑数",
+			"area": "每件领地的平均面积"
 		},
-		"largestClaim": "Largest Claim",
-		"mostBuildings": "Most Buildings",
-		"mostBuildTeam": "Most Claims per BuildTeam",
-		"mostUser": "Most Claims per User",
+		"largestClaim": "最大的领地",
+		"mostBuildings": "最多的建筑数",
+		"mostBuildTeam": "最多领地的建筑团队",
+		"mostUser": "最多领地的用户",
 		"total": {
-			"title": "The Total Progress",
-			"description": "Using the total claimed area, we can calculate the following percentages:"
+			"title": "总进度",
+			"description": "利用总认领面积，我们可以计算以下百分比："
 		}
 	}
 }
