@@ -19,34 +19,34 @@
 			},
 			"city": "City",
 			"description": "Description",
-			"buildings": "Buildings",
-			"address": "Address",
+			"buildings": "建筑物",
+			"address": "地址",
 			"image": {
 				"delete": {
-					"title": "Delete Showcase Image",
-					"description": "Are you sure you want to delete the image from the claim? This action cannot be undone.",
-					"label": "Delete Image"
+					"title": "删除展示图像",
+					"description": "您确定删除选定的图像吗？此操作无法撤消。",
+					"label": "删除图像"
 				},
 				"create": {
-					"loading": "Uploading your images...",
-					"title": "Drag image here or click to select file",
-					"subtitle": "Attach one file, file size should not exceed 2mb"
+					"loading": "正在上传您的图像...",
+					"title": "拖动图像到此处，或点击选择文件",
+					"subtitle": "附加一个文件，文件大小不应超过2mb"
 				}
 			}
 		}
 	},
 	"edit": {
-		"title": "Edit Claim",
-		"name": "Claim Name",
-		"finished": "Claim is finished",
-		"active": "Show on map",
+		"title": "编辑领地",
+		"name": "领地名称",
+		"finished": "领地已完成",
+		"active": "在地图上显示",
 		"builders": {
-			"title": "Builders",
-			"alert": "Editing Builders currently does not work",
-			"description": "If there are any incorrect Builders listed for this claim, message us."
+			"title": "建筑师",
+			"alert": "目前无法编辑建筑师",
+			"description": "如果有任何错误的建筑师列在这个领地中，给我们信息。"
 		},
 		"help": {
-			"title": "How to edit Claim Polygons",
+			"title": "如何编辑领地多边形",
 			"description": "You can find an tutorial how to use the map on the right side here:"
 		},
 		"description": "Description",
