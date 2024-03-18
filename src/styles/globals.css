@@ -1,5 +1,6 @@
 :root {
 	--mantine-shadow-block: 10px 10px 0px 4px rgba(0,0,0,0.45);
+	--map-color-filter: invert(77%) sepia(8%) saturate(271%) hue-rotate(169deg) brightness(93%) contrast(90%) ;
 }
 
 html,
@@ -74,7 +75,7 @@ a {
 }
 
 .mapboxgl-ctrl-icon {
-	filter: light-dark(invert(29%) sepia(2%) saturate(3411%) hue-rotate(170deg) brightness(88%) contrast(80%), invert(82%) sepia(8%) saturate(72%) hue-rotate(187deg) brightness(75%) contrast(91%)) !important;
+	filter: var(--map-color-filter) !important;
 }
 
 .mapboxgl-ctrl-group button + button {
@@ -106,4 +107,9 @@ a {
 .mapboxgl-ctrl-compass span {
 	cursor: pointer;
 	background-image: url('/icons/map-north.svg') !important;
+}
+
+.mapbox-gl-draw_polygon {
+	filter: var(--map-color-filter) !important;
+	background-image: url("/icons/polygon.svg") !important;
 }

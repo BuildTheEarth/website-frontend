@@ -5,11 +5,11 @@ import {
 	Code,
 	Grid,
 	Group,
+	rem,
 	Select,
 	Stack,
 	Text,
 	Tooltip,
-	rem,
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
@@ -347,7 +347,7 @@ const MePage: NextPage = () => {
 													leftSection={<IconPencil />}
 													component={Link}
 													disabled={element.builder}
-													href={`/me/claims/${element.id}`}
+													href={`/map/edit?id=${element.id}`}
 												>
 													{t('claims.action')}
 												</Button>

@@ -112,6 +112,7 @@ const Calendar: NextPage = () => {
 				<TextInput
 					mt="md"
 					label="Discord Link"
+					required
 					{...form.getInputProps('discordLink')}
 					placeholder="https://..."
 					maw="40%"
