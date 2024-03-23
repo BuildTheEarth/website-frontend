@@ -50,7 +50,7 @@ interface ClaimDrawerProps {
 
 export function ClaimDrawer(props: ClaimDrawerProps) {
 	const { data, isLoading } = useSWR('/claims/' + props.id + '?builders=true');
-	const { user } = useUser();
+	const user = useUser();
 	const t = props.t;
 	const clipboard = useClipboard();
 
@@ -76,7 +76,7 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 						<ClaimDrawerImages
 							id={props.id}
 							images={data.images}
-							editable={data?.owner?.id == user?.id}
+							editable={data?.owner?.id == user.user?.id}
 							t={t}
 						/>
 					)}
@@ -242,13 +242,14 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 						>
 							{t('claim.details.actions.link')}
 						</Button>
-						{data.owner?.id == user?.id && (
+						{(data.owner?.id == user.user?.id ||
+							user.hasPermission('team.claim.list', data.buildTeam.id)) && (
 							<Button
 								component={Link}
 								variant="outline"
 								leftSection={<IconPencil />}
-								href={`/me/claims/${props.id}`}
-								disabled={!data?.buildTeam?.allowBuilderClaim}
+								href={`/map/edit/?id=${props.id}`}
+								// disabled={!data?.buildTeam?.allowBuilderClaim}
 							>
 								{t('claim.details.actions.edit')}
 							</Button>

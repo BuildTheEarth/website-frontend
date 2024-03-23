@@ -103,7 +103,7 @@ const ClaimEditPage: NextPage = () => {
 	const [builderSearchResults, setBuilderSearchResults] = useState<any[]>([]);
 
 	const isAbleToUpdate = (feature: any) => {
-		if (feature.properties?.owner?.id == user.user.id) return { able: true, type: 'OWNER' };
+		if (feature.properties?.owner?.id == user.user?.id) return { able: true, type: 'OWNER' };
 		if (user.hasPermission('team.claim.list', feature.properties.buildTeam.id))
 			return { able: true, type: 'TEAM' };
 		return { able: false, type: '' };
