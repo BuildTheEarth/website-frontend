@@ -53,6 +53,8 @@ import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
+import useSWR from 'swr';
+import { v4 as uuidv4 } from 'uuid';
 import { useContextMenu } from '../../../components/ContextMenu';
 import Map from '../../../components/map/Map';
 import { MapContextMenu } from '../../../components/map/MapContextMenu';
@@ -99,16 +101,34 @@ const ClaimEditPage: NextPage = () => {
 	const [builderSearch, setBuilderSearch] = useDebouncedState('', 1500);
 	const [builderSearchLoading, setBuilderSearchLoading] = useState(false);
 	const [builderSearchResults, setBuilderSearchResults] = useState<any[]>([]);
+	const { data: userData, isLoading: userDataLoading } = useSWR(`/users/${user?.user?.id}`);
 
 	const isAbleToUpdate = (feature: any) => {
 		if (feature.properties?.owner?.id == user.user?.id) return { able: true, type: 'OWNER' };
-		if (user.hasPermission('team.claim.list', feature.properties.buildTeam.id))
+		if (feature.properties?.new == true) return { able: true, type: 'OWNER' };
+		if (
+			feature.properties.buildTeam &&
+			user.hasPermission('team.claim.list', feature.properties.buildTeam.id)
+		)
 			return { able: true, type: 'TEAM' };
 		return { able: false, type: '' };
 	};
 
 	useEffect(() => {
 		if (selected) {
+			if (selected.properties?.new == true) {
+				draw.setFeatureProperty(selected.id, 'new', undefined);
+				draw
+					.setFeatureProperty(selected.id, 'owner', {
+						id: user.user?.id,
+						ssoId: user.user?.ssoId,
+						avatar: user.user?.avatar,
+						name: user.user?.name || user.user?.username,
+					})
+					.setFeatureProperty(selected.id, 'id', selected.id)
+					.setFeatureProperty(selected.id, 'new', true);
+				setSelected(draw.get(selected.id));
+			}
 			const { able, type: ableType } = isAbleToUpdate(selected);
 			if (!able) {
 				showNotification({
@@ -175,8 +195,6 @@ const ClaimEditPage: NextPage = () => {
 			centered: true,
 			onConfirm: () => {
 				const currentOwner = selected.properties.owner;
-				console.log(newOwner, currentOwner);
-
 				handleUpdate(
 					'builders',
 					selected.properties.builders.filter((b: any) => b.id != newOwner.id),
@@ -198,6 +216,13 @@ const ClaimEditPage: NextPage = () => {
 				handleUpdate('owner', { new: true, ...newOwner });
 			},
 		});
+	};
+
+	const handleCreate = (feature: any) => {
+		draw
+			.setFeatureProperty(feature.id, 'id', feature.id)
+			.setFeatureProperty(feature.id, 'new', true);
+		setSelected(draw.get(feature.id));
 	};
 
 	const handleDelete = () => {
@@ -303,7 +328,62 @@ const ClaimEditPage: NextPage = () => {
 				}
 			});
 	};
+	const handleSaveNew = () => {
+		setSelected(draw.get(selected.id));
 
+		if (!selected.properties.buildTeam?.id) {
+			showNotification({
+				title: 'Creation failed',
+				message: 'Please choose a BuildTeam',
+				color: 'red',
+			});
+			return;
+		}
+		setLoading(true);
+		fetch(process.env.NEXT_PUBLIC_API_URL + `/claims?coordType=numberarray`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + user.token,
+			},
+			body: JSON.stringify({
+				...selected.properties,
+				area: selected.geometry.coordinates[0],
+				buidings: undefined,
+				buildTeam: undefined,
+				osmName: undefined,
+				owner: selected.properties.owner.id,
+				team: selected.properties.buildTeam.id,
+			}),
+		})
+			.then((res) => res.json())
+			.then(async (res) => {
+				if (res.errors) {
+					showNotification({
+						title: 'Creation failed',
+						message: res.error,
+						color: 'red',
+					});
+					setLoading(false);
+				} else {
+					showNotification({
+						title: 'Claim created',
+						message: 'All Data has been saved',
+						color: 'green',
+						icon: <IconCheck />,
+					});
+
+					const geojson = await fetch(
+						`${process.env.NEXT_PUBLIC_API_URL}/claims/geojson?props=true`,
+					).then((r) => r.json());
+
+					draw.set(geojson);
+					setLoading(false);
+					draw.changeMode('simple_select');
+					setSelected(undefined);
+				}
+			});
+	};
 	return (
 		<Page fullWidth solidHeader>
 			<MapContextMenu
@@ -347,6 +427,20 @@ const ClaimEditPage: NextPage = () => {
 							<Alert variant="outline" title="Saving" icon={<IconDeviceFloppy />} mt="xl">
 								Do not forget to save your changes, they will be overriden once you reload the Page.
 							</Alert>
+							<h1>Create Claim</h1>
+							<p>
+								Click on the button below to start creating a new Claim on the Map. Left click to
+								add a edge, double click to finish.
+							</p>
+							<Button
+								leftSection={<IconPlus />}
+								fullWidth
+								mt="md"
+								disabled={draw.getMode() == 'draw_polygon'}
+								onClick={() => draw.changeMode('draw_polygon')}
+							>
+								Create new Claim
+							</Button>
 						</>
 					) : (
 						<>
@@ -368,9 +462,31 @@ const ClaimEditPage: NextPage = () => {
 								<Alert variant="outline" title="Images" icon={<IconPhoto />} mb="lg">
 									Images can only be added and removed on the main Map as of right now.
 								</Alert>
+								{selected.properties?.new == true && (
+									<Select
+										label={t('claim.details.team')}
+										data={userData?.joinedBuildTeams?.map((b: any) => ({
+											label: b.name,
+											value: b.id,
+											disabled: !b.allowBuilderClaim,
+										}))}
+										mb="md"
+										onChange={(v) => {
+											const bt = userData?.joinedBuildTeams.find((bt: any) => bt.id == v);
+											handleUpdate(
+												'buildTeam',
+												bt ? { id: bt.id, slug: bt.slug, name: bt.name } : undefined,
+											);
+										}}
+										placeholder={
+											userDataLoading ? 'Loading aviable BuildTeams...' : 'Select a BuildTeam'
+										}
+									/>
+								)}
 								<TextInput
 									label={t('edit.name')}
 									required
+									placeholder="New Claim"
 									defaultValue={selected.properties.name}
 									onChange={(e) => handleUpdate('name', e.target.value)}
 									mb="md"
@@ -378,6 +494,7 @@ const ClaimEditPage: NextPage = () => {
 								<TextInput
 									label={t('claim.details.city')}
 									required
+									placeholder="New York"
 									defaultValue={selected.properties.city}
 									onChange={(e) => handleUpdate('city', e.target.value)}
 									mb="md"
@@ -410,6 +527,7 @@ const ClaimEditPage: NextPage = () => {
 										value={selected.properties.buildings}
 										label={t('edit.buildings.title')}
 										disabled
+										placeholder="0"
 										mb="md"
 									/>
 								</Tooltip>
@@ -572,7 +690,6 @@ const ClaimEditPage: NextPage = () => {
 																...(selected.properties.builders || []),
 																{ ...builderSearchResults.find((b: any) => b.id == v), new: true },
 															]);
-															console.log(selected.properties.builders);
 															setBuilderSearch('');
 															setBuilderSearchResults([]);
 															setBuilderSearchLoading(false);
@@ -615,29 +732,41 @@ const ClaimEditPage: NextPage = () => {
 										<TableTr>
 											<TableTd>BuildTeam</TableTd>
 											<TableTd>
-												<Code>{selected.properties.buildTeam.slug}</Code>
+												<Code>{selected.properties.buildTeam?.slug || '-'}</Code>
 											</TableTd>
 										</TableTr>
 									</TableTbody>
 								</Table>
 							</ScrollAreaAutosize>
-							<Group mt="md" grow>
+							{selected.properties?.new == true ? (
 								<Button
-									leftSection={<IconDeviceFloppy />}
-									onClick={() => handleSave()}
+									leftSection={<IconPlus />}
+									onClick={() => handleSaveNew()}
 									loading={loading}
+									mt="md"
+									fullWidth
 								>
-									Save
+									Create
 								</Button>
-								<Button
-									leftSection={<IconTrash />}
-									onClick={() => handleDelete()}
-									loading={loading}
-									variant="outline"
-								>
-									Delete
-								</Button>
-							</Group>
+							) : (
+								<Group mt="md" grow>
+									<Button
+										leftSection={<IconDeviceFloppy />}
+										onClick={() => handleSave()}
+										loading={loading}
+									>
+										Save
+									</Button>
+									<Button
+										leftSection={<IconTrash />}
+										onClick={() => handleDelete()}
+										loading={loading}
+										variant="outline"
+									>
+										Delete
+									</Button>
+								</Group>
+							)}
 						</>
 					)}
 				</div>
@@ -659,7 +788,10 @@ const ClaimEditPage: NextPage = () => {
 								setClientPos({ lat: e.lngLat.lat, lng: e.lngLat.lng });
 							});
 
-							map.on('draw.delete', (e) => {});
+							map.on('draw.create', (e) => {
+								handleCreate(e.features[0]);
+							});
+
 							map.on('draw.update', (e) => {
 								setSelected(e.features[0]);
 							});
