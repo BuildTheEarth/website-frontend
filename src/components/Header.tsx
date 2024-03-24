@@ -33,6 +33,7 @@ import {
 	IconCalendar,
 	IconDashboard,
 	IconDots,
+	IconMap,
 	IconMoonStars,
 	IconPhoto,
 	IconPolygon,
@@ -163,6 +164,9 @@ const Header = ({ links, style, solid }: HeaderProps) => {
 							<Menu.Dropdown>
 								<Menu.Item component={Link} href="/me" leftSection={<IconUser size={14} />}>
 									{t('user.profile')}
+								</Menu.Item>
+								<Menu.Item component={Link} href="/map/edit" leftSection={<IconMap size={14} />}>
+									Claims Map
 								</Menu.Item>
 								<Menu.Item
 									leftSection={<IconSettings size={14} />}

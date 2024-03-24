@@ -436,7 +436,7 @@ const ClaimEditPage: NextPage = () => {
 								leftSection={<IconPlus />}
 								fullWidth
 								mt="md"
-								disabled={draw.getMode() == 'draw_polygon'}
+								disabled={map && draw && draw?.getMode() == 'draw_polygon'}
 								onClick={() => draw.changeMode('draw_polygon')}
 							>
 								Create new Claim

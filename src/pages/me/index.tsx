@@ -18,6 +18,7 @@ import {
 	IconConfetti,
 	IconCrane,
 	IconExternalLink,
+	IconLink,
 	IconLogout,
 	IconPencil,
 	IconPin,
@@ -46,56 +47,6 @@ const MePage: NextPage = () => {
 	const scheme = useMantineColorScheme();
 	const theme = useMantineTheme();
 	const router = useRouter();
-	const handleCreateClaim = () => {
-		const handleSubmit = (v: any) => {
-			fetch(process.env.NEXT_PUBLIC_API_URL + `/claims?slug=true`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					Authorization: 'Bearer ' + user.token,
-				},
-				body: JSON.stringify({ team: v }),
-			})
-				.then((res) => res.json())
-				.then((res) => {
-					if (res.errors) {
-						showNotification({
-							title: 'Creation failed',
-							message: res.error,
-							color: 'red',
-						});
-					} else {
-						showNotification({
-							title: 'Claim created',
-							message: 'All Data has been saved',
-							color: 'green',
-							icon: <IconCheck />,
-						});
-						modals.closeAll();
-						router.push(`/me/claims/${res.id}`);
-					}
-				});
-		};
-
-		return modals.open({
-			centered: true,
-			title: t('claims.create.modal.title'),
-			children: (
-				<>
-					<p>{t('claims.create.modal.description')}</p>
-					<Select
-						label={t('claims.create.modal.input')}
-						data={data.joinedBuildTeams.map((b: any) => ({
-							label: b.name,
-							value: b.slug,
-							disabled: !b.allowBuilderClaim,
-						}))}
-						onChange={handleSubmit}
-					/>
-				</>
-			),
-		});
-	};
 
 	return (
 		<Page
@@ -369,7 +320,12 @@ const MePage: NextPage = () => {
 								<Text fw="bold" size="lg">
 									{t('claims.create.description')}
 								</Text>
-								<Button leftSection={<IconPlus />} variant="gradient" onClick={handleCreateClaim}>
+								<Button
+									leftSection={<IconExternalLink />}
+									variant="gradient"
+									component={Link}
+									href="/map/edit"
+								>
 									{t('claims.create.action')}
 								</Button>
 							</Stack>
