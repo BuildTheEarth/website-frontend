@@ -9,25 +9,22 @@ import {
 	Indicator,
 	Loader,
 	Menu,
+	MenuDivider,
 	MenuDropdown,
 	MenuItem,
 	MenuTarget,
-	NumberInput,
-	rem,
-	ScrollAreaAutosize,
+	NumberInput, rem, ScrollAreaAutosize,
 	Select,
 	Switch,
 	Table,
 	TableTbody,
 	TableTd,
 	TableTr,
-	Text,
-	Textarea,
-	TextInput,
-	Tooltip,
+	Text, Textarea, TextInput, Tooltip
 } from '@mantine/core';
 import { useClipboard, useDebouncedState } from '@mantine/hooks';
 import {
+	IconArrowsDiff,
 	IconBrandMinecraft,
 	IconCheck,
 	IconDeviceFloppy,
@@ -37,18 +34,19 @@ import {
 	IconPhoto,
 	IconPlus,
 	IconTrash,
-	IconUsersGroup,
+	IconUsersGroup
 } from '@tabler/icons-react';
 import {
 	SnapDirectSelect,
 	SnapLineMode,
 	SnapModeDrawStyles,
 	SnapPointMode,
-	SnapPolygonMode,
+	SnapPolygonMode
 } from 'mapbox-gl-draw-snap-mode';
 import { useEffect, useState } from 'react';
 
 import { Discord } from '@icons-pack/react-simple-icons';
+import { modals } from '@mantine/modals';
 import { showNotification } from '@mantine/notifications';
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
 import { NextPage } from 'next';
@@ -156,11 +154,50 @@ const ClaimEditPage: NextPage = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [builderSearch]);
 
-	const handleUpdate = (arg: string, value: any) => {
+	const handleUpdate = (arg: string, value: any, noUpdate?: boolean) => {
 		if (selected) {
 			draw.setFeatureProperty(selected.id, arg, value);
-			setSelected(draw.get(selected.id));
+			if (!noUpdate) setSelected(draw.get(selected.id));
 		}
+	};
+
+	const handleTransferOwnership = (newOwner: any) => {
+		modals.openConfirmModal({
+			title: 'Confirm Ownership Transfer',
+			children: (
+				<Text size="sm">
+					You will transfer the ownership of this claim to <b>{newOwner.username}</b>. This action
+					cannot be reversed. You will lose all permissions to edit this claim.
+				</Text>
+			),
+			labels: { confirm: 'Transfer', cancel: 'Cancel' },
+			confirmProps: { color: 'red' },
+			centered: true,
+			onConfirm: () => {
+				const currentOwner = selected.properties.owner;
+				console.log(newOwner, currentOwner);
+
+				handleUpdate(
+					'builders',
+					selected.properties.builders.filter((b: any) => b.id != newOwner.id),
+
+					true,
+				);
+
+				if (currentOwner) {
+					handleUpdate(
+						'builders',
+						[
+							...selected.properties.builders,
+							{ new: true, ...currentOwner, username: currentOwner.name },
+						],
+						true,
+					);
+				}
+
+				handleUpdate('owner', { new: true, ...newOwner });
+			},
+		});
 	};
 
 	const handleDelete = () => {};
@@ -177,12 +214,12 @@ const ClaimEditPage: NextPage = () => {
 					Authorization: 'Bearer ' + user.token,
 				},
 				body: JSON.stringify({
-					...selected,
+					...selected.properties,
 					area: selected.geometry.coordinates[0],
 					buidings: undefined,
 					buildTeam: undefined,
 					osmName: undefined,
-					owner: undefined,
+					owner: selected.properties.owner.id,
 				}),
 			},
 		)
@@ -209,6 +246,7 @@ const ClaimEditPage: NextPage = () => {
 
 					draw.set(geojson);
 					setLoading(false);
+					draw.changeMode("simple_select")
 				}
 			});
 	};
@@ -337,17 +375,33 @@ const ClaimEditPage: NextPage = () => {
 										<Table.Tr>
 											<Table.Td>
 												<Group gap="sm">
-													<Avatar size={40} src={selected.propertie?.owner?.avatar} radius={40} />
+													<Indicator
+														disabled={!selected.properties?.owner?.new}
+														processing={loading}
+														color="orange"
+													>
+														<Avatar
+															size={40}
+															src={selected.properties?.owner?.avatar}
+															radius={40}
+															color="blue"
+														>
+															{(selected.properties?.owner?.username ||
+																selected.properties?.owner?.name ||
+																selected.properties?.owner?.id ||
+																'-')[0].toUpperCase()}
+														</Avatar>
+													</Indicator>
 													<div>
 														<Text fz="sm" fw={500}>
-															{selected.propertie?.owner?.username ||
-																selected.propertie?.owner?.name ||
-																selected.propertie?.owner?.id ||
+															{selected.properties?.owner?.username ||
+																selected.properties?.owner?.name ||
+																selected.properties?.owner?.id ||
 																'No owner'}
 														</Text>
 														<Text c="dimmed" fz="xs">
 															{t('common:owner')}
-															{selected.properties?.owner?.id == user.user.id &&
+															{selected.properties?.owner?.id == user.user?.id &&
 																' - ' + t('common:you')}
 														</Text>
 													</div>
@@ -368,14 +422,14 @@ const ClaimEditPage: NextPage = () => {
 											<Table.Tr key={builder.ssoId + '-builder'}>
 												<Table.Td>
 													<Group gap="sm">
-														<Indicator disabled={!builder?.new} processing={loading}>
-															<Avatar size={40} src={builder.avatar} radius={40} color="blue">
-																{builder?.username[0]?.toUpperCase()}
+														<Indicator disabled={!builder?.new} processing={loading} color="orange">
+															<Avatar size={40} src={builder.avatar} radius={40} color="teal">
+																{(builder?.username || builder?.name || '-')[0]?.toUpperCase()}
 															</Avatar>
 														</Indicator>
 														<div>
 															<Text fz="sm" fw={500}>
-																{builder?.username || 'Unknown User'}
+																{builder?.username || builder?.name || 'Unknown User'}
 															</Text>
 															<Text c="dimmed" fz="xs">
 																{t('common:builder')}
@@ -432,6 +486,14 @@ const ClaimEditPage: NextPage = () => {
 																	onClick={() => clipboard.copy(builder.id)}
 																>
 																	Copy Id
+																</MenuItem>
+																<MenuDivider />
+																<MenuItem
+																	leftSection={<IconArrowsDiff />}
+																	color="red"
+																	onClick={() => handleTransferOwnership(builder)}
+																>
+																	Transfer Ownership
 																</MenuItem>
 															</MenuDropdown>
 														</Menu>
@@ -510,6 +572,7 @@ const ClaimEditPage: NextPage = () => {
 							<Button
 								leftSection={<IconDeviceFloppy />}
 								fullWidth
+								mt="md"
 								onClick={() => handleSave()}
 								loading={loading}
 							>
