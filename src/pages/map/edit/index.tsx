@@ -200,7 +200,59 @@ const ClaimEditPage: NextPage = () => {
 		});
 	};
 
-	const handleDelete = () => {};
+	const handleDelete = () => {
+		setSelected(draw.get(selected.id));
+		setLoading(true);
+
+		modals.openConfirmModal({
+			title: 'Delete Claim',
+			children: <Text size="sm">You will delete this claim. This action cannot be reversed.</Text>,
+			labels: { confirm: 'Delete', cancel: 'Cancel' },
+			confirmProps: { color: 'red' },
+			centered: true,
+			onConfirm: () => continueDelete(),
+			onAbort: () => {
+				setLoading(false);
+			},
+		});
+
+		const continueDelete = () => {
+			fetch(process.env.NEXT_PUBLIC_API_URL + `/claims/${selected.properties.id}`, {
+				method: 'DELETE',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: 'Bearer ' + user.token,
+				},
+			})
+				.then((res) => res.json())
+				.then(async (res) => {
+					if (res.errors) {
+						showNotification({
+							title: 'Deletion failed',
+							message: res.error,
+							color: 'red',
+						});
+						setLoading(false);
+					} else {
+						showNotification({
+							title: 'Claim deleted',
+							message: 'All Data has been saved',
+							color: 'green',
+							icon: <IconCheck />,
+						});
+						setSelected(undefined);
+
+						draw.changeMode('simple_select');
+						const geojson = await fetch(
+							`${process.env.NEXT_PUBLIC_API_URL}/claims/geojson?props=true`,
+						).then((r) => r.json());
+
+						draw.set(geojson);
+						setLoading(false);
+					}
+				});
+		};
+	};
 
 	const handleSave = () => {
 		setSelected(draw.get(selected.id));
@@ -246,7 +298,8 @@ const ClaimEditPage: NextPage = () => {
 
 					draw.set(geojson);
 					setLoading(false);
-					draw.changeMode("simple_select")
+					draw.changeMode('simple_select');
+					setSelected(undefined);
 				}
 			});
 	};
@@ -568,16 +621,23 @@ const ClaimEditPage: NextPage = () => {
 									</TableTbody>
 								</Table>
 							</ScrollAreaAutosize>
-
-							<Button
-								leftSection={<IconDeviceFloppy />}
-								fullWidth
-								mt="md"
-								onClick={() => handleSave()}
-								loading={loading}
-							>
-								Save
-							</Button>
+							<Group mt="md" grow>
+								<Button
+									leftSection={<IconDeviceFloppy />}
+									onClick={() => handleSave()}
+									loading={loading}
+								>
+									Save
+								</Button>
+								<Button
+									leftSection={<IconTrash />}
+									onClick={() => handleDelete()}
+									loading={loading}
+									variant="outline"
+								>
+									Delete
+								</Button>
+							</Group>
 						</>
 					)}
 				</div>
