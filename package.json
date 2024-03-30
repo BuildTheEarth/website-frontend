@@ -38,6 +38,7 @@
 		"@tabler/icons-react": "^2.35.0",
 		"@tiptap/extension-highlight": "^2.0.2",
 		"@tiptap/extension-link": "^2.0.2",
+		"@tiptap/extension-placeholder": "^2.2.4",
 		"@tiptap/extension-subscript": "^2.0.2",
 		"@tiptap/extension-superscript": "^2.0.2",
 		"@tiptap/extension-text-align": "^2.0.2",
@@ -77,6 +78,7 @@
 		"swr": "^2.2.4",
 		"tabler-icons-react": "^1.48.0",
 		"three": "^0.149.0",
+		"tiptap-markdown": "^0.8.10",
 		"uuid": "^9.0.0",
 		"vague-time": "^2.4.2"
 	},

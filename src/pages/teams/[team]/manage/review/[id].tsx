@@ -1,37 +1,47 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
 	ActionIcon,
 	Alert,
-	AspectRatio,
 	Badge,
 	Button,
-	Card,
 	Code,
 	Divider,
 	Grid,
 	Group,
-	Image,
-	Paper,
-	SimpleGrid,
+	Select,
 	Stack,
 	Text,
+	TextInput,
 	Textarea,
 	Tooltip,
 	useMantineTheme,
 } from '@mantine/core';
-import { IconCheck, IconChevronDown, IconCopy, IconX } from '@tabler/icons-react';
+import { IconCheck, IconCopy, IconPlaceholder, IconReplace, IconX } from '@tabler/icons-react';
+import { RichTextEditor, useRichTextEditorContext } from '@mantine/tiptap';
 import useSWR, { mutate } from 'swr';
 
-import { useClipboard } from '@mantine/hooks';
-import { modals } from '@mantine/modals';
-import { showNotification } from '@mantine/notifications';
-import { NextPage } from 'next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import thumbnail from '../../../../../../public/images/thumbnails/apply.png';
-import Page from '../../../../../components/Page';
-import SettingsTabs from '../../../../../components/SettingsTabs';
-import { useUser } from '../../../../../hooks/useUser';
 import { ApplicationQuestions } from '../../../../../utils/application/ApplicationQuestions';
+import Highlight from '@tiptap/extension-highlight';
+import Link from '@tiptap/extension-link';
+import { Markdown } from 'tiptap-markdown';
+import { NextPage } from 'next';
+import Page from '../../../../../components/Page';
+import Placeholder from '@tiptap/extension-placeholder';
+import SettingsTabs from '../../../../../components/SettingsTabs';
+import StarterKit from '@tiptap/starter-kit';
+import SubScript from '@tiptap/extension-subscript';
+import Superscript from '@tiptap/extension-superscript';
+import TextAlign from '@tiptap/extension-text-align';
+import Underline from '@tiptap/extension-underline';
 import fetcher from '../../../../../utils/Fetcher';
+import { modals } from '@mantine/modals';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { showNotification } from '@mantine/notifications';
+import thumbnail from '../../../../../../public/images/thumbnails/apply.png';
+import { useClipboard } from '@mantine/hooks';
+import { useEditor } from '@tiptap/react';
+import { useEffect } from 'react';
+import { useUser } from '../../../../../hooks/useUser';
 
 const Apply: NextPage = ({ team, id }: any) => {
 	const theme = useMantineTheme();
@@ -40,69 +50,96 @@ const Apply: NextPage = ({ team, id }: any) => {
 	const { data } = useSWR(
 		`/buildteams/${team}/applications/${id}?includeAnswers=true&includeUser=true&slug=true`,
 	);
+	const { data: templateResponses } = useSWR(`/buildteams/${team}/application/templates?slug=true`);
+
+	const responseEditor = useEditor({
+		extensions: [
+			StarterKit,
+			Underline,
+			Link,
+			Superscript,
+			SubScript,
+			Highlight,
+			TextAlign.configure({ types: ['heading', 'paragraph'] }),
+			Placeholder.configure({ placeholder: 'This is placeholder' }),
+			Markdown,
+		],
+	});
+
+	useEffect(() => {
+		if (data?.status != 'SEND' && responseEditor?.isEmpty) {
+			responseEditor.commands.setContent(data.reason);
+		}
+	}, [data]);
 
 	const handleSubmit = (accept: boolean) => {
-		const body = { reason: '', status: accept ? (data.trial ? 'TRIAL' : 'ACCEPTED') : 'DECLINED' };
-
-		const continueSubmit = () => {
-			fetch(process.env.NEXT_PUBLIC_API_URL + `/buildteams/${team}/applications/${id}`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-					Authorization: 'Bearer ' + user.token,
-				},
-				body: JSON.stringify(body),
-			})
-				.then((res) => res.json())
-				.then((res) => {
-					if (res.errors || res.message) {
-						showNotification({
-							title: 'Update failed',
-							message: res.message,
-							color: 'red',
-						});
-					} else {
-						showNotification({
-							title: `Application ${accept ? 'accepted' : 'declined'}`,
-							message: 'All Data has been saved',
-							color: 'green',
-							icon: <IconCheck />,
-						});
-						mutate(
-							`/buildteams/${team}/applications/${id}?includeAnswers=true&includeUser=true&slug=true`,
-							res,
-						);
-					}
-				});
-		};
-
-		if (!accept) {
-			modals.openConfirmModal({
-				title: 'Decline Application',
-				children: (
-					<>
-						<Text size="sm">Please enter Feedback below.</Text>
-						<Textarea
-							placeholder="Feedback"
-							autosize
-							minRows={3}
-							mt="md"
-							onChange={(e) => (body.reason = e.target.value)}
-						/>
-					</>
-				),
-				labels: { confirm: 'Confirm', cancel: 'Cancel' },
-				onCancel: () =>
+		fetch(process.env.NEXT_PUBLIC_API_URL + `/buildteams/${team}/applications/${id}`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + user.token,
+			},
+			body: JSON.stringify({
+				reason: responseEditor?.storage.markdown.getMarkdown(),
+				status: accept ? (data.trial ? 'TRIAL' : 'ACCEPTED') : 'DECLINED',
+			}),
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				if (res.errors || res.message) {
 					showNotification({
-						message: `Application was not declined.`,
-						title: 'Cancelled application',
-						color: 'yellow',
-					}),
-				onConfirm: continueSubmit,
+						title: 'Update failed',
+						message: res.message,
+						color: 'red',
+					});
+				} else {
+					showNotification({
+						title: `Application ${accept ? 'accepted' : 'declined'}`,
+						message: 'All Data has been saved',
+						color: 'green',
+						icon: <IconCheck />,
+					});
+					mutate(
+						`/buildteams/${team}/applications/${id}?includeAnswers=true&includeUser=true&slug=true`,
+						res,
+					);
+				}
 			});
-		} else continueSubmit();
 	};
 
+	const handleSaveNewTemplate = (name: string) => {
+		fetch(process.env.NEXT_PUBLIC_API_URL + `/buildteams/${team}/application/templates?slug=true`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + user.token,
+			},
+			body: JSON.stringify({
+				name,
+				content: responseEditor?.storage.markdown.getMarkdown(),
+			}),
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				if (res.errors || res.message) {
+					showNotification({
+						title: 'Creation failed',
+						message: res.message,
+						color: 'red',
+					});
+				} else {
+					showNotification({
+						title: `Template created`,
+						message: 'All Data has been saved',
+						color: 'green',
+						icon: <IconCheck />,
+					});
+					mutate(`/buildteams/${team}/application/templates?slug=true`);
+				}
+			});
+	};
+
+	// console.log(responseEditor?.storage.markdown.getMarkdown());
 	return (
 		<Page
 			head={{
@@ -136,7 +173,7 @@ const Apply: NextPage = ({ team, id }: any) => {
 							})}
 						</Grid.Col>
 						<Grid.Col span={{ md: 6 }} pl="lg">
-							<h2>Application Details</h2>
+							<h2>Details</h2>
 							<Stack gap={0}>
 								<Divider style={{ margin: '0' }} my="sm" />
 								<Group justify="space-between">
@@ -207,12 +244,62 @@ const Apply: NextPage = ({ team, id }: any) => {
 									</>
 								)}
 							</Stack>
-							{data.status != 'SEND' && (
-								<Alert title="Reviewer Feedback" mt="md">
-									{data.reason || '-- None provided --'}
-								</Alert>
-							)}
+						</Grid.Col>
+						<Grid.Col span={12}>
 							<h2>Actions</h2>
+							{data.status != 'SEND' && (
+								<>
+									<Alert title="Warning" color="orange" mb="md">
+										This Application was already reviewed, changing its Status may revoke
+										permissions from the User. The original Reviewer Response is listed below.
+									</Alert>
+								</>
+							)}
+
+							<RichTextEditor editor={responseEditor} mb="md" mih="200px">
+								<RichTextEditor.Toolbar sticky stickyOffset={60}>
+									<RichTextEditor.ControlsGroup>
+										<InsertReviewTemplateControl templates={templateResponses} />
+									</RichTextEditor.ControlsGroup>
+
+									<RichTextEditor.ControlsGroup>
+										<RichTextEditor.Bold />
+										<RichTextEditor.Italic />
+										<RichTextEditor.Underline />
+										<RichTextEditor.Strikethrough />
+										<RichTextEditor.ClearFormatting />
+										<RichTextEditor.Code />
+									</RichTextEditor.ControlsGroup>
+
+									<RichTextEditor.ControlsGroup>
+										<RichTextEditor.H1 />
+										<RichTextEditor.H2 />
+										<RichTextEditor.H3 />
+										<RichTextEditor.H4 />
+									</RichTextEditor.ControlsGroup>
+
+									<RichTextEditor.ControlsGroup>
+										<RichTextEditor.Blockquote />
+										<RichTextEditor.Hr />
+										<RichTextEditor.BulletList />
+										<RichTextEditor.OrderedList />
+										<RichTextEditor.Subscript />
+										<RichTextEditor.Superscript />
+									</RichTextEditor.ControlsGroup>
+
+									<RichTextEditor.ControlsGroup>
+										<RichTextEditor.Link />
+										<RichTextEditor.Unlink />
+									</RichTextEditor.ControlsGroup>
+
+									<RichTextEditor.ControlsGroup>
+										<RichTextEditor.Undo />
+										<RichTextEditor.Redo />
+									</RichTextEditor.ControlsGroup>
+								</RichTextEditor.Toolbar>
+
+								<RichTextEditor.Content />
+							</RichTextEditor>
 							<Group>
 								<Button
 									leftSection={<IconCheck />}
@@ -224,13 +311,41 @@ const Apply: NextPage = ({ team, id }: any) => {
 								<Button leftSection={<IconX />} onClick={() => handleSubmit(false)} color="red">
 									Decline
 								</Button>
+								<Button
+									leftSection={<IconReplace />}
+									onClick={() => {
+										let name = '';
+										modals.openConfirmModal({
+											title: 'New Template Response',
+											centered: true,
+											children: (
+												<>
+													<Text size="sm">
+														You need to give the template a name to be able to reference it later.
+													</Text>
+													<TextInput
+														placeholder="My new Template"
+														label="Name"
+														mt="md"
+														onChange={(e) => (name = e.target.value)}
+													/>
+												</>
+											),
+											labels: { confirm: 'Create Template', cancel: 'Cancel' },
+											onCancel: () =>
+												showNotification({
+													message: `Template was not declined.`,
+													title: 'Cancelled creation',
+													color: 'yellow',
+												}),
+											onConfirm: () => handleSaveNewTemplate(name),
+										});
+									}}
+									variant="outline"
+								>
+									Save Feedback as Template
+								</Button>
 							</Group>
-							{data.status != 'SEND' && (
-								<Alert title="Warning" mt="md" color="orange">
-									This Application was already reviewed, changing its Status may revoke permissions
-									from the User.
-								</Alert>
-							)}
 						</Grid.Col>
 					</Grid>
 				)}
@@ -288,4 +403,51 @@ function statusToGradient(status: string) {
 		default:
 			return undefined;
 	}
+}
+
+function InsertReviewTemplateControl({
+	templates,
+}: {
+	templates: { name: string; id: string; content: string }[];
+}) {
+	const { editor } = useRichTextEditorContext();
+	return (
+		<RichTextEditor.Control aria-label="Insert response template" title="Insert response template">
+			<Select
+				size="xs"
+				placeholder="Custom Message"
+				variant="unstyled"
+				leftSection={<IconPlaceholder stroke={1.5} size="1rem" />}
+				data={[
+					{
+						group: 'Response Templates',
+						items: templates.map((t) => ({ label: t.name, value: t.id })),
+					},
+				]}
+				onChange={(_value, option) => {
+					if (option) {
+						editor?.commands.setContent(
+							templates.find((t) => t.id == option.value)?.content || '-',
+						);
+					} else {
+						editor?.commands.setContent('');
+					}
+				}}
+				// renderOption={({ option, checked }) => (
+				// 	<Group flex="1" gap="xs">
+				// 		{checked && (
+				// 			<IconCheck
+				// 				style={{ marginInlineStart: 'auto' }}
+				// 				stroke={1.5}
+				// 				color="currentColor"
+				// 				opacity={0.6}
+				// 				size={18}
+				// 			/>
+				// 		)}
+				// 		{option && option.label} -d
+				// 	</Group>
+				// )}
+			/>
+		</RichTextEditor.Control>
+	);
 }
