@@ -17,6 +17,7 @@ import { showNotification } from '@mantine/notifications';
 import { IconChevronLeft } from '@tabler/icons-react';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import build from 'next/dist/build';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
