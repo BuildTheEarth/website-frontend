@@ -278,7 +278,7 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 							onChange={(value) => {
 								setTrial(value === '1');
 							}}
-							color="blue"
+							color="cyan"
 							mb="md"
 							styles={{ label: { minWidth: 100 } }}
 							data={[

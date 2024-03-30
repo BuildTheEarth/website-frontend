@@ -68,7 +68,7 @@ const Contact: NextPage = ({ data }: any) => {
 								<At size={16} />
 								<Text
 									size="xs"
-									c="blue.4"
+									c="cyan.4"
 									style={{ cursor: 'pointer' }}
 									onClick={() => window.open(`mailto:${contact.mail}`, '_blank')}
 								>

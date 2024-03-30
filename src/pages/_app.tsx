@@ -10,21 +10,21 @@ import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import '../styles/globals.css';
 
-import type { AppProps } from 'next/app';
-import CookieBanner from '../components/CookieBanner';
-import { DefaultSeo } from 'next-seo';
-import { Inter } from 'next/font/google';
 import { MantineProvider } from '@mantine/core';
+import { useLocalStorage } from '@mantine/hooks';
 import { ModalsProvider } from '@mantine/modals';
 import { Notifications } from '@mantine/notifications';
-import { RouterTransition } from '../components/RouterTransition';
-import SWRSetup from '../components/SWRSetup';
 import { SessionProvider } from 'next-auth/react';
 import { appWithTranslation } from 'next-i18next';
-import defaultSeo from '../../next-seo.config';
+import { DefaultSeo } from 'next-seo';
+import type { AppProps } from 'next/app';
+import { Inter } from 'next/font/google';
 import localFont from 'next/font/local';
 import { useEffect } from 'react';
-import { useLocalStorage } from '@mantine/hooks';
+import defaultSeo from '../../next-seo.config';
+import CookieBanner from '../components/CookieBanner';
+import { RouterTransition } from '../components/RouterTransition';
+import SWRSetup from '../components/SWRSetup';
 
 export const interFont = Inter({
 	subsets: ['latin'],
@@ -79,6 +79,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 							lg: '75em',
 							xl: '88em',
 						},
+						primaryColor: 'cyan',
 						colors: {
 							dark: [
 								'#C1C2C5',

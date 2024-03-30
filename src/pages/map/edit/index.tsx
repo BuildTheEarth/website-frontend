@@ -555,7 +555,7 @@ const ClaimEditPage: NextPage = () => {
 															size={40}
 															src={selected.properties?.owner?.avatar}
 															radius={40}
-															color="blue"
+															color="cyan"
 														>
 															{(selected.properties?.owner?.username ||
 																selected.properties?.owner?.name ||

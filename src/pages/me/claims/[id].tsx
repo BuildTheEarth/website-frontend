@@ -13,14 +13,14 @@ import {
 	MenuItem,
 	MenuTarget,
 	NumberInput,
+	rem,
 	Select,
 	Switch,
 	Table,
 	Text,
-	TextInput,
 	Textarea,
+	TextInput,
 	Tooltip,
-	rem,
 } from '@mantine/core';
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Discord, Minecraft } from '@icons-pack/react-simple-icons';
@@ -51,9 +51,9 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import { mutate } from 'swr';
 import thumbnail from '../../../../public/images/thumbnails/me.png';
-import Page from '../../../components/Page';
 import { ClaimDrawerImages } from '../../../components/map/ClaimDrawerImages';
 import Map from '../../../components/map/Map';
+import Page from '../../../components/Page';
 import { useUser } from '../../../hooks/useUser';
 import fetcher from '../../../utils/Fetcher';
 
@@ -283,7 +283,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 										<Table.Td>
 											<Group gap="sm">
 												<Indicator disabled={!builder?.new} processing={loading}>
-													<Avatar size={40} src={builder.avatar} radius={40} color="blue">
+													<Avatar size={40} src={builder.avatar} radius={40} color="cyan">
 														{builder?.username[0]?.toUpperCase()}
 													</Avatar>
 												</Indicator>

@@ -149,7 +149,7 @@ const Header = ({ links, style, solid }: HeaderProps) => {
 											}
 											radius="xl"
 											size={'sm'}
-											color="blue"
+											color="cyan"
 											src={user.user?.avatar}
 										>
 											{(session.user.username || session.user.email).charAt(0)}
@@ -277,7 +277,7 @@ const Header = ({ links, style, solid }: HeaderProps) => {
 												}
 												radius="xl"
 												size={'sm'}
-												color="blue"
+												color="cyan"
 											>
 												{(session.user.username || session.user.email).charAt(0)}
 											</Avatar>

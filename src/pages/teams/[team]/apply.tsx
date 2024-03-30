@@ -23,8 +23,8 @@ import { useTranslation } from 'react-i18next';
 import sanitize from 'sanitize-html';
 import Page from '../../../components/Page';
 import { useUser } from '../../../hooks/useUser';
-import fetcher from '../../../utils/Fetcher';
 import { ApplicationQuestions } from '../../../utils/application/ApplicationQuestions';
+import fetcher from '../../../utils/Fetcher';
 
 const Apply: NextPage = ({ data, buildteam }: any) => {
 	const router = useRouter();
@@ -158,7 +158,7 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 										onChange={(value) => {
 											setTrial(value === '1');
 										}}
-										color="blue"
+										color="cyan"
 										mb="md"
 										styles={{ label: { minWidth: 100 } }}
 										disabled={loading || !buildteam?.allowApplications}
@@ -198,7 +198,7 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 							<Button
 								type="submit"
 								variant="filled"
-								color="blue"
+								color="cyan"
 								mt="md"
 								loading={loading}
 								disabled={!buildteam?.allowApplications}
@@ -207,7 +207,7 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 							</Button>
 							<Button
 								variant="outline"
-								color="blue"
+								color="cyan"
 								ml="md"
 								mt="md"
 								onClick={() => router.back()}
