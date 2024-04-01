@@ -10,38 +10,35 @@ import {
 	Group,
 	Select,
 	Stack,
-	Text,
-	TextInput,
-	Textarea,
-	Tooltip,
-	useMantineTheme,
+	Text, Textarea, TextInput, Tooltip,
+	useMantineTheme
 } from '@mantine/core';
-import { IconCheck, IconCopy, IconPlaceholder, IconReplace, IconX } from '@tabler/icons-react';
 import { RichTextEditor, useRichTextEditorContext } from '@mantine/tiptap';
+import { IconCheck, IconCopy, IconPlaceholder, IconReplace, IconX } from '@tabler/icons-react';
 import useSWR, { mutate } from 'swr';
 
-import { ApplicationQuestions } from '../../../../../utils/application/ApplicationQuestions';
+import { useClipboard } from '@mantine/hooks';
+import { modals } from '@mantine/modals';
+import { showNotification } from '@mantine/notifications';
 import Highlight from '@tiptap/extension-highlight';
 import Link from '@tiptap/extension-link';
-import { Markdown } from 'tiptap-markdown';
-import { NextPage } from 'next';
-import Page from '../../../../../components/Page';
 import Placeholder from '@tiptap/extension-placeholder';
-import SettingsTabs from '../../../../../components/SettingsTabs';
-import StarterKit from '@tiptap/starter-kit';
 import SubScript from '@tiptap/extension-subscript';
 import Superscript from '@tiptap/extension-superscript';
 import TextAlign from '@tiptap/extension-text-align';
 import Underline from '@tiptap/extension-underline';
-import fetcher from '../../../../../utils/Fetcher';
-import { modals } from '@mantine/modals';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { showNotification } from '@mantine/notifications';
-import thumbnail from '../../../../../../public/images/thumbnails/apply.png';
-import { useClipboard } from '@mantine/hooks';
 import { useEditor } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+import { NextPage } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect } from 'react';
+import { Markdown } from 'tiptap-markdown';
+import thumbnail from '../../../../../../public/images/thumbnails/apply.png';
+import Page from '../../../../../components/Page';
+import SettingsTabs from '../../../../../components/SettingsTabs';
 import { useUser } from '../../../../../hooks/useUser';
+import { ApplicationQuestions } from '../../../../../utils/application/ApplicationQuestions';
+import fetcher from '../../../../../utils/Fetcher';
 
 const Apply: NextPage = ({ team, id }: any) => {
 	const theme = useMantineTheme();
@@ -421,7 +418,9 @@ function InsertReviewTemplateControl({
 				data={[
 					{
 						group: 'Response Templates',
-						items: templates.map((t) => ({ label: t.name, value: t.id })),
+						items: templates
+							.sort((a: any, b: any) => a.name.localeCompare(b.name))
+							.map((t) => ({ label: t.name, value: t.id })),
 					},
 				]}
 				onChange={(_value, option) => {
