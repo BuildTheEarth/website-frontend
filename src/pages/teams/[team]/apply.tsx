@@ -74,7 +74,7 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 							content: (
 								<Text>
 									You are not on the BuildTheEarth.net Discord Server, please join it{' '}
-									<Anchor href="https://buildtheearth.net/discord" target="_blank">
+									<Anchor href="http://go.buildtheearth.net/dc" target="_blank">
 										here
 									</Anchor>{' '}
 									and apply again.

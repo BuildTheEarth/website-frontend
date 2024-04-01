@@ -87,7 +87,7 @@ const Contact: NextPage = ({ data }: any) => {
 					variant="outline"
 					radius="xl"
 					size="xl"
-					onClick={() => window.open('https://buildtheearth.net/discord', '_blank')}
+					onClick={() => window.open('http://go.buildtheearth.net/dc', '_blank')}
 					style={{
 						cursor: 'pointer',
 					}}

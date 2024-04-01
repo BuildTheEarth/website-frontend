@@ -66,7 +66,7 @@ const nextConfig = {
 			},
 			{
 				source: '/discord',
-				destination: 'https://discord.gg/buildtheearth-net-690908396404080650',
+				destination: 'http://go.buildtheearth.net/dc',
 				permanent: true,
 			},
 			{
