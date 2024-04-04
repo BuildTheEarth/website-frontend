@@ -6,11 +6,12 @@ import {
 	Container,
 	Grid,
 	Group,
-	rem,
+	Pagination,
 	Stack,
 	Stepper,
 	Text,
 	Title,
+	rem,
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
@@ -47,6 +48,7 @@ const Visit: NextPage = ({ data }: any) => {
 	const [search, setSearch] = useState<string | undefined>(undefined);
 	const [selected, setSelected] = useState<any>(undefined);
 	const { scrollY, scrollYProgress } = useScroll();
+	const [activePage, setPage] = useState(1);
 	const titleOp = useTransform(scrollY, [0, 500], ['0', '1']);
 
 	const locations: any = [];
@@ -157,11 +159,13 @@ const Visit: NextPage = ({ data }: any) => {
 				<Grid mt="xl" pt="xl" gutter={{ base: '3%' }}>
 					{locations
 						?.filter((element: any) => !element.location.includes('Globe'))
-						?.filter((element: any) =>
-							element.location?.toLowerCase().includes(search?.toLowerCase() || ''),
+						?.filter(
+							(element: any) =>
+								element.location?.toLowerCase().includes(search?.toLowerCase() || '') ||
+								element.team?.toLowerCase().includes(search?.toLowerCase() || ''),
 						)
 						.sort((a: any, b: any) => a.location.localeCompare(b.location))
-						.slice(0, 8)
+						.slice(activePage * 8 - 8, activePage * 8)
 						.map((element: any, i: number) => (
 							<Grid.Col key={i} span={{ sm: 5.75 }} mb="md" mr="md">
 								<Group
@@ -199,6 +203,20 @@ const Visit: NextPage = ({ data }: any) => {
 							</Grid.Col>
 						))}
 				</Grid>
+				<Pagination
+					mt="xl"
+					total={Math.ceil(
+						locations
+							?.filter((element: any) => !element.location.includes('Globe'))
+							?.filter(
+								(element: any) =>
+									element.location?.toLowerCase().includes(search?.toLowerCase() || '') ||
+									element.team?.toLowerCase().includes(search?.toLowerCase() || ''),
+							).length / 8,
+					)}
+					value={activePage}
+					onChange={setPage}
+				/>
 			</Container>
 			{selected && (
 				<Container
