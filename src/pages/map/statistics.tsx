@@ -9,16 +9,16 @@ import {
 	Text,
 } from '@mantine/core';
 
-import Counter from '../../components/Counter';
 import { NextPage } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
+import thumbnail from '../../../public/images/thumbnails/about.webp';
+import Counter from '../../components/Counter';
 import Page from '../../components/Page';
 import { StatsGrid } from '../../components/Stats';
 import { StatsGroup } from '../../components/stats/StatsGroup';
 import fetcher from '../../utils/Fetcher';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import thumbnail from '../../../public/images/thumbnails/about.webp';
-import { useRouter } from 'next/router';
-import { useTranslation } from 'react-i18next';
 
 const EARTH_AREA = 510_100_000_000_000_000;
 const EARTH_LAND_AREA = 149_000_000_000_000_000;
@@ -125,7 +125,7 @@ const MapPage: NextPage = ({ data, areaPercentage, days }: any) => {
 				{data.most.user.map((user: any, i: number) => (
 					<GridCol key={user.id} span={4}>
 						<StatsGrid
-							title={user.username || user.name || 'Unknown User - ' + user.discordId}
+							title={user.username || user.minecraft || 'Unknown User - ' + user.discordId}
 							isText
 							paperProps={{ style: { height: '100%' } }}
 						>

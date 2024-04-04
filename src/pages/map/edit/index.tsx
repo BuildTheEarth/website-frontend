@@ -13,14 +13,19 @@ import {
 	MenuDropdown,
 	MenuItem,
 	MenuTarget,
-	NumberInput, rem, ScrollAreaAutosize,
+	NumberInput,
+	ScrollAreaAutosize,
 	Select,
 	Switch,
 	Table,
 	TableTbody,
 	TableTd,
 	TableTr,
-	Text, Textarea, TextInput, Tooltip
+	Text,
+	TextInput,
+	Textarea,
+	Tooltip,
+	rem,
 } from '@mantine/core';
 import { useClipboard, useDebouncedState } from '@mantine/hooks';
 import {
@@ -34,14 +39,14 @@ import {
 	IconPhoto,
 	IconPlus,
 	IconTrash,
-	IconUsersGroup
+	IconUsersGroup,
 } from '@tabler/icons-react';
 import {
 	SnapDirectSelect,
 	SnapLineMode,
 	SnapModeDrawStyles,
 	SnapPointMode,
-	SnapPolygonMode
+	SnapPolygonMode,
 } from 'mapbox-gl-draw-snap-mode';
 import { useEffect, useState } from 'react';
 
@@ -56,9 +61,9 @@ import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
 import { v4 as uuidv4 } from 'uuid';
 import { useContextMenu } from '../../../components/ContextMenu';
+import Page from '../../../components/Page';
 import Map from '../../../components/map/Map';
 import { MapContextMenu } from '../../../components/map/MapContextMenu';
-import Page from '../../../components/Page';
 import { useUser } from '../../../hooks/useUser';
 
 const ClaimEditPage: NextPage = () => {
@@ -123,7 +128,7 @@ const ClaimEditPage: NextPage = () => {
 						id: user.user?.id,
 						ssoId: user.user?.ssoId,
 						avatar: user.user?.avatar,
-						name: user.user?.name || user.user?.username,
+						minecraft: user.user?.minecraft || user.user?.username,
 					})
 					.setFeatureProperty(selected.id, 'id', selected.id)
 					.setFeatureProperty(selected.id, 'new', true);
@@ -207,7 +212,11 @@ const ClaimEditPage: NextPage = () => {
 						'builders',
 						[
 							...selected.properties.builders,
-							{ new: true, ...currentOwner, username: currentOwner.name },
+							{
+								new: true,
+								...currentOwner,
+								username: currentOwner.username || currentOwner.minecraft,
+							},
 						],
 						true,
 					);
@@ -558,6 +567,7 @@ const ClaimEditPage: NextPage = () => {
 															color="cyan"
 														>
 															{(selected.properties?.owner?.username ||
+																selected.properties?.owner?.minecraft ||
 																selected.properties?.owner?.name ||
 																selected.properties?.owner?.id ||
 																'-')[0].toUpperCase()}
@@ -566,6 +576,7 @@ const ClaimEditPage: NextPage = () => {
 													<div>
 														<Text fz="sm" fw={500}>
 															{selected.properties?.owner?.username ||
+																selected.properties?.owner?.minecraft ||
 																selected.properties?.owner?.name ||
 																selected.properties?.owner?.id ||
 																'No owner'}
@@ -595,12 +606,12 @@ const ClaimEditPage: NextPage = () => {
 													<Group gap="sm">
 														<Indicator disabled={!builder?.new} processing={loading} color="orange">
 															<Avatar size={40} src={builder.avatar} radius={40} color="teal">
-																{(builder?.username || builder?.name || '-')[0]?.toUpperCase()}
+																{(builder?.username || builder?.minecraft || '-')[0]?.toUpperCase()}
 															</Avatar>
 														</Indicator>
 														<div>
 															<Text fz="sm" fw={500}>
-																{builder?.username || builder?.name || 'Unknown User'}
+																{builder?.username || builder?.minecraft || 'Unknown User'}
 															</Text>
 															<Text c="dimmed" fz="xs">
 																{t('common:builder')}
@@ -647,8 +658,8 @@ const ClaimEditPage: NextPage = () => {
 																</MenuItem>
 																<MenuItem
 																	leftSection={<IconBrandMinecraft />}
-																	disabled={!builder.name}
-																	onClick={() => clipboard.copy(builder.name)}
+																	disabled={!builder.minecraft}
+																	onClick={() => clipboard.copy(builder.minecraft)}
 																>
 																	Copy Minecraft Name
 																</MenuItem>

@@ -5,11 +5,11 @@ import {
 	Code,
 	Grid,
 	Group,
-	rem,
 	Select,
 	Stack,
 	Text,
 	Tooltip,
+	rem,
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
@@ -63,7 +63,7 @@ const MePage: NextPage = () => {
 					<h2>{t('account.title')}</h2>
 					<Text>
 						{t('account.minecraft') + ' '}
-						<Code>{data.name}</Code>
+						<Code>{data.minecraft}</Code>
 					</Text>
 					<Text>
 						{t('account.id') + ' '}
@@ -257,8 +257,8 @@ const MePage: NextPage = () => {
 										<div>
 											<Group justify="space-between">
 												<Tooltip label={element.name}>
-													<Text size="lg" fw={500} style={{ wordWrap: 'break-word' }}>
-														{element.name.slice(0, 30) + (element.name.length > 30 ? '...' : '')}
+													<Text size="lg" fw={500} style={{ wordWrap: 'break-word' }} lineClamp={1}>
+														{element.name}
 													</Text>
 												</Tooltip>
 											</Group>

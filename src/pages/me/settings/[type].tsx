@@ -44,7 +44,6 @@ const Settings: NextPage = ({ type }: any) => {
 				avatar: data.avatar,
 				firstName: data.firstName,
 				lastName: data.lastName,
-				name: data.name,
 			});
 	}, [isLoading]);
 
@@ -56,7 +55,6 @@ const Settings: NextPage = ({ type }: any) => {
 			avatar: e.avatar || undefined,
 			firstName: e.firstName || undefined,
 			lastName: e.lastName || undefined,
-			name: e.name || undefined,
 		};
 		fetch(process.env.NEXT_PUBLIC_API_URL + `/users/${user?.user?.id}`, {
 			method: 'POST',
@@ -153,12 +151,6 @@ const Settings: NextPage = ({ type }: any) => {
 								placeholder="john.doe@mail.com"
 							/>
 							<TextInput
-								label="Minecraft Username"
-								{...form.getInputProps('name')}
-								mt="md"
-								placeholder="notch"
-							/>
-							<TextInput
 								label="Avatar"
 								{...form.getInputProps('avatar')}
 								mt="md"
@@ -178,7 +170,6 @@ const Settings: NextPage = ({ type }: any) => {
 											avatar: data.avatar,
 											firstName: data.firstName,
 											lastName: data.lastName,
-											name: data.name,
 										});
 									}}
 									leftSection={<IconReload />}

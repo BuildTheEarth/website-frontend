@@ -10,8 +10,11 @@ import {
 	Group,
 	Select,
 	Stack,
-	Text, Textarea, TextInput, Tooltip,
-	useMantineTheme
+	Text,
+	TextInput,
+	Textarea,
+	Tooltip,
+	useMantineTheme,
 } from '@mantine/core';
 import { RichTextEditor, useRichTextEditorContext } from '@mantine/tiptap';
 import { IconCheck, IconCopy, IconPlaceholder, IconReplace, IconX } from '@tabler/icons-react';
@@ -37,8 +40,8 @@ import thumbnail from '../../../../../../public/images/thumbnails/apply.png';
 import Page from '../../../../../components/Page';
 import SettingsTabs from '../../../../../components/SettingsTabs';
 import { useUser } from '../../../../../hooks/useUser';
-import { ApplicationQuestions } from '../../../../../utils/application/ApplicationQuestions';
 import fetcher from '../../../../../utils/Fetcher';
+import { ApplicationQuestions } from '../../../../../utils/application/ApplicationQuestions';
 
 const Apply: NextPage = ({ team, id }: any) => {
 	const theme = useMantineTheme();
@@ -210,7 +213,7 @@ const Apply: NextPage = ({ team, id }: any) => {
 								<Divider style={{ margin: '0' }} my="sm" />
 								<Group justify="space-between">
 									<Text>Minecraft Name</Text>
-									<Text>{data?.user?.name || '--'} </Text>
+									<Text>{data?.user?.minecraft || '--'}</Text>
 								</Group>
 								<Divider style={{ margin: '0' }} my="sm" />
 								<Group justify="space-between">
