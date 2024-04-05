@@ -1,9 +1,9 @@
 import { ActionIcon, TextInput } from '@mantine/core';
-
 import { IconExternalLink, IconLink } from '@tabler/icons-react';
-import Link from 'next/link';
+
 import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
 import Icon from '../../Icon';
+import Link from 'next/link';
 
 export interface UrlQuestionProps extends ApplicationQuestion {
 	additionalData: {};
@@ -11,7 +11,7 @@ export interface UrlQuestionProps extends ApplicationQuestion {
 
 function validation(props: UrlQuestionProps): (value: string) => void {
 	return (value: string) => {
-		return /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/.test(
+		return /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%.,_!\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.,!~#?&\/=]*)$/.test(
 			value,
 		)
 			? false
