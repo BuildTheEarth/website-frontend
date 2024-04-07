@@ -263,6 +263,15 @@ const Settings = ({ data: tempData }: any) => {
 									mt="md"
 									onChange={(e) => handleUpdate('ip', e.target.value)}
 								/>
+								<TextInput
+									required
+									label="Minecraft Version"
+									description="The Minecraft Version your Server primarily runs on (eg. 1.12.2 or 1.20)."
+									defaultValue={data.version}
+									disabled={!allowSettings}
+									mt="md"
+									onChange={(e) => handleUpdate('version', e.target.value)}
+								/>
 							</Grid.Col>
 						</Grid>
 						<Input.Wrapper

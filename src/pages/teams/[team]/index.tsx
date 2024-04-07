@@ -80,6 +80,11 @@ const Team: NextPage = ({ data, data2 }: any) => {
 						</Group>
 						<Divider style={{ margin: '0' }} my="sm" />
 						<Group justify="space-between">
+							<p>Minecraft Version</p>
+							<p>{data?.version}</p>
+						</Group>
+						<Divider style={{ margin: '0' }} my="sm" />
+						<Group justify="space-between">
 							<p>{t('team.location')}</p>
 							<p>
 								{data?.location
