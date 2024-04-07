@@ -108,12 +108,17 @@ const Team: NextPage = ({ data, data2 }: any) => {
 			{focus && <FocusImage id={focus} />}
 			<GalleryGrid
 				images={
-					data2?.slice(showcasePage * 10 - 10, showcasePage * 10).map((d: any) => ({
-						name: d?.title,
-						src: `https://cdn.buildtheearth.net/uploads/${d?.image?.name}`,
-						date: d?.createdAt,
-						onClick: () => setFocus(d?.image?.name),
-					})) || [{}]
+					data2
+						?.sort(
+							(a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+						)
+						?.slice(showcasePage * 10 - 10, showcasePage * 10)
+						.map((d: any) => ({
+							name: d?.title,
+							src: `https://cdn.buildtheearth.net/uploads/${d?.image?.name}`,
+							date: d?.createdAt,
+							onClick: () => setFocus(d?.image?.name),
+						})) || [{}]
 				}
 			/>
 			<Group justify="center" w="100%" mt="md">
