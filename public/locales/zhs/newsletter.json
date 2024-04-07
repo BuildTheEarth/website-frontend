@@ -1,0 +1,7 @@
+{
+	"head": {
+		"title": "新闻通讯"
+	},
+	"description": "BuildTheEarth新闻是一套月刊，展示整个项目中的团队、建筑师和各种主题。",
+	"issue": "问题 {{num}}"
+}

@@ -17,20 +17,20 @@
 				"link": "Lenke",
 				"edit": "Rediger claim"
 			},
-			"city": "City",
-			"description": "Description",
-			"buildings": "Buildings",
-			"address": "Address",
+			"city": "By",
+			"description": "Beskrivelse",
+			"buildings": "Bygninger",
+			"address": "Adresse",
 			"image": {
 				"delete": {
-					"title": "Delete Showcase Image",
-					"description": "Are you sure you want to delete the image from the claim? This action cannot be undone.",
-					"label": "Delete Image"
+					"title": "Slett showcase-bilde",
+					"description": "Er du sikker på at du vil slette bildet fra claim-en? Denne handlingen kan ikke angres.",
+					"label": "Slett bilde"
 				},
 				"create": {
-					"loading": "Uploading your images...",
-					"title": "Drag image here or click to select file",
-					"subtitle": "Attach one file, file size should not exceed 2mb"
+					"loading": "Laster opp bilder...",
+					"title": "Dra bildet hit eller klikk for å velge fil",
+					"subtitle": "Legg til én fil. Filstørrelsen bør ikke være over 2mb"
 				}
 			}
 		}
@@ -49,14 +49,14 @@
 			"title": "Hvordan redigere claim-polygoner",
 			"description": "Du kan finne en veiledning om hvordan du bruker kartet til høyre her:"
 		},
-		"description": "Description",
+		"description": "Beskrivelse",
 		"buildings": {
-			"title": "Building Count",
-			"description": "You cannot edit this field, it will get automatically calculated."
+			"title": "Antall byggninger",
+			"description": "Du kan ikke redigere dette feltet, det vil bli automatisk beregnet."
 		}
 	},
 	"stats": {
-		"title": "Map Statistics",
+		"title": "Kart-statistikk",
 		"global": {
 			"buildings": "Finished Buildings",
 			"claims": "Finished Claims",
