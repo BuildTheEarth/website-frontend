@@ -74,19 +74,19 @@ export async function getServerSideProps({ res }: any) {
 			loc: '/join',
 			lastModified: new Date(),
 			changeFrequency: 'monthly',
-			priority: 0.6,
+			priority: 0.9,
 		},
 		{
 			loc: '/join/visit',
 			lastModified: new Date(),
 			changeFrequency: 'monthly',
-			priority: 0.6,
+			priority: 0.8,
 		},
 		{
 			loc: '/join/build',
 			lastModified: new Date(),
 			changeFrequency: 'monthly',
-			priority: 0.6,
+			priority: 0.8,
 		},
 		{
 			loc: '/faq',
@@ -103,12 +103,22 @@ export async function getServerSideProps({ res }: any) {
 	]);
 
 	const contentTeams = generateSiteMapContent(
-		data.map((team: any) => ({
-			loc: `/teams/${team.slug}`,
-			lastModified: new Date(),
-			changeFrequency: 'weekly',
-			priority: 0.8,
-		})),
+		data
+			.map((team: any) => [
+				{
+					loc: `/teams/${team.slug}`,
+					lastModified: new Date(),
+					changeFrequency: 'weekly',
+					priority: 0.8,
+				},
+				{
+					loc: `/teams/${team.slug}/apply`,
+					lastModified: new Date(),
+					changeFrequency: 'monthly',
+					priority: 0.7,
+				},
+			])
+			.flat(),
 	);
 
 	const sitemap = generateSiteMap(content.concat(contentTeams));
