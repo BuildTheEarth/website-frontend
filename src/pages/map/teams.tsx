@@ -74,7 +74,6 @@ const MapPage: NextPage = ({ data }: any) => {
 
 						data.forEach((d: any, i: number) => {
 							const color = d.color;
-							console.log(d.location, i);
 							d.location.split(', ').forEach((l: string) => {
 								if (l.length == 2 && !fillColor.some((c) => c == l.toUpperCase()))
 									fillColor.push(l.toUpperCase(), color);
@@ -82,7 +81,6 @@ const MapPage: NextPage = ({ data }: any) => {
 						});
 
 						fillColor.push('rgba(0, 0, 0, 0)');
-						console.log(fillColor[44], fillColor[120]);
 
 						// Add a layer with boundary polygons
 						map.addLayer(

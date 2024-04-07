@@ -16,6 +16,10 @@ import {
 	useMantineTheme,
 } from '@mantine/core';
 import {
+	ApplicationQuestions,
+	toReadable,
+} from '../../../../utils/application/ApplicationQuestions';
+import {
 	IconCheck,
 	IconChevronDown,
 	IconChevronUp,
@@ -23,24 +27,20 @@ import {
 	IconPlus,
 } from '@tabler/icons-react';
 import Question, { EditQuestion } from '../../../../components/application/questions/Question';
-import {
-	ApplicationQuestions,
-	toReadable,
-} from '../../../../utils/application/ApplicationQuestions';
 
-import { showNotification } from '@mantine/notifications';
-import { NextPage } from 'next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import thumbnail from '../../../../../public/images/thumbnails/teams.png';
 import Icon from '../../../../components/Icon';
+import Link from 'next/link';
+import { NextPage } from 'next';
 import Page from '../../../../components/Page';
 import SettingsTabs from '../../../../components/SettingsTabs';
-import { useUser } from '../../../../hooks/useUser';
 import fetcher from '../../../../utils/Fetcher';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { showNotification } from '@mantine/notifications';
+import thumbnail from '../../../../../public/images/thumbnails/teams.png';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import { useUser } from '../../../../hooks/useUser';
+import { v4 as uuidv4 } from 'uuid';
 
 const Apply: NextPage = ({ data: tempData, team }: any) => {
 	const [trial, setTrial] = useState(false);
@@ -69,7 +69,6 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 	const handleMoveUp = (i: number) => {
 		if (i > 0 && i < data.length) {
 			let updatedData = [...data.filter((d: any) => d.trial == trial)];
-			console.log(updatedData);
 			let temp = updatedData[i];
 			updatedData.splice(i, 1);
 			updatedData.splice(i - 1, 0, temp);
@@ -124,8 +123,6 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 		setSaveLoading(true);
 
 		recalculate();
-
-		console.log(deletedData);
 
 		if (data.length < 1) {
 			showNotification({

@@ -207,7 +207,6 @@ const MapPage: NextPage = ({ data, areaPercentage, days }: any) => {
 export async function getStaticProps({ locale }: any) {
 	const res = await fetcher('/map/statistics');
 	const areaPercentage = calculatePercentages(res.total.area);
-	console.log(datediff());
 	return {
 		props: {
 			data: res,

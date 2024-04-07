@@ -139,7 +139,6 @@ const Apply: NextPage = ({ team, id }: any) => {
 			});
 	};
 
-	// console.log(responseEditor?.storage.markdown.getMarkdown());
 	return (
 		<Page
 			head={{
