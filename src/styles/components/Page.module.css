@@ -19,7 +19,7 @@
 		padding: calc(var(--mantine-spacing-xs) * 2) calc(var(--mantine-spacing-xs) * 3);
 	}
 
-	&[data-bg=true] {
+	&[data-bg='true'] {
 		background-color: light-dark(var(--mantine-color-white), var(--mantine-color-dark-7));
 	}
 

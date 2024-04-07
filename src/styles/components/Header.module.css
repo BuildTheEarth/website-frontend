@@ -1,6 +1,6 @@
 .root {
 	z-index: 99;
-		background: var(--mantine-color-body);
+	background: var(--mantine-color-body);
 	transition: all 0.2s linear !important;
 	position: fixed;
 	top: 0;
