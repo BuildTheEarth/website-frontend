@@ -54,7 +54,6 @@ const MapPage: NextPage = ({ data }: any) => {
 			<div style={{ height: '96vh', width: '100%', position: 'relative' }}>
 				<Map
 					onContextMenu={contextHandler}
-					initialOptions={{ maxZoom: 6 }}
 					themeControls={false}
 					onMapLoaded={(map) => {
 						setMap(map);
