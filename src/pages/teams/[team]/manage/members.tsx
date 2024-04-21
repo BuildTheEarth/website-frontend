@@ -24,17 +24,17 @@ import {
 import { useEffect, useState } from 'react';
 import useSWR, { mutate } from 'swr';
 
+import { modals } from '@mantine/modals';
+import { showNotification } from '@mantine/notifications';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useRouter } from 'next/router';
+import thumbnail from '../../../../../public/images/thumbnails/teams.png';
 import Page from '../../../../components/Page';
 import SearchInput from '../../../../components/SearchInput';
 import SettingsTabs from '../../../../components/SettingsTabs';
 import { UsersTable } from '../../../../components/UsersTable';
-import fetcher from '../../../../utils/Fetcher';
-import { modals } from '@mantine/modals';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { showNotification } from '@mantine/notifications';
-import thumbnail from '../../../../../public/images/thumbnails/teams.png';
-import { useRouter } from 'next/router';
 import { useUser } from '../../../../hooks/useUser';
+import fetcher from '../../../../utils/Fetcher';
 
 const Settings = () => {
 	const user = useUser();

@@ -113,6 +113,6 @@ export async function getStaticProps({ locale }: any) {
 			data: res,
 			...(await serverSideTranslations(locale, ['common'])),
 		},
-		revalidate: 60 * 60 * 12, // Every 12 hours
+		revalidate: 60 * 60, // Every hour
 	};
 }

@@ -136,6 +136,6 @@ export async function getStaticProps({ locale }: any) {
 
 	return {
 		props: { data: res, ...(await serverSideTranslations(locale, ['common', 'teams'])) },
-		revalidate: 60 * 60, // Every hour
+		revalidate: 60 * 20, // Every 20 minutes
 	};
 }

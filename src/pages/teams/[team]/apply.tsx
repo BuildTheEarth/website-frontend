@@ -24,8 +24,8 @@ import { useTranslation } from 'react-i18next';
 import sanitize from 'sanitize-html';
 import Page from '../../../components/Page';
 import { useUser } from '../../../hooks/useUser';
-import { ApplicationQuestions } from '../../../utils/application/ApplicationQuestions';
 import fetcher from '../../../utils/Fetcher';
+import { ApplicationQuestions } from '../../../utils/application/ApplicationQuestions';
 
 const Apply: NextPage = ({ data, buildteam }: any) => {
 	const router = useRouter();
@@ -269,6 +269,7 @@ export async function getStaticProps({ locale, params }: any) {
 			buildteam: res2,
 			...(await serverSideTranslations(locale, ['common', 'teams'])),
 		},
+		revalidate: 60 * 60 * 24, // Every day,
 	};
 }
 export async function getStaticPaths() {

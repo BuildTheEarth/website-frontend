@@ -489,6 +489,7 @@ export async function getStaticProps({ locale, params }: any) {
 			...(await serverSideTranslations(locale, ['common', 'teams'])),
 			data: res,
 		},
+		revalidate: 60 * 60, // Every hour
 	};
 }
 

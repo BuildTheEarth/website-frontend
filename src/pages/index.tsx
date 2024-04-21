@@ -309,6 +309,6 @@ export async function getStaticProps({ locale }: any) {
 			headData: res2.sort((a: any, b: any) => 0.5 - Math.random()),
 			...(await serverSideTranslations(locale, ['common', 'home'])),
 		},
-		revalidate: 60 * 2, // Every two minutes
+		revalidate: 60 * 10, // Every 10 minutes
 	};
 }
