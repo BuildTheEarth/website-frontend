@@ -1,4 +1,3 @@
-import { AnimatePresence, motion } from 'framer-motion';
 import {
 	Avatar,
 	Badge,
@@ -9,12 +8,13 @@ import {
 	Title,
 	useMantineTheme,
 } from '@mantine/core';
+import { AnimatePresence, motion } from 'framer-motion';
 
-import BackgroundImage from './BackgroundImage';
+import { useHover } from '@mantine/hooks';
 import Link from 'next/link';
 import React from 'react';
-import { useHover } from '@mantine/hooks';
 import { useIsClient } from '../hooks/useIsClient';
+import BackgroundImage from './BackgroundImage';
 
 interface GalleryGridProps {
 	images: GalleryGridImageProps[];
@@ -38,7 +38,7 @@ function GalleryGrid(props: GalleryGridProps) {
 	return (
 		<Grid gutter={props.gap || 'md'} style={props.style}>
 			{props.images.map((i, index) => (
-				<GridCol span={6} key={`g_i_${i}_${i.name?.slice(0, 10) || 'none'}`}>
+				<GridCol span={6} key={`g_i_${i}_${i.name?.slice(0, 10) || 'none'}_${index}`}>
 					<GalleryGridImage {...i} showTooltipOnHover={props.showTooltipOnHover} />
 				</GridCol>
 			))}
