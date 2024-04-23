@@ -9,6 +9,7 @@ export const useUser = () => {
 	const user = {
 		user: data,
 		token: session.data?.accessToken,
+		isLoggedIn: session.status === 'authenticated',
 		isLoading: session.status === 'loading' && isLoading,
 		refresh: () => mutate('/account'),
 		hasPermission: (p: string, buildteam?: string) => {
