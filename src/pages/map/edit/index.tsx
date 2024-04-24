@@ -52,6 +52,11 @@ import {
 } from 'mapbox-gl-draw-snap-mode';
 import { useEffect, useState } from 'react';
 
+import { useContextMenu } from '@/components/ContextMenu';
+import Page from '@/components/Page';
+import Map from '@/components/map/Map';
+import { MapContextMenu } from '@/components/map/MapContextMenu';
+import { useUser } from '@/hooks/useUser';
 import { Discord } from '@icons-pack/react-simple-icons';
 import { modals } from '@mantine/modals';
 import { showNotification } from '@mantine/notifications';
@@ -61,12 +66,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
-import { v4 as uuidv4 } from 'uuid';
-import { useContextMenu } from '../../../components/ContextMenu';
-import Page from '../../../components/Page';
-import Map from '../../../components/map/Map';
-import { MapContextMenu } from '../../../components/map/MapContextMenu';
-import { useUser } from '../../../hooks/useUser';
 
 const ClaimEditPage: NextPage = () => {
 	const { t } = useTranslation('map');

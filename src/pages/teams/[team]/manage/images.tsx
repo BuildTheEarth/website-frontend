@@ -16,6 +16,11 @@ import {
 import { IconPencil, IconPlus, IconTrash } from '@tabler/icons-react';
 import useSWR, { mutate } from 'swr';
 
+import Page from '@/components/Page';
+import SettingsTabs from '@/components/SettingsTabs';
+import { useUser } from '@/hooks/useUser';
+import thumbnail from '@/public/images/thumbnails/teams.png';
+import fetcher from '@/utils/Fetcher';
 import { DateInput } from '@mantine/dates';
 import { modals } from '@mantine/modals';
 import { showNotification } from '@mantine/notifications';
@@ -23,11 +28,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import thumbnail from '../../../../../public/images/thumbnails/teams.png';
-import Page from '../../../../components/Page';
-import SettingsTabs from '../../../../components/SettingsTabs';
-import { useUser } from '../../../../hooks/useUser';
-import fetcher from '../../../../utils/Fetcher';
 
 var vagueTime = require('vague-time');
 

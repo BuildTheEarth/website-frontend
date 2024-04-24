@@ -1,3 +1,5 @@
+import Question, { EditQuestion } from '@/components/application/questions/Question';
+import { ApplicationQuestions, toReadable } from '@/utils/application/ApplicationQuestions';
 import {
 	ActionIcon,
 	Anchor,
@@ -22,12 +24,13 @@ import {
 	IconLetterT,
 	IconPlus,
 } from '@tabler/icons-react';
-import Question, { EditQuestion } from '../../../../components/application/questions/Question';
-import {
-	ApplicationQuestions,
-	toReadable,
-} from '../../../../utils/application/ApplicationQuestions';
 
+import Icon from '@/components/Icon';
+import Page from '@/components/Page';
+import SettingsTabs from '@/components/SettingsTabs';
+import { useUser } from '@/hooks/useUser';
+import thumbnail from '@/public/images/thumbnails/teams.png';
+import fetcher from '@/utils/Fetcher';
 import { showNotification } from '@mantine/notifications';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -35,12 +38,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import thumbnail from '../../../../../public/images/thumbnails/teams.png';
-import Icon from '../../../../components/Icon';
-import Page from '../../../../components/Page';
-import SettingsTabs from '../../../../components/SettingsTabs';
-import { useUser } from '../../../../hooks/useUser';
-import fetcher from '../../../../utils/Fetcher';
 
 const Apply: NextPage = ({ data: tempData, team }: any) => {
 	const [trial, setTrial] = useState(false);

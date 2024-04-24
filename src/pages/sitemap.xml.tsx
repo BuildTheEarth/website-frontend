@@ -1,6 +1,6 @@
 import { generateSiteMap, generateSiteMapContent } from '../utils/Sitemap';
 
-import fetcher from '../utils/Fetcher';
+import fetcher from '@/utils/Fetcher';
 
 export default function SiteMap() {
 	// getServerSideProps

@@ -1,5 +1,4 @@
 import {
-	Alert,
 	Button,
 	ColorInput,
 	Grid,
@@ -14,18 +13,18 @@ import {
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
-import { IconAlertCircle, IconCheck, IconPlus, IconTrash } from '@tabler/icons-react';
+import { IconCheck, IconPlus, IconTrash } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 
+import Page from '@/components/Page';
+import RTE from '@/components/RTE';
+import SettingsTabs from '@/components/SettingsTabs';
+import { useUser } from '@/hooks/useUser';
+import thumbnail from '@/public/images/thumbnails/teams.png';
+import fetcher from '@/utils/Fetcher';
 import { showNotification } from '@mantine/notifications';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { v4 as uuidv4 } from 'uuid';
-import thumbnail from '../../../../../public/images/thumbnails/teams.png';
-import Page from '../../../../components/Page';
-import RTE from '../../../../components/RTE';
-import SettingsTabs from '../../../../components/SettingsTabs';
-import { useUser } from '../../../../hooks/useUser';
-import fetcher from '../../../../utils/Fetcher';
 
 const Settings = ({ data: tempData }: any) => {
 	const theme = useMantineTheme();

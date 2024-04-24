@@ -1,7 +1,7 @@
+import Icon from '@/components/Icon';
+import { ApplicationQuestion } from '@/utils/application/ApplicationQuestions';
 import { TextInput } from '@mantine/core';
 import { IconPhoto } from '@tabler/icons-react';
-import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
-import Icon from '../../Icon';
 
 export interface ImageUploadQuestionProps extends ApplicationQuestion {
 	maxSize?: number;

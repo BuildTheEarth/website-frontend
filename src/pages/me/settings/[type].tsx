@@ -15,6 +15,9 @@ import {
 } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 
+import Page from '@/components/Page';
+import { useUser } from '@/hooks/useUser';
+import thumbnail from '@/public/images/thumbnails/me.png';
 import { useForm } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
 import { NextPage } from 'next';
@@ -23,9 +26,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
-import thumbnail from '../../../../public/images/thumbnails/me.png';
-import Page from '../../../components/Page';
-import { useUser } from '../../../hooks/useUser';
 
 const Settings: NextPage = ({ type }: any) => {
 	const user = useUser();

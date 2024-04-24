@@ -5,7 +5,6 @@ import {
 	Code,
 	Grid,
 	Group,
-	Select,
 	Stack,
 	Text,
 	Tooltip,
@@ -14,19 +13,18 @@ import {
 	useMantineTheme,
 } from '@mantine/core';
 import {
-	IconCheck,
 	IconConfetti,
 	IconCrane,
 	IconExternalLink,
-	IconLink,
 	IconLogout,
 	IconPencil,
 	IconPin,
-	IconPlus,
 } from '@tabler/icons-react';
 
-import { modals } from '@mantine/modals';
-import { showNotification } from '@mantine/notifications';
+import Page from '@/components/Page';
+import { useUser } from '@/hooks/useUser';
+import thumbnail from '@/public/images/thumbnails/me.png';
+import getCountryName from '@/utils/ISOCountries';
 import { NextPage } from 'next';
 import { signOut } from 'next-auth/react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -35,10 +33,6 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
 import { Pin } from 'tabler-icons-react';
-import thumbnail from '../../../public/images/thumbnails/me.png';
-import Page from '../../components/Page';
-import { useUser } from '../../hooks/useUser';
-import getCountryName from '../../utils/ISOCountries';
 
 const MePage: NextPage = () => {
 	const user = useUser();

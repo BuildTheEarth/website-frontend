@@ -1,6 +1,6 @@
 import { Text, rem } from '@mantine/core';
 
-import classes from '../../styles/components/StatsGroup.module.css';
+import classes from '@/styles/components/StatsGroup.module.css';
 
 export function StatLargeNumber(data: { title: string; value: any; description: string }) {
 	return (

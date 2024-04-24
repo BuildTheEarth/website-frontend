@@ -21,15 +21,15 @@ import {
 	useMantineTheme,
 } from '@mantine/core';
 
+import Page from '@/components/Page';
+import thumbnail from '@/public/images/thumbnails/contact.png';
+import fetcher from '@/utils/Fetcher';
 import { IconMail } from '@tabler/icons-react';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { At } from 'tabler-icons-react';
-import thumbnail from '../../public/images/thumbnails/contact.png';
-import Page from '../components/Page';
-import fetcher from '../utils/Fetcher';
 
 const Contact: NextPage = ({ data }: any) => {
 	const router = useRouter();

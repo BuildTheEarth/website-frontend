@@ -13,16 +13,16 @@ import {
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ChevronDown, ChevronRight } from 'tabler-icons-react';
 
+import BackgroundImage from '@/components/BackgroundImage';
+import Page from '@/components/Page';
+import buildImg from '@/public/images/join/build.webp';
+import visitImg from '@/public/images/join/visit.webp';
+import thumbnail from '@/public/images/thumbnails/getstarted.png';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
-import buildImg from '../../../public/images/join/build.webp';
-import visitImg from '../../../public/images/join/visit.webp';
-import thumbnail from '../../../public/images/thumbnails/getstarted.png';
-import BackgroundImage from '../../components/BackgroundImage';
-import Page from '../../components/Page';
 
 const GetStarted: NextPage = () => {
 	const { t } = useTranslation('getstarted');

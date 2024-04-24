@@ -1,6 +1,6 @@
+import { ApplicationQuestions } from '@/utils/application/ApplicationQuestions';
 import { Divider } from '@mantine/core';
 import { Edit } from 'tabler-icons-react';
-import { ApplicationQuestions } from '../../../utils/application/ApplicationQuestions';
 
 const Question = (props: any) => {
 	const QuestionType = ApplicationQuestions[props.type];

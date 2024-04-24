@@ -11,18 +11,17 @@ import {
 	Tooltip,
 } from '@mantine/core';
 
+import Page from '@/components/Page';
+import { useUser } from '@/hooks/useUser';
+import thumbnail from '@/public/images/thumbnails/faq.png';
+import logo from '@/public/logo.gif';
+import fetcher from '@/utils/Fetcher';
 import { IconPlus } from '@tabler/icons-react';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
-import thumbnail from '../../../public/images/thumbnails/faq.png';
-import logo from '../../../public/logo.gif';
-import Page from '../../components/Page';
-import { useUser } from '../../hooks/useUser';
-import fetcher from '../../utils/Fetcher';
 
 var vagueTime = require('vague-time');
 const Calendar: NextPage = ({ data }: any) => {

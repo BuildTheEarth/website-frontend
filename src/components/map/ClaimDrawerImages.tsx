@@ -19,12 +19,12 @@ import {
 } from '@mantine/dropzone';
 import { IconPhoto, IconTrash, IconUpload, IconX } from '@tabler/icons-react';
 
+import { useUser } from '@/hooks/useUser';
+import classes from '@/styles/components/Gallery.module.css';
 import { modals } from '@mantine/modals';
 import { showNotification } from '@mantine/notifications';
 import { useState } from 'react';
 import { mutate } from 'swr';
-import { useUser } from '../../hooks/useUser';
-import classes from '../../styles/components/Gallery.module.css';
 
 interface ClaimDrawerImagesProps {
 	id: string;

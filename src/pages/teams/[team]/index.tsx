@@ -1,16 +1,16 @@
+import GalleryGrid, { GalleryGridImage } from '@/components/GalleryGrid';
 import { Divider, Grid, Group, Modal, Pagination, Stack } from '@mantine/core';
-import GalleryGrid, { GalleryGridImage } from '../../../components/GalleryGrid';
 
+import { LogoPage } from '@/components/Page';
+import { useIsClient } from '@/hooks/useIsClient';
+import fetcher from '@/utils/Fetcher';
+import getCountryName from '@/utils/ISOCountries';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import sanitizeHtml from 'sanitize-html';
-import { LogoPage } from '../../../components/Page';
-import { useIsClient } from '../../../hooks/useIsClient';
-import fetcher from '../../../utils/Fetcher';
-import getCountryName from '../../../utils/ISOCountries';
 
 const Team: NextPage = ({ data, data2 }: any) => {
 	const router = useRouter();

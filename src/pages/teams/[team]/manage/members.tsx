@@ -1,6 +1,5 @@
 import {
 	ActionIcon,
-	ActionIconGroup,
 	Badge,
 	Button,
 	Checkbox,
@@ -14,27 +13,21 @@ import {
 	Title,
 	rem,
 } from '@mantine/core';
-import {
-	IconChevronLeft,
-	IconChevronRight,
-	IconPencil,
-	IconPlus,
-	IconTrash,
-} from '@tabler/icons-react';
-import { useEffect, useState } from 'react';
+import { IconPencil, IconPlus, IconTrash } from '@tabler/icons-react';
 import useSWR, { mutate } from 'swr';
 
+import Page from '@/components/Page';
+import SearchInput from '@/components/SearchInput';
+import SettingsTabs from '@/components/SettingsTabs';
+import { UsersTable } from '@/components/UsersTable';
+import { useUser } from '@/hooks/useUser';
+import thumbnail from '@/public/images/thumbnails/teams.png';
+import fetcher from '@/utils/Fetcher';
 import { modals } from '@mantine/modals';
 import { showNotification } from '@mantine/notifications';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
-import thumbnail from '../../../../../public/images/thumbnails/teams.png';
-import Page from '../../../../components/Page';
-import SearchInput from '../../../../components/SearchInput';
-import SettingsTabs from '../../../../components/SettingsTabs';
-import { UsersTable } from '../../../../components/UsersTable';
-import { useUser } from '../../../../hooks/useUser';
-import fetcher from '../../../../utils/Fetcher';
+import { useState } from 'react';
 
 const Settings = () => {
 	const user = useUser();

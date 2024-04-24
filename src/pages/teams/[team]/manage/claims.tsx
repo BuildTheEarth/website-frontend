@@ -30,6 +30,12 @@ import {
 } from '@tabler/icons-react';
 import useSWR, { mutate } from 'swr';
 
+import Page from '@/components/Page';
+import SettingsTabs from '@/components/SettingsTabs';
+import { useUser } from '@/hooks/useUser';
+import thumbnail from '@/public/images/thumbnails/teams.png';
+import classes from '@/styles/components/Gallery.module.css';
+import fetcher from '@/utils/Fetcher';
 import { DateInput } from '@mantine/dates';
 import { useClipboard } from '@mantine/hooks';
 import { modals } from '@mantine/modals';
@@ -39,12 +45,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import thumbnail from '../../../../../public/images/thumbnails/teams.png';
-import Page from '../../../../components/Page';
-import SettingsTabs from '../../../../components/SettingsTabs';
-import { useUser } from '../../../../hooks/useUser';
-import classes from '../../../../styles/components/Gallery.module.css';
-import fetcher from '../../../../utils/Fetcher';
 
 const Settings = () => {
 	const router = useRouter();

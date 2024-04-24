@@ -1,14 +1,14 @@
 import { Avatar, Badge, Button, Group, Table, Tooltip } from '@mantine/core';
 
+import Page from '@/components/Page';
+import { useUser } from '@/hooks/useUser';
+import thumbnail from '@/public/images/thumbnails/me.png';
 import { IconFileSearch } from '@tabler/icons-react';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
-import thumbnail from '../../../public/images/thumbnails/me.png';
-import Page from '../../components/Page';
-import { useUser } from '../../hooks/useUser';
 
 var vagueTime = require('vague-time');
 

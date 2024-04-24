@@ -1,5 +1,4 @@
 import {
-	ActionIcon,
 	Alert,
 	Avatar,
 	Button,
@@ -30,13 +29,12 @@ import {
 	IconZoomIn,
 } from '@tabler/icons-react';
 
+import { useUser } from '@/hooks/useUser';
 import { useClipboard } from '@mantine/hooks';
 import { showNotification } from '@mantine/notifications';
-import { getAreaOfPolygon } from 'geolib';
 import mapboxgl from 'mapbox-gl';
 import Link from 'next/link';
 import useSWR from 'swr';
-import { useUser } from '../../hooks/useUser';
 import { StatsGrid } from '../Stats';
 import { ClaimDrawerImages } from './ClaimDrawerImages';
 

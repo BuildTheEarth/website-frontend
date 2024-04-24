@@ -21,11 +21,11 @@ import {
 	Menu,
 	MenuItem,
 	Paper,
-	rem,
 	Text,
 	Tooltip,
 	Transition,
 	UnstyledButton,
+	rem,
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
@@ -49,12 +49,12 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 import React, { CSSProperties, useState } from 'react';
 import { ChevronDown, FileSearch, Logout, World } from 'tabler-icons-react';
 
+import logo from '@/public/logo.gif';
 import { useDisclosure } from '@mantine/hooks';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
-import logo from '../../public/logo.gif';
 import { useScrollPosition } from '../hooks/useScrollPosition';
 import { useUser } from '../hooks/useUser';
 import classes from '../styles/components/Header.module.css';

@@ -1,6 +1,6 @@
 {
 	"root": true,
-	"extends": "next",
+	"extends": ["next", "plugin:path/recommended"],
 	"rules": { "@next/next/no-img-element": 0 },
 	"ignorePatterns": ["**/dist/*"]
 }

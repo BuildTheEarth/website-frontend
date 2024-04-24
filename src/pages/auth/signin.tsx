@@ -1,11 +1,11 @@
-import { Button, Code, Text, useMantineTheme } from '@mantine/core';
+import { Button, Text, useMantineTheme } from '@mantine/core';
 
+import Page from '@/components/Page';
+import thumbnail from '@/public/images/placeholder.webp';
 import { NextPage } from 'next';
 import { signIn } from 'next-auth/react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
-import thumbnail from '../../../public/images/placeholder.webp';
-import Page from '../../components/Page';
 
 const SignIn: NextPage = () => {
 	const router = useRouter();
