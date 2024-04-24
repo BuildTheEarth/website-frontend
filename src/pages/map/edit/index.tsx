@@ -5,6 +5,8 @@ import {
 	Button,
 	Code,
 	Divider,
+	Grid,
+	GridCol,
 	Group,
 	Indicator,
 	Loader,
@@ -401,426 +403,439 @@ const ClaimEditPage: NextPage = () => {
 				oLat={clientPos.lat}
 				oLng={clientPos.lng}
 			/>
-			<Group gap={0}>
-				<div
-					style={{
-						height: '100vh',
-						width: '30vw',
-						position: 'relative',
-						borderRight: 'var(--mantine-color-default-border) 1px solid',
-						padding: 'var(--mantine-spacing-lg)',
-						paddingTop: '60px',
-					}}
-				>
-					{!selected ? (
-						<>
-							<h1>Edit Claims</h1>
-							<h2>Select Claim</h2>
-							<p>
-								Select a Claim on the Map to edit it. You can select your own Claims or Claims of
-								BuildTeams in which you have the correct Permissions.
-							</p>
-							<h2>Edit Claim Area</h2>
-							<p>
-								When having a Claim selected, you can click on it again to enter edit mode. In this
-								mode you can drag all corners and add new ones by draging the smaller dots between
-								corners. All corners you add will automatically snap to other corners and claims in
-								the area.
-							</p>
-							<h2>Edit Claim Properties</h2>
-							<p>
-								If you have selected a Claim on the Map, all its properties which you can edit will
-								appear here. The area and building count will be automatically calculated once you
-								save your edit.
-							</p>
-							<Alert variant="outline" title="Saving" icon={<IconDeviceFloppy />} mt="xl">
-								Do not forget to save your changes, they will be overriden once you reload the Page.
-							</Alert>
-							<h1>Create Claim</h1>
-							<p>
-								Click on the button below to start creating a new Claim on the Map. Left click to
-								add a edge, double click to finish.
-							</p>
-							<Button
-								leftSection={<IconPlus />}
-								fullWidth
-								mt="md"
-								disabled={map && draw && draw?.getMode() == 'draw_polygon'}
-								onClick={() => draw.changeMode('draw_polygon')}
-							>
-								Create new Claim
-							</Button>
-						</>
-					) : (
-						<>
-							<h1>Edit Claim</h1>
-							<ScrollAreaAutosize h={'85%'}>
-								{isAbleToUpdate(selected).type == 'TEAM' && (
-									<Alert
-										variant="outline"
-										title="BuildTeam Claim"
-										icon={<IconUsersGroup />}
-										color="yellow"
-										mb="lg"
-									>
-										This claim does not belong to you. You are editing it on behalf of{' '}
-										{selected.properties.buildTeam.name}.
-									</Alert>
-								)}
-								<h3>Claim Properties</h3>
-								<Alert variant="outline" title="Images" icon={<IconPhoto />} mb="lg">
-									Images can only be added and removed on the main Map as of right now.
+			<Grid columns={10} gutter={0} grow>
+				<GridCol span={3}>
+					<ScrollAreaAutosize
+						style={{
+							borderRight: 'var(--mantine-color-default-border) 1px solid',
+						}}
+						mah="100vh"
+						w="100%"
+						h="100%"
+						p="lg"
+						pt="60px"
+					>
+						{!selected ? (
+							<>
+								<h1>Edit Claims</h1>
+								<h2>Select Claim</h2>
+								<p>
+									Select a Claim on the Map to edit it. You can select your own Claims or Claims of
+									BuildTeams in which you have the correct Permissions.
+								</p>
+								<h2>Edit Claim Area</h2>
+								<p>
+									When having a Claim selected, you can click on it again to enter edit mode. In
+									this mode you can drag all corners and add new ones by draging the smaller dots
+									between corners. All corners you add will automatically snap to other corners and
+									claims in the area.
+								</p>
+								<h2>Edit Claim Properties</h2>
+								<p>
+									If you have selected a Claim on the Map, all its properties which you can edit
+									will appear here. The area and building count will be automatically calculated
+									once you save your edit.
+								</p>
+								<Alert variant="outline" title="Saving" icon={<IconDeviceFloppy />} mt="xl">
+									Do not forget to save your changes, they will be overriden once you reload the
+									Page.
 								</Alert>
-								{selected.properties?.new == true && (
-									<Select
-										label={t('claim.details.team')}
-										data={userData?.joinedBuildTeams?.map((b: any) => ({
-											label: b.name,
-											value: b.id,
-											disabled: !b.allowBuilderClaim,
-										}))}
-										mb="md"
-										onChange={(v) => {
-											const bt = userData?.joinedBuildTeams.find((bt: any) => bt.id == v);
-											handleUpdate(
-												'buildTeam',
-												bt ? { id: bt.id, slug: bt.slug, name: bt.name } : undefined,
-											);
-										}}
-										placeholder={
-											userDataLoading ? 'Loading aviable BuildTeams...' : 'Select a BuildTeam'
-										}
-									/>
-								)}
-								<TextInput
-									label={t('edit.name')}
-									required
-									placeholder="New Claim"
-									defaultValue={selected.properties.name}
-									onChange={(e) => handleUpdate('name', e.target.value)}
-									mb="md"
-								/>
-								<TextInput
-									label={t('claim.details.city')}
-									required
-									placeholder="New York"
-									defaultValue={selected.properties.city}
-									onChange={(e) => handleUpdate('city', e.target.value)}
-									mb="md"
-								/>
-								<Textarea
-									label={t('edit.description')}
-									defaultValue={selected.properties.description}
-									onChange={(e) => handleUpdate('description', e.target.value)}
-									maxRows={5}
-									minRows={3}
-									autosize
-									placeholder="Describe your claim..."
-									mb="md"
-								/>
-								<Switch
-									defaultChecked={selected.properties.finished}
-									label={t('edit.finished')}
-									onChange={(e) => handleUpdate('finished', e.target.checked)}
-									mb="md"
-								/>
-								<Switch
-									defaultChecked={selected.properties.active}
-									label={t('edit.active')}
-									onChange={(e) => handleUpdate('active', e.target.checked)}
-									mb="md"
-								/>
-								<Tooltip label={t('edit.buildings.description')}>
-									<NumberInput
-										readOnly
-										value={selected.properties.buildings}
-										label={t('edit.buildings.title')}
-										disabled
-										placeholder="0"
-										mb="md"
-									/>
-								</Tooltip>
-								<Tooltip label={t('edit.buildings.description')}>
+								<h1>Create Claim</h1>
+								<p>
+									Click on the button below to start creating a new Claim on the Map. Left click to
+									add a edge, double click to finish.
+								</p>
+								<Button
+									leftSection={<IconPlus />}
+									fullWidth
+									mt="md"
+									disabled={map && draw && draw?.getMode() == 'draw_polygon'}
+									onClick={() => draw.changeMode('draw_polygon')}
+								>
+									Create new Claim
+								</Button>
+							</>
+						) : (
+							<>
+								<h1>Edit Claim</h1>
+								<ScrollAreaAutosize h={'85%'}>
+									{isAbleToUpdate(selected).type == 'TEAM' && (
+										<Alert
+											variant="outline"
+											title="BuildTeam Claim"
+											icon={<IconUsersGroup />}
+											color="yellow"
+											mb="lg"
+										>
+											This claim does not belong to you. You are editing it on behalf of{' '}
+											{selected.properties.buildTeam.name}.
+										</Alert>
+									)}
+									<h3>Claim Properties</h3>
+									<Alert variant="outline" title="Images" icon={<IconPhoto />} mb="lg">
+										Images can only be added and removed on the main Map as of right now.
+									</Alert>
+									{selected.properties?.new == true && (
+										<Select
+											label={t('claim.details.team')}
+											data={userData?.joinedBuildTeams?.map((b: any) => ({
+												label: b.name,
+												value: b.id,
+												disabled: !b.allowBuilderClaim,
+											}))}
+											mb="md"
+											onChange={(v) => {
+												const bt = userData?.joinedBuildTeams.find((bt: any) => bt.id == v);
+												handleUpdate(
+													'buildTeam',
+													bt ? { id: bt.id, slug: bt.slug, name: bt.name } : undefined,
+												);
+											}}
+											placeholder={
+												userDataLoading ? 'Loading aviable BuildTeams...' : 'Select a BuildTeam'
+											}
+										/>
+									)}
 									<TextInput
-										readOnly
-										value={selected.properties.osmName}
-										label={t('claim.details.address')}
-										disabled
+										label={t('edit.name')}
+										required
+										placeholder="New Claim"
+										defaultValue={selected.properties.name}
+										onChange={(e) => handleUpdate('name', e.target.value)}
 										mb="md"
 									/>
-								</Tooltip>
-								<h3>{t('edit.builders.title')}</h3>
-								<Table verticalSpacing="md" mb="md">
-									<Table.Tbody>
-										<Table.Tr>
-											<Table.Td>
-												<Group gap="sm">
-													<Indicator
-														disabled={!selected.properties?.owner?.new}
-														processing={loading}
-														color="orange"
-													>
-														<Avatar
-															size={40}
-															src={selected.properties?.owner?.avatar}
-															radius={40}
-															color="cyan"
-														>
-															{(selected.properties?.owner?.username ||
-																selected.properties?.owner?.minecraft ||
-																selected.properties?.owner?.name ||
-																selected.properties?.owner?.id ||
-																'-')[0].toUpperCase()}
-														</Avatar>
-													</Indicator>
-													<div>
-														<Text fz="sm" fw={500}>
-															{selected.properties?.owner?.username ||
-																selected.properties?.owner?.minecraft ||
-																selected.properties?.owner?.name ||
-																selected.properties?.owner?.id ||
-																'No owner'}
-														</Text>
-														<Text c="dimmed" fz="xs">
-															{t('common:owner')}
-															{selected.properties?.owner?.id == user.user?.id &&
-																' - ' + t('common:you')}
-														</Text>
-													</div>
-												</Group>
-											</Table.Td>
-											<Table.Td>
-												<Group gap={0} justify="flex-end">
-													<ActionIcon variant="subtle" color="red" disabled>
-														<IconTrash style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
-													</ActionIcon>
-													<ActionIcon variant="subtle" color="gray" disabled>
-														<IconDots style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
-													</ActionIcon>
-												</Group>
-											</Table.Td>
-										</Table.Tr>
-										{selected.properties?.builders?.map((builder: any) => (
-											<Table.Tr key={builder.ssoId + '-builder'}>
+									<TextInput
+										label={t('claim.details.city')}
+										required
+										placeholder="New York"
+										defaultValue={selected.properties.city}
+										onChange={(e) => handleUpdate('city', e.target.value)}
+										mb="md"
+									/>
+									<Textarea
+										label={t('edit.description')}
+										defaultValue={selected.properties.description}
+										onChange={(e) => handleUpdate('description', e.target.value)}
+										maxRows={5}
+										minRows={3}
+										autosize
+										placeholder="Describe your claim..."
+										mb="md"
+									/>
+									<Switch
+										defaultChecked={selected.properties.finished}
+										label={t('edit.finished')}
+										onChange={(e) => handleUpdate('finished', e.target.checked)}
+										mb="md"
+									/>
+									<Switch
+										defaultChecked={selected.properties.active}
+										label={t('edit.active')}
+										onChange={(e) => handleUpdate('active', e.target.checked)}
+										mb="md"
+									/>
+									<Tooltip label={t('edit.buildings.description')}>
+										<NumberInput
+											readOnly
+											value={selected.properties.buildings}
+											label={t('edit.buildings.title')}
+											disabled
+											placeholder="0"
+											mb="md"
+										/>
+									</Tooltip>
+									<Tooltip label={t('edit.buildings.description')}>
+										<TextInput
+											readOnly
+											value={selected.properties.osmName}
+											label={t('claim.details.address')}
+											disabled
+											mb="md"
+										/>
+									</Tooltip>
+									<h3>{t('edit.builders.title')}</h3>
+									<Table verticalSpacing="md" mb="md">
+										<Table.Tbody>
+											<Table.Tr>
 												<Table.Td>
 													<Group gap="sm">
-														<Indicator disabled={!builder?.new} processing={loading} color="orange">
-															<Avatar size={40} src={builder.avatar} radius={40} color="teal">
-																{(builder?.username || builder?.minecraft || '-')[0]?.toUpperCase()}
+														<Indicator
+															disabled={!selected.properties?.owner?.new}
+															processing={loading}
+															color="orange"
+														>
+															<Avatar
+																size={40}
+																src={selected.properties?.owner?.avatar}
+																radius={40}
+																color="cyan"
+															>
+																{(selected.properties?.owner?.username ||
+																	selected.properties?.owner?.minecraft ||
+																	selected.properties?.owner?.name ||
+																	selected.properties?.owner?.id ||
+																	'-')[0].toUpperCase()}
 															</Avatar>
 														</Indicator>
 														<div>
 															<Text fz="sm" fw={500}>
-																{builder?.username || builder?.minecraft || 'Unknown User'}
+																{selected.properties?.owner?.username ||
+																	selected.properties?.owner?.minecraft ||
+																	selected.properties?.owner?.name ||
+																	selected.properties?.owner?.id ||
+																	'No owner'}
 															</Text>
 															<Text c="dimmed" fz="xs">
-																{t('common:builder')}
+																{t('common:owner')}
+																{selected.properties?.owner?.id == user.user?.id &&
+																	' - ' + t('common:you')}
 															</Text>
 														</div>
 													</Group>
 												</Table.Td>
 												<Table.Td>
 													<Group gap={0} justify="flex-end">
-														<Tooltip label="Remove Builder">
-															<ActionIcon
-																variant="subtle"
-																color="red"
-																onClick={() =>
-																	handleUpdate(
-																		'builders',
-																		selected.properties.builders.filter(
-																			(b: any) => b.id != builder.id,
-																		),
-																	)
-																}
+														<ActionIcon variant="subtle" color="red" disabled>
+															<IconTrash style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
+														</ActionIcon>
+														<ActionIcon variant="subtle" color="gray" disabled>
+															<IconDots style={{ width: rem(16), height: rem(16) }} stroke={1.5} />
+														</ActionIcon>
+													</Group>
+												</Table.Td>
+											</Table.Tr>
+											{selected.properties?.builders?.map((builder: any) => (
+												<Table.Tr key={builder.ssoId + '-builder'}>
+													<Table.Td>
+														<Group gap="sm">
+															<Indicator
+																disabled={!builder?.new}
+																processing={loading}
+																color="orange"
 															>
-																<IconTrash
-																	style={{ width: rem(16), height: rem(16) }}
-																	stroke={1.5}
-																/>
-															</ActionIcon>
-														</Tooltip>
-														<Menu>
-															<MenuTarget>
-																<ActionIcon variant="subtle" color="gray">
-																	<IconDots
+																<Avatar size={40} src={builder.avatar} radius={40} color="teal">
+																	{(builder?.username ||
+																		builder?.minecraft ||
+																		'-')[0]?.toUpperCase()}
+																</Avatar>
+															</Indicator>
+															<div>
+																<Text fz="sm" fw={500}>
+																	{builder?.username || builder?.minecraft || 'Unknown User'}
+																</Text>
+																<Text c="dimmed" fz="xs">
+																	{t('common:builder')}
+																</Text>
+															</div>
+														</Group>
+													</Table.Td>
+													<Table.Td>
+														<Group gap={0} justify="flex-end">
+															<Tooltip label="Remove Builder">
+																<ActionIcon
+																	variant="subtle"
+																	color="red"
+																	onClick={() =>
+																		handleUpdate(
+																			'builders',
+																			selected.properties.builders.filter(
+																				(b: any) => b.id != builder.id,
+																			),
+																		)
+																	}
+																>
+																	<IconTrash
 																		style={{ width: rem(16), height: rem(16) }}
 																		stroke={1.5}
 																	/>
 																</ActionIcon>
-															</MenuTarget>
-															<MenuDropdown>
-																<MenuItem
-																	leftSection={<Discord />}
-																	onClick={() => clipboard.copy(builder.discordId)}
-																>
-																	Copy Discord Id
-																</MenuItem>
-																<MenuItem
-																	leftSection={<IconBrandMinecraft />}
-																	disabled={!builder.minecraft}
-																	onClick={() => clipboard.copy(builder.minecraft)}
-																>
-																	Copy Minecraft Name
-																</MenuItem>
-																<MenuItem
-																	leftSection={<IconId />}
-																	onClick={() => clipboard.copy(builder.id)}
-																>
-																	Copy Id
-																</MenuItem>
-																<MenuDivider />
-																<MenuItem
-																	leftSection={<IconArrowsDiff />}
-																	color="red"
-																	onClick={() => handleTransferOwnership(builder)}
-																>
-																	Transfer Ownership
-																</MenuItem>
-															</MenuDropdown>
-														</Menu>
+															</Tooltip>
+															<Menu>
+																<MenuTarget>
+																	<ActionIcon variant="subtle" color="gray">
+																		<IconDots
+																			style={{ width: rem(16), height: rem(16) }}
+																			stroke={1.5}
+																		/>
+																	</ActionIcon>
+																</MenuTarget>
+																<MenuDropdown>
+																	<MenuItem
+																		leftSection={<Discord />}
+																		onClick={() => clipboard.copy(builder.discordId)}
+																	>
+																		Copy Discord Id
+																	</MenuItem>
+																	<MenuItem
+																		leftSection={<IconBrandMinecraft />}
+																		disabled={!builder.minecraft}
+																		onClick={() => clipboard.copy(builder.minecraft)}
+																	>
+																		Copy Minecraft Name
+																	</MenuItem>
+																	<MenuItem
+																		leftSection={<IconId />}
+																		onClick={() => clipboard.copy(builder.id)}
+																	>
+																		Copy Id
+																	</MenuItem>
+																	<MenuDivider />
+																	<MenuItem
+																		leftSection={<IconArrowsDiff />}
+																		color="red"
+																		onClick={() => handleTransferOwnership(builder)}
+																	>
+																		Transfer Ownership
+																	</MenuItem>
+																</MenuDropdown>
+															</Menu>
+														</Group>
+													</Table.Td>
+												</Table.Tr>
+											))}
+											<Table.Tr style={{ cursor: 'pointer' }}>
+												<Table.Td>
+													<Group gap="sm">
+														<Avatar size={40} radius={40} color="orange">
+															{builderSearchLoading ? (
+																<Loader size="sm" color="orange" />
+															) : (
+																<IconPlus />
+															)}
+														</Avatar>
+														<Select
+															searchable
+															placeholder="Add Builder..."
+															onChange={(v) => {
+																handleUpdate('builders', [
+																	...(selected.properties.builders || []),
+																	{
+																		...builderSearchResults.find((b: any) => b.id == v),
+																		new: true,
+																	},
+																]);
+																setBuilderSearch('');
+																setBuilderSearchResults([]);
+																setBuilderSearchLoading(false);
+															}}
+															onSearchChange={(v) => {
+																if (v != builderSearch) {
+																	setBuilderSearch(v);
+																	if (v.length > 0) {
+																		setBuilderSearchLoading(true);
+																	}
+																}
+															}}
+															data={
+																builderSearchResults?.map((b: any) => ({
+																	value: b?.id,
+																	label: b?.username || 'Unknown Usernae',
+																})) || []
+															}
+														/>
 													</Group>
 												</Table.Td>
 											</Table.Tr>
-										))}
-										<Table.Tr style={{ cursor: 'pointer' }}>
-											<Table.Td>
-												<Group gap="sm">
-													<Avatar size={40} radius={40} color="orange">
-														{builderSearchLoading ? (
-															<Loader size="sm" color="orange" />
-														) : (
-															<IconPlus />
-														)}
-													</Avatar>
-													<Select
-														searchable
-														placeholder="Add Builder..."
-														onChange={(v) => {
-															handleUpdate('builders', [
-																...(selected.properties.builders || []),
-																{ ...builderSearchResults.find((b: any) => b.id == v), new: true },
-															]);
-															setBuilderSearch('');
-															setBuilderSearchResults([]);
-															setBuilderSearchLoading(false);
-														}}
-														onSearchChange={(v) => {
-															if (v != builderSearch) {
-																setBuilderSearch(v);
-																if (v.length > 0) {
-																	setBuilderSearchLoading(true);
-																}
-															}
-														}}
-														data={
-															builderSearchResults?.map((b: any) => ({
-																value: b?.id,
-																label: b?.username || 'Unknown Usernae',
-															})) || []
-														}
-													/>
-												</Group>
-											</Table.Td>
-										</Table.Tr>
-									</Table.Tbody>
-								</Table>
-								<Divider mt="xl" />
-								<Table mb="lg">
-									<TableTbody>
-										<TableTr>
-											<TableTd>Id</TableTd>
-											<TableTd>
-												<Code>{selected.id}</Code>
-											</TableTd>
-										</TableTr>
-										<TableTr>
-											<TableTd>Owner Id</TableTd>
-											<TableTd>
-												<Code>{selected.properties.owner?.id || '-'}</Code>
-											</TableTd>
-										</TableTr>
-										<TableTr>
-											<TableTd>BuildTeam</TableTd>
-											<TableTd>
-												<Code>{selected.properties.buildTeam?.slug || '-'}</Code>
-											</TableTd>
-										</TableTr>
-									</TableTbody>
-								</Table>
-							</ScrollAreaAutosize>
-							{selected.properties?.new == true ? (
-								<Button
-									leftSection={<IconPlus />}
-									onClick={() => handleSaveNew()}
-									loading={loading}
-									mt="md"
-									fullWidth
-								>
-									Create
-								</Button>
-							) : (
-								<Group mt="md" grow>
+										</Table.Tbody>
+									</Table>
+									<Divider mt="xl" />
+									<Table mb="lg">
+										<TableTbody>
+											<TableTr>
+												<TableTd>Id</TableTd>
+												<TableTd>
+													<Code>{selected.id}</Code>
+												</TableTd>
+											</TableTr>
+											<TableTr>
+												<TableTd>Owner Id</TableTd>
+												<TableTd>
+													<Code>{selected.properties.owner?.id || '-'}</Code>
+												</TableTd>
+											</TableTr>
+											<TableTr>
+												<TableTd>BuildTeam</TableTd>
+												<TableTd>
+													<Code>{selected.properties.buildTeam?.slug || '-'}</Code>
+												</TableTd>
+											</TableTr>
+										</TableTbody>
+									</Table>
+								</ScrollAreaAutosize>
+								{selected.properties?.new == true ? (
 									<Button
-										leftSection={<IconDeviceFloppy />}
-										onClick={() => handleSave()}
+										leftSection={<IconPlus />}
+										onClick={() => handleSaveNew()}
 										loading={loading}
+										mt="md"
+										fullWidth
 									>
-										Save
+										Create
 									</Button>
-									<Button
-										leftSection={<IconTrash />}
-										onClick={() => handleDelete()}
-										loading={loading}
-										variant="outline"
-									>
-										Delete
-									</Button>
-								</Group>
-							)}
-						</>
-					)}
-				</div>
-				<div style={{ height: '100vh', width: '70vw', position: 'relative' }}>
-					<Map
-						// src={`${process.env.NEXT_PUBLIC_API_URL}/claims/geojson?active=true`}
-						onContextMenu={contextHandler}
-						onMapLoaded={async (map) => {
-							setMap(map);
-							map.addControl(draw, 'top-right');
+								) : (
+									<Group mt="md" grow>
+										<Button
+											leftSection={<IconDeviceFloppy />}
+											onClick={() => handleSave()}
+											loading={loading}
+										>
+											Save
+										</Button>
+										<Button
+											leftSection={<IconTrash />}
+											onClick={() => handleDelete()}
+											loading={loading}
+											variant="outline"
+										>
+											Delete
+										</Button>
+									</Group>
+								)}
+							</>
+						)}
+					</ScrollAreaAutosize>
+				</GridCol>
+				<GridCol span={7}>
+					<div style={{ height: '100vh', width: '100%' }}>
+						<Map
+							onContextMenu={contextHandler}
+							onMapLoaded={async (map) => {
+								setMap(map);
+								map.addControl(draw, 'top-right');
 
-							const geojson = await fetch(
-								`${process.env.NEXT_PUBLIC_API_URL}/claims/geojson?props=true`,
-							).then((r) => r.json());
+								const geojson = await fetch(
+									`${process.env.NEXT_PUBLIC_API_URL}/claims/geojson?props=true`,
+								).then((r) => r.json());
 
-							draw.set(geojson);
+								draw.set(geojson);
 
-							map.on('mousemove', (e) => {
-								setClientPos({ lat: e.lngLat.lat, lng: e.lngLat.lng });
-							});
+								map.on('mousemove', (e) => {
+									setClientPos({ lat: e.lngLat.lat, lng: e.lngLat.lng });
+								});
 
-							map.on('draw.create', (e) => {
-								handleCreate(e.features[0]);
-							});
+								map.on('draw.create', (e) => {
+									handleCreate(e.features[0]);
+								});
 
-							map.on('draw.update', (e) => {
-								setSelected(e.features[0]);
-							});
-							map.on('draw.selectionchange', (e) => {
-								if (e.points.length > 0) return;
-								setSelected(e.features[0]);
-							});
+								map.on('draw.update', (e) => {
+									setSelected(e.features[0]);
+								});
+								map.on('draw.selectionchange', (e) => {
+									if (e.points.length > 0) return;
+									setSelected(e.features[0]);
+								});
 
-							if (router.query.id && draw && map) {
-								const id = router.query.id.toString();
-								draw.changeMode('simple_select', { featureIds: [id] });
-								setSelected(draw.get(id));
-							}
-						}}
-						initialStyle={Number.parseInt(router.query.style as string)}
-					/>
-				</div>
-			</Group>
+								if (router.query.id && draw && map) {
+									const id = router.query.id.toString();
+									draw.changeMode('simple_select', { featureIds: [id] });
+									setSelected(draw.get(id));
+								}
+							}}
+							initialStyle={Number.parseInt(router.query.style as string)}
+						/>
+					</div>
+				</GridCol>
+			</Grid>
 		</Page>
 	);
 };
