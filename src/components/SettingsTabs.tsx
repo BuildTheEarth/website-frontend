@@ -189,6 +189,13 @@ export const AdminSettingsTabs = ({
 						>
 							Claims
 						</Tabs.Tab>
+						<Tabs.Tab
+							value="images"
+							leftSection={<IconPolygon size="0.8rem" />}
+							disabled={!user.hasPermissions(['team.claim.list'])}
+						>
+							Claim Images
+						</Tabs.Tab>
 
 						<Tabs.Tab value="quit" leftSection={<IconHome size="0.8rem" />}>
 							Quit
