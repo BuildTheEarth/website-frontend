@@ -71,15 +71,7 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 			) : (
 				<>
 					{data.images && (
-						<ClaimDrawerImages
-							id={props.id}
-							images={data.images}
-							editable={
-								user.isLoggedIn &&
-								(data?.owner?.id == user.user?.id || user.hasPermission('admin.admin'))
-							}
-							t={t}
-						/>
+						<ClaimDrawerImages id={props.id} images={data.images} editable={false} t={t} />
 					)}
 					{!data.finished && (
 						<Alert
