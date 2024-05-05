@@ -95,22 +95,19 @@ export function ClaimDrawerImages({ t, ...props }: ClaimDrawerImagesProps) {
 	return (
 		<Carousel
 			style={{
-				// maxWidth: '100%',
-				// maxHeight: 300,
+				aspectRatio: '16/9',
 				borderRadius: 'var(--mantine-radius-md)',
 			}}
 			styles={{
 				viewport: { height: '100%', width: '100%' },
 				container: { height: '100%', width: '100%' },
-				// indicators: { zIndex: 999 },
-				// indicator: { backgroundColor: 'red' },
 			}}
 			withIndicators
 			withControls
 			classNames={classes}
 			loop
 			mb="md"
-			h={300}
+			h={'auto'}
 			w="100%"
 		>
 			{props.images.map((img, i) => {
