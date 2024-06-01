@@ -1,14 +1,13 @@
-import { Box, Container, Group, Image, Modal, Pagination } from '@mantine/core';
-import GalleryGrid, { GalleryGridImage } from '../components/GalleryGrid';
+import GalleryGrid, { GalleryGridImage } from '@/components/GalleryGrid';
+import { Box, Container, Group, Modal, Pagination } from '@mantine/core';
 
+import Page from '@/components/Page';
+import fetcher from '@/utils/Fetcher';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { GalleryImage } from '../components/Gallery';
-import Page from '../components/Page';
-import fetcher from '../utils/Fetcher';
 
 const MePage: NextPage = ({ data }: any) => {
 	const [activePage, setPage] = useState(1);

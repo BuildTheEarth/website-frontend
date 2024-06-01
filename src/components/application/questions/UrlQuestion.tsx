@@ -1,8 +1,8 @@
 import { ActionIcon, TextInput } from '@mantine/core';
 import { IconExternalLink, IconLink } from '@tabler/icons-react';
 
-import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
-import Icon from '../../Icon';
+import Icon from '@/components/Icon';
+import { ApplicationQuestion } from '@/utils/application/ApplicationQuestions';
 import Link from 'next/link';
 
 export interface UrlQuestionProps extends ApplicationQuestion {

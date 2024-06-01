@@ -10,16 +10,15 @@ import {
 	useMantineTheme,
 } from '@mantine/core';
 
+import BackgroundImage from '@/components/BackgroundImage';
+import Page from '@/components/Page';
+import thumbnail from '@/public/images/thumbnails/about.webp';
 import { Youtube } from '@icons-pack/react-simple-icons';
-import { motion } from 'framer-motion';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { ChevronRight } from 'tabler-icons-react';
-import thumbnail from '../../../public/images/thumbnails/about.webp';
-import BackgroundImage from '../../components/BackgroundImage';
-import Page from '../../components/Page';
 
 const Home: NextPage = () => {
 	const theme = useMantineTheme();

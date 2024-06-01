@@ -16,18 +16,18 @@ import {
 import { IconChevronDown, IconChevronLeft } from '@tabler/icons-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
+import BackgroundImage from '@/components/BackgroundImage';
+import Page from '@/components/Page';
+import SearchInput from '@/components/SearchInput';
+import thumbnail from '@/public/images/join/build.webp';
+import fetcher from '@/utils/Fetcher';
+import getCountryName from '@/utils/ISOCountries';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import thumbnail from '../../../public/images/join/build.webp';
-import BackgroundImage from '../../components/BackgroundImage';
-import Page from '../../components/Page';
-import SearchInput from '../../components/SearchInput';
-import fetcher from '../../utils/Fetcher';
-import getCountryName from '../../utils/ISOCountries';
 
 const Build: NextPage = ({ data }: any) => {
 	const { t } = useTranslation('getstarted');

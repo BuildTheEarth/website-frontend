@@ -10,14 +10,14 @@ import {
 } from '@mantine/core';
 import { Calendar, Number } from 'tabler-icons-react';
 
+import Page from '@/components/Page';
+import thumbnail from '@/public/images/thumbnails/newsletter.png';
 import { NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import useSWR from 'swr';
-import thumbnail from '../../../public/images/thumbnails/newsletter.png';
-import Page from '../../components/Page';
 
 const NewsletterList: NextPage = () => {
 	const router = useRouter();

@@ -1,6 +1,6 @@
+import { ApplicationQuestion } from '@/utils/application/ApplicationQuestions';
 import { Text } from '@mantine/core';
 import { IconLetterT } from '@tabler/icons-react';
-import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
 
 export interface TextDisplayProps extends ApplicationQuestion {
 	additionalData: {};

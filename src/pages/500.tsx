@@ -1,11 +1,11 @@
 import { Button, Center, Title, useMantineColorScheme, useMantineTheme } from '@mantine/core';
 
+import Page from '@/components/Page';
+import thumbnail from '@/public/images/thumbnails/error.png';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import thumbnail from '../../public/images/thumbnails/error.png';
-import Page from '../components/Page';
 
 function ErrorPage() {
 	const theme = useMantineTheme();

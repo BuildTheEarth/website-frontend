@@ -1,15 +1,14 @@
-import { MantineStyleProp, Text } from '@mantine/core';
-
-import CheckboxQuestion from '../../components/application/questions/CheckboxQuestion';
-import CityQuestion from '../../components/application/questions/CityQuestion';
-import DropdownQuestion from '../../components/application/questions/DropdownQuestion';
-import ImageUploadQuestion from '../../components/application/questions/ImageUploadQuestion';
-import LongTextQuestion from '../../components/application/questions/LongTextQuestion';
-import MinecraftQuestion from '../../components/application/questions/MinecraftQuestion';
-import SliderQuestion from '../../components/application/questions/SliderQuestion';
-import TextDisplay from '../../components/application/questions/TextDisplay';
-import TextQuestion from '../../components/application/questions/TextQuestion';
-import UrlQuestion from '../../components/application/questions/UrlQuestion';
+import CheckboxQuestion from '@/components/application/questions/CheckboxQuestion';
+import CityQuestion from '@/components/application/questions/CityQuestion';
+import DropdownQuestion from '@/components/application/questions/DropdownQuestion';
+import ImageUploadQuestion from '@/components/application/questions/ImageUploadQuestion';
+import LongTextQuestion from '@/components/application/questions/LongTextQuestion';
+import MinecraftQuestion from '@/components/application/questions/MinecraftQuestion';
+import SliderQuestion from '@/components/application/questions/SliderQuestion';
+import TextDisplay from '@/components/application/questions/TextDisplay';
+import TextQuestion from '@/components/application/questions/TextQuestion';
+import UrlQuestion from '@/components/application/questions/UrlQuestion';
+import { MantineStyleProp } from '@mantine/core';
 
 export const ApplicationQuestions: { [key: string]: any } = {
 	TEXT: TextDisplay,

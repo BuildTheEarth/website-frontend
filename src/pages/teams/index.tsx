@@ -11,16 +11,16 @@ import {
 } from '@mantine/core';
 import { Pin, Users } from 'tabler-icons-react';
 
+import Page from '@/components/Page';
+import SearchInput from '@/components/SearchInput';
+import thumbnail from '@/public/images/thumbnails/teams.png';
+import fetcher from '@/utils/Fetcher';
+import getCountryName from '@/utils/ISOCountries';
 import { NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import thumbnail from '../../../public/images/thumbnails/teams.png';
-import Page from '../../components/Page';
-import SearchInput from '../../components/SearchInput';
-import fetcher from '../../utils/Fetcher';
-import getCountryName from '../../utils/ISOCountries';
 
 const Teams: NextPage = ({ data }: any) => {
 	const router = useRouter();

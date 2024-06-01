@@ -1,13 +1,4 @@
 import {
-	Discord,
-	Instagram,
-	Reddit,
-	Tiktok,
-	Twitch,
-	Twitter,
-	Youtube,
-} from '@icons-pack/react-simple-icons';
-import {
 	ActionIcon,
 	Anchor,
 	Avatar,
@@ -21,14 +12,24 @@ import {
 	Menu,
 	MenuItem,
 	Paper,
-	rem,
 	Text,
 	Tooltip,
 	Transition,
 	UnstyledButton,
+	rem,
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
+import { ChevronDown, FileSearch, Logout, World } from 'tabler-icons-react';
+import {
+	Discord,
+	Instagram,
+	Reddit,
+	Tiktok,
+	Twitch,
+	Twitter,
+	Youtube,
+} from '@icons-pack/react-simple-icons';
 import {
 	IconCalendar,
 	IconDashboard,
@@ -44,22 +45,22 @@ import {
 	IconUser,
 	IconUsers,
 } from '@tabler/icons-react';
-import { useScroll, useTransform } from 'framer-motion';
-import { signIn, signOut, useSession } from 'next-auth/react';
 import React, { CSSProperties, useState } from 'react';
-import { ChevronDown, FileSearch, Logout, World } from 'tabler-icons-react';
+import { signIn, signOut, useSession } from 'next-auth/react';
+import { useScroll, useTransform } from 'framer-motion';
 
-import { useDisclosure } from '@mantine/hooks';
+import Icon from './Icon';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useTranslation } from 'react-i18next';
-import logo from '../../public/logo.gif';
-import { useScrollPosition } from '../hooks/useScrollPosition';
-import { useUser } from '../hooks/useUser';
 import classes from '../styles/components/Header.module.css';
 import { hexToDataURL } from '../utils/Color';
-import Icon from './Icon';
+import logo from '@/public/logo.gif';
+import { useDisclosure } from '@mantine/hooks';
+import { usePermissions } from '@/hooks/usePermissions';
+import { useRouter } from 'next/router';
+import { useScrollPosition } from '../hooks/useScrollPosition';
+import { useTranslation } from 'react-i18next';
+import { useUser } from '../hooks/useUser';
 
 interface HeaderProps {
 	links: {
@@ -79,6 +80,7 @@ const Header = ({ links, style, solid }: HeaderProps) => {
 	const { data: session, status } = useSession();
 	const { scrollY } = useScrollPosition();
 	const user = useUser();
+	const permissions = usePermissions();
 
 	const items = links.map((link) => (
 		<Anchor
@@ -201,7 +203,7 @@ const Header = ({ links, style, solid }: HeaderProps) => {
 								>
 									{t('user.review')}
 								</Menu.Item>
-								{user.hasPermission('admin.admin') && (
+								{permissions.has('admin.admin') && (
 									<Menu.Item
 										leftSection={<IconDashboard size={14} />}
 										component={Link}
@@ -210,7 +212,7 @@ const Header = ({ links, style, solid }: HeaderProps) => {
 										Administration
 									</Menu.Item>
 								)}
-								{user.hasPermission('calendar.manage') && (
+								{permissions.has('calendar.manage') && (
 									<Menu.Item
 										leftSection={<IconCalendar size={14} />}
 										component={Link}
@@ -220,7 +222,14 @@ const Header = ({ links, style, solid }: HeaderProps) => {
 									</Menu.Item>
 								)}
 								<Menu.Divider />
-								<Menu.Item leftSection={<Logout size={14} />} color="red" onClick={() => signOut()}>
+								<Menu.Item
+									leftSection={<Logout size={14} />}
+									color="red"
+									onClick={() => {
+										window.localStorage.removeItem('auth-permission-state');
+										signOut();
+									}}
+								>
 									{t('auth.signout')}
 								</Menu.Item>
 							</Menu.Dropdown>
@@ -327,6 +336,7 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 	const scheme = useMantineColorScheme();
 	const { scrollY, scrollYProgress } = useScroll();
 	const user = useUser();
+	const permissions = usePermissions();
 	const bgPosY = useTransform(scrollYProgress, (latest) => `${latest * 20 + 50}%`);
 	const userStatus = props?.members?.find((m: any) => m.id == user.user?.id)
 		? 'Joined'
@@ -452,7 +462,7 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 								Apply
 							</Button>
 						)}
-						{user.hasPermissions(
+						{permissions.hasAny(
 							[
 								'team.settings.edit',
 								'team.socials.edit',
@@ -491,7 +501,7 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 											component={Link}
 											href={props.settingsHref + '/settings' || ''}
 											disabled={
-												!user.hasPermissions(['team.settings.edit', 'team.socials.edit'], props.id)
+												!permissions.hasAny(['team.settings.edit', 'team.socials.edit'], props.id)
 											}
 										>
 											Settings
@@ -500,7 +510,7 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 											leftSection={<IconSend style={{ width: rem(14), height: rem(14) }} />}
 											component={Link}
 											href={props.settingsHref + '/apply' || ''}
-											disabled={!user.hasPermissions(['team.application.edit'], props.id)}
+											disabled={!permissions.hasAny(['team.application.edit'], props.id)}
 										>
 											Application Questions
 										</MenuItem>
@@ -509,7 +519,7 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 											component={Link}
 											href={props.settingsHref + '/members' || ''}
 											disabled={
-												!user.hasPermissions(['permission.add', 'permission.remove'], props.id)
+												!permissions.hasAny(['permission.add', 'permission.remove'], props.id)
 											}
 										>
 											Members
@@ -518,7 +528,7 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 											leftSection={<IconPolygon style={{ width: rem(14), height: rem(14) }} />}
 											component={Link}
 											href={props.settingsHref + '/claims' || ''}
-											disabled={!user.hasPermissions(['team.claim.list'], props.id)}
+											disabled={!permissions.hasAny(['team.claim.list'], props.id)}
 										>
 											Claims
 										</MenuItem>
@@ -526,7 +536,7 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 											leftSection={<IconPhoto style={{ width: rem(14), height: rem(14) }} />}
 											component={Link}
 											href={props.settingsHref + '/images' || ''}
-											disabled={!user.hasPermissions(['team.showcases.edit'], props.id)}
+											disabled={!permissions.hasAny(['team.showcases.edit'], props.id)}
 										>
 											Showcase Images
 										</MenuItem>
@@ -535,7 +545,7 @@ export const LogoHeader = (props: LogoHeaderProps) => {
 											component={Link}
 											href={props.settingsHref + '/review' || ''}
 											disabled={
-												!user.hasPermissions(
+												!permissions.hasAny(
 													['team.application.review', 'team.application.list'],
 													props.id,
 												)

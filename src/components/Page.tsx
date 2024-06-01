@@ -1,15 +1,16 @@
 import { Center, Container, Paper, Text, useMantineTheme } from '@mantine/core';
-import { NextSeo, NextSeoProps } from 'next-seo';
 import Header, { LogoHeader } from './Header';
+import { NextSeo, NextSeoProps } from 'next-seo';
 
-import { StaticImport } from 'next/dist/shared/lib/get-img-props';
-import { useRouter } from 'next/router';
-import React from 'react';
-import { useUser } from '../hooks/useUser';
-import ErrorPage from '../pages/_error';
-import classes from '../styles/components/Page.module.css';
 import BackgroundImage from './BackgroundImage';
+import ErrorPage from '../pages/_error';
 import Footer from './Footer';
+import React from 'react';
+import { StaticImport } from 'next/dist/shared/lib/get-img-props';
+import classes from '../styles/components/Page.module.css';
+import { usePermissions } from '@/hooks/usePermissions';
+import { useRouter } from 'next/router';
+import { useUser } from '../hooks/useUser';
 
 interface PageProps {
 	children: React.ReactNode;
@@ -38,12 +39,12 @@ interface PageProps {
 
 const Page = (props: PageProps) => {
 	const router = useRouter();
-	const user = useUser();
+	const permissions = usePermissions();
 	const theme = useMantineTheme();
 
 	return props.loading ? (
 		<ErrorPage code={'1'} />
-	) : props.requiredPermissions && !user.hasPermissions(props.requiredPermissions) ? (
+	) : props.requiredPermissions && !permissions.hasAny(props.requiredPermissions) ? (
 		<ErrorPage code={'403'} />
 	) : (
 		<>

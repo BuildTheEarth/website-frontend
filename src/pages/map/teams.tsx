@@ -1,17 +1,17 @@
-import Map, { mapClickEvent, mapCursorHover } from '../../components/map/Map';
+import Map, { mapClickEvent } from '@/components/map/Map';
 
+import { useContextMenu } from '@/components/ContextMenu';
+import Page from '@/components/Page';
+import { ClaimDrawer } from '@/components/map/ClaimDrawer';
+import { MapContextMenu } from '@/components/map/MapContextMenu';
+import fetcher from '@/utils/Fetcher';
+import getCountryName from '@/utils/ISOCountries';
 import mapboxgl from 'mapbox-gl';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useContextMenu } from '../../components/ContextMenu';
-import Page from '../../components/Page';
-import { ClaimDrawer } from '../../components/map/ClaimDrawer';
-import { MapContextMenu } from '../../components/map/MapContextMenu';
-import fetcher from '../../utils/Fetcher';
-import getCountryName from '../../utils/ISOCountries';
 
 const MapPage: NextPage = ({ data }: any) => {
 	const [opened, setOpened] = useState(false);

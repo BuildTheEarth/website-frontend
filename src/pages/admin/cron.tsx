@@ -7,12 +7,12 @@ import {
 	useMantineTheme,
 } from '@mantine/core';
 
+import Page from '@/components/Page';
+import { AdminSettingsTabs } from '@/components/SettingsTabs';
+import { useUser } from '@/hooks/useUser';
+import thumbnail from '@/public/images/thumbnails/teams.png';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import useSWR from 'swr';
-import thumbnail from '../../../public/images/thumbnails/teams.png';
-import Page from '../../components/Page';
-import { AdminSettingsTabs } from '../../components/SettingsTabs';
-import { useUser } from '../../hooks/useUser';
 
 var vagueTime = require('vague-time');
 const Settings = ({ data: tempData }: any) => {

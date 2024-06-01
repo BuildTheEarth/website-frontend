@@ -1,10 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 
+import Page from '@/components/Page';
+import thumbnail from '@/public/images/thumbnails/legal.png';
 import { Anchor } from '@mantine/core';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import thumbnail from '../../../public/images/thumbnails/legal.png';
-import Page from '../../components/Page';
 
 const Team: NextPage = () => {
 	//TODO: This privacy has to be reworked

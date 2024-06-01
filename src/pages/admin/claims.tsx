@@ -1,13 +1,9 @@
 import {
-	Badge,
 	Button,
 	Checkbox,
 	Group,
 	Paper,
 	Progress,
-	Switch,
-	Table,
-	Text,
 	Title,
 	Tooltip,
 	useMantineColorScheme,
@@ -15,17 +11,16 @@ import {
 } from '@mantine/core';
 import useSWR, { mutate } from 'swr';
 
+import Page from '@/components/Page';
+import { swrFetcher } from '@/components/SWRSetup';
+import { AdminSettingsTabs } from '@/components/SettingsTabs';
+import { useUser } from '@/hooks/useUser';
+import thumbnail from '@/public/images/thumbnails/teams.png';
 import { showNotification } from '@mantine/notifications';
 import { IconCheck } from '@tabler/icons-react';
 import { useSession } from 'next-auth/react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useState } from 'react';
-import thumbnail from '../../../public/images/thumbnails/teams.png';
-import Page from '../../components/Page';
-import { swrFetcher } from '../../components/SWRSetup';
-import { AdminSettingsTabs } from '../../components/SettingsTabs';
-import { useUser } from '../../hooks/useUser';
-import fetcher from '../../utils/Fetcher';
 
 var vagueTime = require('vague-time');
 const Settings = ({ data: tempData }: any) => {

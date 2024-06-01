@@ -1,26 +1,20 @@
-import { Alert, Button, Group, Loader, MenuItem, MenuLabel, rem } from '@mantine/core';
+import { DynamicClaimDrawer, DynamicMap, DynamicMapContextMenu } from '@/components/dynamic/Map';
+import { mapClickEvent, mapCursorHover } from '@/components/map/Map';
+import { Button, Group, Loader, rem } from '@mantine/core';
 import { useClipboard, useDebouncedState } from '@mantine/hooks';
 import { Spotlight, spotlight } from '@mantine/spotlight';
 import { IconPin, IconSearch } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
-import { ContextMenu, useContextMenu } from '../../components/ContextMenu';
-import {
-	DynamicClaimDrawer,
-	DynamicMap,
-	DynamicMapContextMenu,
-} from '../../components/dynamic/Map';
-import Map, { mapClickEvent, mapCopyCoordinates, mapCursorHover } from '../../components/map/Map';
 
+import { useContextMenu } from '@/components/ContextMenu';
+import Page from '@/components/Page';
+import { searchInOSM } from '@/utils/Fetcher';
 import { modals } from '@mantine/modals';
 import mapboxgl from 'mapbox-gl';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
-import Page from '../../components/Page';
-import { ClaimDrawer } from '../../components/map/ClaimDrawer';
-import { MapContextMenu } from '../../components/map/MapContextMenu';
-import { searchInOSM } from '../../utils/Fetcher';
 
 const MapPage: NextPage = () => {
 	const clipboard = useClipboard();

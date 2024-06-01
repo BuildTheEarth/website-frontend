@@ -1,7 +1,5 @@
 import {
 	ActionIcon,
-	Alert,
-	Autocomplete,
 	Avatar,
 	Button,
 	Grid,
@@ -13,49 +11,44 @@ import {
 	MenuItem,
 	MenuTarget,
 	NumberInput,
-	rem,
 	Select,
 	Switch,
 	Table,
 	Text,
-	Textarea,
 	TextInput,
+	Textarea,
 	Tooltip,
+	rem,
 } from '@mantine/core';
-/* eslint-disable react-hooks/exhaustive-deps */
-import { Discord, Minecraft } from '@icons-pack/react-simple-icons';
-import { useClipboard, useDebouncedState, useDebouncedValue, useSetState } from '@mantine/hooks';
+import { useClipboard, useDebouncedState } from '@mantine/hooks';
 import {
-	IconAlertCircle,
 	IconBrandMinecraft,
 	IconCheck,
-	IconChevronLeft,
 	IconDeviceFloppy,
 	IconDots,
 	IconHome,
 	IconId,
 	IconMap,
-	IconPencil,
 	IconPlus,
 	IconTrash,
-	IconX,
 } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 
-import { showNotification } from '@mantine/notifications';
+import { ClaimDrawerImages } from '@/components/map/ClaimDrawerImages';
+import Map from '@/components/map/Map';
+import { Discord } from '@icons-pack/react-simple-icons';
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
 import { NextPage } from 'next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
+/* eslint-disable react-hooks/exhaustive-deps */
+import Page from '@/components/Page';
+import { useUser } from '@/hooks/useUser';
+import thumbnail from '@/public/images/thumbnails/me.png';
+import fetcher from '@/utils/Fetcher';
+import { showNotification } from '@mantine/notifications';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
-import { mutate } from 'swr';
-import thumbnail from '../../../../public/images/thumbnails/me.png';
-import { ClaimDrawerImages } from '../../../components/map/ClaimDrawerImages';
-import Map from '../../../components/map/Map';
-import Page from '../../../components/Page';
-import { useUser } from '../../../hooks/useUser';
-import fetcher from '../../../utils/Fetcher';
 
 const ClaimPage: NextPage = ({ claimId, data }: any) => {
 	const [polygon, setPolygon] = useState<any>({

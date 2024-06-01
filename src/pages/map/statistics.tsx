@@ -1,24 +1,15 @@
-import {
-	Divider,
-	Grid,
-	GridCol,
-	GridColProps,
-	MantineBreakpoint,
-	NumberFormatter,
-	Space,
-	Text,
-} from '@mantine/core';
+import { Divider, Grid, GridCol, GridColProps, NumberFormatter, Space, Text } from '@mantine/core';
 
+import Counter from '@/components/Counter';
+import Page from '@/components/Page';
+import { StatsGrid } from '@/components/Stats';
+import { StatsGroup } from '@/components/stats/StatsGroup';
+import thumbnail from '@/public/images/thumbnails/about.webp';
+import fetcher from '@/utils/Fetcher';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
-import thumbnail from '../../../public/images/thumbnails/about.webp';
-import Counter from '../../components/Counter';
-import Page from '../../components/Page';
-import { StatsGrid } from '../../components/Stats';
-import { StatsGroup } from '../../components/stats/StatsGroup';
-import fetcher from '../../utils/Fetcher';
 
 const EARTH_AREA = 510_100_000_000_000_000;
 const EARTH_LAND_AREA = 149_000_000_000_000_000;

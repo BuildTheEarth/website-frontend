@@ -17,22 +17,24 @@ import { IconPencil, IconPlus, IconTrash } from '@tabler/icons-react';
 import useSWR, { mutate } from 'swr';
 
 import { DateInput } from '@mantine/dates';
-import { modals } from '@mantine/modals';
-import { showNotification } from '@mantine/notifications';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
+import Page from '@/components/Page';
+import SettingsTabs from '@/components/SettingsTabs';
+import fetcher from '@/utils/Fetcher';
+import { modals } from '@mantine/modals';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { showNotification } from '@mantine/notifications';
+import thumbnail from '@/public/images/thumbnails/teams.png';
+import { usePermissions } from '@/hooks/usePermissions';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import thumbnail from '../../../../../public/images/thumbnails/teams.png';
-import Page from '../../../../components/Page';
-import SettingsTabs from '../../../../components/SettingsTabs';
-import { useUser } from '../../../../hooks/useUser';
-import fetcher from '../../../../utils/Fetcher';
+import { useUser } from '@/hooks/useUser';
 
 var vagueTime = require('vague-time');
 
 const Settings = () => {
 	const user = useUser();
+	const permissions = usePermissions();
 	const router = useRouter();
 	const { data } = useSWR(`/buildteams/${router.query.team}/showcases?slug=true`);
 	const [loading, setLoading] = useState(false);
@@ -227,7 +229,7 @@ const Settings = () => {
 						description="The Date of when the showcased Building was built"
 						mt="md"
 					/>
-					{user.hasPermission('admin.admin') && (
+					{permissions.has('admin.admin') && (
 						<Switch
 							label="For Showcase Approved"
 							description="If this is enabled, the image can be shown on all page heads and social media previews"

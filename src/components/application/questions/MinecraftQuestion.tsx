@@ -1,9 +1,9 @@
 import { ActionIcon, TextInput } from '@mantine/core';
 import { IconDeviceGamepad, IconExternalLink } from '@tabler/icons-react';
 
+import Icon from '@/components/Icon';
+import { ApplicationQuestion } from '@/utils/application/ApplicationQuestions';
 import Link from 'next/link';
-import { ApplicationQuestion } from '../../../utils/application/ApplicationQuestions';
-import Icon from '../../Icon';
 
 export interface MinecraftQuestionProps extends ApplicationQuestion {
 	additionalData: {};

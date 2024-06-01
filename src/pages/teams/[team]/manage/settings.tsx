@@ -1,5 +1,4 @@
 import {
-	Alert,
 	Button,
 	ColorInput,
 	Grid,
@@ -14,33 +13,33 @@ import {
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
-import { IconAlertCircle, IconCheck, IconPlus, IconTrash } from '@tabler/icons-react';
+import { IconCheck, IconPlus, IconTrash } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 
-import { showNotification } from '@mantine/notifications';
+import Page from '@/components/Page';
+import RTE from '@/components/RTE';
+import SettingsTabs from '@/components/SettingsTabs';
+import fetcher from '@/utils/Fetcher';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { showNotification } from '@mantine/notifications';
+import thumbnail from '@/public/images/thumbnails/teams.png';
+import { usePermissions } from '@/hooks/usePermissions';
+import { useUser } from '@/hooks/useUser';
 import { v4 as uuidv4 } from 'uuid';
-import thumbnail from '../../../../../public/images/thumbnails/teams.png';
-import Page from '../../../../components/Page';
-import RTE from '../../../../components/RTE';
-import SettingsTabs from '../../../../components/SettingsTabs';
-import { useUser } from '../../../../hooks/useUser';
-import fetcher from '../../../../utils/Fetcher';
 
 const Settings = ({ data: tempData }: any) => {
 	const theme = useMantineTheme();
 	const scheme = useMantineColorScheme();
 	const user = useUser();
+	const permissions = usePermissions();
 	const [data, setData] = useState(tempData);
 	const [allowSocial, setAllowSocial] = useState(false);
 	const [allowSettings, setAllowSettings] = useState(false);
 
 	useEffect(() => {
-		if (!user.isLoading) {
-			setAllowSettings(user.hasPermission('team.settings.edit'));
-			setAllowSocial(user.hasPermission('team.socials.edit'));
-		}
-	}, [user]);
+		setAllowSettings(permissions.has('team.settings.edit'));
+		setAllowSocial(permissions.has('team.socials.edit'));
+	}, [permissions]);
 
 	const handleSave = (e: any) => {
 		e.preventDefault();

@@ -1,19 +1,18 @@
 import { ActionIcon, Button, Group, Input, SimpleGrid, TextInput } from '@mantine/core';
-import { IconCheck, IconChevronLeft, IconPlus, IconQuestionMark } from '@tabler/icons-react';
-import useSWR, { mutate } from 'swr';
+import { IconChevronLeft, IconPlus, IconQuestionMark } from '@tabler/icons-react';
 
+import { GridButton } from '@/components/GridButton';
+import Page from '@/components/Page';
+import RTE from '@/components/RTE';
+import { useUser } from '@/hooks/useUser';
+import thumbnail from '@/public/images/thumbnails/faq.png';
+import { handleFetch } from '@/utils/Fetcher';
 import { useForm } from '@mantine/form';
-import { showNotification } from '@mantine/notifications';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useState } from 'react';
+import useSWR from 'swr';
 import { v4 as uuidv4 } from 'uuid';
-import thumbnail from '../../../public/images/thumbnails/faq.png';
-import { GridButton } from '../../components/GridButton';
-import Page from '../../components/Page';
-import RTE from '../../components/RTE';
-import { useUser } from '../../hooks/useUser';
-import { handleFetch } from '../../utils/Fetcher';
 
 const Faq: NextPage = () => {
 	const { data } = useSWR(`/faq`);

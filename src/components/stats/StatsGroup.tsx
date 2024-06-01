@@ -1,5 +1,5 @@
+import classes from '@/styles/components/StatsGroup.module.css';
 import { Text } from '@mantine/core';
-import classes from '../../styles/components/StatsGroup.module.css';
 
 export function StatsGroup({
 	data,

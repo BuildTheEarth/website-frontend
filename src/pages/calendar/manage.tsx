@@ -1,15 +1,15 @@
-import { Button, Grid, GridCol, Group, NumberInput, Textarea, TextInput } from '@mantine/core';
-import { Calendar as MCalendar, DateInput, DatePickerInput } from '@mantine/dates';
+import { Button, NumberInput, TextInput, Textarea } from '@mantine/core';
 
+import Page from '@/components/Page';
+import { useUser } from '@/hooks/useUser';
+import thumbnail from '@/public/images/thumbnails/faq.png';
+import { handleFetch } from '@/utils/Fetcher';
+import { DateInput } from '@mantine/dates';
 import { useForm } from '@mantine/form';
 import { IconPlus } from '@tabler/icons-react';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
-import thumbnail from '../../../public/images/thumbnails/faq.png';
-import Page from '../../components/Page';
-import { useUser } from '../../hooks/useUser';
-import { handleFetch } from '../../utils/Fetcher';
 
 const Calendar: NextPage = () => {
 	const user = useUser();

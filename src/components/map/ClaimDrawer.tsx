@@ -1,5 +1,4 @@
 import {
-	ActionIcon,
 	Alert,
 	Avatar,
 	Button,
@@ -30,15 +29,15 @@ import {
 	IconZoomIn,
 } from '@tabler/icons-react';
 
-import { useClipboard } from '@mantine/hooks';
-import { showNotification } from '@mantine/notifications';
-import { getAreaOfPolygon } from 'geolib';
-import mapboxgl from 'mapbox-gl';
-import Link from 'next/link';
-import useSWR from 'swr';
-import { useUser } from '../../hooks/useUser';
-import { StatsGrid } from '../Stats';
 import { ClaimDrawerImages } from './ClaimDrawerImages';
+import Link from 'next/link';
+import { StatsGrid } from '../Stats';
+import mapboxgl from 'mapbox-gl';
+import { showNotification } from '@mantine/notifications';
+import { useClipboard } from '@mantine/hooks';
+import { usePermissions } from '@/hooks/usePermissions';
+import useSWR from 'swr';
+import { useUser } from '@/hooks/useUser';
 
 interface ClaimDrawerProps {
 	setOpen: (bool: boolean) => void;
@@ -50,7 +49,8 @@ interface ClaimDrawerProps {
 
 export function ClaimDrawer(props: ClaimDrawerProps) {
 	const { data, isLoading } = useSWR('/claims/' + props.id + '?builders=true');
-	const user = useUser();
+	const { user } = useUser();
+	const permissions = usePermissions();
 	const t = props.t;
 	const clipboard = useClipboard();
 
@@ -73,15 +73,7 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 			) : (
 				<>
 					{data.images && (
-						<ClaimDrawerImages
-							id={props.id}
-							images={data.images}
-							editable={
-								user.isLoggedIn &&
-								(data?.owner?.id == user.user?.id || user.hasPermission('admin.admin'))
-							}
-							t={t}
-						/>
+						<ClaimDrawerImages id={props.id} images={data.images} editable={false} t={t} />
 					)}
 					{!data.finished && (
 						<Alert
@@ -245,8 +237,8 @@ export function ClaimDrawer(props: ClaimDrawerProps) {
 						>
 							{t('claim.details.actions.link')}
 						</Button>
-						{(data.owner?.id == user.user?.id ||
-							user.hasPermission('team.claim.list', data.buildTeam.id)) && (
+						{(data.owner?.id == user?.id ||
+							permissions.has('team.claim.list', data.buildTeam.id)) && (
 							<Button
 								component={Link}
 								variant="outline"

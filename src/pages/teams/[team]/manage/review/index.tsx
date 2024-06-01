@@ -10,16 +10,16 @@ import {
 } from '@mantine/core';
 import { IconCheck, IconClock, IconQuestionMark, IconX } from '@tabler/icons-react';
 
+import Page from '@/components/Page';
+import SettingsTabs from '@/components/SettingsTabs';
+import { StatsRing } from '@/components/Stats';
+import thumbnail from '@/public/images/thumbnails/teams.png';
+import fetcher from '@/utils/Fetcher';
 import { IconChevronRight } from '@tabler/icons-react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
 import { useState } from 'react';
 import useSWR from 'swr';
-import thumbnail from '../../../../../../public/images/thumbnails/teams.png';
-import Page from '../../../../../components/Page';
-import SettingsTabs from '../../../../../components/SettingsTabs';
-import { StatsRing } from '../../../../../components/Stats';
-import fetcher from '../../../../../utils/Fetcher';
 
 var vagueTime = require('vague-time');
 const Review = ({ team }: any) => {

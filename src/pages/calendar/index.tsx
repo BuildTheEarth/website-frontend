@@ -12,21 +12,21 @@ import {
 } from '@mantine/core';
 
 import { IconPlus } from '@tabler/icons-react';
-import { NextPage } from 'next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import Link from 'next/link';
+import { NextPage } from 'next';
+import Page from '@/components/Page';
+import fetcher from '@/utils/Fetcher';
+import logo from '@/public/logo.gif';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import thumbnail from '@/public/images/thumbnails/faq.png';
+import { usePermissions } from '@/hooks/usePermissions';
 import { useRouter } from 'next/router';
-import React from 'react';
-import thumbnail from '../../../public/images/thumbnails/faq.png';
-import logo from '../../../public/logo.gif';
-import Page from '../../components/Page';
-import { useUser } from '../../hooks/useUser';
-import fetcher from '../../utils/Fetcher';
 
 var vagueTime = require('vague-time');
 const Calendar: NextPage = ({ data }: any) => {
-	const user = useUser();
+	// const user = useUser();
+	const permissions = usePermissions();
 	const router = useRouter();
 	const today = new Date();
 	const ongoingEvents = data.filter((event: any) => {
@@ -86,7 +86,7 @@ const Calendar: NextPage = ({ data }: any) => {
 					</GridCol>
 				))}
 			</Grid>
-			{user.hasPermission('calendar.manage') && (
+			{permissions.has('calendar.manage', 'ää') && (
 				<Button
 					leftSection={<IconPlus />}
 					onClick={() => router.push('calendar/manage')}

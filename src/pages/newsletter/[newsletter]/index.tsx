@@ -2,12 +2,12 @@
 
 import { Group, Image } from '@mantine/core';
 
+import Page from '@/components/Page';
+import thumbnail from '@/public/images/thumbnails/newsletter.png';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
-import thumbnail from '../../../../public/images/thumbnails/newsletter.png';
-import Page from '../../../components/Page';
 
 const Newsletter: NextPage = () => {
 	const router = useRouter();

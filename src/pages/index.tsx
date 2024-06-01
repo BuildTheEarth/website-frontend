@@ -15,6 +15,10 @@ import {
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ChevronDown, ChevronRight } from 'tabler-icons-react';
 
+import BackgroundImage from '@/components/BackgroundImage';
+import Gallery from '@/components/Gallery';
+import Page from '@/components/Page';
+import fetcher from '@/utils/Fetcher';
 import { IconPhoto } from '@tabler/icons-react';
 import { NextPage } from 'next';
 import { useTranslation } from 'next-i18next';
@@ -22,10 +26,6 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import BackgroundImage from '../components/BackgroundImage';
-import Gallery from '../components/Gallery';
-import Page from '../components/Page';
-import fetcher from '../utils/Fetcher';
 
 const Home: NextPage = ({ data, headData }: any) => {
 	const theme = useMantineTheme();

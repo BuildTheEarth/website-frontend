@@ -12,7 +12,6 @@ import {
 	Stack,
 	Text,
 	TextInput,
-	Textarea,
 	Tooltip,
 	useMantineTheme,
 } from '@mantine/core';
@@ -20,6 +19,12 @@ import { RichTextEditor, useRichTextEditorContext } from '@mantine/tiptap';
 import { IconCheck, IconCopy, IconPlaceholder, IconReplace, IconX } from '@tabler/icons-react';
 import useSWR, { mutate } from 'swr';
 
+import Page from '@/components/Page';
+import SettingsTabs from '@/components/SettingsTabs';
+import { useUser } from '@/hooks/useUser';
+import thumbnail from '@/public/images/thumbnails/apply.png';
+import fetcher from '@/utils/Fetcher';
+import { ApplicationQuestions } from '@/utils/application/ApplicationQuestions';
 import { useClipboard } from '@mantine/hooks';
 import { modals } from '@mantine/modals';
 import { showNotification } from '@mantine/notifications';
@@ -36,12 +41,6 @@ import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useEffect } from 'react';
 import { Markdown } from 'tiptap-markdown';
-import thumbnail from '../../../../../../public/images/thumbnails/apply.png';
-import Page from '../../../../../components/Page';
-import SettingsTabs from '../../../../../components/SettingsTabs';
-import { useUser } from '../../../../../hooks/useUser';
-import fetcher from '../../../../../utils/Fetcher';
-import { ApplicationQuestions } from '../../../../../utils/application/ApplicationQuestions';
 
 const Apply: NextPage = ({ team, id }: any) => {
 	const theme = useMantineTheme();
