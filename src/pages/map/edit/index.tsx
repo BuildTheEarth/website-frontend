@@ -146,6 +146,7 @@ const ClaimEditPage: NextPage = () => {
 					message: 'You cannot edit this claim',
 					icon: <IconExclamationMark />,
 				});
+				setSelected(undefined);
 				draw.changeMode('simple_select');
 			}
 		}
@@ -792,6 +793,7 @@ const ClaimEditPage: NextPage = () => {
 											leftSection={<IconDeviceFloppy />}
 											onClick={() => handleSave()}
 											loading={loading}
+											disabled={!isAbleToUpdate(selected).able}
 										>
 											Save
 										</Button>
@@ -800,6 +802,7 @@ const ClaimEditPage: NextPage = () => {
 											onClick={() => handleDelete()}
 											loading={loading}
 											variant="outline"
+											disabled={!isAbleToUpdate(selected).able}
 										>
 											Delete
 										</Button>
