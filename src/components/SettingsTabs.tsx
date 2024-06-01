@@ -19,8 +19,9 @@ import {
 } from '@tabler/icons-react';
 
 import { useMediaQuery } from '@mantine/hooks';
-import { useSession } from 'next-auth/react';
+import { usePermissions } from '@/hooks/usePermissions';
 import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
 import { useUser } from '../hooks/useUser';
 
 const SettingsTabs = ({
@@ -34,7 +35,7 @@ const SettingsTabs = ({
 }) => {
 	const theme = useMantineTheme();
 	const scheme = useMantineColorScheme();
-	const user = useUser();
+	const permissions = usePermissions();
 	const session = useSession();
 	const router = useRouter();
 	const mobileLayout = useMediaQuery('(max-width: 1600px)');
@@ -71,35 +72,35 @@ const SettingsTabs = ({
 						<Tabs.Tab
 							value="settings"
 							leftSection={<IconSettings size="0.8rem" />}
-							disabled={!user.hasPermissions(['team.socials.edit', 'team.settings.edit'], team)}
+							disabled={!permissions.hasAny(['team.socials.edit', 'team.settings.edit'], team)}
 						>
 							Settings
 						</Tabs.Tab>
 						<Tabs.Tab
 							value="apply"
 							leftSection={<IconSend size="0.8rem" />}
-							disabled={!user.hasPermission('team.application.edit', team)}
+							disabled={!permissions.has('team.application.edit', team)}
 						>
 							Application Questions
 						</Tabs.Tab>
 						<Tabs.Tab
 							value="members"
 							leftSection={<IconUsers size="0.8rem" />}
-							disabled={!user.hasPermissions(['permission.add', 'permission.remove'], team)}
+							disabled={!permissions.hasAny(['permission.add', 'permission.remove'], team)}
 						>
 							Members
 						</Tabs.Tab>
 						<Tabs.Tab
 							value="claims"
 							leftSection={<IconPolygon size="0.8rem" />}
-							disabled={!user.hasPermissions(['team.claim.list'], team)}
+							disabled={!permissions.hasAny(['team.claim.list'], team)}
 						>
 							Claims
 						</Tabs.Tab>
 						<Tabs.Tab
 							value="images"
 							leftSection={<IconPhoto size="0.8rem" />}
-							disabled={!user.hasPermission('team.showcases.edit', team)}
+							disabled={!permissions.has('team.showcases.edit', team)}
 						>
 							Showcase Images
 						</Tabs.Tab>
@@ -107,7 +108,7 @@ const SettingsTabs = ({
 							value="review"
 							leftSection={<IconSearch size="0.8rem" />}
 							disabled={
-								!user.hasPermissions(['team.application.review', 'team.application.list'], team)
+								!permissions.hasAny(['team.application.review', 'team.application.list'], team)
 							}
 						>
 							Review
@@ -127,7 +128,7 @@ const SettingsTabs = ({
 					position: 'relative',
 				})}
 			>
-				<LoadingOverlay visible={user.isLoading && loading} overlayProps={{ blur: 4 }} />
+				<LoadingOverlay visible={permissions.isLoading && loading} overlayProps={{ blur: 4 }} />
 				{children}
 			</Box>
 		</>
@@ -143,7 +144,7 @@ export const AdminSettingsTabs = ({
 }) => {
 	const theme = useMantineTheme();
 	const scheme = useMantineColorScheme();
-	const user = useUser();
+	const permissions = usePermissions();
 	const session = useSession();
 	const router = useRouter();
 	const mobileLayout = useMediaQuery('(max-width: 1600px)');
@@ -178,21 +179,21 @@ export const AdminSettingsTabs = ({
 						<Tabs.Tab
 							value="cron"
 							leftSection={<IconClock size="0.8rem" />}
-							disabled={!user.hasPermissions(['admin.admin'])}
+							disabled={!permissions.hasAny(['admin.admin'])}
 						>
 							Cron
 						</Tabs.Tab>
 						<Tabs.Tab
 							value="claims"
 							leftSection={<IconPolygon size="0.8rem" />}
-							disabled={!user.hasPermissions(['admin.admin'])}
+							disabled={!permissions.hasAny(['admin.admin'])}
 						>
 							Claims
 						</Tabs.Tab>
 						<Tabs.Tab
 							value="images"
 							leftSection={<IconPolygon size="0.8rem" />}
-							disabled={!user.hasPermissions(['team.claim.list'])}
+							disabled={!permissions.hasAny(['team.claim.list'])}
 						>
 							Claim Images
 						</Tabs.Tab>
@@ -212,7 +213,7 @@ export const AdminSettingsTabs = ({
 					position: 'relative',
 				})}
 			>
-				<LoadingOverlay visible={user.isLoading && loading} overlayProps={{ blur: 4 }} />
+				<LoadingOverlay visible={permissions.isLoading && loading} overlayProps={{ blur: 4 }} />
 				{children}
 			</Box>
 		</>

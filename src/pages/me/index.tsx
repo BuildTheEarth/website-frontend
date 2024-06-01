@@ -21,18 +21,18 @@ import {
 	IconPin,
 } from '@tabler/icons-react';
 
-import Page from '@/components/Page';
-import { useUser } from '@/hooks/useUser';
-import thumbnail from '@/public/images/thumbnails/me.png';
-import getCountryName from '@/utils/ISOCountries';
-import { NextPage } from 'next';
-import { signOut } from 'next-auth/react';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useTranslation } from 'react-i18next';
-import useSWR from 'swr';
+import { NextPage } from 'next';
+import Page from '@/components/Page';
 import { Pin } from 'tabler-icons-react';
+import getCountryName from '@/utils/ISOCountries';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { signOut } from 'next-auth/react';
+import thumbnail from '@/public/images/thumbnails/me.png';
+import { useRouter } from 'next/router';
+import useSWR from 'swr';
+import { useTranslation } from 'react-i18next';
+import { useUser } from '@/hooks/useUser';
 
 const MePage: NextPage = () => {
 	const user = useUser();
@@ -76,7 +76,10 @@ const MePage: NextPage = () => {
 						<Button
 							leftSection={<IconLogout />}
 							mt="md"
-							onClick={() => signOut({ callbackUrl: '/' })}
+							onClick={() => {
+								window.localStorage.removeItem('auth-permission-state');
+								signOut({ callbackUrl: '/', redirect: true });
+							}}
 							variant="outline"
 						>
 							{t('common:auth.signout')}
