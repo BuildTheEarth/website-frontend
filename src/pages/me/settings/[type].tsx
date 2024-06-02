@@ -16,6 +16,7 @@ import {
 import { useEffect, useState } from 'react';
 
 import Page from '@/components/Page';
+import { useAccessToken } from '@/hooks/useAccessToken';
 import { useUser } from '@/hooks/useUser';
 import thumbnail from '@/public/images/thumbnails/me.png';
 import { useForm } from '@mantine/form';
@@ -29,6 +30,7 @@ import useSWR from 'swr';
 
 const Settings: NextPage = ({ type }: any) => {
 	const user = useUser();
+	const { accessToken } = useAccessToken();
 	const { data, isLoading } = useSWR(`/users/${user?.user?.id}/kc`);
 	const router = useRouter();
 	const [loading, setLoading] = useState(false);
@@ -60,7 +62,7 @@ const Settings: NextPage = ({ type }: any) => {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: 'Bearer ' + user.token,
+				Authorization: 'Bearer ' + accessToken,
 			},
 			body: JSON.stringify(body),
 		})

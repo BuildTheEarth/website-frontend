@@ -28,6 +28,7 @@ import {
 import Icon from '@/components/Icon';
 import Page from '@/components/Page';
 import SettingsTabs from '@/components/SettingsTabs';
+import { useAccessToken } from '@/hooks/useAccessToken';
 import { useUser } from '@/hooks/useUser';
 import thumbnail from '@/public/images/thumbnails/teams.png';
 import fetcher from '@/utils/Fetcher';
@@ -43,7 +44,7 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 	const [trial, setTrial] = useState(false);
 	const theme = useMantineTheme();
 	const router = useRouter();
-	const user = useUser();
+	const { accessToken } = useAccessToken();
 	const [data, setData] = useState(tempData?.filter((d: any) => d?.sort >= 0));
 	const [deletedData, setDeletedData] = useState(tempData?.filter((d: any) => d.sort < 0));
 	const [editingQuestion, setEditingQuestion] = useState<any>(null);
@@ -137,7 +138,7 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: 'Bearer ' + user.token,
+				Authorization: 'Bearer ' + accessToken,
 			},
 			body: JSON.stringify([...data, ...deletedData]),
 		})

@@ -2,8 +2,6 @@ import {
 	ActionIcon,
 	AspectRatio,
 	Button,
-	Checkbox,
-	Divider,
 	FileInput,
 	Group,
 	Switch,
@@ -16,24 +14,24 @@ import {
 import { IconPencil, IconPlus, IconTrash } from '@tabler/icons-react';
 import useSWR, { mutate } from 'swr';
 
-import { DateInput } from '@mantine/dates';
-import Image from 'next/image';
 import Page from '@/components/Page';
 import SettingsTabs from '@/components/SettingsTabs';
-import fetcher from '@/utils/Fetcher';
-import { modals } from '@mantine/modals';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { showNotification } from '@mantine/notifications';
-import thumbnail from '@/public/images/thumbnails/teams.png';
+import { useAccessToken } from '@/hooks/useAccessToken';
 import { usePermissions } from '@/hooks/usePermissions';
+import thumbnail from '@/public/images/thumbnails/teams.png';
+import fetcher from '@/utils/Fetcher';
+import { DateInput } from '@mantine/dates';
+import { modals } from '@mantine/modals';
+import { showNotification } from '@mantine/notifications';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { useUser } from '@/hooks/useUser';
 
 var vagueTime = require('vague-time');
 
 const Settings = () => {
-	const user = useUser();
+	const { accessToken } = useAccessToken();
 	const permissions = usePermissions();
 	const router = useRouter();
 	const { data } = useSWR(`/buildteams/${router.query.team}/showcases?slug=true`);
@@ -66,7 +64,7 @@ const Settings = () => {
 						method: 'DELETE',
 						headers: {
 							'Content-Type': 'application/json',
-							Authorization: 'Bearer ' + user.token,
+							Authorization: 'Bearer ' + accessToken,
 						},
 					},
 				)
@@ -161,7 +159,7 @@ const Settings = () => {
 					method: 'POST',
 					headers: {
 						// 'Content-Type': 'multipart/form-data',
-						Authorization: 'Bearer ' + user.token,
+						Authorization: 'Bearer ' + accessToken,
 					},
 					body: formdata,
 				},
@@ -264,7 +262,7 @@ const Settings = () => {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
-						Authorization: 'Bearer ' + user.token,
+						Authorization: 'Bearer ' + accessToken,
 					},
 					body: JSON.stringify({ title: name, city, date, approved }),
 				},

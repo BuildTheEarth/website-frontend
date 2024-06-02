@@ -20,6 +20,7 @@ import Page from '@/components/Page';
 import SearchInput from '@/components/SearchInput';
 import SettingsTabs from '@/components/SettingsTabs';
 import { UsersTable } from '@/components/UsersTable';
+import { useAccessToken } from '@/hooks/useAccessToken';
 import { useUser } from '@/hooks/useUser';
 import thumbnail from '@/public/images/thumbnails/teams.png';
 import fetcher from '@/utils/Fetcher';
@@ -31,6 +32,7 @@ import { useState } from 'react';
 
 const Settings = () => {
 	const user = useUser();
+	const { accessToken } = useAccessToken();
 	const router = useRouter();
 	const [page, setPage] = useState(1);
 	const [hasUpdated, setHasUpdated] = useState(false);
@@ -66,7 +68,7 @@ const Settings = () => {
 					method: 'DELETE',
 					headers: {
 						'Content-Type': 'application/json',
-						Authorization: 'Bearer ' + user.token,
+						Authorization: 'Bearer ' + accessToken,
 					},
 					body: JSON.stringify({ user: member.id }),
 				})
@@ -181,7 +183,7 @@ const Settings = () => {
 						method: 'DELETE',
 						headers: {
 							'Content-Type': 'application/json',
-							Authorization: 'Bearer ' + user.token,
+							Authorization: 'Bearer ' + accessToken,
 						},
 						body: JSON.stringify({
 							permissions: member.permissions.map((p: any) => p.permissionId),
@@ -217,7 +219,7 @@ const Settings = () => {
 				method: add ? 'POST' : 'DELETE',
 				headers: {
 					'Content-Type': 'application/json',
-					Authorization: 'Bearer ' + user.token,
+					Authorization: 'Bearer ' + accessToken,
 				},
 				body: JSON.stringify({ permission }),
 			},

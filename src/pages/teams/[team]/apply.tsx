@@ -12,6 +12,7 @@ import { signIn, useSession } from 'next-auth/react';
 import useSWR, { mutate } from 'swr';
 
 import Page from '@/components/Page';
+import { useAccessToken } from '@/hooks/useAccessToken';
 import { useUser } from '@/hooks/useUser';
 import fetcher from '@/utils/Fetcher';
 import { ApplicationQuestions } from '@/utils/application/ApplicationQuestions';
@@ -31,6 +32,7 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 	const team = router.query.team;
 	const theme = useMantineTheme();
 	const user = useUser();
+	const { accessToken } = useAccessToken();
 	const session = useSession();
 	const { data: pastApplications } = useSWR(
 		`/buildteams/${buildteam?.id}/applications/user/${user.user?.id}`,
@@ -52,7 +54,7 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
-					Authorization: 'Bearer ' + user.token,
+					Authorization: 'Bearer ' + accessToken,
 				},
 				body: JSON.stringify(e),
 			},

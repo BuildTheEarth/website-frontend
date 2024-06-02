@@ -19,7 +19,7 @@ import {
 } from '@mantine/dropzone';
 import { IconPhoto, IconTrash, IconUpload, IconX } from '@tabler/icons-react';
 
-import { useUser } from '@/hooks/useUser';
+import { useAccessToken } from '@/hooks/useAccessToken';
 import classes from '@/styles/components/Gallery.module.css';
 import { modals } from '@mantine/modals';
 import { showNotification } from '@mantine/notifications';
@@ -43,7 +43,7 @@ interface ClaimDrawerImagesProps {
 
 export function ClaimDrawerImages({ t, ...props }: ClaimDrawerImagesProps) {
 	const [deleteLoading, setDeleteLoading] = useState(false);
-	const user = useUser();
+	const { accessToken } = useAccessToken();
 
 	const handleDeleteImage = (image: any) => {
 		modals.openConfirmModal({
@@ -64,7 +64,7 @@ export function ClaimDrawerImages({ t, ...props }: ClaimDrawerImagesProps) {
 					method: 'DELETE',
 					headers: {
 						'Content-Type': 'application/json',
-						Authorization: 'Bearer ' + user.token,
+						Authorization: 'Bearer ' + accessToken,
 					},
 				})
 					.then((res) => res.json())
@@ -154,7 +154,7 @@ function ClaimDropzone({ id, onAdd, t }: { id: string; onAdd?: (image: any) => v
 	const [uploading, setUploading] = useState(false);
 	const [uploadingStatus, setUploadingStatus] = useState(0);
 
-	const user = useUser();
+	const { accessToken } = useAccessToken();
 
 	const upload = async (images: any[]) => {
 		let formData = new FormData();
@@ -165,7 +165,7 @@ function ClaimDropzone({ id, onAdd, t }: { id: string; onAdd?: (image: any) => v
 			method: 'POST',
 			headers: {
 				// 'Content-Type': 'multipart/form-data',
-				Authorization: 'Bearer ' + user.token,
+				Authorization: 'Bearer ' + accessToken,
 			},
 			body: formData,
 		})

@@ -42,6 +42,7 @@ import { NextPage } from 'next';
 import Link from 'next/link';
 /* eslint-disable react-hooks/exhaustive-deps */
 import Page from '@/components/Page';
+import { useAccessToken } from '@/hooks/useAccessToken';
 import { useUser } from '@/hooks/useUser';
 import thumbnail from '@/public/images/thumbnails/me.png';
 import fetcher from '@/utils/Fetcher';
@@ -66,6 +67,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 	const [builderSearchResults, setBuilderSearchResults] = useState<any[]>([]);
 	const { t } = useTranslation('map');
 	const user = useUser();
+	const { accessToken } = useAccessToken();
 	const router = useRouter();
 	const clipboard = useClipboard();
 	const [loading, setLoading] = useState(false);
@@ -91,7 +93,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: 'Bearer ' + user.token,
+				Authorization: 'Bearer ' + accessToken,
 			},
 			body: JSON.stringify({
 				...additionalData,
@@ -127,7 +129,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: 'Bearer ' + user.token,
+				Authorization: 'Bearer ' + accessToken,
 			},
 		})
 			.then((res) => res.json())
@@ -162,7 +164,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 					method: 'GET',
 					headers: {
 						'Content-Type': 'application/json',
-						Authorization: 'Bearer ' + user.token,
+						Authorization: 'Bearer ' + accessToken,
 					},
 				},
 			)
@@ -401,7 +403,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 							</ActionIcon>
 							<Button
 								onClick={handleDelete}
-								disabled={!user?.token}
+								disabled={!accessToken}
 								loading={loading}
 								variant="outline"
 								leftSection={<IconTrash />}
@@ -410,7 +412,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 							</Button>
 							<Button
 								onClick={handleSubmit}
-								disabled={!user?.token}
+								disabled={!accessToken}
 								loading={loading}
 								leftSection={<IconDeviceFloppy />}
 							>

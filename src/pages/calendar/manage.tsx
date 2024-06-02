@@ -1,7 +1,7 @@
 import { Button, NumberInput, TextInput, Textarea } from '@mantine/core';
 
 import Page from '@/components/Page';
-import { useUser } from '@/hooks/useUser';
+import { useAccessToken } from '@/hooks/useAccessToken';
 import thumbnail from '@/public/images/thumbnails/faq.png';
 import { handleFetch } from '@/utils/Fetcher';
 import { DateInput } from '@mantine/dates';
@@ -9,18 +9,16 @@ import { useForm } from '@mantine/form';
 import { IconPlus } from '@tabler/icons-react';
 import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useRouter } from 'next/router';
 
 const Calendar: NextPage = () => {
-	const user = useUser();
-	const router = useRouter();
+	const { accessToken } = useAccessToken();
 	const handleAdd = handleFetch(`/calendar?slug=true`, {
 		method: 'POST',
 		bodyParser: () => ({
 			...form.values,
 		}),
 		headers: {
-			Authorization: 'Bearer ' + user.token,
+			Authorization: 'Bearer ' + accessToken,
 		},
 		successNotification: { title: 'Event added' },
 		onError: (res) => {},
