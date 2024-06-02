@@ -37,8 +37,8 @@ const Settings = ({ data: tempData }: any) => {
 	const [allowSettings, setAllowSettings] = useState(false);
 
 	useEffect(() => {
-		setAllowSettings(permissions.has('team.settings.edit', data.slug));
-		setAllowSocial(permissions.has('team.socials.edit', data.slug));
+		setAllowSettings(permissions.has('team.settings.edit', data?.slug));
+		setAllowSocial(permissions.has('team.socials.edit', data?.slug));
 	}, [permissions]);
 
 	const handleSave = (e: any) => {
@@ -181,7 +181,7 @@ const Settings = ({ data: tempData }: any) => {
 			}}
 			seo={{ nofollow: true, noindex: true }}
 			requiredPermissions={{
-				buildteam: data.slug,
+				buildteam: data?.slug,
 				permissions: ['team.settings.edit', 'team.socials.edit'],
 			}}
 			loading={!data}
