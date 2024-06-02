@@ -1,6 +1,5 @@
-import { Alert, Badge, Button, Card, Flex, Group, rem, Tabs, Text, TextInput } from '@mantine/core';
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Discord, Github } from '@icons-pack/react-simple-icons';
+import { Alert, Badge, Button, Card, Flex, Group, rem, Tabs, Text, TextInput } from '@mantine/core';
 import {
 	IconAlertCircle,
 	IconBroadcast,
@@ -27,6 +26,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
 import useSWR from 'swr';
+
+/* eslint-disable react-hooks/exhaustive-deps */
 
 const Settings: NextPage = ({ type }: any) => {
 	const user = useUser();
@@ -93,7 +94,7 @@ const Settings: NextPage = ({ type }: any) => {
 				title: 'Account Settings',
 				image: thumbnail,
 			}}
-			requiredPermissions={['account.edit', 'account.info']}
+			requiredPermissions={{ permissions: ['account.edit', 'account.info'] }}
 			loading={!data}
 		>
 			{data && (

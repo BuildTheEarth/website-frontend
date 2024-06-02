@@ -23,7 +23,7 @@ const ReviewPage: NextPage = () => {
 				title: 'Review Applications',
 				image: thumbnail,
 			}}
-			requiredPermissions={['account.info']}
+			requiredPermissions={{ permissions: ['account.info'] }}
 			loading={!data}
 		>
 			<Table.ScrollContainer minWidth={800}>

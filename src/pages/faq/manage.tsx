@@ -100,7 +100,7 @@ const Faq: NextPage = () => {
 				image: thumbnail,
 			}}
 			seo={{ nofollow: true, noindex: true }}
-			requiredPermissions={['faq.edit', 'faq.remove', 'faq.add']}
+			requiredPermissions={{ permissions: ['faq.edit', 'faq.remove', 'faq.add'] }}
 			loading={!data}
 		>
 			{!data ? (

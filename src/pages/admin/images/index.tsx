@@ -102,7 +102,7 @@ const Settings = () => {
 				image: thumbnail,
 			}}
 			seo={{ nofollow: true, noindex: true }}
-			requiredPermissions={['team.claim.list']}
+			requiredPermissions={{ permissions: ['team.claim.list'] }}
 		>
 			<Table.ScrollContainer minWidth={800}>
 				<Table verticalSpacing="sm">

@@ -29,7 +29,7 @@ const Settings = ({ data: tempData }: any) => {
 				image: thumbnail,
 			}}
 			seo={{ nofollow: true, noindex: true }}
-			requiredPermissions={['admin.admin']}
+			requiredPermissions={{ permissions: ['admin.admin'] }}
 			loading={!data}
 		>
 			<AdminSettingsTabs loading={!data}>

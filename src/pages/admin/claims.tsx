@@ -2,8 +2,8 @@ import { Button, Checkbox, Group, Paper, Progress, Title, Tooltip } from '@manti
 import useSWR, { mutate } from 'swr';
 
 import Page from '@/components/Page';
-import { AdminSettingsTabs } from '@/components/SettingsTabs';
 import { swrFetcher } from '@/components/SWRSetup';
+import { AdminSettingsTabs } from '@/components/SettingsTabs';
 import { useAccessToken } from '@/hooks/useAccessToken';
 import thumbnail from '@/public/images/thumbnails/teams.png';
 import { showNotification } from '@mantine/notifications';
@@ -123,7 +123,7 @@ const Settings = ({ data: tempData }: any) => {
 				image: thumbnail,
 			}}
 			seo={{ nofollow: true, noindex: true }}
-			requiredPermissions={['admin.admin']}
+			requiredPermissions={{ permissions: ['admin.admin'] }}
 		>
 			<AdminSettingsTabs>
 				{progress?.buildings && (

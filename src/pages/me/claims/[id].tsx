@@ -11,14 +11,14 @@ import {
 	MenuItem,
 	MenuTarget,
 	NumberInput,
-	rem,
 	Select,
 	Switch,
 	Table,
 	Text,
-	Textarea,
 	TextInput,
+	Textarea,
 	Tooltip,
+	rem,
 } from '@mantine/core';
 import { useClipboard, useDebouncedState } from '@mantine/hooks';
 import {
@@ -34,22 +34,23 @@ import {
 } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 
+import Page from '@/components/Page';
 import { ClaimDrawerImages } from '@/components/map/ClaimDrawerImages';
 import Map from '@/components/map/Map';
-import { Discord } from '@icons-pack/react-simple-icons';
-import MapboxDraw from '@mapbox/mapbox-gl-draw';
-import { NextPage } from 'next';
-import Link from 'next/link';
-/* eslint-disable react-hooks/exhaustive-deps */
-import Page from '@/components/Page';
 import { useAccessToken } from '@/hooks/useAccessToken';
 import { useUser } from '@/hooks/useUser';
 import thumbnail from '@/public/images/thumbnails/me.png';
 import fetcher from '@/utils/Fetcher';
+import { Discord } from '@icons-pack/react-simple-icons';
 import { showNotification } from '@mantine/notifications';
+import MapboxDraw from '@mapbox/mapbox-gl-draw';
+import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
+
+/* eslint-disable react-hooks/exhaustive-deps */
 
 const ClaimPage: NextPage = ({ claimId, data }: any) => {
 	const [polygon, setPolygon] = useState<any>({
@@ -192,7 +193,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 				image: thumbnail,
 			}}
 			smallPadding
-			requiredPermissions={['account.edit', 'account.info']}
+			requiredPermissions={{ permissions: ['account.edit', 'account.info'] }}
 			loading={!data}
 		>
 			{!data ? (

@@ -5,10 +5,10 @@ import {
 	Code,
 	Grid,
 	Group,
-	rem,
 	Stack,
 	Text,
 	Tooltip,
+	rem,
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
@@ -48,7 +48,7 @@ const MePage: NextPage = () => {
 				title: t('head.title'),
 				image: thumbnail,
 			}}
-			requiredPermissions={['account.info']}
+			requiredPermissions={{ permissions: ['account.info'] }}
 			loading={!data}
 		>
 			{data && (
