@@ -6,11 +6,11 @@ import {
 	Grid,
 	Group,
 	Pagination,
+	rem,
 	Stack,
 	Stepper,
 	Text,
 	Title,
-	rem,
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
@@ -63,7 +63,7 @@ const Visit: NextPage = ({ data }: any) => {
 							ip: element.ip,
 							slug: element.slug,
 						}),
-				  )
+					)
 				: locations.push({
 						location: getCountryName(element.location),
 						raw: element.location,
@@ -71,7 +71,7 @@ const Visit: NextPage = ({ data }: any) => {
 						tid: element.id,
 						ip: element.ip,
 						slug: element.slug,
-				  })
+					})
 			: null,
 	);
 

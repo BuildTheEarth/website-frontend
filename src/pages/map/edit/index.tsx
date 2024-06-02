@@ -16,6 +16,7 @@ import {
 	MenuItem,
 	MenuTarget,
 	NumberInput,
+	rem,
 	ScrollAreaAutosize,
 	Select,
 	Switch,
@@ -24,11 +25,11 @@ import {
 	TableTd,
 	TableTr,
 	Text,
-	TextInput,
 	Textarea,
+	TextInput,
 	Tooltip,
-	rem,
 } from '@mantine/core';
+import { useClipboard, useDebouncedState } from '@mantine/hooks';
 import {
 	IconArrowsDiff,
 	IconBrandMinecraft,
@@ -37,7 +38,6 @@ import {
 	IconDots,
 	IconExclamationMark,
 	IconId,
-	IconPhoto,
 	IconPlus,
 	IconTrash,
 	IconUsersGroup,
@@ -49,25 +49,25 @@ import {
 	SnapPointMode,
 	SnapPolygonMode,
 } from 'mapbox-gl-draw-snap-mode';
-import { useClipboard, useDebouncedState } from '@mantine/hooks';
 import { useEffect, useState } from 'react';
 
+import { useContextMenu } from '@/components/ContextMenu';
 import { ClaimDrawerImages } from '@/components/map/ClaimDrawerImages';
-import { Discord } from '@icons-pack/react-simple-icons';
 import Map from '@/components/map/Map';
 import { MapContextMenu } from '@/components/map/MapContextMenu';
+import Page from '@/components/Page';
+import { useAccessToken } from '@/hooks/useAccessToken';
+import { usePermissions } from '@/hooks/usePermissions';
+import { useUser } from '@/hooks/useUser';
+import { Discord } from '@icons-pack/react-simple-icons';
+import { modals } from '@mantine/modals';
+import { showNotification } from '@mantine/notifications';
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
 import { NextPage } from 'next';
-import Page from '@/components/Page';
-import { modals } from '@mantine/modals';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { showNotification } from '@mantine/notifications';
-import { useContextMenu } from '@/components/ContextMenu';
-import { usePermissions } from '@/hooks/usePermissions';
 import { useRouter } from 'next/router';
-import useSWR from 'swr';
 import { useTranslation } from 'react-i18next';
-import { useUser } from '@/hooks/useUser';
+import useSWR from 'swr';
 
 const ClaimEditPage: NextPage = () => {
 	const { t } = useTranslation('map');
@@ -81,6 +81,7 @@ const ClaimEditPage: NextPage = () => {
 	});
 	const [map, setMap] = useState<mapboxgl.Map>();
 	const user = useUser();
+	const { accessToken, isLoggedIn } = useAccessToken();
 	const permissions = usePermissions();
 	const [draw, setDraw] = useState(
 		new MapboxDraw({
@@ -162,7 +163,7 @@ const ClaimEditPage: NextPage = () => {
 					method: 'GET',
 					headers: {
 						'Content-Type': 'application/json',
-						Authorization: 'Bearer ' + user.token,
+						Authorization: 'Bearer ' + accessToken,
 					},
 				},
 			)
@@ -260,7 +261,7 @@ const ClaimEditPage: NextPage = () => {
 				method: 'DELETE',
 				headers: {
 					'Content-Type': 'application/json',
-					Authorization: 'Bearer ' + user.token,
+					Authorization: 'Bearer ' + accessToken,
 				},
 			})
 				.then((res) => res.json())
@@ -302,7 +303,7 @@ const ClaimEditPage: NextPage = () => {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
-					Authorization: 'Bearer ' + user.token,
+					Authorization: 'Bearer ' + accessToken,
 				},
 				body: JSON.stringify({
 					...selected.properties,
@@ -358,7 +359,7 @@ const ClaimEditPage: NextPage = () => {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: 'Bearer ' + user.token,
+				Authorization: 'Bearer ' + accessToken,
 			},
 			body: JSON.stringify({
 				...selected.properties,
@@ -482,7 +483,7 @@ const ClaimEditPage: NextPage = () => {
 									id={selected.id}
 									images={selected.properties.images}
 									editable={
-										user.isLoggedIn &&
+										isLoggedIn &&
 										(selected.properties?.owner?.id == user.user?.id ||
 											permissions.has('admin.admin'))
 									}

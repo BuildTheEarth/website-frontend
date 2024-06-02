@@ -11,16 +11,16 @@ import {
 	Tooltip,
 } from '@mantine/core';
 
+import Page from '@/components/Page';
+import { usePermissions } from '@/hooks/usePermissions';
+import thumbnail from '@/public/images/thumbnails/faq.png';
+import logo from '@/public/logo.gif';
+import fetcher from '@/utils/Fetcher';
 import { IconPlus } from '@tabler/icons-react';
+import { NextPage } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';
 import Link from 'next/link';
-import { NextPage } from 'next';
-import Page from '@/components/Page';
-import fetcher from '@/utils/Fetcher';
-import logo from '@/public/logo.gif';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import thumbnail from '@/public/images/thumbnails/faq.png';
-import { usePermissions } from '@/hooks/usePermissions';
 import { useRouter } from 'next/router';
 
 var vagueTime = require('vague-time');
@@ -112,8 +112,8 @@ export function EventList(props: any) {
 	const badgeMsg = props.ongoing
 		? daysToEnd + 2 + ' days left'
 		: props.upcoming
-		? `in ${daysToStart} days`
-		: (daysToEnd + 1) * -1 + ' days ago';
+			? `in ${daysToStart} days`
+			: (daysToEnd + 1) * -1 + ' days ago';
 
 	return (
 		<Card

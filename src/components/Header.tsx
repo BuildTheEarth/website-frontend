@@ -1,4 +1,13 @@
 import {
+	Discord,
+	Instagram,
+	Reddit,
+	Tiktok,
+	Twitch,
+	Twitter,
+	Youtube,
+} from '@icons-pack/react-simple-icons';
+import {
 	ActionIcon,
 	Anchor,
 	Avatar,
@@ -12,24 +21,14 @@ import {
 	Menu,
 	MenuItem,
 	Paper,
+	rem,
 	Text,
 	Tooltip,
 	Transition,
 	UnstyledButton,
-	rem,
 	useMantineColorScheme,
 	useMantineTheme,
 } from '@mantine/core';
-import { ChevronDown, FileSearch, Logout, World } from 'tabler-icons-react';
-import {
-	Discord,
-	Instagram,
-	Reddit,
-	Tiktok,
-	Twitch,
-	Twitter,
-	Youtube,
-} from '@icons-pack/react-simple-icons';
 import {
 	IconCalendar,
 	IconDashboard,
@@ -45,22 +44,23 @@ import {
 	IconUser,
 	IconUsers,
 } from '@tabler/icons-react';
-import React, { CSSProperties, useState } from 'react';
-import { signIn, signOut, useSession } from 'next-auth/react';
 import { useScroll, useTransform } from 'framer-motion';
+import { signIn, signOut, useSession } from 'next-auth/react';
+import React, { CSSProperties, useState } from 'react';
+import { ChevronDown, FileSearch, Logout, World } from 'tabler-icons-react';
 
-import Icon from './Icon';
-import Image from 'next/image';
-import Link from 'next/link';
-import classes from '../styles/components/Header.module.css';
-import { hexToDataURL } from '../utils/Color';
+import { usePermissions } from '@/hooks/usePermissions';
 import logo from '@/public/logo.gif';
 import { useDisclosure } from '@mantine/hooks';
-import { usePermissions } from '@/hooks/usePermissions';
+import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useScrollPosition } from '../hooks/useScrollPosition';
 import { useTranslation } from 'react-i18next';
+import { useScrollPosition } from '../hooks/useScrollPosition';
 import { useUser } from '../hooks/useUser';
+import classes from '../styles/components/Header.module.css';
+import { hexToDataURL } from '../utils/Color';
+import Icon from './Icon';
 
 interface HeaderProps {
 	links: {

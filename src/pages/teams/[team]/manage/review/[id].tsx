@@ -21,7 +21,7 @@ import useSWR, { mutate } from 'swr';
 
 import Page from '@/components/Page';
 import SettingsTabs from '@/components/SettingsTabs';
-import { useUser } from '@/hooks/useUser';
+import { useAccessToken } from '@/hooks/useAccessToken';
 import thumbnail from '@/public/images/thumbnails/apply.png';
 import fetcher from '@/utils/Fetcher';
 import { ApplicationQuestions } from '@/utils/application/ApplicationQuestions';
@@ -44,7 +44,7 @@ import { Markdown } from 'tiptap-markdown';
 
 const Apply: NextPage = ({ team, id }: any) => {
 	const theme = useMantineTheme();
-	const user = useUser();
+	const { accessToken } = useAccessToken();
 	const clipboard = useClipboard();
 	const { data } = useSWR(
 		`/buildteams/${team}/applications/${id}?includeAnswers=true&includeUser=true&slug=true`,
@@ -76,7 +76,7 @@ const Apply: NextPage = ({ team, id }: any) => {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: 'Bearer ' + user.token,
+				Authorization: 'Bearer ' + accessToken,
 			},
 			body: JSON.stringify({
 				reason: responseEditor?.storage.markdown.getMarkdown(),
@@ -111,7 +111,7 @@ const Apply: NextPage = ({ team, id }: any) => {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: 'Bearer ' + user.token,
+				Authorization: 'Bearer ' + accessToken,
 			},
 			body: JSON.stringify({
 				name,
@@ -144,7 +144,10 @@ const Apply: NextPage = ({ team, id }: any) => {
 				title: 'Review Application',
 				image: thumbnail,
 			}}
-			requiredPermissions={['team.application.review']}
+			requiredPermissions={{
+				buildteam: team,
+				permissions: ['team.application.review'],
+			}}
 			loading={!data}
 		>
 			<SettingsTabs team={team} loading={!data}>

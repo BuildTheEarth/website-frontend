@@ -19,26 +19,26 @@ import { useEffect, useState } from 'react';
 import Page from '@/components/Page';
 import RTE from '@/components/RTE';
 import SettingsTabs from '@/components/SettingsTabs';
-import fetcher from '@/utils/Fetcher';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { showNotification } from '@mantine/notifications';
-import thumbnail from '@/public/images/thumbnails/teams.png';
+import { useAccessToken } from '@/hooks/useAccessToken';
 import { usePermissions } from '@/hooks/usePermissions';
-import { useUser } from '@/hooks/useUser';
+import thumbnail from '@/public/images/thumbnails/teams.png';
+import fetcher from '@/utils/Fetcher';
+import { showNotification } from '@mantine/notifications';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { v4 as uuidv4 } from 'uuid';
 
 const Settings = ({ data: tempData }: any) => {
 	const theme = useMantineTheme();
 	const scheme = useMantineColorScheme();
-	const user = useUser();
+	const { accessToken } = useAccessToken();
 	const permissions = usePermissions();
 	const [data, setData] = useState(tempData);
 	const [allowSocial, setAllowSocial] = useState(false);
 	const [allowSettings, setAllowSettings] = useState(false);
 
 	useEffect(() => {
-		setAllowSettings(permissions.has('team.settings.edit'));
-		setAllowSocial(permissions.has('team.socials.edit'));
+		setAllowSettings(permissions.has('team.settings.edit', data.slug));
+		setAllowSocial(permissions.has('team.socials.edit', data.slug));
 	}, [permissions]);
 
 	const handleSave = (e: any) => {
@@ -48,7 +48,7 @@ const Settings = ({ data: tempData }: any) => {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: 'Bearer ' + user.token,
+				Authorization: 'Bearer ' + accessToken,
 			},
 			body: JSON.stringify(uploadingData),
 		})
@@ -77,7 +77,7 @@ const Settings = ({ data: tempData }: any) => {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: 'Bearer ' + user.token,
+				Authorization: 'Bearer ' + accessToken,
 			},
 			body: JSON.stringify({ socials: data.socials }),
 		})
@@ -117,7 +117,7 @@ const Settings = ({ data: tempData }: any) => {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: 'Bearer ' + user.token,
+				Authorization: 'Bearer ' + accessToken,
 			},
 		})
 			.then((res) => res.json())
@@ -150,7 +150,7 @@ const Settings = ({ data: tempData }: any) => {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: 'Bearer ' + user.token,
+				Authorization: 'Bearer ' + accessToken,
 			},
 		})
 			.then((res) => res.json())
@@ -180,13 +180,10 @@ const Settings = ({ data: tempData }: any) => {
 				image: thumbnail,
 			}}
 			seo={{ nofollow: true, noindex: true }}
-			requiredPermissions={[
-				'team.settings.edit',
-				'team.socials.edit',
-				'team.application.edit',
-				'team.application.list',
-				'team.application.review',
-			]}
+			requiredPermissions={{
+				buildteam: data.slug,
+				permissions: ['team.settings.edit', 'team.socials.edit'],
+			}}
 			loading={!data}
 		>
 			<SettingsTabs team={data?.id} loading={!data}>

@@ -1,7 +1,6 @@
 import { Group, Input, NumberInput, Slider, Stack, TextInput } from '@mantine/core';
-import { IconAdjustments, IconTextSize } from '@tabler/icons-react';
+import { IconAdjustments } from '@tabler/icons-react';
 
-import Icon from '@/components/Icon';
 import { ApplicationQuestion } from '@/utils/application/ApplicationQuestions';
 
 export interface SliderQuestionProps extends ApplicationQuestion {

@@ -5,7 +5,6 @@ import {
 	IconBrandBing,
 	IconBrandGoogleMaps,
 	IconBrandMinecraft,
-	IconCrop,
 	IconFile,
 	IconMap,
 	IconPin,

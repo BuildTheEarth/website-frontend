@@ -5,17 +5,16 @@ import {
 	Group,
 	Loader,
 	Pagination,
-	Skeleton,
+	rem,
 	Table,
 	Text,
-	rem,
 } from '@mantine/core';
 import { showNotification, updateNotification } from '@mantine/notifications';
 import { IconExternalLink, IconTrash } from '@tabler/icons-react';
 import useSWR, { mutate } from 'swr';
 
 import Page from '@/components/Page';
-import { useUser } from '@/hooks/useUser';
+import { useAccessToken } from '@/hooks/useAccessToken';
 import thumbnail from '@/public/images/thumbnails/teams.png';
 import { modals } from '@mantine/modals';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -29,7 +28,7 @@ const Settings = () => {
 	const { data, isLoading: dataLoading } = useSWR(
 		`/claims/images?take=20&skip=${activePage * 20 - 20}`,
 	);
-	const user = useUser();
+	const { accessToken } = useAccessToken();
 	const [loading, setLoading] = useState(false);
 
 	const handleDeleteImage = (image: any) => {
@@ -62,7 +61,7 @@ const Settings = () => {
 					method: 'DELETE',
 					headers: {
 						'Content-Type': 'application/json',
-						Authorization: 'Bearer ' + user.token,
+						Authorization: 'Bearer ' + accessToken,
 					},
 				})
 					.then((res) => res.json())

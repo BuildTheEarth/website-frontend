@@ -35,11 +35,10 @@ const Review = ({ team }: any) => {
 				image: thumbnail,
 			}}
 			seo={{ nofollow: true, noindex: true }}
-			requiredPermissions={[
-				'team.application.edit',
-				'team.application.list',
-				'team.application.review',
-			]}
+			requiredPermissions={{
+				buildteam: team,
+				permissions: ['team.application.edit', 'team.application.list', 'team.application.review'],
+			}}
 			loading={!data}
 		>
 			<SettingsTabs team={team} loading={!data}>

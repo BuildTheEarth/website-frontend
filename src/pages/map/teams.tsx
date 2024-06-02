@@ -1,9 +1,9 @@
 import Map, { mapClickEvent } from '@/components/map/Map';
 
 import { useContextMenu } from '@/components/ContextMenu';
-import Page from '@/components/Page';
 import { ClaimDrawer } from '@/components/map/ClaimDrawer';
 import { MapContextMenu } from '@/components/map/MapContextMenu';
+import Page from '@/components/Page';
 import fetcher from '@/utils/Fetcher';
 import getCountryName from '@/utils/ISOCountries';
 import mapboxgl from 'mapbox-gl';
@@ -37,7 +37,7 @@ const MapPage: NextPage = ({ data }: any) => {
 							ip: element.ip,
 							slug: element.slug,
 						}),
-			  )
+				)
 			: null,
 	);
 

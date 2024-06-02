@@ -1,5 +1,5 @@
-import { Avatar, Badge, Group, Skeleton, Table, Text, Tooltip } from '@mantine/core';
-import { IconFaceIdError, IconUserQuestion } from '@tabler/icons-react';
+import { Avatar, Group, Skeleton, Table, Text, Tooltip } from '@mantine/core';
+import { IconUserQuestion } from '@tabler/icons-react';
 
 var vagueTime = require('vague-time');
 const rolesData = ['Manager', 'Collaborator', 'Contractor'];

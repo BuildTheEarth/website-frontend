@@ -20,6 +20,7 @@ import Page from '@/components/Page';
 import SearchInput from '@/components/SearchInput';
 import SettingsTabs from '@/components/SettingsTabs';
 import { UsersTable } from '@/components/UsersTable';
+import { useAccessToken } from '@/hooks/useAccessToken';
 import { useUser } from '@/hooks/useUser';
 import thumbnail from '@/public/images/thumbnails/teams.png';
 import fetcher from '@/utils/Fetcher';
@@ -31,6 +32,7 @@ import { useState } from 'react';
 
 const Settings = () => {
 	const user = useUser();
+	const { accessToken } = useAccessToken();
 	const router = useRouter();
 	const [page, setPage] = useState(1);
 	const [hasUpdated, setHasUpdated] = useState(false);
@@ -66,7 +68,7 @@ const Settings = () => {
 					method: 'DELETE',
 					headers: {
 						'Content-Type': 'application/json',
-						Authorization: 'Bearer ' + user.token,
+						Authorization: 'Bearer ' + accessToken,
 					},
 					body: JSON.stringify({ user: member.id }),
 				})
@@ -181,7 +183,7 @@ const Settings = () => {
 						method: 'DELETE',
 						headers: {
 							'Content-Type': 'application/json',
-							Authorization: 'Bearer ' + user.token,
+							Authorization: 'Bearer ' + accessToken,
 						},
 						body: JSON.stringify({
 							permissions: member.permissions.map((p: any) => p.permissionId),
@@ -217,7 +219,7 @@ const Settings = () => {
 				method: add ? 'POST' : 'DELETE',
 				headers: {
 					'Content-Type': 'application/json',
-					Authorization: 'Bearer ' + user.token,
+					Authorization: 'Bearer ' + accessToken,
 				},
 				body: JSON.stringify({ permission }),
 			},
@@ -249,13 +251,10 @@ const Settings = () => {
 				image: thumbnail,
 			}}
 			seo={{ nofollow: true, noindex: true }}
-			requiredPermissions={[
-				'team.settings.edit',
-				'team.socials.edit',
-				'team.application.edit',
-				'team.application.list',
-				'team.application.review',
-			]}
+			requiredPermissions={{
+				buildteam: router.query.team as string,
+				permissions: ['permission.add', 'permission.remove'],
+			}}
 			loading={!managers}
 		>
 			<SettingsTabs team={router.query.team?.toString() || ''} loading={!(builders && managers)}>
@@ -279,7 +278,7 @@ const Settings = () => {
 						managers
 							? managers.filter((b: any) =>
 									b.username?.toLowerCase().includes(filter.toLowerCase()),
-							  )
+								)
 							: []
 					}
 					actions={(data) => (
@@ -327,7 +326,7 @@ const Settings = () => {
 									b.username
 										? b.username?.toLowerCase().includes(filter.toLowerCase())
 										: b.id?.includes(filter.toLowerCase()),
-							  )
+								)
 							: []
 					}
 					actions={(data) => (

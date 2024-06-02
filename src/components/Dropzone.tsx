@@ -1,5 +1,5 @@
-import { Group, Text, rem } from '@mantine/core';
-import { DropzoneProps, IMAGE_MIME_TYPE, Dropzone as MDropzone } from '@mantine/dropzone';
+import { Group, rem, Text } from '@mantine/core';
+import { Dropzone as MDropzone, DropzoneProps, IMAGE_MIME_TYPE } from '@mantine/dropzone';
 import { IconPhoto, IconUpload, IconX } from '@tabler/icons-react';
 
 interface ExtendDropzone extends DropzoneProps {}

@@ -1,17 +1,7 @@
-import {
-	Avatar,
-	Badge,
-	Grid,
-	GridCol,
-	Group,
-	SimpleGrid,
-	Title,
-	useMantineTheme,
-} from '@mantine/core';
+import { Avatar, Badge, Grid, GridCol, Group, Title, useMantineTheme } from '@mantine/core';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { useHover } from '@mantine/hooks';
-import Link from 'next/link';
 import React from 'react';
 import { useIsClient } from '../hooks/useIsClient';
 import BackgroundImage from './BackgroundImage';

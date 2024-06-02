@@ -28,7 +28,7 @@ import {
 import Icon from '@/components/Icon';
 import Page from '@/components/Page';
 import SettingsTabs from '@/components/SettingsTabs';
-import { useUser } from '@/hooks/useUser';
+import { useAccessToken } from '@/hooks/useAccessToken';
 import thumbnail from '@/public/images/thumbnails/teams.png';
 import fetcher from '@/utils/Fetcher';
 import { showNotification } from '@mantine/notifications';
@@ -43,7 +43,7 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 	const [trial, setTrial] = useState(false);
 	const theme = useMantineTheme();
 	const router = useRouter();
-	const user = useUser();
+	const { accessToken } = useAccessToken();
 	const [data, setData] = useState(tempData?.filter((d: any) => d?.sort >= 0));
 	const [deletedData, setDeletedData] = useState(tempData?.filter((d: any) => d.sort < 0));
 	const [editingQuestion, setEditingQuestion] = useState<any>(null);
@@ -137,7 +137,7 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: 'Bearer ' + user.token,
+				Authorization: 'Bearer ' + accessToken,
 			},
 			body: JSON.stringify([...data, ...deletedData]),
 		})
@@ -172,13 +172,10 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 				image: thumbnail,
 			}}
 			seo={{ nofollow: true, noindex: true }}
-			requiredPermissions={[
-				'team.settings.edit',
-				'team.socials.edit',
-				'team.application.edit',
-				'team.application.list',
-				'team.application.review',
-			]}
+			requiredPermissions={{
+				buildteam: team,
+				permissions: ['team.application.edit', 'team.application.list'],
+			}}
 			loading={!data}
 		>
 			<SettingsTabs team={team} loading={!data}>

@@ -4,16 +4,13 @@ import {
 	Button,
 	Checkbox,
 	Group,
-	InputLabel,
 	InputWrapper,
 	Menu,
 	MenuDivider,
 	MenuDropdown,
 	MenuItem,
-	MenuLabel,
 	MenuTarget,
 	Table,
-	Text,
 	TextInput,
 	ThemeIcon,
 	Tooltip,
@@ -32,7 +29,7 @@ import useSWR, { mutate } from 'swr';
 
 import Page from '@/components/Page';
 import SettingsTabs from '@/components/SettingsTabs';
-import { useUser } from '@/hooks/useUser';
+import { useAccessToken } from '@/hooks/useAccessToken';
 import thumbnail from '@/public/images/thumbnails/teams.png';
 import classes from '@/styles/components/Gallery.module.css';
 import fetcher from '@/utils/Fetcher';
@@ -48,7 +45,7 @@ import { useRouter } from 'next/router';
 
 const Settings = () => {
 	const router = useRouter();
-	const user = useUser();
+	const { accessToken } = useAccessToken();
 	const { data } = useSWR(`/claims?slug=true&team=${router.query.team}`);
 	const clipboard = useClipboard();
 
@@ -59,7 +56,7 @@ const Settings = () => {
 				method: 'DELETE',
 				headers: {
 					'Content-Type': 'application/json',
-					Authorization: 'Bearer ' + user.token,
+					Authorization: 'Bearer ' + accessToken,
 				},
 			},
 		)
@@ -172,7 +169,7 @@ const Settings = () => {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
-						Authorization: 'Bearer ' + user.token,
+						Authorization: 'Bearer ' + accessToken,
 					},
 					body: JSON.stringify({ image, title: name, city, date }),
 				},
@@ -206,13 +203,10 @@ const Settings = () => {
 				image: thumbnail,
 			}}
 			seo={{ nofollow: true, noindex: true }}
-			requiredPermissions={[
-				'team.settings.edit',
-				'team.socials.edit',
-				'team.application.edit',
-				'team.application.list',
-				'team.application.review',
-			]}
+			requiredPermissions={{
+				buildteam: router.query.team as string,
+				permissions: ['team.claim.list'],
+			}}
 			loading={!data}
 		>
 			<SettingsTabs team={router.query.team?.toString() || ''} loading={!data}>

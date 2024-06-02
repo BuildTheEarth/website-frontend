@@ -1,4 +1,4 @@
-import { Text, rem } from '@mantine/core';
+import { rem, Text } from '@mantine/core';
 
 import classes from '@/styles/components/StatsGroup.module.css';
 

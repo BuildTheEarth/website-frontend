@@ -1,20 +1,10 @@
-import {
-	Button,
-	Checkbox,
-	Group,
-	Paper,
-	Progress,
-	Title,
-	Tooltip,
-	useMantineColorScheme,
-	useMantineTheme,
-} from '@mantine/core';
+import { Button, Checkbox, Group, Paper, Progress, Title, Tooltip } from '@mantine/core';
 import useSWR, { mutate } from 'swr';
 
 import Page from '@/components/Page';
-import { swrFetcher } from '@/components/SWRSetup';
 import { AdminSettingsTabs } from '@/components/SettingsTabs';
-import { useUser } from '@/hooks/useUser';
+import { swrFetcher } from '@/components/SWRSetup';
+import { useAccessToken } from '@/hooks/useAccessToken';
 import thumbnail from '@/public/images/thumbnails/teams.png';
 import { showNotification } from '@mantine/notifications';
 import { IconCheck } from '@tabler/icons-react';
@@ -24,10 +14,8 @@ import { useState } from 'react';
 
 var vagueTime = require('vague-time');
 const Settings = ({ data: tempData }: any) => {
-	const theme = useMantineTheme();
-	const scheme = useMantineColorScheme();
 	const session = useSession();
-	const user = useUser();
+	const { accessToken } = useAccessToken();
 	const { data: progress } = useSWR('/admin/progress', swrFetcher(session), {
 		refreshInterval: 5000,
 		revalidateOnFocus: true,
@@ -45,7 +33,7 @@ const Settings = ({ data: tempData }: any) => {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
-					Authorization: 'Bearer ' + user.token,
+					Authorization: 'Bearer ' + accessToken,
 				},
 			},
 		)
@@ -76,7 +64,7 @@ const Settings = ({ data: tempData }: any) => {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
-					Authorization: 'Bearer ' + user.token,
+					Authorization: 'Bearer ' + accessToken,
 				},
 			},
 		)
@@ -104,7 +92,7 @@ const Settings = ({ data: tempData }: any) => {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: 'Bearer ' + user.token,
+				Authorization: 'Bearer ' + accessToken,
 			},
 		})
 			.then((res) => res.json())

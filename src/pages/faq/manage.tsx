@@ -4,7 +4,7 @@ import { IconChevronLeft, IconPlus, IconQuestionMark } from '@tabler/icons-react
 import { GridButton } from '@/components/GridButton';
 import Page from '@/components/Page';
 import RTE from '@/components/RTE';
-import { useUser } from '@/hooks/useUser';
+import { useAccessToken } from '@/hooks/useAccessToken';
 import thumbnail from '@/public/images/thumbnails/faq.png';
 import { handleFetch } from '@/utils/Fetcher';
 import { useForm } from '@mantine/form';
@@ -18,7 +18,7 @@ const Faq: NextPage = () => {
 	const { data } = useSWR(`/faq`);
 	const [loading, setLoading] = useState({ loading: false, error: '' });
 	const [action, setAction] = useState('Select');
-	const user = useUser();
+	const { accessToken } = useAccessToken();
 	const form = useForm({ initialValues: { id: '', question: '', answer: '', links: [] } });
 
 	const handleSubmit = (e: any) => {
@@ -44,7 +44,7 @@ const Faq: NextPage = () => {
 			links: form.values.links,
 		}),
 		headers: {
-			Authorization: 'Bearer ' + user.token,
+			Authorization: 'Bearer ' + accessToken,
 		},
 		successNotification: { title: 'Question updated' },
 		onError: (res) => {
@@ -60,7 +60,7 @@ const Faq: NextPage = () => {
 	const handleDelete = handleFetch(`/faq/${form.values.id}`, {
 		method: 'DELETE',
 		headers: {
-			Authorization: 'Bearer ' + user.token,
+			Authorization: 'Bearer ' + accessToken,
 		},
 		successNotification: { title: 'Question deleted' },
 		onError: (res) => {
@@ -80,7 +80,7 @@ const Faq: NextPage = () => {
 			links: form.values.links,
 		}),
 		headers: {
-			Authorization: 'Bearer ' + user.token,
+			Authorization: 'Bearer ' + accessToken,
 		},
 		successNotification: { title: 'Question added' },
 		onError: (res) => {
