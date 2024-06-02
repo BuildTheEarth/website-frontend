@@ -14,8 +14,8 @@ import useSWR, { mutate } from 'swr';
 import Page from '@/components/Page';
 import { useAccessToken } from '@/hooks/useAccessToken';
 import { useUser } from '@/hooks/useUser';
-import fetcher from '@/utils/Fetcher';
 import { ApplicationQuestions } from '@/utils/application/ApplicationQuestions';
+import fetcher from '@/utils/Fetcher';
 import { Discord } from '@icons-pack/react-simple-icons';
 import { useForm } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
@@ -288,8 +288,8 @@ function generateValidation(data: any[]) {
 				v != null && v != undefined
 					? ApplicationQuestions[d.type].validation(d)(v)
 					: d.required
-					? 'Required'
-					: undefined;
+						? 'Required'
+						: undefined;
 		}
 	});
 	return val;

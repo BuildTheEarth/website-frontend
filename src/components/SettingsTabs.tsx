@@ -18,11 +18,10 @@ import {
 	IconUsers,
 } from '@tabler/icons-react';
 
-import { useMediaQuery } from '@mantine/hooks';
 import { usePermissions } from '@/hooks/usePermissions';
-import { useRouter } from 'next/router';
+import { useMediaQuery } from '@mantine/hooks';
 import { useSession } from 'next-auth/react';
-import { useUser } from '../hooks/useUser';
+import { useRouter } from 'next/router';
 
 const SettingsTabs = ({
 	children,
@@ -52,7 +51,7 @@ const SettingsTabs = ({
 								top: 'var(--mantine-spacing-xl)',
 								maxWidth: '300px',
 								overflow: 'hidden',
-						  }
+							}
 						: {}
 				}
 			>
@@ -161,7 +160,7 @@ export const AdminSettingsTabs = ({
 								top: 'var(--mantine-spacing-xl)',
 								maxWidth: '300px',
 								overflow: 'hidden',
-						  }
+							}
 						: {}
 				}
 			>

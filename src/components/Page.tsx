@@ -1,16 +1,15 @@
 import { Center, Container, Paper, Text, useMantineTheme } from '@mantine/core';
-import Header, { LogoHeader } from './Header';
 import { NextSeo, NextSeoProps } from 'next-seo';
+import Header, { LogoHeader } from './Header';
 
-import BackgroundImage from './BackgroundImage';
-import ErrorPage from '../pages/_error';
-import Footer from './Footer';
-import React from 'react';
-import { StaticImport } from 'next/dist/shared/lib/get-img-props';
-import classes from '../styles/components/Page.module.css';
 import { usePermissions } from '@/hooks/usePermissions';
+import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import { useRouter } from 'next/router';
-import { useUser } from '../hooks/useUser';
+import React from 'react';
+import ErrorPage from '../pages/_error';
+import classes from '../styles/components/Page.module.css';
+import BackgroundImage from './BackgroundImage';
+import Footer from './Footer';
 
 interface PageProps {
 	children: React.ReactNode;

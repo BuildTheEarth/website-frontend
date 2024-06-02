@@ -1,4 +1,4 @@
-import { Button, NumberInput, TextInput, Textarea } from '@mantine/core';
+import { Button, NumberInput, Textarea, TextInput } from '@mantine/core';
 
 import Page from '@/components/Page';
 import { useAccessToken } from '@/hooks/useAccessToken';
@@ -50,8 +50,8 @@ const Calendar: NextPage = () => {
 			form.values.start === date.toISOString()
 				? 'start'
 				: form.values.end === date.toISOString()
-				? 'end'
-				: null;
+					? 'end'
+					: null;
 
 		if (!isSelected) {
 			if (date.getTime() < new Date(form.values.start).getTime())

@@ -1,4 +1,4 @@
-import { ActionIcon, Anchor, Button, Container, Group } from '@mantine/core';
+import { ActionIcon, Anchor, Container, Group } from '@mantine/core';
 
 import { Discord } from '@icons-pack/react-simple-icons';
 import Link from 'next/link';

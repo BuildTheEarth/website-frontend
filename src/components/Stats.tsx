@@ -1,6 +1,4 @@
-import { Center, Group, Paper, PaperProps, RingProgress, Text, rem } from '@mantine/core';
-
-import Link from 'next/link';
+import { Center, Group, Paper, PaperProps, rem, RingProgress, Text } from '@mantine/core';
 
 interface StatsGridProps {
 	title: string;

@@ -5,13 +5,13 @@ import {
 	Checkbox,
 	Group,
 	Pagination,
+	rem,
 	ScrollAreaAutosize,
 	Stack,
 	Table,
 	Text,
 	TextInput,
 	Title,
-	rem,
 } from '@mantine/core';
 import { IconPencil, IconPlus, IconTrash } from '@tabler/icons-react';
 import useSWR, { mutate } from 'swr';
@@ -281,7 +281,7 @@ const Settings = () => {
 						managers
 							? managers.filter((b: any) =>
 									b.username?.toLowerCase().includes(filter.toLowerCase()),
-							  )
+								)
 							: []
 					}
 					actions={(data) => (
@@ -329,7 +329,7 @@ const Settings = () => {
 									b.username
 										? b.username?.toLowerCase().includes(filter.toLowerCase())
 										: b.id?.includes(filter.toLowerCase()),
-							  )
+								)
 							: []
 					}
 					actions={(data) => (

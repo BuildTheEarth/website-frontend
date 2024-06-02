@@ -5,9 +5,9 @@ import {
 	Group,
 	Loader,
 	Pagination,
+	rem,
 	Table,
 	Text,
-	rem,
 } from '@mantine/core';
 import { showNotification, updateNotification } from '@mantine/notifications';
 import { IconExternalLink, IconTrash } from '@tabler/icons-react';

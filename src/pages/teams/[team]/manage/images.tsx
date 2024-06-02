@@ -4,12 +4,12 @@ import {
 	Button,
 	FileInput,
 	Group,
+	rem,
 	Switch,
 	Table,
 	Text,
 	TextInput,
 	Tooltip,
-	rem,
 } from '@mantine/core';
 import { IconPencil, IconPlus, IconTrash } from '@tabler/icons-react';
 import useSWR, { mutate } from 'swr';

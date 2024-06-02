@@ -1,4 +1,4 @@
-import { Button, Menu, MenuProps, Portal, ScrollArea } from '@mantine/core';
+import { Button, Menu, MenuProps, Portal } from '@mantine/core';
 import React, { useCallback, useEffect, useState } from 'react';
 
 interface ContextMenuInfo {

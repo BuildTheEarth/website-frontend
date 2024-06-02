@@ -29,15 +29,15 @@ import {
 	IconZoomIn,
 } from '@tabler/icons-react';
 
-import { ClaimDrawerImages } from './ClaimDrawerImages';
-import Link from 'next/link';
-import { StatsGrid } from '../Stats';
-import mapboxgl from 'mapbox-gl';
-import { showNotification } from '@mantine/notifications';
-import { useClipboard } from '@mantine/hooks';
 import { usePermissions } from '@/hooks/usePermissions';
-import useSWR from 'swr';
 import { useUser } from '@/hooks/useUser';
+import { useClipboard } from '@mantine/hooks';
+import { showNotification } from '@mantine/notifications';
+import mapboxgl from 'mapbox-gl';
+import Link from 'next/link';
+import useSWR from 'swr';
+import { StatsGrid } from '../Stats';
+import { ClaimDrawerImages } from './ClaimDrawerImages';
 
 interface ClaimDrawerProps {
 	setOpen: (bool: boolean) => void;

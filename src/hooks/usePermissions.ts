@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
 import { useLocalStorage } from '@mantine/hooks';
-import useSWR from 'swr';
 import { useSession } from 'next-auth/react';
+import { useEffect } from 'react';
+import useSWR from 'swr';
 
 type PermissionState = {
 	iat: Date; // Issued At

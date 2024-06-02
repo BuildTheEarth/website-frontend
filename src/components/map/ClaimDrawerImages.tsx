@@ -5,10 +5,10 @@ import {
 	Group,
 	Image,
 	Progress,
+	rem,
 	Stack,
 	Text,
 	Tooltip,
-	rem,
 } from '@mantine/core';
 import {
 	Dropzone,

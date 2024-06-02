@@ -11,14 +11,14 @@ import {
 	MenuItem,
 	MenuTarget,
 	NumberInput,
+	rem,
 	Select,
 	Switch,
 	Table,
 	Text,
-	TextInput,
 	Textarea,
+	TextInput,
 	Tooltip,
-	rem,
 } from '@mantine/core';
 import { useClipboard, useDebouncedState } from '@mantine/hooks';
 import {

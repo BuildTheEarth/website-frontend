@@ -1,4 +1,4 @@
-import { AnimatePresence, MotionStyle, motion } from 'framer-motion';
+import { AnimatePresence, motion, MotionStyle } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 import { Box } from '@mantine/core';

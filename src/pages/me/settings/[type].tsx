@@ -1,4 +1,4 @@
-import { Alert, Badge, Button, Card, Flex, Group, Tabs, Text, TextInput, rem } from '@mantine/core';
+import { Alert, Badge, Button, Card, Flex, Group, rem, Tabs, Text, TextInput } from '@mantine/core';
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Discord, Github } from '@icons-pack/react-simple-icons';
 import {

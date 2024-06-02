@@ -10,11 +10,11 @@ import {
 	MenuDropdown,
 	MenuItem,
 	MenuTarget,
+	rem,
 	Table,
 	TextInput,
 	ThemeIcon,
 	Tooltip,
-	rem,
 } from '@mantine/core';
 import {
 	IconAlertTriangle,

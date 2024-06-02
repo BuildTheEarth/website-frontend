@@ -29,7 +29,6 @@ import Icon from '@/components/Icon';
 import Page from '@/components/Page';
 import SettingsTabs from '@/components/SettingsTabs';
 import { useAccessToken } from '@/hooks/useAccessToken';
-import { useUser } from '@/hooks/useUser';
 import thumbnail from '@/public/images/thumbnails/teams.png';
 import fetcher from '@/utils/Fetcher';
 import { showNotification } from '@mantine/notifications';
