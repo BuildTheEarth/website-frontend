@@ -4,12 +4,12 @@ import {
 	Button,
 	FileInput,
 	Group,
-	rem,
 	Switch,
 	Table,
 	Text,
 	TextInput,
 	Tooltip,
+	rem,
 } from '@mantine/core';
 import { IconPencil, IconPlus, IconTrash } from '@tabler/icons-react';
 import useSWR, { mutate } from 'swr';
@@ -297,13 +297,10 @@ const Settings = () => {
 				image: thumbnail,
 			}}
 			seo={{ nofollow: true, noindex: true }}
-			requiredPermissions={[
-				'team.settings.edit',
-				'team.socials.edit',
-				'team.application.edit',
-				'team.application.list',
-				'team.application.review',
-			]}
+			requiredPermissions={{
+				buildteam: router.query.team as string,
+				permissions: ['team.showcases.edit'],
+			}}
 			loading={!data}
 		>
 			<SettingsTabs team={router.query.team?.toString() || ''} loading={!data || loading}>

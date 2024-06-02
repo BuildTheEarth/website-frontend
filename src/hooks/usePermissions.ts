@@ -48,7 +48,63 @@ export const usePermissions = () => {
 			return permissions.hasAny([permissionsToCheck], buildteam);
 		},
 		hasAny: (permissionsToCheck: string[], buildteam?: string) => {
-			const data = cache.data;
+			// const data = cache.data;
+			console.log('-------------------------------------------------');
+			console.log(buildteam, permissionsToCheck);
+			const data = [
+				{ permission: 'account.info', buildTeamId: null, buildTeamSlug: null },
+				{ permission: 'account.edit', buildTeamId: null, buildTeamSlug: null },
+				{
+					permission: 'permission.add',
+					buildTeamId: '374b0e08-9ef5-4d1c-9a5c-3dc204d9fd96',
+					buildTeamSlug: 'de',
+				},
+				{
+					permission: 'permission.remove',
+					buildTeamId: '374b0e08-9ef5-4d1c-9a5c-3dc204d9fd96',
+					buildTeamSlug: 'de',
+				},
+				{
+					permission: 'team.application.edit',
+					buildTeamId: '374b0e08-9ef5-4d1c-9a5c-3dc204d9fd96',
+					buildTeamSlug: 'de',
+				},
+				{
+					permission: 'team.application.review',
+					buildTeamId: '374b0e08-9ef5-4d1c-9a5c-3dc204d9fd96',
+					buildTeamSlug: 'de',
+				},
+				{
+					permission: 'team.socials.edit',
+					buildTeamId: '374b0e08-9ef5-4d1c-9a5c-3dc204d9fd96',
+					buildTeamSlug: 'de',
+				},
+				{
+					permission: 'team.application.list',
+					buildTeamId: '374b0e08-9ef5-4d1c-9a5c-3dc204d9fd96',
+					buildTeamSlug: 'de',
+				},
+				{
+					permission: 'team.application.notify',
+					buildTeamId: '374b0e08-9ef5-4d1c-9a5c-3dc204d9fd96',
+					buildTeamSlug: 'de',
+				},
+				{
+					permission: 'team.showcases.edit',
+					buildTeamId: '374b0e08-9ef5-4d1c-9a5c-3dc204d9fd96',
+					buildTeamSlug: 'de',
+				},
+				{
+					permission: 'team.settings.edit',
+					buildTeamId: '374b0e08-9ef5-4d1c-9a5c-3dc204d9fd96',
+					buildTeamSlug: 'de',
+				},
+				{
+					permission: 'team.claim.list',
+					buildTeamId: '374b0e08-9ef5-4d1c-9a5c-3dc204d9fd96',
+					buildTeamSlug: 'de',
+				},
+			];
 			if (!data || data.length === 0) return false;
 
 			if (!buildteam || buildteam == null) {
@@ -58,11 +114,14 @@ export const usePermissions = () => {
 				);
 			}
 
-			return data.some(
-				({ permission, buildTeamId, buildTeamSlug }) =>
+			return data.some(({ permission, buildTeamId, buildTeamSlug }) => {
+				console.log(buildTeamId, buildTeamSlug, permission);
+
+				return (
 					(buildTeamId == buildteam || buildTeamSlug == buildteam || buildTeamId == null) &&
-					permissionsToCheck.includes(permission),
-			);
+					permissionsToCheck.includes(permission)
+				);
+			});
 		},
 	};
 

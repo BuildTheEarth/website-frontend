@@ -7,8 +7,8 @@ import {
 	Select,
 	Switch,
 	Text,
-	Textarea,
 	TextInput,
+	Textarea,
 	Tooltip,
 	useMantineColorScheme,
 	useMantineTheme,
@@ -37,8 +37,8 @@ const Settings = ({ data: tempData }: any) => {
 	const [allowSettings, setAllowSettings] = useState(false);
 
 	useEffect(() => {
-		setAllowSettings(permissions.has('team.settings.edit'));
-		setAllowSocial(permissions.has('team.socials.edit'));
+		setAllowSettings(permissions.has('team.settings.edit', data.slug));
+		setAllowSocial(permissions.has('team.socials.edit', data.slug));
 	}, [permissions]);
 
 	const handleSave = (e: any) => {
@@ -180,13 +180,10 @@ const Settings = ({ data: tempData }: any) => {
 				image: thumbnail,
 			}}
 			seo={{ nofollow: true, noindex: true }}
-			requiredPermissions={[
-				'team.settings.edit',
-				'team.socials.edit',
-				'team.application.edit',
-				'team.application.list',
-				'team.application.review',
-			]}
+			requiredPermissions={{
+				buildteam: data.slug,
+				permissions: ['team.settings.edit', 'team.socials.edit'],
+			}}
 			loading={!data}
 		>
 			<SettingsTabs team={data?.id} loading={!data}>

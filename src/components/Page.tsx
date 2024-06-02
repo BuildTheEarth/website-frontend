@@ -31,7 +31,7 @@ interface PageProps {
 	seo?: NextSeoProps;
 	hideHeaderOnInitialScroll?: boolean;
 	style?: React.CSSProperties;
-	requiredPermissions?: string[];
+	requiredPermissions?: { buildteam?: string; permissions: string[] };
 	loading?: boolean;
 	solidHeader?: boolean;
 }
@@ -43,7 +43,11 @@ const Page = (props: PageProps) => {
 
 	return props.loading ? (
 		<ErrorPage code={'1'} />
-	) : props.requiredPermissions && !permissions.hasAny(props.requiredPermissions) ? (
+	) : props.requiredPermissions &&
+	  !permissions.hasAny(
+			props.requiredPermissions.permissions,
+			props.requiredPermissions.buildteam,
+	  ) ? (
 		<ErrorPage code={'403'} />
 	) : (
 		<>

@@ -23,8 +23,8 @@ import Page from '@/components/Page';
 import SettingsTabs from '@/components/SettingsTabs';
 import { useAccessToken } from '@/hooks/useAccessToken';
 import thumbnail from '@/public/images/thumbnails/apply.png';
-import { ApplicationQuestions } from '@/utils/application/ApplicationQuestions';
 import fetcher from '@/utils/Fetcher';
+import { ApplicationQuestions } from '@/utils/application/ApplicationQuestions';
 import { useClipboard } from '@mantine/hooks';
 import { modals } from '@mantine/modals';
 import { showNotification } from '@mantine/notifications';
@@ -144,7 +144,10 @@ const Apply: NextPage = ({ team, id }: any) => {
 				title: 'Review Application',
 				image: thumbnail,
 			}}
-			requiredPermissions={['team.application.review']}
+			requiredPermissions={{
+				buildteam: team,
+				permissions: ['team.application.review'],
+			}}
 			loading={!data}
 		>
 			<SettingsTabs team={team} loading={!data}>

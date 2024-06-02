@@ -10,11 +10,11 @@ import {
 	MenuDropdown,
 	MenuItem,
 	MenuTarget,
-	rem,
 	Table,
 	TextInput,
 	ThemeIcon,
 	Tooltip,
+	rem,
 } from '@mantine/core';
 import {
 	IconAlertTriangle,
@@ -203,13 +203,10 @@ const Settings = () => {
 				image: thumbnail,
 			}}
 			seo={{ nofollow: true, noindex: true }}
-			requiredPermissions={[
-				'team.settings.edit',
-				'team.socials.edit',
-				'team.application.edit',
-				'team.application.list',
-				'team.application.review',
-			]}
+			requiredPermissions={{
+				buildteam: router.query.team as string,
+				permissions: ['team.claim.list'],
+			}}
 			loading={!data}
 		>
 			<SettingsTabs team={router.query.team?.toString() || ''} loading={!data}>

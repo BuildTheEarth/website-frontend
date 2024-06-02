@@ -172,13 +172,10 @@ const Apply: NextPage = ({ data: tempData, team }: any) => {
 				image: thumbnail,
 			}}
 			seo={{ nofollow: true, noindex: true }}
-			requiredPermissions={[
-				'team.settings.edit',
-				'team.socials.edit',
-				'team.application.edit',
-				'team.application.list',
-				'team.application.review',
-			]}
+			requiredPermissions={{
+				buildteam: team,
+				permissions: ['team.application.edit', 'team.application.list'],
+			}}
 			loading={!data}
 		>
 			<SettingsTabs team={team} loading={!data}>
