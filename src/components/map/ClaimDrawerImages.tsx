@@ -5,10 +5,10 @@ import {
 	Group,
 	Image,
 	Progress,
-	rem,
 	Stack,
 	Text,
 	Tooltip,
+	rem,
 } from '@mantine/core';
 import {
 	Dropzone,
@@ -90,7 +90,8 @@ export function ClaimDrawerImages({ t, ...props }: ClaimDrawerImagesProps) {
 		});
 	};
 
-	if (props.images.length == 0 && !props.editable) return <></>;
+	// if(!props.images || props.images?.length)
+	if (props.images?.length == 0 && !props.editable) return <></>;
 
 	return (
 		<Carousel
@@ -110,7 +111,7 @@ export function ClaimDrawerImages({ t, ...props }: ClaimDrawerImagesProps) {
 			h={'auto'}
 			w="100%"
 		>
-			{props.images.map((img, i) => {
+			{props.images?.map((img, i) => {
 				return (
 					<CarouselSlide key={img.id} w="100%" h="100%">
 						{props.editable && (

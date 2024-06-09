@@ -16,7 +16,6 @@ import {
 	MenuItem,
 	MenuTarget,
 	NumberInput,
-	rem,
 	ScrollAreaAutosize,
 	Select,
 	Switch,
@@ -25,9 +24,10 @@ import {
 	TableTd,
 	TableTr,
 	Text,
-	Textarea,
 	TextInput,
+	Textarea,
 	Tooltip,
+	rem,
 } from '@mantine/core';
 import { useClipboard, useDebouncedState } from '@mantine/hooks';
 import {
@@ -52,10 +52,10 @@ import {
 import { useEffect, useState } from 'react';
 
 import { useContextMenu } from '@/components/ContextMenu';
+import Page from '@/components/Page';
 import { ClaimDrawerImages } from '@/components/map/ClaimDrawerImages';
 import Map from '@/components/map/Map';
 import { MapContextMenu } from '@/components/map/MapContextMenu';
-import Page from '@/components/Page';
 import { useAccessToken } from '@/hooks/useAccessToken';
 import { usePermissions } from '@/hooks/usePermissions';
 import { useUser } from '@/hooks/useUser';
@@ -839,7 +839,7 @@ const ClaimEditPage: NextPage = () => {
 									setSelected(e.features[0]);
 								});
 								map.on('draw.selectionchange', (e) => {
-									if (e.points.length > 0) return;
+									if (e.points?.length > 0) return;
 									setSelected(e.features[0]);
 								});
 
