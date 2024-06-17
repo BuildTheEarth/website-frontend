@@ -4,6 +4,7 @@ import {
 	Button,
 	FileInput,
 	Group,
+	Image as MImage,
 	Switch,
 	Table,
 	Text,
@@ -14,17 +15,17 @@ import {
 import { IconPencil, IconPlus, IconTrash } from '@tabler/icons-react';
 import useSWR, { mutate } from 'swr';
 
+import { DateInput } from '@mantine/dates';
+import Image from 'next/image';
 import Page from '@/components/Page';
 import SettingsTabs from '@/components/SettingsTabs';
+import fetcher from '@/utils/Fetcher';
+import { modals } from '@mantine/modals';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { showNotification } from '@mantine/notifications';
+import thumbnail from '@/public/images/thumbnails/teams.png';
 import { useAccessToken } from '@/hooks/useAccessToken';
 import { usePermissions } from '@/hooks/usePermissions';
-import thumbnail from '@/public/images/thumbnails/teams.png';
-import fetcher from '@/utils/Fetcher';
-import { DateInput } from '@mantine/dates';
-import { modals } from '@mantine/modals';
-import { showNotification } from '@mantine/notifications';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
@@ -314,15 +315,6 @@ const Settings = () => {
 						Add Showcase Image
 					</Button>
 					<Table verticalSpacing="sm">
-						{/* <Table.Thead>
-							<Table.Tr>
-								<Table.Th>Image</Table.Th>
-								<Table.Th>Name</Table.Th>
-								<Table.Th>City</Table.Th>
-								<Table.Th>Date</Table.Th>
-								<Table.Th></Table.Th>
-							</Table.Tr>
-						</Table.Thead> */}
 						<Table.Tbody>
 							{data
 								?.sort(
@@ -332,11 +324,11 @@ const Settings = () => {
 								.map((s: any) => (
 									<Table.Tr key={s.id}>
 										<Table.Td>
-											<AspectRatio ratio={16 / 9} w={'20vw'}>
-												<Image
+											<AspectRatio ratio={1920 / 1080} w={'20vw'}>
+												<MImage
 													src={`https://cdn.buildtheearth.net/uploads/${s.image.name}`}
-													fill
 													alt={s.title}
+													fit="cover"
 												/>
 											</AspectRatio>
 										</Table.Td>

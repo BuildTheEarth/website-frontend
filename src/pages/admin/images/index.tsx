@@ -3,23 +3,23 @@ import {
 	AspectRatio,
 	Center,
 	Group,
+	Image,
 	Loader,
 	Pagination,
-	rem,
 	Table,
 	Text,
+	rem,
 } from '@mantine/core';
-import { showNotification, updateNotification } from '@mantine/notifications';
 import { IconExternalLink, IconTrash } from '@tabler/icons-react';
+import { showNotification, updateNotification } from '@mantine/notifications';
 import useSWR, { mutate } from 'swr';
 
+import Link from 'next/link';
 import Page from '@/components/Page';
-import { useAccessToken } from '@/hooks/useAccessToken';
-import thumbnail from '@/public/images/thumbnails/teams.png';
 import { modals } from '@mantine/modals';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Image from 'next/image';
-import Link from 'next/link';
+import thumbnail from '@/public/images/thumbnails/teams.png';
+import { useAccessToken } from '@/hooks/useAccessToken';
 import { useState } from 'react';
 
 var vagueTime = require('vague-time');
@@ -118,10 +118,8 @@ const Settings = () => {
 										<AspectRatio ratio={16 / 9} w={'20vw'}>
 											<Image
 												src={`https://cdn.buildtheearth.net/uploads/${image.name}`}
-												fill
 												alt={image.Claim.name}
-												blurDataURL={image.hash}
-												placeholder="blur"
+												fit="cover"
 											/>
 										</AspectRatio>
 									</Table.Td>
