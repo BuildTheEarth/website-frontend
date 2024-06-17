@@ -1,50 +1,56 @@
 import Map, { mapClickEvent } from '@/components/map/Map';
 
-import { useContextMenu } from '@/components/ContextMenu';
-import { ClaimDrawer } from '@/components/map/ClaimDrawer';
 import { MapContextMenu } from '@/components/map/MapContextMenu';
+import { NextPage } from 'next';
 import Page from '@/components/Page';
 import fetcher from '@/utils/Fetcher';
 import getCountryName from '@/utils/ISOCountries';
 import mapboxgl from 'mapbox-gl';
-import { NextPage } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { useContextMenu } from '@/components/ContextMenu';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const MapPage: NextPage = ({ data }: any) => {
-	const [opened, setOpened] = useState(false);
 	const [state, setState, contextHandler] = useContextMenu({ disableEventPosition: false });
 	const [clientPos, setClientPos] = useState<{ lat: number | null; lng: number | null }>({
 		lat: null,
 		lng: null,
 	});
-	const [selected, setSelected] = useState<null | string>(null);
 	const [map, setMap] = useState<mapboxgl.Map>();
-	const { t } = useTranslation('map');
 	const router = useRouter();
 
-	const locations: any = {};
-	data?.forEach((element: any) =>
-		!element.location.includes('glb')
-			? element.location.split(', ').map(
-					(part: any) =>
-						(locations[part.toUpperCase()] = {
-							location: getCountryName(part),
-							team: element.name,
-							tid: element.id,
-							ip: element.ip,
-							slug: element.slug,
-						}),
-				)
-			: null,
-	);
+	const locations: any = {
+		us: {
+			location: getCountryName('us'),
+			team: 'BTE USA',
+			tid: '191c58d7-92ca-4c59-8227-e712f62d8b17',
+			ip: 'west.nabte.net; south.nabte.net; midwest.nabte.net; ohpainky.nabte.net',
+			slug: 'us',
+		},
+	};
+	data
+		?.sort((a: any, b: any) => {
+			return a._count?.members - b._count?.members;
+		})
+		.forEach((element: any) =>
+			!element.location.includes('glb') && !element.location.includes('us')
+				? element.location.split(', ').map(
+						(part: any) =>
+							(locations[part.toUpperCase()] = {
+								location: getCountryName(part),
+								team: element.name,
+								tid: element.id,
+								ip: element.ip,
+								slug: element.slug,
+							}),
+					)
+				: null,
+		);
 
 	return (
 		<Page fullWidth title="Map" description="Find the Buildteam building a specific country here.">
-			<ClaimDrawer open={opened} setOpen={setOpened} id={selected} map={map} t={t} />
-
 			<MapContextMenu
 				contextMenuInfo={state}
 				setContextMenuInfo={setState}
@@ -74,10 +80,12 @@ const MapPage: NextPage = ({ data }: any) => {
 						data.forEach((d: any, i: number) => {
 							const color = d.color;
 							d.location.split(', ').forEach((l: string) => {
-								if (l.length == 2 && !fillColor.some((c) => c == l.toUpperCase()))
+								if (l.length == 2 && l != 'us' && !fillColor.some((c) => c == l.toUpperCase()))
 									fillColor.push(l.toUpperCase(), color);
 							});
 						});
+
+						fillColor.push('US', '#9832c7');
 
 						fillColor.push('rgba(0, 0, 0, 0)');
 
