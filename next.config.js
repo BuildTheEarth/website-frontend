@@ -50,11 +50,6 @@ const nextConfig = {
 				permanent: false,
 			},
 			{
-				source: '/teams/map',
-				destination: '/map/teams',
-				permanent: true,
-			},
-			{
 				source: '/buildteams/:id*',
 				destination: '/teams/:id*',
 				permanent: true,
