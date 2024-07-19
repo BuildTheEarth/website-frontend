@@ -1,10 +1,10 @@
 import { Avatar, Badge, Box, Title, useMantineTheme } from '@mantine/core';
 import React, { useState } from 'react';
 
+import BackgroundImage from './BackgroundImage';
 import { Carousel } from '@mantine/carousel';
 import Link from 'next/link';
 import classes from '../styles/components/Gallery.module.css';
-import BackgroundImage from './BackgroundImage';
 
 interface GalleryImageProps {
 	name?: string;
@@ -44,7 +44,6 @@ function Gallery(props: GalleryProps) {
 				slideGap={0}
 				style={{ flex: 1 }}
 				classNames={classes}
-				aria-controls="Controls"
 			>
 				{props.images.map((i) => {
 					return (

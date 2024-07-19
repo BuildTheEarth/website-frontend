@@ -95,7 +95,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 							],
 						},
 						autoContrast: true,
-						luminanceThreshold: 0.4,
+						luminanceThreshold: 0.3,
 					}}
 				>
 					<ModalsProvider>

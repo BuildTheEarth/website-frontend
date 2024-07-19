@@ -38,7 +38,13 @@ export default function CookieBanner() {
 							<Text fz="md" fw={500}>
 								Allow cookies
 							</Text>
-							<CloseButton mr={-9} mt={-9} size="sm" onClick={() => setShowing(false)} />
+							<CloseButton
+								mr={-9}
+								mt={-9}
+								size="sm"
+								onClick={() => setShowing(false)}
+								aria-label="Close Cookie Banner"
+							/>
 						</Group>
 						<Text c="dimmed" fz="xs">
 							On our website, we use cookies. You can opt to allow only essential cookies, such as
