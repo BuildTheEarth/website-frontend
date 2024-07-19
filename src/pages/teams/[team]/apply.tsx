@@ -220,20 +220,21 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 						</>
 					) : (
 						<>
-							{pastApplications.some((a: any) => a.status == 'SEND' || a.status == 'REVIEWING') && (
-								<>
+							{pastApplications
+								.filter((a: any) => a.status == 'SEND' || a.status == 'REVIEWING')
+								.map((a: any, i: number) => (
 									<Alert
 										title={t('apply.duplicate.pending.title')}
 										color="yellow"
 										icon={<IconAlertCircle size="1rem" />}
 										mt="md"
+										key={i}
 									>
 										{t('apply.duplicate.pending.description', {
-											date: new Date(pastApplications[0].createdAt).toLocaleDateString(),
+											date: new Date(a.createdAt).toLocaleDateString(),
 										})}
 									</Alert>
-								</>
-							)}
+								))}
 							{pastApplications
 								.filter((a: any) => a.status == 'ACCEPTED')
 								.map((a: any, i: number) => (
@@ -245,7 +246,7 @@ const Apply: NextPage = ({ data, buildteam }: any) => {
 										key={i}
 									>
 										{t('apply.duplicate.accepted.description', {
-											date: new Date(pastApplications[0].createdAt).toLocaleDateString(),
+											date: new Date(a.createdAt).toLocaleDateString(),
 										})}
 									</Alert>
 								))}
