@@ -10,21 +10,22 @@ import '@mantine/tiptap/styles.css';
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-import type { AppProps } from 'next/app';
 import CookieBanner from '@/components/CookieBanner';
-import { DefaultSeo } from 'next-seo';
-import { Inter } from 'next/font/google';
-import { MantineProvider } from '@mantine/core';
-import { ModalsProvider } from '@mantine/modals';
-import { Notifications } from '@mantine/notifications';
 import { RouterTransition } from '@/components/RouterTransition';
 import SWRSetup from '@/components/SWRSetup';
+import theme from '@/utils/theme';
+import { MantineProvider } from '@mantine/core';
+import { useLocalStorage } from '@mantine/hooks';
+import { ModalsProvider } from '@mantine/modals';
+import { Notifications } from '@mantine/notifications';
 import { SessionProvider } from 'next-auth/react';
 import { appWithTranslation } from 'next-i18next';
+import { DefaultSeo } from 'next-seo';
 import defaultSeo from 'next-seo.config';
+import type { AppProps } from 'next/app';
+import { Inter } from 'next/font/google';
 import localFont from 'next/font/local';
 import { useEffect } from 'react';
-import { useLocalStorage } from '@mantine/hooks';
 
 export const interFont = Inter({
 	subsets: ['latin'],
@@ -67,37 +68,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 			`}</style>
 			<SessionProvider session={pageProps.session}>
 				<DefaultSeo {...defaultSeo} />
-				<MantineProvider
-					defaultColorScheme="dark"
-					theme={{
-						fontFamily:
-							'var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
-						breakpoints: {
-							xs: '36em',
-							sm: '48em',
-							md: '62em',
-							lg: '75em',
-							xl: '88em',
-						},
-						primaryColor: 'cyan',
-						colors: {
-							dark: [
-								'#C1C2C5',
-								'#A6A7AB',
-								'#909296',
-								'#5c5f66',
-								'#373A40',
-								'#2C2E33',
-								'#25262b',
-								'#1A1B1E',
-								'#141517',
-								'#101113',
-							],
-						},
-						autoContrast: true,
-						luminanceThreshold: 0.33,
-					}}
-				>
+				<MantineProvider defaultColorScheme="dark" theme={theme}>
 					<ModalsProvider>
 						<Notifications />
 						<CookieBanner />
