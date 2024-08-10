@@ -8,18 +8,19 @@ import {
 	Pagination,
 	Table,
 	Text,
+	Tooltip,
 	rem,
 } from '@mantine/core';
-import { IconExternalLink, IconTrash } from '@tabler/icons-react';
 import { showNotification, updateNotification } from '@mantine/notifications';
+import { IconCheck, IconExternalLink, IconTrash } from '@tabler/icons-react';
 import useSWR, { mutate } from 'swr';
 
-import Link from 'next/link';
 import Page from '@/components/Page';
+import { useAccessToken } from '@/hooks/useAccessToken';
+import thumbnail from '@/public/images/thumbnails/teams.png';
 import { modals } from '@mantine/modals';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import thumbnail from '@/public/images/thumbnails/teams.png';
-import { useAccessToken } from '@/hooks/useAccessToken';
+import Link from 'next/link';
 import { useState } from 'react';
 
 var vagueTime = require('vague-time');
@@ -93,6 +94,49 @@ const Settings = () => {
 			},
 		});
 	};
+	const handleCheckImage = (image: any) => {
+		setLoading(true);
+		const notification = showNotification({
+			title: 'Checking Claim Image',
+			message: 'Please wait for this to finish before checking other images.',
+			loading: true,
+			autoClose: false,
+			withCloseButton: false,
+		});
+		fetch(process.env.NEXT_PUBLIC_API_URL + `/admin/images/${image.id}/check`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: 'Bearer ' + accessToken,
+			},
+		})
+			.then((res) => res.json())
+			.then((res) => {
+				if (res.errors) {
+					updateNotification({
+						id: notification,
+						title: 'Check failed',
+						loading: false,
+						message: res.error,
+						color: 'red',
+						withCloseButton: true,
+					});
+					setLoading(false);
+				} else {
+					updateNotification({
+						id: notification,
+						title: 'Image checked',
+						message: 'All Data has been saved',
+						color: 'green',
+						loading: false,
+						autoClose: 5000,
+						withCloseButton: true,
+					});
+					setLoading(false);
+					mutate(`/claims/images?take=20&skip=${activePage * 20 - 20}`);
+				}
+			});
+	};
 
 	return (
 		<Page
@@ -133,6 +177,17 @@ const Settings = () => {
 												vagueTime.get({ to: new Date(image.createdAt) })}
 										</Text>
 										<Group gap={4} mt="sm">
+											<Tooltip label="Mark Image as checked">
+												<ActionIcon
+													variant="light"
+													color="green"
+													onClick={() => handleCheckImage(image)}
+													loading={loading}
+													disabled={loading}
+												>
+													<IconCheck style={{ width: rem(18), height: rem(18) }} stroke={1.5} />
+												</ActionIcon>
+											</Tooltip>
 											<ActionIcon
 												variant="subtle"
 												color="gray"
