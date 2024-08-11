@@ -1,3 +1,4 @@
+import Footer from '@/components/v2/footer';
 import Header from '@/components/v2/header';
 import { BackgroundImage } from '@mantine/core';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -24,120 +25,16 @@ const Home = () => {
 							width: '100%',
 							height: '100%',
 						}}
-					>
-						dw
-					</div>
+					></div>
 				</BackgroundImage>
-				dd1
-				<br />
-				dd2
-				<br />
-				dd3
-				<br />
-				dd4
-				<br />
-				dd5
-				<br />
-				dd6
-				<br />
-				dd7
-				<br />
-				dd8
-				<br />
-				dd9
-				<br />
-				dd1
-				<br />
-				dd2
-				<br />
-				dd3
-				<br />
-				dd4
-				<br />
-				dd5
-				<br />
-				dd6
-				<br />
-				dd7
-				<br />
-				dd8
-				<br />
-				dd9
-				<br />
-				dd1
-				<br />
-				dd2
-				<br />
-				dd3
-				<br />
-				dd4
-				<br />
-				dd5
-				<br />
-				dd6
-				<br />
-				dd7
-				<br />
-				dd8
-				<br />
-				dd9
-				<br />
-				dd1
-				<br />
-				dd2
-				<br />
-				dd3
-				<br />
-				dd4
-				<br />
-				dd5
-				<br />
-				dd6
-				<br />
-				dd7
-				<br />
-				dd8
-				<br />
-				dd9
-				<br />
-				dd1
-				<br />
-				dd2
-				<br />
-				dd3
-				<br />
-				dd4
-				<br />
-				dd5
-				<br />
-				dd6
-				<br />
-				dd7
-				<br />
-				dd8
-				<br />
-				dd9
-				<br />
-				dd1
-				<br />
-				dd2
-				<br />
-				dd3
-				<br />
-				dd4
-				<br />
-				dd5
-				<br />
-				dd6
-				<br />
-				dd7
-				<br />
-				dd8
-				<br />
-				dd9
-				<br />
-				<br />
 			</div>
+			<Footer
+				links={[
+					{ link: '/faq', translation: 'faq' },
+					{ link: '/contact', translation: 'contact' },
+					{ link: 'https://status.buildtheearth.net', translation: 'status' },
+				]}
+			/>
 		</>
 	);
 };
