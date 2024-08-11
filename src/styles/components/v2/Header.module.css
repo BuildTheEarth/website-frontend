@@ -1,0 +1,157 @@
+.root {
+	z-index: 999;
+	width: 100vw;
+	position: fixed;
+	top: 0;
+	left: 0;
+	max-height: 60px;
+
+	background: transparent;
+	backdrop-filter: blur(4px);
+
+	transition: background 0.2s ease;
+	transition-delay: 0ms;
+
+	&[data-on-top='false'] {
+		background: var(--mantine-color-body);
+	}
+}
+
+.container {
+	display: flex;
+	align-items: center;
+	margin-left: calc(4 * var(--mantine-spacing-xl));
+	margin-right: calc(4 * var(--mantine-spacing-xl));
+	padding: var(--mantine-spacing-xs) 0px;
+	justify-content: space-between;
+	height: 100%;
+
+	@media (max-width: $mantine-breakpoint-xs) {
+		margin-left: calc(var(--mantine-spacing-lg));
+		margin-right: calc(var(--mantine-spacing-lg));
+	}
+}
+
+.logo {
+	position: relative;
+	top: 2px;
+	cursor: pointer;
+	user-select: none;
+
+	&[data-on-top='false'] {
+		p {
+			color: var(--mantine-color-text);
+		}
+	}
+
+	img {
+		position: relative;
+		top: -2px;
+	}
+
+	p {
+		font-family: var(--font-minecraft);
+		color: rgb(236, 236, 236);
+		font-size: 20px;
+		margin: 0;
+
+		@media (max-width: 400px) {
+			display: none;
+		}
+	}
+}
+
+.links {
+	@media (max-width: $mantine-breakpoint-md) {
+		display: none;
+	}
+}
+
+.link {
+	@media (min-width: $mantine-breakpoint-md) {
+		border-radius: var(--mantine-radius-sm);
+		display: block;
+		padding: 8px 12px;
+		cursor: pointer;
+		text-shadow: var(--mantine-shadow-xl);
+
+		line-height: 1;
+		text-decoration: none;
+		color: rgb(236, 236, 236);
+		font-size: var(--mantine-font-size-md);
+
+		transition: background-color 0.2s ease-in-out;
+		transition: color 0.5s ease;
+
+		&[data-on-top='false'] {
+			color: var(--mantine-color-text);
+		}
+
+		&:hover {
+			background-color: rgba(0, 0, 0, 0.5);
+		}
+	}
+
+	@media (max-width: $mantine-breakpoint-md) {
+		border-radius: 0;
+		display: block;
+		line-height: 1;
+		padding: var(--mantine-spacing-md) 28px;
+
+		cursor: pointer;
+
+		text-decoration: none;
+		color: var(--mantine-color-text);
+		font-size: var(--mantine-font-size-md);
+
+		transition: background-color 0.2s ease-in-out;
+		transition: color 0.5s ease;
+
+		&:hover {
+			background-color: rgba(0, 0, 0, 0.5);
+		}
+	}
+}
+
+.button {
+	box-shadow: var(--mantine-shadow-xl);
+	background: var(--mantine-color-buildtheearth-5);
+}
+
+.userButton {
+	color: rgb(236, 236, 236);
+
+	transition: color 0.5s ease;
+
+	&[data-on-top='false'] {
+		color: var(--mantine-color-text);
+	}
+
+	&:hover {
+		background-color: rgba(0, 0, 0, 0.5);
+		color: rgb(236, 236, 236);
+	}
+}
+
+.burger {
+	@media (min-width: $mantine-breakpoint-md) {
+		display: none;
+	}
+}
+
+.dropdown {
+	position: absolute;
+	top: 60px;
+	left: 0px;
+	width: 100%;
+	z-index: 99 !important;
+
+	border: none;
+	border-radius: 0;
+	overflow: hidden;
+
+	box-shadow: var(--mantine-shadow-md);
+	border-bottom: 1px solid var(--mantine-color-default-border);
+	border-top: 1px solid var(--mantine-color-default-border);
+	background: var(--mantine-color-body);
+}
