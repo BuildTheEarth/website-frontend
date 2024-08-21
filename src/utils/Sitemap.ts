@@ -16,7 +16,7 @@ export function generateSiteMapContent(
                         <lastmod>${d.lastModified.toISOString().split('T')[0]}</lastmod>
                         ${nextConfig.i18n?.locales
 													.map(
-														(locale) =>
+														(locale: string) =>
 															` <xhtml:link rel="alternate" hreflang="${locale}" href="https://buildtheearth.net/${locale}${d.loc}"/>`,
 													)
 													.join('')}

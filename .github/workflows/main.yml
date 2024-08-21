@@ -8,6 +8,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - name: Docker login
@@ -24,6 +26,7 @@ jobs:
           echo NEXT_PUBLIC_API_URL="https://api.buildtheearth.net/api/v1" >> build.env.local
           echo NEXT_PUBLIC_MAPBOX_TOKEN="${{ secrets.MAPBOX_TOKEN }}" >> build.env.local
           echo PORT=3000 >> build.env.local
+          echo SENTRY_AUTH_TOKEN="${{ secrets.SENTRY_AUTH_TOKEN }}" >> build.env.local
 
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag ghcr.io/buildtheearth/website-frontend:$(git rev-parse --short HEAD) --tag ghcr.io/buildtheearth/website-frontend:latest
