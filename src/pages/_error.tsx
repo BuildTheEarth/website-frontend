@@ -1,3 +1,5 @@
+import * as Sentry from '@sentry/nextjs';
+
 import {
 	Button,
 	Center,
@@ -7,12 +9,13 @@ import {
 	useMantineTheme,
 } from '@mantine/core';
 
+import Error from 'next/error';
+import Image from 'next/image';
+import type { NextPageContext } from 'next';
 import Page from '@/components/Page';
 import thumbnail from '@/public/images/thumbnails/error.png';
-import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
 function ErrorPage(props: any) {
 	const theme = useMantineTheme();
@@ -90,13 +93,16 @@ function ErrorPage(props: any) {
 		</Page>
 	);
 }
-export async function getStaticProps({ locale }: any) {
-	return {
-		props: {
-			...(await serverSideTranslations(locale, ['common'])),
-		},
-	};
-}
+
+ErrorPage.getInitialProps = async (contextData: NextPageContext) => {
+	await Sentry.captureUnderscoreErrorException(contextData);
+
+	return Error.getInitialProps({
+		...contextData,
+		// ...(await serverSideTranslations(contextData.locale || 'en', ['common'])),
+	});
+};
+
 export default ErrorPage;
 
 const errors: any = {
