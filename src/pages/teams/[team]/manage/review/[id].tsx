@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+
 import {
 	ActionIcon,
 	Alert,
@@ -23,8 +24,8 @@ import Page from '@/components/Page';
 import SettingsTabs from '@/components/SettingsTabs';
 import { useAccessToken } from '@/hooks/useAccessToken';
 import thumbnail from '@/public/images/thumbnails/apply.png';
-import fetcher from '@/utils/Fetcher';
 import { ApplicationQuestions } from '@/utils/application/ApplicationQuestions';
+import fetcher from '@/utils/Fetcher';
 import { useClipboard } from '@mantine/hooks';
 import { modals } from '@mantine/modals';
 import { showNotification } from '@mantine/notifications';
@@ -200,7 +201,7 @@ const Apply: NextPage = ({ team, id }: any) => {
 									<Text>Discord Name</Text>
 									<Tooltip label={'Click to copy ID'}>
 										<Group>
-											<Text>{data?.user?.discordName} </Text>
+											<Text>{data?.user?.username} </Text>
 											<ActionIcon
 												variant="light"
 												color="gray"
@@ -240,7 +241,7 @@ const Apply: NextPage = ({ team, id }: any) => {
 										<Divider style={{ margin: '0' }} my="sm" />
 										<Group justify="space-between">
 											<Text>Reviewer</Text>
-											<Text>{data?.reviewer?.discordName} </Text>
+											<Text>{data?.reviewer?.username} </Text>
 										</Group>
 									</>
 								)}

@@ -20,7 +20,6 @@ import {
 	Tooltip,
 	rem,
 } from '@mantine/core';
-import { useClipboard, useDebouncedState } from '@mantine/hooks';
 import {
 	IconBrandMinecraft,
 	IconCheck,
@@ -32,23 +31,24 @@ import {
 	IconPlus,
 	IconTrash,
 } from '@tabler/icons-react';
+import { useClipboard, useDebouncedState } from '@mantine/hooks';
 import { useEffect, useState } from 'react';
 
-import Page from '@/components/Page';
 import { ClaimDrawerImages } from '@/components/map/ClaimDrawerImages';
-import Map from '@/components/map/Map';
-import { useAccessToken } from '@/hooks/useAccessToken';
-import { useUser } from '@/hooks/useUser';
-import thumbnail from '@/public/images/thumbnails/me.png';
-import fetcher from '@/utils/Fetcher';
 import { Discord } from '@icons-pack/react-simple-icons';
-import { showNotification } from '@mantine/notifications';
+import Link from 'next/link';
+import Map from '@/components/map/Map';
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
 import { NextPage } from 'next';
+import Page from '@/components/Page';
+import fetcher from '@/utils/Fetcher';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Link from 'next/link';
+import { showNotification } from '@mantine/notifications';
+import thumbnail from '@/public/images/thumbnails/me.png';
+import { useAccessToken } from '@/hooks/useAccessToken';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
+import { useUser } from '@/hooks/useUser';
 
 /* eslint-disable react-hooks/exhaustive-deps */
 
@@ -324,7 +324,7 @@ const ClaimPage: NextPage = ({ claimId, data }: any) => {
 														</MenuItem>
 														<MenuItem
 															leftSection={<IconBrandMinecraft />}
-															disabled={!builder.name}
+															disabled={!builder.name} /* TODO */
 															onClick={() => clipboard.copy(builder.name)}
 														>
 															Copy Minecraft Name

@@ -1,25 +1,27 @@
 import {
 	ActionIcon,
 	Badge,
+	Code,
 	Group,
 	Pagination,
 	SimpleGrid,
 	Table,
+	Text,
 	Tooltip,
 	useMantineTheme,
 } from '@mantine/core';
 import { IconCheck, IconClock, IconQuestionMark, IconX } from '@tabler/icons-react';
 
+import { IconChevronRight } from '@tabler/icons-react';
+import Link from 'next/link';
 import Page from '@/components/Page';
 import SettingsTabs from '@/components/SettingsTabs';
 import { StatsRing } from '@/components/Stats';
-import thumbnail from '@/public/images/thumbnails/teams.png';
 import fetcher from '@/utils/Fetcher';
-import { IconChevronRight } from '@tabler/icons-react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import Link from 'next/link';
-import { useState } from 'react';
+import thumbnail from '@/public/images/thumbnails/teams.png';
 import useSWR from 'swr';
+import { useState } from 'react';
 
 var vagueTime = require('vague-time');
 const Review = ({ team }: any) => {
@@ -92,6 +94,7 @@ const Review = ({ team }: any) => {
 							<Table.Tr>
 								<Table.Th>Id</Table.Th>
 								<Table.Th>Status</Table.Th>
+								<Table.Th>Username</Table.Th>
 								<Table.Th>Trial</Table.Th>
 								<Table.Th>Created At</Table.Th>
 								<Table.Th></Table.Th>
@@ -130,6 +133,9 @@ const Review = ({ team }: any) => {
 													Rejected
 												</Badge>
 											)}
+										</Table.Td>
+										<Table.Td>
+											<Code fz="sm">{a.user.username}</Code>
 										</Table.Td>
 										<Table.Td>{a.trial ? 'Yes' : 'No'}</Table.Td>
 										<Table.Td>

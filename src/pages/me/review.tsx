@@ -1,4 +1,4 @@
-import { Avatar, Badge, Button, Group, Table, Tooltip } from '@mantine/core';
+import { Avatar, Badge, Button, Code, Group, Table, Tooltip } from '@mantine/core';
 
 import Page from '@/components/Page';
 import { useUser } from '@/hooks/useUser';
@@ -33,6 +33,7 @@ const ReviewPage: NextPage = () => {
 							<Table.Th>Id</Table.Th>
 							<Table.Th>Team</Table.Th>
 							<Table.Th>Status</Table.Th>
+							<Table.Th>Username</Table.Th>
 							<Table.Th>Created At</Table.Th>
 							<Table.Th></Table.Th>
 						</Table.Tr>
@@ -66,6 +67,9 @@ const ReviewPage: NextPage = () => {
 										<Badge variant="gradient" gradient={{ from: 'orange', to: 'yellow' }}>
 											Needs Review
 										</Badge>
+									</Table.Td>
+									<Table.Td>
+										<Code fz="sm">{a.user.username}</Code>
 									</Table.Td>
 									<Table.Td>
 										<Tooltip
